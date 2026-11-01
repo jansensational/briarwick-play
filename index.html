@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACEUlEQVR4Xr2XO0jDUBSGk1rBQUFwEQRxkKqTKO0i6OpYCx0cXHToqFAU6eDkUMQuOnawi4NDQTo6FsWhjYogWMWCiIKLKOhQEB+cyElzb+7jJNR+S+m9yfn/nMclMQ2O0ejyD7/Gs77/YWwtdDu/AK7pqFm7pvsa5g9FHEHBkdS5MTcTsQ1RcZtwDPgRdwMGbvKTVG0HNGEb8Cve8XIqFfzqm/LsWXtvRnSp17MOJky/4gAYKKfDxtlrPxM0XXj0GABxRGQiJHoU900yeHEZKCoSBwJnQIaoBCrCyl0Fm8dVz+7GdMx3OGEJWsF1dYcURmtA1g+JAXX8sdhKawzImufwiRRfizYD/41vA6pDCM8IGaK+8DWGKC6aAAQngTqOngzIutctrmpANKfLFELKAC9OaUBqJsg9oEq7COr15JOw1rBsnWxdqBcYbQaotZShu1/bAxBgLX5gx4+HLo3S9zijpVvbLs0rJ8IcjCSV74A9n/e24EkiE0gceO8ckmZI2wNwM5jgnxzg1ypXllGxd/76RScOaHuACpQiCGQDUEsVfDbK9RzJD8kA1pA3IXtqFFfVHiEZcNfSbULUF37EAeEUJPMNafqOFp+ZPRhRPjOzBfZtGSmmujxxGQMTq2xwHXfZptHhjDe4jItc02D44baoPQtk+BEVAdrOp5nuQGo1IM6cA7jQDtxazBS0wwSv8QvPBN/iKlJbaQAAAABJRU5ErkJggg==">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reagents of Briarwick v0.8.1</title>
+<title>Reagents of Briarwick v0.8.2</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; }
   body { display: flex; align-items: center; justify-content: center; }
@@ -24,7 +24,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -37,7 +37,9 @@ window.GAME_DATA = {
   "nightHour": 22,
   "reportDays": 14,
   "playUrl": "https://jansensational.github.io/briarwick-play/",
-  "updateUrl": "https://jansensational.github.io/briarwick-play/version.json"
+  "updateUrl": "https://jansensational.github.io/briarwick-play/version.json",
+  "reportWebhook": "https://discord.com/api/webhooks/1566515455265349643/JyhpBnAjaNgwGaXYmk-v1CSGBU97GFoeodAeJKo3vFZct_p50jtApa7xBt8F6pNthWX1",
+  "discordInvite": "https://discord.gg/KHZkNGfgjK"
  },
  "start": {
   "map": "house",
@@ -29743,6 +29745,15 @@ const N4 = [[1, 0], [-1, 0], [0, 1], [0, -1]];
 const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const man = (a, b) => Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+// battle line of sight: any solid tile between shooter and target blocks ranged attacks and spells
+function losXY(x0, y0, x1, y1) {
+  if (!C || Math.abs(x0 - x1) + Math.abs(y0 - y1) <= 1) return true;
+  const n = Math.max(Math.abs(x1 - x0), Math.abs(y1 - y0)) * 2;
+  for (let i = 1; i < n; i++) { const t = i / n, x = Math.round(x0 + (x1 - x0) * t), y = Math.round(y0 + (y1 - y0) * t);
+    if ((x === x0 && y === y0) || (x === x1 && y === y1)) continue; const row = C.grid[y]; if (!row) continue; const td = tileDef(row[x]); if (td.solid && !td.water) return false; }
+  return true;
+}
+const los = (a, b) => losXY(a.x, a.y, b.x, b.y);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 function fitCanvas() {
@@ -29886,7 +29897,7 @@ async function fadeTo(mid) {
 
 // ================= STATE =================
 // ---- player settings (per computer, not per save) ----
-const SET = { walk: 'normal', battle: 'normal' };
+const SET = { walk: 'normal', battle: 'normal', stats: true, name: '' };
 try { Object.assign(SET, JSON.parse(localStorage.getItem('gt_settings') || '{}')); } catch (e) { /* storage unavailable */ }
 function saveSettings() { try { localStorage.setItem('gt_settings', JSON.stringify(SET)); } catch (e) { /* ignore */ } }
 const WALK = { slow: 0.17, normal: 0.12, fast: 0.095, 'very fast': 0.075 };
@@ -29932,7 +29943,7 @@ function discover(id, quiet) {
   else script(() => say('Discovery!', [`You discovered ${it.name}!`, it.desc, `You found 2 seeds. You can now grow ${it.name} in your greenhouse, and Marta's Apothecary will sell more seeds.`], it.sprite));
 }
 function hasReagents(sp) { return Object.entries(sp.reagents || {}).every(([id, n]) => count(id) >= n); }
-function payReagents(sp) {
+function payReagents(sp) { stat('casts');
   const saved = {};
   for (const [id, n] of Object.entries(sp.reagents || {})) for (let i = 0; i < n; i++) { if (Math.random() < reagentSaveChance(id)) saved[id] = (saved[id] || 0) + 1; else take(id, 1); }
   // always show what the cast cost and what's left, so nobody has to open the inventory to check
@@ -30504,7 +30515,7 @@ function importSave() {
   document.body.appendChild(inp); inp.click();
 }
 async function pauseMenu() {
-  const c = await choose(`Paused   (v${D.meta.version})`, [{ label: 'Resume', value: 'r' }, { label: 'Save game', value: 's' }, { label: 'Load last save', value: 'l', disabled: !hasSave() }, { label: 'Settings', value: 'a', desc: 'Music and sound volume, walking speed, battle speed.' }, { label: 'Export save file', value: 'x', desc: 'Download your progress as a file you can keep or move to another computer.' }, { label: 'Import save file', value: 'i', desc: 'Load progress from a save file (replaces your current game).' }, { label: 'Controls', value: 'c' }, { label: UPD.online ? 'Check for updates' : 'Play the latest version online', value: 'u', desc: UPD.online ? 'See whether a newer version is out.' : 'Opens the online version, which always has the newest build. (Export your save first, then Import it there.)' }, { label: 'Quit to title', value: 'q' }], { width: 320 });
+  const c = await choose(`Paused   (v${D.meta.version})`, [{ label: 'Resume', value: 'r' }, { label: 'Save game', value: 's' }, { label: 'Load last save', value: 'l', disabled: !hasSave() }, { label: 'Settings', value: 'a', desc: 'Music and sound volume, walking speed, battle speed.' }, { label: 'Export save file', value: 'x', desc: 'Download your progress as a file you can keep or move to another computer.' }, { label: 'Import save file', value: 'i', desc: 'Load progress from a save file (replaces your current game).' }, { label: 'Controls', value: 'c' }, { label: UPD.online ? 'Check for updates' : 'Play the latest version online', value: 'u', desc: UPD.online ? 'See whether a newer version is out.' : 'Opens the online version, which always has the newest build. (Export your save first, then Import it there.)' }, { label: 'Join the Discord', value: 'd', desc: 'Chat with other testers, report bugs and get news about new versions.', disabled: !D.meta.discordInvite }, { label: 'Quit to title', value: 'q' }], { width: 320 });
   if (c === 's') saveGame();
   if (c === 'a') await settingsMenu();
   if (c === 'x') exportSave();
@@ -30512,6 +30523,7 @@ async function pauseMenu() {
   if (c === 'l') loadGame();
   if (c === 'c') await say('Controls', ['Move: WASD / Arrow keys.  Interact / talk / confirm: E, Space or Enter.', 'I: Inventory   P: Equipment   M: Spellbook   K: Skills & perks   H: Helpers   J: Quests   Esc: Menu', 'Combat: move with WASD/arrows (walk into an enemy to attack) or click a blue tile. Space/E attacks the nearest enemy in range.', '1 Spell   2 Ability   3 Item   4 Defend   Tab next unit   Enter end turn   F flee.  Hover an enemy to see its stats.', 'The coloured dot over a monster shows how dangerous it is for your party: green easy, yellow fair, orange hard, red deadly.']);
   if (c === 'u') { if (UPD.online) { await checkUpdate(); if (UPD.latest) getUpdate(); else toast(`You have the latest version (v${D.meta.version}).`, UI.green); } else getUpdate(); }
+  if (c === 'd') window.open(D.meta.discordInvite, '_blank');
   if (c === 'q') { R.scene = 'title'; }
 }
 
@@ -30573,7 +30585,7 @@ function startCombat(en, opts = {}) {
     grid[u.y][u.x] = zone.ground || '.';
   }
   const th = threat(def, cm); C = { caveMult: cm, sea, board, music: def.music || zone.music || 'battle', grid, units, phase: 'party', sel: null, mode: 'move', action: null, targets: [], log: [`${def.name} attacks!  (Danger: ${th.label})`].concat(wy ? ['You are Weary: -20% attack and defense.'] : []), floats: [], timer: 0, queue: [], en, round: 1, result: null, shake: 0 };
-  R.scene = 'combat'; R.moving = null; if (SEA) SEA.auto = null;
+  R.scene = 'combat'; R.moving = null; if (SEA) SEA.auto = null; stat('battles');
   selectNext();
 }
 function clog(s) { C.log.push(s); if (C.log.length > 40) C.log.shift(); }
@@ -30599,20 +30611,20 @@ function hit(a, b, power, label) {
 function onArbalest(u) { return C.sea && C.grid[u.y][u.x] === 'A'; }
 function atkRange(u) { if (C.sea && u.side === 'party') { const SA = (D.sea || {}).shipArena || {}; return onArbalest(u) ? (SA.arbalestRange || 6) : (SA.bowRange || 4); } return u.range; }
 function attack(a, b) { if (C.sea && a.side === 'party' && (onArbalest(a) || man(a, b) > 1)) { const SA = (D.sea || {}).shipArena || {}; if (onArbalest(a)) hit(a, b, a.atk + (SA.arbalestPower || 8) + perk('arbalestPower'), 'Arbalest'); else hit(a, b, Math.max(1, a.atk - 1), 'Bow'); } else if (a.isPlayer && Math.random() < perk('crit')) hit(a, b, Math.round(a.atk * 1.75), 'Critical!'); else hit(a, b, a.atk); if (a.isPlayer) addSkillXp('swordplay', 1); finishUnit(a); }
-function canAttack(a, b) { return b && !b.dead && b.side !== a.side && man(a, b) <= atkRange(a) && !shielded(b); }
+function canAttack(a, b) { return b && !b.dead && b.side !== a.side && man(a, b) <= atkRange(a) && !shielded(b) && los(a, b); }
 function startSpell() {
   const u = C.sel; if (!u || !u.isPlayer || C.phase !== 'party') return;
   const list = G.spells.filter(s => D.spells[s] && ['damage', 'heal', 'buff'].includes(D.spells[s].kind));
   if (!list.length) { toast('You know no combat spells yet.'); return; }
   choose('Cast which spell?', list.map(s => { const sp = D.spells[s]; return { label: sp.name, right: `pow ${spellPower(sp)} rng ${sp.range}`, desc: `${sp.desc} Cost: ${reagentStr(sp)} (you have ${Object.keys(sp.reagents).map(r => count(r)).join('/')}).`, value: s, disabled: !hasReagents(sp) }; }), { width: 560 })
     .then(s => { if (!s || !C) return; const sp = D.spells[s]; C.mode = 'target'; C.action = { type: 'spell', id: s, sp };
-      C.targets = C.units.filter(t => !t.dead && !shielded(t) && (sp.kind === 'damage' ? t.side === 'enemy' : t.side === 'party') && man(u, t) <= sp.range + perk('spellRange'));
+      C.targets = C.units.filter(t => !t.dead && !shielded(t) && (sp.kind === 'damage' ? t.side === 'enemy' : t.side === 'party') && man(u, t) <= sp.range + perk('spellRange') && los(u, t));
       if (!C.targets.length) { toast('No target in range.'); C.mode = 'move'; } });
 }
 function startAbility() {
   const u = C.sel; if (!u || !u.ability || u.cd > 0 || C.phase !== 'party') return;
   const ab = u.ability; C.mode = 'target'; C.action = { type: 'ability', sp: ab };
-  C.targets = C.units.filter(t => !t.dead && !shielded(t) && (ab.kind === 'damage' ? t.side === 'enemy' : t.side === 'party') && man(u, t) <= ab.range);
+  C.targets = C.units.filter(t => !t.dead && !shielded(t) && (ab.kind === 'damage' ? t.side === 'enemy' : t.side === 'party') && man(u, t) <= ab.range && los(u, t));
   if (!C.targets.length) { toast('No target in range.'); C.mode = 'move'; }
 }
 function applyEffect(u, t, sp, power, label) {
@@ -30658,7 +30670,7 @@ function enemyPhase() { if (checkEnd()) return; C.phase = 'enemy'; C.sel = null;
 function enemyAct(e) {
   if (e.dead) return;
   const targets = alive('party'); if (!targets.length) return;
-  const inRange = targets.filter(t => man(e, t) <= e.range);
+  const inRange = targets.filter(t => man(e, t) <= e.range && los(e, t));
   if (!inRange.length) {
     // true walking-distance field from all targets (so enemies path around trees and rocks)
     const field = Array.from({ length: AH }, () => Array(AW).fill(99)); const q = targets.map(t => [t.x, t.y]);
@@ -30667,7 +30679,8 @@ function enemyAct(e) {
     const reach = bfs(e, uMove(e)); let best = null, bestS = 1e9;
     for (const [k, steps] of reach) {
       const [x, y] = k.split(',').map(Number); const d = Math.min(...targets.map(t => Math.abs(t.x - x) + Math.abs(t.y - y)));
-      const s = (d <= e.range ? (e.range - d) * 0.5 : field[y][x] * 10) + steps * 0.01;
+      const shot = targets.some(t => Math.abs(t.x - x) + Math.abs(t.y - y) <= e.range && losXY(x, y, t.x, t.y));
+      const s = (shot ? (e.range - d) * 0.5 : field[y][x] * 10 + 5) + steps * 0.01;
       if (s < bestS) { bestS = s; best = [x, y]; }
     }
     if (best) { e.x = best[0]; e.y = best[1]; }
@@ -30676,10 +30689,10 @@ function enemyAct(e) {
     const near = alive('party').filter(t => man(e, t) <= 1).sort((a, b) => a.hp - b.hp)[0];
     if (near) { hit(e, near, e.atk); return; }
     if (adjacentDeck(e)) { ramHull(e); return; }
-    const far = alive('party').filter(t => man(e, t) <= e.range).sort((a, b) => a.hp - b.hp)[0]; if (far && e.range >= 2) hit(e, far, e.atk);
+    const far = alive('party').filter(t => man(e, t) <= e.range && los(e, t)).sort((a, b) => a.hp - b.hp)[0]; if (far && e.range >= 2) hit(e, far, e.atk);
     return;
   }
-  const t2 = alive('party').filter(t => man(e, t) <= e.range).sort((a, b) => a.hp - b.hp)[0];
+  const t2 = alive('party').filter(t => man(e, t) <= e.range && los(e, t)).sort((a, b) => a.hp - b.hp)[0];
   if (t2) { hit(e, t2, e.atk); if (t2.isPlayer && !t2.dead && man(e, t2) <= 1 && Math.random() < perk('counter')) hit(t2, e, t2.atk, 'Riposte'); }
 }
 function endRound() {
@@ -30716,7 +30729,8 @@ function endCombat(how) {
   const player = C.units.find(u => u.isPlayer);
   const en = C.en, sea = C.sea;
   if (how === 'won') { G.hp = Math.max(1, player.hp); if (sea) { if (SEA) SEA.monsters = SEA.monsters.filter(m => m !== en); } else { (G.defeated[R.mapId] = G.defeated[R.mapId] || []).push(en.idx); R.enemies = R.enemies.filter(e => e !== en); } if (C.result.levelUp) { G.hp = maxHp(); addDread(DL().perLevel || 0); AU.sfx('levelup'); toast(`Level ${playerLvl()}! ${C.result.gains}.`, UI.green); } }
-  if (how === 'fled') { G.hp = Math.max(1, player.hp); en.stun = 3; }
+  if (how === 'fled') { G.hp = Math.max(1, player.hp); en.stun = 3; stat('flees'); }
+  if (how === 'won') stat('wins'); if (how === 'lost') stat('deaths');
   const fin = how === 'won' && C.finalWin; const sunk = C.sunk;
   if (how === 'won' && R.map && R.map.cave && !sea && R.enemies.filter(e => e !== en).length === 0) setTimeout(() => toast('Level cleared! Ore veins and crystals can now be mined (E).', UI.green), 50);
   R.scene = sea && SEA && how !== 'lost' ? 'sea' : 'world'; C = null;
@@ -31304,7 +31318,7 @@ function startItem() {
   choose('Use which item?', list.map(id => ({ label: `${item(id).name} x${count(id)}`, icon: item(id).sprite, desc: item(id).desc, value: id })), { width: 520 }).then(id => {
     if (!id || !C) return; const eff = combatUse(item(id));
     C.mode = 'target'; C.action = { type: 'item', id, sp: eff };
-    C.targets = C.units.filter(t => !t.dead && !shielded(t) && (eff.kind === 'damage' ? t.side === 'enemy' : t.side === 'party') && man(u, t) <= (eff.range || 1));
+    C.targets = C.units.filter(t => !t.dead && !shielded(t) && (eff.kind === 'damage' ? t.side === 'enemy' : t.side === 'party') && man(u, t) <= (eff.range || 1) && los(u, t));
     if (!C.targets.length) { toast('No target in range.'); C.mode = 'move'; }
   });
 }
@@ -31607,14 +31621,49 @@ async function settingsMenu() {
     if (it.value === 'music' || it.value === 'sfx') AU.setVolume(it.value, clamp(Math.round((AU.volume[it.value] + d * 0.1) * 10) / 10, 0, 1));
     if (it.value === 'walk') SET.walk = cyc(WALK, SET.walk, d);
     if (it.value === 'battle') SET.battle = cyc(BATTLE, SET.battle, d);
+    if (it.value === 'stats') SET.stats = !SET.stats;
+    if (it.value === 'name') { const v = window.prompt('Your name for play reports (leave blank for none):', SET.name || ''); if (v !== null) SET.name = v.trim().slice(0, 30); }
+    if (it.value === 'send') { if (!SET.stats) toast('Turn on Share play stats first.'); else if (sendStats('sent a report from Settings', true)) toast('Report sent - thank you!', UI.green); }
     saveSettings(); AU.sfx('menu');
   };
   await openMenu({ title: 'Settings  (Left/Right or click to change)', width: 500,
     items: () => [{ label: 'Music volume', right: lbl(AU.volume.music), value: 'music' }, { label: 'Sound effects', right: lbl(AU.volume.sfx), value: 'sfx' },
-      { label: 'Walking speed', right: SET.walk, value: 'walk', desc: 'How quickly you walk from tile to tile.' }, { label: 'Battle speed', right: SET.battle, value: 'battle', desc: 'How quickly enemies take their turns.' }],
+      { label: 'Walking speed', right: SET.walk, value: 'walk', desc: 'How quickly you walk from tile to tile.' }, { label: 'Battle speed', right: SET.battle, value: 'battle', desc: 'How quickly enemies take their turns.' },
+      { label: 'Share play stats', right: SET.stats ? 'On' : 'Off', value: 'stats', desc: 'When you close the game, a short summary (version, day, level, quests, settings, any errors) goes to the developer to help improve the game. No personal information.' },
+      { label: 'Your name in reports', right: SET.name || '(not set)', value: 'name', desc: 'Optional. Lets the developer know whose play stats these are.' },
+      { label: 'Send a report now', value: 'send', desc: 'Sends your play stats right away (handy after finding a bug).' }],
     onKey: (k, it) => { if (!it) return; const d = (k === 'arrowright' || k === 'd') ? 1 : (k === 'arrowleft' || k === 'a') ? -1 : 0; if (d) change(it, d); },
     onSelect: it => { if ((it.value === 'music' || it.value === 'sfx') && AU.volume[it.value] >= 0.99) AU.setVolume(it.value, 0); else change(it, 1); return false; } });
 }
+
+// ================= PLAY STATS (sent to the developer's Discord when the game closes) =================
+const SESSION = { start: Date.now(), errors: [], sent: 0, id: (() => { try { let v = localStorage.getItem('gt_pid'); if (!v) { v = Math.random().toString(36).slice(2, 8); localStorage.setItem('gt_pid', v); } return v; } catch (e) { return 'anon'; } })() };
+addEventListener('error', e => { SESSION.errors.push(String(e.message || e).slice(0, 160)); if (SESSION.errors.length > 5) SESSION.errors.shift(); });
+function stat(k, n = 1) { if (!G) return; G.stats = G.stats || {}; G.stats[k] = (G.stats[k] || 0) + n; }
+function statsReport(why) {
+  const mins = Math.round((Date.now() - SESSION.start) / 60000);
+  const head = `**${SET.name || 'Player ' + SESSION.id}** - v${D.meta.version} (${UPD.online ? 'online' : 'file'}) - ${why} - session ${mins} min`;
+  if (!G) return head + '\nOn the title screen (no game loaded).';
+  const st = G.stats || {}, q = Object.values(G.quests || {}), sk = Object.keys(D.skills).filter(id => skillLvl(id) > 1).map(id => `${D.skills[id].name} ${skillLvl(id)}`);
+  const lines = [head,
+    `Day ${G.day} (${dateStr()} ${clock()}) - Level ${playerLvl()} - ${G.gold}g - HP ${G.hp}/${maxHp()} - at ${(R.map || {}).name || R.mapId}`,
+    `Quests: ${q.filter(v => v === 'done').length} done, ${q.filter(v => v === 'active').length} active (${D.quests.filter(x => G.quests[x.id] === 'active').map(x => x.name).slice(0, 4).join(', ') || '-'})`,
+    `Skills: ${sk.join(', ') || 'all 1'} - Spells: ${G.spells.length} - Greenhouse: ${G.gh < 0 ? 'ruined' : G.gh} - Boat: ${G.boat ? 'yes' : 'no'} - Ports: ${Object.keys(G.ports || {}).length}`,
+    `Helpers: ${Object.entries(G.helpers || {}).map(([id, h]) => `${(D.helpers[id] || {}).name || id} (${ROLES[h.role] || h.role})`).join(', ') || 'none'}`,
+    `Battles ${st.battles || 0}, won ${st.wins || 0}, fled ${st.flees || 0}, lost ${st.deaths || 0} - spells cast ${st.casts || 0} - total play ${Math.round((st.playMs || 0) / 60000)} min`,
+    `Hollow King: ${G.flags.dreadKnown ? Math.round(dread() * 100) + '% (' + tierName() + ')' : 'not revealed'} - Settings: walk ${SET.walk}, battle ${SET.battle}, music ${Math.round(AU.volume.music * 100)}%, sfx ${Math.round(AU.volume.sfx * 100)}%`];
+  if (SESSION.errors.length) lines.push('Errors: ' + SESSION.errors.join(' | '));
+  return lines.join('\n').slice(0, 1900);
+}
+function sendStats(why, now) {
+  const url = D.meta.reportWebhook; if (!url || DRAFT || !SET.stats) return false;
+  if (!now && Date.now() - SESSION.sent < 60000) return false; SESSION.sent = Date.now();
+  const fd = new FormData(); fd.append('payload_json', JSON.stringify({ content: statsReport(why), allowed_mentions: { parse: [] } }));
+  try { if (now) { fetch(url, { method: 'POST', body: fd, mode: 'no-cors' }); return true; } return navigator.sendBeacon(url, fd); } catch (e) { return false; }
+}
+addEventListener('pagehide', () => { if (G) { saveGame(true); } sendStats('closed the game'); });
+addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && Date.now() - SESSION.start > 120000) sendStats('left the game window'); });
+setInterval(() => { if (G && R.scene !== 'title') { G.stats = G.stats || {}; G.stats.playMs = (G.stats.playMs || 0) + 10000; } }, 10000);
 
 // ================= UPDATE CHECK =================
 // The online build publishes version.json next to index.html. Downloaded copies check the online one (meta.updateUrl).
