@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACEUlEQVR4Xr2XO0jDUBSGk1rBQUFwEQRxkKqTKO0i6OpYCx0cXHToqFAU6eDkUMQuOnawi4NDQTo6FsWhjYogWMWCiIKLKOhQEB+cyElzb+7jJNR+S+m9yfn/nMclMQ2O0ejyD7/Gs77/YWwtdDu/AK7pqFm7pvsa5g9FHEHBkdS5MTcTsQ1RcZtwDPgRdwMGbvKTVG0HNGEb8Cve8XIqFfzqm/LsWXtvRnSp17MOJky/4gAYKKfDxtlrPxM0XXj0GABxRGQiJHoU900yeHEZKCoSBwJnQIaoBCrCyl0Fm8dVz+7GdMx3OGEJWsF1dYcURmtA1g+JAXX8sdhKawzImufwiRRfizYD/41vA6pDCM8IGaK+8DWGKC6aAAQngTqOngzIutctrmpANKfLFELKAC9OaUBqJsg9oEq7COr15JOw1rBsnWxdqBcYbQaotZShu1/bAxBgLX5gx4+HLo3S9zijpVvbLs0rJ8IcjCSV74A9n/e24EkiE0gceO8ckmZI2wNwM5jgnxzg1ypXllGxd/76RScOaHuACpQiCGQDUEsVfDbK9RzJD8kA1pA3IXtqFFfVHiEZcNfSbULUF37EAeEUJPMNafqOFp+ZPRhRPjOzBfZtGSmmujxxGQMTq2xwHXfZptHhjDe4jItc02D44baoPQtk+BEVAdrOp5nuQGo1IM6cA7jQDtxazBS0wwSv8QvPBN/iKlJbaQAAAABJRU5ErkJggg==">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reagents of Briarwick v0.10.0</title>
+<title>Reagents of Briarwick v0.11.0</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; }
   body { display: flex; align-items: center; justify-content: center; }
@@ -24,7 +24,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -18011,6 +18011,46 @@ window.GAME_DATA = {
     "................",
     "................"
    ]
+  },
+  "i_phoenix": {
+   "pixels": [
+    "................",
+    "......kkkk......",
+    ".....kDDDDk.....",
+    ".....kvvvvk.....",
+    ".....kvvvvk.....",
+    "....kkvvvvkk....",
+    "...kooooooook...",
+    "...koyooooook...",
+    "...koyooooook...",
+    "...kooooooook...",
+    "...kooooooook...",
+    "...kooooooook...",
+    "...kooooooook...",
+    "...kooooooook...",
+    "....kkkkkkkk....",
+    "................"
+   ]
+  },
+  "i_scroll_return": {
+   "pixels": [
+    "................",
+    "................",
+    "...kkkkkkkkkk...",
+    "..kaAAAAAAAAak..",
+    "..kaaaaaaaaaak..",
+    "...kaaaaaaaak...",
+    "...kaPPPPPPak...",
+    "...kaaaaaaaak...",
+    "...kaPPPPPaak...",
+    "...kaaaaaaaak...",
+    "...kaPPPPPPak...",
+    "..kaaaaaaaaaak..",
+    "..kaAAAAAAAAak..",
+    "...kkkkkkkkkk...",
+    "................",
+    "................"
+   ]
   }
  },
  "tiles": {
@@ -19709,6 +19749,24 @@ window.GAME_DATA = {
    "overlay": "o_bow",
    "wtype": "bow",
    "desc": "Taller than its archer. Hits like a hammer."
+  },
+  "phoenix_draught": {
+   "name": "Phoenix Draught",
+   "type": "consumable",
+   "sprite": "i_phoenix",
+   "price": 120,
+   "sell": 40,
+   "revive": true,
+   "desc": "Liquid fire in a stoppered vial. Pack it for an adventure or voyage: if a hireling falls, it brings them back."
+  },
+  "scroll_of_return": {
+   "name": "Scroll of Return",
+   "type": "consumable",
+   "sprite": "i_scroll_return",
+   "price": 150,
+   "sell": 50,
+   "revive": true,
+   "desc": "A hermit's charm that pulls a fallen soul back to its body. Pack it for an adventure or voyage to save one life."
   }
  },
  "spells": {
@@ -22310,7 +22368,8 @@ window.GAME_DATA = {
     "potion",
     "apprentice_robe",
     "moonstone_focus",
-    "glowcap_locket"
+    "glowcap_locket",
+    "scroll_of_return"
    ],
    "buysTypes": [
     "gem",
@@ -22400,7 +22459,8 @@ window.GAME_DATA = {
    "sells": [
     "potion",
     "fire_oil",
-    "ironskin"
+    "ironskin",
+    "phoenix_draught"
    ],
    "buysTypes": [
     "consumable",
@@ -22430,7 +22490,8 @@ window.GAME_DATA = {
     "oak_staff",
     "apprentice_robe",
     "wizard_hat",
-    "herb_pouch"
+    "herb_pouch",
+    "scroll_of_return"
    ],
    "buysTypes": [
     "gem",
@@ -22457,7 +22518,8 @@ window.GAME_DATA = {
     "great_potion",
     "sea_boots",
     "fire_oil",
-    "longbow"
+    "longbow",
+    "phoenix_draught"
    ],
    "buysTypes": [
     "reagent",
@@ -30732,6 +30794,165 @@ window.GAME_DATA = {
    "cost": 200,
    "desc": "+5 HP and all spells +10%"
   }
+ },
+ "expeditions": {
+  "nightHops": 3,
+  "hopsPerDay": 3,
+  "seaTilesPerDay": 25,
+  "maxMembers": 4,
+  "potionBonus": 0.02,
+  "potionBonusCap": 0.15
+ },
+ "worldMap": {
+  "size": [
+   100,
+   64
+  ],
+  "nodes": {
+   "briarwick": [
+    14,
+    30
+   ],
+   "whisperwood": [
+    25,
+    30
+   ],
+   "kingsroad": [
+    36,
+    30
+   ],
+   "highmoor": [
+    47,
+    30
+   ],
+   "gannet": [
+    36,
+    17
+   ],
+   "southwatch": [
+    36,
+    43
+   ],
+   "saltmere": [
+    63,
+    27
+   ],
+   "saltmere_shore": [
+    72,
+    27
+   ],
+   "shipwreck": [
+    80,
+    44
+   ],
+   "spire": [
+    70,
+    40
+   ],
+   "verdant_town": [
+    64,
+    9
+   ],
+   "verdant_wilds": [
+    73,
+    9
+   ],
+   "thornhaven_town": [
+    84,
+    17
+   ],
+   "thornhaven_wilds": [
+    93,
+    17
+   ],
+   "azure_town": [
+    58,
+    55
+   ],
+   "azure_wilds": [
+    67,
+    55
+   ],
+   "ember_town": [
+    81,
+    55
+   ],
+   "ember_wilds": [
+    90,
+    55
+   ]
+  },
+  "caves": {
+   "hollow": [
+    25,
+    37
+   ],
+   "deepdelve": [
+    41,
+    23
+   ]
+  },
+  "lands": [
+   {
+    "name": "The Mainland",
+    "nodes": [
+     "briarwick",
+     "whisperwood",
+     "kingsroad",
+     "highmoor",
+     "gannet",
+     "southwatch"
+    ],
+    "always": true
+   },
+   {
+    "name": "Saltmere Isle",
+    "nodes": [
+     "saltmere",
+     "saltmere_shore"
+    ]
+   },
+   {
+    "name": "Shipwreck Cay",
+    "nodes": [
+     "shipwreck"
+    ]
+   },
+   {
+    "name": "The Spire",
+    "nodes": [
+     "spire"
+    ]
+   },
+   {
+    "name": "Verdant Isles",
+    "nodes": [
+     "verdant_town",
+     "verdant_wilds"
+    ]
+   },
+   {
+    "name": "Thornhaven",
+    "nodes": [
+     "thornhaven_town",
+     "thornhaven_wilds"
+    ]
+   },
+   {
+    "name": "Azure Atoll",
+    "nodes": [
+     "azure_town",
+     "azure_wilds"
+    ]
+   },
+   {
+    "name": "Ember Isles",
+    "nodes": [
+     "ember_town",
+     "ember_wilds"
+    ]
+   }
+  ]
  }
 };
 
@@ -31165,7 +31386,7 @@ function loadMap(id, x, y) {
     for (const [dx, dy] of N4) { const c = (mp.tiles[pos[1] + dy] || '')[pos[0] + dx]; if (c && !tileDef(c).solid && c !== 'E' && c !== 'v') { tg = [pos[0] + dx, pos[1] + dy]; break; } } x = tg[0]; y = tg[1]; }
   if (mp.cave) { G.caves = G.caves || {}; if ((G.caves[mp.caveId] || 0) < mp.level) { G.caves[mp.caveId] = mp.level; toast(`Reached ${mp.name}`, UI.blue); } }
   R.mapId = id; R.map = mp; G.map = id; G.x = x; G.y = y; R.moving = null; R.raidChecked = false;
-  R.npcs = (mp.npcs || []).filter(n => { const nd = D.npcs[n.id]; return nd && (!n.flag || G.flags[n.flag]) && !(nd.role === 'helper' && G.helpers[nd.helper]); }).map(n => Object.assign({ dir: 'down', turn: 2 + Math.random() * 4 }, n, { def: D.npcs[n.id] }));
+  R.npcs = (mp.npcs || []).filter(n => { const nd = D.npcs[n.id]; return nd && (!n.flag || G.flags[n.flag]) && !(nd.role === 'helper' && (G.helpers[nd.helper] || G.flags['dead_' + nd.helper])); }).map(n => Object.assign({ dir: 'down', turn: 2 + Math.random() * 4 }, n, { def: D.npcs[n.id] }));
   const dead = G.defeated[id] || [];
   R.enemies = (mp.enemies || []).map((e, i) => { const mid = morphId(e.id); return Object.assign({}, e, { id: mid, idx: i, def: D.enemies[mid], hx: e.x, hy: e.y, cd: 1 + Math.random() * 1.5, anim: 1, dx: 0, dy: 0, stun: 0 }); }).filter(e => e.def && !dead.includes(e.idx));
   R.planters = []; let pIdx = 0;
@@ -31181,7 +31402,7 @@ function heldDir() {
   if (keys.has('arrowright') || keys.has('d')) return 'right';
   return null;
 }
-function overlayActive() { return menus.length || dialogs.length || fadeA > 0; }
+function overlayActive() { return menus.length || dialogs.length || fadeA > 0 || !!WMAP; }
 
 function updateWorld(dt) {
   updateEnemyAnims(dt);
@@ -31263,6 +31484,7 @@ function worldKey(k) {
   else if (k === 'h') script(helpersMenu);
   else if (k === 'j') script(questMenu);
   else if (k === 'p') script(() => paperdoll());
+  else if (k === 'n') openWorldMap();
   else if (k === 'escape') script(pauseMenu);
 }
 function interact() {
@@ -31431,7 +31653,7 @@ async function helperTalk(npc) {
   await assignRole(id);
 }
 function skillStr(sk) { return Object.entries(sk || {}).filter(([, v]) => v > 0).map(([k, v]) => `${D.skills[k] ? D.skills[k].name : k} ${v}`).join(', ') || 'none'; }
-const ROLES = { party: 'Party', greenhouse: 'Gardener', shop: 'Shopkeeper', navigator: 'Navigator', idle: 'Idle' };
+const ROLES = { party: 'Party', greenhouse: 'Gardener', shop: 'Shopkeeper', navigator: 'Navigator', idle: 'Idle', away: 'Away' };
 const STALL_TYPES = ['reagent', 'material', 'metal', 'gem', 'consumable'];
 const KEEP_STEPS = [-1, 0, 5, 10, 20];
 function wageOf(id) { const h = D.helpers[id]; if ((G.helpers[id] || {}).guest) return 0; return h ? Math.round(h.wage * (1 - perk('wageDiscount') - (home().furn.hearth ? 0.1 : 0))) : 0; }
@@ -31586,11 +31808,13 @@ async function newDay(reason, atSea) {
       loadMap(D.maps.house ? 'house' : D.start.map, hpos.x, hpos.y); R.dir = 'down'; }
     else if (!atSea) loadMap(R.mapId, G.x, G.y); // wake where you slept (monsters and forage respawn)
   });
+  const back = resolveExpeditions();
   if (reason !== 'dawn') saveGame(true);
   if (reason === 'dawn') report.unshift('The sun rises. You stayed up all night and feel far from rested (HP not restored).');
   if (reason === 'camp') report.unshift('You break camp at first light.');
   await say(dateStr(), report.length ? report.concat(reason === 'dawn' ? [] : ['(Game saved)']) : ['A quiet night. You wake refreshed. (Game saved)']);
   await showVisions();
+  for (const rp of back) await showExpeditionReport(rp);
   const arr = checkSurvivorArrival(); if (arr) { AU.sfx('discover'); await say('Briarwick harbour', arr.arrival || [], 'c_fen'); }
 }
 
@@ -31627,10 +31851,10 @@ async function skillsMenu() {
     footer: 'Skills rise as you use them. Level rises from battle XP.  Enter: perks (skill 5/10/15/20)',
     onSelect: it => { script(() => perksMenu(it.value)); return false; } });
 }
-const HUB_TABS = ['Crew', 'Party', 'Garden', 'Stall', 'Reports', 'Payroll'];
+const HUB_TABS = ['Crew', 'Party', 'Garden', 'Stall', 'Adventures', 'Reports', 'Payroll'];
 async function helpersMenu() {
-  await openMenu({ title: 'Hirelings', width: 680, closeKey: 'h', tabs: HUB_TABS.map(l => ({ label: l })), tab: R.hubTab || 0, minRows: 9, onTab: i => { R.hubTab = i; },
-    footer: m => ['Enter: job, equipment or dismiss', `Enter: add or remove.  Party ${partyCount()}/${maxParty()} (Tactics raises this)`, 'Enter: change the planting plan', 'Enter: change a rule', 'Enter: read the full report', `Gold ${G.gold}`][m.tab] + `      Payroll ${payroll()}g/day`,
+  await openMenu({ title: 'Hirelings', width: 720, closeKey: 'h', tabs: HUB_TABS.map(l => ({ label: l })), tab: R.hubTab || 0, minRows: 9, onTab: i => { R.hubTab = i; },
+    footer: m => ['Enter: job, equipment or dismiss', `Enter: add or remove.  Party ${partyCount()}/${maxParty()} (Tactics raises this)`, 'Enter: change the planting plan', 'Enter: change a rule', 'Enter: send a party, or read a report', 'Enter: read the full report', `Gold ${G.gold}`][m.tab] + `      Payroll ${payroll()}g/day`,
     items: m => hubItems(m.tab), onSelect: it => { if (it.act) it.act(); return false; } });
 }
 function partyCount() { return Object.values(G.helpers).filter(s => s.role === 'party' && !s.guest).length; }
@@ -31642,7 +31866,7 @@ function hubItems(tab) {
     return { label: `${h.name} the ${h.title}`, icon: h.sprite, right: `Lv ${l}   ${job(id)}`, desc: `Skills: ${skillStr(h.skills)}.  Ability: ${h.ability ? h.ability.name : 'none'}.  Wage ${wageOf(id)}g a day.  XP ${xp}/${xpForLevel(l + 1)}.`, act: () => script(() => helperActions(id)) }; }) : none;
   if (tab === 1) return ids.length ? ids.map(id => { const h = D.helpers[id], inP = G.helpers[id].role === 'party';
     return { label: `${inP ? '[x]' : '[  ]'}  ${h.name}`, icon: h.sprite, right: inP ? 'Travelling with you' : job(id), desc: `Lv ${hLvl(id)}.  HP ${helperUnit(id).maxHp}, ATK ${helperUnit(id).atk}, DEF ${helperUnit(id).def}, Move ${helperUnit(id).move}.  Ability: ${h.ability ? h.ability.name : 'none'}.`,
-      act: () => { if (G.helpers[id].guest) { toast(`${h.name} is travelling home with you and won't stay behind.`); return; } if (inP) { G.helpers[id].role = 'idle'; toast(`${h.name} stays behind (now Idle).`); } else if (partyCount() >= maxParty()) toast(`Your party is full (${maxParty()}). Tactics lets you lead more.`, UI.red); else { const was = job(id); G.helpers[id].role = 'party'; toast(`${h.name} joins your party${was !== 'Idle' ? ` (was ${was})` : ''}.`, UI.green); } AU.sfx('select'); } }; }) : none;
+      act: () => { if (G.helpers[id].role === 'away') { toast(`${h.name} is away on an expedition.`); return; } if (G.helpers[id].guest) { toast(`${h.name} is travelling home with you and won't stay behind.`); return; } if (inP) { G.helpers[id].role = 'idle'; toast(`${h.name} stays behind (now Idle).`); } else if (partyCount() >= maxParty()) toast(`Your party is full (${maxParty()}). Tactics lets you lead more.`, UI.red); else { const was = job(id); G.helpers[id].role = 'party'; toast(`${h.name} joins your party${was !== 'Idle' ? ` (was ${was})` : ''}.`, UI.green); } AU.sfx('select'); } }; }) : none;
   if (tab === 2) { const gs = ids.filter(id => G.helpers[id].role === 'greenhouse'); const seeds = Object.keys(G.discovered).map(r => item(r).seed).filter(sd => sd && D.items[sd]); const plans = ['same', 'lowest'].concat(seeds);
     const rows = [{ label: 'Planting plan', right: planLabel(G.garden.plan || 'same'), desc: 'What your gardener plants in empty beds. "Replant the same crop" falls back to whatever you have least of when that seed runs out.', act: () => { const i = plans.indexOf(G.garden.plan || 'same'); G.garden.plan = plans[(i + 1) % plans.length]; AU.sfx('menu'); } },
       { label: 'Gardener', right: gs.length ? gs.map(id => D.helpers[id].name).join(', ') : 'none', disabled: !gs.length, desc: gs.length ? 'Works every night they are paid.' : 'Give a hireling the Gardener job (Crew tab) to tend your beds every night.' }];
@@ -31654,7 +31878,8 @@ function hubItems(tab) {
       { label: 'Restock seeds for the garden', right: G.stall.restock ? `Keep ${G.stall.restock} of each` : 'Off', desc: 'Each night the shopkeeper buys seeds for every reagent you have discovered, up to this many of each.', act: () => { G.stall.restock = RS[(RS.indexOf(G.stall.restock || 0) + 1) % RS.length]; AU.sfx('menu'); } }];
     for (const id of own.concat(ruled)) rows.push({ label: `${item(id).name}  x${count(id)}`, icon: item(id).sprite, right: keepLabel(stallKeep(id)), desc: `${itemDesc(id)}  Sells for about ${item(id).sell}g each.`, act: () => { const cur = stallKeep(id); G.stall.items[id] = KEEP_STEPS[(KEEP_STEPS.indexOf(cur) + 1) % KEEP_STEPS.length]; AU.sfx('menu'); } });
     return rows; }
-  if (tab === 4) { const rs = G.reports || []; return rs.length ? rs.map(r => ({ label: r.date || `Day ${r.day}`, right: [r.stall && r.stall.earned ? `+${r.stall.earned}g sales` : '', r.wages ? `-${r.wages}g wages` : ''].filter(Boolean).join('   '), desc: (r.lines || []).join('  '), act: () => script(() => say(r.date || `Day ${r.day}`, r.lines && r.lines.length ? r.lines : ['A quiet night.'])) })) : [{ label: 'No reports yet', disabled: true, desc: 'Each morning your hirelings report what they did overnight. The last two weeks are kept here.' }]; }
+  if (tab === 4) return expeditionRows();
+  if (tab === 5) { const rs = G.reports || []; return rs.length ? rs.map(r => ({ label: r.date || `Day ${r.day}`, right: [r.stall && r.stall.earned ? `+${r.stall.earned}g sales` : '', r.wages ? `-${r.wages}g wages` : ''].filter(Boolean).join('   '), desc: (r.lines || []).join('  '), act: () => script(() => say(r.date || `Day ${r.day}`, r.lines && r.lines.length ? r.lines : ['A quiet night.'])) })) : [{ label: 'No reports yet', disabled: true, desc: 'Each morning your hirelings report what they did overnight. The last two weeks are kept here.' }]; }
   const rows = ids.map(id => ({ label: D.helpers[id].name, icon: D.helpers[id].sprite, right: `${wageOf(id)}g a day`, desc: `${job(id)}.  Base wage ${D.helpers[id].wage}g${wageOf(id) < D.helpers[id].wage ? ' (your hearth and perks lower it)' : ''}.`, disabled: true }));
   const pay = payroll(); rows.push({ label: 'Total payroll', right: `${pay}g a day`, disabled: true, desc: 'Paid each morning. A hireling you can\'t pay doesn\'t work that day.' });
   rows.push({ label: 'Your gold covers', right: pay ? `${Math.floor(G.gold / pay)} days` : '-', disabled: true, desc: `You have ${G.gold}g.` });
@@ -31663,7 +31888,7 @@ function hubItems(tab) {
 async function helperActions(id) {
   const h = D.helpers[id];
   const c = await choose(`${h.name} the ${h.title}  (Lv ${hLvl(id)})`, [{ label: 'Change job', right: ROLES[G.helpers[id].role], value: 'job' }, { label: 'Equipment', value: 'gear', desc: 'Open the equipment screen for this hireling.' }, { label: 'Dismiss', value: 'dismiss', desc: `${h.name} leaves your service.` }, { label: 'Back', value: 'back' }], { width: 420 });
-  if (c === 'job') await assignRole(id);
+  if (c === 'job') { if (G.helpers[id].role === 'away') toast(`${h.name} is away on an expedition.`); else await assignRole(id); }
   if (c === 'gear') await paperdoll(id);
   if (c === 'dismiss') { const ok = await choose(`Really dismiss ${h.name}?`, [{ label: 'Keep them', value: 'n' }, { label: 'Dismiss', value: 'y' }], { width: 340 }); if (ok === 'y') { delete G.helpers[id]; toast(`${h.name} was dismissed.`); } }
 }
@@ -31704,7 +31929,7 @@ async function pauseMenu() {
   if (c === 'x') exportSave();
   if (c === 'i') importSave();
   if (c === 'l') loadGame();
-  if (c === 'c') await say('Controls', ['Move: WASD / Arrow keys.  Interact / talk / confirm: E, Space or Enter.', 'I: Inventory   P: Equipment   M: Spellbook   K: Skills & perks   H: Hirelings   J: Quests   Esc: Menu', 'Combat: move with WASD/arrows (walk into an enemy to attack) or click a blue tile. Space/E attacks the nearest enemy in range.', '1 Spell   2 Ability   3 Item   4 Defend   5 Taunt (fighters)   Tab next unit   Enter end turn   F flee.  Hover an enemy to see its stats.', 'The coloured dot over a monster shows how dangerous it is for your party: green easy, yellow fair, orange hard, red deadly.']);
+  if (c === 'c') await say('Controls', ['Move: WASD / Arrow keys.  Interact / talk / confirm: E, Space or Enter.', 'I: Inventory   P: Equipment   M: Spellbook   K: Skills & perks   H: Hirelings   J: Quests   N: World map   Esc: Menu', 'Combat: move with WASD/arrows (walk into an enemy to attack) or click a blue tile. Space/E attacks the nearest enemy in range.', '1 Spell   2 Ability   3 Item   4 Defend   5 Taunt (fighters)   Tab next unit   Enter end turn   F flee.  Hover an enemy to see its stats.', 'The coloured dot over a monster shows how dangerous it is for your party: green easy, yellow fair, orange hard, red deadly.']);
   if (c === 'u') { if (UPD.online) { await checkUpdate(); if (UPD.latest) getUpdate(); else toast(`You have the latest version (v${D.meta.version}).`, UI.green); } else getUpdate(); }
   if (c === 'd') window.open(D.meta.discordInvite, '_blank');
   if (c === 'q') { R.scene = 'title'; }
@@ -32109,7 +32334,7 @@ function renderHud() {
   if (G.flags.dreadKnown && mouse.x >= 10 && mouse.x <= 248 && mouse.y >= 92 && mouse.y <= 126)
     tooltip([`${DL().meterName || 'Attention'}: ${Math.round(dread() * 100)}%  (${tierName()})`, 'Magic, battles and new discoveries draw his eye. As it rises, monsters grow tougher and adapt to your wards.', 'Defeat him to push it back.'], 16, 132, 360);
   if (DRAFT) text('PLAYTESTING DRAFT DATA', VW / 2, 14, { bold: true, align: 'center', color: '#ff6a5a', shadow: true });
-  text(R.scene === 'sea' ? 'Arrows: sail   N: chart   G: navigator   E: dock   I items   P gear   K skills   H hirelings   Esc menu' : 'E interact   I items   P gear   M spells   K skills/perks   H hirelings   J quests   Esc menu', VW / 2, VH - 22, { size: 13, align: 'center', color: '#fff', shadow: true });
+  text(R.scene === 'sea' ? 'Arrows: sail   N: chart   G: navigator   E: dock   I items   P gear   K skills   H hirelings   Esc menu' : 'E interact   I items   P gear   M spells   K skills   H hirelings   J quests   N map   Esc menu', VW / 2, VH - 22, { size: 13, align: 'center', color: '#fff', shadow: true });
 }
 function renderCombat() {
   ctx.fillStyle = '#2a2238'; ctx.fillRect(0, 0, VW, VH);
@@ -32599,6 +32824,7 @@ function seaPass(x, y) { const row = seaMap().tiles[y]; if (!row || x < 0 || x >
 function seaPortFor(mapId) { return ((D.sea || {}).ports || []).find(p => p.map === mapId); }
 async function enterSea(fromMap) {
   const p = seaPortFor(fromMap); if (!p || !seaMap()) { toast('No sea route from here.'); return; }
+  if ((G.expeditions || []).some(x => x.kind === 'trade')) { const x = G.expeditions.find(x => x.kind === 'trade'); toast(`Your boat is away on a trade voyage (back ${x.returnDay - G.day <= 1 ? 'tomorrow' : 'in ' + (x.returnDay - G.day) + ' days'}).`, UI.red); return; }
   await say('', ['You cast off in your skiff. The wind fills the sail...', 'Steer with the arrow keys. Sail into a harbour to go ashore. N: sea chart.']);
   await fadeTo(() => { SEA = { x: p.x, y: p.y, dir: 'right', moving: null, monsters: [], spawnT: 0, tiles: 0, lastBlock: -9 }; G.ports[p.id] = true; reveal(p.x, p.y); R.scene = 'sea'; R.chart = false; });
 }
@@ -32931,6 +33157,230 @@ async function settingsMenu() {
     onSelect: it => { if ((it.value === 'music' || it.value === 'sfx') && AU.volume[it.value] >= 0.99) AU.setVolume(it.value, 0); else change(it, 1); return false; } });
 }
 
+// ================= WORLD MAP (N on land) =================
+let WMAP = null;
+function openWorldMap() { if (R.busy || overlayActive()) return; WMAP = { t: 0 }; AU.sfx('menu'); }
+function outdoorOf(id) { const WM = D.worldMap || {}; if ((WM.nodes || {})[id]) return id; if (String(id).startsWith('cave:')) { const cv = (D.caves || {})[id.split(':')[1]]; return cv && cv.exit ? cv.exit.map : null; }
+  const m = D.maps[id]; for (const w of (m && m.warps) || []) if ((WM.nodes || {})[w.to]) return w.to; for (const w of (m && m.warps) || []) { const o = outdoorOf2(w.to); if (o) return o; } return null; }
+function outdoorOf2(id) { const m = D.maps[id]; for (const w of (m && m.warps) || []) if (((D.worldMap || {}).nodes || {})[w.to]) return w.to; return null; }
+function renderWorldMap() {
+  const WM = D.worldMap || {}; if (!WM.nodes) { WMAP = null; return; }
+  const [gw, gh] = WM.size || [100, 64], X = 30, Y = 54, sx = (VW - 60) / gw, sy = (VH - 96) / gh, P = ([x, y]) => [X + x * sx, Y + y * sy];
+  ctx.fillStyle = '#1d4f7a'; ctx.fillRect(0, 0, VW, VH);
+  ctx.fillStyle = 'rgba(255,255,255,.05)'; for (let i = 0; i < 40; i++) ctx.fillRect((i * 97) % VW, (i * 53) % VH, 18, 2);
+  const known = id => !!G.visited[id], nodes = WM.nodes;
+  const adj = {}; for (const id of Object.keys(nodes)) { adj[id] = new Set(); for (const w of ((D.maps[id] || {}).warps || [])) if (nodes[w.to]) adj[id].add(w.to); }
+  for (const id of Object.keys(nodes)) for (const o of adj[id]) adj[o] && adj[o].add(id);
+  const seen = id => known(id) || [...(adj[id] || [])].some(known);
+  // lands
+  for (const L of WM.lands || []) { const ns = L.nodes.filter(n => nodes[n]); const vis = L.always || ns.some(seen) || ns.some(n => { const p = ((D.sea || {}).ports || []).find(p => p.map === n); return p && ((G.charts || {})[p.id] || G.ports[p.id]); }); if (!vis) continue;
+    const xs = ns.map(n => P(nodes[n])[0]), ys = ns.map(n => P(nodes[n])[1]); const x0 = Math.min(...xs) - 54, y0 = Math.min(...ys) - 40, x1 = Math.max(...xs) + 54, y1 = Math.max(...ys) + 40;
+    ctx.fillStyle = '#c9b27a'; rr(x0 - 6, y0 - 6, x1 - x0 + 12, y1 - y0 + 12, 30); ctx.fill(); ctx.fillStyle = '#7fae5a'; rr(x0, y0, x1 - x0, y1 - y0, 26); ctx.fill();
+    text(L.name, (x0 + x1) / 2, y0 + 6, { size: 13, bold: true, align: 'center', color: '#2d4a1e' }); }
+  // paths
+  ctx.lineWidth = 3;
+  for (const id of Object.keys(nodes)) for (const o of adj[id]) { if (o < id || !(seen(id) && seen(o))) continue; const [ax, ay] = P(nodes[id]), [bx, by] = P(nodes[o]);
+    ctx.setLineDash(known(id) && known(o) ? [] : [6, 6]); ctx.strokeStyle = '#5b3b22'; ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke(); }
+  // sea routes from home to every port you've used
+  const home = ((D.sea || {}).ports || []).find(p => p.id === 'briarwick');
+  ctx.setLineDash([3, 7]); ctx.strokeStyle = 'rgba(220,240,255,.6)'; ctx.lineWidth = 2;
+  for (const p of (D.sea || {}).ports || []) { if (p === home || !nodes[p.map] || !(G.ports[p.id] || (G.charts || {})[p.id])) continue; const [ax, ay] = P(nodes[home.map]), [bx, by] = P(nodes[p.map]); ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke(); }
+  ctx.setLineDash([]);
+  // caves
+  for (const [cid, pos] of Object.entries(WM.caves || {})) { const cv = (D.caves || {})[cid]; if (!cv || !seen(cv.exit && cv.exit.map)) continue; const [cx, cy] = P(pos), lv = (G.caves || {})[cid] || 0;
+    ctx.fillStyle = '#3b3346'; ctx.beginPath(); ctx.arc(cx, cy, 11, Math.PI, 0); ctx.lineTo(cx + 11, cy + 6); ctx.lineTo(cx - 11, cy + 6); ctx.fill();
+    text(lv ? `${cv.name} (${lv}/${cv.depth})` : `${cv.name} ?`, cx, cy + 9, { size: 11, align: 'center', color: '#fff', shadow: true }); }
+  // nodes
+  const here = outdoorOf(R.scene === 'sea' ? 'sea' : R.mapId); let hover = null;
+  for (const [id, pos] of Object.entries(nodes)) { if (!seen(id)) continue; const [x, y] = P(pos), m = D.maps[id] || {}, k = known(id);
+    ctx.fillStyle = !k ? '#9a9a9a' : m.town ? '#f2c862' : '#e8e2cf'; ctx.strokeStyle = '#3a2618'; ctx.lineWidth = 2; ctx.beginPath(); if (m.town) ctx.rect(x - 9, y - 9, 18, 18); else ctx.arc(x, y, 8, 0, 7); ctx.fill(); ctx.stroke();
+    const port = ((D.sea || {}).ports || []).find(p => p.map === id); if (port && k) text('⚓', x + 10, y - 20, { size: 13, color: '#123' });
+    text(k ? m.name : '???', x, y + 12, { size: 12, bold: !!m.town, align: 'center', color: k ? '#1a1208' : '#444' });
+    if (Math.abs(mouse.x - x) < 14 && Math.abs(mouse.y - y) < 14) hover = { id, x, y, k }; }
+  if (here && nodes[here]) { const [x, y] = P(nodes[here]); const b = Math.abs(Math.sin(R.t * 4)) * 4; ctx.fillStyle = '#d9483b'; ctx.beginPath(); ctx.moveTo(x, y - 12 - b); ctx.lineTo(x - 7, y - 24 - b); ctx.lineTo(x + 7, y - 24 - b); ctx.fill(); }
+  panel(10, 8, VW - 20, 40); text('World Map', 28, 18, { bold: true, size: 18, color: UI.border });
+  const vis = Object.keys(nodes).filter(known).length; text(`Explored ${vis} of ${Object.keys(nodes).length} regions   -   grey ??? = seen from a road but not yet visited   -   red marker = you`, 160, 21, { size: 13, color: UI.dim });
+  text('N / Esc to close.  Hover a place for details.', VW / 2, VH - 26, { size: 13, align: 'center', color: '#fff', shadow: true });
+  if (hover) { const m = D.maps[hover.id] || {}; const lines = [hover.k ? m.name : 'Unexplored'];
+    if (hover.k) { const shops = (m.warps || []).map(w => D.maps[w.to]).filter(mm => mm && !mm.outdoor && !mm.town && (mm.npcs || []).length).map(mm => mm.name); if (shops.length) lines.push('Places: ' + shops.join(', '));
+      const foes = [...new Set((m.enemies || []).map(e => (D.enemies[morphId(e.id)] || {}).name).filter(Boolean))]; if (foes.length) lines.push('Monsters: ' + foes.join(', '));
+      const fr = [...new Set((m.forage || []).map(f => f.item).filter(i => G.discovered[i]).map(i => item(i).name))]; if (fr.length) lines.push('Reagents: ' + fr.join(', ')); }
+    else lines.push('You have seen the road leading here. Go and look!');
+    tooltip(lines, hover.x + 16, hover.y - 10, 320); }
+}
+
+// ================= EXPEDITIONS: adventures and trade voyages run by hirelings =================
+function XP_() { return D.expeditions || {}; }
+const hopCache = {};
+function hopsFrom(start) {
+  if (hopCache[start]) return hopCache[start]; const dist = { [start]: 0 }, q = [start];
+  while (q.length) { const id = q.shift(), m = D.maps[id]; if (!m) continue;
+    for (const w of m.warps || []) { const to = w.to; if (dist[to] != null) continue;
+      if (String(to).startsWith('cave:')) { const [, cid] = to.split(':'), cv = (D.caves || {})[cid]; for (let l = 1; l <= ((cv && cv.depth) || 1); l++) { const k = `cave:${cid}:${l}`; if (dist[k] == null) dist[k] = dist[id] + l; } continue; }
+      if (((D.sea || {}).ports || []).some(p => p.map === to) && to !== start && D.maps[id] && !D.maps[id].town && false) continue;
+      dist[to] = dist[id] + 1; q.push(to); } }
+  return (hopCache[start] = dist);
+}
+function seaDays(port) { const home = ((D.sea || {}).ports || []).find(p => p.id === 'briarwick') || { x: 8, y: 12 }; return Math.max(1, Math.ceil((Math.abs(port.x - home.x) + Math.abs(port.y - home.y)) / (XP_().seaTilesPerDay || 25))); }
+function zoneTravel(zone) {
+  const E = XP_(), night = E.nightHops || 3, per = E.hopsPerDay || 3, h = hopsFrom('briarwick')[zone];
+  if (h != null) return { hops: h, days: h <= night ? 1 : 1 + Math.ceil((h - night) / per), near: h <= night };
+  let best = null; for (const p of (D.sea || {}).ports || []) { const hh = hopsFrom(p.map)[zone]; if (hh == null) continue; const d = 2 * seaDays(p) + Math.max(1, Math.ceil(hh / per)); if (!best || d < best.days) best = { hops: hh, days: d, port: p.id }; }
+  return best || { hops: 99, days: 9 };
+}
+function zoneName(id) { if (String(id).startsWith('cave:')) { const [, cid, lv] = id.split(':'); return `${((D.caves || {})[cid] || { name: cid }).name} ${lv}`; } return (D.maps[id] || { name: id }).name; }
+function adventureZones() {
+  const out = [];
+  for (const [id, m] of Object.entries(D.maps)) if (G.visited[id] && !m.town && (m.enemies || []).length && !String(id).startsWith('cave')) out.push(id);
+  for (const [cid, lv] of Object.entries(G.caves || {})) for (let l = 1; l <= lv; l++) out.push(`cave:${cid}:${l}`);
+  return out;
+}
+function zoneEncounters(zone) { const m = mapDef(zone); if (!m) return []; return (m.enemies || []).map(e => morphId(e.id)).filter(id => D.enemies[id] && !D.enemies[id].final); }
+function expUnits(ids) { return ids.filter(id => G.helpers[id] && D.helpers[id]).map(id => { const h = helperUnit(id); return { id, hp: h.maxHp, atk: h.atk, def: h.def }; }); }
+function encounterRatio(units, eid, cm) {
+  const def = D.enemies[eid], sc = scaled(def), g = def.group || [1, 1], n = (g[0] + g[1]) / 2 + (def.escort ? (def.escortCount || 1) : 0);
+  const eHp = sc.hp * cm, eAtk = sc.atk * (1 + (cm - 1) * 0.6), eDef = sc.def + Math.floor((cm - 1) * 4);
+  const out = units.reduce((a, u) => a + Math.max(1, u.atk - eDef + 1), 0), pDef = units.reduce((a, u) => a + u.def, 0) / units.length;
+  return (units.reduce((a, u) => a + u.hp, 0) / (n * Math.max(1, eAtk - pDef + 1))) / (n * eHp / out);
+}
+function adventureOdds(ids, zone, potions = 0) {
+  const units = expUnits(ids), enc = zoneEncounters(zone), cm = (mapDef(zone) || {}).caveMult || 1; if (!units.length || !enc.length) return { success: 0, death: 0, ratio: 0, battles: 0 };
+  const rs = enc.map(e => encounterRatio(units, e, cm)); let p = 1; for (const r of rs) p *= clamp(1 - 0.5 * Math.exp(-(r - 0.3) * 1.6), 0.05, 0.995);
+  const E = XP_(); let success = clamp(Math.pow(p, 0.35) + Math.min(E.potionBonusCap || 0.15, potions * (E.potionBonus || 0.02)), 0.02, 0.99);
+  const avg = rs.reduce((a, b) => a + b, 0) / rs.length, dFail = clamp(0.6 - 0.2 * avg, 0.1, 0.7), dOk = clamp(0.12 * (1 - success), 0, 0.12);
+  return { success, death: (1 - success) * dFail + success * dOk, dFail, dOk, ratio: avg, battles: enc.length };
+}
+function rollLoot(eid, cm) { const d = D.enemies[eid], sc = scaled(d), g = d.group || [1, 1], n = Math.max(1, Math.round((g[0] + g[1]) / 2)); const loot = {}; let gold = 0, xp = 0;
+  for (let i = 0; i < n; i++) { xp += Math.round((d.xp || 0) * sc.xpM * cm); gold += Math.round(rnd((d.gold || [0, 0])[0], (d.gold || [0, 0])[1]) * sc.goldM); for (const l of d.loot || []) if (Math.random() < l.chance) loot[l.item] = (loot[l.item] || 0) + (l.qty || 1); }
+  return { n, loot, gold, xp };
+}
+function reviveCount(items) { return Object.entries(items || {}).filter(([id]) => item(id).revive).reduce((a, [, n]) => a + n, 0); }
+function resolveExpeditions() {
+  const out = []; G.expeditions = G.expeditions || [];
+  for (const ex of G.expeditions.slice()) { if (ex.returnDay > G.day) continue; G.expeditions = G.expeditions.filter(x => x !== ex);
+    const rp = ex.kind === 'trade' ? resolveTrade(ex) : resolveAdventure(ex);
+    for (const id of ex.members) if (G.helpers[id]) G.helpers[id].role = (ex.prevRoles || {})[id] || 'idle';
+    G.expLog = [rp].concat(G.expLog || []).slice(0, 12); out.push(rp); }
+  return out;
+}
+function deathRoll(ex, chance, rp) {
+  if (Math.random() >= chance) return; const alive_ = ex.members.filter(id => G.helpers[id]); if (!alive_.length) return;
+  const v = alive_[rnd(0, alive_.length - 1)], row = rp.members.find(m => m.id === v);
+  const rid = Object.keys(ex.items || {}).find(id => item(id).revive && ex.items[id] > 0);
+  if (rid) { ex.items[rid]--; row.revived = item(rid).name; return; }
+  delete G.helpers[v]; G.flags['dead_' + v] = true; row.died = true;
+}
+function resolveAdventure(ex) {
+  const zone = ex.zone, enc = zoneEncounters(zone), cm = (mapDef(zone) || {}).caveMult || 1, ok = Math.random() < ex.success;
+  const fought = ok ? enc : enc.slice(0, Math.round(enc.length * (0.3 + Math.random() * 0.4)));
+  const rp = { kind: 'adventure', title: `${zoneName(zone)}`, day: G.day, ok, battles: fought.length, of: enc.length, loot: {}, gold: 0, members: [] }; let xp = 0, kills = 0;
+  for (const eid of fought) { const r = rollLoot(eid, cm); xp += r.xp; rp.gold += r.gold; kills += r.n; for (const [k, v] of Object.entries(r.loot)) rp.loot[k] = (rp.loot[k] || 0) + v;
+    G.kills[eid] = (G.kills[eid] || 0) + r.n; addDread((DL().perKill || 0) * r.n);
+    for (const q of D.quests) if (G.quests[q.id] === 'active') q.objectives.forEach((o, i) => { if (o.type === 'defeat' && o.enemy === eid) { G.qprog[q.id] = G.qprog[q.id] || {}; G.qprog[q.id][i] = (G.qprog[q.id][i] || 0) + r.n; } }); }
+  for (const id of ex.members) { if (!G.helpers[id]) continue; const st = G.helpers[id], before = hLvl(id), gain = Math.round(xp * (1 + perk('helperXp'))); st.xp = (st.xp || 0) + gain; rp.members.push({ id, xp: gain, from: before, to: hLvl(id) }); }
+  deathRoll(ex, ok ? ex.dOk : ex.dFail, rp);
+  rp.gold = Math.round(rp.gold * (1 + perk('goldBonus'))); G.gold += rp.gold; for (const [k, v] of Object.entries(rp.loot)) add(k, v, true);
+  for (const [k, v] of Object.entries(ex.items || {})) if (v > 0) add(k, v, true); rp.kills = kills;
+  rp.summary = ok ? `Cleared ${zoneName(zone)}: ${fought.length} battles, ${kills} monsters.` : `Driven back from ${zoneName(zone)} after ${fought.length} of ${enc.length} battles.`;
+  return rp;
+}
+// ---- trade voyages ----
+function portMarket(port) { const m = D.maps[port.map]; if (!m) return []; const ids = [port.map].concat((m.warps || []).map(w => w.to)); const shops = new Set();
+  for (const mid of ids) for (const n of ((D.maps[mid] || {}).npcs || [])) { const nd = D.npcs[n.id]; if (nd && nd.role === 'shop' && D.shops[nd.shop] && !['homecenter'].includes(nd.shop)) shops.add(nd.shop); } return [...shops]; }
+function tradePorts() { return ((D.sea || {}).ports || []).filter(p => p.id !== 'briarwick' && !p.soon && G.ports[p.id] && portMarket(p).length); }
+function crewBest(ids, sk) { return Math.max(1, ...ids.filter(id => D.helpers[id]).map(id => ((D.helpers[id].skills || {})[sk] || 0))); }
+function tradeOdds(ids, port) { const days = 2 * Math.max(1, Math.ceil(seaDays(port) * (navigatorId() ? 0.9 : 1))), sh = ship();
+  const success = clamp(0.97 - 0.012 * seaDays(port) * 4 + 0.02 * crewBest(ids, 'sailing') + 0.15 * (sh.hull / sh.max - 1), 0.3, 0.98); return { days, success, death: (1 - success) * 0.25 }; }
+function tradeSellPrice(id, port, bart) { const prem = itemRegion(id) !== mapRegion(port.map) ? 0.25 + 0.03 * advLvl('commerce') : 0; return Math.max(1, Math.round(item(id).sell * (1 + 0.05 * (bart - 1) + prem + perk('sellBonus')))); }
+function tradeBuyPrice(id, bart) { return Math.max(1, Math.round(item(id).price * Math.max(0.5, 1 - 0.03 * (bart - 1)))); }
+function resolveTrade(ex) {
+  const port = ((D.sea || {}).ports || []).find(p => p.id === ex.port), bart = crewBest(ex.members, 'bartering'), ok = Math.random() < ex.success;
+  const rp = { kind: 'trade', title: `Trade voyage to ${port.name}`, day: G.day, ok, sold: {}, bought: {}, earned: 0, spent: 0, lost: {}, gold: 0, members: [], loot: {} };
+  let purse = ex.purse; const keepFrac = ok ? 1 : 0.3 + Math.random() * 0.4;
+  if (!ok) { ship().hull = Math.max(1, Math.round(ship().hull * 0.6)); purse = Math.round(purse * keepFrac); }
+  for (const [id, n] of Object.entries(ex.cargo)) { const k = Math.round(n * keepFrac); if (n - k) rp.lost[id] = n - k; if (!k) continue; const pr = tradeSellPrice(id, port, bart); rp.sold[id] = k; rp.earned += pr * k; }
+  purse += rp.earned;
+  for (const [id, want] of Object.entries(ex.orders)) { const pr = tradeBuyPrice(id, bart); let got = 0; while (got < want && purse >= pr) { purse -= pr; got++; } if (got) { rp.bought[id] = got; rp.spent += got * pr; add(id, got, true); } }
+  G.gold += purse; rp.gold = purse; rp.purseOut = ex.purse;
+  for (const id of ex.members) { if (!G.helpers[id]) continue; const st = G.helpers[id], before = hLvl(id), gain = 10 * ex.days; st.xp = (st.xp || 0) + gain; rp.members.push({ id, xp: gain, from: before, to: hLvl(id) }); }
+  addSkillXp('commerce', Math.round(rp.earned / 40)); addSkillXp('bartering', Math.round(rp.earned / 60));
+  deathRoll(ex, ok ? 0 : ex.death * 2, rp);
+  rp.summary = ok ? `Sold ${Object.values(rp.sold).reduce((a, b) => a + b, 0)} goods for ${rp.earned}g and spent ${rp.spent}g. ${purse}g came home.` : `Pirates struck! Some cargo was lost and the hull took damage. ${purse}g came home.`;
+  return rp;
+}
+// ---- menus ----
+function expeditionRows() {
+  const rows = [{ label: 'Send a party on an adventure...', right: 'Adventure', desc: 'Hirelings clear a zone or cave level you have been to and come back with XP, gold and loot - if all goes well.', act: () => script(planAdventure) },
+    { label: 'Send a trade voyage...', right: G.boat ? 'Trade' : 'needs a boat', disabled: !G.boat, desc: G.boat ? 'Hirelings sail your boat to a port you have visited, sell the goods you send and buy what you ask for.' : 'Buy a boat from the shipwright first.', act: () => script(planTrade) }];
+  for (const ex of G.expeditions || []) { const d = ex.returnDay - G.day; rows.push({ label: `${ex.kind === 'trade' ? 'Trade: ' : ''}${ex.kind === 'trade' ? (((D.sea || {}).ports || []).find(p => p.id === ex.port) || {}).name : zoneName(ex.zone)}`, right: d <= 1 ? 'back tomorrow' : `back in ${d} days`, disabled: true, desc: `${ex.members.map(id => (D.helpers[id] || { name: id }).name).join(', ')}.  ${Math.round(ex.success * 100)}% success.` }); }
+  for (const rp of (G.expLog || []).slice(0, 6)) rows.push({ label: `Report: ${rp.title}`, right: rp.ok ? 'success' : 'trouble', desc: rp.summary, act: () => script(() => showExpeditionReport(rp)) });
+  return rows;
+}
+function freeHirelings() { return Object.keys(G.helpers).filter(id => D.helpers[id] && !G.helpers[id].guest && G.helpers[id].role !== 'away'); }
+async function pickMembers(title, max) {
+  const pick = new Set(Object.keys(G.helpers).filter(id => G.helpers[id].role === 'party' && !G.helpers[id].guest && freeHirelings().includes(id)).slice(0, max)); let done = false;
+  await openMenu({ title, width: 600, items: () => freeHirelings().map(id => { const h = D.helpers[id], u = helperUnit(id); return { label: `${pick.has(id) ? '[x]' : '[  ]'}  ${h.name}`, icon: h.sprite, right: `Lv ${hLvl(id)}  ${ROLES[G.helpers[id].role]}`, desc: `HP ${u.maxHp}  ATK ${u.atk}  DEF ${u.def}.  Skills: ${skillStr(h.skills)}.`, value: id }; })
+      .concat([{ label: pick.size ? `Continue with ${pick.size}` : 'Choose at least one hireling', value: '__go', disabled: !pick.size }]),
+    footer: `Enter: add or remove (up to ${max}).  Hirelings who go stop their jobs until they return.`,
+    onSelect: it => { if (it.value === '__go') { done = true; return true; } if (pick.has(it.value)) pick.delete(it.value); else if (pick.size < max) pick.add(it.value); else toast(`At most ${max}.`); return false; } });
+  return done ? [...pick] : null;
+}
+async function chooseSupplies(kinds) {
+  const give = {}; const ids = Object.keys(G.inv).filter(id => kinds(item(id)) && count(id) > 0); if (!ids.length) return give; let done = false;
+  await openMenu({ title: 'Supplies to send with them', width: 560, items: () => ids.map(id => ({ label: `${item(id).name}`, icon: item(id).sprite, right: `${give[id] || 0} / ${count(id)}`, desc: item(id).desc, value: id })).concat([{ label: 'Done', value: '__go' }]),
+    footer: 'Enter: add one more (cycles back to 0).  Unused supplies come home.', onSelect: it => { if (it.value === '__go') { done = true; return true; } give[it.value] = ((give[it.value] || 0) + 1) % (count(it.value) + 1); return false; } });
+  if (!done) return null; for (const k of Object.keys(give)) if (!give[k]) delete give[k]; return give;
+}
+async function planAdventure() {
+  const zones = adventureZones(); if (!zones.length) { toast('Explore a monster area first - adventures only go where you have been.'); return; }
+  if (!freeHirelings().length) { toast('You have no free hirelings to send.'); return; }
+  const ids = await pickMembers('Adventure party', XP_().maxMembers || 4); if (!ids) return;
+  const zone = await choose('Where should they go?', zones.map(z => { const o = adventureOdds(ids, z), t = zoneTravel(z); return { label: zoneName(z), right: `${Math.round(o.success * 100)}%   ${t.near ? 'tonight' : t.days + ' days'}`, desc: `${o.battles} battles. Success ${Math.round(o.success * 100)}%, chance someone dies ${Math.round(o.death * 100)}%. ${t.near ? 'Close to home: back tomorrow morning.' : `Round trip about ${t.days} days.`}`, value: z }; })
+    .sort((a, b) => parseInt(b.right) - parseInt(a.right)).concat([{ label: 'Never mind', value: null }]), { width: 620 }); if (!zone) return;
+  const sup = await chooseSupplies(it => it.revive || (it.type === 'consumable' && it.heal)); if (!sup) return;
+  const pots = Object.entries(sup).filter(([k]) => !item(k).revive).reduce((a, [, n]) => a + n, 0), o = adventureOdds(ids, zone, pots), t = zoneTravel(zone);
+  const c = await choose(`Send them to ${zoneName(zone)}?`, [{ label: 'Send them', value: 'y', desc: `Success ${Math.round(o.success * 100)}%. Chance someone dies ${Math.round(o.death * 100)}%${reviveCount(sup) ? ` (${reviveCount(sup)} revival item${reviveCount(sup) > 1 ? 's' : ''} packed)` : ' - pack a Phoenix Draught or Scroll of Return to save a life'}. Back ${t.near ? 'tomorrow morning' : `in ${t.days} days`}.` }, { label: 'Cancel', value: 'n' }], { width: 560 });
+  if (c !== 'y') return;
+  for (const [k, n] of Object.entries(sup)) take(k, n);
+  const prev = {}; for (const id of ids) { prev[id] = G.helpers[id].role; G.helpers[id].role = 'away'; }
+  G.expeditions = (G.expeditions || []).concat([{ kind: 'adventure', zone, members: ids, prevRoles: prev, items: sup, success: o.success, dOk: o.dOk, dFail: o.dFail, days: t.days, returnDay: G.day + t.days }]);
+  toast(`${ids.length} hireling${ids.length > 1 ? 's' : ''} set out for ${zoneName(zone)}.`, UI.green);
+}
+async function planTrade() {
+  if (!G.boat) { toast('You need a boat.'); return; } if ((G.expeditions || []).some(x => x.kind === 'trade')) { toast('Your boat is already away on a voyage.'); return; }
+  const ports = tradePorts(); if (!ports.length) { toast('Visit another port with a market first - voyages only go where you have sailed.'); return; }
+  if (!freeHirelings().length) { toast('You have no free hirelings to crew the boat.'); return; }
+  const ids = await pickMembers('Trade crew (sailors and hagglers help)', 3); if (!ids) return;
+  const pid = await choose('Sail to which port?', ports.map(p => { const o = tradeOdds(ids, p); return { label: p.name, right: `${Math.round(o.success * 100)}%   ${o.days} days`, desc: `Round trip ${o.days} days. Success ${Math.round(o.success * 100)}% (sea distance, your crew's Sailing ${crewBest(ids, 'sailing')}, hull ${ship().hull}/${ship().max}). Markets: ${portMarket(p).map(s => D.shops[s].name).join(', ')}.`, value: p.id }; }).concat([{ label: 'Never mind', value: null }]), { width: 620 }); if (!pid) return;
+  const port = ports.find(p => p.id === pid), shops = portMarket(port).map(s => D.shops[s]), buys = new Set(shops.flatMap(sh => sh.buysTypes || [])), sells = [...new Set(shops.flatMap(sh => sh.sells || []))].filter(id => D.items[id]), bart = crewBest(ids, 'bartering');
+  const cargo = {}, orders = {}; let purse = 0; const STEPS = [0, 5, 10, 20]; let done = false;
+  await openMenu({ title: `Cargo for ${port.name}`, width: 640, items: () => [{ label: 'Gold for buying', right: `${purse}g`, desc: 'Gold the crew takes to pay for the goods you order below. Leftover gold comes home.', value: '__purse' }]
+      .concat(Object.keys(G.inv).filter(id => buys.has(item(id).type) && count(id) > 0).map(id => ({ label: `Sell: ${item(id).name}`, icon: item(id).sprite, right: `${cargo[id] || 0} / ${count(id)}  (${tradeSellPrice(id, port, bart)}g each)`, desc: `${itemDesc(id)}`, value: 's:' + id })))
+      .concat(sells.map(id => ({ label: `Buy: ${item(id).name}`, icon: item(id).sprite, right: `${orders[id] || 0}  (${tradeBuyPrice(id, bart)}g each)`, desc: itemDesc(id), value: 'b:' + id })))
+      .concat([{ label: 'Set sail', value: '__go' }]),
+    footer: `Enter cycles amounts.  Your gold: ${G.gold}`,
+    onSelect: it => { const v = it.value; if (v === '__go') { done = true; return true; }
+      if (v === '__purse') { const P = [0, 100, 250, 500, 1000, G.gold]; const i = P.findIndex(x => x > purse); purse = i < 0 ? 0 : Math.min(G.gold, P[i]); if (purse === G.gold && P[i] !== G.gold) purse = G.gold; return false; }
+      const [k, id] = [v.slice(0, 1), v.slice(2)]; if (k === 's') { const cur = cargo[id] || 0, n = count(id), nx = cur >= n ? 0 : cur === 0 ? Math.min(5, n) : cur < 10 ? Math.min(10, n) : n; cargo[id] = nx; }
+      else { const cur = orders[id] || 0; orders[id] = STEPS[(STEPS.indexOf(cur) + 1) % STEPS.length]; } return false; } });
+  if (!done) return; for (const k of Object.keys(cargo)) if (!cargo[k]) delete cargo[k]; for (const k of Object.keys(orders)) if (!orders[k]) delete orders[k];
+  if (!Object.keys(cargo).length && !Object.keys(orders).length) { toast('Nothing to sell or buy - voyage cancelled.'); return; }
+  const o = tradeOdds(ids, port); for (const [k, n] of Object.entries(cargo)) take(k, n); G.gold -= purse;
+  const prev = {}; for (const id of ids) { prev[id] = G.helpers[id].role; G.helpers[id].role = 'away'; }
+  G.expeditions = (G.expeditions || []).concat([{ kind: 'trade', port: pid, members: ids, prevRoles: prev, cargo, orders, purse, success: o.success, death: o.death, days: o.days, returnDay: G.day + o.days, items: {} }]);
+  toast(`Your boat sets sail for ${port.name} (back in ${o.days} days).`, UI.green);
+}
+async function showExpeditionReport(rp) {
+  const rows = [];
+  for (const m of rp.members) { const h = D.helpers[m.id] || { name: m.id, sprite: null }; rows.push({ label: h.name, icon: h.sprite, right: m.died ? 'DIED' : `+${m.xp} XP${m.to > m.from ? `  (Lv ${m.from} > ${m.to})` : ''}`, desc: m.died ? `${h.name} did not come back.` : m.revived ? `${h.name} fell, but was saved by a ${m.revived}.` : `${h.name} is back.` }); }
+  for (const m of rp.members) if (m.revived) rows.push({ label: `  ${(D.helpers[m.id] || {}).name} was revived`, right: m.revived, disabled: true });
+  if (rp.kind === 'trade') { for (const [id, n] of Object.entries(rp.sold)) rows.push({ label: `Sold ${item(id).name}`, icon: item(id).sprite, right: `x${n}`, disabled: true }); for (const [id, n] of Object.entries(rp.lost || {})) rows.push({ label: `Lost ${item(id).name}`, icon: item(id).sprite, right: `x${n}`, disabled: true }); for (const [id, n] of Object.entries(rp.bought)) rows.push({ label: `Bought ${item(id).name}`, icon: item(id).sprite, right: `x${n}`, disabled: true }); rows.push({ label: 'Earned / spent', right: `+${rp.earned}g / -${rp.spent}g`, disabled: true }); }
+  else for (const [id, n] of Object.entries(rp.loot)) rows.push({ label: item(id).name, icon: item(id).sprite, right: `x${n}`, disabled: true });
+  rows.push({ label: 'Gold brought home', right: `${rp.gold}g`, disabled: true });
+  AU.sfx(rp.ok ? 'levelup' : 'hit');
+  await openMenu({ title: `${rp.ok ? 'Back from' : 'Trouble at'}: ${rp.title}`, width: 620, items: () => rows, footer: rp.summary, onSelect: () => false });
+}
+
 // ================= PLAY STATS (sent to the developer's Discord when the game closes) =================
 const SESSION = { start: Date.now(), errors: [], sent: 0, id: (() => { try { let v = localStorage.getItem('gt_pid'); if (!v) { v = Math.random().toString(36).slice(2, 8); localStorage.setItem('gt_pid', v); } return v; } catch (e) { return 'anon'; } })() };
 addEventListener('error', e => { SESSION.errors.push(String(e.message || e).slice(0, 160)); if (SESSION.errors.length > 5) SESSION.errors.shift(); });
@@ -32992,6 +33442,7 @@ function handleInput() {
     if (dialogs.length) { advanceDialog(); continue; }
     const b = buttons.slice().reverse().find(b => c.x >= b.x && c.x <= b.x + b.w && c.y >= b.y && c.y <= b.y + b.h);
     if (b) { if (!b.disabled) b.fn(); continue; }
+    if (WMAP) { WMAP = null; continue; }
     if (DOLL) { dollClick(c); continue; }
     if (R.scene === 'combat' && C) combatClick(c);
   }
@@ -32999,6 +33450,7 @@ function handleInput() {
     if (menus.length) { menuKey(k); continue; }
     if (dialogs.length) { if (['enter', ' ', 'e', 'escape'].includes(k)) advanceDialog(); continue; }
     if (fadeA > 0) continue;
+    if (WMAP) { if (['escape', 'n', 'enter', ' ', 'e'].includes(k)) WMAP = null; continue; }
     if (DOLL) { dollKey(k); continue; }
     if (R.scene === 'world') worldKey(k);
     else if (R.scene === 'sea' && SEA) seaKey(k);
@@ -33023,6 +33475,7 @@ function frame(now) {
     else if (R.scene === 'sea' && SEA) renderSea();
     else if (R.scene === 'combat' && C) renderCombat();
     if (DOLL) renderDoll();
+    if (WMAP) renderWorldMap();
     renderDialog(); renderMenus(); renderToasts(); renderUpdateBanner();
     if (fadeA > 0) { ctx.fillStyle = `rgba(0,0,0,${fadeA})`; ctx.fillRect(0, 0, VW, VH); }
     mouse.moved = false;
@@ -33031,7 +33484,7 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 // debug/test hook (harmless in production)
-window.__game = { offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
+window.__game = { openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
 })();
 
 </script>
