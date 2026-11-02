@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACEUlEQVR4Xr2XO0jDUBSGk1rBQUFwEQRxkKqTKO0i6OpYCx0cXHToqFAU6eDkUMQuOnawi4NDQTo6FsWhjYogWMWCiIKLKOhQEB+cyElzb+7jJNR+S+m9yfn/nMclMQ2O0ejyD7/Gs77/YWwtdDu/AK7pqFm7pvsa5g9FHEHBkdS5MTcTsQ1RcZtwDPgRdwMGbvKTVG0HNGEb8Cve8XIqFfzqm/LsWXtvRnSp17MOJky/4gAYKKfDxtlrPxM0XXj0GABxRGQiJHoU900yeHEZKCoSBwJnQIaoBCrCyl0Fm8dVz+7GdMx3OGEJWsF1dYcURmtA1g+JAXX8sdhKawzImufwiRRfizYD/41vA6pDCM8IGaK+8DWGKC6aAAQngTqOngzIutctrmpANKfLFELKAC9OaUBqJsg9oEq7COr15JOw1rBsnWxdqBcYbQaotZShu1/bAxBgLX5gx4+HLo3S9zijpVvbLs0rJ8IcjCSV74A9n/e24EkiE0gceO8ckmZI2wNwM5jgnxzg1ypXllGxd/76RScOaHuACpQiCGQDUEsVfDbK9RzJD8kA1pA3IXtqFFfVHiEZcNfSbULUF37EAeEUJPMNafqOFp+ZPRhRPjOzBfZtGSmmujxxGQMTq2xwHXfZptHhjDe4jItc02D44baoPQtk+BEVAdrOp5nuQGo1IM6cA7jQDtxazBS0wwSv8QvPBN/iKlJbaQAAAABJRU5ErkJggg==">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reagents of Briarwick v0.11.0</title>
+<title>Reagents of Briarwick v0.12.0</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; }
   body { display: flex; align-items: center; justify-content: center; }
@@ -24,7 +24,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -31271,8 +31271,30 @@ async function fadeTo(mid) {
 
 // ================= STATE =================
 // ---- player settings (per computer, not per save) ----
-const SET = { walk: 'normal', battle: 'normal', stats: true, name: '' };
+const SET = { walk: 'normal', battle: 'normal', stats: true, name: '', keys: {} };
 try { Object.assign(SET, JSON.parse(localStorage.getItem('gt_settings') || '{}')); } catch (e) { /* storage unavailable */ }
+// key bindings: [id, label, default key, group]. Handlers keep using the default keys; input is translated.
+const KB_DEF = [
+  ['up', 'Move up', 'w', 'Move & interact'], ['down', 'Move down', 's', 'Move & interact'], ['left', 'Move left', 'a', 'Move & interact'], ['right', 'Move right', 'd', 'Move & interact'],
+  ['interact', 'Interact / talk / dock', 'e', 'Move & interact'], ['map', 'World map / sea chart', 'n', 'Move & interact'],
+  ['inventory', 'Items', 'i', 'Menu screens'], ['gear', 'Equipment', 'p', 'Menu screens'], ['spells', 'Spellbook', 'm', 'Menu screens'], ['skills', 'Skills & perks', 'k', 'Menu screens'],
+  ['hirelings', 'Hirelings', 'h', 'Menu screens'], ['quests', 'Quests', 'j', 'Menu screens'],
+  ['spell', 'Cast a spell', '1', 'Battle'], ['ability', 'Use ability', '2', 'Battle'], ['item', 'Use an item', '3', 'Battle'], ['defend', 'Defend', '4', 'Battle'], ['taunt', 'Taunt', '5', 'Battle'],
+  ['next', 'Next party member', 'tab', 'Battle'], ['flee', 'Flee', 'f', 'Battle'],
+  ['navigator', 'Navigator autopilot', 'g', 'Sailing'], ['course', 'Change course', 'c', 'Sailing']];
+const KB_RESERVED = ['escape', 'enter', ' ', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright', 'backspace', 'shift', 'control', 'alt', 'meta', 'capslock', 'delete', 'contextmenu', 'os'];
+const KB_CTX = { general: ['Move & interact', 'Menu screens'], combat: ['Move & interact', 'Battle'], sea: ['Move & interact', 'Menu screens', 'Sailing'] };
+function kdef(id) { const d = KB_DEF.find(d => d[0] === id); return d ? d[2] : id; }
+function bind(id) { return (SET.keys || {})[id] || kdef(id); }
+function keyName(k) { return { ' ': 'Space', arrowup: 'Up', arrowdown: 'Down', arrowleft: 'Left', arrowright: 'Right', tab: 'Tab', enter: 'Enter', escape: 'Esc' }[k] || (k.length === 1 ? k.toUpperCase() : k[0].toUpperCase() + k.slice(1)); }
+function K(id) { return keyName(bind(id)); }
+function setBind(id, k) { SET.keys = SET.keys || {}; if (k === kdef(id)) delete SET.keys[id]; else SET.keys[id] = k; }
+function kbTranslate(raw, ctx) {
+  const defs = KB_DEF.filter(d => KB_CTX[ctx].includes(d[3]));
+  for (const d of defs) if (bind(d[0]) === raw) return d[2];
+  for (const d of defs) if (d[2] === raw) return null;   // its action moved to another key
+  return raw;
+}
 function saveSettings() { try { localStorage.setItem('gt_settings', JSON.stringify(SET)); } catch (e) { /* ignore */ } }
 const WALK = { slow: 0.17, normal: 0.12, fast: 0.095, 'very fast': 0.075 };
 const BATTLE = { slow: 0.75, normal: 0.5, fast: 0.28 };
@@ -31396,13 +31418,14 @@ function loadMap(id, x, y) {
 }
 
 function heldDir() {
-  if (keys.has('arrowup') || keys.has('w')) return 'up';
-  if (keys.has('arrowdown') || keys.has('s')) return 'down';
-  if (keys.has('arrowleft') || keys.has('a')) return 'left';
-  if (keys.has('arrowright') || keys.has('d')) return 'right';
+  if (keys.has('arrowup') || keys.has(bind('up'))) return 'up';
+  if (keys.has('arrowdown') || keys.has(bind('down'))) return 'down';
+  if (keys.has('arrowleft') || keys.has(bind('left'))) return 'left';
+  if (keys.has('arrowright') || keys.has(bind('right'))) return 'right';
   return null;
 }
-function overlayActive() { return menus.length || dialogs.length || fadeA > 0 || !!WMAP; }
+function dollTop() { return !!DOLL && menus.length <= DOLL.depth; }
+function overlayActive() { return menus.length || dialogs.length || fadeA > 0 || !!WMAP || !!MASTER; }
 
 function updateWorld(dt) {
   updateEnemyAnims(dt);
@@ -31478,14 +31501,8 @@ function updateEnemies(dt) {
 function worldKey(k) {
   if (R.busy || overlayActive()) return;
   if (k === 'e' || k === ' ' || k === 'enter') interact();
-  else if (k === 'i') script(inventoryMenu);
-  else if (k === 'm') script(spellMenu);
-  else if (k === 'k') script(skillsMenu);
-  else if (k === 'h') script(helpersMenu);
-  else if (k === 'j') script(questMenu);
-  else if (k === 'p') script(() => paperdoll());
   else if (k === 'n') openWorldMap();
-  else if (k === 'escape') script(pauseMenu);
+  else { const t = MTABS.findIndex(t => t.key === k); if (t >= 0) openMaster(t); }
 }
 function interact() {
   const [dx, dy] = DIRS[R.dir]; const tx = G.x + dx, ty = G.y + dy;
@@ -31824,7 +31841,7 @@ const INV_TABS = [['All', () => true], ['Gear', i => i.type === 'gear'], ['Potio
 async function inventoryMenu() {
   const tabs = INV_TABS.map(t => ({ label: t[0], test: t[1] }));
   await openMenu({ title: 'Inventory', width: 600, closeKey: 'i', footer: () => `Gold: ${G.gold}     Left/Right or click a tab to filter`, tabs, tab: R.invTab || 0, minRows: 8, onTab: i => { R.invTab = i; },
-    items: m => Object.keys(G.inv).filter(id => tabs[m.tab].test(item(id))).sort((a, b) => (item(a).type + a).localeCompare(item(b).type + b)).map(id => ({ label: `${item(id).name}`, icon: item(id).sprite, right: 'x' + count(id), desc: itemDesc(id) + (item(id).type === 'consumable' || item(id).camp ? '  [Enter to use]' : item(id).type === 'gear' ? '  Enter: equip.  P: equipment screen' : ''), value: id })),
+    items: m => Object.keys(G.inv).filter(id => tabs[m.tab].test(item(id))).sort((a, b) => (item(a).type + a).localeCompare(item(b).type + b)).map(id => ({ label: `${item(id).name}`, icon: item(id).sprite, right: 'x' + count(id), desc: itemDesc(id) + (item(id).type === 'consumable' || item(id).camp ? '  [Enter to use]' : item(id).type === 'gear' ? `  Enter: equip.  ${K('gear')}: equipment screen` : ''), value: id })),
     onSelect: it => { const i = item(it.value); if (i.camp) { script(campOut); return true; } if (i.type === 'gear') { autoEquip('player', it.value); return false; } if (i.type === 'ward') { placeWard(it.value); return false; } if (i.type === 'consumable' && i.heal) { if (G.hp >= maxHp()) { toast('Already at full health.'); return false; } take(it.value); const hh = Math.round(i.heal * potionMult()); G.hp = Math.min(maxHp(), G.hp + hh); AU.sfx('heal'); toast(`+${hh} HP`, UI.green); } else if (i.type === 'consumable' && i.combat) toast('Use this in battle (Item button).'); return false; } });
 }
 async function spellMenu() {
@@ -31897,6 +31914,102 @@ async function questMenu() {
     items: () => D.quests.filter(q => G.quests[q.id]).sort((a, b) => (G.quests[a.id] === 'done') - (G.quests[b.id] === 'done')).map(q => ({ label: q.name, right: G.quests[q.id] === 'done' ? 'done' : 'active', disabled: G.quests[q.id] === 'done', desc: G.quests[q.id] === 'done' ? 'Completed.' : questLines(q).join('   ') + `   (Return to ${(D.npcs[q.giver] || { name: '?' }).name})` })),
     onSelect: () => false });
 }
+// ================= MASTER MENU (top-right button or any screen key) =================
+const MB = 46;   // height of the tab strip
+const MTABS = [{ label: 'Items', key: 'i', id: 'inventory', run: () => inventoryMenu() }, { label: 'Equipment', key: 'p', id: 'gear', run: () => paperdoll() },
+  { label: 'Spells', key: 'm', id: 'spells', run: () => spellMenu(), land: true }, { label: 'Skills', key: 'k', id: 'skills', run: () => skillsMenu() },
+  { label: 'Hirelings', key: 'h', id: 'hirelings', run: () => helpersMenu() }, { label: 'Quests', key: 'j', id: 'quests', run: () => questMenu() },
+  { label: 'Game', key: 'escape', run: () => gameScreen() }];
+let MASTER = null;
+function mtabOff(i) { return MTABS[i].land && R.scene === 'sea'; }
+function openMaster(tab) {
+  if (R.busy || overlayActive() || !G) return;
+  if (tab == null) tab = R.masterTab || 0; if (mtabOff(tab)) tab = 0;
+  MASTER = { tab, focus: 'bar', depth: menus.length }; R.masterTab = tab; AU.sfx('menu'); script(masterLoop);
+}
+async function masterLoop() {
+  while (MASTER) {
+    MASTER.switching = false; MASTER.depth = menus.length;
+    await MTABS[MASTER.tab].run();
+    if (!MASTER || MASTER.closing || !MASTER.switching) { MASTER = null; break; }
+  }
+}
+function masterBase() { return MASTER ? menus[MASTER.depth] : null; }
+function masterCloseScreen() { while (MASTER && menus.length > MASTER.depth) closeMenu(menus[menus.length - 1], null); if (DOLL) closeDoll(); }
+function closeMaster() { if (!MASTER) return; MASTER.closing = true; masterCloseScreen(); AU.sfx('menu'); }
+function switchMaster(t) {
+  if (!MASTER) return; t = (t + MTABS.length) % MTABS.length; if (t === MASTER.tab) return;
+  MASTER.tab = t; R.masterTab = t; MASTER.switching = true; MASTER.focus = 'bar'; masterCloseScreen(); AU.sfx('menu');
+}
+function stepMaster(d) { let t = MASTER.tab; for (let n = 0; n < MTABS.length; n++) { t = (t + d + MTABS.length) % MTABS.length; if (!mtabOff(t)) break; } switchMaster(t); }
+function masterEnter() { MASTER.focus = 'screen'; const b = masterBase(); if (b) b.index = 0; if (DOLL) DOLL.slot = 0; AU.sfx('menu'); }
+// returns true when the master menu used the key
+function masterKey(k) {
+  const base = masterBase(), top = menus[menus.length - 1];
+  if (DOLL && base && dollTop()) return false;        // equipment opened from inside a screen (e.g. a hireling's gear)
+  if (top && top !== base) return false;             // a sub-menu (perks, job picker...) is open
+  const hot = MTABS.findIndex(t => t.key === k);
+  if (MASTER.focus === 'bar') {
+    if (k === 'arrowleft' || k === 'a') stepMaster(-1);
+    else if (k === 'arrowright' || k === 'd') stepMaster(1);
+    else if (['arrowdown', 's', 'enter', ' ', 'e'].includes(k)) masterEnter();
+    else if (['escape', 'q', 'backspace'].includes(k)) closeMaster();
+    else if (hot >= 0) { if (hot === MASTER.tab) closeMaster(); else if (!mtabOff(hot)) switchMaster(hot); }
+    return true;
+  }
+  if (hot >= 0 && k !== 'escape') { if (hot === MASTER.tab) closeMaster(); else if (!mtabOff(hot)) switchMaster(hot); return true; }
+  if (k === 'arrowup' || k === 'w') {
+    if ((base && base.index === 0) || (DOLL && !base && DOLL.slot === 0)) { MASTER.focus = 'bar'; AU.sfx('menu'); return true; }
+  }
+  if (['escape', 'q', 'backspace'].includes(k)) { closeMaster(); return true; }
+  return false;
+}
+function masterClick(c) {
+  const hit = r => c.x >= r.x && c.x <= r.x + r.w && c.y >= r.y && c.y <= r.y + r.h;
+  if (MASTER._close && hit(MASTER._close)) { closeMaster(); return true; }
+  for (const t of MASTER._tabs || []) if (hit(t)) { if (!mtabOff(t.i)) { if (t.i === MASTER.tab) MASTER.focus = 'bar'; else switchMaster(t.i); } return true; }
+  if (c.y < MB) return true;
+  MASTER.focus = 'screen'; return false;
+}
+// equipment screen is drawn slightly smaller under the tab strip
+function masterXf() { const sc = (VH - MB - 4) / VH; return { sc, ox: VW * (1 - sc) / 2, oy: MB + 2 }; }
+function xfPt(c) { if (!MASTER) return c; const t = masterXf(); return { x: (c.x - t.ox) / t.sc, y: (c.y - t.oy) / t.sc }; }
+function inMasterXf(fn) {
+  if (!MASTER) return fn();
+  const t = masterXf(), sm = { x: mouse.x, y: mouse.y }, b0 = buttons.length;
+  ctx.fillStyle = 'rgba(0,0,0,.55)'; ctx.fillRect(0, 0, VW, VH);
+  mouse.x = (mouse.x - t.ox) / t.sc; mouse.y = (mouse.y - t.oy) / t.sc;
+  ctx.save(); ctx.translate(t.ox, t.oy); ctx.scale(t.sc, t.sc);
+  try { fn(); } finally { ctx.restore(); mouse.x = sm.x; mouse.y = sm.y; for (let i = b0; i < buttons.length; i++) { const b = buttons[i]; b.x = b.x * t.sc + t.ox; b.y = b.y * t.sc + t.oy; b.w *= t.sc; b.h *= t.sc; } }
+}
+function renderMaster() {
+  if (!MASTER) return;
+  ctx.fillStyle = 'rgba(46,30,20,.96)'; ctx.fillRect(0, 0, VW, MB); ctx.fillStyle = UI.border; ctx.fillRect(0, MB - 3, VW, 3);
+  const tw = (VW - 70) / MTABS.length; MASTER._tabs = [];
+  MTABS.forEach((t, i) => {
+    const r = { x: 8 + i * tw, y: 7, w: tw - 6, h: 31, i }; MASTER._tabs.push(r);
+    const on = i === MASTER.tab, off = mtabOff(i), hov = mouse.x >= r.x && mouse.x <= r.x + r.w && mouse.y >= r.y && mouse.y <= r.y + r.h;
+    ctx.fillStyle = off ? '#7a6a55' : on ? UI.sel : hov ? '#f7e4b0' : UI.bg2; rr(r.x, r.y, r.w, r.h, 6); ctx.fill();
+    if (on && MASTER.focus === 'bar') { ctx.lineWidth = 3; ctx.strokeStyle = '#fff6c8'; ctx.stroke(); }
+    const kl = t.id ? K(t.id) : 'Esc';
+    text(t.label, r.x + r.w / 2 - 12, r.y + 7, { align: 'center', size: 14, bold: on, color: off ? '#4a3d30' : UI.text });
+    ctx.font = `bold 11px ${FONT}`; const kw = ctx.measureText(kl).width + 8; ctx.fillStyle = 'rgba(0,0,0,.18)'; rr(r.x + r.w - kw - 5, r.y + 8, kw, 16, 4); ctx.fill();
+    text(kl, r.x + r.w - kw / 2 - 5, r.y + 9, { align: 'center', size: 11, bold: true, color: UI.border });
+  });
+  const cx = VW - 54; MASTER._close = { x: cx, y: 7, w: 46, h: 31 }; const ch = mouse.x >= cx && mouse.y <= 38 && mouse.y >= 7;
+  ctx.fillStyle = ch ? UI.sel : UI.white; rr(cx, 7, 46, 31, 6); ctx.fill(); text('X', cx + 23, 13, { bold: true, align: 'center' });
+  if (DOLL) return;   // the equipment screen shows its own key help
+  const hint = MASTER.focus === 'bar' ? 'Left/Right: choose a tab     Down or Enter: go into it     Esc: close' : 'Up from the top row: back to the tabs     Esc: close';
+  ctx.font = `bold 13px ${FONT}`; const hw = ctx.measureText(hint).width + 24; ctx.fillStyle = 'rgba(30,20,30,.82)'; rr((VW - hw) / 2, VH - 26, hw, 22, 6); ctx.fill();
+  text(hint, VW / 2, VH - 23, { size: 13, bold: true, align: 'center', color: '#fff' });
+}
+function hudButtons() {
+  if (R.busy || overlayActive()) return;
+  button(VW - 96, 10, 86, 40, 'Menu', () => openMaster());
+  if (R.scene === 'world') button(VW - 184, 10, 82, 40, 'Map', () => openWorldMap());
+  else if (R.scene === 'sea') button(VW - 184, 10, 82, 40, 'Chart', () => { R.chart = !R.chart; AU.sfx('menu'); });
+}
+
 // ================= SAVE FILES (export / import) =================
 function exportSave() {
   try {
@@ -31922,18 +32035,25 @@ function importSave() {
   };
   document.body.appendChild(inp); inp.click();
 }
-async function pauseMenu() {
-  const c = await choose(`Paused   (v${D.meta.version})`, [{ label: 'Resume', value: 'r' }, { label: 'Save game', value: 's' }, { label: 'Load last save', value: 'l', disabled: !hasSave() }, { label: 'Settings', value: 'a', desc: 'Music and sound volume, walking speed, battle speed.' }, { label: 'Export save file', value: 'x', desc: 'Download your progress as a file you can keep or move to another computer.' }, { label: 'Import save file', value: 'i', desc: 'Load progress from a save file (replaces your current game).' }, { label: 'Controls', value: 'c' }, { label: UPD.online ? 'Check for updates' : 'Play the latest version online', value: 'u', desc: UPD.online ? 'See whether a newer version is out.' : 'Opens the online version, which always has the newest build. (Export your save first, then Import it there.)' }, { label: 'Join the Discord', value: 'd', desc: 'Chat with other testers, report bugs and get news about new versions.', disabled: !D.meta.discordInvite }, { label: 'Quit to title', value: 'q' }], { width: 320 });
+async function gameScreen() {
+  let idx = 0;
+  for (;;) {
+  const c = await choose(`Game   (v${D.meta.version})`, [{ label: 'Resume', value: 'r' }, { label: 'Save game', value: 's' }, { label: 'Load last save', value: 'l', disabled: !hasSave() }, { label: 'Settings', value: 'a', desc: 'Music and sound volume, walking speed, battle speed.' }, { label: 'Export save file', value: 'x', desc: 'Download your progress as a file you can keep or move to another computer.' }, { label: 'Import save file', value: 'i', desc: 'Load progress from a save file (replaces your current game).' }, { label: 'Controls', value: 'c' }, { label: UPD.online ? 'Check for updates' : 'Play the latest version online', value: 'u', desc: UPD.online ? 'See whether a newer version is out.' : 'Opens the online version, which always has the newest build. (Export your save first, then Import it there.)' }, { label: 'Join the Discord', value: 'd', desc: 'Chat with other testers, report bugs and get news about new versions.', disabled: !D.meta.discordInvite }, { label: 'Quit to title', value: 'q' }], { width: 360, index: idx, onKey: (k, it, m) => { idx = m.index; } });
+  if (!c || c === 'r') return;
+  idx = ['r', 's', 'l', 'a', 'x', 'i', 'c', 'u', 'd', 'q'].indexOf(c);
   if (c === 's') saveGame();
   if (c === 'a') await settingsMenu();
   if (c === 'x') exportSave();
   if (c === 'i') importSave();
   if (c === 'l') loadGame();
-  if (c === 'c') await say('Controls', ['Move: WASD / Arrow keys.  Interact / talk / confirm: E, Space or Enter.', 'I: Inventory   P: Equipment   M: Spellbook   K: Skills & perks   H: Hirelings   J: Quests   N: World map   Esc: Menu', 'Combat: move with WASD/arrows (walk into an enemy to attack) or click a blue tile. Space/E attacks the nearest enemy in range.', '1 Spell   2 Ability   3 Item   4 Defend   5 Taunt (fighters)   Tab next unit   Enter end turn   F flee.  Hover an enemy to see its stats.', 'The coloured dot over a monster shows how dangerous it is for your party: green easy, yellow fair, orange hard, red deadly.']);
+  if (c === 'c') await say('Controls', [`Move: ${K('up')}${K('left')}${K('down')}${K('right')} / Arrow keys.  Interact / talk / confirm: ${K('interact')}, Space or Enter.  Change keys in Settings > Key bindings.`, `Menu button (top right) or a screen key opens the menu: ${K('inventory')} Items   ${K('gear')} Equipment   ${K('spells')} Spellbook   ${K('skills')} Skills   ${K('hirelings')} Hirelings   ${K('quests')} Quests   Esc Game.  Left/Right picks a tab, Down enters it, Up at the top goes back to the tabs.`, `Map button or ${K('map')}: World map.`, `Combat: move with ${K('up')}${K('left')}${K('down')}${K('right')}/arrows (walk into an enemy to attack) or click a blue tile. Space/${K('interact')} attacks the nearest enemy in range.`, `${K('spell')} Spell   ${K('ability')} Ability   ${K('item')} Item   ${K('defend')} Defend   ${K('taunt')} Taunt (fighters)   ${K('next')} next unit   Enter end turn   ${K('flee')} flee.  Hover an enemy to see its stats.`, 'The coloured dot over a monster shows how dangerous it is for your party: green easy, yellow fair, orange hard, red deadly.']);
   if (c === 'u') { if (UPD.online) { await checkUpdate(); if (UPD.latest) getUpdate(); else toast(`You have the latest version (v${D.meta.version}).`, UI.green); } else getUpdate(); }
   if (c === 'd') window.open(D.meta.discordInvite, '_blank');
-  if (c === 'q') { R.scene = 'title'; }
+  if (c === 'q') { R.scene = 'title'; return; }
+  if (c === 'l' || c === 'u') return;
+  }
 }
+function pauseMenu() { return gameScreen(); }
 
 // ================= COMBAT =================
 const AW = 14, AH = 9, AX = (VW - AW * TILE) / 2, AY = 30;
@@ -32330,11 +32450,11 @@ function renderHud() {
   text('HP', 120, 48, { bold: true, size: 14 }); bar(146, 50, 88, 14, G.hp / maxHp(), '#d9483b');
   if (G.flags.dreadKnown) { panel(10, 92, 238, 34); drawSpr('ui_eye', 18, 96, 26); bar(50, 103, 112, 12, dread(), '#a070dc'); text(tierName(), 170, 100, { size: 13, bold: true, color: '#6a44a8' }); } text(`${G.hp}/${maxHp()}`, 190, 66, { size: 11, align: 'center', color: UI.dim });
   const nm = R.scene === 'sea' && SEA ? seaZone(SEA.x, SEA.y).name : R.map.name; ctx.font = `bold 16px ${FONT}`; const w = ctx.measureText(nm).width + 40;
-  panel(VW - w - 10, 10, w, 40); text(nm, VW - w / 2 - 10, 21, { bold: true, align: 'center' });
+  panel(VW - w - 192, 10, w, 40); text(nm, VW - w / 2 - 192, 21, { bold: true, align: 'center' }); hudButtons();
   if (G.flags.dreadKnown && mouse.x >= 10 && mouse.x <= 248 && mouse.y >= 92 && mouse.y <= 126)
     tooltip([`${DL().meterName || 'Attention'}: ${Math.round(dread() * 100)}%  (${tierName()})`, 'Magic, battles and new discoveries draw his eye. As it rises, monsters grow tougher and adapt to your wards.', 'Defeat him to push it back.'], 16, 132, 360);
   if (DRAFT) text('PLAYTESTING DRAFT DATA', VW / 2, 14, { bold: true, align: 'center', color: '#ff6a5a', shadow: true });
-  text(R.scene === 'sea' ? 'Arrows: sail   N: chart   G: navigator   E: dock   I items   P gear   K skills   H hirelings   Esc menu' : 'E interact   I items   P gear   M spells   K skills   H hirelings   J quests   N map   Esc menu', VW / 2, VH - 22, { size: 13, align: 'center', color: '#fff', shadow: true });
+  if (!MASTER) text(R.scene === 'sea' ? `Arrows: sail   ${K('map')} chart   ${K('navigator')} navigator   ${K('interact')} dock   ${K('inventory')} items   ${K('gear')} gear   ${K('skills')} skills   ${K('hirelings')} hirelings   Esc menu` : `${K('interact')} interact   ${K('inventory')} items   ${K('gear')} gear   ${K('spells')} spells   ${K('skills')} skills   ${K('hirelings')} hirelings   ${K('quests')} quests   ${K('map')} map   Esc menu`, VW / 2, VH - 22, { size: 13, align: 'center', color: '#fff', shadow: true });
 }
 function renderCombat() {
   ctx.fillStyle = '#2a2238'; ctx.fillRect(0, 0, VW, VH);
@@ -32374,13 +32494,13 @@ function renderCombat() {
     drawSpr(s.sprite, 26, py + 14, 48);
     text(s.name, 84, py + 14, { bold: true });
     text(`HP ${s.hp}/${s.maxHp}   ATK ${s.atk}   DEF ${uDef(s)}   MOVE ${uMove(s)}`, 84, py + 36, { size: 13 });
-    text(C.mode === 'tile' ? 'Pick where to cast: click a tile, or arrows + Enter (Esc cancels)' : C.mode === 'target' ? 'Pick a target: click it, or arrows + Enter (Esc cancels)' : movesLeft(s) <= 0 ? 'Done moving. Attack (Space), cast (1) or defend (4).' : (C.board ? 'Boarding! Fight across the decks. Bows reach 4.' : C.sea ? 'Bows reach 4 tiles. Arbalest (A) tiles fire 6.' : `Move with WASD/arrows or click blue (${movesLeft(s)} left). Walk into a foe to attack.`), 84, py + 56, { size: 13, color: UI.dim });
+    text(C.mode === 'tile' ? 'Pick where to cast: click a tile, or arrows + Enter (Esc cancels)' : C.mode === 'target' ? 'Pick a target: click it, or arrows + Enter (Esc cancels)' : movesLeft(s) <= 0 ? `Done moving. Attack (Space), cast (${K('spell')}) or defend (${K('defend')}).` : (C.board ? 'Boarding! Fight across the decks. Bows reach 4.' : C.sea ? 'Bows reach 4 tiles. Arbalest (A) tiles fire 6.' : `Move with ${K('up')}${K('left')}${K('down')}${K('right')}/arrows or click blue (${movesLeft(s)} left). Walk into a foe to attack.`), 84, py + 56, { size: 13, color: UI.dim });
     var bx = 26; const by = py + 82;
-    if (s.isPlayer) { button(bx, by, 72, 32, 'Spell (1)', startSpell, { disabled: !G.spells.length }); bx += 76; }
-    if (s.ability) { button(bx, by, 124, 32, `${s.ability.name} (2)` + (s.cd > 0 ? ` ${s.cd}` : ''), startAbility, { disabled: s.cd > 0 }); bx += 128; }
-    button(bx, by, 66, 32, 'Item (3)', startItem); bx += 70;
-    button(bx, by, 84, 32, 'Defend (4)', waitUnit); bx += 88;
-    if (canTaunt(s)) { button(bx, by, 84, 32, 'Taunt (5)' + (s.tcd > 0 ? ` ${s.tcd}` : ''), doTaunt, { disabled: s.tcd > 0 }); bx += 88; }
+    if (s.isPlayer) { button(bx, by, 72, 32, `Spell (${K('spell')})`, startSpell, { disabled: !G.spells.length }); bx += 76; }
+    if (s.ability) { button(bx, by, 124, 32, `${s.ability.name} (${K('ability')})` + (s.cd > 0 ? ` ${s.cd}` : ''), startAbility, { disabled: s.cd > 0 }); bx += 128; }
+    button(bx, by, 66, 32, `Item (${K('item')})`, startItem); bx += 70;
+    button(bx, by, 84, 32, `Defend (${K('defend')})`, waitUnit); bx += 88;
+    if (canTaunt(s)) { button(bx, by, 84, 32, `Taunt (${K('taunt')})` + (s.tcd > 0 ? ` ${s.tcd}` : ''), doTaunt, { disabled: s.tcd > 0 }); bx += 88; }
   }
   if (C.phase === 'party') { button(Math.max(470, (bx || 0) + 6), py + 82, 92, 32, 'End turn', () => script(confirmEndTurn), { hot: true }); button(Math.max(470, (bx || 0) + 6) + 96, py + 82, 54, 32, 'Flee', flee); }
   const logs = C.log.slice(-5); ctx.font = `13px ${FONT}`; logs.forEach((l, i) => { let t = l; while (t.length > 8 && ctx.measureText(t).width > VW - 660) t = t.slice(0, -2); text(t === l ? l : t + '...', 630, py + 12 + i * 20, { size: 13 }); });
@@ -32428,15 +32548,15 @@ function renderDialog() {
   wrap(d.lines[d.i] || '', w - (tx - x) - 30, 17).slice(0, 5).forEach((l, i) => text(l, tx, y + (d.speaker ? 46 : 26) + i * 22, { size: 17 }));
   if (Math.floor(R.t * 2) % 2) text('v', x + w - 30, y + h - 30, { bold: true, color: UI.border });
 }
-function renderMenus() {
-  for (const m of menus) {
+function renderMenus(from = 0, to = menus.length) {
+  for (const m of menus.slice(from, to)) {
     const items = menuItems(m); const rowH = 32, maxRows = 11;
     const vis = Math.min(Math.max(items.length, m.minRows || 0), maxRows);
     if (m.index >= items.length) m.index = items.length - 1;
     if (m.index < m.scroll) m.scroll = m.index; if (m.index >= m.scroll + maxRows) m.scroll = m.index - maxRows + 1;
     const descH = 70, footH = m.footer ? 26 : 0;
     const tabH = m.tabs ? 34 : 0; const w = m.width, h = 56 + tabH + vis * rowH + descH + footH;
-    const x = (VW - w) / 2, y = Math.max(10, (VH - h) / 2 - 20);
+    const x = (VW - w) / 2; let y = Math.max(MASTER ? MB + 8 : 10, (VH - h) / 2 - 20); if (MASTER && y + h > VH - 30) y = Math.max(MB + 4, VH - 30 - h);
     panel(x, y, w, h); m._box = { x, y, w, h }; m._rows = [];
     text(m.title, x + 20, y + 16, { bold: true, size: 18, color: UI.border });
     m._tabs = null;
@@ -32447,7 +32567,7 @@ function renderMenus() {
       const i = m.scroll + r, it = items[i]; const ry = y + 46 + tabH + r * rowH; if (!it) continue;
       const row = { x: x + 12, y: ry, w: w - 24, h: rowH - 2, i }; m._rows.push(row);
       if (mouse.moved && mouse.x >= row.x && mouse.x <= row.x + row.w && mouse.y >= row.y && mouse.y <= row.y + row.h && m === menus[menus.length - 1]) m.index = i;
-      if (i === m.index) { ctx.fillStyle = UI.sel; rr(row.x, row.y, row.w, row.h, 5); ctx.fill(); }
+      if (i === m.index && !(MASTER && MASTER.focus === 'bar' && m === masterBase())) { ctx.fillStyle = UI.sel; rr(row.x, row.y, row.w, row.h, 5); ctx.fill(); }
       let lx = x + 24; if (it.icon) { drawSpr(it.icon, lx, ry + 1, 28); lx += 34; }
       text(it.label, lx, ry + 6, { color: it.disabled ? UI.dim : UI.text, bold: i === m.index });
       if (it.bar !== undefined) bar(x + w - 230, ry + 10, 120, 10, it.bar, UI.green);
@@ -32535,7 +32655,7 @@ function compFrame(base, d, f, who) {
 let DOLL = null;
 const SLOT_POS = { head: [96, 104], body: [96, 188], hands: [96, 272], feet: [96, 356], main: [400, 104], off: [400, 188], trinket1: [400, 272], trinket2: [400, 356], pouch: [248, 446] };
 function dollWho() { return ['player', ...Object.keys(G.helpers).filter(id => D.helpers[id])]; }
-function paperdoll(who = 'player') { return new Promise(res => { DOLL = { who, slot: 0, res }; AU.sfx('select'); }); }
+function paperdoll(who = 'player') { return new Promise(res => { DOLL = { who, slot: 0, res, depth: menus.length }; AU.sfx('select'); }); }
 function closeDoll() { const d = DOLL; DOLL = null; if (d) d.res(); }
 function dollStats(who) {
   if (who === 'player') return { name: 'You', sprite: 'c_player', hp: maxHp(), atk: playerAtk(), def: playerDef(), move: playerMove() };
@@ -33144,6 +33264,7 @@ async function settingsMenu() {
     if (it.value === 'battle') SET.battle = cyc(BATTLE, SET.battle, d);
     if (it.value === 'stats') SET.stats = !SET.stats;
     if (it.value === 'name') { const v = window.prompt('Your name for play reports (leave blank for none):', SET.name || ''); if (v !== null) SET.name = v.trim().slice(0, 30); }
+    if (it.value === 'keys') { if (d > 0) script(keybindMenu); return; }
     if (it.value === 'send') { if (!SET.stats) toast('Turn on Share play stats first.'); else if (sendStats('sent a report from Settings', true)) toast('Report sent - thank you!', UI.green); }
     saveSettings(); AU.sfx('menu');
   };
@@ -33152,9 +33273,37 @@ async function settingsMenu() {
       { label: 'Walking speed', right: SET.walk, value: 'walk', desc: 'How quickly you walk from tile to tile.' }, { label: 'Battle speed', right: SET.battle, value: 'battle', desc: 'How quickly enemies take their turns.' },
       { label: 'Share play stats', right: SET.stats ? 'On' : 'Off', value: 'stats', desc: 'When you close the game, a short summary (version, day, level, quests, settings, any errors) goes to the developer to help improve the game. No personal information.' },
       { label: 'Your name in reports', right: SET.name || '(not set)', value: 'name', desc: 'Optional. Lets the developer know whose play stats these are.' },
-      { label: 'Send a report now', value: 'send', desc: 'Sends your play stats right away (handy after finding a bug).' }],
+      { label: 'Send a report now', value: 'send', desc: 'Sends your play stats right away (handy after finding a bug).' },
+      { label: 'Key bindings...', value: 'keys', desc: 'Change which key does what.' }],
     onKey: (k, it) => { if (!it) return; const d = (k === 'arrowright' || k === 'd') ? 1 : (k === 'arrowleft' || k === 'a') ? -1 : 0; if (d) change(it, d); },
     onSelect: it => { if ((it.value === 'music' || it.value === 'sfx') && AU.volume[it.value] >= 0.99) AU.setVolume(it.value, 0); else change(it, 1); return false; } });
+}
+
+let KBCAP = null;
+async function keybindMenu() {
+  await openMenu({ title: 'Key bindings', width: 560, minRows: 11,
+    footer: () => KBCAP ? 'Press the new key (Esc cancels)' : 'Enter: change a key.  Arrow keys, Enter, Space and Esc always work.',
+    items: () => {
+      const rows = []; let g = '';
+      for (const [id, label, , grp] of KB_DEF) {
+        if (grp !== g) { g = grp; rows.push({ label: `-  ${grp}  -`, disabled: true }); }
+        rows.push({ label, right: KBCAP && KBCAP.id === id ? '[ press a key ]' : K(id), value: id, desc: `Default: ${keyName(kdef(id))}.  Enter, then press the key you want. If another action uses it, they swap.` });
+      }
+      rows.push({ label: '-  Fixed keys  -', disabled: true });
+      rows.push({ label: 'Confirm / talk', right: 'Enter, Space', disabled: true }, { label: 'Back / Game menu', right: 'Esc', disabled: true }, { label: 'End turn (battle)', right: 'Enter', disabled: true }, { label: 'Move', right: 'Arrow keys', disabled: true });
+      rows.push({ label: 'Reset all keys to default', value: '__reset', desc: 'Put every key back the way it started.' });
+      return rows;
+    },
+    onSelect: it => { if (it.value === '__reset') { SET.keys = {}; saveSettings(); toast('Keys reset to default.', UI.green); return false; } KBCAP = { id: it.value }; return false; } });
+  KBCAP = null;
+}
+function kbCapture(raw) {
+  const id = KBCAP.id; KBCAP = null;
+  if (raw === 'escape') { AU.sfx('menu'); return; }
+  if (KB_RESERVED.includes(raw)) { toast(`${keyName(raw)} is reserved - pick another key.`, UI.red); return; }
+  const old = bind(id), other = KB_DEF.find(d => d[0] !== id && bind(d[0]) === raw);
+  setBind(id, raw); if (other) { setBind(other[0], old); toast(`${other[1]} moved to ${keyName(old)}.`); }
+  saveSettings(); AU.sfx('select'); toast(`${KB_DEF.find(d => d[0] === id)[1]}: ${keyName(raw)}`, UI.green);
 }
 
 // ================= WORLD MAP (N on land) =================
@@ -33438,17 +33587,25 @@ function renderUpdateBanner() {
 function handleInput() {
   const hs = hits; hits = []; const cs = clicks; clicks = [];
   for (const c of cs) {
+    if (MASTER && !dialogs.length && masterClick(c)) continue;
+    if (dialogs.length) { advanceDialog(); continue; }
+    if (dollTop()) { const b = buttons.slice().reverse().find(b => c.x >= b.x && c.x <= b.x + b.w && c.y >= b.y && c.y <= b.y + b.h); if (b) { if (!b.disabled) b.fn(); } else dollClick(xfPt(c)); continue; }
     if (menus.length) { menuClick(c); continue; }
     if (dialogs.length) { advanceDialog(); continue; }
     const b = buttons.slice().reverse().find(b => c.x >= b.x && c.x <= b.x + b.w && c.y >= b.y && c.y <= b.y + b.h);
     if (b) { if (!b.disabled) b.fn(); continue; }
     if (WMAP) { WMAP = null; continue; }
-    if (DOLL) { dollClick(c); continue; }
+    if (DOLL) { dollClick(xfPt(c)); continue; }
     if (R.scene === 'combat' && C) combatClick(c);
   }
-  for (const k of hs) {
-    if (menus.length) { menuKey(k); continue; }
+  for (const raw of hs) {
+    if (KBCAP) { kbCapture(raw); continue; }
+    const quiet = !menus.length && !dialogs.length && !MASTER;
+    const k = kbTranslate(raw, quiet && R.scene === 'combat' ? 'combat' : quiet && R.scene === 'sea' ? 'sea' : 'general'); if (k == null) continue;
+    if (MASTER && !dialogs.length && masterKey(k)) continue;
     if (dialogs.length) { if (['enter', ' ', 'e', 'escape'].includes(k)) advanceDialog(); continue; }
+    if (dollTop()) { dollKey(k); continue; }
+    if (menus.length) { menuKey(k); continue; }
     if (fadeA > 0) continue;
     if (WMAP) { if (['escape', 'n', 'enter', ' ', 'e'].includes(k)) WMAP = null; continue; }
     if (DOLL) { dollKey(k); continue; }
@@ -33474,9 +33631,9 @@ function frame(now) {
     else if (R.scene === 'world' && G) renderWorld();
     else if (R.scene === 'sea' && SEA) renderSea();
     else if (R.scene === 'combat' && C) renderCombat();
-    if (DOLL) renderDoll();
+    if (DOLL) { renderMenus(0, DOLL.depth); inMasterXf(renderDoll); }
     if (WMAP) renderWorldMap();
-    renderDialog(); renderMenus(); renderToasts(); renderUpdateBanner();
+    renderMenus(DOLL ? DOLL.depth : 0); renderMaster(); renderDialog(); renderToasts(); renderUpdateBanner();
     if (fadeA > 0) { ctx.fillStyle = `rgba(0,0,0,${fadeA})`; ctx.fillRect(0, 0, VW, VH); }
     mouse.moved = false;
   } catch (e) { console.error(e); }
@@ -33484,7 +33641,7 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 // debug/test hook (harmless in production)
-window.__game = { openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
+window.__game = { openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
 })();
 
 </script>
