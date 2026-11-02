@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACEUlEQVR4Xr2XO0jDUBSGk1rBQUFwEQRxkKqTKO0i6OpYCx0cXHToqFAU6eDkUMQuOnawi4NDQTo6FsWhjYogWMWCiIKLKOhQEB+cyElzb+7jJNR+S+m9yfn/nMclMQ2O0ejyD7/Gs77/YWwtdDu/AK7pqFm7pvsa5g9FHEHBkdS5MTcTsQ1RcZtwDPgRdwMGbvKTVG0HNGEb8Cve8XIqFfzqm/LsWXtvRnSp17MOJky/4gAYKKfDxtlrPxM0XXj0GABxRGQiJHoU900yeHEZKCoSBwJnQIaoBCrCyl0Fm8dVz+7GdMx3OGEJWsF1dYcURmtA1g+JAXX8sdhKawzImufwiRRfizYD/41vA6pDCM8IGaK+8DWGKC6aAAQngTqOngzIutctrmpANKfLFELKAC9OaUBqJsg9oEq7COr15JOw1rBsnWxdqBcYbQaotZShu1/bAxBgLX5gx4+HLo3S9zijpVvbLs0rJ8IcjCSV74A9n/e24EkiE0gceO8ckmZI2wNwM5jgnxzg1ypXllGxd/76RScOaHuACpQiCGQDUEsVfDbK9RzJD8kA1pA3IXtqFFfVHiEZcNfSbULUF37EAeEUJPMNafqOFp+ZPRhRPjOzBfZtGSmmujxxGQMTq2xwHXfZptHhjDe4jItc02D44baoPQtk+BEVAdrOp5nuQGo1IM6cA7jQDtxazBS0wwSv8QvPBN/iKlJbaQAAAABJRU5ErkJggg==">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reagents of Briarwick v0.8.2</title>
+<title>Reagents of Briarwick v0.10.0</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; }
   body { display: flex; align-items: center; justify-content: center; }
@@ -24,7 +24,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.8.2",
+  "version": "0.10.0",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -39,7 +39,8 @@ window.GAME_DATA = {
   "playUrl": "https://jansensational.github.io/briarwick-play/",
   "updateUrl": "https://jansensational.github.io/briarwick-play/version.json",
   "reportWebhook": "https://discord.com/api/webhooks/1566515455265349643/JyhpBnAjaNgwGaXYmk-v1CSGBU97GFoeodAeJKo3vFZct_p50jtApa7xBt8F6pNthWX1",
-  "discordInvite": "https://discord.gg/KHZkNGfgjK"
+  "discordInvite": "https://discord.gg/KHZkNGfgjK",
+  "curveVersion": 2
  },
  "start": {
   "map": "house",
@@ -53,7 +54,7 @@ window.GAME_DATA = {
   "intro": [
    "Gran left you her cottage in Briarwick, a little garden out front, and a greenhouse gone to ruin.",
    "Her note says: 'Find Old Aldwin in the cave north of town. He'll know what to do with you.'",
-   "Controls: WASD/Arrows move | E or Space interact | I items | M spells | K skills | H helpers | J quests | Esc menu"
+   "Controls: WASD/Arrows move | E or Space interact | I items | M spells | K skills | H hirelings | J quests | Esc menu"
   ],
   "equip": {
    "main": "rusty_sword",
@@ -68,8 +69,8 @@ window.GAME_DATA = {
   "move": 4
  },
  "xpCurve": {
-  "base": 10,
-  "exp": 1.5,
+  "base": 15,
+  "exp": 1.8,
   "maxLevel": 20
  },
  "palette": {
@@ -17570,6 +17571,446 @@ window.GAME_DATA = {
     "ffDGGGGGGGGGGDfF",
     "ffDDDDDDDDDDDDfF"
    ]
+  },
+  "fx_bramble": {
+   "pixels": [
+    "..k..kk...k.k...",
+    ".kTk.kTk.kTkTk..",
+    "kTtTkTtTkTtTtTk.",
+    "kTtrTtTtTtrTtTk.",
+    ".kTtTkDTtTtTDk..",
+    "kDTtDtTdTtDtTtk.",
+    "kTtTtrTtDtTtrTTk",
+    ".kTDtTtTtTdTtTk.",
+    "kTtTtTDtTtTtTDTk",
+    "kTrTdTtTtrTtTtk.",
+    ".kTtTtTDtTtDtTk.",
+    "kTtDtTtTtTtTtrTk",
+    "kTtTtrTtTDtTtTk.",
+    ".kDTtTdTtTtTDk..",
+    "..kkTkkTkkTkk...",
+    "....k..k..k....."
+   ]
+  },
+  "fx_mire": {
+   "pixels": [
+    "................",
+    "...hhhh...hhh...",
+    "..hDDDDh.hDDDh..",
+    ".hDhhDDDhDDhDDh.",
+    ".hDDDAhDDDDDDDh.",
+    "hDDDDDDDhDAhDDDh",
+    "hDhDDDDDDDDDDDh.",
+    ".hDDDhDDAhDDDDDh",
+    "hDDDDDDDDDDhDDh.",
+    "hDAhDDDhDDDDDDDh",
+    ".hDDDDDDDDAhDDh.",
+    "..hDDhDDDDDDDDh.",
+    "..hDDDDDhDDDDh..",
+    "...hhDDDDDDhh...",
+    ".....hhhhhh.....",
+    "................"
+   ]
+  },
+  "i_hand_axe": {
+   "pixels": [
+    "................",
+    "........kkkk....",
+    ".......kssszk...",
+    "......kssszzzk..",
+    "......kssszzzk..",
+    ".......kkszzk...",
+    "........kDkk....",
+    ".......kDk......",
+    "......kDk.......",
+    ".....kDk........",
+    "....kDk.........",
+    "...kDk..........",
+    "..kDk...........",
+    "..kk............",
+    "................",
+    "................"
+   ]
+  },
+  "i_battle_axe": {
+   "pixels": [
+    "................",
+    "........kkkk....",
+    ".......kSSSzk...",
+    "......kSSSzzzk..",
+    "......kSSSzzzk..",
+    ".......kkSzzk...",
+    "........kDkk....",
+    ".......kDk......",
+    "......kDk.......",
+    ".....kDk........",
+    "....kDk.........",
+    "...kDk..........",
+    "..kDk...........",
+    "..kk............",
+    "................",
+    "................"
+   ]
+  },
+  "i_iron_mace": {
+   "pixels": [
+    "................",
+    "..........kk....",
+    ".........kSSk...",
+    "........kSzzSk..",
+    "........kSzzSk..",
+    ".........kSSk...",
+    "........kDkk....",
+    ".......kDk......",
+    "......kDk.......",
+    ".....kDk........",
+    "....kDk.........",
+    "...kDk..........",
+    "..kyk...........",
+    "..kk............",
+    "................",
+    "................"
+   ]
+  },
+  "i_war_hammer": {
+   "pixels": [
+    "................",
+    ".........kkkk...",
+    "........kSSSSk..",
+    "........kSzzSk..",
+    "........kSSSSk..",
+    ".........kkkk...",
+    "........kDk.....",
+    ".......kDk......",
+    "......kDk.......",
+    ".....kDk........",
+    "....kDk.........",
+    "...kDk..........",
+    "..kyk...........",
+    "..kk............",
+    "................",
+    "................"
+   ]
+  },
+  "i_spear": {
+   "pixels": [
+    "..............k.",
+    ".............kzk",
+    "............kzzk",
+    "...........kzzk.",
+    "..........kDkk..",
+    ".........kDk....",
+    "........kDk.....",
+    ".......kDk......",
+    "......kDk.......",
+    ".....kDk........",
+    "....kDk.........",
+    "...kDk..........",
+    "..kDk...........",
+    ".kDk............",
+    ".kk.............",
+    "................"
+   ]
+  },
+  "i_pike": {
+   "pixels": [
+    "..............k.",
+    ".............kck",
+    "............kcck",
+    "...........kcck.",
+    "..........kDkk..",
+    ".........kDk....",
+    "........kDk.....",
+    ".......kDk......",
+    "......kDk.......",
+    ".....kDk........",
+    "....kDk.........",
+    "...kDk..........",
+    "..kDk...........",
+    ".kDk............",
+    ".kk.............",
+    "................"
+   ]
+  },
+  "i_short_bow": {
+   "pixels": [
+    "................",
+    "......kkk.......",
+    ".....kDDDk.k....",
+    "....kDk..kkvk...",
+    "....kDk...kvk...",
+    "...kDk....kvk...",
+    "...kDk....kvk...",
+    "...kDk....kvk...",
+    "...kDk....kvk...",
+    "...kDk....kvk...",
+    "....kDk...kvk...",
+    "....kDk..kkvk...",
+    ".....kDDDk.k....",
+    "......kkk.......",
+    "................",
+    "................"
+   ]
+  },
+  "i_longbow": {
+   "pixels": [
+    "................",
+    "......kkk.......",
+    ".....khhhk.k....",
+    "....khk..kkvk...",
+    "....khk...kvk...",
+    "...khk....kvk...",
+    "...khk....kvk...",
+    "...khk....kvk...",
+    "...khk....kvk...",
+    "...khk....kvk...",
+    "....khk...kvk...",
+    "....khk..kkvk...",
+    ".....khhhk.k....",
+    "......kkk.......",
+    "................",
+    "................"
+   ]
+  },
+  "o_axe_down": {
+   "pixels": [
+    "................",
+    "................",
+    ".........kkk....",
+    "........kssszk..",
+    "........ksszzk..",
+    ".........kkzk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kkk...",
+    "................",
+    "................",
+    "................"
+   ]
+  },
+  "o_axe_up": {
+   "pixels": [
+    "................",
+    "................",
+    ".........kkk....",
+    "........kssszk..",
+    "........ksszzk..",
+    ".........kkzk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kkk...",
+    "................",
+    "................",
+    "................"
+   ]
+  },
+  "o_axe_right": {
+   "pixels": [
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "............kk..",
+    ".........k.kssk.",
+    "........kDDDkszk",
+    ".........k.kssk.",
+    "............kk..",
+    "................",
+    "................",
+    "................"
+   ]
+  },
+  "o_mace_down": {
+   "pixels": [
+    "................",
+    "................",
+    ".........kkkk...",
+    "........kSzzSk..",
+    "........kSzzSk..",
+    ".........kkkk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kyk...",
+    "..........kkk...",
+    "................",
+    "................",
+    "................"
+   ]
+  },
+  "o_mace_up": {
+   "pixels": [
+    "................",
+    "................",
+    ".........kkkk...",
+    "........kSzzSk..",
+    "........kSzzSk..",
+    ".........kkkk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kyk...",
+    "..........kkk...",
+    "................",
+    "................",
+    "................"
+   ]
+  },
+  "o_mace_right": {
+   "pixels": [
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "............kkk.",
+    ".........k.kSzSk",
+    "........kDDDkzzk",
+    ".........k.kSzSk",
+    "............kkk.",
+    "................",
+    "................",
+    "................"
+   ]
+  },
+  "o_spear_down": {
+   "pixels": [
+    ".........k......",
+    "........kzk.....",
+    "........kzk.....",
+    ".........kDk....",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kkk...",
+    "................",
+    "................"
+   ]
+  },
+  "o_spear_up": {
+   "pixels": [
+    ".........k......",
+    "........kzk.....",
+    "........kzk.....",
+    ".........kDk....",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kDk...",
+    "..........kkk...",
+    "................",
+    "................"
+   ]
+  },
+  "o_spear_right": {
+   "pixels": [
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    ".....kkkkkkkkk..",
+    "....kDDDDDDDDDzk",
+    ".....kkkkkkkkk..",
+    "................",
+    "................",
+    "................",
+    "................"
+   ]
+  },
+  "o_bow_down": {
+   "pixels": [
+    "................",
+    "................",
+    "..........kkk...",
+    ".........kDDk...",
+    "........kDk.kv..",
+    "........kDk.kv..",
+    "........kDk.kv..",
+    "........kDk.kv..",
+    "........kDk.kv..",
+    "........kDk.kv..",
+    ".........kDDk...",
+    "..........kkk...",
+    "................",
+    "................",
+    "................",
+    "................"
+   ]
+  },
+  "o_bow_up": {
+   "pixels": [
+    "................",
+    "................",
+    "..........kkk...",
+    ".........kDDk...",
+    "........kDk.kv..",
+    "........kDk.kv..",
+    "........kDk.kv..",
+    "........kDk.kv..",
+    "........kDk.kv..",
+    "........kDk.kv..",
+    ".........kDDk...",
+    "..........kkk...",
+    "................",
+    "................",
+    "................",
+    "................"
+   ]
+  },
+  "o_bow_right": {
+   "pixels": [
+    "................",
+    "................",
+    "................",
+    "................",
+    "................",
+    "...........kk...",
+    "..........kDDk..",
+    "..........kv.kDk",
+    "..........kv.kDk",
+    "..........kv.kDk",
+    "..........kDDk..",
+    "...........kk...",
+    "................",
+    "................",
+    "................",
+    "................"
+   ]
   }
  },
  "tiles": {
@@ -18044,7 +18485,8 @@ window.GAME_DATA = {
     "move": 0
    },
    "desc": "Heavy, but it stops a blade.",
-   "overlay": "o_hat_helm"
+   "overlay": "o_hat_helm",
+   "castPenalty": 0.1
   },
   "wizard_hat": {
    "name": "Starry Wizard Hat",
@@ -18100,7 +18542,8 @@ window.GAME_DATA = {
     "move": -1
    },
    "tint": "z",
-   "desc": "Excellent protection, but heavy."
+   "desc": "Excellent protection, but heavy.",
+   "castPenalty": 0.25
   },
   "apprentice_robe": {
    "name": "Apprentice Robe",
@@ -18192,7 +18635,8 @@ window.GAME_DATA = {
     "atk": 2
    },
    "overlay": "o_sword_rusty",
-   "desc": "Gran's old sword. Better than nothing."
+   "desc": "Gran's old sword. Better than nothing.",
+   "wtype": "sword"
   },
   "iron_sword": {
    "name": "Iron Sword",
@@ -18205,7 +18649,8 @@ window.GAME_DATA = {
     "atk": 5
    },
    "overlay": "o_sword_iron",
-   "desc": "A proper blade."
+   "desc": "A proper blade.",
+   "wtype": "sword"
   },
   "oak_staff": {
    "name": "Oak Staff",
@@ -18221,7 +18666,8 @@ window.GAME_DATA = {
    "elementPower": {
     "all": 0.1
    },
-   "desc": "A sturdy staff for focusing magic. All spells +10% power."
+   "desc": "A sturdy staff for focusing magic. All spells +10% power.",
+   "wtype": "staff"
   },
   "ember_wand": {
    "name": "Ember Wand",
@@ -18240,7 +18686,8 @@ window.GAME_DATA = {
    "reagentSave": {
     "emberroot": 0.35
    },
-   "desc": "Taken from the Red Hood. Fire spells +20% power, and a 35% chance Emberroot is not used up."
+   "desc": "Taken from the Red Hood. Fire spells +20% power, and a 35% chance Emberroot is not used up.",
+   "wtype": "staff"
   },
   "wooden_shield": {
    "name": "Wooden Shield",
@@ -18252,7 +18699,8 @@ window.GAME_DATA = {
    "stats": {
     "def": 2
    },
-   "desc": "Oak planks bound with iron."
+   "desc": "Oak planks bound with iron.",
+   "castPenalty": 0.05
   },
   "moonstone_focus": {
    "name": "Moonstone Focus",
@@ -18332,13 +18780,13 @@ window.GAME_DATA = {
    "desc": "Finely stitched and lined. 18% chance each reagent is not used up."
   },
   "helper_bed": {
-   "name": "Helper Bed",
+   "name": "Hireling Bed",
    "type": "furniture",
    "furn": "bed",
    "sprite": "t_hbed",
    "price": 150,
    "sell": 50,
-   "desc": "A cosy bed for one helper. Every hired helper needs their own bed at your cottage."
+   "desc": "A cosy bed for one hireling. Every hired hireling needs their own bed at your cottage."
   },
   "reading_desk": {
    "name": "Reading Desk",
@@ -18356,7 +18804,7 @@ window.GAME_DATA = {
    "sprite": "f_hearth",
    "price": 280,
    "sell": 90,
-   "desc": "A warm hearth keeps helpers happy. Helper wages are 10% lower."
+   "desc": "A warm hearth keeps hirelings happy. Hireling wages are 10% lower."
   },
   "home_alembic": {
    "name": "Home Alembic",
@@ -18374,7 +18822,7 @@ window.GAME_DATA = {
    "sprite": "i_extension",
    "price": 600,
    "sell": 0,
-   "desc": "A sleeping loft for your cottage. Room for 4 helper beds instead of 2."
+   "desc": "A sleeping loft for your cottage. Room for 4 hireling beds instead of 2."
   },
   "market_stall": {
    "name": "Market Stall",
@@ -18383,7 +18831,7 @@ window.GAME_DATA = {
    "sprite": "i_stall",
    "price": 400,
    "sell": 0,
-   "desc": "A stall outside your cottage. A helper assigned to it sells your surplus reagents each night."
+   "desc": "A stall outside your cottage. A hireling assigned to it sells your surplus reagents each night."
   },
   "display_cases": {
    "name": "Display Cases",
@@ -18607,7 +19055,8 @@ window.GAME_DATA = {
     "atk": 6
    },
    "overlay": "o_sword_iron",
-   "desc": "A pirate's curved blade."
+   "desc": "A pirate's curved blade.",
+   "wtype": "sword"
   },
   "tricorne": {
    "name": "Captain's Tricorne",
@@ -18720,7 +19169,7 @@ window.GAME_DATA = {
    "price": 24,
    "sell": 12,
    "minDepth": 1,
-   "desc": "A cut-able quartz. Magic shops buy gems and can enchant them into focuses and rings."
+   "desc": "A cut-able quartz. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (+1 DEF and +5 HP)."
   },
   "amethyst": {
    "name": "Amethyst",
@@ -18729,7 +19178,7 @@ window.GAME_DATA = {
    "price": 44,
    "sell": 22,
    "minDepth": 3,
-   "desc": "A cut-able amethyst. Magic shops buy gems and can enchant them into focuses and rings."
+   "desc": "A cut-able amethyst. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (6% chance each reagent is not used up)."
   },
   "sapphire": {
    "name": "Sapphire",
@@ -18738,7 +19187,7 @@ window.GAME_DATA = {
    "price": 68,
    "sell": 34,
    "minDepth": 5,
-   "desc": "A cut-able sapphire. Magic shops buy gems and can enchant them into focuses and rings."
+   "desc": "A cut-able sapphire. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (+1 DEF and ice spells +15%)."
   },
   "ruby": {
    "name": "Ruby",
@@ -18747,7 +19196,7 @@ window.GAME_DATA = {
    "price": 96,
    "sell": 48,
    "minDepth": 7,
-   "desc": "A cut-able ruby. Magic shops buy gems and can enchant them into focuses and rings."
+   "desc": "A cut-able ruby. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (+2 ATK and fire spells +10%)."
   },
   "starstone": {
    "name": "Starstone",
@@ -18756,7 +19205,7 @@ window.GAME_DATA = {
    "price": 160,
    "sell": 80,
    "minDepth": 9,
-   "desc": "A cut-able starstone. Magic shops buy gems and can enchant them into focuses and rings."
+   "desc": "A cut-able starstone. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (+5 HP and all spells +10%)."
   },
   "copper_mail": {
    "name": "Copper Scale Mail",
@@ -18769,7 +19218,8 @@ window.GAME_DATA = {
     "def": 4
    },
    "desc": "Bright copper scales.",
-   "tint": "o"
+   "tint": "o",
+   "castPenalty": 0.15
   },
   "copper_shield": {
    "name": "Copper Buckler",
@@ -18781,7 +19231,8 @@ window.GAME_DATA = {
    "stats": {
     "def": 3
    },
-   "desc": "A bright copper shield."
+   "desc": "A bright copper shield.",
+   "castPenalty": 0.1
   },
   "steel_sword": {
    "name": "Steel Longsword",
@@ -18794,7 +19245,8 @@ window.GAME_DATA = {
     "atk": 7
    },
    "desc": "Highmoor steel.",
-   "overlay": "o_sword_iron"
+   "overlay": "o_sword_iron",
+   "wtype": "sword"
   },
   "steel_plate": {
    "name": "Steel Plate",
@@ -18808,7 +19260,8 @@ window.GAME_DATA = {
     "move": -1
    },
    "desc": "Heavy steel plate.",
-   "tint": "s"
+   "tint": "s",
+   "castPenalty": 0.3
   },
   "silver_saber": {
    "name": "Silver Saber",
@@ -18822,7 +19275,8 @@ window.GAME_DATA = {
    },
    "desc": "A gleaming silver blade. +15% damage against the Hollow King's creatures.",
    "overlay": "o_sword_iron",
-   "baneAll": 0.15
+   "baneAll": 0.15,
+   "wtype": "sword"
   },
   "silver_circlet": {
    "name": "Silver Circlet",
@@ -18863,7 +19317,8 @@ window.GAME_DATA = {
     "atk": 11
    },
    "desc": "Impossibly sharp mithril.",
-   "overlay": "o_sword_iron"
+   "overlay": "o_sword_iron",
+   "wtype": "sword"
   },
   "quartz_wand": {
    "name": "Quartz Wand",
@@ -18879,7 +19334,8 @@ window.GAME_DATA = {
    "overlay": "o_staff_oak",
    "elementPower": {
     "all": 0.15
-   }
+   },
+   "wtype": "staff"
   },
   "amethyst_amulet": {
    "name": "Amethyst Amulet",
@@ -18936,7 +19392,8 @@ window.GAME_DATA = {
    "overlay": "o_wand_ember",
    "elementPower": {
     "all": 0.3
-   }
+   },
+   "wtype": "staff"
   },
   "bunkhouse": {
    "name": "Bunkhouse",
@@ -18946,7 +19403,7 @@ window.GAME_DATA = {
    "price": 1500,
    "sell": 0,
    "requires": "extension",
-   "desc": "A bunkhouse behind the cottage. Room for 8 helper beds."
+   "desc": "A bunkhouse behind the cottage. Room for 8 hireling beds."
   },
   "jadeleaf": {
    "name": "Jadeleaf",
@@ -19055,7 +19512,8 @@ window.GAME_DATA = {
     "hp": 10
    },
    "desc": "Fine work from Thornhaven.",
-   "tint": "R"
+   "tint": "R",
+   "castPenalty": 0.3
   },
   "cinderlotus": {
    "name": "Cinderlotus",
@@ -19066,7 +19524,7 @@ window.GAME_DATA = {
    "seed": "seed_cinderlotus",
    "foundIn": "The Ember Isles",
    "region": "ember",
-   "desc": "A reagent found only in the The Ember Isles."
+   "desc": "A reagent found only in the Ember Isles."
   },
   "seed_cinderlotus": {
    "name": "Cinderlotus Seeds",
@@ -19139,6 +19597,118 @@ window.GAME_DATA = {
    "price": 1600,
    "sell": 0,
    "desc": "Every bed back in use, just as Gran kept it. 24 planters in total."
+  },
+  "hand_axe": {
+   "name": "Hand Axe",
+   "type": "gear",
+   "slot": "main",
+   "sprite": "i_hand_axe",
+   "price": 110,
+   "sell": 36,
+   "stats": {
+    "atk": 6
+   },
+   "overlay": "o_axe",
+   "wtype": "axe",
+   "desc": "A woodsman's axe, sharpened for more than trees."
+  },
+  "iron_mace": {
+   "name": "Iron Mace",
+   "type": "gear",
+   "slot": "main",
+   "sprite": "i_iron_mace",
+   "price": 100,
+   "sell": 33,
+   "stats": {
+    "atk": 5
+   },
+   "overlay": "o_mace",
+   "wtype": "mace",
+   "desc": "A flanged iron head on an oak haft."
+  },
+  "spear": {
+   "name": "Spear",
+   "type": "gear",
+   "slot": "main",
+   "sprite": "i_spear",
+   "price": 100,
+   "sell": 33,
+   "stats": {
+    "atk": 5
+   },
+   "overlay": "o_spear",
+   "wtype": "spear",
+   "desc": "Keeps trouble at arm's length - and then some."
+  },
+  "short_bow": {
+   "name": "Short Bow",
+   "type": "gear",
+   "slot": "main",
+   "sprite": "i_short_bow",
+   "price": 120,
+   "sell": 40,
+   "stats": {
+    "atk": 4
+   },
+   "overlay": "o_bow",
+   "wtype": "bow",
+   "desc": "A hunter's bow of yew."
+  },
+  "battle_axe": {
+   "name": "Battle Axe",
+   "type": "gear",
+   "slot": "main",
+   "sprite": "i_battle_axe",
+   "price": 320,
+   "sell": 106,
+   "stats": {
+    "atk": 9
+   },
+   "overlay": "o_axe",
+   "wtype": "axe",
+   "desc": "A broad steel bit made for war."
+  },
+  "war_hammer": {
+   "name": "War Hammer",
+   "type": "gear",
+   "slot": "main",
+   "sprite": "i_war_hammer",
+   "price": 300,
+   "sell": 100,
+   "stats": {
+    "atk": 8
+   },
+   "overlay": "o_mace",
+   "wtype": "mace",
+   "desc": "Highmoor steel. Plate crumples like tin."
+  },
+  "pike": {
+   "name": "Pike",
+   "type": "gear",
+   "slot": "main",
+   "sprite": "i_pike",
+   "price": 300,
+   "sell": 100,
+   "stats": {
+    "atk": 8
+   },
+   "overlay": "o_spear",
+   "wtype": "spear",
+   "desc": "A long steel-tipped pike from the Southwatch garrison."
+  },
+  "longbow": {
+   "name": "Longbow",
+   "type": "gear",
+   "slot": "main",
+   "sprite": "i_longbow",
+   "price": 340,
+   "sell": 113,
+   "stats": {
+    "atk": 7
+   },
+   "overlay": "o_bow",
+   "wtype": "bow",
+   "desc": "Taller than its archer. Hits like a hammer."
   }
  },
  "spells": {
@@ -19149,11 +19719,12 @@ window.GAME_DATA = {
     "glowcap": 1
    },
    "kind": "damage",
-   "power": 9,
+   "power": 13,
    "range": 4,
    "area": 0,
-   "desc": "A quick lick of flame that scorches one foe.",
-   "element": "fire"
+   "desc": "A quick lick of flame that scorches one foe. Your first spell; it grows with Magery.",
+   "element": "fire",
+   "school": "destruction"
   },
   "mend": {
    "name": "Mend",
@@ -19167,7 +19738,8 @@ window.GAME_DATA = {
    "area": 0,
    "fieldUse": true,
    "desc": "Knits wounds closed. Can be cast outside combat.",
-   "element": "life"
+   "element": "life",
+   "school": "healing"
   },
   "stoneskin": {
    "name": "Stoneskin",
@@ -19182,7 +19754,8 @@ window.GAME_DATA = {
    "range": 3,
    "area": 0,
    "desc": "Hardens an ally's skin (+DEF for 3 rounds).",
-   "element": "earth"
+   "element": "earth",
+   "school": "enhancement"
   },
   "frost_lance": {
    "name": "Frost Lance",
@@ -19196,7 +19769,8 @@ window.GAME_DATA = {
    "area": 0,
    "slow": 2,
    "desc": "A spear of ice that also slows the target.",
-   "element": "ice"
+   "element": "ice",
+   "school": "destruction"
   },
   "fireball": {
    "name": "Fireball",
@@ -19209,7 +19783,8 @@ window.GAME_DATA = {
    "range": 4,
    "area": 1,
    "desc": "Explodes, hitting the target and everything next to it.",
-   "element": "fire"
+   "element": "fire",
+   "school": "destruction"
   },
   "gate": {
    "name": "Gate",
@@ -19224,7 +19799,8 @@ window.GAME_DATA = {
    "area": 0,
    "fieldUse": true,
    "desc": "Opens a portal to any town you have visited.",
-   "element": "arcane"
+   "element": "arcane",
+   "school": "travel"
   },
   "regrowth": {
    "name": "Regrowth",
@@ -19237,7 +19813,8 @@ window.GAME_DATA = {
    "range": 4,
    "area": 0,
    "element": "life",
-   "desc": "Taught by the ruler of the Verdant Isles."
+   "desc": "Taught by the ruler of the Verdant Isles.",
+   "school": "healing"
   },
   "tidal_wave": {
    "name": "Tidal Wave",
@@ -19250,7 +19827,8 @@ window.GAME_DATA = {
    "range": 4,
    "area": 1,
    "element": "ice",
-   "desc": "Taught by the ruler of the Azure Atoll."
+   "desc": "Taught by the ruler of the Azure Atoll.",
+   "school": "destruction"
   },
   "iron_will": {
    "name": "Iron Will",
@@ -19263,9 +19841,10 @@ window.GAME_DATA = {
    "range": 3,
    "area": 0,
    "element": "earth",
-   "desc": "Taught by the ruler of the Thornhaven.",
+   "desc": "Taught by the ruler of Thornhaven.",
    "stat": "atk",
-   "turns": 3
+   "turns": 3,
+   "school": "enhancement"
   },
   "meteor": {
    "name": "Meteor",
@@ -19279,7 +19858,199 @@ window.GAME_DATA = {
    "range": 4,
    "area": 1,
    "element": "fire",
-   "desc": "Taught by the ruler of the The Ember Isles."
+   "desc": "Taught by the ruler of the Ember Isles.",
+   "school": "destruction"
+  },
+  "cinder_burst": {
+   "name": "Cinder Burst",
+   "reagents": {
+    "emberroot": 1
+   },
+   "kind": "damage",
+   "power": 5,
+   "range": 3,
+   "area": 1,
+   "element": "fire",
+   "learnAt": {
+    "skill": "magery",
+    "level": 2
+   },
+   "desc": "A puff of embers that singes the target and everything next to it.",
+   "school": "destruction"
+  },
+  "thorn_snare": {
+   "name": "Thorn Snare",
+   "reagents": {
+    "glowcap": 1,
+    "ironbark": 1
+   },
+   "kind": "damage",
+   "power": 4,
+   "range": 4,
+   "area": 0,
+   "slow": 2,
+   "element": "earth",
+   "learnAt": {
+    "skill": "magery",
+    "level": 3
+   },
+   "desc": "Thorny roots grab a foe: light damage and slowed for 2 rounds.",
+   "school": "control"
+  },
+  "sunder": {
+   "name": "Sunder",
+   "reagents": {
+    "emberroot": 1,
+    "ironbark": 1
+   },
+   "kind": "debuff",
+   "stat": "def",
+   "power": 3,
+   "turns": 3,
+   "range": 4,
+   "area": 0,
+   "element": "earth",
+   "learnAt": {
+    "skill": "magery",
+    "level": 4
+   },
+   "desc": "Cracks a foe's armour: -DEF for 3 rounds, so every hit lands harder.",
+   "school": "control"
+  },
+  "enfeeble": {
+   "name": "Enfeeble",
+   "reagents": {
+    "moonpetal": 1,
+    "glowcap": 1
+   },
+   "kind": "debuff",
+   "stat": "atk",
+   "pct": 0.3,
+   "turns": 3,
+   "range": 4,
+   "area": 0,
+   "element": "arcane",
+   "learnAt": {
+    "skill": "magery",
+    "level": 5
+   },
+   "desc": "Saps a foe's strength: it deals 30% less damage for 3 rounds.",
+   "school": "control"
+  },
+  "quagmire": {
+   "name": "Quagmire",
+   "reagents": {
+    "brinekelp": 1,
+    "ironbark": 1
+   },
+   "kind": "terrain",
+   "terrain": "mire",
+   "shape": "area1",
+   "range": 4,
+   "turns": 3,
+   "power": 0,
+   "element": "earth",
+   "learnAt": {
+    "skill": "magery",
+    "level": 6
+   },
+   "desc": "Turns the ground to sucking mud for 3 rounds: each step through it costs double movement.",
+   "school": "control"
+  },
+  "frost_nova": {
+   "name": "Frost Nova",
+   "reagents": {
+    "frostmint": 2
+   },
+   "kind": "damage",
+   "power": 9,
+   "range": 4,
+   "area": 1,
+   "slow": 2,
+   "element": "ice",
+   "learnAt": {
+    "skill": "magery",
+    "level": 8
+   },
+   "desc": "A burst of frost that damages and slows the target and everything next to it.",
+   "school": "control"
+  },
+  "bramble_wall": {
+   "name": "Bramble Wall",
+   "reagents": {
+    "ironbark": 2,
+    "shadebloom": 1
+   },
+   "kind": "terrain",
+   "terrain": "wall",
+   "shape": "line3",
+   "range": 4,
+   "turns": 3,
+   "power": 0,
+   "element": "earth",
+   "learnAt": {
+    "skill": "magery",
+    "level": 10
+   },
+   "desc": "Raises a three-tile wall of brambles for 3 rounds. Nothing can walk through it.",
+   "school": "control"
+  },
+  "wither": {
+   "name": "Wither",
+   "reagents": {
+    "shadebloom": 1,
+    "moonpetal": 1
+   },
+   "kind": "debuff",
+   "stat": "atk",
+   "pct": 0.3,
+   "turns": 3,
+   "range": 4,
+   "area": 1,
+   "element": "arcane",
+   "learnAt": {
+    "skill": "magery",
+    "level": 12
+   },
+   "desc": "Enfeebles the target and everything next to it: 30% less damage for 3 rounds.",
+   "school": "control"
+  },
+  "quicken": {
+   "name": "Quicken",
+   "reagents": {
+    "frostmint": 1,
+    "glowcap": 1
+   },
+   "kind": "buff",
+   "stat": "move",
+   "power": 2,
+   "turns": 3,
+   "range": 3,
+   "area": 0,
+   "element": "arcane",
+   "learnAt": {
+    "skill": "magery",
+    "level": 7
+   },
+   "desc": "Lightens an ally's feet: +2 move for 3 rounds.",
+   "school": "enhancement"
+  },
+  "renewal": {
+   "name": "Renewal",
+   "reagents": {
+    "moonpetal": 2
+   },
+   "kind": "heal",
+   "power": 10,
+   "range": 3,
+   "area": 1,
+   "element": "life",
+   "learnAt": {
+    "skill": "magery",
+    "level": 9
+   },
+   "desc": "A wave of soft light that heals the target and every ally next to it.",
+   "school": "healing"
   }
  },
  "skills": {
@@ -19289,11 +20060,11 @@ window.GAME_DATA = {
   },
   "magery": {
    "name": "Magery",
-   "desc": "Your spells hit and heal 12% harder per level. Trains when you cast spells."
+   "desc": "Your spells grow stronger with every level - slowly at first, then faster (x0.85 at 1, x1.7 at 10, x3.8 at 20). New spells come at Magery 2 to 12. Trains when you cast spells."
   },
   "swordplay": {
-   "name": "Swordplay",
-   "desc": "Adds +1 melee attack per level. Trains when you strike in melee."
+   "name": "Combat",
+   "desc": "Adds +1 weapon attack per level. Your weapon type matters - choose a weapon specialty at Combat 5. Trains when you attack with a weapon."
   },
   "bartering": {
    "name": "Bartering",
@@ -19323,7 +20094,7 @@ window.GAME_DATA = {
   },
   "tactics": {
    "name": "Tactics",
-   "desc": "Lead a bigger party (+1 party helper when unlocked), and helpers gain +1 attack every 4 levels. Trains when you fight alongside helpers.",
+   "desc": "Lead a bigger party (+1 party hireling when unlocked), and hirelings gain +1 attack every 4 levels. Trains when you fight alongside hirelings.",
    "advanced": true,
    "requires": {
     "skill": "swordplay",
@@ -21216,7 +21987,7 @@ window.GAME_DATA = {
    "role": "shop",
    "shop": "homecenter",
    "dialog": [
-    "Gideon's Home Center! Beds, furniture and shop fittings. Every helper needs a bed of their own, mind."
+    "Gideon's Home Center! Beds, furniture and shop fittings. Every hireling needs a bed of their own, mind."
    ]
   },
   "mirelle": {
@@ -21520,6 +22291,15 @@ window.GAME_DATA = {
    "dialog": [
     "Never seen a wreck like it. Wood from no forest I know."
    ]
+  },
+  "ember_enchanter": {
+   "name": "Vael the Enchanter",
+   "sprite": "c_ember_crafter",
+   "role": "enchanter",
+   "dialog": [
+    "Gems sing, if you know how to listen. Bring me a gem and a piece of gear, and I'll bind the song into it.",
+    "(One enchantment per item.)"
+   ]
   }
  },
  "shops": {
@@ -21567,7 +22347,11 @@ window.GAME_DATA = {
     "oak_staff",
     "wooden_shield",
     "herb_pouch",
-    "potion"
+    "potion",
+    "hand_axe",
+    "iron_mace",
+    "spear",
+    "short_bow"
    ],
    "buysTypes": [
     "gear",
@@ -21631,7 +22415,9 @@ window.GAME_DATA = {
     "leather_jerkin",
     "chainmail",
     "iron_helm",
-    "wooden_shield"
+    "wooden_shield",
+    "battle_axe",
+    "war_hammer"
    ],
    "buysTypes": [
     "metal",
@@ -21670,7 +22456,8 @@ window.GAME_DATA = {
     "potion",
     "great_potion",
     "sea_boots",
-    "fire_oil"
+    "fire_oil",
+    "longbow"
    ],
    "buysTypes": [
     "reagent",
@@ -21685,7 +22472,10 @@ window.GAME_DATA = {
     "chainmail",
     "wooden_shield",
     "ironskin",
-    "travel_boots"
+    "travel_boots",
+    "pike",
+    "longbow",
+    "battle_axe"
    ],
    "buysTypes": [
     "gear",
@@ -24858,6 +25648,11 @@ window.GAME_DATA = {
      "id": "ember_crafter",
      "x": 6,
      "y": 2
+    },
+    {
+     "id": "ember_enchanter",
+     "x": 2,
+     "y": 5
     }
    ],
    "forage": [],
@@ -25213,7 +26008,7 @@ window.GAME_DATA = {
    ],
    "done": [
     "Good, good. Smell that? Fire and binding.",
-    "Here is SPARK. Every cast burns 1 Emberroot and 1 Glowcap - so keep that greenhouse full!",
+    "Here is SINGE. Every cast burns 1 Emberroot and 1 Glowcap - so keep that greenhouse full!",
     "Anything you find in the wild, you can now grow. Marta at the Apothecary will sell you seeds."
    ],
    "reward": {
@@ -26153,7 +26948,7 @@ window.GAME_DATA = {
    "name": "A Bigger Crew",
    "giver": "gideon",
    "intro": [
-    "Need room for more helpers? Bring me 12 iron ore and 8 copper for nails and brackets, and I'll sell you a Bunkhouse."
+    "Need room for more hirelings? Bring me 12 iron ore and 8 copper for nails and brackets, and I'll sell you a Bunkhouse."
    ],
    "objectives": [
     {
@@ -26168,7 +26963,7 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Done! A Bunkhouse - room for 8 helpers. It's on my list now."
+    "Done! A Bunkhouse - room for 8 hirelings. It's on my list now."
    ],
    "reward": {
     "shopUnlock": {
@@ -26448,7 +27243,8 @@ window.GAME_DATA = {
     "xp": {
      "herbalism": 8
     }
-   }
+   },
+   "unlockFlag": "home_rowan"
   },
   {
    "id": "verdant_q2",
@@ -26617,7 +27413,8 @@ window.GAME_DATA = {
     "xp": {
      "herbalism": 8
     }
-   }
+   },
+   "unlockFlag": "home_marisol"
   },
   {
    "id": "azure_q2",
@@ -26786,7 +27583,8 @@ window.GAME_DATA = {
     "xp": {
      "herbalism": 8
     }
-   }
+   },
+   "unlockFlag": "home_thorne"
   },
   {
    "id": "thornhaven_q2",
@@ -26955,11 +27753,12 @@ window.GAME_DATA = {
     "xp": {
      "herbalism": 8
     }
-   }
+   },
+   "unlockFlag": "home_sylas"
   },
   {
    "id": "ember_q2",
-   "name": "Beasts of the The Ember Isles",
+   "name": "Beasts of the Ember Isles",
    "giver": "archmage_ysolde",
    "side": true,
    "intro": [
@@ -27478,6 +28277,126 @@ window.GAME_DATA = {
      "alchemy": 6
     }
    }
+  },
+  {
+   "id": "home_rowan",
+   "side": true,
+   "name": "Rowan's Way Home",
+   "giver": null,
+   "escort": "rowan",
+   "intro": [
+    "'I'm well enough to travel now - and I want to go home to Verdant Isles.'",
+    "'Will you take me? I'll fight beside you on the way.'"
+   ],
+   "objectives": [
+    {
+     "type": "escort",
+     "who": "rowan",
+     "land": "verdant",
+     "ruler": "chief_oaka"
+    }
+   ],
+   "done": [
+    "Rowan runs ahead and bows low. 'Chieftain Oaka! I'm home - and this is the one who saved me.'",
+    "Chieftain Oaka grips your arm. 'Then the Verdant Isles owe you a debt. Come - we have work worthy of you.'"
+   ],
+   "reward": {
+    "gold": 150,
+    "xp": {
+     "sailing": 10,
+     "tactics": 5
+    }
+   }
+  },
+  {
+   "id": "home_marisol",
+   "side": true,
+   "name": "Marisol's Way Home",
+   "giver": null,
+   "escort": "marisol",
+   "intro": [
+    "'I'm well enough to travel now - and I want to go home to Azure Atoll.'",
+    "'Will you take me? I'll fight beside you on the way.'"
+   ],
+   "objectives": [
+    {
+     "type": "escort",
+     "who": "marisol",
+     "land": "azure",
+     "ruler": "admiral_coralie"
+    }
+   ],
+   "done": [
+    "Marisol snaps a salute. 'Admiral! Navigator Marisol, reporting - alive, thanks to this captain.'",
+    "Admiral Coralie studies you. 'Any friend of Marisol's sails under our colours. I have tasks for a steady hand.'"
+   ],
+   "reward": {
+    "gold": 150,
+    "xp": {
+     "sailing": 10,
+     "tactics": 5
+    }
+   }
+  },
+  {
+   "id": "home_thorne",
+   "side": true,
+   "name": "Thorne's Way Home",
+   "giver": null,
+   "escort": "thorne",
+   "intro": [
+    "'I'm well enough to travel now - and I want to go home to Thornhaven.'",
+    "'Will you take me? I'll fight beside you on the way.'"
+   ],
+   "objectives": [
+    {
+     "type": "escort",
+     "who": "thorne",
+     "land": "thornhaven",
+     "ruler": "king_aldric"
+    }
+   ],
+   "done": [
+    "Thorne kneels. 'My king. I have returned, and I bring the healer's champion who cut the shard from me.'",
+    "King Aldric rises. 'Thornhaven honours those who honour its knights. Stay - I would speak of the Hollow King.'"
+   ],
+   "reward": {
+    "gold": 150,
+    "xp": {
+     "sailing": 10,
+     "tactics": 5
+    }
+   }
+  },
+  {
+   "id": "home_sylas",
+   "side": true,
+   "name": "Sylas's Way Home",
+   "giver": null,
+   "escort": "sylas",
+   "intro": [
+    "'I'm well enough to travel now - and I want to go home to The Ember Isles.'",
+    "'Will you take me? I'll fight beside you on the way.'"
+   ],
+   "objectives": [
+    {
+     "type": "escort",
+     "who": "sylas",
+     "land": "ember",
+     "ruler": "archmage_ysolde"
+    }
+   ],
+   "done": [
+    "Sylas lifts his staff. 'Archmage, I live! This mage drew the Hollow taint from my blood.'",
+    "Archmage Ysolde inclines her head. 'Then the towers of Starfall are open to you. Let us see what you can do.'"
+   ],
+   "reward": {
+    "gold": 150,
+    "xp": {
+     "sailing": 10,
+     "tactics": 5
+    }
+   }
   }
  ],
  "greenhouse": {
@@ -27509,7 +28428,9 @@ window.GAME_DATA = {
   "ruinText": [
    "Gran's greenhouse. Half the panes are smashed and brambles have taken the beds.",
    "Gideon's Home Center could restore it for you."
-  ]
+  ],
+  "yieldMult": 3,
+  "forageMult": 2
  },
  "travel": {
   "ferries": [
@@ -27936,7 +28857,7 @@ window.GAME_DATA = {
       {
        "id": "master_gardener",
        "name": "Master Gardener",
-       "desc": "Greenhouse helpers work as if they had +3 Herbalism.",
+       "desc": "Greenhouse hirelings work as if they had +3 Herbalism.",
        "effect": {
         "helperHerb": 3
        }
@@ -27959,19 +28880,37 @@ window.GAME_DATA = {
      "level": 5,
      "options": [
       {
-       "id": "pyromancer",
-       "name": "Pyromancer",
-       "desc": "Fire spells +20% power.",
+       "id": "destroyer",
+       "name": "Destroyer",
+       "desc": "Specialise in Destruction: damage spells +20% power.",
        "effect": {
-        "firePower": 0.2
+        "destructionPower": 0.2
+       }
+      },
+      {
+       "id": "controller",
+       "name": "Controller",
+       "desc": "Specialise in Control: slows, curses and terrain last 1 round longer, and curses are 1 stronger.",
+       "effect": {
+        "controlTurns": 1,
+        "debuffPower": 1
+       }
+      },
+      {
+       "id": "enchanter",
+       "name": "Enchanter",
+       "desc": "Specialise in Enhancement: buffs are 2 stronger and last 1 round longer.",
+       "effect": {
+        "buffPower": 2,
+        "buffTurns": 1
        }
       },
       {
        "id": "healer",
        "name": "Healer",
-       "desc": "Healing spells +25%.",
+       "desc": "Specialise in Healing: healing spells +25%.",
        "effect": {
-        "lifePower": 0.25
+        "healingPower": 0.25
        }
       }
      ]
@@ -27994,6 +28933,14 @@ window.GAME_DATA = {
        "effect": {
         "spellRange": 1
        }
+      },
+      {
+       "id": "battlemage",
+       "name": "Battlemage",
+       "desc": "Heavy armour only hurts your spells half as much.",
+       "effect": {
+        "castFocus": 0.5
+       }
       }
      ]
     },
@@ -28001,19 +28948,39 @@ window.GAME_DATA = {
      "level": 15,
      "options": [
       {
-       "id": "frostbinder",
-       "name": "Frostbinder",
-       "desc": "Ice spells +25% power.",
+       "id": "elementalist",
+       "name": "Elementalist",
+       "desc": "Destruction mastery: fire and ice spells +25%.",
        "effect": {
+        "firePower": 0.25,
         "icePower": 0.25
+       }
+      },
+      {
+       "id": "hexer",
+       "name": "Hexer",
+       "desc": "Control mastery: curses are 2 stronger and spread to foes next to the target.",
+       "effect": {
+        "debuffPower": 2,
+        "controlArea": 1
        }
       },
       {
        "id": "warder",
        "name": "Warder",
-       "desc": "Buff spells give +2 more.",
+       "desc": "Enhancement mastery: buffs are 2 stronger and also reach allies next to the target.",
        "effect": {
-        "buffPower": 2
+        "buffPower": 2,
+        "buffArea": 1
+       }
+      },
+      {
+       "id": "lifebinder",
+       "name": "Lifebinder",
+       "desc": "Healing mastery: heals also reach allies next to the target and cure slows and curses.",
+       "effect": {
+        "healArea": 1,
+        "healCleanse": 1
        }
       }
      ]
@@ -28047,19 +29014,43 @@ window.GAME_DATA = {
      "level": 5,
      "options": [
       {
-       "id": "brawler",
-       "name": "Brawler",
-       "desc": "+2 attack.",
+       "id": "spec_sword",
+       "name": "Blade Specialist",
+       "desc": "Swords: +15% damage and +15% parry chance.",
        "effect": {
-        "atk": 2
+        "spec_sword": 1
        }
       },
       {
-       "id": "guard",
-       "name": "Guard",
-       "desc": "+2 defense.",
+       "id": "spec_axe",
+       "name": "Axe Specialist",
+       "desc": "Axes: +15% damage and +40% cleave chance.",
        "effect": {
-        "def": 2
+        "spec_axe": 1
+       }
+      },
+      {
+       "id": "spec_mace",
+       "name": "Mace Specialist",
+       "desc": "Maces: +15% damage and ignore 3 more defense.",
+       "effect": {
+        "spec_mace": 1
+       }
+      },
+      {
+       "id": "spec_spear",
+       "name": "Spear Specialist",
+       "desc": "Spears: +15% damage and +1 reach.",
+       "effect": {
+        "spec_spear": 1
+       }
+      },
+      {
+       "id": "spec_bow",
+       "name": "Bow Specialist",
+       "desc": "Bows: +15% damage and +1 range.",
+       "effect": {
+        "spec_bow": 1
        }
       }
      ]
@@ -28089,6 +29080,14 @@ window.GAME_DATA = {
      "level": 15,
      "options": [
       {
+       "id": "weapon_master",
+       "name": "Weapon Master",
+       "desc": "Your weapon specialty bonuses are doubled.",
+       "effect": {
+        "specMastery": 1
+       }
+      },
+      {
        "id": "crit_eye",
        "name": "Critical Eye",
        "desc": "15% chance your attacks deal x1.75 damage.",
@@ -28112,7 +29111,7 @@ window.GAME_DATA = {
       {
        "id": "captain",
        "name": "Captain",
-       "desc": "Party helpers get +2 attack.",
+       "desc": "Party hirelings get +2 attack.",
        "effect": {
         "partyAtk": 2
        }
@@ -28120,7 +29119,7 @@ window.GAME_DATA = {
       {
        "id": "bulwark",
        "name": "Bulwark",
-       "desc": "Party helpers get +2 defense.",
+       "desc": "Party hirelings get +2 defense.",
        "effect": {
         "partyDef": 2
        }
@@ -28158,7 +29157,7 @@ window.GAME_DATA = {
       {
        "id": "shopkeeper",
        "name": "Shopkeeper",
-       "desc": "Shop-stall helpers sell 4 more items per night.",
+       "desc": "Shop-stall hirelings sell 4 more items per night.",
        "effect": {
         "stallCap": 4
        }
@@ -28166,7 +29165,7 @@ window.GAME_DATA = {
       {
        "id": "pincher",
        "name": "Penny Pincher",
-       "desc": "Helper wages 25% lower.",
+       "desc": "Hireling wages 25% lower.",
        "effect": {
         "wageDiscount": 0.25
        }
@@ -28208,7 +29207,7 @@ window.GAME_DATA = {
       {
        "id": "patron",
        "name": "Patron",
-       "desc": "Helpers earn 50% more battle XP.",
+       "desc": "Hirelings earn 50% more battle XP.",
        "effect": {
         "helperXp": 0.5
        }
@@ -28232,7 +29231,7 @@ window.GAME_DATA = {
       },
       {
        "id": "navigator",
-       "name": "Navigator",
+       "name": "Fair Winds",
        "desc": "Every voyage takes 1 hour less.",
        "effect": {
         "travelHours": 1
@@ -28288,7 +29287,7 @@ window.GAME_DATA = {
       {
        "id": "admiral",
        "name": "Admiral",
-       "desc": "Party helpers get +1 move.",
+       "desc": "Party hirelings get +1 move.",
        "effect": {
         "partyMove": 1
        }
@@ -28405,7 +29404,7 @@ window.GAME_DATA = {
       {
        "id": "drill",
        "name": "Drill Sergeant",
-       "desc": "Party helpers get +2 attack.",
+       "desc": "Party hirelings get +2 attack.",
        "effect": {
         "partyAtk": 2
        }
@@ -28413,7 +29412,7 @@ window.GAME_DATA = {
       {
        "id": "formation",
        "name": "Formation",
-       "desc": "Party helpers get +1 move.",
+       "desc": "Party hirelings get +1 move.",
        "effect": {
         "partyMove": 1
        }
@@ -28426,7 +29425,7 @@ window.GAME_DATA = {
       {
        "id": "warband",
        "name": "Warband",
-       "desc": "+1 more helper in your party.",
+       "desc": "+1 more hireling in your party.",
        "effect": {
         "partySize": 1
        }
@@ -28434,7 +29433,7 @@ window.GAME_DATA = {
       {
        "id": "shieldwall",
        "name": "Shield Wall",
-       "desc": "Party helpers get +3 defense.",
+       "desc": "Party hirelings get +3 defense.",
        "effect": {
         "partyDef": 3
        }
@@ -28459,7 +29458,7 @@ window.GAME_DATA = {
       {
        "id": "caravan",
        "name": "Caravan",
-       "desc": "Stall helpers sell 4 more items per night.",
+       "desc": "Stall hirelings sell 4 more items per night.",
        "effect": {
         "stallCap": 4
        }
@@ -29338,7 +30337,7 @@ window.GAME_DATA = {
   "gemsBase": 2
  },
  "survivors": {
-  "daysBetween": 7,
+  "daysBetween": 2,
   "list": [
    {
     "id": "rowan",
@@ -29395,8 +30394,16 @@ window.GAME_DATA = {
     ],
     "healed": [
      "Rowan sits up, colour back in her cheeks. 'You saved me. I'm Rowan, from the Verdant Isles.'",
-     "'I'd be honoured to work your greenhouse - you'll find me at the Sleepy Toad.'",
      "'My home lies north-east, beyond Saltmere, past the edge of the familiar seas. I'll mark it on your chart.' (Verdant Isles charted! You'll need Sailing 5.)"
+    ],
+    "ruler": "chief_oaka",
+    "introduce": [
+     "Rowan runs ahead and bows low. 'Chieftain Oaka! I'm home - and this is the one who saved me.'",
+     "Chieftain Oaka grips your arm. 'Then the Verdant Isles owe you a debt. Come - we have work worthy of you.'"
+    ],
+    "homeOffer": [
+     "'I'm well enough to travel now - and I want to go home to Verdant Isles.'",
+     "'Will you take me? I'll fight beside you on the way.'"
     ]
    },
    {
@@ -29448,8 +30455,16 @@ window.GAME_DATA = {
     ],
     "healed": [
      "'Marisol, Navigator of the Azure fleet. I owe you my life.'",
-     "'Hire me, and I'll take your skiff where no Saltmere chart dares - I know the Deep.' (Marisol counts as Navigation for your crew!)",
      "'Azure Atoll lies far south-west, in the Deep. Here - the coordinates.' (Azure Atoll charted!)"
+    ],
+    "ruler": "admiral_coralie",
+    "introduce": [
+     "Marisol snaps a salute. 'Admiral! Navigator Marisol, reporting - alive, thanks to this captain.'",
+     "Admiral Coralie studies you. 'Any friend of Marisol's sails under our colours. I have tasks for a steady hand.'"
+    ],
+    "homeOffer": [
+     "'I'm well enough to travel now - and I want to go home to Azure Atoll.'",
+     "'Will you take me? I'll fight beside you on the way.'"
     ]
    },
    {
@@ -29502,6 +30517,15 @@ window.GAME_DATA = {
     "healed": [
      "'Sir Thorne of Thornhaven. My sword is yours.'",
      "'King Aldric must know the Hollow King stirs. Thornhaven lies far east, behind the Iron Coast.' (Thornhaven charted!)"
+    ],
+    "ruler": "king_aldric",
+    "introduce": [
+     "Thorne kneels. 'My king. I have returned, and I bring the healer's champion who cut the shard from me.'",
+     "King Aldric rises. 'Thornhaven honours those who honour its knights. Stay - I would speak of the Hollow King.'"
+    ],
+    "homeOffer": [
+     "'I'm well enough to travel now - and I want to go home to Thornhaven.'",
+     "'Will you take me? I'll fight beside you on the way.'"
     ]
    },
    {
@@ -29559,9 +30583,19 @@ window.GAME_DATA = {
     "healed": [
      "'Sylas of Starfall. The Archmage will want to meet you.'",
      "'The Ember Isles lie south, in the Ember Sea. Bring rubies - Starfall runs on them.' (Ember Isles charted!)"
+    ],
+    "ruler": "archmage_ysolde",
+    "introduce": [
+     "Sylas lifts his staff. 'Archmage, I live! This mage drew the Hollow taint from my blood.'",
+     "Archmage Ysolde inclines her head. 'Then the towers of Starfall are open to you. Let us see what you can do.'"
+    ],
+    "homeOffer": [
+     "'I'm well enough to travel now - and I want to go home to The Ember Isles.'",
+     "'Will you take me? I'll fight beside you on the way.'"
     ]
    }
-  ]
+  ],
+  "introNote": "Outlanders: heal them in the Apothecary back room, then take them home. They join your party for the journey; meeting their ruler finishes the quest and opens that land's quests."
  },
  "fountain": {
   "cost": 1,
@@ -29579,6 +30613,125 @@ window.GAME_DATA = {
   ],
   "find": "As the ripples clear you spot an old coin wedged between the stones. Finders keepers!",
   "gift": "A tiny voice bubbles up from the water: \"Thank you kindly!\" A small bottle floats to the edge."
+ },
+ "magic": {
+  "base": 0.85,
+  "lin": 0.04,
+  "quad": 0.006,
+  "armorIgnore": 0.5,
+  "penaltyCap": 0.6,
+  "debuffPerMagery": 4,
+  "schools": {
+   "destruction": "Destruction",
+   "control": "Control",
+   "enhancement": "Enhancement",
+   "healing": "Healing",
+   "travel": "Travel"
+  }
+ },
+ "combat": {
+  "tauntRange": 3,
+  "tauntTurns": 2,
+  "tauntCooldown": 3,
+  "tauntDef": 2,
+  "tauntSwordplay": 5,
+  "helperTauntSwordplay": 3,
+  "terrainTurns": 3
+ },
+ "weapons": {
+  "sword": {
+   "name": "Sword",
+   "parry": 0.05,
+   "desc": "Balanced. 5% chance to parry a melee hit."
+  },
+  "axe": {
+   "name": "Axe",
+   "cleave": 0.35,
+   "desc": "35% chance to cleave a second adjacent foe for half damage."
+  },
+  "mace": {
+   "name": "Mace",
+   "pierce": 2,
+   "desc": "Crushes armour: ignores 2 of the target's defense."
+  },
+  "spear": {
+   "name": "Spear",
+   "reach": 2,
+   "desc": "Reach: attacks foes up to 2 tiles away."
+  },
+  "bow": {
+   "name": "Bow",
+   "range": 4,
+   "closePenalty": 0.3,
+   "desc": "Shoots up to 4 tiles away (needs a clear line), but deals 30% less up close."
+  },
+  "staff": {
+   "name": "Staff",
+   "desc": "A caster's weapon: weak blows, but many staves boost spells."
+  }
+ },
+ "weaponSpec": {
+  "damage": 0.15,
+  "parry": 0.15,
+  "cleave": 0.4,
+  "pierce": 3,
+  "reach": 1,
+  "range": 1
+ },
+ "skillCurve": {
+  "base": 10,
+  "exp": 1.5,
+  "maxLevel": 20
+ },
+ "enchants": {
+  "quartz": {
+   "suffix": "of Warding",
+   "stats": {
+    "def": 1,
+    "hp": 5
+   },
+   "cost": 60,
+   "desc": "+1 DEF and +5 HP"
+  },
+  "amethyst": {
+   "suffix": "of Thrift",
+   "reagentSave": 0.06,
+   "cost": 80,
+   "desc": "6% chance each reagent is not used up"
+  },
+  "sapphire": {
+   "suffix": "of Frost",
+   "stats": {
+    "def": 1
+   },
+   "elementPower": {
+    "ice": 0.15
+   },
+   "cost": 110,
+   "desc": "+1 DEF and ice spells +15%"
+  },
+  "ruby": {
+   "suffix": "of Flame",
+   "stats": {
+    "atk": 2
+   },
+   "elementPower": {
+    "fire": 0.1
+   },
+   "cost": 110,
+   "desc": "+2 ATK and fire spells +10%"
+  },
+  "starstone": {
+   "suffix": "of Stars",
+   "stats": {
+    "hp": 5
+   },
+   "elementPower": {
+    "all": 0.1
+   },
+   "cost": 200,
+   "desc": "+5 HP and all spells +10%"
+  }
  }
 };
 
@@ -29908,24 +31061,43 @@ let G = null; // saved game state
 const R = { scene: 'title', mapId: null, map: null, enemies: [], npcs: [], planters: [], moving: null, dir: 'down', busy: 0, t: 0, titleIdx: 0 };
 async function script(fn) { R.busy++; try { await fn(); } catch (e) { console.error(e); toast('Error: ' + e.message, UI.red); } finally { R.busy--; } }
 
-function levelFromXp(xp) {
-  const c = D.xpCurve; let l = 1, need = 0;
+function levelFromXp(xp, c) {
+  c = c || D.skillCurve || D.xpCurve; let l = 1, need = 0;
   while (l < c.maxLevel) { need += Math.round(c.base * Math.pow(l, c.exp)); if (xp >= need) l++; else break; }
   return l;
 }
-function xpForLevel(l) { const c = D.xpCurve; let need = 0; for (let i = 1; i < l; i++) need += Math.round(c.base * Math.pow(i, c.exp)); return need; }
+function xpForLevel(l, c) { c = c || D.skillCurve || D.xpCurve; let need = 0; for (let i = 1; i < l; i++) need += Math.round(c.base * Math.pow(i, c.exp)); return need; }
 function skillLvl(id) { if (D.skills[id] && D.skills[id].requires && !skillUnlocked(id)) return 0; return levelFromXp((G.skills[id] || 0)); }
 function addSkillXp(id, n) {
   if (!G || !skillUnlocked(id)) return;
   if (id === 'magery' && home().furn.desk) n = Math.ceil(n * 1.25);
   const before = skillLvl(id); G.skills[id] = (G.skills[id] || 0) + n; const after = skillLvl(id);
-  if (after > before) { toast(`${D.skills[id] ? D.skills[id].name : id} rose to ${after}!`, UI.green); AU.sfx('levelup'); if (perkAvail(id).length) toast('New perk available! Press K', UI.blue); checkUnlocks(); }
+  if (after > before) { toast(`${D.skills[id] ? D.skills[id].name : id} rose to ${after}!`, UI.green); AU.sfx('levelup'); if (perkAvail(id).length) toast('New perk available! Press K', UI.blue); checkUnlocks(); checkSpellLearn(); }
 }
-function playerLvl() { return levelFromXp(G.xp); }
+function playerLvl() { return levelFromXp(G.xp, D.xpCurve); }
+function lvlProgress() { const l = playerLvl(), a = xpForLevel(l, D.xpCurve), b = xpForLevel(l + 1, D.xpCurve); return { l, cur: G.xp - a, need: b - a, frac: b > a ? (G.xp - a) / (b - a) : 1 }; }
 function maxHp() { return D.player.hp + (playerLvl() - 1) * D.player.hpPerLevel + gearStat('player', 'hp') + perk('hp'); }
 function playerAtk() { return D.player.atk + (skillLvl('swordplay') - 1) + (playerLvl() - 1) + gearStat('player', 'atk') + perk('atk'); }
 function playerDef() { return D.player.def + Math.floor((playerLvl() - 1) / 2) + gearStat('player', 'def') + perk('def'); }
-function spellMult() { return 1 + 0.12 * (skillLvl('magery') - 1); }
+function spellMult() { const M = D.magic || {}, m = skillLvl('magery') - 1; return ((M.base == null ? 0.85 : M.base) + (M.lin == null ? 0.04 : M.lin) * m + (M.quad == null ? 0.006 : M.quad) * m * m) * (1 - castPenalty()); }
+function castPenalty() { const raw = gearItems('player').reduce((a, it) => a + (it.castPenalty || 0), 0) * (1 - perk('castFocus')); return Math.min((D.magic || {}).penaltyCap == null ? 0.6 : D.magic.penaltyCap, raw); }
+function spellSchool(sp) { return sp.school || (sp.kind === 'heal' ? 'healing' : sp.kind === 'buff' ? 'enhancement' : sp.kind === 'debuff' || sp.kind === 'terrain' ? 'control' : 'destruction'); }
+function spellInfo(sp) {
+  const sc = ((D.magic || {}).schools || {})[spellSchool(sp)] || spellSchool(sp), bits = [];
+  if (sp.kind === 'damage') bits.push(`Damage ${spellPower(sp)}`); if (sp.kind === 'heal') bits.push(`Heals ${spellPower(sp)}`);
+  if (sp.kind === 'buff') bits.push(`+${sp.power + perk('buffPower')} ${(sp.stat || 'def').toUpperCase()} for ${(sp.turns || 3) + perk('buffTurns')} rounds`);
+  if (sp.kind === 'debuff') bits.push(sp.pct ? `-${Math.round(sp.pct * 100)}% ${sp.stat.toUpperCase()} for ${(sp.turns || 3) + perk('controlTurns')} rounds` : `-${debuffAmt(sp)} ${(sp.stat || 'def').toUpperCase()} for ${(sp.turns || 3) + perk('controlTurns')} rounds`);
+  if (sp.kind === 'terrain') bits.push(`${sp.terrain === 'wall' ? 'Impassable wall' : 'Mud (double move cost)'} for ${(sp.turns || 3) + perk('controlTurns')} rounds`);
+  if (sp.slow) bits.push(`slows ${sp.slow + perk('controlTurns')} rounds`); if (sp.area || areaBonus(sp)) bits.push(`area ${(sp.area || 0) + areaBonus(sp)}`);
+  if (sp.range) bits.push(`range ${sp.range + perk('spellRange')}`);
+  return `[${sc}]  ${bits.join(', ')}.`;
+}
+function areaBonus(sp) { const k = sp.kind; return k === 'debuff' ? perk('controlArea') : k === 'buff' ? perk('buffArea') : k === 'heal' ? perk('healArea') : 0; }
+function debuffAmt(sp, t) { if (sp.pct && t) return Math.max(1, Math.round(((sp.stat === 'atk' ? t.atk : t.def) || 0) * sp.pct)); return (sp.power || 2) + perk('debuffPower') + Math.floor((skillLvl('magery') - 1) / ((D.magic || {}).debuffPerMagery || 4)); }
+function checkSpellLearn(quiet) {
+  if (!G) return; for (const [id, sp] of Object.entries(D.spells)) { const la = sp.learnAt; if (!la || G.spells.includes(id) || skillLvl(la.skill || 'magery') < la.level) continue;
+    G.spells.push(id); if (!quiet) { AU.sfx('discover'); toast(`New spell: ${sp.name}! (M to read about it)`, UI.blue); } }
+}
 function spellPower(s) { return Math.round(s.power * (spellMult() + elemBonus(s))); }
 
 const item = id => D.items[id] || { name: id, type: 'misc', sprite: null, price: 0, sell: 0, desc: '' };
@@ -29956,7 +31128,7 @@ function reagentStr(sp) { return Object.entries(sp.reagents || {}).map(([id, n])
 function newGame() {
   const s = D.start;
   G = { v: 1, map: s.map, x: s.x, y: s.y, day: 1, time: D.meta.dayStart * 60, gold: s.gold, inv: Object.assign({}, s.items), discovered: {}, spells: [], skills: {}, xp: 0, hp: 1,
-        quests: {}, qprog: {}, helpers: {}, planters: {}, gh: D.greenhouse.startLevel == null ? 0 : D.greenhouse.startLevel, garden: { plan: 'same' }, stall: { items: {}, restock: 0 }, reports: [], forage: {}, defeated: {}, visited: {}, boat: false, flags: {}, equip: { player: Object.assign({}, s.equip || {}) }, perks: {}, home: { furn: {}, up: {} }, kills: {}, research: {}, wards: {}, ports: {}, dread: 0, morph: {}, visions: [], seen: {}, shopUnlocks: {}, charts: {}, caves: {} };
+        quests: {}, qprog: {}, helpers: {}, curveV: D.meta.curveVersion || 1, enchanted: {}, planters: {}, gh: D.greenhouse.startLevel == null ? 0 : D.greenhouse.startLevel, garden: { plan: 'same' }, stall: { items: {}, restock: 0 }, reports: [], forage: {}, defeated: {}, visited: {}, boat: false, flags: {}, equip: { player: Object.assign({}, s.equip || {}) }, perks: {}, home: { furn: {}, up: {} }, kills: {}, research: {}, wards: {}, ports: {}, dread: 0, morph: {}, visions: [], seen: {}, shopUnlocks: {}, charts: {}, caves: {} };
   SEA = null;
   G.hp = maxHp();
   loadMap(s.map, s.x, s.y); R.scene = 'world';
@@ -29965,7 +31137,10 @@ function newGame() {
 function saveGame(quiet) { try { localStorage.setItem(SAVE_KEY, JSON.stringify(G)); if (!quiet) toast('Game saved.'); } catch (e) { toast('Could not save: ' + e.message, UI.red); } }
 function hasSave() { try { return !!localStorage.getItem(SAVE_KEY); } catch (e) { return false; } }
 function loadGame() {
-  try { const s = JSON.parse(localStorage.getItem(SAVE_KEY)); if (!s) return false; G = s; G.garden = G.garden || { plan: 'same' }; G.stall = G.stall || { items: {}, restock: 0 }; G.stall.items = G.stall.items || {}; G.reports = G.reports || []; G.equip = G.equip || { player: {} }; G.perks = G.perks || {}; G.home = G.home || { furn: { bed: Object.keys(G.helpers || {}).length }, up: {} }; G.kills = G.kills || {}; G.research = G.research || {}; G.wards = G.wards || {}; G.ports = G.ports || {}; G.flags = G.flags || {}; G.dread = G.dread || 0; G.morph = G.morph || {}; G.visions = G.visions || []; SEA = null; invalidateComp(); if (!mapDef(G.map)) G.map = D.start.map; G.seen = G.seen || Object.fromEntries(Object.keys(G.inv).map(k => [k, true])); G.shopUnlocks = G.shopUnlocks || {}; G.charts = G.charts || {}; loadMap(G.map, G.x, G.y); R.scene = 'world'; toast('Welcome back!'); return true; }
+  try { const s = JSON.parse(localStorage.getItem(SAVE_KEY)); if (!s) return false; G = s; if ((G.curveV || 1) < (D.meta.curveVersion || 1) && D.skillCurve) { const oc = D.skillCurve, L = levelFromXp(G.xp, oc), a = xpForLevel(L, oc), b = xpForLevel(L + 1, oc), f = b > a ? Math.min(1, (G.xp - a) / (b - a)) : 0; G.xp = Math.round(xpForLevel(L, D.xpCurve) + f * (xpForLevel(L + 1, D.xpCurve) - xpForLevel(L, D.xpCurve))); }
+  G.curveV = D.meta.curveVersion || 1; G.enchanted = G.enchanted || {}; for (const [nid, [b0, g0]] of Object.entries(G.enchanted)) registerEnchant(nid, b0, g0);
+  setTimeout(() => { checkSpellLearn(true); for (const [sk, pm] of Object.entries(G.perks || {})) { const ms = ((D.perks || {})[sk] || {}).milestones || []; for (const lv of Object.keys(pm)) { const m = ms.find(x => String(x.level) === lv); if (!m || !m.options.some(o => o.id === pm[lv])) delete pm[lv]; } }
+    for (const sv of (D.survivors || {}).list || []) if ((G.survDone || []).includes(sv.id) && !G.flags['home_' + sv.id] && (G.helpers[sv.helper] || D.quests.some(q => q.unlockFlag === 'home_' + sv.id && G.quests[q.id]))) G.flags['home_' + sv.id] = true; }, 0); G.garden = G.garden || { plan: 'same' }; G.stall = G.stall || { items: {}, restock: 0 }; G.stall.items = G.stall.items || {}; G.reports = G.reports || []; G.equip = G.equip || { player: {} }; G.perks = G.perks || {}; G.home = G.home || { furn: { bed: Object.keys(G.helpers || {}).length }, up: {} }; G.kills = G.kills || {}; G.research = G.research || {}; G.wards = G.wards || {}; G.ports = G.ports || {}; G.flags = G.flags || {}; G.dread = G.dread || 0; G.morph = G.morph || {}; G.visions = G.visions || []; SEA = null; invalidateComp(); if (!mapDef(G.map)) G.map = D.start.map; G.seen = G.seen || Object.fromEntries(Object.keys(G.inv).map(k => [k, true])); G.shopUnlocks = G.shopUnlocks || {}; G.charts = G.charts || {}; loadMap(G.map, G.x, G.y); R.scene = 'world'; toast('Welcome back!'); return true; }
   catch (e) { toast('Save could not be loaded: ' + e.message, UI.red); return false; }
 }
 
@@ -29994,7 +31169,7 @@ function loadMap(id, x, y) {
   const dead = G.defeated[id] || [];
   R.enemies = (mp.enemies || []).map((e, i) => { const mid = morphId(e.id); return Object.assign({}, e, { id: mid, idx: i, def: D.enemies[mid], hx: e.x, hy: e.y, cd: 1 + Math.random() * 1.5, anim: 1, dx: 0, dy: 0, stun: 0 }); }).filter(e => e.def && !dead.includes(e.idx));
   R.planters = []; let pIdx = 0;
-  if (!mp.cave) mp.tiles.forEach((row, yy) => { for (let xx = 0; xx < row.length; xx++) if (tileDef(row[xx]).interact === 'planter') { R.planters.push({ x: xx, y: yy, i: pIdx, gh: !!mp.greenhouse, key: mp.greenhouse ? pIdx : id + ':' + pIdx }); pIdx++; } });
+  if (!mp.cave) (mp.greenhouse ? mp.tiles.map((r, yy) => [r, yy]).reverse() : mp.tiles.map((r, yy) => [r, yy])).forEach(([row, yy]) => { for (let xx = 0; xx < row.length; xx++) if (tileDef(row[xx]).interact === 'planter') { R.planters.push({ x: xx, y: yy, i: pIdx, gh: !!mp.greenhouse, key: mp.greenhouse ? pIdx : id + ':' + pIdx }); pIdx++; } });
   spawnReleases();
   if (!mp.cave && !G.visited[id]) { G.visited[id] = true; if (mp.town || mp.outdoor) toast(`Discovered: ${mp.name}`); }
 }
@@ -30048,6 +31223,7 @@ function onArrive() {
       let n = 1 + (herb >= 4 ? 1 : 0) + (Math.random() < 0.05 * herb ? 1 : 0) + perk('forage') + (Math.random() < gearVal('player', 'forage') ? 1 : 0);
       if (Math.random() < perk('forageDouble')) n *= 2;
       if (G.flags.luckDay === G.day && Math.random() < 0.35) n++;
+      n *= D.greenhouse.forageMult || 1;
       G.forage[forageKey(R.mapId, i)] = G.day;
       toast(`+${n} ${item(f.item).name}`); AU.sfx('pickup'); add(f.item, n); addSkillXp('herbalism', 2);
     }
@@ -30114,7 +31290,8 @@ async function talk(npc) {
   if (!['wizard', 'leader', 'care'].includes(d.role) && D.quests.some(q => q.giver === npc.id)) await giverQuests(npc, { progress: false });
   switch (d.role) {
     case 'wizard': return wizardTalk(npc);
-    case 'leader': return wizardQuests(npc);
+    case 'leader': { const sv = G.escort && survDef(G.escort.id); if (sv && sv.ruler === npc.id && G.helpers[sv.helper]) await finishEscort(sv, npc); return wizardQuests(npc); }
+    case 'enchanter': return enchantTalk(npc);
     case 'care': return careTalk(npc);
     case 'shop': return shopTalk(npc);
     case 'inn': return innTalk(npc);
@@ -30130,13 +31307,15 @@ function objProgress(q, i) {
   if (o.type === 'collect') return Math.min(o.qty, count(o.item));
   if (o.type === 'defeat') return Math.min(o.qty, ((G.qprog[q.id] || {})[i] || 0));
   if (o.type === 'visit') return G.visited[o.map] ? 1 : 0;
+  if (o.type === 'escort') return G.quests[q.id] === 'done' ? 1 : 0;
   return 0;
 }
-function objGoal(o, q) { if (o.type === 'visit') return 1; if (q && q.side && o.type === 'defeat' && perk('studyHalf')) return Math.ceil(o.qty / 2); return o.qty; }
+function objGoal(o, q) { if (o.type === 'visit' || o.type === 'escort') return 1; if (q && q.side && o.type === 'defeat' && perk('studyHalf')) return Math.ceil(o.qty / 2); return o.qty; }
 function objLabel(o) {
   if (o.type === 'collect') return `Bring ${o.qty} ${item(o.item).name}`;
   if (o.type === 'defeat') return `Defeat ${o.qty} ${(D.enemies[o.enemy] || { name: o.enemy }).name}`;
   if (o.type === 'visit') return `Travel to ${(D.maps[o.map] || { name: o.map }).name}`;
+  if (o.type === 'escort') return `Bring ${(D.helpers[o.who] || { name: o.who }).name} home to ${(((D.sea || {}).ports || []).find(p => p.id === o.land) || { name: o.land }).name} and meet ${(D.npcs[o.ruler] || { name: 'the ruler' }).name}`;
   return '?';
 }
 function questDone(q) { return q.objectives.every((o, i) => objProgress(q, i) >= objGoal(o, q)); }
@@ -30166,7 +31345,9 @@ async function giverQuests(npc, opts = {}) {
   const offered = [];
   for (const q of D.quests) {
     if (!questAvailable(q, giver) || (!q.side && mainActive)) continue;
-    await say(nm, q.intro, sp); G.quests[q.id] = 'active'; G.qprog[q.id] = {}; toast(`New quest: ${q.name}  (J to view)`, UI.blue); offered.push(q); any = true;
+    await say(nm, q.intro, sp); any = true;
+    if (q.choice || (q.objectives || []).some(o => !['collect', 'defeat'].includes(o.type))) { const c = await choose(`Take on "${q.name}"?`, [{ label: 'Accept', value: 'y', desc: questLines(q).join('  ') }, { label: 'Not now', value: 'n', desc: 'You can ask again later.' }], { width: 460 }); if (c !== 'y') continue; }
+    G.quests[q.id] = 'active'; G.qprog[q.id] = {}; toast(`New quest: ${q.name}  (J to view)`, UI.blue); offered.push(q);
     if (!q.side) mainActive = true;
   }
   const still = actives.filter(q => G.quests[q.id] === 'active');
@@ -30238,21 +31419,22 @@ async function shipwrightTalk(npc) {
 }
 async function helperTalk(npc) {
   const id = npc.def.helper, h = D.helpers[id]; if (!h) return;
+  const sv = ((D.survivors || {}).list || []).find(x => x.helper === id); if (sv && (G.survDone || []).includes(sv.id) && !G.flags['home_' + sv.id]) { await offerHome(sv); return; }
   await say(h.name, [(npc.def.dialog || [''])[0], h.bio], h.sprite);
   await say(`${h.name} the ${h.title}`, [`Skills: ${skillStr(h.skills)}.  Ability: ${h.ability ? h.ability.name : 'none'}.  Hire for ${h.cost}g, then ${h.wage}g a day in wages.`], h.sprite);
-  if (Object.keys(G.helpers).length >= helperBeds()) { await say(h.name, ['I\'d love to work for you - but where would I sleep?', `Every helper needs their own bed at your cottage. Gideon's Home Center sells them. (Beds: ${helperBeds()}, helpers: ${Object.keys(G.helpers).length}.)`], h.sprite); return; }
+  if (hiredCount() >= helperBeds()) { await say(h.name, ['I\'d love to work for you - but where would I sleep?', `Every hireling needs their own bed at your cottage. Gideon's Home Center sells them. (Beds: ${helperBeds()}, helpers: ${Object.keys(G.helpers).length}.)`], h.sprite); return; }
   const c = await choose(`Hire ${h.name} for ${h.cost}g?`, [{ label: 'Hire', value: 'y', disabled: G.gold < h.cost }, { label: 'Not now', value: 'n' }], { width: 380 });
   if (c !== 'y') return;
   G.gold -= h.cost; G.helpers[id] = { role: 'idle', xp: 0 };
   R.npcs = R.npcs.filter(n => n !== npc);
-  await say(h.name, ['Pleased to work with you!', '(Press H any time to change what your helpers do.)'], h.sprite);
+  await say(h.name, ['Pleased to work with you!', '(Press H any time to change what your hirelings do.)'], h.sprite);
   await assignRole(id);
 }
 function skillStr(sk) { return Object.entries(sk || {}).filter(([, v]) => v > 0).map(([k, v]) => `${D.skills[k] ? D.skills[k].name : k} ${v}`).join(', ') || 'none'; }
 const ROLES = { party: 'Party', greenhouse: 'Gardener', shop: 'Shopkeeper', navigator: 'Navigator', idle: 'Idle' };
 const STALL_TYPES = ['reagent', 'material', 'metal', 'gem', 'consumable'];
 const KEEP_STEPS = [-1, 0, 5, 10, 20];
-function wageOf(id) { const h = D.helpers[id]; return h ? Math.round(h.wage * (1 - perk('wageDiscount') - (home().furn.hearth ? 0.1 : 0))) : 0; }
+function wageOf(id) { const h = D.helpers[id]; if ((G.helpers[id] || {}).guest) return 0; return h ? Math.round(h.wage * (1 - perk('wageDiscount') - (home().furn.hearth ? 0.1 : 0))) : 0; }
 function payroll() { return Object.keys(G.helpers).reduce((a, id) => a + wageOf(id), 0); }
 function hLvl(id) { return levelFromXp((G.helpers[id] || {}).xp || 0); }
 function navigatorId() { return Object.keys(G.helpers).find(id => G.helpers[id].role === 'navigator' && D.helpers[id]); }
@@ -30271,10 +31453,10 @@ async function assignRole(id) {
   const h = D.helpers[id]; const partyN = Object.values(G.helpers).filter(s => s.role === 'party').length;
   const isParty = G.helpers[id].role === 'party';
   const c = await choose(`${h.name}: what should they do?`, [
-    { label: 'Join my party', value: 'party', disabled: !isParty && partyN >= maxParty(), desc: `Fights beside you. Max ${maxParty()} helpers in the party (Tactics raises this). Uses their Swordplay and ability.` },
+    { label: 'Join my party', value: 'party', disabled: !isParty && partyN >= maxParty(), desc: `Fights beside you. Max ${maxParty()} hirelings in the party (Tactics raises this). Uses their Combat skill and ability.` },
     { label: 'Tend the garden', value: 'greenhouse', desc: 'Each night: harvests ripe beds (garden and greenhouse) and plants empty ones by your Garden plan, using your seeds. Herbalism speeds growth.' },
     { label: 'Run the shop stall', value: 'shop', disabled: !home().up.stall && G.helpers[id].role !== 'shop', desc: 'Each night: sells your goods by your Stall rules and can restock seeds for the garden. Bartering = more sales and better prices. Needs a Market Stall from the Home Center.' },
-    { label: 'Navigate the ship', value: 'navigator', disabled: ((h.skills || {}).sailing || 0) < ((D.sea || {}).navigatorMinSailing || 3) && G.helpers[id].role !== 'navigator', desc: `Steers your boat: sailing is 10% faster and they learn from every voyage. At helper level ${(D.sea || {}).autopilotLevel || 5} they can sail you to any port you've visited (press G at sea). Needs Sailing ${(D.sea || {}).navigatorMinSailing || 3}.` },
+    { label: 'Navigate the ship', value: 'navigator', disabled: ((h.skills || {}).sailing || 0) < ((D.sea || {}).navigatorMinSailing || 3) && G.helpers[id].role !== 'navigator', desc: `Steers your boat: sailing is 10% faster and they learn from every voyage. At hireling level ${(D.sea || {}).autopilotLevel || 5} they can sail you to any port you've visited (press G at sea). Needs Sailing ${(D.sea || {}).navigatorMinSailing || 3}.` },
     { label: 'Stay idle', value: 'idle', desc: 'Still paid a wage.' },
     { label: 'Dismiss', value: 'dismiss', desc: `${h.name} goes back to where you found them.` }], { width: 460 });
   if (!c) return;
@@ -30283,7 +31465,7 @@ async function assignRole(id) {
 }
 
 // ================= GREENHOUSE / DAY CYCLE =================
-function harvestYield(seedId, herb) { return (item(seedId).yield || 1) + Math.floor((herb - 1) / 3) + perk('yield'); }
+function harvestYield(seedId, herb) { return ((item(seedId).yield || 1) + Math.floor((herb - 1) / 3) + perk('yield')) * (D.greenhouse.yieldMult || 1); }
 async function usePlanter(x, y) {
   const pl = R.planters.find(p => p.x === x && p.y === y); if (!pl) return; const locked = q => q.gh && q.i >= ghPlanters();
   if (locked(pl)) return say('Greenhouse', ['This planter is cracked and full of weeds.', "Gideon's Home Center can repair more of the greenhouse."]);
@@ -30422,8 +31604,9 @@ async function inventoryMenu() {
     onSelect: it => { const i = item(it.value); if (i.camp) { script(campOut); return true; } if (i.type === 'gear') { autoEquip('player', it.value); return false; } if (i.type === 'ward') { placeWard(it.value); return false; } if (i.type === 'consumable' && i.heal) { if (G.hp >= maxHp()) { toast('Already at full health.'); return false; } take(it.value); const hh = Math.round(i.heal * potionMult()); G.hp = Math.min(maxHp(), G.hp + hh); AU.sfx('heal'); toast(`+${hh} HP`, UI.green); } else if (i.type === 'consumable' && i.combat) toast('Use this in battle (Item button).'); return false; } });
 }
 async function spellMenu() {
-  await openMenu({ title: 'Spellbook', width: 600, closeKey: 'm', footer: () => `Magery ${skillLvl('magery')}: spell power x${spellMult().toFixed(2)}`,
-    items: () => G.spells.filter(s => D.spells[s]).map(s => { const sp = D.spells[s]; return { label: sp.name + (sp.fieldUse ? '  (usable now)' : ''), right: hasReagents(sp) ? 'ready' : 'need reagents', desc: `${sp.desc} Cost: ${reagentStr(sp)}.` + (sp.power ? ` Power ${spellPower(sp)}, range ${sp.range}.` : ''), value: s }; }),
+  await openMenu({ title: 'Spellbook', width: 640, closeKey: 'm', footer: () => `Magery ${skillLvl('magery')}: spell power x${spellMult().toFixed(2)}${castPenalty() ? `  (heavy armour -${Math.round(castPenalty() * 100)}%)` : ''}`,
+    items: () => G.spells.filter(s => D.spells[s]).map(s => { const sp = D.spells[s]; return { label: sp.name + (sp.fieldUse ? '  (usable now)' : ''), right: hasReagents(sp) ? 'ready' : 'need reagents', desc: `${spellInfo(sp)}  ${sp.desc}  Cost: ${reagentStr(sp)}.`, value: s }; })
+      .concat(Object.entries(D.spells).filter(([id, sp]) => sp.learnAt && !G.spells.includes(id)).sort((a, b) => a[1].learnAt.level - b[1].learnAt.level).map(([id, sp]) => ({ label: sp.name, right: `Magery ${sp.learnAt.level}`, disabled: true, desc: `${spellInfo(sp)}  ${sp.desc}  You will learn it at ${(D.skills[sp.learnAt.skill || 'magery'] || {}).name} ${sp.learnAt.level}.` }))),
     onSelect: it => { const sp = D.spells[it.value]; if (!sp.fieldUse) { toast('That spell is for combat.'); return false; } if (!hasReagents(sp)) { toast('Not enough reagents.', UI.red); return false; } fieldCast(it.value); return true; } });
 }
 function fieldCast(id) {
@@ -30439,47 +31622,47 @@ function fieldCast(id) {
   });
 }
 async function skillsMenu() {
-  await openMenu({ title: `Skills  -  Level ${playerLvl()}  (XP ${G.xp}/${xpForLevel(playerLvl() + 1)})`, width: 600, closeKey: 'k',
+  await openMenu({ title: (() => { const p = lvlProgress(); return `Skills  -  Level ${p.l}  (XP ${p.cur}/${p.need} to level ${p.l + 1})`; })(), width: 600, closeKey: 'k',
     items: () => Object.entries(D.skills).map(([id, s]) => { if (!skillUnlocked(id)) { const rq = s.requires; return { label: `${s.name}  (advanced)`, right: 'locked', disabled: true, desc: `${s.desc}  Unlocks at ${(D.skills[rq.skill] || {}).name} ${rq.level} (now ${skillLvl(rq.skill)}).` }; } const l = skillLvl(id), xp = G.skills[id] || 0, a = xpForLevel(l), b = xpForLevel(l + 1); return { label: s.name + (s.requires ? '  (advanced)' : '') + (perkAvail(id).length ? '   * perk!' : ''), right: `Lv ${l}`, bar: (xp - a) / Math.max(1, b - a), desc: `${s.desc}  (XP ${xp}/${b})  Enter: perks`, value: id }; }),
     footer: 'Skills rise as you use them. Level rises from battle XP.  Enter: perks (skill 5/10/15/20)',
     onSelect: it => { script(() => perksMenu(it.value)); return false; } });
 }
 const HUB_TABS = ['Crew', 'Party', 'Garden', 'Stall', 'Reports', 'Payroll'];
 async function helpersMenu() {
-  await openMenu({ title: 'Helpers', width: 680, closeKey: 'h', tabs: HUB_TABS.map(l => ({ label: l })), tab: R.hubTab || 0, minRows: 9, onTab: i => { R.hubTab = i; },
+  await openMenu({ title: 'Hirelings', width: 680, closeKey: 'h', tabs: HUB_TABS.map(l => ({ label: l })), tab: R.hubTab || 0, minRows: 9, onTab: i => { R.hubTab = i; },
     footer: m => ['Enter: job, equipment or dismiss', `Enter: add or remove.  Party ${partyCount()}/${maxParty()} (Tactics raises this)`, 'Enter: change the planting plan', 'Enter: change a rule', 'Enter: read the full report', `Gold ${G.gold}`][m.tab] + `      Payroll ${payroll()}g/day`,
     items: m => hubItems(m.tab), onSelect: it => { if (it.act) it.act(); return false; } });
 }
-function partyCount() { return Object.values(G.helpers).filter(s => s.role === 'party').length; }
+function partyCount() { return Object.values(G.helpers).filter(s => s.role === 'party' && !s.guest).length; }
 function hubItems(tab) {
   const ids = Object.keys(G.helpers).filter(id => D.helpers[id]);
-  const none = [{ label: 'No helpers yet', disabled: true, desc: 'Hire helpers at the Sleepy Toad tavern and in other towns.' }];
+  const none = [{ label: 'No hirelings yet', disabled: true, desc: 'Hire hirelings at the Sleepy Toad tavern and in other towns.' }];
   const job = id => ROLES[G.helpers[id].role] || G.helpers[id].role;
   if (tab === 0) return ids.length ? ids.map(id => { const h = D.helpers[id], l = hLvl(id), xp = G.helpers[id].xp || 0;
     return { label: `${h.name} the ${h.title}`, icon: h.sprite, right: `Lv ${l}   ${job(id)}`, desc: `Skills: ${skillStr(h.skills)}.  Ability: ${h.ability ? h.ability.name : 'none'}.  Wage ${wageOf(id)}g a day.  XP ${xp}/${xpForLevel(l + 1)}.`, act: () => script(() => helperActions(id)) }; }) : none;
   if (tab === 1) return ids.length ? ids.map(id => { const h = D.helpers[id], inP = G.helpers[id].role === 'party';
     return { label: `${inP ? '[x]' : '[  ]'}  ${h.name}`, icon: h.sprite, right: inP ? 'Travelling with you' : job(id), desc: `Lv ${hLvl(id)}.  HP ${helperUnit(id).maxHp}, ATK ${helperUnit(id).atk}, DEF ${helperUnit(id).def}, Move ${helperUnit(id).move}.  Ability: ${h.ability ? h.ability.name : 'none'}.`,
-      act: () => { if (inP) { G.helpers[id].role = 'idle'; toast(`${h.name} stays behind (now Idle).`); } else if (partyCount() >= maxParty()) toast(`Your party is full (${maxParty()}). Tactics lets you lead more.`, UI.red); else { const was = job(id); G.helpers[id].role = 'party'; toast(`${h.name} joins your party${was !== 'Idle' ? ` (was ${was})` : ''}.`, UI.green); } AU.sfx('select'); } }; }) : none;
+      act: () => { if (G.helpers[id].guest) { toast(`${h.name} is travelling home with you and won't stay behind.`); return; } if (inP) { G.helpers[id].role = 'idle'; toast(`${h.name} stays behind (now Idle).`); } else if (partyCount() >= maxParty()) toast(`Your party is full (${maxParty()}). Tactics lets you lead more.`, UI.red); else { const was = job(id); G.helpers[id].role = 'party'; toast(`${h.name} joins your party${was !== 'Idle' ? ` (was ${was})` : ''}.`, UI.green); } AU.sfx('select'); } }; }) : none;
   if (tab === 2) { const gs = ids.filter(id => G.helpers[id].role === 'greenhouse'); const seeds = Object.keys(G.discovered).map(r => item(r).seed).filter(sd => sd && D.items[sd]); const plans = ['same', 'lowest'].concat(seeds);
     const rows = [{ label: 'Planting plan', right: planLabel(G.garden.plan || 'same'), desc: 'What your gardener plants in empty beds. "Replant the same crop" falls back to whatever you have least of when that seed runs out.', act: () => { const i = plans.indexOf(G.garden.plan || 'same'); G.garden.plan = plans[(i + 1) % plans.length]; AU.sfx('menu'); } },
-      { label: 'Gardener', right: gs.length ? gs.map(id => D.helpers[id].name).join(', ') : 'none', disabled: !gs.length, desc: gs.length ? 'Works every night they are paid.' : 'Give a helper the Gardener job (Crew tab) to tend your beds every night.' }];
+      { label: 'Gardener', right: gs.length ? gs.map(id => D.helpers[id].name).join(', ') : 'none', disabled: !gs.length, desc: gs.length ? 'Works every night they are paid.' : 'Give a hireling the Gardener job (Crew tab) to tend your beds every night.' }];
     for (const k of plotKeys()) { const p = G.planters[k]; rows.push({ label: plotName(k), icon: p ? item(item(p.seed).grows).sprite : null, right: p ? (p.growth >= p.days ? `${item(item(p.seed).grows).name}  ripe!` : `${item(item(p.seed).grows).name}  ${p.growth}/${p.days} days`) : 'empty', desc: p ? `Planted with ${item(p.seed).name}.` : 'Empty. Plant it yourself or let your gardener do it tonight.' }); }
     return rows; }
   if (tab === 3) { const sk = ids.filter(id => G.helpers[id].role === 'shop'); const own = Object.keys(G.inv).filter(id => STALL_TYPES.includes(item(id).type)); const ruled = Object.keys(G.stall.items).filter(id => D.items[id] && !own.includes(id));
     const RS = [0, 3, 5, 10];
-    const rows = [{ label: 'Shopkeeper', right: sk.length ? sk.map(id => D.helpers[id].name).join(', ') : 'none', disabled: true, desc: !home().up.stall ? 'You need a Market Stall from Gideon\'s Home Center first.' : sk.length ? 'Sells by these rules every night they are paid.' : 'Give a helper the Shopkeeper job (Crew tab).' },
+    const rows = [{ label: 'Shopkeeper', right: sk.length ? sk.map(id => D.helpers[id].name).join(', ') : 'none', disabled: true, desc: !home().up.stall ? 'You need a Market Stall from Gideon\'s Home Center first.' : sk.length ? 'Sells by these rules every night they are paid.' : 'Give a hireling the Shopkeeper job (Crew tab).' },
       { label: 'Restock seeds for the garden', right: G.stall.restock ? `Keep ${G.stall.restock} of each` : 'Off', desc: 'Each night the shopkeeper buys seeds for every reagent you have discovered, up to this many of each.', act: () => { G.stall.restock = RS[(RS.indexOf(G.stall.restock || 0) + 1) % RS.length]; AU.sfx('menu'); } }];
     for (const id of own.concat(ruled)) rows.push({ label: `${item(id).name}  x${count(id)}`, icon: item(id).sprite, right: keepLabel(stallKeep(id)), desc: `${itemDesc(id)}  Sells for about ${item(id).sell}g each.`, act: () => { const cur = stallKeep(id); G.stall.items[id] = KEEP_STEPS[(KEEP_STEPS.indexOf(cur) + 1) % KEEP_STEPS.length]; AU.sfx('menu'); } });
     return rows; }
-  if (tab === 4) { const rs = G.reports || []; return rs.length ? rs.map(r => ({ label: r.date || `Day ${r.day}`, right: [r.stall && r.stall.earned ? `+${r.stall.earned}g sales` : '', r.wages ? `-${r.wages}g wages` : ''].filter(Boolean).join('   '), desc: (r.lines || []).join('  '), act: () => script(() => say(r.date || `Day ${r.day}`, r.lines && r.lines.length ? r.lines : ['A quiet night.'])) })) : [{ label: 'No reports yet', disabled: true, desc: 'Each morning your helpers report what they did overnight. The last two weeks are kept here.' }]; }
+  if (tab === 4) { const rs = G.reports || []; return rs.length ? rs.map(r => ({ label: r.date || `Day ${r.day}`, right: [r.stall && r.stall.earned ? `+${r.stall.earned}g sales` : '', r.wages ? `-${r.wages}g wages` : ''].filter(Boolean).join('   '), desc: (r.lines || []).join('  '), act: () => script(() => say(r.date || `Day ${r.day}`, r.lines && r.lines.length ? r.lines : ['A quiet night.'])) })) : [{ label: 'No reports yet', disabled: true, desc: 'Each morning your hirelings report what they did overnight. The last two weeks are kept here.' }]; }
   const rows = ids.map(id => ({ label: D.helpers[id].name, icon: D.helpers[id].sprite, right: `${wageOf(id)}g a day`, desc: `${job(id)}.  Base wage ${D.helpers[id].wage}g${wageOf(id) < D.helpers[id].wage ? ' (your hearth and perks lower it)' : ''}.`, disabled: true }));
-  const pay = payroll(); rows.push({ label: 'Total payroll', right: `${pay}g a day`, disabled: true, desc: 'Paid each morning. A helper you can\'t pay doesn\'t work that day.' });
+  const pay = payroll(); rows.push({ label: 'Total payroll', right: `${pay}g a day`, disabled: true, desc: 'Paid each morning. A hireling you can\'t pay doesn\'t work that day.' });
   rows.push({ label: 'Your gold covers', right: pay ? `${Math.floor(G.gold / pay)} days` : '-', disabled: true, desc: `You have ${G.gold}g.` });
   return rows;
 }
 async function helperActions(id) {
   const h = D.helpers[id];
-  const c = await choose(`${h.name} the ${h.title}  (Lv ${hLvl(id)})`, [{ label: 'Change job', right: ROLES[G.helpers[id].role], value: 'job' }, { label: 'Equipment', value: 'gear', desc: 'Open the equipment screen for this helper.' }, { label: 'Dismiss', value: 'dismiss', desc: `${h.name} leaves your service.` }, { label: 'Back', value: 'back' }], { width: 420 });
+  const c = await choose(`${h.name} the ${h.title}  (Lv ${hLvl(id)})`, [{ label: 'Change job', right: ROLES[G.helpers[id].role], value: 'job' }, { label: 'Equipment', value: 'gear', desc: 'Open the equipment screen for this hireling.' }, { label: 'Dismiss', value: 'dismiss', desc: `${h.name} leaves your service.` }, { label: 'Back', value: 'back' }], { width: 420 });
   if (c === 'job') await assignRole(id);
   if (c === 'gear') await paperdoll(id);
   if (c === 'dismiss') { const ok = await choose(`Really dismiss ${h.name}?`, [{ label: 'Keep them', value: 'n' }, { label: 'Dismiss', value: 'y' }], { width: 340 }); if (ok === 'y') { delete G.helpers[id]; toast(`${h.name} was dismissed.`); } }
@@ -30521,7 +31704,7 @@ async function pauseMenu() {
   if (c === 'x') exportSave();
   if (c === 'i') importSave();
   if (c === 'l') loadGame();
-  if (c === 'c') await say('Controls', ['Move: WASD / Arrow keys.  Interact / talk / confirm: E, Space or Enter.', 'I: Inventory   P: Equipment   M: Spellbook   K: Skills & perks   H: Helpers   J: Quests   Esc: Menu', 'Combat: move with WASD/arrows (walk into an enemy to attack) or click a blue tile. Space/E attacks the nearest enemy in range.', '1 Spell   2 Ability   3 Item   4 Defend   Tab next unit   Enter end turn   F flee.  Hover an enemy to see its stats.', 'The coloured dot over a monster shows how dangerous it is for your party: green easy, yellow fair, orange hard, red deadly.']);
+  if (c === 'c') await say('Controls', ['Move: WASD / Arrow keys.  Interact / talk / confirm: E, Space or Enter.', 'I: Inventory   P: Equipment   M: Spellbook   K: Skills & perks   H: Hirelings   J: Quests   Esc: Menu', 'Combat: move with WASD/arrows (walk into an enemy to attack) or click a blue tile. Space/E attacks the nearest enemy in range.', '1 Spell   2 Ability   3 Item   4 Defend   5 Taunt (fighters)   Tab next unit   Enter end turn   F flee.  Hover an enemy to see its stats.', 'The coloured dot over a monster shows how dangerous it is for your party: green easy, yellow fair, orange hard, red deadly.']);
   if (c === 'u') { if (UPD.online) { await checkUpdate(); if (UPD.latest) getUpdate(); else toast(`You have the latest version (v${D.meta.version}).`, UI.green); } else getUpdate(); }
   if (c === 'd') window.open(D.meta.discordInvite, '_blank');
   if (c === 'q') { R.scene = 'title'; }
@@ -30530,7 +31713,7 @@ async function pauseMenu() {
 // ================= COMBAT =================
 const AW = 14, AH = 9, AX = (VW - AW * TILE) / 2, AY = 30;
 let C = null;
-function cPass(x, y, u) { if (x < 0 || y < 0 || x >= AW || y >= AH) return false; const t = tileDef(C.grid[y][x]); if (C.sea) return u && u.swim ? !!t.water : !t.water && !t.solid; return !t.solid; }
+function cPass(x, y, u) { if (x < 0 || y < 0 || x >= AW || y >= AH) return false; if (fxAt(x, y, 'wall')) return false; const t = tileDef(C.grid[y][x]); if (C.sea) return u && u.swim ? !!t.water : !t.water && !t.solid; return !t.solid; }
 function cUnitAt(x, y) { return C.units.find(u => !u.dead && u.x === x && u.y === y); }
 function alive(side) { return C.units.filter(u => !u.dead && u.side === side); }
 function uDef(u) { return u.def + u.buffs.reduce((a, b) => a + (b.stat === 'def' ? b.amt : 0), 0) + (tileDef(C.grid[u.y][u.x]).cover || 0); }
@@ -30540,10 +31723,10 @@ function bfs(u, maxSteps) {
   while (q.length) {
     const [x, y, d] = q.shift(); if (d >= maxSteps) continue;
     for (const [dx, dy] of N4) {
-      const nx = x + dx, ny = y + dy, k = nx + ',' + ny;
-      if (res.has(k) || !cPass(nx, ny, u)) continue;
+      const nx = x + dx, ny = y + dy, k = nx + ',' + ny, nd = d + (fxAt(nx, ny, 'mire') ? 2 : 1);
+      if (nd > maxSteps || (res.has(k) && res.get(k) <= nd) || !cPass(nx, ny, u)) continue;
       const o = cUnitAt(nx, ny); if (o && o.side !== u.side) continue;
-      res.set(k, d + 1); q.push([nx, ny, d + 1]);
+      res.set(k, nd); q.push([nx, ny, nd]);
     }
   }
   for (const k of [...res.keys()]) { const [x, y] = k.split(',').map(Number); const o = cUnitAt(x, y); if (o && o !== u) res.delete(k); }
@@ -30567,7 +31750,7 @@ function startCombat(en, opts = {}) {
   } }
   if (sea) for (const [x, y] of SA.arbalests || []) if (grid[y]) grid[y][x] = 'A';
   const units = [];
-  const wy = weary(); units.push({ side: 'party', isPlayer: true, who: 'player', name: 'You', sprite: 'c_player', hp: G.hp, maxHp: maxHp(), atk: wy ? Math.max(1, Math.round(playerAtk() * 0.8)) : playerAtk(), def: wy ? Math.floor(playerDef() * 0.8) : playerDef(), move: playerMove(), range: 1 });
+  const wy = weary(); units.push({ side: 'party', isPlayer: true, who: 'player', name: 'You', sprite: 'c_player', hp: G.hp, maxHp: maxHp(), atk: wy ? Math.max(1, Math.round(playerAtk() * 0.8)) : playerAtk(), def: wy ? Math.floor(playerDef() * 0.8) : playerDef(), move: playerMove(), range: playerRange() });
   for (const id of Object.keys(G.helpers)) if (G.helpers[id].role === 'party' && D.helpers[id]) units.push(helperUnit(id));
   const foes = []; const def = en.def; const n = rnd(def.group ? def.group[0] : 1, def.group ? def.group[1] : 1);
   for (let i = 0; i < n; i++) foes.push(i === 0 ? en.id : morphId(def.baseOf || en.id));
@@ -30600,6 +31783,7 @@ function cycleUnit() { const ready = alive('party').filter(u => !u.done); if (!r
 function movesLeft(u) { return u.moved ? 0 : Math.max(0, uMove(u) - (u.steps || 0)); }
 function finishUnit(u) { u.done = true; u.moved = true; if (checkEnd()) return; C.sel = null; selectNext(); }
 function hit(a, b, power, label) {
+  if (b.isPlayer && a.side === 'enemy' && man(a, b) <= 1 && Math.random() < wTrait('parry')) { float(b, 'Parry!', '#cfe8ff'); clog(`You parry ${a.name}'s blow!`); return; }
   power += (a.buffs || []).reduce((s, bf) => s + (bf.stat === 'atk' ? bf.amt : 0), 0);
   power = power * baneMult(a, b) - (a.side === 'enemy' && (G.research || {})[a.enemyId] ? perk('baneGuard') : 0);
   const dmg = Math.max(1, Math.round(power + rnd(0, 2) - uDef(b)));
@@ -30610,15 +31794,24 @@ function hit(a, b, power, label) {
 }
 function onArbalest(u) { return C.sea && C.grid[u.y][u.x] === 'A'; }
 function atkRange(u) { if (C.sea && u.side === 'party') { const SA = (D.sea || {}).shipArena || {}; return onArbalest(u) ? (SA.arbalestRange || 6) : (SA.bowRange || 4); } return u.range; }
-function attack(a, b) { if (C.sea && a.side === 'party' && (onArbalest(a) || man(a, b) > 1)) { const SA = (D.sea || {}).shipArena || {}; if (onArbalest(a)) hit(a, b, a.atk + (SA.arbalestPower || 8) + perk('arbalestPower'), 'Arbalest'); else hit(a, b, Math.max(1, a.atk - 1), 'Bow'); } else if (a.isPlayer && Math.random() < perk('crit')) hit(a, b, Math.round(a.atk * 1.75), 'Critical!'); else hit(a, b, a.atk); if (a.isPlayer) addSkillXp('swordplay', 1); finishUnit(a); }
+function attack(a, b) { if (C.sea && a.side === 'party' && (onArbalest(a) || man(a, b) > 1)) { const SA = (D.sea || {}).shipArena || {}; if (onArbalest(a)) hit(a, b, a.atk + (SA.arbalestPower || 8) + perk('arbalestPower'), 'Arbalest'); else hit(a, b, Math.max(1, a.atk - 1), 'Bow'); } else if (a.isPlayer) playerStrike(a, b); else hit(a, b, a.atk); if (a.isPlayer) addSkillXp('swordplay', 1); finishUnit(a); }
+function playerStrike(a, b) {
+  const t = wpnType(), wsp = wSpec(t); let mult = 1 + ((D.weaponSpec || {}).damage || 0.15) * wsp, label = '';
+  if (t === 'bow' && man(a, b) <= 1) { mult *= 1 - wTrait('closePenalty'); label = 'point-blank'; }
+  if (Math.random() < perk('crit')) { mult *= 1.75; label = 'Critical!'; }
+  const pierce = Math.min(wTrait('pierce'), Math.max(0, uDef(b)));
+  hit(a, b, Math.round(a.atk * mult) + pierce, label || (t === 'mace' && pierce ? 'Crush' : ''));
+  if (t === 'axe' && Math.random() < wTrait('cleave')) { const o = alive('enemy').find(e => e !== b && man(a, e) <= 1 && !shielded(e)); if (o) hit(a, o, Math.max(1, Math.round(a.atk * mult * 0.5)), 'Cleave'); }
+}
 function canAttack(a, b) { return b && !b.dead && b.side !== a.side && man(a, b) <= atkRange(a) && !shielded(b) && los(a, b); }
 function startSpell() {
   const u = C.sel; if (!u || !u.isPlayer || C.phase !== 'party') return;
-  const list = G.spells.filter(s => D.spells[s] && ['damage', 'heal', 'buff'].includes(D.spells[s].kind));
+  const list = G.spells.filter(s => D.spells[s] && ['damage', 'heal', 'buff', 'debuff', 'terrain'].includes(D.spells[s].kind));
   if (!list.length) { toast('You know no combat spells yet.'); return; }
-  choose('Cast which spell?', list.map(s => { const sp = D.spells[s]; return { label: sp.name, right: `pow ${spellPower(sp)} rng ${sp.range}`, desc: `${sp.desc} Cost: ${reagentStr(sp)} (you have ${Object.keys(sp.reagents).map(r => count(r)).join('/')}).`, value: s, disabled: !hasReagents(sp) }; }), { width: 560 })
-    .then(s => { if (!s || !C) return; const sp = D.spells[s]; C.mode = 'target'; C.action = { type: 'spell', id: s, sp };
-      C.targets = C.units.filter(t => !t.dead && !shielded(t) && (sp.kind === 'damage' ? t.side === 'enemy' : t.side === 'party') && man(u, t) <= sp.range + perk('spellRange') && los(u, t));
+  choose('Cast which spell?', list.map(s => { const sp = D.spells[s]; return { label: sp.name, right: ((D.magic || {}).schools || {})[spellSchool(sp)] || '', desc: `${spellInfo(sp)}  Cost: ${reagentStr(sp)} (you have ${Object.keys(sp.reagents).map(r => count(r)).join('/')}).`, value: s, disabled: !hasReagents(sp) }; }), { width: 560 })
+    .then(s => { if (!s || !C) return; const sp = D.spells[s]; C.action = { type: 'spell', id: s, sp };
+      if (sp.kind === 'terrain') { startTileTarget(u, sp); return; } C.mode = 'target';
+      C.targets = C.units.filter(t => !t.dead && !shielded(t) && (sp.kind === 'damage' || sp.kind === 'debuff' ? t.side === 'enemy' : t.side === 'party') && man(u, t) <= sp.range + perk('spellRange') && los(u, t));
       if (!C.targets.length) { toast('No target in range.'); C.mode = 'move'; } });
 }
 function startAbility() {
@@ -30628,19 +31821,59 @@ function startAbility() {
   if (!C.targets.length) { toast('No target in range.'); C.mode = 'move'; }
 }
 function applyEffect(u, t, sp, power, label) {
+  const foes = side => alive(side).filter(e => e === t || (sp.area && man(e, t) <= sp.area && los(t, e)));
   if (sp.kind === 'damage') {
-    const victims = sp.area ? alive('enemy').filter(e => man(e, t) <= sp.area) : [t];
-    for (const v of victims) { hit(u, v, power, label); if (sp.slow && !v.dead) { v.slow = 2; float(v, 'slowed', '#9fe0ff'); } }
-  } else if (sp.kind === 'heal') { const h = Math.min(t.maxHp - t.hp, power); t.hp += h; float(t, '+' + h, '#7dff7a'); clog(`${u.name} (${label}) heals ${t.name} for ${h}.`); }
-  else if (sp.kind === 'buff') { t.buffs.push({ stat: sp.stat || 'def', amt: power, turns: sp.turns || 3 }); float(t, `+${power} ${(sp.stat || 'def').toUpperCase()}`, '#ffe07a'); clog(`${u.name} casts ${label} on ${t.name}.`); }
+    for (const v of foes(t.side)) { hit(u, v, power, label); if (sp.slow && !v.dead) { v.slow = Math.max(v.slow || 0, sp.slow); float(v, 'slowed', '#9fe0ff'); } }
+  } else if (sp.kind === 'debuff') {
+    for (const v of foes(t.side)) { const amt = sp.pct ? debuffAmt(sp, v) + (sp.fromPlayer ? perk('debuffPower') : 0) : (sp.fromPlayer ? debuffAmt(sp) : sp.power || 2); v.buffs.push({ stat: sp.stat || 'def', amt: -amt, turns: sp.turns || 3 }); float(v, `-${amt} ${(sp.stat || 'def').toUpperCase()}`, '#d79cff'); clog(`${label}: ${v.name} ${sp.stat === 'atk' ? 'is weakened' : 'loses armour'} (-${amt} ${(sp.stat || 'def').toUpperCase()} for ${sp.turns || 3} rounds).`); }
+  } else if (sp.kind === 'heal') {
+    for (const v of foes(t.side)) { const h = Math.min(v.maxHp - v.hp, power); v.hp += h; float(v, '+' + h, '#7dff7a'); clog(`${u.name} (${label}) heals ${v.name} for ${h}.`);
+      if (sp.fromPlayer && perk('healCleanse')) { v.slow = 0; v.buffs = v.buffs.filter(b => b.amt > 0); } }
+  } else if (sp.kind === 'buff') {
+    for (const v of foes(t.side)) { v.buffs.push({ stat: sp.stat || 'def', amt: power, turns: sp.turns || 3 }); float(v, `+${power} ${(sp.stat || 'def').toUpperCase()}`, '#ffe07a'); clog(`${u.name} casts ${label} on ${v.name}.`); }
+  }
+}
+// ---------- terrain spells: pick a tile ----------
+function fxAt(x, y, type) { return C && (C.fx || []).some(f => f.x === x && f.y === y && (!type || f.type === type)); }
+function terrainTiles(u, sp, x, y) {
+  if (sp.shape === 'line3') { const dx = x - u.x, dy = y - u.y; return Math.abs(dx) >= Math.abs(dy) ? [[x, y - 1], [x, y], [x, y + 1]] : [[x - 1, y], [x, y], [x + 1, y]]; }
+  return [[x, y], [x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]];
+}
+function startTileTarget(u, sp) {
+  const r = sp.range + perk('spellRange'); C.tiles = new Set();
+  for (let y = 0; y < AH; y++) for (let x = 0; x < AW; x++) { if (Math.abs(x - u.x) + Math.abs(y - u.y) > r || (x === u.x && y === u.y)) continue; const td = tileDef(C.grid[y][x]); if (td.solid || td.water) continue; if (!losXY(u.x, u.y, x, y)) continue; C.tiles.add(x + ',' + y); }
+  if (!C.tiles.size) { toast('No room to cast that here.'); C.mode = 'move'; return; }
+  const near = alive('enemy').map(e => [e.x, e.y]).find(([x, y]) => C.tiles.has(x + ',' + y)) || [...C.tiles][0].split(',').map(Number);
+  C.cur = { x: near[0], y: near[1] }; C.mode = 'tile';
+}
+function castTile(x, y) {
+  const u = C.sel, a = C.action; if (!u || !a || !C.tiles.has(x + ',' + y)) return;
+  if (!hasReagents(a.sp)) { toast('Not enough reagents!'); C.mode = 'move'; return; }
+  payReagents(a.sp); addSkillXp('magery', 2); AU.sfx('spell');
+  const turns = (a.sp.turns || (D.combat || {}).terrainTurns || 3) + perk('controlTurns'); let n = 0;
+  for (const [tx, ty] of terrainTiles(u, a.sp, x, y)) { if (tx < 0 || ty < 0 || tx >= AW || ty >= AH) continue; const td = tileDef(C.grid[ty][tx]); if (td.solid || td.water) continue;
+    if (a.sp.terrain === 'wall' && cUnitAt(tx, ty)) continue; C.fx = (C.fx || []).filter(f => !(f.x === tx && f.y === ty)); C.fx.push({ x: tx, y: ty, type: a.sp.terrain, turns }); n++; }
+  clog(`${a.sp.name}: ${a.sp.terrain === 'wall' ? 'brambles burst from the ground' : 'the ground turns to mud'} (${turns} rounds).`);
+  C.mode = 'move'; C.action = null; C.tiles = null; finishUnit(u);
+}
+// ---------- taunt: fighters pull monsters onto themselves ----------
+function canTaunt(u) { const cb = D.combat || {}; if (u.side !== 'party') return false; if (u.isPlayer) return skillLvl('swordplay') >= (cb.tauntSwordplay || 5); const h = D.helpers[u.helperId]; return !!h && ((h.skills || {}).swordplay || 0) >= (cb.helperTauntSwordplay || 3); }
+function doTaunt() {
+  const u = C.sel; if (!u || C.phase !== 'party' || !canTaunt(u) || (u.tcd || 0) > 0) return; const cb = D.combat || {};
+  const hit_ = alive('enemy').filter(e => man(e, u) <= (cb.tauntRange || 3)); if (!hit_.length) { toast(`No enemies within ${cb.tauntRange || 3} tiles to taunt.`); return; }
+  for (const e of hit_) { e.tauntBy = u; e.tauntT = cb.tauntTurns || 2; float(e, '!', '#ff8a4a'); }
+  u.buffs.push({ stat: 'def', amt: cb.tauntDef || 2, turns: 1 }); u.tcd = (cb.tauntCooldown || 3) + 1; AU.sfx('hit'); float(u, 'Taunt!', '#ffb04a');
+  clog(`${u.isPlayer ? 'You roar' : u.name + ' roars'} a challenge! ${hit_.length} ${hit_.length > 1 ? 'enemies turn' : 'enemy turns'} to fight ${u.isPlayer ? 'you' : u.name} (+${cb.tauntDef || 2} DEF).`);
+  finishUnit(u);
 }
 function doTarget(t) {
   const u = C.sel, a = C.action; if (!u || !a || !C.targets.includes(t)) return;
   if (a.type === 'spell') {
     if (!hasReagents(a.sp)) { toast('Not enough reagents!'); C.mode = 'move'; return; }
-    payReagents(a.sp); addSkillXp('magery', 2); AU.sfx(a.sp.kind === 'damage' ? 'spell' : 'heal');
-    const p = a.sp.kind === 'buff' ? a.sp.power + perk('buffPower') : Math.round(spellPower(a.sp) * (0.9 + Math.random() * 0.2));
-    applyEffect(u, t, a.sp, a.sp.kind === 'damage' ? p + uDef(t) * 0.5 : p, a.sp.name); // spells partly ignore armour
+    payReagents(a.sp); addSkillXp('magery', 2); AU.sfx(a.sp.kind === 'damage' || a.sp.kind === 'debuff' ? 'spell' : 'heal');
+    const sp = Object.assign({}, a.sp, { area: (a.sp.area || 0) + areaBonus(a.sp), turns: (a.sp.turns || 3) + (a.sp.kind === 'buff' ? perk('buffTurns') : a.sp.kind === 'debuff' ? perk('controlTurns') : 0), slow: a.sp.slow ? a.sp.slow + perk('controlTurns') : 0, fromPlayer: true });
+    const p = sp.kind === 'buff' ? sp.power + perk('buffPower') : sp.kind === 'debuff' ? 0 : Math.round(spellPower(sp) * (0.9 + Math.random() * 0.2));
+    applyEffect(u, t, sp, sp.kind === 'damage' ? p + uDef(t) * ((D.magic || {}).armorIgnore == null ? 0.5 : D.magic.armorIgnore) : p, sp.name); // spells partly ignore armour
   } else if (a.type === 'item') { take(a.id, 1); const it = item(a.id); const sp = Object.assign({}, a.sp, { turns: (a.sp.turns || 3) + perk('potionTurns') }); applyEffect(u, t, sp, sp.kind === 'buff' ? sp.power : Math.round(sp.power * potionMult()), it.name); AU.sfx(sp.kind === 'damage' ? 'spell' : 'heal'); }
   else { applyEffect(u, t, a.sp, a.sp.power, a.sp.name); u.cd = (a.sp.cooldown || 2) + 1; }
   C.mode = 'move'; C.action = null; C.targets = [];
@@ -30656,8 +31889,8 @@ async function confirmEndTurn() {
 function stepUnit(d) {
   const s = C.sel; if (!s) return; const [dx, dy] = DIRS[d]; const nx = s.x + dx, ny = s.y + dy; const o = cUnitAt(nx, ny);
   if (o && canAttack(s, o)) { attack(s, o); return; }
-  if (o || !cPass(nx, ny, s) || movesLeft(s) <= 0) { AU.sfx('menu'); return; }
-  s.x = nx; s.y = ny; s.steps = (s.steps || 0) + 1; if (movesLeft(s) <= 0) s.moved = true;
+  const cost = fxAt(nx, ny, 'mire') ? 2 : 1; if (o || !cPass(nx, ny, s) || movesLeft(s) < cost) { AU.sfx('menu'); return; }
+  s.x = nx; s.y = ny; s.steps = (s.steps || 0) + cost; if (movesLeft(s) <= 0) s.moved = true;
 }
 function attackNearest() { const s = C.sel; if (!s) return; const t = alive('enemy').filter(e => canAttack(s, e)).sort((a, b) => man(s, a) - man(s, b) || a.hp - b.hp)[0]; if (t) attack(s, t); else toast('No enemy in reach. Move closer first.'); }
 function cycleTarget(d) { if (!C.targets.length) return; const sorted = C.targets.slice().sort((a, b) => a.y - b.y || a.x - b.x); const i = sorted.indexOf(C.tsel); C.tsel = sorted[(i + d + sorted.length) % sorted.length]; }
@@ -30669,13 +31902,13 @@ function flee() {
 function enemyPhase() { if (checkEnd()) return; C.phase = 'enemy'; C.sel = null; C.queue = alive('enemy').slice(); C.timer = 0.5; }
 function enemyAct(e) {
   if (e.dead) return;
-  const targets = alive('party'); if (!targets.length) return;
+  let targets = alive('party'); if (!targets.length) return; if (e.tauntT > 0 && e.tauntBy && !e.tauntBy.dead) targets = [e.tauntBy];
   const inRange = targets.filter(t => man(e, t) <= e.range && los(e, t));
   if (!inRange.length) {
     // true walking-distance field from all targets (so enemies path around trees and rocks)
     const field = Array.from({ length: AH }, () => Array(AW).fill(99)); const q = targets.map(t => [t.x, t.y]);
     targets.forEach(t => field[t.y][t.x] = 0);
-    while (q.length) { const [x, y] = q.shift(); for (const [dx, dy] of N4) { const nx = x + dx, ny = y + dy; if (cPass(nx, ny, e) && field[ny][nx] > field[y][x] + 1) { field[ny][nx] = field[y][x] + 1; q.push([nx, ny]); } } }
+    while (q.length) { const [x, y] = q.shift(); for (const [dx, dy] of N4) { const nx = x + dx, ny = y + dy; const st = fxAt(nx, ny, 'mire') ? 2 : 1; if (cPass(nx, ny, e) && field[ny][nx] > field[y][x] + st) { field[ny][nx] = field[y][x] + st; q.push([nx, ny]); } } }
     const reach = bfs(e, uMove(e)); let best = null, bestS = 1e9;
     for (const [k, steps] of reach) {
       const [x, y] = k.split(',').map(Number); const d = Math.min(...targets.map(t => Math.abs(t.x - x) + Math.abs(t.y - y)));
@@ -30686,17 +31919,18 @@ function enemyAct(e) {
     if (best) { e.x = best[0]; e.y = best[1]; }
   }
   if (C.sea && e.swim && !C.board) {
-    const near = alive('party').filter(t => man(e, t) <= 1).sort((a, b) => a.hp - b.hp)[0];
+    const near = targets.filter(t => man(e, t) <= 1).sort((a, b) => a.hp - b.hp)[0];
     if (near) { hit(e, near, e.atk); return; }
     if (adjacentDeck(e)) { ramHull(e); return; }
-    const far = alive('party').filter(t => man(e, t) <= e.range && los(e, t)).sort((a, b) => a.hp - b.hp)[0]; if (far && e.range >= 2) hit(e, far, e.atk);
+    const far = targets.filter(t => man(e, t) <= e.range && los(e, t)).sort((a, b) => a.hp - b.hp)[0]; if (far && e.range >= 2) hit(e, far, e.atk);
     return;
   }
-  const t2 = alive('party').filter(t => man(e, t) <= e.range && los(e, t)).sort((a, b) => a.hp - b.hp)[0];
+  const t2 = targets.filter(t => man(e, t) <= e.range && los(e, t)).sort((a, b) => a.hp - b.hp)[0];
   if (t2) { hit(e, t2, e.atk); if (t2.isPlayer && !t2.dead && man(e, t2) <= 1 && Math.random() < perk('counter')) hit(t2, e, t2.atk, 'Riposte'); }
 }
 function endRound() {
-  for (const u of C.units) { if (u.dead) continue; u.buffs = u.buffs.filter(b => --b.turns > 0); if (u.slow > 0) u.slow--; if (u.cd > 0) u.cd--; u.done = false; u.moved = false; u.steps = 0; }
+  for (const u of C.units) { if (u.dead) continue; u.buffs = u.buffs.filter(b => --b.turns > 0); if (u.slow > 0) u.slow--; if (u.cd > 0) u.cd--; if (u.tcd > 0) u.tcd--; if (u.tauntT > 0 && --u.tauntT <= 0) u.tauntBy = null; u.done = false; u.moved = false; u.steps = 0; }
+  C.fx = (C.fx || []).filter(f => --f.turns > 0);
   C.round++; C.phase = 'party'; C.sel = null; clog(`- Round ${C.round} -`); selectNext();
 }
 function checkEnd() {
@@ -30756,6 +31990,7 @@ function combatClick(c) {
   if (C.phase !== 'party') return;
   const t = arenaTile(c); if (!t) return;
   const u = cUnitAt(t.x, t.y);
+  if (C.mode === 'tile') { if (C.tiles.has(t.x + ',' + t.y)) castTile(t.x, t.y); else { C.mode = 'move'; C.tiles = null; } return; }
   if (C.mode === 'target') { if (u && C.targets.includes(u)) doTarget(u); else { C.mode = 'move'; C.targets = []; } return; }
   if (u && u.side === 'party' && !u.done) { C.sel = u; return; }
   const s = C.sel; if (!s) return;
@@ -30767,6 +32002,12 @@ function combatKey(k) {
   if (C.phase === 'lost') { if (['enter', ' ', 'e'].includes(k)) endCombat('lost'); return; }
   if (C.phase !== 'party') return;
   const dk = { arrowup: 'up', w: 'up', arrowdown: 'down', s: 'down', arrowleft: 'left', a: 'left', arrowright: 'right', d: 'right' }[k];
+  if (C.mode === 'tile') {
+    if (dk) { const [dx, dy] = DIRS[dk]; C.cur = { x: clamp(C.cur.x + dx, 0, AW - 1), y: clamp(C.cur.y + dy, 0, AH - 1) }; }
+    else if (k === 'enter' || k === ' ' || k === 'e') castTile(C.cur.x, C.cur.y);
+    else if (k === 'escape') { C.mode = 'move'; C.tiles = null; }
+    return;
+  }
   if (C.mode === 'target') {
     if (dk) cycleTarget(dk === 'up' || dk === 'left' ? -1 : 1);
     else if (k === 'enter' || k === ' ' || k === 'e') { if (C.tsel) doTarget(C.tsel); }
@@ -30780,6 +32021,7 @@ function combatKey(k) {
   else if (k === '2') startAbility();
   else if (k === '3') startItem();
   else if (k === '4') waitUnit();
+  else if (k === '5') doTaunt();
   else if (k === 'enter') confirmEndTurn();
   else if (k === 'f') flee();
   else if (k === 'escape') { C.mode = 'move'; C.targets = []; }
@@ -30851,7 +32093,7 @@ function threat(def, cm = 1) {
   const r = tDie / tKill;
   if (r > 3) return { label: 'Easy', col: '#5fd35a', why: 'You should win comfortably.' };
   if (r > 1.6) return { label: 'Fair', col: '#f2d24a', why: 'A fair fight. Keep a potion handy.' };
-  if (r > 0.9) return { label: 'Hard', col: '#f08a32', why: 'Risky. Bring helpers, spells and potions.' };
+  if (r > 0.9) return { label: 'Hard', col: '#f08a32', why: 'Risky. Bring hirelings, spells and potions.' };
   return { label: 'Deadly', col: '#e03c34', why: 'Very likely to beat you right now.' };
 }
 function shadow(x, y) { ctx.fillStyle = 'rgba(0,0,0,.22)'; ctx.beginPath(); ctx.ellipse(x + TILE / 2, y + TILE - 3, 14, 5, 0, 0, 7); ctx.fill(); }
@@ -30867,13 +32109,17 @@ function renderHud() {
   if (G.flags.dreadKnown && mouse.x >= 10 && mouse.x <= 248 && mouse.y >= 92 && mouse.y <= 126)
     tooltip([`${DL().meterName || 'Attention'}: ${Math.round(dread() * 100)}%  (${tierName()})`, 'Magic, battles and new discoveries draw his eye. As it rises, monsters grow tougher and adapt to your wards.', 'Defeat him to push it back.'], 16, 132, 360);
   if (DRAFT) text('PLAYTESTING DRAFT DATA', VW / 2, 14, { bold: true, align: 'center', color: '#ff6a5a', shadow: true });
-  text(R.scene === 'sea' ? 'Arrows: sail   N: chart   G: navigator   E: dock   I items   P gear   K skills   H helpers   Esc menu' : 'E interact   I items   P gear   M spells   K skills/perks   H helpers   J quests   Esc menu', VW / 2, VH - 22, { size: 13, align: 'center', color: '#fff', shadow: true });
+  text(R.scene === 'sea' ? 'Arrows: sail   N: chart   G: navigator   E: dock   I items   P gear   K skills   H hirelings   Esc menu' : 'E interact   I items   P gear   M spells   K skills/perks   H hirelings   J quests   Esc menu', VW / 2, VH - 22, { size: 13, align: 'center', color: '#fff', shadow: true });
 }
 function renderCombat() {
   ctx.fillStyle = '#2a2238'; ctx.fillRect(0, 0, VW, VH);
   const sh = C.shake > 0 ? rnd(-3, 3) : 0;
   ctx.save(); ctx.translate(sh, 0);
   for (let y = 0; y < AH; y++) for (let x = 0; x < AW; x++) drawSpr(tileDef(C.grid[y][x]).sprite, AX + x * TILE, AY + y * TILE);
+  for (const f of C.fx || []) { drawSpr(f.type === 'wall' ? 'fx_bramble' : 'fx_mire', AX + f.x * TILE, AY + f.y * TILE); text(String(f.turns), AX + f.x * TILE + TILE - 10, AY + f.y * TILE + 2, { size: 11, bold: true, color: '#fff', shadow: true }); }
+  if (C.mode === 'tile' && C.tiles && C.sel) { for (const k of C.tiles) { const [x, y] = k.split(',').map(Number); ctx.fillStyle = 'rgba(200,140,255,.18)'; ctx.fillRect(AX + x * TILE + 2, AY + y * TILE + 2, TILE - 4, TILE - 4); }
+    const hvT = arenaTile(mouse); if (hvT && C.tiles.has(hvT.x + ',' + hvT.y) && mouse.moved) C.cur = hvT;
+    for (const [x, y] of terrainTiles(C.sel, C.action.sp, C.cur.x, C.cur.y)) { if (x < 0 || y < 0 || x >= AW || y >= AH) continue; ctx.strokeStyle = C.tiles.has(C.cur.x + ',' + C.cur.y) ? '#e8c0ff' : '#ff6060'; ctx.lineWidth = 3; ctx.strokeRect(AX + x * TILE + 3, AY + y * TILE + 3, TILE - 6, TILE - 6); } }
   ctx.strokeStyle = UI.border; ctx.lineWidth = 4; ctx.strokeRect(AX - 2, AY - 2, AW * TILE + 4, AH * TILE + 4);
   const s = C.sel;
   if (C.phase === 'party' && s) {
@@ -30891,7 +32137,7 @@ function renderCombat() {
     if (u.slow > 0) text('*', x + 2, y, { bold: true, color: '#9fe0ff', shadow: true });
     if (shielded(u)) text('shielded', x + TILE / 2, y - 12, { bold: true, size: 11, align: 'center', color: '#c8a0ff', shadow: true });
   }
-  if (hv) { const e = cUnitAt(hv.x, hv.y); if (e && e.side === 'enemy') tooltip([e.name, `HP ${e.hp}/${e.maxHp}   ATK ${e.atk}   DEF ${uDef(e)}`, `Move ${e.move}   Reach ${e.range}${e.swim ? '   (in the water)' : ''}${shielded(e) ? '   Shielded' : ''}`], AX + hv.x * TILE + TILE + 4, AY + hv.y * TILE - 8, 250); }
+  if (hv) { const e = cUnitAt(hv.x, hv.y); if (e && e.side === 'enemy') tooltip([e.name + (e.tauntT > 0 && e.tauntBy ? `  (taunted by ${e.tauntBy.isPlayer ? 'you' : e.tauntBy.name})` : ''), `HP ${e.hp}/${e.maxHp}   ATK ${Math.max(0, e.atk + e.buffs.reduce((a, b) => a + (b.stat === 'atk' ? b.amt : 0), 0))}   DEF ${uDef(e)}`, `Move ${e.move}   Reach ${e.range}${e.swim ? '   (in the water)' : ''}${shielded(e) ? '   Shielded' : ''}`], AX + hv.x * TILE + TILE + 4, AY + hv.y * TILE - 8, 250); }
   for (const f of C.floats) text(f.s, f.x, f.y - f.t * 40, { bold: true, size: 20, align: 'center', color: f.col, shadow: true });
   ctx.restore();
   const banner = C.phase === 'party' ? `Round ${C.round} - Your turn` : C.phase === 'enemy' ? `Round ${C.round} - Enemy turn` : '';
@@ -30903,15 +32149,16 @@ function renderCombat() {
     drawSpr(s.sprite, 26, py + 14, 48);
     text(s.name, 84, py + 14, { bold: true });
     text(`HP ${s.hp}/${s.maxHp}   ATK ${s.atk}   DEF ${uDef(s)}   MOVE ${uMove(s)}`, 84, py + 36, { size: 13 });
-    text(C.mode === 'target' ? 'Pick a target: click it, or arrows + Enter (Esc cancels)' : movesLeft(s) <= 0 ? 'Done moving. Attack (Space), cast (1) or defend (4).' : (C.board ? 'Boarding! Fight across the decks. Bows reach 4.' : C.sea ? 'Bows reach 4 tiles. Arbalest (A) tiles fire 6.' : `Move with WASD/arrows or click blue (${movesLeft(s)} left). Walk into a foe to attack.`), 84, py + 56, { size: 13, color: UI.dim });
-    let bx = 26; const by = py + 82;
-    if (s.isPlayer) { button(bx, by, 84, 32, 'Spell (1)', startSpell, { disabled: !G.spells.length }); bx += 90; }
-    if (s.ability) { button(bx, by, 138, 32, `${s.ability.name} (2)` + (s.cd > 0 ? ` ${s.cd}` : ''), startAbility, { disabled: s.cd > 0 }); bx += 144; }
-    button(bx, by, 80, 32, 'Item (3)', startItem); bx += 86;
-    button(bx, by, 96, 32, 'Defend (4)', waitUnit); bx += 102;
+    text(C.mode === 'tile' ? 'Pick where to cast: click a tile, or arrows + Enter (Esc cancels)' : C.mode === 'target' ? 'Pick a target: click it, or arrows + Enter (Esc cancels)' : movesLeft(s) <= 0 ? 'Done moving. Attack (Space), cast (1) or defend (4).' : (C.board ? 'Boarding! Fight across the decks. Bows reach 4.' : C.sea ? 'Bows reach 4 tiles. Arbalest (A) tiles fire 6.' : `Move with WASD/arrows or click blue (${movesLeft(s)} left). Walk into a foe to attack.`), 84, py + 56, { size: 13, color: UI.dim });
+    var bx = 26; const by = py + 82;
+    if (s.isPlayer) { button(bx, by, 72, 32, 'Spell (1)', startSpell, { disabled: !G.spells.length }); bx += 76; }
+    if (s.ability) { button(bx, by, 124, 32, `${s.ability.name} (2)` + (s.cd > 0 ? ` ${s.cd}` : ''), startAbility, { disabled: s.cd > 0 }); bx += 128; }
+    button(bx, by, 66, 32, 'Item (3)', startItem); bx += 70;
+    button(bx, by, 84, 32, 'Defend (4)', waitUnit); bx += 88;
+    if (canTaunt(s)) { button(bx, by, 84, 32, 'Taunt (5)' + (s.tcd > 0 ? ` ${s.tcd}` : ''), doTaunt, { disabled: s.tcd > 0 }); bx += 88; }
   }
-  if (C.phase === 'party') { button(456, py + 82, 104, 32, 'End turn', () => script(confirmEndTurn), { hot: true }); button(566, py + 82, 58, 32, 'Flee', flee); }
-  const logs = C.log.slice(-5); logs.forEach((l, i) => text(l, 630, py + 12 + i * 20, { size: 13 }));
+  if (C.phase === 'party') { button(Math.max(470, (bx || 0) + 6), py + 82, 92, 32, 'End turn', () => script(confirmEndTurn), { hot: true }); button(Math.max(470, (bx || 0) + 6) + 96, py + 82, 54, 32, 'Flee', flee); }
+  const logs = C.log.slice(-5); ctx.font = `13px ${FONT}`; logs.forEach((l, i) => { let t = l; while (t.length > 8 && ctx.measureText(t).width > VW - 660) t = t.slice(0, -2); text(t === l ? l : t + '...', 630, py + 12 + i * 20, { size: 13 }); });
   if (C.phase === 'won' || C.phase === 'lost') {
     const won = C.phase === 'won'; panel(VW / 2 - 220, 150, 440, 236);
     text(won ? 'Victory!' : 'Defeated...', VW / 2, 170, { bold: true, size: 28, align: 'center', color: won ? UI.green : UI.red });
@@ -31007,11 +32254,11 @@ function perkList() {
 function perk(k) { return perkList().reduce((a, o) => a + (+((o.effect || {})[k]) || 0), 0); }
 function elemBonus(sp, who = 'player') {
   const el = sp.element || (sp.kind === 'heal' ? 'life' : 'arcane');
-  let b = perk('spellPower') + perk(el + 'Power');
+  let b = perk('spellPower') + perk(el + 'Power') + perk(spellSchool(sp) + 'Power');
   for (const it of gearItems(who)) { const e = it.elementPower || {}; b += (e.all || 0) + (e[el] || 0); }
   return b;
 }
-function reagentSaveChance(id) { let c = perk('reagentSave'); for (const it of gearItems('player')) { const r = it.reagentSave; if (typeof r === 'number') c += r; else if (r && r[id]) c += r[id]; } return Math.min(0.75, c); }
+function reagentSaveChance(id) { let c = perk('reagentSave'); for (const it of gearItems('player')) { c += it.reagentSaveAll || 0; const r = it.reagentSave; if (typeof r === 'number') c += r; else if (r && r[id]) c += r[id]; } return Math.min(0.75, c); }
 function playerMove() { return Math.max(2, D.player.move + gearStat('player', 'move') + perk('move')); }
 function slotsFor(itemId) { const it = D.items[itemId]; return (D.equipSlots || []).filter(s => it && s.accepts === it.slot); }
 function equip(who, slotId, itemId) {
@@ -31026,7 +32273,11 @@ function itemDesc(id) { const it = item(id);
   if (it.type === 'reagent') { const uses = Object.values(D.spells).filter(sp => (sp.reagents || {})[id]); const known = uses.filter(sp => G.spells.some(k => D.spells[k] === sp)).map(sp => sp.name);
     return `${it.desc || ''}  ${known.length ? 'Your spells that use it: ' + known.join(', ') + '.' : uses.length ? 'None of your spells use it yet.' : ''}`; }
   if (it.type === 'consumable' && it.heal) return `${it.desc || ''}${potionMult() > 1 ? `  (Heals ${Math.round(it.heal * potionMult())} with your Alchemy.)` : ''}`;
-  if (it.type !== 'gear') return it.desc || ''; const st = gearSummary(it); return `[${SLOTNAME[it.slot] || it.slot}${st === 'special' ? '' : '   ' + st}]  ${it.desc || ''}`; }
+  if (it.type !== 'gear') return it.desc || ''; const st = gearSummary(it), wt = it.wtype && (D.weapons || {})[it.wtype]; return `[${SLOTNAME[it.slot] || it.slot}${wt ? ' - ' + wt.name : ''}${st === 'special' ? '' : '   ' + st}]  ${it.desc || ''}${wt ? '  ' + wt.desc : ''}${it.castPenalty ? `  Heavy: your spells are ${Math.round(it.castPenalty * 100)}% weaker while worn.` : ''}`; }
+function wpnType(who = 'player') { const id = eqOf(who).main; return id && D.items[id] ? (D.items[id].wtype || 'sword') : null; }
+function wSpec(t) { return t && perk('spec_' + t) ? 1 + perk('specMastery') : 0; }
+function wTrait(k, who = 'player') { const t = wpnType(who); const w = t && (D.weapons || {})[t]; if (!w || !(k in w)) return 0; return w[k] + (who === 'player' && k !== 'closePenalty' ? ((D.weaponSpec || {})[k] || 0) * wSpec(t) : 0); }
+function playerRange() { const t = wpnType(); return t === 'bow' ? wTrait('range') : t === 'spear' ? wTrait('reach') : 1; }
 function gearSummary(it) { const st = it.stats || {}; return ['atk', 'def', 'hp', 'move'].filter(k => st[k]).map(k => `${k.toUpperCase()} ${st[k] > 0 ? '+' : ''}${st[k]}`).join(' ') || 'special'; }
 
 // --- visible gear: body tint + hat/weapon overlays composed onto the walking sprite
@@ -31115,7 +32366,10 @@ function renderDoll() {
   });
   // stats
   const sx = 520; let y = 92;
-  text(st.name, sx, y, { bold: true, size: 18 }); y += 30;
+  text(st.name, sx, y, { bold: true, size: 18 });
+  if (who === 'player') { const p = lvlProgress(); text(`Level ${p.l}`, sx + 120, y + 2, { bold: true, size: 15, color: UI.blue }); bar(sx + 190, y + 6, 100, 10, p.frac, '#5aa0e0'); text(`${p.cur}/${p.need} XP`, sx + 298, y + 3, { size: 12, color: UI.dim }); }
+  else if (G.helpers[who]) text(`Level ${hLvl(who)}`, sx + 120, y + 2, { bold: true, size: 15, color: UI.blue });
+  y += 30;
   for (const [lab, k] of [['HP', 'hp'], ['Attack', 'atk'], ['Defense', 'def'], ['Move', 'move']]) {
     const g = gearStat(who, k); text(lab, sx, y); text(String(st[k]), sx + 130, y, { bold: true });
     if (g) text(`(${g > 0 ? '+' : ''}${g} gear)`, sx + 170, y, { size: 13, color: g > 0 ? UI.green : UI.red }); y += 24;
@@ -31132,7 +32386,7 @@ function renderDoll() {
     if (gearVal('player', 'yield')) lines.push(`+${gearVal('player', 'yield')} reagent per harvest`);
     if (!lines.length) lines.push('No magical bonuses yet.');
     lines.slice(0, 7).forEach(l => { text(l, sx, y, { size: 14, color: UI.blue }); y += 20; });
-  } else { y += 8; text('Helpers use attack, defense, HP and move from gear.', sx, y, { size: 13, color: UI.dim }); }
+  } else { y += 8; text('Hirelings use attack, defense, HP and move from gear.', sx, y, { size: 13, color: UI.dim }); }
   // selected slot details
   const s = (D.equipSlots || [])[DOLL.slot]; const cur = s && eq[s.id] && D.items[eq[s.id]];
   ctx.fillStyle = UI.bg2; ctx.fillRect(sx, 404, 370, 2);
@@ -31246,7 +32500,7 @@ async function alchemistTalk(npc) {
 // ================= RESEARCH & WARDS =================
 function baneMult(a, b) { const dk = a.isPlayer && b.enemyId && (D.enemies[b.enemyId] || {}).dark ? gearVal('player', 'baneAll') : 0; if (a.side === 'party' && b.enemyId && (G.research || {})[b.enemyId]) return 1.25 + dk + perk('baneDamage') + 0.02 * advLvl('wardcraft'); return 1 + dk; return 1; }
 function questAvailable(q, giver) {
-  if (q.giver !== giver || G.quests[q.id]) return false;
+  if (q.escort || q.giver !== giver || G.quests[q.id]) return false;
   if (q.requires && G.quests[q.requires] !== 'done') return false;
   if (q.unlockKills && ((G.kills || {})[q.unlockKills.enemy] || 0) < q.unlockKills.count) return false;
   if (q.unlockDread && dread() < q.unlockDread - 1e-9) return false;
@@ -31580,21 +32834,62 @@ function crewSkill(sk) { let v = skillLvl(sk); for (const id of Object.keys(G.he
 function SV() { return D.survivors || { list: [], daysBetween: 7 }; }
 function survDef(id) { return (SV().list || []).find(s => s.id === id); }
 function checkSurvivorArrival() {
-  if (G.surv) return null; const done = G.survDone || [];
+  if (G.surv || G.escort) return null; const done = G.survDone || [];
   const next = (SV().list || []).find(s => !done.includes(s.id)); if (!next || playerLvl() < next.level) return null;
   G.surv = { id: next.id, step: 0, readyDay: G.day }; G.flags.survivorCare = true; G.flags['sick_' + next.id] = true; return next;
 }
 async function survivorStepDone(q) {
   const st = G.surv; if (!st || st.id !== q.survivor) return; const s = survDef(st.id); st.step++; st.readyDay = G.day + (SV().daysBetween || 7);
   if (st.step < (s.steps || []).length) return;
-  G.flags.survivorCare = false; G.flags['sick_' + s.id] = false; G.flags['avail_' + s.helper] = true; G.charts = G.charts || {}; G.charts[s.land] = true;
+  G.flags.survivorCare = false; G.flags['sick_' + s.id] = false; G.charts = G.charts || {}; G.charts[s.land] = true;
   G.survDone = (G.survDone || []).concat([s.id]); G.surv = null;
   const h = D.helpers[s.helper] || { name: s.helper, sprite: 'c_player' };
   await say(h.name, s.healed || ['Thank you.'], h.sprite);
   const p = ((D.sea || {}).ports || []).find(p => p.id === s.land);
   if (p) toast(`Chart updated: ${p.name} at (${p.x}, ${p.y}). Press C at sea to set course.`, UI.blue);
-  toast(`${h.name} will join you - find them at the Sleepy Toad (needs a free bed).`, UI.green);
+  await offerHome(s);
   R.npcs = R.npcs.filter(n => !n.flag || G.flags[n.flag]);
+}
+function hiredCount() { return Object.values(G.helpers).filter(h => !h.guest).length; }
+async function offerHome(s) {
+  const h = D.helpers[s.helper] || { name: s.helper }, q = D.quests.find(x => x.escort === s.id);
+  if (G.escort) { await say(h.name, ["'You're already taking someone home. I'll wait at the Sleepy Toad until you're free.'"], h.sprite); G.flags['avail_' + s.helper] = true; return false; }
+  await say(h.name, s.homeOffer || ["'Will you take me home?'"], h.sprite);
+  const c = await choose(`Take on "${q ? q.name : 'the way home'}"?`, [{ label: 'Accept', value: 'y', desc: `${h.name} joins your party for the journey (no wage, no bed needed).` }, { label: 'Not yet', value: 'n', desc: `${h.name} will wait at the Sleepy Toad.` }], { width: 460 });
+  if (c !== 'y') { G.flags['avail_' + s.helper] = true; toast(`${h.name} will wait for you at the Sleepy Toad.`); return false; }
+  G.escort = { id: s.id }; G.flags['avail_' + s.helper] = false; G.helpers[s.helper] = Object.assign(G.helpers[s.helper] || { xp: 0 }, { role: 'party', guest: true });
+  if (q) { G.quests[q.id] = 'active'; G.qprog[q.id] = {}; toast(`New quest: ${q.name}  (J to view)`, UI.blue); }
+  toast(`${h.name} joins your party!`, UI.green); R.npcs = R.npcs.filter(n => !(n.def && n.def.helper === s.helper)); return true;
+}
+async function finishEscort(s, npc) {
+  const h = D.helpers[s.helper] || { name: s.helper }, q = D.quests.find(x => x.escort === s.id);
+  await say('', s.introduce && s.introduce.length ? s.introduce : [`${h.name} introduces you to ${npc.def.name}.`]);
+  if (q) { G.quests[q.id] = 'done'; grantReward(q.reward); toast(`Quest complete: ${q.name}`, UI.green); }
+  G.flags['home_' + s.id] = true; G.escort = null; const st = G.helpers[s.helper];
+  if (st) { delete st.guest; if (hiredCount() > helperBeds()) { delete G.helpers[s.helper]; G.flags['avail_' + s.helper] = true; await say(h.name, [`'I'd gladly keep working for you - but you'll need a bed for me at your cottage. Find me at the Sleepy Toad when you have one.'`], h.sprite); }
+    else await say(h.name, [`'I'll stay on with you, if you'll have me. (${h.name} is now a hireling: ${h.wage}g a day.)'`], h.sprite); }
+}
+function registerEnchant(nid, base, gem) {
+  const b = D.items[base], e = (D.enchants || {})[gem]; if (!b || !e) return; const it = JSON.parse(JSON.stringify(b));
+  it.name = `${b.name} ${e.suffix}`; it.enchanted = gem; it.stats = Object.assign({}, b.stats || {}); for (const [k, v] of Object.entries(e.stats || {})) it.stats[k] = (it.stats[k] || 0) + v;
+  if (e.reagentSave) it.reagentSaveAll = (it.reagentSaveAll || 0) + e.reagentSave;
+  if (e.elementPower) { it.elementPower = Object.assign({}, b.elementPower || {}); for (const [k, v] of Object.entries(e.elementPower)) it.elementPower[k] = (it.elementPower[k] || 0) + v; }
+  it.price = Math.round((b.price || 0) * 1.5 + e.cost); it.sell = Math.round((b.sell || 0) + e.cost / 3); it.desc = `${b.desc || ''}  Enchanted: ${e.desc}.`; D.items[nid] = it;
+}
+async function enchantTalk(npc) {
+  await say(npc.def.name, npc.def.dialog, npc.def.sprite);
+  const E = D.enchants || {}, gems = Object.keys(E).filter(g => count(g) > 0);
+  if (!gems.length) return say(npc.def.name, ['Come back when you have a gem - quartz, amethyst, sapphire, ruby or starstone. The deep caves are full of them.'], npc.def.sprite);
+  const worn = Object.values(eqOf('player')).filter(id => D.items[id]);
+  const ids = [...new Set(Object.keys(G.inv).filter(id => item(id).type === 'gear').concat(worn))].filter(id => !item(id).enchanted);
+  if (!ids.length) return say(npc.def.name, ['You have nothing I can work on. Each piece of gear holds only one enchantment.'], npc.def.sprite);
+  const gid = await choose('Enchant which item?', ids.map(id => ({ label: item(id).name + (worn.includes(id) && !count(id) ? '  (worn)' : ''), icon: item(id).sprite, desc: itemDesc(id), value: id })).concat([{ label: 'Never mind', value: null }]), { width: 560 }); if (!gid) return;
+  const gem = await choose('Bind which gem?', gems.map(g => ({ label: `${item(g).name}  x${count(g)}`, icon: item(g).sprite, right: E[g].cost + 'g', desc: `${item(gid).name} ${E[g].suffix}: ${E[g].desc}.`, value: g, disabled: G.gold < E[g].cost }))
+    .concat([{ label: 'Never mind', value: null }]), { width: 560 }); if (!gem) return;
+  G.gold -= E[gem].cost; take(gem, 1); const nid = gid + '__' + gem; registerEnchant(nid, gid, gem); G.enchanted[nid] = [gid, gem];
+  const eq = eqOf('player'), slot = Object.keys(eq).find(k => eq[k] === gid);
+  if (!count(gid) && slot) eq[slot] = nid; else { take(gid, 1); add(nid, 1); }
+  AU.sfx('discover'); await say(npc.def.name, [`The ${item(gem).name.toLowerCase()} hums and sinks into the ${item(gid).name.toLowerCase()}. There - ${item(nid).name}.`], npc.def.sprite);
 }
 async function careTalk(npc) {
   if (!G.surv) return say(npc.def.name, npc.def.dialog, npc.def.sprite);
@@ -31649,7 +32944,7 @@ function statsReport(why) {
     `Day ${G.day} (${dateStr()} ${clock()}) - Level ${playerLvl()} - ${G.gold}g - HP ${G.hp}/${maxHp()} - at ${(R.map || {}).name || R.mapId}`,
     `Quests: ${q.filter(v => v === 'done').length} done, ${q.filter(v => v === 'active').length} active (${D.quests.filter(x => G.quests[x.id] === 'active').map(x => x.name).slice(0, 4).join(', ') || '-'})`,
     `Skills: ${sk.join(', ') || 'all 1'} - Spells: ${G.spells.length} - Greenhouse: ${G.gh < 0 ? 'ruined' : G.gh} - Boat: ${G.boat ? 'yes' : 'no'} - Ports: ${Object.keys(G.ports || {}).length}`,
-    `Helpers: ${Object.entries(G.helpers || {}).map(([id, h]) => `${(D.helpers[id] || {}).name || id} (${ROLES[h.role] || h.role})`).join(', ') || 'none'}`,
+    `Hirelings: ${Object.entries(G.helpers || {}).map(([id, h]) => `${(D.helpers[id] || {}).name || id} (${ROLES[h.role] || h.role})`).join(', ') || 'none'}`,
     `Battles ${st.battles || 0}, won ${st.wins || 0}, fled ${st.flees || 0}, lost ${st.deaths || 0} - spells cast ${st.casts || 0} - total play ${Math.round((st.playMs || 0) / 60000)} min`,
     `Hollow King: ${G.flags.dreadKnown ? Math.round(dread() * 100) + '% (' + tierName() + ')' : 'not revealed'} - Settings: walk ${SET.walk}, battle ${SET.battle}, music ${Math.round(AU.volume.music * 100)}%, sfx ${Math.round(AU.volume.sfx * 100)}%`];
   if (SESSION.errors.length) lines.push('Errors: ' + SESSION.errors.join(' | '));
@@ -31736,7 +33031,7 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 // debug/test hook (harmless in production)
-window.__game = { helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
+window.__game = { offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
 })();
 
 </script>
