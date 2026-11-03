@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.17.2</title>
+<title>Reagents of Briarwick v0.18.0</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.17.2",
+  "version": "0.18.0",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -18738,6 +18738,106 @@ window.GAME_DATA = {
     "....kkkkkkkk....",
     "................"
    ]
+  },
+  "i_timber": {
+   "pixels": [
+    "................",
+    "................",
+    "................",
+    "........k.......",
+    ".....kkkDkkk....",
+    "....kDDDDDDDk...",
+    "...kDDfDDDDDDk..",
+    "...kDDNDDfDDDk..",
+    "...kDDDDDNDDDk..",
+    "..kDDNDDDDDDDDk.",
+    "...kDDDDDDNDDk..",
+    "...kDDDNDDDDDk..",
+    "...kDDDDDDDDDk..",
+    "....kDDDDDDDk...",
+    ".....kkkDkkk....",
+    "........k......."
+   ]
+  },
+  "i_sailcloth": {
+   "pixels": [
+    "................",
+    "................",
+    "................",
+    "........k.......",
+    ".....kkkAkkk....",
+    "....kAAAAAAAk...",
+    "...kAAvAAAAAAk..",
+    "...kAANAAvAAAk..",
+    "...kAAAAANAAAk..",
+    "..kAANAAAAAAAAk.",
+    "...kAAAAAANAAk..",
+    "...kAAANAAAAAk..",
+    "...kAAAAAAAAAk..",
+    "....kAAAAAAAk...",
+    ".....kkkAkkk....",
+    "........k......."
+   ]
+  },
+  "i_cut_stone": {
+   "pixels": [
+    "................",
+    "................",
+    "................",
+    "........k.......",
+    ".....kkkskkk....",
+    "....ksssssssk...",
+    "...ksszssssssk..",
+    "...kssNsszsssk..",
+    "...ksssssNsssk..",
+    "..kssNssssssssk.",
+    "...kssssssNssk..",
+    "...ksssNsssssk..",
+    "...ksssssssssk..",
+    "....ksssssssk...",
+    ".....kkkskkk....",
+    "........k......."
+   ]
+  },
+  "i_thorn_iron": {
+   "pixels": [
+    "................",
+    "................",
+    "................",
+    "........k.......",
+    ".....kkkxkkk....",
+    "....kxxxxxxxk...",
+    "...kxxrxxxxxxk..",
+    "...kxxNxxrxxxk..",
+    "...kxxxxxNxxxk..",
+    "..kxxNxxxxxxxxk.",
+    "...kxxxxxxNxxk..",
+    "...kxxxNxxxxxk..",
+    "...kxxxxxxxxxk..",
+    "....kxxxxxxxk...",
+    ".....kkkxkkk....",
+    "........k......."
+   ]
+  },
+  "i_glyphstone": {
+   "pixels": [
+    "................",
+    "................",
+    "................",
+    "........k.......",
+    ".....kkkPkkk....",
+    "....kPPPPPPPk...",
+    "...kPPcPPPPPPk..",
+    "...kPPNPPcPPPk..",
+    "...kPPPPPNPPPk..",
+    "..kPPNPPPPPPPPk.",
+    "...kPPPPPPNPPk..",
+    "...kPPPNPPPPPk..",
+    "...kPPPPPPPPPk..",
+    "....kPPPPPPPk...",
+    ".....kkkPkkk....",
+    "........k......."
+   ]
   }
  },
  "tiles": {
@@ -20504,6 +20604,46 @@ window.GAME_DATA = {
     "reagent": 20
    },
    "desc": "Lined with folded space. Carry 20 more reagents outside your pouch. (Works while it's in your bag; one of each counts.)"
+  },
+  "timber": {
+   "name": "Verdant Timber",
+   "type": "build",
+   "sprite": "i_timber",
+   "price": 8,
+   "sell": 4,
+   "desc": "Seasoned oak from the Verdant Isles. Builds ships, and much more. A build material: too bulky to carry, it travels in a ship's hold and is kept in your storehouse."
+  },
+  "sailcloth": {
+   "name": "Azure Sailcloth",
+   "type": "build",
+   "sprite": "i_sailcloth",
+   "price": 10,
+   "sell": 5,
+   "desc": "Tightly woven sailcloth from Port Azure. Makes ships faster. A build material: too bulky to carry, it travels in a ship's hold and is kept in your storehouse."
+  },
+  "cut_stone": {
+   "name": "Thornhaven Stone",
+   "type": "build",
+   "sprite": "i_cut_stone",
+   "price": 6,
+   "sell": 3,
+   "desc": "Dressed granite from Thornhaven's quarries. For building great things. A build material: too bulky to carry, it travels in a ship's hold and is kept in your storehouse."
+  },
+  "thorn_iron": {
+   "name": "Thornhaven Iron",
+   "type": "build",
+   "sprite": "i_thorn_iron",
+   "price": 14,
+   "sell": 7,
+   "desc": "Bar iron from Thornhaven's forges. Plates a hull against anything. A build material: too bulky to carry, it travels in a ship's hold and is kept in your storehouse."
+  },
+  "glyphstone": {
+   "name": "Glyphstone",
+   "type": "build",
+   "sprite": "i_glyphstone",
+   "price": 30,
+   "sell": 15,
+   "desc": "A stone humming with Starfall ward-magic. Shields ships; and perhaps more. A build material: too bulky to carry, it travels in a ship's hold and is kept in your storehouse."
   }
  },
  "spells": {
@@ -22719,7 +22859,8 @@ window.GAME_DATA = {
    "sprite": "c_shipwright",
    "role": "shipwright",
    "dialog": [
-    "A boat of your own means no more waiting on ferries."
+    "I built real ships back home, you know. Keels as long as this street. Now I sell other people's leaky tubs.",
+    "Get me proper timber and I'll build you a proper yard."
    ]
   },
   "brenna": {
@@ -23165,6 +23306,14 @@ window.GAME_DATA = {
     "We keep the old ward stones. Fill a town's stone and no monster can set foot inside it.",
     "Ward every town in a region and you can raise a ward over the whole region."
    ]
+  },
+  "orrin_yard": {
+   "name": "Shipwright Orrin",
+   "sprite": "c_shipwright",
+   "role": "shipwright",
+   "dialog": [
+    "Welcome to the Briarwick yard! Timber in your storehouse, gold in your purse, and I'll build you anything that floats."
+   ]
   }
  },
  "shops": {
@@ -23370,8 +23519,12 @@ window.GAME_DATA = {
     "reagent",
     "material",
     "gem",
-    "metal"
-   ]
+    "metal",
+    "build"
+   ],
+   "kingdomSells": {
+    "timber": "rowan"
+   }
   },
   "verdant_crafter": {
    "name": "Oakhollow Workshop",
@@ -23398,8 +23551,12 @@ window.GAME_DATA = {
     "reagent",
     "material",
     "gem",
-    "metal"
-   ]
+    "metal",
+    "build"
+   ],
+   "kingdomSells": {
+    "sailcloth": "marisol"
+   }
   },
   "azure_crafter": {
    "name": "Port Azure Workshop",
@@ -23426,8 +23583,13 @@ window.GAME_DATA = {
     "reagent",
     "material",
     "gem",
-    "metal"
-   ]
+    "metal",
+    "build"
+   ],
+   "kingdomSells": {
+    "cut_stone": "thorne",
+    "thorn_iron": "thorne"
+   }
   },
   "thornhaven_crafter": {
    "name": "Thornhaven Workshop",
@@ -23455,8 +23617,12 @@ window.GAME_DATA = {
     "reagent",
     "material",
     "gem",
-    "metal"
-   ]
+    "metal",
+    "build"
+   ],
+   "kingdomSells": {
+    "glyphstone": "sylas"
+   }
   },
   "ember_crafter": {
    "name": "Starfall Workshop",
@@ -23589,6 +23755,12 @@ window.GAME_DATA = {
      "id": "bram",
      "x": 19,
      "y": 8
+    },
+    {
+     "id": "orrin_yard",
+     "x": 21,
+     "y": 15,
+     "flag": "shipyard"
     }
    ],
    "signs": [
@@ -29830,6 +30002,32 @@ window.GAME_DATA = {
     "caveWard": "deepdelve",
     "gold": 60
    }
+  },
+  {
+   "id": "shipyard",
+   "name": "A proper shipyard",
+   "giver": "orrin",
+   "side": true,
+   "choice": true,
+   "kingdom": "rowan",
+   "intro": [
+    "Verdant timber! You've opened trade with the Verdant Isles? Then we can do this properly.",
+    "Bring 40 Verdant Timber to your storehouse and I'll build a shipyard at Briarwick harbour. Gideon can help me raise the sheds."
+   ],
+   "objectives": [
+    {
+     "type": "store",
+     "item": "timber",
+     "qty": 40
+    }
+   ],
+   "done": [
+    "Gideon and I will have the sheds up by morning. Come see me at Briarwick harbour: we'll build ships, not patch them."
+   ],
+   "reward": {
+    "flag": "shipyard",
+    "gold": 0
+   }
   }
  ],
  "greenhouse": {
@@ -32815,6 +33013,90 @@ window.GAME_DATA = {
    "reagent": "Reagents",
    "consumable": "Potions"
   }
+ },
+ "ships": {
+  "types": {
+   "skiff": {
+    "name": "Old Skiff",
+    "hull": 60,
+    "speed": 1.0,
+    "bulk": 0,
+    "dry": 30,
+    "price": 900,
+    "used": true,
+    "desc": "Leaks a little. No room for bulk cargo."
+   },
+   "cog": {
+    "name": "Used Cog",
+    "hull": 80,
+    "speed": 0.9,
+    "bulk": 40,
+    "dry": 40,
+    "price": 1400,
+    "used": true,
+    "desc": "Slow and tubby, but there's a proper hold."
+   },
+   "sloop": {
+    "name": "Briarwick Sloop",
+    "hull": 110,
+    "speed": 1.15,
+    "bulk": 60,
+    "dry": 60,
+    "price": 600,
+    "timber": 40,
+    "yard": true,
+    "desc": "Built fresh in your own yard. Quick and sturdy."
+   },
+   "galleon": {
+    "name": "Merchant Galleon",
+    "hull": 160,
+    "speed": 1.0,
+    "bulk": 150,
+    "dry": 100,
+    "price": 1600,
+    "timber": 100,
+    "yard": true,
+    "desc": "A deep-bellied trader for the long routes."
+   }
+  },
+  "upgrades": {
+   "sails": {
+    "name": "Sailcloth sails",
+    "mat": "sailcloth",
+    "qty": 20,
+    "gold": 150,
+    "desc": "+20% speed at sea."
+   },
+   "plate": {
+    "name": "Iron plating",
+    "mat": "thorn_iron",
+    "qty": 20,
+    "gold": 200,
+    "desc": "+50 hull."
+   },
+   "shield": {
+    "name": "Ward-shield",
+    "mat": "glyphstone",
+    "qty": 10,
+    "gold": 400,
+    "desc": "Most sea monsters don't notice you, and your crew start every sea battle shielded (+3 defense for 3 rounds)."
+   }
+  },
+  "purseSteps": [
+   0,
+   50,
+   100,
+   200,
+   500,
+   1000
+  ],
+  "qtySteps": [
+   0,
+   5,
+   10,
+   20,
+   40
+  ]
  }
 };
 
@@ -33226,7 +33508,7 @@ const KB_DEF = [
   ['up', 'Move up', 'w', 'Move & interact'], ['down', 'Move down', 's', 'Move & interact'], ['left', 'Move left', 'a', 'Move & interact'], ['right', 'Move right', 'd', 'Move & interact'],
   ['interact', 'Interact / talk / dock', 'e', 'Move & interact'], ['map', 'World map / sea chart', 'n', 'Move & interact'],
   ['inventory', 'Items', 'i', 'Menu screens'], ['gear', 'Equipment', 'p', 'Menu screens'], ['spells', 'Spellbook', 'm', 'Menu screens'], ['skills', 'Skills & perks', 'k', 'Menu screens'],
-  ['companions', 'Companions', 'h', 'Menu screens'], ['quests', 'Quests', 'j', 'Menu screens'],
+  ['companions', 'Companions', 'h', 'Menu screens'], ['quests', 'Quests', 'j', 'Menu screens'], ['fleet', 'Fleet', 'o', 'Menu screens'],
   ['spell', 'Cast a spell', '1', 'Battle'], ['ability', 'Use ability', '2', 'Battle'], ['item', 'Use an item', '3', 'Battle'], ['defend', 'Defend', '4', 'Battle'], ['taunt', 'Taunt', '5', 'Battle'],
   ['next', 'Next party member', 'tab', 'Battle'], ['flee', 'Flee', 'f', 'Battle'],
   ['navigator', 'Navigator autopilot', 'g', 'Sailing'], ['course', 'Change course', 'c', 'Sailing']];
@@ -33325,6 +33607,7 @@ function pouchCount(id) { return pouchOn() ? ((G.pouch || {})[id] || 0) : 0; }
 function pocketLine() { return Object.keys(PK().caps || {}).map(t => `${(PK().labels || {})[t] || t} ${pocketUsed(t)}/${pocketCap(t)}`).join('   '); }
 function add(id, n = 1, quietDiscover) {
   if (G) { G.seen = G.seen || {}; G.seen[id] = true; }
+  if (item(id).type === 'build') { G.store = G.store || {}; G.store[id] = (G.store[id] || 0) + n; return; }
   { const room = pocketRoom(id); if (n > room) { toStore(id, n - room); n = room; } }
   if (n > 0) G.inv[id] = count(id) + n;
   if (item(id).type === 'reagent' && !G.discovered[id]) discover(id, quietDiscover);
@@ -33612,6 +33895,7 @@ async function talk(npc) {
 function objProgress(q, i) {
   const o = q.objectives[i];
   if (o.type === 'collect') return Math.min(o.qty, count(o.item));
+  if (o.type === 'store') return Math.min(o.qty, (G.store || {})[o.item] || 0);
   if (o.type === 'defeat') return Math.min(o.qty, ((G.qprog[q.id] || {})[i] || 0));
   if (o.type === 'visit') return G.visited[o.map] ? 1 : 0;
   if (o.type === 'escort') return G.quests[q.id] === 'done' ? 1 : 0;
@@ -33620,6 +33904,7 @@ function objProgress(q, i) {
 function objGoal(o, q) { if (o.type === 'visit' || o.type === 'escort') return 1; if (q && q.side && o.type === 'defeat' && perk('studyHalf')) return Math.ceil(o.qty / 2); return o.qty; }
 function objLabel(o) {
   if (o.type === 'collect') return `Bring ${o.qty} ${item(o.item).name}`;
+  if (o.type === 'store') return `Have ${o.qty} ${item(o.item).name} in your storehouse`;
   if (o.type === 'defeat') return `Defeat ${o.qty} ${(D.enemies[o.enemy] || { name: o.enemy }).name}`;
   if (o.type === 'visit') return `Travel to ${(D.maps[o.map] || { name: o.map }).name}`;
   if (o.type === 'escort') return `Bring ${(D.helpers[o.who] || { name: o.who }).name} home to ${(((D.sea || {}).ports || []).find(p => p.id === o.land) || { name: o.land }).name} and meet ${(D.npcs[o.ruler] || { name: 'the ruler' }).name}`;
@@ -33647,7 +33932,7 @@ async function giverQuests(npc, opts = {}) {
   const actives = D.quests.filter(q => G.quests[q.id] === 'active' && (q.giver === giver || (!q.giver && npc.def.role === 'wizard')));
   let any = false;
   for (const q of actives) if (questDone(q)) {
-    q.objectives.forEach(o => { if (o.type === 'collect') take(o.item, o.qty); });
+    q.objectives.forEach(o => { if (o.type === 'collect') take(o.item, o.qty); if (o.type === 'store') { G.store[o.item] -= o.qty; if (!G.store[o.item]) delete G.store[o.item]; } });
     G.quests[q.id] = 'done'; await say(nm, q.done, sp); grantReward(q.reward); any = true; noteKingdoms();
     if (q.survivor) await survivorStepDone(q);
   }
@@ -33674,15 +33959,21 @@ async function shopTalk(npc, skipIntro) {
   const shop = D.shops[npc.def.shop] || { name: 'Shop', sells: [], buysTypes: ['reagent'] };
   if (!skipIntro) await say(npc.def.name, npc.def.dialog, npc.def.sprite);
   for (;;) {
-    const c = await choose(shop.name, [{ label: 'Buy', value: 'buy' }, { label: 'Sell', value: 'sell' }, { label: 'Leave', value: 'leave' }], { width: 300 });
-    if (c === 'buy') await openMenu({ title: 'Buy', width: 560, footer: () => `Gold: ${G.gold}    Enter: buy 1    Shift+Enter: buy 5`,
+    const fsH = flagship(), hasHold = fsH && G.shipAt === outdoorOf(R.mapId) && Object.keys(fsH.hold || {}).some(id => (shop.buysTypes || []).includes(item(id).type));
+    const c = await choose(shop.name, [{ label: 'Buy', value: 'buy' }, { label: 'Sell', value: 'sell' }, ...(hasHold ? [{ label: `Sell from ${fsH.name}'s hold`, value: 'hold' }] : []), { label: 'Leave', value: 'leave' }], { width: 300 });
+    if (c === 'buy') await openMenu({ title: 'Buy', width: 560, footer: () => `Gold: ${G.gold}    Enter: buy 1    Shift+Enter: buy 5${flagship() && G.shipAt === outdoorOf(R.mapId) ? '    Hold: ' + holdLine(flagship()) : ''}`,
       items: () => {
         let ids = shop.sellsDiscoveredSeeds ? Object.keys(G.discovered).map(r => item(r).seed).filter(s => s && D.items[s]) : [];
         ids = ids.concat(shop.sells || []).concat((G.shopUnlocks || {})[npc.def.shop] || []).concat(Object.entries(shop.researchSells || {}).filter(([, r]) => (G.research || {})[r]).map(([i]) => i)).filter(id => D.items[id] && !(item(id).type === 'upgrade' && item(id).up && home().up[item(id).up]) && !(item(id).gh != null && G.gh !== item(id).gh - 1));
         const gd = guildFor(npc.def.shop); for (const g of Object.keys(gd)) if (!ids.includes(g)) ids.push(g);
+        for (const [bid, kg] of Object.entries(shop.kingdomSells || {})) if ((G.kingdomDay || {})[kg] != null && !ids.includes(bid)) ids.push(bid);
         return ids.map(id => ({ label: item(id).name + ownedLabel(id) + (gd[id] ? `  (Miners' Guild: ${gd[id].n} left)` : ''), icon: item(id).sprite, right: buyPrice(id) + 'g', desc: `${itemDesc(id)}  (You have ${count(id)})`, value: id, disabled: G.gold < buyPrice(id) }));
       },
-      onSelect: it => { const n = keys.has('shift') ? 5 : 1; let b = 0; const gsrc = guildFor(npc.def.shop)[it.value], fromShop = (shop.sells || []).includes(it.value) || ((G.shopUnlocks || {})[npc.def.shop] || []).includes(it.value); for (let i = 0; i < n && G.gold >= buyPrice(it.value); i++) { if (gsrc && !fromShop) { if (G.guild[gsrc.cid][it.value] <= 0) break; G.guild[gsrc.cid][it.value]--; } if (['furniture', 'upgrade'].includes(item(it.value).type)) { if (!buyFurniture(it.value)) break; G.gold -= buyPrice(it.value); b++; continue; } G.gold -= buyPrice(it.value); add(it.value, 1, true); b++; } if (b) { AU.sfx('coin'); addSkillXp('bartering', 1); toast(`Bought ${b} ${item(it.value).name}`); } return false; } });
+      onSelect: it => { if (item(it.value).type === 'build') { const fs = flagship(), here = outdoorOf(R.mapId); if (!fs || G.shipAt !== here) { toast('Too bulky to carry. Sail your own ship here to load it into the hold.', UI.red); return false; } const n0 = Math.min(keys.has('shift') ? 10 : 1, holdRoom(fs, 'bulk'), Math.floor(G.gold / buyPrice(it.value))); if (n0 <= 0) { toast(!(shipType(fs).bulk) ? `Your flagship (${shipType(fs).name}) has no bulk hold. A cog or a yard-built ship can carry it.` : holdRoom(fs, 'bulk') ? 'Not enough gold.' : 'Your flagship\'s bulk hold is full.', UI.red); return false; } G.gold -= n0 * buyPrice(it.value); fs.hold[it.value] = (fs.hold[it.value] || 0) + n0; AU.sfx('coin'); toast(`${n0} ${item(it.value).name} loaded into ${fs.name}'s hold (${holdLine(fs)}).`); return false; }
+        const n = keys.has('shift') ? 5 : 1; let b = 0; const gsrc = guildFor(npc.def.shop)[it.value], fromShop = (shop.sells || []).includes(it.value) || ((G.shopUnlocks || {})[npc.def.shop] || []).includes(it.value); for (let i = 0; i < n && G.gold >= buyPrice(it.value); i++) { if (gsrc && !fromShop) { if (G.guild[gsrc.cid][it.value] <= 0) break; G.guild[gsrc.cid][it.value]--; } if (['furniture', 'upgrade'].includes(item(it.value).type)) { if (!buyFurniture(it.value)) break; G.gold -= buyPrice(it.value); b++; continue; } G.gold -= buyPrice(it.value); add(it.value, 1, true); b++; } if (b) { AU.sfx('coin'); addSkillXp('bartering', 1); toast(`Bought ${b} ${item(it.value).name}`); } return false; } });
+    else if (c === 'hold') await openMenu({ title: () => `Sell from the hold  -  ${holdLine(flagship())}`, width: 560, footer: () => `Gold: ${G.gold}    Enter: sell 1    Shift+Enter: sell all`,
+      items: () => Object.keys(flagship().hold || {}).filter(id => flagship().hold[id] > 0 && (shop.buysTypes || []).includes(item(id).type)).map(id => ({ label: item(id).name, icon: item(id).sprite, right: `${sellPrice(id)}g  (x${flagship().hold[id]})`, value: id })),
+      onSelect: it => { const fs = flagship(); const n = keys.has('shift') ? fs.hold[it.value] : 1; for (let i = 0; i < n; i++) { fs.hold[it.value]--; G.gold += sellPrice(it.value); } if (!fs.hold[it.value]) delete fs.hold[it.value]; AU.sfx('coin'); addSkillXp('bartering', 1); return false; } });
     else if (c === 'sell') await openMenu({ title: 'Sell', width: 560, footer: () => `Gold: ${G.gold}    Enter: sell 1    Shift+Enter: sell all`,
       items: () => Object.keys(G.inv).filter(id => (shop.buysTypes || []).includes(item(id).type) && count(id) > 0).map(id => ({ label: `${item(id).name}  x${count(id)}`, icon: item(id).sprite, right: sellPrice(id) + 'g', desc: itemDesc(id), value: id })),
       onSelect: it => { const n = keys.has('shift') ? count(it.value) : 1; let s = 0; for (let i = 0; i < n && take(it.value, 1); i++) { G.gold += sellPrice(it.value); s++; } if (s) { AU.sfx('coin'); addSkillXp('bartering', 1); addSkillXp('commerce', 1); toast(`Sold ${s} ${item(it.value).name} (+${s * sellPrice(it.value)}g)`); } const m = menus[menus.length - 1]; m.index = Math.max(0, Math.min(m.index, menuItems(m).length - 1)); return false; } });
@@ -33721,13 +34012,103 @@ async function ferryTalk(npc) {
   addSkillXp('sailing', 3);
 }
 async function shipwrightTalk(npc) {
+  if (G.boat || (G.fleet || []).length) return shipyardMenu(npc);
   const b = D.travel.boat;
   await say(npc.def.name, npc.def.dialog, npc.def.sprite);
   if (G.boat) { await say(npc.def.name, [`How's she handling? Hull ${ship().hull}/${ship().max}. Bring me ore and I'll make her tougher.`], npc.def.sprite); if (ship().hull < ship().max) { const cost = (ship().max - ship().hull) * ((D.sea || {}).hullRepairCost || 2); const c = await choose('Repair hull?', [{ label: 'Repair', right: cost + 'g', value: 'y', disabled: G.gold < cost }, { label: 'Not now', value: 'n' }], { width: 320 }); if (c === 'y') { G.gold -= cost; ship().hull = ship().max; toast('Hull repaired!', UI.green); } } return; }
   const price = Math.round(b.price * (1 - perk('boatDiscount')));
   const c = await choose(`Buy the ${b.name}?`, [{ label: 'Buy boat', right: price + 'g', value: 'y', disabled: G.gold < price, desc: 'Sail the open sea yourself: explore, fight sea monsters, discover new lands.' }, { label: 'Not yet', value: 'n' }], { width: 460 });
-  if (c === 'y') { G.gold -= price; G.boat = true; toast('You own a boat! Use any ferry dock to sail.', UI.green); }
+  if (c === 'y') { G.gold -= price; G.boat = true; fleet(); if (!G.fleet.length) { G.fleet.push({ uid: 1, type: 'skiff', name: b.name, hull: shipType({ type: 'skiff' }).hull, upg: {}, hold: {} }); G.flagship = 1; } toast('You own a boat! Use any ferry dock to sail.', UI.green); }
 }
+async function shipyardMenu(npc) {
+  const T = SHP().types || {}, U = SHP().upgrades || {}, yard = !!G.flags.shipyard, f = fleet();
+  await say(npc.def.name, npc.def.dialog, npc.def.sprite);
+  for (;;) {
+    const rows = [];
+    for (const sh of f) if (sh.hull < shipMax(sh) && !sh.away) { const cost = (shipMax(sh) - sh.hull) * ((D.sea || {}).hullRepairCost || 2); rows.push({ label: `Repair ${sh.name} (${sh.hull}/${shipMax(sh)})`, right: cost + 'g', disabled: G.gold < cost, value: { k: 'repair', sh, cost } }); }
+    for (const [tid, t] of Object.entries(T)) { if (t.yard && !yard) continue; const st = (G.store || {}).timber || 0; const ok = f.length < fleetLimit() && G.gold >= t.price && (!t.timber || st >= t.timber);
+      rows.push({ label: `${t.yard ? 'Build' : 'Buy'} ${/^[AEIOU]/.test(t.name) ? 'an' : 'a'} ${t.name}`, right: `${t.price}g${t.timber ? ` + ${t.timber} timber` : ''}`, disabled: !ok, value: { k: 'buy', tid, t },
+        desc: `${t.desc}  Hull ${t.hull}, speed x${t.speed}, holds: bulk ${t.bulk}, dry ${t.dry}.${f.length >= fleetLimit() ? `  Your fleet is full (${f.length}/${fleetLimit()}): each kingdom you fully unlock opens a trade route and room for one more ship.` : ''}${t.timber ? `  Timber in storehouse: ${st}.` : ''}` }); }
+    if (yard) for (const sh of f) for (const [uid, u] of Object.entries(U)) { if ((sh.upg || {})[uid] || sh.away) continue; const have = (G.store || {})[u.mat] || 0;
+      rows.push({ label: `${u.name} for ${sh.name}`, right: `${u.gold}g + ${u.qty} ${item(u.mat).name}`, disabled: G.gold < u.gold || have < u.qty, value: { k: 'upg', sh, uid, u }, desc: `${u.desc}  In your storehouse: ${have}.` }); }
+    if (!yard) rows.push({ label: 'Ask about building ships', value: { k: 'yard' }, desc: 'Orrin used to build real ships.' });
+    rows.push({ label: 'Leave', value: { k: 'x' } });
+    const c = await choose(yard ? 'Briarwick shipyard' : `${npc.def.name}: used boats`, rows, { width: 640, footer: `Gold ${G.gold}    Fleet ${f.length}/${fleetLimit()}` });
+    if (!c || c.k === 'x') return;
+    if (c.k === 'repair') { G.gold -= c.cost; c.sh.hull = shipMax(c.sh); toast(`${c.sh.name} repaired.`, UI.green); }
+    if (c.k === 'buy') { G.gold -= c.t.price; if (c.t.timber) { G.store.timber -= c.t.timber; if (!G.store.timber) delete G.store.timber; } const uid = Math.max(0, ...f.map(x => x.uid)) + 1;
+      f.push({ uid, type: c.tid, name: `${c.t.name} #${uid}`, hull: c.t.hull, upg: {}, hold: {} }); G.boat = true; if (!G.flagship) G.flagship = uid; AU.sfx('discover'); toast(`New ship: ${c.t.name}! Manage your fleet in the Fleet tab (${K('fleet')}).`, UI.green); }
+    if (c.k === 'upg') { G.gold -= c.u.gold; G.store[c.u.mat] -= c.u.qty; if (!G.store[c.u.mat]) delete G.store[c.u.mat]; c.sh.upg[c.uid] = true; c.sh.max = shipMax(c.sh); if (c.uid === 'plate') c.sh.hull += 50; AU.sfx('discover'); toast(`${c.u.name} fitted to ${c.sh.name}.`, UI.green); }
+    if (c.k === 'yard') { await giverQuests(npc, { progress: true }) || await say(npc.def.name, ['Timber. Verdant timber, and plenty of it. Open trade with the Verdant Isles and we\'ll talk.'], npc.def.sprite); }
+  }
+}
+// ================= FLEET (menu tab) =================
+function fleetRows() {
+  const f = fleet(); if (!f.length) return [{ label: 'No ships yet', disabled: true, desc: 'Buy a boat from Shipwright Orrin in Saltmere.' }];
+  const rows = f.map(sh => { const t = shipType(sh), fl = sh.uid === (flagship() || {}).uid; const cap = sh.captain && D.helpers[sh.captain] ? D.helpers[sh.captain].name : fl ? 'you' : 'none';
+    const where = sh.away ? `at sea, back day ${sh.away.returnDay}` : sh.route ? `route: ${portName(sh.route)}` : fl ? 'your flagship' : 'in harbour';
+    return { label: `${sh.name}${fl ? '  (flagship)' : ''}`, right: where, value: sh, desc: `${t.name}. Hull ${sh.hull}/${shipMax(sh)}. Holds: ${holdLine(sh)}. Captain: ${cap}. Navigator: ${sh.navigator && D.helpers[sh.navigator] ? D.helpers[sh.navigator].name : 'none'}.${Object.keys(sh.upg || {}).length ? '  Upgrades: ' + Object.keys(sh.upg).map(u => ((SHP().upgrades || {})[u] || {}).name).join(', ') + '.' : ''}` }; });
+  rows.push({ label: `Trade routes: ${routes().length}`, right: `fleet ${f.length}/${fleetLimit()}`, disabled: true, desc: routes().length ? `Open routes: ${routes().map(p => p.name).join(', ')}. Assign a ship with a captain to sail one on its own.` : 'Fully unlock a kingdom (finish its ruler\'s quests) to open a trade route. Until then only you can carry goods, in your flagship.' });
+  return rows;
+}
+function portName(pid) { return ((((D.sea || {}).ports || []).find(p => p.id === pid)) || { name: pid }).name; }
+async function fleetMenu() {
+  await openMenu({ title: 'Fleet', width: 700, minRows: 7, closeKey: 'o', footer: () => 'Enter: manage a ship', items: () => fleetRows(), onSelect: it => { if (it.value && it.value.uid) script(() => shipActions(it.value)); return false; } });
+}
+function freeCrew() { return Object.keys(G.helpers || {}).filter(id => D.helpers[id] && !G.helpers[id].guest && !['away', 'fleet', 'party'].includes(G.helpers[id].role)); }
+async function pickCrew(title, cur) {
+  const ids = freeCrew().concat(cur ? [cur] : []);
+  const c = await choose(title, [{ label: 'Nobody', value: '__none' }].concat(ids.map(id => ({ label: D.helpers[id].name, icon: D.helpers[id].sprite, right: `Sailing ${((D.helpers[id].skills || {}).sailing || 0)}  Bartering ${((D.helpers[id].skills || {}).bartering || 0)}`, value: id, desc: ROLES[G.helpers[id].role] || '' }))), { width: 560 });
+  return c;
+}
+async function shipActions(sh) {
+  const home = R.mapId === 'briarwick' || outdoorOf(R.mapId) === 'briarwick', fl = sh.uid === (flagship() || {}).uid;
+  const rows = [];
+  if (!fl && !sh.away && !sh.route) rows.push({ label: 'Make this my flagship', value: 'flag', disabled: R.scene === 'sea', desc: 'The ship you sail yourself.' });
+  if (!fl) rows.push({ label: 'Captain', right: sh.captain && D.helpers[sh.captain] ? D.helpers[sh.captain].name : 'none', value: 'cap', disabled: !!sh.away, desc: 'Route ships need a companion captain. Bartering sets prices; Sailing keeps the ship safe.' });
+  rows.push({ label: 'Navigator', right: sh.navigator && D.helpers[sh.navigator] ? D.helpers[sh.navigator].name : 'none', value: 'nav', disabled: !!sh.away, desc: 'Optional. Shortens voyages and earns Sailing XP.' });
+  if (!fl) rows.push({ label: 'Trade route', right: sh.route ? portName(sh.route) : 'none', value: 'route', disabled: !!sh.away || !routes().length, desc: routes().length ? 'The ship sails this route on its own, repeating its standing orders every round trip.' : 'No trade routes yet.' });
+  if (sh.route) rows.push({ label: 'Standing orders', value: 'orders', desc: 'What to sell, what to buy and how much gold to take each trip.' });
+  if (fl && home && !sh.away) { rows.push({ label: 'Load cargo from the storehouse', value: 'load', desc: 'Dry goods (reagents, gems, ore, potions...) to sell at other ports.' }); rows.push({ label: 'Unload everything to the storehouse', value: 'unload', disabled: !Object.keys(sh.hold || {}).length }); }
+  rows.push({ label: 'Back', value: 'x' });
+  const c = await choose(`${sh.name}  -  ${holdLine(sh)}`, rows, { width: 560 });
+  if (c === 'flag') { G.flagship = sh.uid; toast(`${sh.name} is now your flagship.`, UI.green); }
+  if (c === 'cap' || c === 'nav') { const key = c === 'cap' ? 'captain' : 'navigator'; const id = await pickCrew(c === 'cap' ? 'Who captains her?' : 'Who navigates?', sh[key]); if (id == null) return;
+    if (sh[key] && G.helpers[sh[key]] && G.helpers[sh[key]].role === 'fleet') G.helpers[sh[key]].role = 'idle';
+    sh[key] = id === '__none' ? null : id; if (sh[key] && (sh.route || key === 'captain')) G.helpers[sh[key]].role = 'fleet'; if (fl && key === 'navigator' && sh[key]) G.helpers[sh[key]].role = 'navigator'; }
+  if (c === 'route') { const p = await choose('Which route?', [{ label: 'No route (stay in harbour)', value: '__none' }].concat(routes().map(p => ({ label: p.name, right: `${2 * seaDays(p)} days round trip`, value: p.id }))), { width: 460 }); if (p == null) return; sh.route = p === '__none' ? null : p; sh.orders = sh.orders || { sell: {}, buy: {}, purse: 100 };
+    if (sh.route && !sh.captain) toast('Give her a captain, or she will stay in harbour.', UI.red); else if (sh.route) toast(`${sh.name} will sail for ${portName(sh.route)} at dawn.`, UI.green); }
+  if (c === 'orders') await ordersMenu(sh);
+  if (c === 'load') await openMenu({ title: () => `Load ${sh.name}  -  ${holdLine(sh)}`, width: 600, minRows: 8, footer: 'Enter: load as many as fit',
+      items: () => Object.keys(G.store || {}).filter(id => G.store[id] > 0 && holdKind(id) === 'dry').map(id => ({ label: item(id).name, icon: item(id).sprite, right: `${G.store[id]} stored`, value: id })),
+      onSelect: it => { const n = Math.min(G.store[it.value], holdRoom(sh, 'dry')); if (!n) { toast('The dry hold is full.', UI.red); return false; } G.store[it.value] -= n; if (!G.store[it.value]) delete G.store[it.value]; sh.hold[it.value] = (sh.hold[it.value] || 0) + n; AU.sfx('menu'); return false; } });
+  if (c === 'unload') { const n = unloadHold(sh); toast(`Unloaded ${n} goods to the storehouse.`, UI.green); }
+}
+async function ordersMenu(sh) {
+  const O = sh.orders = sh.orders || { sell: {}, buy: {}, purse: 100 }; const QS = SHP().qtySteps || [0, 5, 10, 20, 40], PS = SHP().purseSteps || [0, 50, 100, 200, 500];
+  const port = ((D.sea || {}).ports || []).find(p => p.id === sh.route); const market = port ? [...new Set(portMarket(port).flatMap(s => (D.shops[s].sells || []).concat(Object.entries(D.shops[s].kingdomSells || {}).filter(([, k]) => (G.kingdomDay || {})[k] != null).map(([i]) => i))))].filter(id => D.items[id] && !['upgrade', 'furniture'].includes(item(id).type)) : [];
+  const next = (arr, v) => arr[(arr.indexOf(v) + 1) % arr.length];
+  await openMenu({ title: () => `${sh.name}: standing orders for ${portName(sh.route)}`, width: 640, minRows: 10, footer: 'Enter: change an amount (per trip). Goods to sell come from your storehouse; purchases go to it.',
+    items: () => [{ label: 'Gold to take each trip', right: `${O.purse}g`, value: 'purse' }]
+      .concat(Object.keys(G.store || {}).filter(id => G.store[id] > 0 && holdKind(id) === 'dry').concat(Object.keys(O.sell).filter(id => O.sell[id] && !(G.store || {})[id])).map(id => ({ label: `Sell ${item(id).name}`, icon: item(id).sprite, right: O.sell[id] ? `up to ${O.sell[id]}` : '-', value: 's:' + id, desc: `In storehouse: ${(G.store || {})[id] || 0}.` })))
+      .concat(market.map(id => ({ label: `Buy ${item(id).name}`, icon: item(id).sprite, right: O.buy[id] ? `up to ${O.buy[id]}` : '-', value: 'b:' + id, desc: `${item(id).price}g each before Bartering. ${holdKind(id) === 'bulk' ? 'Bulk hold.' : 'Dry hold.'}` }))),
+    onSelect: it => { if (it.value === 'purse') O.purse = next(PS, O.purse); else { const [k, id] = [it.value[0], it.value.slice(2)]; const tgt = k === 's' ? O.sell : O.buy; tgt[id] = next(QS, tgt[id] || 0); if (!tgt[id]) delete tgt[id]; } AU.sfx('menu'); return false; } });
+}
+// route ships sail on their own: leave at dawn, trade, come home, repeat
+function fleetTick(out) {
+  for (const sh of fleet()) {
+    if (sh.away && G.day >= sh.away.returnDay) { const ex = sh.away; sh.away = null; const rp = resolveTrade(Object.assign({}, ex, { toStore: true, shipRef: sh })); rp.title = `${sh.name}: ${rp.title}`; G.expLog = [rp].concat(G.expLog || []).slice(0, 14); out.push(rp);
+      for (const id of [sh.captain, sh.navigator]) if (id && G.helpers[id] && sh.route) G.helpers[id].role = 'fleet'; }
+    if (!sh.away && sh.route && sh.captain && G.helpers[sh.captain] && sh.uid !== (flagship() || {}).uid) {
+      const port = ((D.sea || {}).ports || []).find(p => p.id === sh.route); if (!port) continue; const O = sh.orders || { sell: {}, buy: {}, purse: 0 };
+      const cargo = {}; let room = shipType(sh).dry || 0; for (const [id, n] of Object.entries(O.sell || {})) { const k = Math.min(n, (G.store || {})[id] || 0, room); if (k > 0) { cargo[id] = k; G.store[id] -= k; if (!G.store[id]) delete G.store[id]; room -= k; } }
+      const purse = Math.min(O.purse || 0, G.gold); G.gold -= purse; const crew = [sh.captain, sh.navigator].filter(Boolean); const days = 2 * Math.max(1, Math.ceil(seaDays(port) * (sh.navigator ? 0.9 : 1) / shipSpeed2(sh)));
+      const success = clamp(0.97 - 0.012 * seaDays(port) * 4 + 0.02 * crewBest(crew, 'sailing') + 0.15 * (sh.hull / shipMax(sh) - 1) + ((sh.upg || {}).shield ? 0.05 : 0), 0.3, 0.98);
+      sh.away = { kind: 'trade', port: port.id, members: crew, cargo, orders: Object.assign({}, O.buy || {}), purse, days, success, death: (1 - success) * 0.25, returnDay: G.day + days, start: G.day };
+    }
+  }
+}
+function shipSpeed2(sh) { return shipType(sh).speed * ((sh.upg || {}).sails ? 1.2 : 1); }
 async function helperTalk(npc) {
   const id = npc.def.helper, h = D.helpers[id]; if (!h) return;
   const sv = ((D.survivors || {}).list || []).find(x => x.helper === id); if (sv && (G.survDone || []).includes(sv.id) && !G.flags['home_' + sv.id]) { await offerHome(sv); return; }
@@ -33742,7 +34123,7 @@ async function helperTalk(npc) {
   await assignRole(id);
 }
 function skillStr(sk) { return Object.entries(sk || {}).filter(([, v]) => v > 0).map(([k, v]) => `${D.skills[k] ? D.skills[k].name : k} ${v}`).join(', ') || 'none'; }
-const ROLES = { party: 'Party', greenhouse: 'Gardener', shop: 'Shopkeeper', navigator: 'Navigator', idle: 'Idle', away: 'Away' };
+const ROLES = { party: 'Party', greenhouse: 'Gardener', shop: 'Shopkeeper', navigator: 'Navigator', idle: 'Idle', away: 'Away', fleet: 'Fleet crew' };
 const STALL_TYPES = ['reagent', 'material', 'metal', 'gem', 'consumable'];
 const KEEP_STEPS = [-1, 0, 5, 10, 20];
 function wageOf(id) { const h = D.helpers[id]; if ((G.helpers[id] || {}).guest) return 0; return h ? Math.round(h.wage * (1 - perk('wageDiscount') - (home().furn.hearth ? 0.1 : 0))) : 0; }
@@ -33905,7 +34286,7 @@ async function newDay(reason, atSea) {
       loadMap(D.maps.house ? 'house' : D.start.map, hpos.x, hpos.y); R.dir = 'down'; }
     else if (!atSea) loadMap(R.mapId, G.x, G.y); // wake where you slept (monsters and forage respawn)
   });
-  const back = resolveExpeditions(); autoCompanionPoints(); guildTick();
+  const back = resolveExpeditions(); fleetTick(back); autoCompanionPoints(); guildTick();
   if (reason !== 'dawn') saveGame(true);
   if (reason === 'dawn') report.unshift('The sun rises. You stayed up all night and feel far from rested (HP not restored).');
   if (reason === 'camp') report.unshift('You break camp at first light.');
@@ -34019,7 +34400,7 @@ const MB = 46;   // height of the tab strip
 const MTABS = [{ label: 'Items', key: 'i', id: 'inventory', run: () => inventoryMenu() }, { label: 'Equipment', key: 'p', id: 'gear', run: () => paperdoll() },
   { label: 'Spells', key: 'm', id: 'spells', run: () => spellMenu(), land: true }, { label: 'Skills', key: 'k', id: 'skills', run: () => skillsMenu() },
   { label: 'Companions', key: 'h', id: 'companions', run: () => helpersMenu() }, { label: 'Quests', key: 'j', id: 'quests', run: () => questMenu() },
-  { label: 'Game', key: 'escape', run: () => gameScreen() }];
+  { label: 'Fleet', key: 'o', id: 'fleet', run: () => fleetMenu() }, { label: 'Game', key: 'escape', run: () => gameScreen() }];
 let MASTER = null;
 function mtabOff(i) { return MTABS[i].land && R.scene === 'sea'; }
 function openMaster(tab) {
@@ -34268,6 +34649,7 @@ function startCombat(en, opts = {}) {
     grid[u.y][u.x] = zone.ground || '.';
   }
   const th = threat(def, cm); C = { caveMult: cm, sea, board, music: def.music || zone.music || 'battle', grid, units, phase: 'party', sel: null, mode: 'move', action: null, targets: [], log: [`${def.name} attacks!  (Danger: ${th.label})`].concat(wy ? ['You are Weary: -20% attack and defense.'] : []), floats: [], timer: 0, queue: [], en, round: 1, result: null, shake: 0 };
+  if (sea && shipShield()) for (const u of C.units) if (u.side === 'party') u.buffs.push({ stat: 'def', amt: 3, turns: 3 });
   R.scene = 'combat'; R.moving = null; if (SEA) SEA.auto = null; stat('battles');
   selectNext();
 }
@@ -35024,6 +35406,7 @@ function questAvailable(q, giver) {
   if (q.unlockLevel && playerLvl() < q.unlockLevel) return false;
   if (q.unlockFlag && !G.flags[q.unlockFlag]) return false;
   if (q.regionTowns && !regionTownsWarded(q.regionTowns)) return false;
+  if (q.kingdom && (G.kingdomDay || {})[q.kingdom] == null) return false;
   if (q.survivor != null) { const st = G.surv; if (!st || st.id !== q.survivor || st.step !== q.step || G.day < (st.readyDay || 0)) return false; }
   return true;
 }
@@ -35163,7 +35546,7 @@ async function enterSea(fromMap) {
   const p = seaPortFor(fromMap); if (!p || !seaMap()) { toast('No sea route from here.'); return; }
   if ((G.expeditions || []).some(x => x.kind === 'trade')) { const x = G.expeditions.find(x => x.kind === 'trade'); toast(`Your boat is away on a trade voyage (back ${x.returnDay - G.day <= 1 ? 'tomorrow' : 'in ' + (x.returnDay - G.day) + ' days'}).`, UI.red); return; }
   await say('', ['You cast off in your skiff. The wind fills the sail...', 'Steer with the arrow keys. Sail into a harbour to go ashore. N: sea chart.']);
-  await fadeTo(() => { SEA = { from: p.id, x: p.x, y: p.y, dir: 'right', moving: null, monsters: [], spawnT: 0, tiles: 0, lastBlock: -9 }; G.ports[p.id] = true; reveal(p.x, p.y); R.scene = 'sea'; R.chart = false; });
+  G.shipAt = null; await fadeTo(() => { SEA = { from: p.id, x: p.x, y: p.y, dir: 'right', moving: null, monsters: [], spawnT: 0, tiles: 0, lastBlock: -9 }; G.ports[p.id] = true; reveal(p.x, p.y); R.scene = 'sea'; R.chart = false; });
 }
 async function portPrompt(p) {
   if (p.soon) { await say(p.name, [p.note || `${p.name} - coming in a future update.`]); return; }
@@ -35174,7 +35557,8 @@ async function portPrompt(p) {
   if (c !== 'y') return;
   addSkillXp('sailing', 2);
   if (SEA && SEA.from && SEA.from !== p.id) { const v = (SP().voyageXp || 6) + Math.floor((SEA.tiles || 0) / 10); addSkillXp('sailing', v); const nav = navigatorId(); if (nav && G.helpers[nav]) G.helpers[nav].xp = (G.helpers[nav].xp || 0) + v; toast(`Voyage complete: +${v} Sailing XP${nav ? ` (and ${D.helpers[nav].name}, your navigator)` : ''}.`, UI.blue); autoCompanionPoints(); }
-  await fadeTo(() => { SEA = null; R.scene = 'world'; loadMap(p.map, m.dock.x, m.dock.y); });
+  await fadeTo(() => { SEA = null; R.scene = 'world'; G.shipAt = p.map; loadMap(p.map, m.dock.x, m.dock.y); });
+  if (p.id === 'briarwick' && flagship() && Object.keys(flagship().hold || {}).length) { const n = unloadHold(flagship()); toast(`Unloaded ${n} goods from the hold to your storehouse.`, UI.green); }
   if (!(R.map.npcs || []).some(n => (D.npcs[n.id] || {}).role === 'ferry')) toast('Press E on the dock to set sail again.', UI.blue);
 }
 async function sailPrompt() {
@@ -35191,7 +35575,7 @@ function updateSea(dt) {
   const S_ = SEA; for (const m of S_.monsters) m.anim = Math.min(1, (m.anim || 1) + dt / 0.25);
   if (overlayActive() || R.busy || R.chart) return;
   if (S_.moving) {
-    S_.moving.t += dt * (1 + perk('seaSpeed') + 0.03 * advLvl('navigation') + (navigatorId() ? 0.1 : 0)) / 0.13;
+    S_.moving.t += dt * (1 + perk('seaSpeed') + 0.03 * advLvl('navigation') + (navigatorId() ? 0.1 : 0)) * shipSpeed() / 0.13;
     if (S_.moving.t >= 1) { S_.x = S_.moving.tx; S_.y = S_.moving.ty; S_.moving = null; seaArrive(); if (R.busy || R.scene !== 'sea') return; }
   }
   if (!S_.moving) {
@@ -35225,7 +35609,7 @@ function updateSeaMonsters(dt) {
   for (const m of S_.monsters) {
     if (m.stun > 0) m.stun -= dt; m.cd -= dt; if (m.cd > 0) continue; m.cd = 0.5 + Math.random() * 0.6;
     const dist = Math.abs(m.x - S_.x) + Math.abs(m.y - S_.y); let dx = 0, dy = 0;
-    if (dist <= 6 - perk('seaAvoid') && m.stun <= 0) { const ax = S_.x - m.x, ay = S_.y - m.y; if (Math.abs(ax) > Math.abs(ay)) dx = Math.sign(ax); else dy = Math.sign(ay); }
+    if (dist <= (shipShield() ? 1 : 6) - perk('seaAvoid') && m.stun <= 0) { const ax = S_.x - m.x, ay = S_.y - m.y; if (Math.abs(ax) > Math.abs(ay)) dx = Math.sign(ax); else dy = Math.sign(ay); }
     else { if (Math.random() < 0.5) continue; const d = N4[rnd(0, 3)]; dx = d[0]; dy = d[1]; }
     const nx = m.x + dx, ny = m.y + dy;
     if ((nx === S_.x && ny === S_.y) || (nx === pt.x && ny === pt.y)) { if (m.stun <= 0) { encounter(m, { sea: true }); return; } continue; }
@@ -35384,7 +35768,27 @@ async function mine(tx, ty, kind) {
   const id = pool[idx][0]; const n = 1 + (Math.random() < 0.3 ? 1 : 0) + (Math.random() < 0.05 * skillLvl('herbalism') ? 1 : 0);
   add(id, n, true); AU.sfx('pickup'); toast(`+${n} ${item(id).name}`, UI.green); G.time += 15;
 }
-function ship() { G.ship = G.ship || { hull: (D.sea || {}).hull || 60, max: (D.sea || {}).hull || 60 }; return G.ship; }
+// ---- the fleet: G.fleet = [{ uid, type, name, hull, upg: {sails, plate, shield}, hold: {}, navigator, captain, route, orders, away }]
+function SHP() { return D.ships || { types: {}, upgrades: {} }; }
+function shipType(sh) { return (SHP().types || {})[sh.type] || { name: 'Boat', hull: (D.sea || {}).hull || 60, speed: 1, bulk: 0, dry: 30 }; }
+function shipMax(sh) { return shipType(sh).hull + ((sh.upg || {}).plate ? 50 : 0); }
+function fleet() {
+  if (!G.fleet) { G.fleet = []; if (G.boat) { const old = G.ship || {}; G.fleet.push({ uid: 1, type: 'skiff', name: (D.travel.boat || {}).name || 'Skiff', hull: old.hull || 60, upg: {}, hold: {} }); G.flagship = 1; } }
+  for (const sh of G.fleet) { sh.max = shipMax(sh); sh.hold = sh.hold || {}; sh.upg = sh.upg || {}; }
+  return G.fleet;
+}
+function flagship() { const f = fleet(); return f.find(x => x.uid === G.flagship) || f.find(x => !x.route && !x.away) || f[0] || null; }
+function ship() { const f = flagship(); if (f) { f.max = shipMax(f); return f; } G.ship = G.ship || { hull: (D.sea || {}).hull || 60, max: (D.sea || {}).hull || 60 }; return G.ship; }
+function shipSpeed() { const f = flagship(); return f ? shipType(f).speed * ((f.upg || {}).sails ? 1.2 : 1) : 1; }
+function shipShield() { const f = flagship(); return !!(f && (f.upg || {}).shield); }
+function holdKind(id) { return item(id).type === 'build' ? 'bulk' : 'dry'; }
+function holdUsed(sh, kind) { return Object.entries(sh.hold || {}).reduce((a, [id, n]) => a + (holdKind(id) === kind ? n : 0), 0); }
+function holdRoom(sh, kind) { return Math.max(0, (shipType(sh)[kind] || 0) - holdUsed(sh, kind)); }
+function holdLine(sh) { const t = shipType(sh); return `bulk ${holdUsed(sh, 'bulk')}/${t.bulk || 0}  dry ${holdUsed(sh, 'dry')}/${t.dry || 0}`; }
+function routes() { const out = []; for (const sv of (SV().list || [])) if ((G.kingdomDay || {})[sv.id] != null) { const p = ((D.sea || {}).ports || []).find(p => p.id === sv.land); if (p) out.push(p); } return out; }
+function fleetLimit() { return routes().length + 1; }
+function shipAtHome(sh) { return !sh.away && !(R.scene === 'sea' && sh === flagship()); }
+function unloadHold(sh) { let n = 0; G.store = G.store || {}; for (const [id, k] of Object.entries(sh.hold || {})) { if (k > 0) { G.store[id] = (G.store[id] || 0) + k; n += k; } } sh.hold = {}; return n; }
 function adjacentDeck(e) { return N4.some(([dx, dy]) => { const c = (C.grid[e.y + dy] || [])[e.x + dx]; return c === 'B' || c === 'A' || c === 'P'; }); }
 function ramHull(e) {
   const dmg = Math.max(1, Math.round(e.atk * 0.6) - ptVal('sailing', 'man')); const s = ship(); s.hull = Math.max(0, s.hull - dmg);
@@ -35679,12 +36083,13 @@ function resolveTrade(ex) {
   const port = ((D.sea || {}).ports || []).find(p => p.id === ex.port), bart = crewBest(ex.members, 'bartering'), ok = Math.random() < ex.success;
   const rp = { kind: 'trade', title: `Trade voyage to ${port.name}`, day: G.day, ok, sold: {}, bought: {}, earned: 0, spent: 0, lost: {}, gold: 0, members: [], loot: {} };
   let purse = ex.purse; const keepFrac = ok ? 1 : 0.3 + Math.random() * 0.4;
-  if (!ok) { ship().hull = Math.max(1, Math.round(ship().hull * 0.6)); purse = Math.round(purse * keepFrac); }
+  const hullOf = ex.shipRef || ship(); if (!ok) { hullOf.hull = Math.max(1, Math.round(hullOf.hull * 0.6)); purse = Math.round(purse * keepFrac); }
+  const roomLeft = ex.shipRef ? { bulk: shipType(ex.shipRef).bulk || 0, dry: shipType(ex.shipRef).dry || 0 } : null;
   for (const [id, n] of Object.entries(ex.cargo)) { const k = Math.round(n * keepFrac); if (n - k) rp.lost[id] = n - k; if (!k) continue; const pr = tradeSellPrice(id, port, bart); rp.sold[id] = k; rp.earned += pr * k; }
   purse += rp.earned;
-  for (const [id, want] of Object.entries(ex.orders)) { const pr = tradeBuyPrice(id, bart); let got = 0; while (got < want && purse >= pr) { purse -= pr; got++; } if (got) { rp.bought[id] = got; rp.spent += got * pr; add(id, got, true); } }
+  for (const [id, want] of Object.entries(ex.orders)) { const pr = tradeBuyPrice(id, bart); let got = 0; while (got < want && purse >= pr && (!roomLeft || roomLeft[holdKind(id)] > 0)) { purse -= pr; got++; if (roomLeft) roomLeft[holdKind(id)]--; } if (got) { rp.bought[id] = got; rp.spent += got * pr; if (ex.toStore) { G.store = G.store || {}; G.store[id] = (G.store[id] || 0) + got; } else add(id, got, true); } }
   G.gold += purse; rp.gold = purse; rp.purseOut = ex.purse;
-  for (const id of ex.members) { if (!G.helpers[id]) continue; const st = G.helpers[id], before = hLvl(id), gain = 10 * ex.days + (id === ex.members[0] ? 15 : id === ex.members[1] ? 10 : 0); st.xp = (st.xp || 0) + gain; rp.members.push({ id, xp: gain, from: before, to: hLvl(id) }); }
+  for (const id of ex.members) { if (!G.helpers[id]) continue; const st = G.helpers[id], before = hLvl(id), gain = 10 * (ex.days || 2) + (id === ex.members[0] ? 15 : id === ex.members[1] ? 10 : 0); st.xp = (st.xp || 0) + gain; rp.members.push({ id, xp: gain, from: before, to: hLvl(id) }); }
   addSkillXp('commerce', Math.round(rp.earned / 40)); addSkillXp('bartering', Math.round(rp.earned / 60));
   deathRoll(ex, ok ? 0 : ex.death * 2, rp);
   rp.summary = ok ? `Sold ${Object.values(rp.sold).reduce((a, b) => a + b, 0)} goods for ${rp.earned}g and spent ${rp.spent}g. ${purse}g came home.` : `Pirates struck! Some cargo was lost and the hull took damage. ${purse}g came home.`;
@@ -35693,7 +36098,7 @@ function resolveTrade(ex) {
 // ---- menus ----
 function expeditionRows() {
   const rows = [{ label: 'Send a party on an adventure...', right: 'Adventure', desc: 'Companions clear a zone or cave level you have been to and come back with XP, gold and loot - if all goes well.', act: () => script(planAdventure) },
-    { label: 'Send a trade voyage...', right: G.boat ? 'Trade' : 'needs a boat', disabled: !G.boat, desc: G.boat ? 'Companions sail your boat to a port you have visited, sell the goods you send and buy what you ask for.' : 'Buy a boat from the shipwright first.', act: () => script(planTrade) }];
+    { label: 'Trade voyages now sail on trade routes', right: `Fleet (${K('fleet')})`, disabled: true, desc: 'Fully unlock a kingdom to open a trade route, then give a ship a captain and standing orders in the Fleet tab.' }];
   for (const ex of G.expeditions || []) { const d = ex.returnDay - G.day; rows.push({ label: `${ex.kind === 'trade' ? 'Trade: ' : ''}${ex.kind === 'trade' ? (((D.sea || {}).ports || []).find(p => p.id === ex.port) || {}).name : zoneName(ex.zone)}`, right: d <= 1 ? 'back tomorrow' : `back in ${d} days`, disabled: true, desc: `${ex.members.map(id => (D.helpers[id] || { name: id }).name).join(', ')}.  ${Math.round(ex.success * 100)}% success.` }); }
   for (const rp of (G.expLog || []).slice(0, 6)) rows.push({ label: `Report: ${rp.title}`, right: rp.ok ? 'success' : 'trouble', desc: rp.summary, act: () => script(() => showExpeditionReport(rp)) });
   return rows;
@@ -35875,7 +36280,7 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 // debug/test hook (harmless in production)
-window.__game = { storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
+window.__game = { fleet, flagship, fleetMenu, fleetTick, routes, fleetLimit, shipyardMenu, unloadHold, holdLine, ordersMenu, shipActions, storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
 })();
 
 </script>
