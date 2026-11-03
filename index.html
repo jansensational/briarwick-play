@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.16.0</title>
+<title>Reagents of Briarwick v0.17.0</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -46,7 +46,8 @@ window.GAME_DATA = {
   "reportWebhook": "https://discord.com/api/webhooks/1566515455265349643/JyhpBnAjaNgwGaXYmk-v1CSGBU97GFoeodAeJKo3vFZct_p50jtApa7xBt8F6pNthWX1",
   "discordInvite": "https://discord.gg/KHZkNGfgjK",
   "curveVersion": 2,
-  "clearBufferMax": 7
+  "clearBufferMax": 7,
+  "storehouseTile": "Z"
  },
  "start": {
   "map": "house",
@@ -742,19 +743,19 @@ window.GAME_DATA = {
    "pixels": [
     "ffffffffffffffff",
     "ffffffffffffffff",
-    "ffffDDDDDDDDffff",
-    "ffffDeeeeeeDffff",
-    "ffffDeeeeeeDffff",
-    "ffffDeeyeeeDffff",
-    "ffffDeeeeeeDffff",
-    "ffffDDDDDDDDffff",
-    "ffffDeeeeeeDffff",
-    "ffffDeeeyeeDffff",
-    "ffffDeeeeeeDffff",
-    "ffffDeeeeeeDffff",
-    "ffffDeeeeeeDffff",
-    "ffffDeeeeeeDffff",
-    "ffffDDDDDDDDffff",
+    "ffkkkkkkkkkkkkff",
+    "fkdddddddddddkff",
+    "fkdeeeeeeeeeedkf",
+    "fkdeeeeeeeeeedkf",
+    "fkkkkkkkkkkkkkkf",
+    "fkdddddyyddddddk",
+    "fkdeeeeyyeeeeedk",
+    "fkdeeeeeeeeeeedk",
+    "fkdeeeeeeeeeeedk",
+    "fkdeeeeeeeeeeedk",
+    "fkdddddddddddddk",
+    "fkkkkkkkkkkkkkkk",
+    "ffffffffffffffff",
     "ffffffffffffffff"
    ]
   },
@@ -18657,6 +18658,86 @@ window.GAME_DATA = {
     "....kyyyyyyk....",
     ".....khhkkhk...."
    ]
+  },
+  "i_gran_pouch": {
+   "pixels": [
+    "................",
+    "................",
+    "......kkkk......",
+    ".....kddddk.....",
+    ".....kddddk.....",
+    "....kooooook....",
+    "...kddddddddk...",
+    "...kddddddddk...",
+    "..kddddddddddk..",
+    "..kdddFddddddk..",
+    "..kddddddFdddk..",
+    "..kddddddddddk..",
+    "..kddddddddddk..",
+    "...kddddddddk...",
+    "....kkkkkkkk....",
+    "................"
+   ]
+  },
+  "i_seed_satchel": {
+   "pixels": [
+    "................",
+    "................",
+    "......kkkk......",
+    ".....kGGGGk.....",
+    ".....kGGGGk.....",
+    "....kyyyyyyk....",
+    "...kGGGGGGGGk...",
+    "...kGGGGGGGGk...",
+    "..kGGGGGGGGGGk..",
+    "..kGGGFGGGGGGk..",
+    "..kGGGGGGFGGGk..",
+    "..kGGGGGGGGGGk..",
+    "..kGGGGGGGGGGk..",
+    "...kGGGGGGGGk...",
+    "....kkkkkkkk....",
+    "................"
+   ]
+  },
+  "i_potion_belt": {
+   "pixels": [
+    "................",
+    "................",
+    "......kkkk......",
+    ".....krrrrk.....",
+    ".....krrrrk.....",
+    "....kyyyyyyk....",
+    "...krrrrrrrrk...",
+    "...krrrrrrrrk...",
+    "..krrrrrrrrrrk..",
+    "..krrrFrrrrrrk..",
+    "..krrrrrrFrrrk..",
+    "..krrrrrrrrrrk..",
+    "..krrrrrrrrrrk..",
+    "...krrrrrrrrk...",
+    "....kkkkkkkk....",
+    "................"
+   ]
+  },
+  "i_reagent_case": {
+   "pixels": [
+    "................",
+    "................",
+    "......kkkk......",
+    ".....kppppk.....",
+    ".....kppppk.....",
+    "....kcccccck....",
+    "...kppppppppk...",
+    "...kppppppppk...",
+    "..kppppppppppk..",
+    "..kpppFppppppk..",
+    "..kppppppFpppk..",
+    "..kppppppppppk..",
+    "..kppppppppppk..",
+    "...kppppppppk...",
+    "....kkkkkkkk....",
+    "................"
+   ]
   }
  },
  "tiles": {
@@ -18933,6 +19014,12 @@ window.GAME_DATA = {
    "sprite": "t_ore",
    "solid": true,
    "interact": "ore"
+  },
+  "Z": {
+   "name": "Storehouse chest",
+   "sprite": "t_chest",
+   "solid": true,
+   "interact": "storehouse"
   }
  },
  "items": {
@@ -19412,7 +19499,7 @@ window.GAME_DATA = {
    "sell": 26,
    "stats": {},
    "reagentSave": 0.08,
-   "desc": "Keeps reagents fresh. 8% chance each reagent is not used up."
+   "desc": "Keeps reagents fresh. 8% chance each reagent is not used up. Holds any number of reagents (spells draw from it first); the contents follow you to any new pouch."
   },
   "fine_pouch": {
    "name": "Alchemist's Satchel",
@@ -19423,7 +19510,7 @@ window.GAME_DATA = {
    "sell": 100,
    "stats": {},
    "reagentSave": 0.18,
-   "desc": "Finely stitched and lined. 18% chance each reagent is not used up."
+   "desc": "Finely stitched and lined. 18% chance each reagent is not used up. Holds any number of reagents (spells draw from it first); the contents follow you to any new pouch."
   },
   "helper_bed": {
    "name": "Companion Bed",
@@ -20373,6 +20460,50 @@ window.GAME_DATA = {
    "sell": 50,
    "revive": true,
    "desc": "A hermit's charm that pulls a fallen soul back to its body. Pack it for an adventure or voyage to save one life."
+  },
+  "gran_pouch": {
+   "name": "Gran's Pouch",
+   "type": "gear",
+   "slot": "pouch",
+   "sprite": "i_gran_pouch",
+   "price": 20,
+   "sell": 5,
+   "stats": {},
+   "reagentSave": 0,
+   "desc": "Gran's old reagent pouch. Holds any number of reagents, but nothing comes back out; spells draw from it first. Swap pouches and the contents follow by magic."
+  },
+  "seed_satchel": {
+   "name": "Bottomless Seed Satchel",
+   "type": "tool",
+   "sprite": "i_seed_satchel",
+   "price": 120,
+   "sell": 40,
+   "pocketBonus": {
+    "seed": 50
+   },
+   "desc": "A satchel that is roomier inside than out. Carry 50 more seeds. (Works while it's in your bag; one of each counts.)"
+  },
+  "potion_belt": {
+   "name": "Bandolier of Holding",
+   "type": "tool",
+   "sprite": "i_potion_belt",
+   "price": 150,
+   "sell": 50,
+   "pocketBonus": {
+    "consumable": 5
+   },
+   "desc": "Every loop holds a little more than it should. Carry 5 more potions. (Works while it's in your bag; one of each counts.)"
+  },
+  "reagent_case": {
+   "name": "Spellwright's Reagent Case",
+   "type": "tool",
+   "sprite": "i_reagent_case",
+   "price": 220,
+   "sell": 73,
+   "pocketBonus": {
+    "reagent": 20
+   },
+   "desc": "Lined with folded space. Carry 20 more reagents outside your pouch. (Works while it's in your bag; one of each counts.)"
   }
  },
  "spells": {
@@ -23045,7 +23176,9 @@ window.GAME_DATA = {
     "apprentice_robe",
     "moonstone_focus",
     "glowcap_locket",
-    "scroll_of_return"
+    "scroll_of_return",
+    "potion_belt",
+    "reagent_case"
    ],
    "buysTypes": [
     "gem",
@@ -23086,7 +23219,8 @@ window.GAME_DATA = {
     "hand_axe",
     "iron_mace",
     "spear",
-    "short_bow"
+    "short_bow",
+    "seed_satchel"
    ],
    "buysTypes": [
     "gear",
@@ -23136,7 +23270,8 @@ window.GAME_DATA = {
     "potion",
     "fire_oil",
     "ironskin",
-    "phoenix_draught"
+    "phoenix_draught",
+    "potion_belt"
    ],
    "buysTypes": [
     "consumable",
@@ -23167,7 +23302,8 @@ window.GAME_DATA = {
     "apprentice_robe",
     "wizard_hat",
     "herb_pouch",
-    "scroll_of_return"
+    "scroll_of_return",
+    "reagent_case"
    ],
    "buysTypes": [
     "gem",
@@ -23195,7 +23331,8 @@ window.GAME_DATA = {
     "sea_boots",
     "fire_oil",
     "longbow",
-    "phoenix_draught"
+    "phoenix_draught",
+    "potion_belt"
    ],
    "buysTypes": [
     "reagent",
@@ -23226,7 +23363,8 @@ window.GAME_DATA = {
     "seed_jadeleaf",
     "potion",
     "great_potion",
-    "rum"
+    "rum",
+    "seed_satchel"
    ],
    "buysTypes": [
     "reagent",
@@ -23310,7 +23448,8 @@ window.GAME_DATA = {
     "seed_cinderlotus",
     "potion",
     "great_potion",
-    "rum"
+    "rum",
+    "reagent_case"
    ],
    "buysTypes": [
     "reagent",
@@ -23556,7 +23695,7 @@ window.GAME_DATA = {
    "tiles": [
     "wwwwwwwwww",
     "wwwwwwwwww",
-    "wbfftfffkw",
+    "wbfftffZkw",
     "wffuuuuffw",
     "wffuuuuffw",
     "wffuuuuffw",
@@ -32665,6 +32804,18 @@ window.GAME_DATA = {
   "bossRespawnDays": 7,
   "guildDaily": 3,
   "guildCap": 12
+ },
+ "pockets": {
+  "caps": {
+   "seed": 100,
+   "reagent": 30,
+   "consumable": 10
+  },
+  "labels": {
+   "seed": "Seeds",
+   "reagent": "Reagents",
+   "consumable": "Potions"
+  }
  }
 };
 
@@ -33162,9 +33313,19 @@ function spellPower(s) { return Math.round(s.power * (spellMult() + elemBonus(s)
 
 const item = id => D.items[id] || { name: id, type: 'misc', sprite: null, price: 0, sell: 0, desc: '' };
 const count = id => G.inv[id] || 0;
+// pockets: each kind of item has a total you can carry (D.pockets); the rest goes to your storehouse at the cottage
+function PK() { return D.pockets || { caps: {} }; }
+function pocketCap(type) { const base = (PK().caps || {})[type]; if (base == null) return Infinity; let b = base; for (const id of Object.keys(G.inv || {})) { const pb = (D.items[id] || {}).pocketBonus; if (pb && pb[type]) b += pb[type]; } return b; }
+function pocketUsed(type) { return Object.entries(G.inv || {}).reduce((a, [id, n]) => a + ((D.items[id] || {}).type === type ? n : 0), 0); }
+function pocketRoom(id) { const t = item(id).type; return Math.max(0, pocketCap(t) - pocketUsed(t)); }
+function toStore(id, n) { if (n <= 0) return; G.store = G.store || {}; G.store[id] = (G.store[id] || 0) + n; if (!R.storeToast || R.t - R.storeToast > 2) { R.storeToast = R.t; setTimeout(() => toast(`Pockets full: ${n} ${item(id).name} sent to your storehouse.`, UI.blue), 0); } }
+function pouchOn() { return !!(G && eqOf('player').pouch); }
+function pouchCount(id) { return pouchOn() ? ((G.pouch || {})[id] || 0) : 0; }
+function pocketLine() { return Object.keys(PK().caps || {}).map(t => `${(PK().labels || {})[t] || t} ${pocketUsed(t)}/${pocketCap(t)}`).join('   '); }
 function add(id, n = 1, quietDiscover) {
   if (G) { G.seen = G.seen || {}; G.seen[id] = true; }
-  G.inv[id] = count(id) + n;
+  { const room = pocketRoom(id); if (n > room) { toStore(id, n - room); n = room; } }
+  if (n > 0) G.inv[id] = count(id) + n;
   if (item(id).type === 'reagent' && !G.discovered[id]) discover(id, quietDiscover);
 }
 function take(id, n = 1) { if (count(id) < n) return false; G.inv[id] -= n; if (G.inv[id] <= 0) delete G.inv[id]; return true; }
@@ -33174,12 +33335,13 @@ function discover(id, quiet) {
   if (quiet) toast(`Discovered ${it.name}! (+2 seeds)`, UI.green);
   else script(() => say('Discovery!', [`You discovered ${it.name}!`, it.desc, `You found 2 seeds. You can now grow ${it.name} in your greenhouse, and Marta's Apothecary will sell more seeds.`], it.sprite));
 }
-function hasReagents(sp) { return Object.entries(sp.reagents || {}).every(([id, n]) => count(id) >= n); }
+function hasReagents(sp) { return Object.entries(sp.reagents || {}).every(([id, n]) => count(id) + pouchCount(id) >= n); }
+function useReagent(id) { if (pouchCount(id) > 0) { G.pouch[id]--; if (!G.pouch[id]) delete G.pouch[id]; return true; } return take(id, 1); }
 function payReagents(sp) { stat('casts');
   const saved = {};
-  for (const [id, n] of Object.entries(sp.reagents || {})) for (let i = 0; i < n; i++) { if (Math.random() < reagentSaveChance(id)) saved[id] = (saved[id] || 0) + 1; else take(id, 1); }
+  for (const [id, n] of Object.entries(sp.reagents || {})) for (let i = 0; i < n; i++) { if (Math.random() < reagentSaveChance(id)) saved[id] = (saved[id] || 0) + 1; else useReagent(id); }
   // always show what the cast cost and what's left, so nobody has to open the inventory to check
-  const parts = Object.entries(sp.reagents || {}).map(([id, n]) => { const sv = saved[id] || 0, used = n - sv; return `${item(id).name} ${used ? '-' + used : 'saved!'}${sv && used ? ` (${sv} saved)` : ''} (${count(id)} left)`; });
+  const parts = Object.entries(sp.reagents || {}).map(([id, n]) => { const sv = saved[id] || 0, used = n - sv; return `${item(id).name} ${used ? '-' + used : 'saved!'}${sv && used ? ` (${sv} saved)` : ''} (${count(id) + pouchCount(id)} left)`; });
   toast(`${sp.name}: ${parts.join(',  ')}`, Object.keys(saved).length ? UI.blue : undefined);
   if (C && C.log) clog(`${sp.name} used ${parts.join(', ')}.`);
 }
@@ -33243,7 +33405,7 @@ function newGame() {
   SEA = null;
   G.hp = maxHp();
   loadMap(s.map, s.x, s.y); R.scene = 'world';
-  G.sv2 = true; G.pts = {};
+  G.sv2 = true; G.pts = {}; G.pouch = {}; G.store = {}; if (D.items.gran_pouch && !eqOf('player').pouch) eqOf('player').pouch = 'gran_pouch';
   script(async () => { G.name = await askName(); await chooseCalling(); await say('', s.intro); });
 }
 function saveGame(quiet) { try { localStorage.setItem(SAVE_KEY, JSON.stringify(G)); if (!quiet) toast('Game saved.'); } catch (e) { toast('Could not save: ' + e.message, UI.red); } }
@@ -33255,6 +33417,9 @@ function loadGame() {
   G.curveV = D.meta.curveVersion || 1; G.enchanted = G.enchanted || {}; for (const [nid, [b0, g0]] of Object.entries(G.enchanted)) registerEnchant(nid, b0, g0);
   setTimeout(() => { if (G && (!G.name || G.rebuildPool)) script(async () => { if (!G.name) { G.name = await askName(); toast(`Welcome back, ${G.name}.`, UI.green); } if (G.rebuildPool) await rebuildHero(); autoCompanionPoints(); });
     autoCompanionPoints();
+    if (G && !G.pkV) { G.pkV = 1; G.pouch = G.pouch || {}; G.store = G.store || {}; if (D.items.gran_pouch && !eqOf('player').pouch) eqOf('player').pouch = 'gran_pouch'; let moved = 0;
+      for (const t of Object.keys(PK().caps || {})) { let over = pocketUsed(t) - pocketCap(t); for (const id of Object.keys(G.inv).filter(id => item(id).type === t).sort((a, b) => count(b) - count(a))) { if (over <= 0) break; const k = Math.min(over, count(id)); G.inv[id] -= k; if (!G.inv[id]) delete G.inv[id]; G.store[id] = (G.store[id] || 0) + k; over -= k; moved += k; } }
+      if (moved) toast(`Pocket limits: ${moved} items moved to your storehouse at the cottage.`, UI.blue); }
     checkSpellLearn(true); for (const [sk, pm] of Object.entries(G.perks || {})) { const ms = ((D.perks || {})[sk] || {}).milestones || []; for (const lv of Object.keys(pm)) { const m = ms.find(x => String(x.level) === lv); if (!m || !m.options.some(o => o.id === pm[lv])) delete pm[lv]; } }
     for (const sv of (D.survivors || {}).list || []) if ((G.survDone || []).includes(sv.id) && !G.flags['home_' + sv.id] && (G.helpers[sv.helper] || D.quests.some(q => q.unlockFlag === 'home_' + sv.id && G.quests[q.id]))) G.flags['home_' + sv.id] = true; }, 0); G.garden = G.garden || { plan: 'same' }; G.stall = G.stall || { items: {}, restock: 0 }; G.stall.items = G.stall.items || {}; G.reports = G.reports || []; G.equip = G.equip || { player: {} }; G.perks = G.perks || {}; G.home = G.home || { furn: { bed: Object.keys(G.helpers || {}).length }, up: {} }; G.kills = G.kills || {}; G.research = G.research || {}; G.wards = G.wards || {}; G.ports = G.ports || {}; G.flags = G.flags || {}; G.dread = G.dread || 0; G.morph = G.morph || {}; G.visions = G.visions || []; SEA = null; invalidateComp(); if (!mapDef(G.map)) G.map = D.start.map; G.seen = G.seen || Object.fromEntries(Object.keys(G.inv).map(k => [k, true])); G.shopUnlocks = G.shopUnlocks || {}; G.charts = G.charts || {}; loadMap(G.map, G.x, G.y); R.scene = 'world'; toast('Welcome back!'); return true; }
   catch (e) { toast('Save could not be loaded: ' + e.message, UI.red); return false; }
@@ -33400,6 +33565,7 @@ function interact() {
   if (td.interact === 'planter') return script(() => usePlanter(tx, ty));
   if (td.interact === 'bed') return script(useBed);
   if (td.interact === 'ledger') return script(useLedger);
+  if (td.interact === 'storehouse') return script(storehouseMenu);
   if (td.interact === 'sign') { const s = (R.map.signs || []).find(s => s.x === tx && s.y === ty); return script(() => say('Sign', (s ? s.text : '(The sign is blank.)').split('|').map(x => x.trim()))); }
 }
 
@@ -33733,11 +33899,30 @@ async function newDay(reason, atSea) {
 // ================= MENUS =================
 const INV_TABS = [['All', () => true], ['Gear', i => i.type === 'gear'], ['Potions', i => i.type === 'consumable'], ['Reagents', i => i.type === 'reagent'], ['Seeds', i => i.type === 'seed'],
   ['Materials', i => ['material', 'metal', 'gem'].includes(i.type)], ['Other', i => !['gear', 'consumable', 'reagent', 'seed', 'material', 'metal', 'gem'].includes(i.type)]];
+async function storehouseMenu() {
+  G.store = G.store || {};
+  for (;;) {
+    const c = await choose('Storehouse', [{ label: 'Take out', value: 'out', right: `${Object.values(G.store).reduce((a, b) => a + b, 0)} items stored` }, { label: 'Put away', value: 'in', desc: 'Move things from your pockets into the storehouse.' }, { label: 'Leave', value: 'x' }], { width: 420, footer: pocketLine() });
+    if (c === 'out') await openMenu({ title: 'Storehouse: take out', width: 600, minRows: 8, footer: () => pocketLine() + '      Enter: take as many as fit',
+      items: () => Object.keys(G.store).filter(id => G.store[id] > 0).sort().map(id => ({ label: item(id).name, icon: item(id).sprite, right: `x${G.store[id]}`, desc: `${itemDesc(id)}  (${pocketRoom(id) === Infinity ? 'no pocket limit' : pocketRoom(id) + ' more fit in your pockets'})`, value: id })),
+      onSelect: it => { const n = Math.min(G.store[it.value], pocketRoom(it.value)); if (n <= 0) { toast('No room in your pockets for that.', UI.red); return false; } G.store[it.value] -= n; if (!G.store[it.value]) delete G.store[it.value]; add(it.value, n, true); AU.sfx('pickup'); toast(`Took ${n} ${item(it.value).name}.`); return false; } });
+    else if (c === 'in') await openMenu({ title: 'Storehouse: put away', width: 600, minRows: 8, footer: () => pocketLine() + '      Enter: put all of it away',
+      items: () => Object.keys(G.inv).filter(id => !['gear', 'upgrade', 'furniture'].includes(item(id).type) && !item(id).pocketBonus).sort().map(id => ({ label: item(id).name, icon: item(id).sprite, right: `x${count(id)}`, desc: itemDesc(id), value: id })),
+      onSelect: it => { const n = count(it.value); take(it.value, n); G.store[it.value] = (G.store[it.value] || 0) + n; AU.sfx('menu'); toast(`Stored ${n} ${item(it.value).name}.`); return false; } });
+    else return;
+  }
+}
+async function pouchPrompt(id) {
+  if (!pouchOn()) { toast('Equip a reagent pouch first (P).', UI.red); return; }
+  const n = count(id); const c = await choose(`Put ${item(id).name} in your pouch?`, [{ label: `Put all ${n} in`, value: n, desc: 'Spells use reagents in the pouch first. They can never be taken out or sold.' }, ...(n > 5 ? [{ label: 'Put 5 in', value: 5 }] : []), { label: 'Not now', value: 0 }], { width: 460, footer: 'No limit, but nothing comes back out.' });
+  if (!c) return; take(id, c); G.pouch = G.pouch || {}; G.pouch[id] = (G.pouch[id] || 0) + c; AU.sfx('select'); toast(`${c} ${item(id).name} into the pouch (${G.pouch[id]} inside).`, UI.blue);
+}
 async function inventoryMenu() {
   const tabs = INV_TABS.map(t => ({ label: t[0], test: t[1] }));
-  await openMenu({ title: 'Inventory', width: 600, closeKey: 'i', footer: () => `Gold: ${G.gold}     Left/Right or click a tab to filter`, tabs, tab: R.invTab || 0, minRows: 8, onTab: i => { R.invTab = i; },
-    items: m => Object.keys(G.inv).filter(id => tabs[m.tab].test(item(id))).sort((a, b) => (item(a).type + a).localeCompare(item(b).type + b)).map(id => ({ label: `${item(id).name}`, icon: item(id).sprite, right: 'x' + count(id), desc: itemDesc(id) + (item(id).type === 'consumable' || item(id).camp ? '  [Enter to use]' : item(id).type === 'gear' ? `  Enter: equip.  ${K('gear')}: equipment screen` : ''), value: id })),
-    onSelect: it => { const i = item(it.value); if (i.camp) { script(campOut); return true; } if (i.type === 'gear') { autoEquip('player', it.value); return false; } if (i.type === 'ward') { placeWard(it.value); return false; } if (i.type === 'consumable' && i.heal) { if (G.hp >= maxHp()) { toast('Already at full health.'); return false; } take(it.value); const hh = Math.round(i.heal * potionMult()); G.hp = Math.min(maxHp(), G.hp + hh); AU.sfx('heal'); toast(`+${hh} HP`, UI.green); } else if (i.type === 'consumable' && i.combat) toast('Use this in battle (Item button).'); return false; } });
+  await openMenu({ title: 'Inventory', width: 600, closeKey: 'i', footer: () => `Gold: ${G.gold}     ${pocketLine()}`, tabs, tab: R.invTab || 0, minRows: 8, onTab: i => { R.invTab = i; },
+    items: m => Object.keys(G.inv).filter(id => tabs[m.tab].test(item(id))).sort((a, b) => (item(a).type + a).localeCompare(item(b).type + b)).map(id => ({ label: `${item(id).name}`, icon: item(id).sprite, right: 'x' + count(id) + (pouchCount(id) ? `  (+${pouchCount(id)} in pouch)` : ''), desc: itemDesc(id) + (item(id).type === 'consumable' || item(id).camp ? '  [Enter to use]' : item(id).type === 'gear' ? `  Enter: equip.  ${K('gear')}: equipment screen` : item(id).type === 'reagent' ? '  Enter: put in your pouch' : ''), value: id }))
+      .concat(tabs[m.tab].label === 'Reagents' && pouchOn() && Object.keys(G.pouch || {}).length ? Object.keys(G.pouch).filter(id => !count(id)).map(id => ({ label: item(id).name, icon: item(id).sprite, right: `in pouch: ${G.pouch[id]}`, disabled: true, desc: 'Inside your pouch. Spells use these first.' })) : []),
+    onSelect: it => { const i = item(it.value); if (!D.items[it.value]) return false; if (i.camp) { script(campOut); return true; } if (i.type === 'reagent') { script(() => pouchPrompt(it.value)); return false; } if (i.type === 'gear') { autoEquip('player', it.value); return false; } if (i.type === 'ward') { placeWard(it.value); return false; } if (i.type === 'consumable' && i.heal) { if (G.hp >= maxHp()) { toast('Already at full health.'); return false; } take(it.value); const hh = Math.round(i.heal * potionMult()); G.hp = Math.min(maxHp(), G.hp + hh); AU.sfx('heal'); toast(`+${hh} HP`, UI.green); } else if (i.type === 'consumable' && i.combat) toast('Use this in battle (Item button).'); return false; } });
 }
 async function spellMenu() {
   await openMenu({ title: 'Spellbook', width: 640, closeKey: 'm', footer: () => `Magery ${skillLvl('magery')}: spell power x${spellMult().toFixed(2)}${castPenalty() ? `  (heavy armour -${Math.round(castPenalty() * 100)}%)` : ''}`,
@@ -35671,7 +35856,7 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 // debug/test hook (harmless in production)
-window.__game = { townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
+window.__game = { storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
 })();
 
 </script>
