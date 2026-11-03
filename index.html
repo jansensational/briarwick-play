@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.17.0</title>
+<title>Reagents of Briarwick v0.17.1</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.17.0",
+  "version": "0.17.1",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -29489,7 +29489,7 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Good. Its hold is broken - for now."
+    "Good. It will not rise again."
    ],
    "reward": {
     "gold": 80
@@ -29504,7 +29504,7 @@ window.GAME_DATA = {
    "requires": "rward_mainland_1",
    "intro": [
     "Bring me the offering and I'll raise the ward over the whole region.",
-    "Monsters will still wander back - but never sooner than a week after you clear a place."
+    "Every monster native to these lands will be bound out for good. Once a week a single stranger, as strong as the region's boss, may still wander in."
    ],
    "objectives": [
     {
@@ -29540,7 +29540,7 @@ window.GAME_DATA = {
    "regionTowns": "saltmere",
    "intro": [
     "Bring me the offering and I'll raise the ward over the whole region.",
-    "Monsters will still wander back - but never sooner than a week after you clear a place."
+    "Every monster native to these lands will be bound out for good. Once a week a single stranger, as strong as the region's boss, may still wander in."
    ],
    "objectives": [
     {
@@ -29586,7 +29586,7 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Good. Its hold is broken - for now."
+    "Good. It will not rise again."
    ],
    "reward": {
     "gold": 80
@@ -29601,7 +29601,7 @@ window.GAME_DATA = {
    "requires": "rward_verdant_1",
    "intro": [
     "Bring me the offering and I'll raise the ward over the whole region.",
-    "Monsters will still wander back - but never sooner than a week after you clear a place."
+    "Every monster native to these lands will be bound out for good. Once a week a single stranger, as strong as the region's boss, may still wander in."
    ],
    "objectives": [
     {
@@ -29637,7 +29637,7 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Good. Its hold is broken - for now."
+    "Good. It will not rise again."
    ],
    "reward": {
     "gold": 80
@@ -29652,7 +29652,7 @@ window.GAME_DATA = {
    "requires": "rward_azure_1",
    "intro": [
     "Bring me the offering and I'll raise the ward over the whole region.",
-    "Monsters will still wander back - but never sooner than a week after you clear a place."
+    "Every monster native to these lands will be bound out for good. Once a week a single stranger, as strong as the region's boss, may still wander in."
    ],
    "objectives": [
     {
@@ -29688,7 +29688,7 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Good. Its hold is broken - for now."
+    "Good. It will not rise again."
    ],
    "reward": {
     "gold": 80
@@ -29703,7 +29703,7 @@ window.GAME_DATA = {
    "requires": "rward_thornhaven_1",
    "intro": [
     "Bring me the offering and I'll raise the ward over the whole region.",
-    "Monsters will still wander back - but never sooner than a week after you clear a place."
+    "Every monster native to these lands will be bound out for good. Once a week a single stranger, as strong as the region's boss, may still wander in."
    ],
    "objectives": [
     {
@@ -29739,7 +29739,7 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Good. Its hold is broken - for now."
+    "Good. It will not rise again."
    ],
    "reward": {
     "gold": 80
@@ -29754,7 +29754,7 @@ window.GAME_DATA = {
    "requires": "rward_ember_1",
    "intro": [
     "Bring me the offering and I'll raise the ward over the whole region.",
-    "Monsters will still wander back - but never sooner than a week after you clear a place."
+    "Every monster native to these lands will be bound out for good. Once a week a single stranger, as strong as the region's boss, may still wander in."
    ],
    "objectives": [
     {
@@ -32801,7 +32801,6 @@ window.GAME_DATA = {
    "xp": 3,
    "gold": 3
   },
-  "bossRespawnDays": 7,
   "guildDaily": 3,
   "guildCap": 12
  },
@@ -33037,17 +33036,18 @@ function drawActor(base, x, y, dir, phase, moving, alpha = 1, who = null, size =
 const FACE = { up: 'down', down: 'up', left: 'right', right: 'left' }; const OPP = FACE;
 
 // ================= INPUT =================
-const keys = new Set(); let hits = []; let clicks = []; const mouse = { x: 0, y: 0, moved: false };
+const keys = new Set(); const dirOrder = []; let hits = []; let clicks = []; const mouse = { x: 0, y: 0, moved: false };
 const NAVKEYS = ['arrowup', 'arrowdown', 'arrowleft', 'arrowright', 'w', 's', 'a', 'd'];
 addEventListener('keydown', e => {
   if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
   const k = e.key.toLowerCase();
   if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' ', 'tab'].includes(k)) e.preventDefault();
   if (!e.repeat || NAVKEYS.includes(k)) hits.push(k);
+  if (!e.repeat) { const i = dirOrder.indexOf(k); if (i >= 0) dirOrder.splice(i, 1); dirOrder.push(k); }
   keys.add(k);
 });
-addEventListener('keyup', e => keys.delete(e.key.toLowerCase()));
-addEventListener('blur', () => keys.clear());
+addEventListener('keyup', e => { const k = e.key.toLowerCase(); keys.delete(k); const i = dirOrder.indexOf(k); if (i >= 0) dirOrder.splice(i, 1); });
+addEventListener('blur', () => { keys.clear(); dirOrder.length = 0; });
 function canvasPos(e) { const r = cv.getBoundingClientRect(); return { x: (e.clientX - r.left) * VW / r.width, y: (e.clientY - r.top) * VH / r.height }; }
 cv.addEventListener('mousemove', e => { const p = canvasPos(e); mouse.x = p.x; mouse.y = p.y; mouse.moved = true; });
 let lastTouch = 0, touchT = null;
@@ -33430,6 +33430,25 @@ const tileDef = ch => D.tiles[ch] || { solid: true, sprite: 't_void', name: '?' 
 function tileAt(x, y) { const row = R.map.tiles[y]; if (!row || x < 0 || x >= row.length) return null; return row[x]; }
 function isWarp(x, y) { return (R.map.warps || []).some(w => w.x === x && w.y === y); }
 function npcAt(x, y) { return R.npcs.find(n => n.x === x && n.y === y); }
+function regionWardTypes(rid) { const rg = (D.regions || {})[rid] || {}; const s = new Set(); for (const z of rg.zones || []) { const m = D.maps[z] || {}; (m.enemies || []).forEach(e => s.add(e.id)); ((m.nightRaid || {}).enemies || []).forEach(e => s.add(e)); } if (rg.boss) s.add(rg.boss); return s; }
+function wandererDef(rid) {
+  const id = 'wander_' + rid; if (D.enemies[id]) return id; const rg = D.regions[rid] || {}, ward = regionWardTypes(rid);
+  const pool = Object.entries(D.enemies).filter(([k, e]) => !ward.has(k) && !e.sea && !e.final && !e.champion && !e.wanderer && e.music !== 'boss' && !e.pirate && (e.hp || 0) > 0 && !String(k).startsWith('champ_'));
+  let boss = D.enemies[rg.boss]; if (!boss) { const top = [...ward].map(k => D.enemies[k]).filter(Boolean).sort((a, b) => (b.hp || 0) - (a.hp || 0))[0] || { hp: 30, atk: 6, def: 1, xp: 30 }; boss = { hp: top.hp * 3, atk: Math.round(top.atk * 1.5), def: (top.def || 0) + 2, xp: (top.xp || 10) * 4, gold: [20, 40] }; }
+  pool.sort((a, b) => Math.abs((a[1].xp || 0) - boss.xp * 0.5) - Math.abs((b[1].xp || 0) - boss.xp * 0.5)); const base = pool[0]; if (!base) return null;
+  D.enemies[id] = Object.assign(JSON.parse(JSON.stringify(base[1])), { name: 'Wandering ' + base[1].name, hp: Math.round(boss.hp || 60), atk: Math.round(boss.atk || 10), def: boss.def || 3, xp: Math.round(boss.xp || 60), gold: boss.gold || [20, 40], group: [1, 1], escort: null, wanderer: true, baseOf: base[0] });
+  return id;
+}
+// returns true when this area is under a region ward (then no champions, no regular monsters)
+function applyRegionWard() {
+  const rid = regionOf(R.mapId); if (!rid || !regionWarded(rid) || !R.map || R.map.town || R.map.cave || !(R.map.enemies || []).length) return false;
+  R.enemies = [];
+  G.wanderNext = G.wanderNext || {}; if (G.wanderNext[R.mapId] == null) G.wanderNext[R.mapId] = (G.regionWarded[rid] || G.day) + 7;
+  if (G.day < G.wanderNext[R.mapId] || (G.defeated[R.mapId] || []).includes(3000)) return true;
+  const id = wandererDef(rid); const p = id && randomSpot(6); if (!p) return true;
+  R.enemies.push({ id, x: p[0], y: p[1], idx: 3000, def: D.enemies[id], hx: p[0], hy: p[1], cd: 1.5, anim: 1, dx: 0, dy: 0, stun: 0, dir: 'left' });
+  return true;
+}
 function applyChampion() {
   if (!R.map || R.map.town || R.map.cave || !champZones().includes(R.mapId) || (G.champDead || {})[R.mapId] === G.day) return;
   const c = R.enemies.find(e => e.idx < 1000 && e.def && !isRegionBoss(e.id) && !e.def.champion && e.def.music !== 'boss'); if (!c) return;
@@ -33453,19 +33472,18 @@ function loadMap(id, x, y) {
   R.mapId = id; R.map = mp; G.map = id; G.x = x; G.y = y; R.moving = null; R.raidChecked = false;
   R.npcs = (mp.npcs || []).filter(n => { const nd = D.npcs[n.id]; return nd && (!n.flag || G.flags[n.flag]) && !(nd.role === 'helper' && (G.helpers[nd.helper] || G.flags['dead_' + nd.helper])); }).map(n => Object.assign({ dir: 'down', turn: 2 + Math.random() * 4 }, n, { def: D.npcs[n.id] }));
   const dead = G.defeated[id] || [];
-  R.enemies = (mp.enemies || []).map((e, i) => { const mid = morphId(e.id); return Object.assign({}, e, { id: mid, idx: i, def: D.enemies[mid], hx: e.x, hy: e.y, cd: 1 + Math.random() * 1.5, anim: 1, dx: 0, dy: 0, stun: 0 }); }).filter(e => e.def && !dead.includes(e.idx) && !(isRegionBoss(e.id) && (G.bossDown || {})[e.id] != null && G.day < G.bossDown[e.id] + (WR().bossRespawnDays || 7)));
-  applyChampion();
+  R.enemies = (mp.enemies || []).map((e, i) => { const mid = morphId(e.id); return Object.assign({}, e, { id: mid, idx: i, def: D.enemies[mid], hx: e.x, hy: e.y, cd: 1 + Math.random() * 1.5, anim: 1, dx: 0, dy: 0, stun: 0 }); }).filter(e => e.def && !dead.includes(e.idx) && !(isRegionBoss(e.id) && (G.bossDown || {})[e.id] != null));
+  if (applyRegionWard()) {} else applyChampion();
   R.planters = []; let pIdx = 0;
   if (!mp.cave) (mp.greenhouse ? mp.tiles.map((r, yy) => [r, yy]).reverse() : mp.tiles.map((r, yy) => [r, yy])).forEach(([row, yy]) => { for (let xx = 0; xx < row.length; xx++) if (tileDef(row[xx]).interact === 'planter') { R.planters.push({ x: xx, y: yy, i: pIdx, gh: !!mp.greenhouse, key: mp.greenhouse ? pIdx : id + ':' + pIdx }); pIdx++; } });
   spawnReleases();
   if (!mp.cave && !G.visited[id]) { G.visited[id] = true; if (mp.town || mp.outdoor) toast(`Discovered: ${mp.name}`); }
 }
 
-function heldDir() {
-  if (keys.has('arrowup') || keys.has(bind('up'))) return 'up';
-  if (keys.has('arrowdown') || keys.has(bind('down'))) return 'down';
-  if (keys.has('arrowleft') || keys.has(bind('left'))) return 'left';
-  if (keys.has('arrowright') || keys.has(bind('right'))) return 'right';
+function dirOfKey(k) { for (const d of ['up', 'down', 'left', 'right']) if (k === 'arrow' + d || k === bind(d)) return d; return null; }
+function heldDir() {   // the direction pressed most recently wins (pressing left while holding right turns you left, and vice versa)
+  for (let i = dirOrder.length - 1; i >= 0; i--) { const k = dirOrder[i]; if (keys.has(k)) { const d = dirOfKey(k); if (d) return d; } }
+  for (const d of ['up', 'down', 'left', 'right']) if (keys.has('arrow' + d) || keys.has(bind(d))) return d;
   return null;
 }
 function dollTop() { return !!DOLL && menus.length <= DOLL.depth; }
@@ -34127,7 +34145,7 @@ async function gameScreen() {
   if (c === 'x') exportSave();
   if (c === 'i') importSave();
   if (c === 'l') loadGame();
-  if (c === 'c') await say('Controls', [`Move: ${K('up')}${K('left')}${K('down')}${K('right')} / Arrow keys.  Interact / talk / confirm: ${K('interact')}, Space or Enter.  Change keys in Settings > Key bindings.`, `Menu button (top right) or a screen key opens the menu: ${K('inventory')} Items   ${K('gear')} Equipment   ${K('spells')} Spellbook   ${K('skills')} Skills   ${K('companions')} Companions   ${K('quests')} Quests   Esc Game.  Left/Right picks a tab, Down enters it, Up at the top goes back to the tabs.`, `Map button or ${K('map')}: World map.`, `Combat: move with ${K('up')}${K('left')}${K('down')}${K('right')}/arrows (walk into an enemy to attack) or click a blue tile. Space/${K('interact')} attacks the nearest enemy in range.`, `${K('spell')} Spell   ${K('ability')} Ability   ${K('item')} Item   ${K('defend')} Defend   ${K('taunt')} Taunt (fighters)   ${K('next')} next unit   Enter end turn   ${K('flee')} flee.  Hover an enemy to see its stats.`, 'The coloured dot over a monster shows how dangerous it is for your party: green easy, yellow fair, orange hard, red deadly.']);
+  if (c === 'c') await say('Controls', [`Move: ${K('up')}${K('left')}${K('down')}${K('right')} / Arrow keys.  Interact / talk / confirm: ${K('interact')}, Space or Enter.  Change keys in Settings > Key bindings.`, `Menu button (top right) or a screen key opens the menu: ${K('inventory')} Items   ${K('gear')} Equipment   ${K('spells')} Spellbook   ${K('skills')} Skills   ${K('companions')} Companions   ${K('quests')} Quests   Esc Game.  Left/Right picks a tab, Down enters it, Up at the top goes back to the tabs.`, `Map button or ${K('map')}: World map.`, `Combat: move with ${K('up')}${K('left')}${K('down')}${K('right')}/arrows (walk into an enemy to attack) or click a blue tile. Space/${K('interact')} attacks the nearest enemy in reach, or defends if none is in reach.`, `${K('spell')} Spell   ${K('ability')} Ability   ${K('item')} Item   ${K('defend')} Defend   ${K('taunt')} Taunt (fighters)   ${K('next')} next unit   Enter end turn   ${K('flee')} flee.  Hover an enemy to see its stats.`, 'The coloured dot over a monster shows how dangerous it is for your party: green easy, yellow fair, orange hard, red deadly.']);
   if (c === 'u') { if (UPD.online) { await checkUpdate(); if (UPD.latest) getUpdate(); else toast(`You have the latest version (v${D.meta.version}).`, UI.green); } else getUpdate(); }
   if (c === 'd') window.open(D.meta.discordInvite, '_blank');
   if (c === 'q') { R.scene = 'title'; return; }
@@ -34376,7 +34394,7 @@ function stepUnit(d) {
   const cost = fxAt(nx, ny, 'mire') ? 2 : 1; if (o || !cPass(nx, ny, s) || movesLeft(s) < cost) { AU.sfx('menu'); return; }
   s.x = nx; s.y = ny; s.steps = (s.steps || 0) + cost; if (movesLeft(s) <= 0) s.moved = true;
 }
-function attackNearest() { const s = C.sel; if (!s) return; const t = alive('enemy').filter(e => canAttack(s, e)).sort((a, b) => man(s, a) - man(s, b) || a.hp - b.hp)[0]; if (t) attack(s, t); else toast('No enemy in reach. Move closer first.'); }
+function attackNearest() { const s = C.sel; if (!s) return; const t = alive('enemy').filter(e => canAttack(s, e)).sort((a, b) => man(s, a) - man(s, b) || a.hp - b.hp)[0]; if (t) attack(s, t); else if (!s.done) { toast('Nobody in reach - defending.'); waitUnit(); } }
 function cycleTarget(d) { if (!C.targets.length) return; const sorted = C.targets.slice().sort((a, b) => a.y - b.y || a.x - b.x); const i = sorted.indexOf(C.tsel); C.tsel = sorted[(i + d + sorted.length) % sorted.length]; }
 function flee() {
   if (C.phase !== 'party') return;
@@ -34429,7 +34447,7 @@ function victory() {
   const killed = C.units.filter(u => u.side === 'enemy' && u.dead);
   let xp = 0, gold = 0; const loot = {};
   for (const k of killed) {
-    const kdef = D.enemies[k.enemyId] || {}, qid = kdef.champion ? kdef.baseOf : k.enemyId; if (kdef.champion) (G.champDead = G.champDead || {})[R.mapId] = G.day; if (isRegionBoss(qid)) (G.bossDown = G.bossDown || {})[qid] = G.day;
+    const kdef = D.enemies[k.enemyId] || {}, qid = kdef.champion ? kdef.baseOf : k.enemyId; if (kdef.champion) (G.champDead = G.champDead || {})[R.mapId] = G.day; if (kdef.wanderer) (G.wanderNext = G.wanderNext || {})[R.mapId] = G.day + 7; if (isRegionBoss(qid)) (G.bossDown = G.bossDown || {})[qid] = G.day;
     G.kills[qid] = (G.kills[qid] || 0) + 1; if ((G.research || {})[qid]) addSkillXp('wardcraft', 2);
     const d = D.enemies[k.enemyId]; const sc = scaled(d); xp += Math.round((d.xp || 0) * sc.xpM * (C.caveMult || 1)); gold += Math.round(rnd((d.gold || [0, 0])[0], (d.gold || [0, 0])[1]) * sc.goldM);
     addDread((DL().perKill || 0) + (d.music === 'boss' ? (DL().perBoss || 0) : 0)); if (d.final) C.finalWin = true;
@@ -34645,7 +34663,7 @@ function renderCombat() {
     drawSpr(s.sprite, 26, py + 14, 48);
     text(s.name, 84, py + 14, { bold: true });
     text(`HP ${s.hp}/${s.maxHp}   ATK ${s.atk}   DEF ${uDef(s)}   MOVE ${uMove(s)}`, 84, py + 36, { size: 13 });
-    text(C.mode === 'tile' ? 'Pick where to cast: click a tile, or arrows + Enter (Esc cancels)' : C.mode === 'target' ? (C.targets.length ? (SET.mobile ? 'Pick a target: tap it, or joystick + A (B cancels)' : 'Pick a target: click it, or arrows + Enter (Esc cancels)') : `No target in range. ${SET.mobile ? 'B' : 'Esc'} cancels.`) : movesLeft(s) <= 0 ? (SET.mobile ? 'Done moving. Attack (A), or tap Spell or Defend.' : `Done moving. Attack (Space), cast (${K('spell')}) or defend (${K('defend')}).`) : (C.board ? 'Boarding! Fight across the decks. Bows reach 4.' : C.sea ? 'Bows reach 4 tiles. Arbalest (A) tiles fire 6.' : `${SET.mobile ? 'Move with the joystick or tap' : `Move with ${K('up')}${K('left')}${K('down')}${K('right')}/arrows or click`} blue (${movesLeft(s)} left). Walk into a foe to attack.`), 84, py + 56, { size: 13, color: UI.dim });
+    text(C.mode === 'tile' ? 'Pick where to cast: click a tile, or arrows + Enter (Esc cancels)' : C.mode === 'target' ? (C.targets.length ? (SET.mobile ? 'Pick a target: tap it, or joystick + A (B cancels)' : 'Pick a target: click it, or arrows + Enter (Esc cancels)') : `No target in range. ${SET.mobile ? 'B' : 'Esc'} cancels.`) : movesLeft(s) <= 0 ? (SET.mobile ? 'Done moving. A: attack if a foe is in reach, otherwise defend.' : `Done moving. Space: attack if a foe is in reach, otherwise defend.  ${K('spell')}: cast.`) : (C.board ? 'Boarding! Fight across the decks. Bows reach 4.' : C.sea ? 'Bows reach 4 tiles. Arbalest (A) tiles fire 6.' : `${SET.mobile ? 'Move with the joystick or tap' : `Move with ${K('up')}${K('left')}${K('down')}${K('right')}/arrows or click`} blue (${movesLeft(s)} left). Walk into a foe to attack.`), 84, py + 56, { size: 13, color: UI.dim });
     var bx = 26; const by = py + 82;
     if (s.isPlayer) { button(bx, by, 72, 32, `Spell (${K('spell')})`, startSpell, { disabled: !G.spells.length }); bx += 76; }
     if (s.ability) { button(bx, by, 124, 32, `${s.ability.name} (${K('ability')})` + (s.cd > 0 ? ` ${s.cd}` : ''), startAbility, { disabled: s.cd > 0 }); bx += 128; }
@@ -35058,7 +35076,7 @@ function wardStatusLines(m) {
   const sl = townSlots(m), w = (G.wards || {})[m] || [], rid = regionOf(m), rg = rid && D.regions[rid];
   const lines = [sl.length ? `Ward stone: ${sl.filter(e => w.includes(e)).length} of ${sl.length} wards set (${sl.map(e => `${(D.enemies[e] || { name: e }).name} ${w.includes(e) ? '[x]' : '[ ]'}`).join(', ')}).` : 'No monsters raid this town.',
     townWarded(m) ? 'The town is warded: no monster can enter.' : 'Until every ward is set, monsters raid at night and the shops and tavern stay closed.'];
-  if (rg) lines.push(regionWarded(rid) ? `${rg.name} is under a region ward: monsters return no sooner than a week after you clear an area.` : regionTownsWarded(rid) ? `Every town in ${rg.name} is warded. A region ward is now possible - ask the Hermit Society.` : `Ward every town in ${rg.name} to raise a region ward.`);
+  if (rg) lines.push(regionWarded(rid) ? `${rg.name} is under a region ward: its monsters are gone for good. Once a week a single stranger may wander into an area.` : regionTownsWarded(rid) ? `Every town in ${rg.name} is warded. A region ward is now possible - ask the Hermit Society.` : `Ward every town in ${rg.name} to raise a region ward.`);
   return lines;
 }
 async function hermitTalk(npc) {
@@ -35069,7 +35087,7 @@ async function hermitTalk(npc) {
 // champions: each day, a few zones in each region get one (at most a quarter of the region's zones)
 function champZones() {
   if (G.champDay === G.day && G.champZones) return G.champZones; const out = [];
-  for (const rg of Object.values(D.regions || {})) { const n = Math.floor((rg.zones || []).length * (WR().championShare || 0.25)); const wild = (rg.zones || []).filter(z => D.maps[z] && !D.maps[z].town && (D.maps[z].enemies || []).length);
+  for (const [rid0, rg] of Object.entries(D.regions || {})) { if (regionWarded(rid0)) continue; const n = Math.floor((rg.zones || []).length * (WR().championShare || 0.25)); const wild = (rg.zones || []).filter(z => D.maps[z] && !D.maps[z].town && (D.maps[z].enemies || []).length);
     for (let i = 0; i < n && wild.length; i++) out.push(wild.splice(Math.floor(Math.random() * wild.length), 1)[0]); }
   G.champDay = G.day; G.champZones = out; return out;
 }
@@ -35300,7 +35318,7 @@ function randomSpot(minDist) {
   return null;
 }
 function spawnReleases() {
-  if (R.map.town) return;
+  if (R.map.town || regionWarded(regionOf(R.mapId))) return;
   const dead = G.defeated[R.mapId] || []; let k = 0;
   for (const t of activeTiers()) for (const r of t.releases || []) { if (r.map !== R.mapId) continue;
     for (let i = 0; i < (r.count || 1); i++) for (const id of r.enemies || []) { const idx = 2000 + k++; if (dead.includes(idx) || !D.enemies[id]) continue; const p = randomSpot(6); if (!p) continue;
