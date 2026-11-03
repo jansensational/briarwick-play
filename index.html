@@ -3,10 +3,15 @@
 <head>
 <meta charset="utf-8">
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACEUlEQVR4Xr2XO0jDUBSGk1rBQUFwEQRxkKqTKO0i6OpYCx0cXHToqFAU6eDkUMQuOnawi4NDQTo6FsWhjYogWMWCiIKLKOhQEB+cyElzb+7jJNR+S+m9yfn/nMclMQ2O0ejyD7/Gs77/YWwtdDu/AK7pqFm7pvsa5g9FHEHBkdS5MTcTsQ1RcZtwDPgRdwMGbvKTVG0HNGEb8Cve8XIqFfzqm/LsWXtvRnSp17MOJky/4gAYKKfDxtlrPxM0XXj0GABxRGQiJHoU900yeHEZKCoSBwJnQIaoBCrCyl0Fm8dVz+7GdMx3OGEJWsF1dYcURmtA1g+JAXX8sdhKawzImufwiRRfizYD/41vA6pDCM8IGaK+8DWGKC6aAAQngTqOngzIutctrmpANKfLFELKAC9OaUBqJsg9oEq7COr15JOw1rBsnWxdqBcYbQaotZShu1/bAxBgLX5gx4+HLo3S9zijpVvbLs0rJ8IcjCSV74A9n/e24EkiE0gceO8ckmZI2wNwM5jgnxzg1ypXllGxd/76RScOaHuACpQiCGQDUEsVfDbK9RzJD8kA1pA3IXtqFFfVHiEZcNfSbULUF37EAeEUJPMNafqOFp+ZPRhRPjOzBfZtGSmmujxxGQMTq2xwHXfZptHhjDe4jItc02D44baoPQtk+BEVAdrOp5nuQGo1IM6cA7jQDtxazBS0wwSv8QvPBN/iKlJbaQAAAABJRU5ErkJggg==">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reagents of Briarwick v0.12.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Briarwick">
+<title>Reagents of Briarwick v0.13.0</title>
 <style>
-  html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; }
+  html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
+  canvas { touch-action: none; }
   body { display: flex; align-items: center; justify-content: center; }
   canvas { image-rendering: pixelated; image-rendering: crisp-edges; display: block; box-shadow: 0 0 40px rgba(0,0,0,.6); }
   #err { position: fixed; top: 8px; left: 8px; right: 8px; color: #fff; background: #a33; font: 14px sans-serif; padding: 8px; display: none; white-space: pre-wrap; }
@@ -24,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -31087,7 +31092,7 @@ window.Music = (() => {
   };
   function sfx(n) { try { if (ac && SFX[n]) SFX[n](); } catch (e) { /* never let audio break the game */ } }
 
-  addEventListener('keydown', unlock); addEventListener('mousedown', unlock); addEventListener('touchstart', unlock);
+  addEventListener('keydown', unlock); addEventListener('mousedown', unlock); addEventListener('touchstart', unlock); addEventListener('touchend', unlock); addEventListener('pointerup', unlock);
   return { setData(d) { data = d || {}; }, play, stop, sfx, unlock, setVolume, get volume() { return Object.assign({}, vol); }, get current() { return cur ? cur.id : null; } };
 })();
 
@@ -31131,8 +31136,10 @@ const los = (a, b) => losXY(a.x, a.y, b.x, b.y);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 function fitCanvas() {
-  const s = Math.min(innerWidth / VW, innerHeight / VH);
+  const side = window.__mobileOn && innerWidth > innerHeight ? Math.min(120, innerWidth * 0.14) : 0;
+  const s = Math.min((innerWidth - 2 * side) / VW, innerHeight / VH);
   cv.style.width = Math.floor(VW * s) + 'px'; cv.style.height = Math.floor(VH * s) + 'px';
+  if (window.__MOB) window.__MOB.layout();
 }
 addEventListener('resize', fitCanvas); fitCanvas();
 
@@ -31184,7 +31191,15 @@ addEventListener('keyup', e => keys.delete(e.key.toLowerCase()));
 addEventListener('blur', () => keys.clear());
 function canvasPos(e) { const r = cv.getBoundingClientRect(); return { x: (e.clientX - r.left) * VW / r.width, y: (e.clientY - r.top) * VH / r.height }; }
 cv.addEventListener('mousemove', e => { const p = canvasPos(e); mouse.x = p.x; mouse.y = p.y; mouse.moved = true; });
-cv.addEventListener('mousedown', e => { const p = canvasPos(e); mouse.x = p.x; mouse.y = p.y; clicks.push(p); });
+let lastTouch = 0, touchT = null;
+cv.addEventListener('mousedown', e => { if (Date.now() - lastTouch < 900) return; const p = canvasPos(e); mouse.x = p.x; mouse.y = p.y; clicks.push(p); });
+cv.addEventListener('pointerdown', e => { if (e.pointerType !== 'touch') return; e.preventDefault(); lastTouch = Date.now(); const p = canvasPos(e); mouse.x = p.x; mouse.y = p.y; mouse.moved = true; touchT = { t: Date.now(), x: p.x, y: p.y }; });
+cv.addEventListener('pointermove', e => { if (e.pointerType !== 'touch' || !touchT) return; const p = canvasPos(e); mouse.x = p.x; mouse.y = p.y; mouse.moved = true; });
+cv.addEventListener('pointerup', e => { if (e.pointerType !== 'touch' || !touchT) return; lastTouch = Date.now(); const p = canvasPos(e); if (Date.now() - touchT.t < 420 && Math.hypot(p.x - touchT.x, p.y - touchT.y) < 24) clicks.push(p); touchT = null; });
+cv.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('gesturestart', e => e.preventDefault());
+document.addEventListener('touchmove', e => { if (window.__mobileOn) e.preventDefault(); }, { passive: false });
+document.addEventListener('dblclick', e => e.preventDefault());
 
 // ================= UI PRIMITIVES =================
 const UI = { bg: '#f6ecd0', bg2: '#e2cf9f', border: '#5e3b22', text: '#3a2618', dim: '#8c7656', sel: '#f2c862', red: '#b83a30', green: '#3d8a3a', blue: '#2e6bb0', white: '#fff8e6' };
@@ -31271,8 +31286,80 @@ async function fadeTo(mid) {
 
 // ================= STATE =================
 // ---- player settings (per computer, not per save) ----
-const SET = { walk: 'normal', battle: 'normal', stats: true, name: '', keys: {} };
+const SET = { walk: 'normal', battle: 'normal', stats: true, name: '', keys: {}, mobile: null };
 try { Object.assign(SET, JSON.parse(localStorage.getItem('gt_settings') || '{}')); } catch (e) { /* storage unavailable */ }
+// ================= MOBILE PLAY: joystick (left) + A / B (right), rotate prompt =================
+if (SET.mobile == null) SET.mobile = !!(window.matchMedia && matchMedia('(pointer: coarse)').matches && Math.min(screen.width, screen.height) < 820);
+window.__mobileOn = !!SET.mobile;
+const MOB = (() => {
+  const css = `#mp-l,#mp-r{position:fixed;top:0;bottom:0;display:none;align-items:center;justify-content:center;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;z-index:5}
+#mp-l{left:0} #mp-r{right:0;flex-direction:column;gap:6px}
+#mp-joy{width:104px;height:104px;border-radius:50%;background:rgba(255,244,200,.12);border:3px solid rgba(255,244,200,.45);position:relative;margin-top:50px;touch-action:none}
+#mp-joy:before,#mp-joy:after{content:'';position:absolute;background:rgba(255,244,200,.25)}
+#mp-joy:before{left:50%;top:10px;bottom:10px;width:2px;margin-left:-1px}#mp-joy:after{top:50%;left:10px;right:10px;height:2px;margin-top:-1px}
+#mp-knob{position:absolute;width:46px;height:46px;border-radius:50%;background:#f2c862;border:3px solid #6b4423;left:26px;top:26px;box-shadow:0 3px 6px rgba(0,0,0,.5);z-index:2;pointer-events:none}
+.mp-btn{width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:bold 26px "Trebuchet MS",sans-serif;color:#fff;border:3px solid rgba(0,0,0,.45);box-shadow:0 3px 6px rgba(0,0,0,.5);touch-action:none}
+.mp-btn.on{filter:brightness(1.35);transform:scale(.94)}
+#mp-a{background:#4f9a3e;margin-left:30px}#mp-b{background:#b8463a;margin-right:30px}
+.mp-lbl{font:bold 11px sans-serif;color:#d9cbb0;margin-bottom:8px}
+#mp-rot{position:fixed;inset:0;background:#1a1420;color:#fff4c8;display:none;flex-direction:column;align-items:center;justify-content:center;font:bold 20px "Trebuchet MS",sans-serif;text-align:center;gap:18px;z-index:9;padding:20px}
+#mp-rot .ph{width:56px;height:96px;border:5px solid #f2c862;border-radius:12px;animation:mprot 2.2s ease-in-out infinite}
+@keyframes mprot{0%,30%{transform:rotate(0)}60%,100%{transform:rotate(-90deg)}}
+#mp-tip{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);background:rgba(30,20,30,.92);color:#fff;font:bold 13px sans-serif;padding:8px 34px 8px 12px;border-radius:8px;display:none;z-index:8;max-width:80vw}
+#mp-tip b{position:absolute;right:10px;top:6px;font-size:16px}`;
+  const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+  document.body.insertAdjacentHTML('beforeend', `<div id="mp-l"><div id="mp-joy"><div id="mp-knob"></div></div></div>
+<div id="mp-r"><div class="mp-btn" id="mp-b">B</div><div class="mp-lbl" style="margin-right:30px">back</div><div class="mp-btn" id="mp-a" style="margin-top:22px">A</div><div class="mp-lbl" style="margin-left:30px">use / OK</div></div>
+<div id="mp-rot"><div class="ph"></div>Turn your phone sideways to play<div style="font-size:14px;color:#cdbfa0">Reagents of Briarwick plays in landscape.</div></div>
+<div id="mp-tip">Tip: tap Share, then <u>Add to Home Screen</u>, to play full-screen without the browser bars.<b>x</b></div>`);
+  const $ = id => document.getElementById(id);
+  const L = $('mp-l'), Rr = $('mp-r'), joy = $('mp-joy'), knob = $('mp-knob'), rot = $('mp-rot'), tip = $('mp-tip');
+  const DK = { up: 'arrowup', down: 'arrowdown', left: 'arrowleft', right: 'arrowright' };
+  let dir = null, rep = null, jid = null;
+  function setDir(d) {
+    if (d === dir) return;
+    if (dir) keys.delete(DK[dir]); clearTimeout(rep); clearInterval(rep); dir = d;
+    if (!d) return;
+    keys.add(DK[d]); hits.push(DK[d]);
+    rep = setTimeout(() => { rep = setInterval(() => { if (dir && (menus.length || DOLL || (R.scene === 'combat' && C))) hits.push(DK[dir]); }, 150); }, 380);
+  }
+  function joyMove(e) {
+    const r = joy.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    let dx = e.clientX - cx, dy = e.clientY - cy; const m = Math.hypot(dx, dy), max = r.width / 2 - 10;
+    if (m > max) { dx *= max / m; dy *= max / m; }
+    knob.style.left = (26 + dx) + 'px'; knob.style.top = (26 + dy) + 'px';
+    setDir(m < 16 ? null : Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up'));
+  }
+  function joyEnd() { jid = null; knob.style.left = '26px'; knob.style.top = '26px'; setDir(null); }
+  L.addEventListener('pointerdown', e => { e.preventDefault(); jid = e.pointerId; try { L.setPointerCapture(e.pointerId); } catch (er) { /* ok */ } joyMove(e); });
+  L.addEventListener('pointermove', e => { if (e.pointerId === jid) { e.preventDefault(); joyMove(e); } });
+  L.addEventListener('pointerup', e => { if (e.pointerId === jid) joyEnd(); });
+  L.addEventListener('pointercancel', joyEnd);
+  for (const [id, k] of [['mp-a', ' '], ['mp-b', 'escape']]) {
+    const b = $(id);
+    b.addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); b.classList.add('on'); hits.push(k); keys.add(k); });
+    const up = () => { b.classList.remove('on'); keys.delete(k); };
+    b.addEventListener('pointerup', up); b.addEventListener('pointercancel', up); b.addEventListener('pointerleave', up);
+  }
+  for (const el of [L, Rr, rot]) el.addEventListener('contextmenu', e => e.preventDefault());
+  tip.addEventListener('click', () => { tip.style.display = 'none'; SET.tipSeen = true; saveSettings(); });
+  const portrait = () => innerHeight > innerWidth;
+  function layout() {
+    const on = !!SET.mobile; window.__mobileOn = on;
+    const side = Math.max(0, (innerWidth - cv.getBoundingClientRect().width) / 2);
+    for (const el of [L, Rr]) { el.style.display = on && !portrait() ? 'flex' : 'none'; el.style.width = Math.max(110, side) + 'px'; }
+    rot.style.display = on && portrait() ? 'flex' : 'none';
+    const ios = /iPhone|iPad|iPod/.test(navigator.userAgent), standalone = navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone)').matches);
+    tip.style.display = on && ios && !standalone && !SET.tipSeen && !portrait() && R.scene === 'title' ? 'block' : 'none';
+    document.body.style.touchAction = on ? 'none' : '';
+  }
+  return { layout, portrait: () => !!SET.mobile && portrait(), release: () => { joyEnd(); } };
+})();
+window.__MOB = MOB;
+function setMobile(on) { SET.mobile = !!on; window.__mobileOn = SET.mobile; saveSettings(); fitCanvas(); setTimeout(fitCanvas, 50); toast(SET.mobile ? 'Mobile Play on: joystick on the left, A and B on the right.' : 'Mobile Play off.'); }
+addEventListener('orientationchange', () => setTimeout(fitCanvas, 250));
+setTimeout(fitCanvas, 0);
+
 // key bindings: [id, label, default key, group]. Handlers keep using the default keys; input is translated.
 const KB_DEF = [
   ['up', 'Move up', 'w', 'Move & interact'], ['down', 'Move down', 's', 'Move & interact'], ['left', 'Move left', 'a', 'Move & interact'], ['right', 'Move right', 'd', 'Move & interact'],
@@ -31425,7 +31512,7 @@ function heldDir() {
   return null;
 }
 function dollTop() { return !!DOLL && menus.length <= DOLL.depth; }
-function overlayActive() { return menus.length || dialogs.length || fadeA > 0 || !!WMAP || !!MASTER; }
+function overlayActive() { return MOB.portrait() || menus.length || dialogs.length || fadeA > 0 || !!WMAP || !!MASTER; }
 
 function updateWorld(dt) {
   updateEnemyAnims(dt);
@@ -31991,15 +32078,15 @@ function renderMaster() {
     const on = i === MASTER.tab, off = mtabOff(i), hov = mouse.x >= r.x && mouse.x <= r.x + r.w && mouse.y >= r.y && mouse.y <= r.y + r.h;
     ctx.fillStyle = off ? '#7a6a55' : on ? UI.sel : hov ? '#f7e4b0' : UI.bg2; rr(r.x, r.y, r.w, r.h, 6); ctx.fill();
     if (on && MASTER.focus === 'bar') { ctx.lineWidth = 3; ctx.strokeStyle = '#fff6c8'; ctx.stroke(); }
-    const kl = t.id ? K(t.id) : 'Esc';
-    text(t.label, r.x + r.w / 2 - 12, r.y + 7, { align: 'center', size: 14, bold: on, color: off ? '#4a3d30' : UI.text });
-    ctx.font = `bold 11px ${FONT}`; const kw = ctx.measureText(kl).width + 8; ctx.fillStyle = 'rgba(0,0,0,.18)'; rr(r.x + r.w - kw - 5, r.y + 8, kw, 16, 4); ctx.fill();
-    text(kl, r.x + r.w - kw / 2 - 5, r.y + 9, { align: 'center', size: 11, bold: true, color: UI.border });
+    const kl = SET.mobile ? '' : t.id ? K(t.id) : 'Esc';
+    text(t.label, r.x + r.w / 2 - (kl ? 12 : 0), r.y + 7, { align: 'center', size: 14, bold: on, color: off ? '#4a3d30' : UI.text });
+    if (kl) { ctx.font = `bold 11px ${FONT}`; const kw = ctx.measureText(kl).width + 8; ctx.fillStyle = 'rgba(0,0,0,.18)'; rr(r.x + r.w - kw - 5, r.y + 8, kw, 16, 4); ctx.fill();
+    text(kl, r.x + r.w - kw / 2 - 5, r.y + 9, { align: 'center', size: 11, bold: true, color: UI.border }); }
   });
   const cx = VW - 54; MASTER._close = { x: cx, y: 7, w: 46, h: 31 }; const ch = mouse.x >= cx && mouse.y <= 38 && mouse.y >= 7;
   ctx.fillStyle = ch ? UI.sel : UI.white; rr(cx, 7, 46, 31, 6); ctx.fill(); text('X', cx + 23, 13, { bold: true, align: 'center' });
   if (DOLL) return;   // the equipment screen shows its own key help
-  const hint = MASTER.focus === 'bar' ? 'Left/Right: choose a tab     Down or Enter: go into it     Esc: close' : 'Up from the top row: back to the tabs     Esc: close';
+  const hint = SET.mobile ? (MASTER.focus === 'bar' ? 'Joystick left/right: choose a tab     Down or A: go into it     B: close' : 'Up from the top row: back to the tabs     B: close') : MASTER.focus === 'bar' ? 'Left/Right: choose a tab     Down or Enter: go into it     Esc: close' : 'Up from the top row: back to the tabs     Esc: close';
   ctx.font = `bold 13px ${FONT}`; const hw = ctx.measureText(hint).width + 24; ctx.fillStyle = 'rgba(30,20,30,.82)'; rr((VW - hw) / 2, VH - 26, hw, 22, 6); ctx.fill();
   text(hint, VW / 2, VH - 23, { size: 13, bold: true, align: 'center', color: '#fff' });
 }
@@ -32454,7 +32541,7 @@ function renderHud() {
   if (G.flags.dreadKnown && mouse.x >= 10 && mouse.x <= 248 && mouse.y >= 92 && mouse.y <= 126)
     tooltip([`${DL().meterName || 'Attention'}: ${Math.round(dread() * 100)}%  (${tierName()})`, 'Magic, battles and new discoveries draw his eye. As it rises, monsters grow tougher and adapt to your wards.', 'Defeat him to push it back.'], 16, 132, 360);
   if (DRAFT) text('PLAYTESTING DRAFT DATA', VW / 2, 14, { bold: true, align: 'center', color: '#ff6a5a', shadow: true });
-  if (!MASTER) text(R.scene === 'sea' ? `Arrows: sail   ${K('map')} chart   ${K('navigator')} navigator   ${K('interact')} dock   ${K('inventory')} items   ${K('gear')} gear   ${K('skills')} skills   ${K('hirelings')} hirelings   Esc menu` : `${K('interact')} interact   ${K('inventory')} items   ${K('gear')} gear   ${K('spells')} spells   ${K('skills')} skills   ${K('hirelings')} hirelings   ${K('quests')} quests   ${K('map')} map   Esc menu`, VW / 2, VH - 22, { size: 13, align: 'center', color: '#fff', shadow: true });
+  if (!MASTER && !SET.mobile) text(R.scene === 'sea' ? `Arrows: sail   ${K('map')} chart   ${K('navigator')} navigator   ${K('interact')} dock   ${K('inventory')} items   ${K('gear')} gear   ${K('skills')} skills   ${K('hirelings')} hirelings   Esc menu` : `${K('interact')} interact   ${K('inventory')} items   ${K('gear')} gear   ${K('spells')} spells   ${K('skills')} skills   ${K('hirelings')} hirelings   ${K('quests')} quests   ${K('map')} map   Esc menu`, VW / 2, VH - 22, { size: 13, align: 'center', color: '#fff', shadow: true });
 }
 function renderCombat() {
   ctx.fillStyle = '#2a2238'; ctx.fillRect(0, 0, VW, VH);
@@ -32494,7 +32581,7 @@ function renderCombat() {
     drawSpr(s.sprite, 26, py + 14, 48);
     text(s.name, 84, py + 14, { bold: true });
     text(`HP ${s.hp}/${s.maxHp}   ATK ${s.atk}   DEF ${uDef(s)}   MOVE ${uMove(s)}`, 84, py + 36, { size: 13 });
-    text(C.mode === 'tile' ? 'Pick where to cast: click a tile, or arrows + Enter (Esc cancels)' : C.mode === 'target' ? 'Pick a target: click it, or arrows + Enter (Esc cancels)' : movesLeft(s) <= 0 ? `Done moving. Attack (Space), cast (${K('spell')}) or defend (${K('defend')}).` : (C.board ? 'Boarding! Fight across the decks. Bows reach 4.' : C.sea ? 'Bows reach 4 tiles. Arbalest (A) tiles fire 6.' : `Move with ${K('up')}${K('left')}${K('down')}${K('right')}/arrows or click blue (${movesLeft(s)} left). Walk into a foe to attack.`), 84, py + 56, { size: 13, color: UI.dim });
+    text(C.mode === 'tile' ? 'Pick where to cast: click a tile, or arrows + Enter (Esc cancels)' : C.mode === 'target' ? 'Pick a target: click it, or arrows + Enter (Esc cancels)' : movesLeft(s) <= 0 ? (SET.mobile ? 'Done moving. Attack (A), or tap Spell or Defend.' : `Done moving. Attack (Space), cast (${K('spell')}) or defend (${K('defend')}).`) : (C.board ? 'Boarding! Fight across the decks. Bows reach 4.' : C.sea ? 'Bows reach 4 tiles. Arbalest (A) tiles fire 6.' : `${SET.mobile ? 'Move with the joystick or tap' : `Move with ${K('up')}${K('left')}${K('down')}${K('right')}/arrows or click`} blue (${movesLeft(s)} left). Walk into a foe to attack.`), 84, py + 56, { size: 13, color: UI.dim });
     var bx = 26; const by = py + 82;
     if (s.isPlayer) { button(bx, by, 72, 32, `Spell (${K('spell')})`, startSpell, { disabled: !G.spells.length }); bx += 76; }
     if (s.ability) { button(bx, by, 124, 32, `${s.ability.name} (${K('ability')})` + (s.cd > 0 ? ` ${s.cd}` : ''), startAbility, { disabled: s.cd > 0 }); bx += 128; }
@@ -32526,10 +32613,10 @@ function renderTitle() {
   ctx.fillStyle = 'rgba(20,14,30,.35)'; ctx.fillRect(0, 0, VW, VH);
   text(D.meta.title, VW / 2, 110, { bold: true, size: 52, align: 'center', color: '#fff4c8', shadow: true });
   text('a reagent-magic farming adventure  -  v' + D.meta.version + (DRAFT ? '  (DRAFT DATA)' : ''), VW / 2, 176, { size: 18, align: 'center', color: '#fff', shadow: true });
-  const opts = [['New Game', () => newGame()], ['Continue', () => loadGame(), !hasSave()], ['Import save file', () => importSave()], ['Settings', () => script(settingsMenu)]];
+  const opts = [['New Game', () => newGame()], ['Continue', () => loadGame(), !hasSave()], ['Import save file', () => importSave()], ['Settings', () => script(settingsMenu)], [`Mobile Play: ${SET.mobile ? 'On' : 'Off'}`, () => setMobile(!SET.mobile)]];
   R.titleOpts = opts;
-  opts.forEach(([l, fn, dis], i) => button(VW / 2 - 110, 250 + i * 52, 220, 42, (R.titleIdx === i ? '> ' : '') + l, fn, { disabled: dis, hot: R.titleIdx === i }));
-  if (!UPD.online) text('Edit art, items, maps and quests with admin.html (in the same folder).', VW / 2, VH - 40, { size: 14, align: 'center', color: '#fff', shadow: true });
+  opts.forEach(([l, fn, dis], i) => button(VW / 2 - 110, 236 + i * 50, 220, 40, (R.titleIdx === i ? '> ' : '') + l, fn, { disabled: dis, hot: R.titleIdx === i }));
+  if (!UPD.online && !SET.mobile) text('Edit art, items, maps and quests with admin.html (in the same folder).', VW / 2, VH - 40, { size: 14, align: 'center', color: '#fff', shadow: true });
 }
 function titleKey(k) {
   const o = R.titleOpts || []; if (!o.length) return;
@@ -33264,6 +33351,7 @@ async function settingsMenu() {
     if (it.value === 'battle') SET.battle = cyc(BATTLE, SET.battle, d);
     if (it.value === 'stats') SET.stats = !SET.stats;
     if (it.value === 'name') { const v = window.prompt('Your name for play reports (leave blank for none):', SET.name || ''); if (v !== null) SET.name = v.trim().slice(0, 30); }
+    if (it.value === 'mobile') { setMobile(!SET.mobile); return; }
     if (it.value === 'keys') { if (d > 0) script(keybindMenu); return; }
     if (it.value === 'send') { if (!SET.stats) toast('Turn on Share play stats first.'); else if (sendStats('sent a report from Settings', true)) toast('Report sent - thank you!', UI.green); }
     saveSettings(); AU.sfx('menu');
@@ -33274,7 +33362,8 @@ async function settingsMenu() {
       { label: 'Share play stats', right: SET.stats ? 'On' : 'Off', value: 'stats', desc: 'When you close the game, a short summary (version, day, level, quests, settings, any errors) goes to the developer to help improve the game. No personal information.' },
       { label: 'Your name in reports', right: SET.name || '(not set)', value: 'name', desc: 'Optional. Lets the developer know whose play stats these are.' },
       { label: 'Send a report now', value: 'send', desc: 'Sends your play stats right away (handy after finding a bug).' },
-      { label: 'Key bindings...', value: 'keys', desc: 'Change which key does what.' }],
+      { label: 'Key bindings...', value: 'keys', desc: 'Change which key does what.' },
+      { label: 'Mobile Play', right: SET.mobile ? 'On' : 'Off', value: 'mobile', desc: 'Touch controls for phones and tablets: a joystick on the left, A (use / OK) and B (back) on the right. Turn your phone sideways to play.' }],
     onKey: (k, it) => { if (!it) return; const d = (k === 'arrowright' || k === 'd') ? 1 : (k === 'arrowleft' || k === 'a') ? -1 : 0; if (d) change(it, d); },
     onSelect: it => { if ((it.value === 'music' || it.value === 'sfx') && AU.volume[it.value] >= 0.99) AU.setVolume(it.value, 0); else change(it, 1); return false; } });
 }
@@ -33620,6 +33709,7 @@ function frame(now) {
   const dt = Math.min(0.05, (now - last) / 1000); last = now; R.t += dt;
   try {
     handleInput();
+    if (window.__mobileOn && Math.floor(R.t * 2) !== R._ml) { R._ml = Math.floor(R.t * 2); MOB.layout(); }
     for (const t of toasts) t.ttl -= dt; while (toasts.length && toasts[0].ttl <= 0) toasts.shift();
     if (R.scene === 'world' && G) updateWorld(dt);
     else if (R.scene === 'combat' && C) updateCombat(dt);
@@ -33641,7 +33731,7 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 // debug/test hook (harmless in production)
-window.__game = { openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
+window.__game = { setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
 })();
 
 </script>
