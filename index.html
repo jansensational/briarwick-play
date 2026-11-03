@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.17.1</title>
+<title>Reagents of Briarwick v0.17.2</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.17.1",
+  "version": "0.17.2",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -33245,7 +33245,8 @@ function kbTranslate(raw, ctx) {
   return raw;
 }
 function saveSettings() { try { localStorage.setItem('gt_settings', JSON.stringify(SET)); } catch (e) { /* ignore */ } }
-const WALK = { slow: 0.17, normal: 0.12, fast: 0.095, 'very fast': 0.075 };
+const WALK = { slower: 0.22, normal: 0.17, fast: 0.12, 'very fast': 0.095, fastest: 0.075 };   // 0.17.2: old Slow is the new Normal, old Normal is Fast
+if (!SET.walkV2) { SET.walk = { slow: 'normal', normal: 'normal', fast: 'very fast', 'very fast': 'fastest' }[SET.walk] || 'normal'; SET.walkV2 = 1; try { localStorage.setItem('gt_settings', JSON.stringify(SET)); } catch (e) { /* ignore */ } }
 const BATTLE = { slow: 0.75, normal: 0.5, fast: 0.28 };
 function walkStep() { return (WALK[SET.walk] || WALK.normal) * (weary() ? 1.3 : 1); }
 function battleDelay() { return BATTLE[SET.battle] || BATTLE.normal; }
