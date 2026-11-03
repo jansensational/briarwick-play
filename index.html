@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.13.0</title>
+<title>Reagents of Briarwick v0.14.0</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -45,7 +45,8 @@ window.GAME_DATA = {
   "updateUrl": "https://jansensational.github.io/briarwick-play/version.json",
   "reportWebhook": "https://discord.com/api/webhooks/1566515455265349643/JyhpBnAjaNgwGaXYmk-v1CSGBU97GFoeodAeJKo3vFZct_p50jtApa7xBt8F6pNthWX1",
   "discordInvite": "https://discord.gg/KHZkNGfgjK",
-  "curveVersion": 2
+  "curveVersion": 2,
+  "clearBufferMax": 7
  },
  "start": {
   "map": "house",
@@ -57,9 +58,9 @@ window.GAME_DATA = {
   },
   "hp": 34,
   "intro": [
-   "Gran left you her cottage in Briarwick, a little garden out front, and a greenhouse gone to ruin.",
-   "Her note says: 'Find Old Aldwin in the cave north of town. He'll know what to do with you.'",
-   "Controls: WASD/Arrows move | E or Space interact | I items | M spells | K skills | H hirelings | J quests | Esc menu"
+   "Gran left you, {hero}, her cottage in Briarwick, a little garden out front, and a greenhouse gone to ruin.",
+   "Her note says: 'Dear {hero}, find Old Aldwin in the cave north of town. He'll know what to do with you.'",
+   "Controls: WASD/Arrows move | E or Space interact | Menu button (top right) or I, P, M, K, H, J for your screens | N map | Esc game menu"
   ],
   "equip": {
    "main": "rusty_sword",
@@ -18825,13 +18826,13 @@ window.GAME_DATA = {
    "desc": "Finely stitched and lined. 18% chance each reagent is not used up."
   },
   "helper_bed": {
-   "name": "Hireling Bed",
+   "name": "Companion Bed",
    "type": "furniture",
    "furn": "bed",
    "sprite": "t_hbed",
    "price": 150,
    "sell": 50,
-   "desc": "A cosy bed for one hireling. Every hired hireling needs their own bed at your cottage."
+   "desc": "A cosy bed for one companion. Every hired companion needs their own bed at your cottage."
   },
   "reading_desk": {
    "name": "Reading Desk",
@@ -18849,7 +18850,7 @@ window.GAME_DATA = {
    "sprite": "f_hearth",
    "price": 280,
    "sell": 90,
-   "desc": "A warm hearth keeps hirelings happy. Hireling wages are 10% lower."
+   "desc": "A warm hearth keeps companions happy. Companion wages are 10% lower."
   },
   "home_alembic": {
    "name": "Home Alembic",
@@ -18867,7 +18868,7 @@ window.GAME_DATA = {
    "sprite": "i_extension",
    "price": 600,
    "sell": 0,
-   "desc": "A sleeping loft for your cottage. Room for 4 hireling beds instead of 2."
+   "desc": "A sleeping loft for your cottage. Room for 4 companion beds instead of 2."
   },
   "market_stall": {
    "name": "Market Stall",
@@ -18876,7 +18877,7 @@ window.GAME_DATA = {
    "sprite": "i_stall",
    "price": 400,
    "sell": 0,
-   "desc": "A stall outside your cottage. A hireling assigned to it sells your surplus reagents each night."
+   "desc": "A stall outside your cottage. A companion assigned to it sells your surplus reagents each night."
   },
   "display_cases": {
    "name": "Display Cases",
@@ -19448,7 +19449,7 @@ window.GAME_DATA = {
    "price": 1500,
    "sell": 0,
    "requires": "extension",
-   "desc": "A bunkhouse behind the cottage. Room for 8 hireling beds."
+   "desc": "A bunkhouse behind the cottage. Room for 8 companion beds."
   },
   "jadeleaf": {
    "name": "Jadeleaf",
@@ -19762,7 +19763,7 @@ window.GAME_DATA = {
    "price": 120,
    "sell": 40,
    "revive": true,
-   "desc": "Liquid fire in a stoppered vial. Pack it for an adventure or voyage: if a hireling falls, it brings them back."
+   "desc": "Liquid fire in a stoppered vial. Pack it for an adventure or voyage: if a companion falls, it brings them back."
   },
   "scroll_of_return": {
    "name": "Scroll of Return",
@@ -19783,7 +19784,7 @@ window.GAME_DATA = {
    },
    "kind": "damage",
    "power": 13,
-   "range": 4,
+   "range": 5,
    "area": 0,
    "desc": "A quick lick of flame that scorches one foe. Your first spell; it grows with Magery.",
    "element": "fire",
@@ -19797,7 +19798,7 @@ window.GAME_DATA = {
    },
    "kind": "heal",
    "power": 14,
-   "range": 3,
+   "range": 5,
    "area": 0,
    "fieldUse": true,
    "desc": "Knits wounds closed. Can be cast outside combat.",
@@ -19814,7 +19815,7 @@ window.GAME_DATA = {
    "stat": "def",
    "power": 3,
    "turns": 3,
-   "range": 3,
+   "range": 5,
    "area": 0,
    "desc": "Hardens an ally's skin (+DEF for 3 rounds).",
    "element": "earth",
@@ -19828,7 +19829,7 @@ window.GAME_DATA = {
    },
    "kind": "damage",
    "power": 15,
-   "range": 5,
+   "range": 6,
    "area": 0,
    "slow": 2,
    "desc": "A spear of ice that also slows the target.",
@@ -19843,7 +19844,7 @@ window.GAME_DATA = {
    },
    "kind": "damage",
    "power": 16,
-   "range": 4,
+   "range": 5,
    "area": 1,
    "desc": "Explodes, hitting the target and everything next to it.",
    "element": "fire",
@@ -19873,7 +19874,7 @@ window.GAME_DATA = {
    },
    "kind": "heal",
    "power": 26,
-   "range": 4,
+   "range": 5,
    "area": 0,
    "element": "life",
    "desc": "Taught by the ruler of the Verdant Isles.",
@@ -19887,7 +19888,7 @@ window.GAME_DATA = {
    },
    "kind": "damage",
    "power": 20,
-   "range": 4,
+   "range": 5,
    "area": 1,
    "element": "ice",
    "desc": "Taught by the ruler of the Azure Atoll.",
@@ -19901,7 +19902,7 @@ window.GAME_DATA = {
    },
    "kind": "buff",
    "power": 4,
-   "range": 3,
+   "range": 5,
    "area": 0,
    "element": "earth",
    "desc": "Taught by the ruler of Thornhaven.",
@@ -19918,7 +19919,7 @@ window.GAME_DATA = {
    },
    "kind": "damage",
    "power": 30,
-   "range": 4,
+   "range": 6,
    "area": 1,
    "element": "fire",
    "desc": "Taught by the ruler of the Ember Isles.",
@@ -19931,7 +19932,7 @@ window.GAME_DATA = {
    },
    "kind": "damage",
    "power": 5,
-   "range": 3,
+   "range": 5,
    "area": 1,
    "element": "fire",
    "learnAt": {
@@ -19949,7 +19950,7 @@ window.GAME_DATA = {
    },
    "kind": "damage",
    "power": 4,
-   "range": 4,
+   "range": 5,
    "area": 0,
    "slow": 2,
    "element": "earth",
@@ -19970,7 +19971,7 @@ window.GAME_DATA = {
    "stat": "def",
    "power": 3,
    "turns": 3,
-   "range": 4,
+   "range": 5,
    "area": 0,
    "element": "earth",
    "learnAt": {
@@ -19990,7 +19991,7 @@ window.GAME_DATA = {
    "stat": "atk",
    "pct": 0.3,
    "turns": 3,
-   "range": 4,
+   "range": 5,
    "area": 0,
    "element": "arcane",
    "learnAt": {
@@ -20009,7 +20010,7 @@ window.GAME_DATA = {
    "kind": "terrain",
    "terrain": "mire",
    "shape": "area1",
-   "range": 4,
+   "range": 5,
    "turns": 3,
    "power": 0,
    "element": "earth",
@@ -20027,7 +20028,7 @@ window.GAME_DATA = {
    },
    "kind": "damage",
    "power": 9,
-   "range": 4,
+   "range": 5,
    "area": 1,
    "slow": 2,
    "element": "ice",
@@ -20047,7 +20048,7 @@ window.GAME_DATA = {
    "kind": "terrain",
    "terrain": "wall",
    "shape": "line3",
-   "range": 4,
+   "range": 5,
    "turns": 3,
    "power": 0,
    "element": "earth",
@@ -20068,7 +20069,7 @@ window.GAME_DATA = {
    "stat": "atk",
    "pct": 0.3,
    "turns": 3,
-   "range": 4,
+   "range": 5,
    "area": 1,
    "element": "arcane",
    "learnAt": {
@@ -20088,7 +20089,7 @@ window.GAME_DATA = {
    "stat": "move",
    "power": 2,
    "turns": 3,
-   "range": 3,
+   "range": 5,
    "area": 0,
    "element": "arcane",
    "learnAt": {
@@ -20105,7 +20106,7 @@ window.GAME_DATA = {
    },
    "kind": "heal",
    "power": 10,
-   "range": 3,
+   "range": 5,
    "area": 1,
    "element": "life",
    "learnAt": {
@@ -20157,7 +20158,7 @@ window.GAME_DATA = {
   },
   "tactics": {
    "name": "Tactics",
-   "desc": "Lead a bigger party (+1 party hireling when unlocked), and hirelings gain +1 attack every 4 levels. Trains when you fight alongside hirelings.",
+   "desc": "Lead a bigger party (+1 party companion when unlocked), and companions gain +1 attack every 4 levels. Trains when you fight alongside companions.",
    "advanced": true,
    "requires": {
     "skill": "swordplay",
@@ -22050,7 +22051,7 @@ window.GAME_DATA = {
    "role": "shop",
    "shop": "homecenter",
    "dialog": [
-    "Gideon's Home Center! Beds, furniture and shop fittings. Every hireling needs a bed of their own, mind."
+    "Gideon's Home Center! Beds, furniture and shop fittings. Every companion needs a bed of their own, mind."
    ]
   },
   "mirelle": {
@@ -27015,7 +27016,7 @@ window.GAME_DATA = {
    "name": "A Bigger Crew",
    "giver": "gideon",
    "intro": [
-    "Need room for more hirelings? Bring me 12 iron ore and 8 copper for nails and brackets, and I'll sell you a Bunkhouse."
+    "Need room for more companions? Bring me 12 iron ore and 8 copper for nails and brackets, and I'll sell you a Bunkhouse."
    ],
    "objectives": [
     {
@@ -27030,7 +27031,7 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Done! A Bunkhouse - room for 8 hirelings. It's on my list now."
+    "Done! A Bunkhouse - room for 8 companions. It's on my list now."
    ],
    "reward": {
     "shopUnlock": {
@@ -28924,7 +28925,7 @@ window.GAME_DATA = {
       {
        "id": "master_gardener",
        "name": "Master Gardener",
-       "desc": "Greenhouse hirelings work as if they had +3 Herbalism.",
+       "desc": "Greenhouse companions work as if they had +3 Herbalism.",
        "effect": {
         "helperHerb": 3
        }
@@ -29178,7 +29179,7 @@ window.GAME_DATA = {
       {
        "id": "captain",
        "name": "Captain",
-       "desc": "Party hirelings get +2 attack.",
+       "desc": "Party companions get +2 attack.",
        "effect": {
         "partyAtk": 2
        }
@@ -29186,7 +29187,7 @@ window.GAME_DATA = {
       {
        "id": "bulwark",
        "name": "Bulwark",
-       "desc": "Party hirelings get +2 defense.",
+       "desc": "Party companions get +2 defense.",
        "effect": {
         "partyDef": 2
        }
@@ -29224,7 +29225,7 @@ window.GAME_DATA = {
       {
        "id": "shopkeeper",
        "name": "Shopkeeper",
-       "desc": "Shop-stall hirelings sell 4 more items per night.",
+       "desc": "Shop-stall companions sell 4 more items per night.",
        "effect": {
         "stallCap": 4
        }
@@ -29232,7 +29233,7 @@ window.GAME_DATA = {
       {
        "id": "pincher",
        "name": "Penny Pincher",
-       "desc": "Hireling wages 25% lower.",
+       "desc": "Companion wages 25% lower.",
        "effect": {
         "wageDiscount": 0.25
        }
@@ -29274,7 +29275,7 @@ window.GAME_DATA = {
       {
        "id": "patron",
        "name": "Patron",
-       "desc": "Hirelings earn 50% more battle XP.",
+       "desc": "Companions earn 50% more battle XP.",
        "effect": {
         "helperXp": 0.5
        }
@@ -29354,7 +29355,7 @@ window.GAME_DATA = {
       {
        "id": "admiral",
        "name": "Admiral",
-       "desc": "Party hirelings get +1 move.",
+       "desc": "Party companions get +1 move.",
        "effect": {
         "partyMove": 1
        }
@@ -29471,7 +29472,7 @@ window.GAME_DATA = {
       {
        "id": "drill",
        "name": "Drill Sergeant",
-       "desc": "Party hirelings get +2 attack.",
+       "desc": "Party companions get +2 attack.",
        "effect": {
         "partyAtk": 2
        }
@@ -29479,7 +29480,7 @@ window.GAME_DATA = {
       {
        "id": "formation",
        "name": "Formation",
-       "desc": "Party hirelings get +1 move.",
+       "desc": "Party companions get +1 move.",
        "effect": {
         "partyMove": 1
        }
@@ -29492,7 +29493,7 @@ window.GAME_DATA = {
       {
        "id": "warband",
        "name": "Warband",
-       "desc": "+1 more hireling in your party.",
+       "desc": "+1 more companion in your party.",
        "effect": {
         "partySize": 1
        }
@@ -29500,7 +29501,7 @@ window.GAME_DATA = {
       {
        "id": "shieldwall",
        "name": "Shield Wall",
-       "desc": "Party hirelings get +3 defense.",
+       "desc": "Party companions get +3 defense.",
        "effect": {
         "partyDef": 3
        }
@@ -29525,7 +29526,7 @@ window.GAME_DATA = {
       {
        "id": "caravan",
        "name": "Caravan",
-       "desc": "Stall hirelings sell 4 more items per night.",
+       "desc": "Stall companions sell 4 more items per night.",
        "effect": {
         "stallCap": 4
        }
@@ -30662,7 +30663,8 @@ window.GAME_DATA = {
     ]
    }
   ],
-  "introNote": "Outlanders: heal them in the Apothecary back room, then take them home. They join your party for the journey; meeting their ruler finishes the quest and opens that land's quests."
+  "introNote": "Outlanders: heal them in the Apothecary back room, then take them home. They join your party for the journey; meeting their ruler finishes the quest and opens that land's quests.",
+  "arrivalWait": 7
  },
  "fountain": {
   "cost": 1,
@@ -30958,6 +30960,191 @@ window.GAME_DATA = {
     ]
    }
   ]
+ },
+ "battleTalk": {
+  "ignoreRatio": 6,
+  "companionTaunts": [
+   "These {foe} are no match for us!",
+   "{Foe}? We've handled worse before breakfast.",
+   "Stay behind me, {hero}. I'll take the first swing.",
+   "Ha! {Foe} picked the wrong party to bother."
+  ],
+  "selfDoubt": [
+   "Can I take {foe} on my own?",
+   "{Foe}... Am I ready for this?",
+   "Steady, {hero}. Can you handle {foe}?"
+  ],
+  "fightLines": [
+   "For Briarwick!",
+   "Have at you!",
+   "Let's settle this!",
+   "Come on, then!"
+  ],
+  "fleeLines": [
+   "Discretion is the better part of valour.",
+   "Not today. I'll be back.",
+   "Time for a strategic retreat!"
+  ],
+  "ignoreLines": [
+   "Not worth my time.",
+   "Move along. I have better things to do.",
+   "I'll let you off this once."
+  ],
+  "humanoids": [
+   "bandit",
+   "pirate",
+   "corsair",
+   "orc",
+   "goblin",
+   "knight",
+   "warlord",
+   "black_sail",
+   "hollow_king",
+   "skeleton_captain"
+  ],
+  "humanoidTaunts": [
+   "Your gold or your life!",
+   "Fresh meat, lads!",
+   "You picked the wrong road, farmer.",
+   "Hand over those reagents and nobody gets hurt.",
+   "Hah! A gardener with a sword?"
+  ],
+  "cries": [
+   [
+    [
+     "wolf",
+     "hound",
+     "cat"
+    ],
+    [
+     "Grrrrr... *snarls and bares its teeth*",
+     "*a low, hungry growl*"
+    ]
+   ],
+   [
+    [
+     "slime"
+    ],
+    [
+     "*blorp... blorp*",
+     "*an angry wobble*"
+    ]
+   ],
+   [
+    [
+     "crab"
+    ],
+    [
+     "*click-clack, click-clack*"
+    ]
+   ],
+   [
+    [
+     "wisp"
+    ],
+    [
+     "*a cold, eerie hum*"
+    ]
+   ],
+   [
+    [
+     "spider"
+    ],
+    [
+     "*hissssss*"
+    ]
+   ],
+   [
+    [
+     "bat"
+    ],
+    [
+     "*screeeeech!*"
+    ]
+   ],
+   [
+    [
+     "shark",
+     "serpent",
+     "kraken",
+     "tentacle",
+     "murkfin",
+     "drowned"
+    ],
+    [
+     "*the water churns*",
+     "*something huge circles below*"
+    ]
+   ],
+   [
+    [
+     "golem"
+    ],
+    [
+     "*the grinding of stone on stone*"
+    ]
+   ],
+   [
+    [
+     "skeleton",
+     "wraith"
+    ],
+    [
+     "*bones rattle*",
+     "*a hollow, rasping breath*"
+    ]
+   ],
+   [
+    [
+     "treant",
+     "vine",
+     "creeper"
+    ],
+    [
+     "*creaking branches*",
+     "*leaves rustle with menace*"
+    ]
+   ],
+   [
+    [
+     "drake",
+     "imp",
+     "magma"
+    ],
+    [
+     "*a hiss of flame*"
+    ]
+   ],
+   [
+    [
+     "siren"
+    ],
+    [
+     "*a haunting, beautiful song*"
+    ]
+   ],
+   [
+    [
+     "warden"
+    ],
+    [
+     "*the tide rises in warning*"
+    ]
+   ]
+  ],
+  "defaultCry": [
+   "*a menacing growl*"
+  ],
+  "fleeChance": {
+   "Easy": 0.75,
+   "Fair": 0.6,
+   "Hard": 0.4,
+   "Deadly": 0.25
+  },
+  "fleeFailLines": [
+   "They cut off my escape! I'll have to fight.",
+   "No way out. Here they come!"
+  ]
  }
 };
 
@@ -31123,7 +31310,7 @@ const DIRS = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
 const N4 = [[1, 0], [-1, 0], [0, 1], [0, -1]];
 const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-const man = (a, b) => Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+const man = (a, b) => Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y));   // ranges are squares: range = the box's radius
 // battle line of sight: any solid tile between shooter and target blocks ranged attacks and spells
 function losXY(x0, y0, x1, y1) {
   if (!C || Math.abs(x0 - x1) + Math.abs(y0 - y1) <= 1) return true;
@@ -31182,6 +31369,7 @@ const FACE = { up: 'down', down: 'up', left: 'right', right: 'left' }; const OPP
 const keys = new Set(); let hits = []; let clicks = []; const mouse = { x: 0, y: 0, moved: false };
 const NAVKEYS = ['arrowup', 'arrowdown', 'arrowleft', 'arrowright', 'w', 's', 'a', 'd'];
 addEventListener('keydown', e => {
+  if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
   const k = e.key.toLowerCase();
   if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' ', 'tab'].includes(k)) e.preventDefault();
   if (!e.repeat || NAVKEYS.includes(k)) hits.push(k);
@@ -31247,7 +31435,9 @@ function bar(x, y, w, h, frac, col) {
 
 // ================= OVERLAYS: dialog, menus, toasts, fade =================
 const dialogs = [], menus = [], toasts = [];
-function say(speaker, lines, spr) { if (!Array.isArray(lines)) lines = [lines]; return new Promise(res => dialogs.push({ speaker, lines, i: 0, res, spr })); }
+function heroName() { return (G && G.name) || 'friend'; }
+function sub(l) { return typeof l === 'string' ? l.replace(/\{hero\}/g, heroName()) : l; }
+function say(speaker, lines, spr) { if (!Array.isArray(lines)) lines = [lines]; lines = lines.map(sub); return new Promise(res => dialogs.push({ speaker, lines, i: 0, res, spr })); }
 function advanceDialog() { const d = dialogs[0]; if (!d) return; AU.sfx('menu'); d.i++; if (d.i >= d.lines.length) { dialogs.shift(); d.res(); } }
 function openMenu(o) { return new Promise(res => menus.push(Object.assign({ index: 0, scroll: 0, width: 480 }, o, { res }))); }
 function closeMenu(m, val) { const i = menus.indexOf(m); if (i >= 0) menus.splice(i, 1); m.res(val === undefined ? null : val); }
@@ -31365,12 +31555,13 @@ const KB_DEF = [
   ['up', 'Move up', 'w', 'Move & interact'], ['down', 'Move down', 's', 'Move & interact'], ['left', 'Move left', 'a', 'Move & interact'], ['right', 'Move right', 'd', 'Move & interact'],
   ['interact', 'Interact / talk / dock', 'e', 'Move & interact'], ['map', 'World map / sea chart', 'n', 'Move & interact'],
   ['inventory', 'Items', 'i', 'Menu screens'], ['gear', 'Equipment', 'p', 'Menu screens'], ['spells', 'Spellbook', 'm', 'Menu screens'], ['skills', 'Skills & perks', 'k', 'Menu screens'],
-  ['hirelings', 'Hirelings', 'h', 'Menu screens'], ['quests', 'Quests', 'j', 'Menu screens'],
+  ['companions', 'Companions', 'h', 'Menu screens'], ['quests', 'Quests', 'j', 'Menu screens'],
   ['spell', 'Cast a spell', '1', 'Battle'], ['ability', 'Use ability', '2', 'Battle'], ['item', 'Use an item', '3', 'Battle'], ['defend', 'Defend', '4', 'Battle'], ['taunt', 'Taunt', '5', 'Battle'],
   ['next', 'Next party member', 'tab', 'Battle'], ['flee', 'Flee', 'f', 'Battle'],
   ['navigator', 'Navigator autopilot', 'g', 'Sailing'], ['course', 'Change course', 'c', 'Sailing']];
 const KB_RESERVED = ['escape', 'enter', ' ', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright', 'backspace', 'shift', 'control', 'alt', 'meta', 'capslock', 'delete', 'contextmenu', 'os'];
 const KB_CTX = { general: ['Move & interact', 'Menu screens'], combat: ['Move & interact', 'Battle'], sea: ['Move & interact', 'Menu screens', 'Sailing'] };
+if (SET.keys && SET.keys.hirelings) { SET.keys.companions = SET.keys.hirelings; delete SET.keys.hirelings; }
 function kdef(id) { const d = KB_DEF.find(d => d[0] === id); return d ? d[2] : id; }
 function bind(id) { return (SET.keys || {})[id] || kdef(id); }
 function keyName(k) { return { ' ': 'Space', arrowup: 'Up', arrowdown: 'Down', arrowleft: 'Left', arrowright: 'Right', tab: 'Tab', enter: 'Enter', escape: 'Esc' }[k] || (k.length === 1 ? k.toUpperCase() : k[0].toUpperCase() + k.slice(1)); }
@@ -31455,6 +31646,23 @@ function payReagents(sp) { stat('casts');
 }
 function reagentStr(sp) { return Object.entries(sp.reagents || {}).map(([id, n]) => `${n} ${item(id).name}`).join(', '); }
 
+function askName(current) {
+  return new Promise(res => {
+    const ov = document.createElement('div'); ov.id = 'nm-ov';
+    ov.innerHTML = `<style>#nm-ov{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(20,14,30,.55);z-index:20}
+#nm-ov .b{background:#f6ebd2;border:4px solid #6b4423;border-radius:10px;padding:18px 20px;width:min(360px,86vw);font-family:"Trebuchet MS",Verdana,sans-serif;color:#3a2618;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+#nm-ov .t{font-weight:bold;font-size:20px;color:#6b4423;margin-bottom:4px}#nm-ov .s{font-size:14px;margin-bottom:12px}
+#nm-ov input{width:100%;box-sizing:border-box;font:bold 20px "Trebuchet MS",sans-serif;padding:8px 10px;border:3px solid #6b4423;border-radius:6px;background:#fffaf0;color:#3a2618}
+#nm-ov button{margin-top:12px;width:100%;font:bold 17px "Trebuchet MS",sans-serif;padding:9px;border:3px solid #6b4423;border-radius:6px;background:#f2c862;color:#3a2618;cursor:pointer}</style>
+<div class="b"><div class="t">What is your name?</div><div class="s">Gran's note is addressed to you. (You can't change it later.)</div><input id="nm-in" maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Your name"><button id="nm-ok" type="button">Begin</button></div>`;
+    document.body.appendChild(ov);
+    const inp = document.getElementById('nm-in'); if (current) inp.value = current;
+    setTimeout(() => inp.focus(), 50);
+    const done = () => { const v = inp.value.replace(/[<>{}]/g, '').trim().slice(0, 16); if (!v) { inp.focus(); inp.style.borderColor = '#c0453a'; return; } ov.remove(); keys.clear(); res(v); };
+    document.getElementById('nm-ok').addEventListener('click', done);
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); done(); } });
+  });
+}
 function newGame() {
   const s = D.start;
   G = { v: 1, map: s.map, x: s.x, y: s.y, day: 1, time: D.meta.dayStart * 60, gold: s.gold, inv: Object.assign({}, s.items), discovered: {}, spells: [], skills: {}, xp: 0, hp: 1,
@@ -31462,14 +31670,15 @@ function newGame() {
   SEA = null;
   G.hp = maxHp();
   loadMap(s.map, s.x, s.y); R.scene = 'world';
-  script(() => say('', s.intro));
+  script(async () => { G.name = await askName(); await say('', s.intro); });
 }
 function saveGame(quiet) { try { localStorage.setItem(SAVE_KEY, JSON.stringify(G)); if (!quiet) toast('Game saved.'); } catch (e) { toast('Could not save: ' + e.message, UI.red); } }
 function hasSave() { try { return !!localStorage.getItem(SAVE_KEY); } catch (e) { return false; } }
 function loadGame() {
   try { const s = JSON.parse(localStorage.getItem(SAVE_KEY)); if (!s) return false; G = s; if ((G.curveV || 1) < (D.meta.curveVersion || 1) && D.skillCurve) { const oc = D.skillCurve, L = levelFromXp(G.xp, oc), a = xpForLevel(L, oc), b = xpForLevel(L + 1, oc), f = b > a ? Math.min(1, (G.xp - a) / (b - a)) : 0; G.xp = Math.round(xpForLevel(L, D.xpCurve) + f * (xpForLevel(L + 1, D.xpCurve) - xpForLevel(L, D.xpCurve))); }
   G.curveV = D.meta.curveVersion || 1; G.enchanted = G.enchanted || {}; for (const [nid, [b0, g0]] of Object.entries(G.enchanted)) registerEnchant(nid, b0, g0);
-  setTimeout(() => { checkSpellLearn(true); for (const [sk, pm] of Object.entries(G.perks || {})) { const ms = ((D.perks || {})[sk] || {}).milestones || []; for (const lv of Object.keys(pm)) { const m = ms.find(x => String(x.level) === lv); if (!m || !m.options.some(o => o.id === pm[lv])) delete pm[lv]; } }
+  setTimeout(() => { if (G && !G.name) script(async () => { G.name = await askName(); toast(`Welcome back, ${G.name}.`, UI.green); });
+    checkSpellLearn(true); for (const [sk, pm] of Object.entries(G.perks || {})) { const ms = ((D.perks || {})[sk] || {}).milestones || []; for (const lv of Object.keys(pm)) { const m = ms.find(x => String(x.level) === lv); if (!m || !m.options.some(o => o.id === pm[lv])) delete pm[lv]; } }
     for (const sv of (D.survivors || {}).list || []) if ((G.survDone || []).includes(sv.id) && !G.flags['home_' + sv.id] && (G.helpers[sv.helper] || D.quests.some(q => q.unlockFlag === 'home_' + sv.id && G.quests[q.id]))) G.flags['home_' + sv.id] = true; }, 0); G.garden = G.garden || { plan: 'same' }; G.stall = G.stall || { items: {}, restock: 0 }; G.stall.items = G.stall.items || {}; G.reports = G.reports || []; G.equip = G.equip || { player: {} }; G.perks = G.perks || {}; G.home = G.home || { furn: { bed: Object.keys(G.helpers || {}).length }, up: {} }; G.kills = G.kills || {}; G.research = G.research || {}; G.wards = G.wards || {}; G.ports = G.ports || {}; G.flags = G.flags || {}; G.dread = G.dread || 0; G.morph = G.morph || {}; G.visions = G.visions || []; SEA = null; invalidateComp(); if (!mapDef(G.map)) G.map = D.start.map; G.seen = G.seen || Object.fromEntries(Object.keys(G.inv).map(k => [k, true])); G.shopUnlocks = G.shopUnlocks || {}; G.charts = G.charts || {}; loadMap(G.map, G.x, G.y); R.scene = 'world'; toast('Welcome back!'); return true; }
   catch (e) { toast('Save could not be loaded: ' + e.message, UI.red); return false; }
 }
@@ -31537,7 +31746,7 @@ function updateWorld(dt) {
     else {
       R.dir = d; const [dx, dy] = DIRS[d]; const nx = G.x + dx, ny = G.y + dy;
       const en = enemyAt(nx, ny);
-      if (en && en.stun <= 0) { startCombat(en); return; }
+      if (en && en.stun <= 0) { encounter(en); return; }
       if (!blocked(nx, ny) && !en) R.moving = { fx: G.x, fy: G.y, tx: nx, ty: ny, t: 0 };
     }
   }
@@ -31580,7 +31789,7 @@ function updateEnemies(dt) {
     }
     const nx = e.x + dx, ny = e.y + dy;
     const pt = R.moving ? { x: R.moving.tx, y: R.moving.ty } : { x: G.x, y: G.y };
-    if ((nx === G.x && ny === G.y) || (nx === pt.x && ny === pt.y)) { if (e.stun <= 0) { startCombat(e); return; } continue; }
+    if ((nx === G.x && ny === G.y) || (nx === pt.x && ny === pt.y)) { if (e.stun <= 0) { encounter(e); return; } continue; }
     if (!blocked(nx, ny) && !enemyAt(nx, ny) && !isWarp(nx, ny)) { e.x = nx; e.y = ny; e.dx = dx; e.dy = dy; e.anim = 0; e.dir = dx > 0 ? 'right' : dx < 0 ? 'left' : dy > 0 ? 'down' : 'up'; }
   }
 }
@@ -31664,7 +31873,7 @@ async function giverQuests(npc, opts = {}) {
   let any = false;
   for (const q of actives) if (questDone(q)) {
     q.objectives.forEach(o => { if (o.type === 'collect') take(o.item, o.qty); });
-    G.quests[q.id] = 'done'; await say(nm, q.done, sp); grantReward(q.reward); any = true;
+    G.quests[q.id] = 'done'; await say(nm, q.done, sp); grantReward(q.reward); any = true; noteKingdoms();
     if (q.survivor) await survivorStepDone(q);
   }
   let mainActive = D.quests.some(q => G.quests[q.id] === 'active' && !q.side);
@@ -31748,12 +31957,12 @@ async function helperTalk(npc) {
   const sv = ((D.survivors || {}).list || []).find(x => x.helper === id); if (sv && (G.survDone || []).includes(sv.id) && !G.flags['home_' + sv.id]) { await offerHome(sv); return; }
   await say(h.name, [(npc.def.dialog || [''])[0], h.bio], h.sprite);
   await say(`${h.name} the ${h.title}`, [`Skills: ${skillStr(h.skills)}.  Ability: ${h.ability ? h.ability.name : 'none'}.  Hire for ${h.cost}g, then ${h.wage}g a day in wages.`], h.sprite);
-  if (hiredCount() >= helperBeds()) { await say(h.name, ['I\'d love to work for you - but where would I sleep?', `Every hireling needs their own bed at your cottage. Gideon's Home Center sells them. (Beds: ${helperBeds()}, helpers: ${Object.keys(G.helpers).length}.)`], h.sprite); return; }
+  if (hiredCount() >= helperBeds()) { await say(h.name, ['I\'d love to work for you - but where would I sleep?', `Every companion needs their own bed at your cottage. Gideon's Home Center sells them. (Beds: ${helperBeds()}, helpers: ${Object.keys(G.helpers).length}.)`], h.sprite); return; }
   const c = await choose(`Hire ${h.name} for ${h.cost}g?`, [{ label: 'Hire', value: 'y', disabled: G.gold < h.cost }, { label: 'Not now', value: 'n' }], { width: 380 });
   if (c !== 'y') return;
   G.gold -= h.cost; G.helpers[id] = { role: 'idle', xp: 0 };
   R.npcs = R.npcs.filter(n => n !== npc);
-  await say(h.name, ['Pleased to work with you!', '(Press H any time to change what your hirelings do.)'], h.sprite);
+  await say(h.name, ['Pleased to work with you!', '(Press H any time to change what your companions do.)'], h.sprite);
   await assignRole(id);
 }
 function skillStr(sk) { return Object.entries(sk || {}).filter(([, v]) => v > 0).map(([k, v]) => `${D.skills[k] ? D.skills[k].name : k} ${v}`).join(', ') || 'none'; }
@@ -31779,10 +31988,10 @@ async function assignRole(id) {
   const h = D.helpers[id]; const partyN = Object.values(G.helpers).filter(s => s.role === 'party').length;
   const isParty = G.helpers[id].role === 'party';
   const c = await choose(`${h.name}: what should they do?`, [
-    { label: 'Join my party', value: 'party', disabled: !isParty && partyN >= maxParty(), desc: `Fights beside you. Max ${maxParty()} hirelings in the party (Tactics raises this). Uses their Combat skill and ability.` },
+    { label: 'Join my party', value: 'party', disabled: !isParty && partyN >= maxParty(), desc: `Fights beside you. Max ${maxParty()} companions in the party (Tactics raises this). Uses their Combat skill and ability.` },
     { label: 'Tend the garden', value: 'greenhouse', desc: 'Each night: harvests ripe beds (garden and greenhouse) and plants empty ones by your Garden plan, using your seeds. Herbalism speeds growth.' },
     { label: 'Run the shop stall', value: 'shop', disabled: !home().up.stall && G.helpers[id].role !== 'shop', desc: 'Each night: sells your goods by your Stall rules and can restock seeds for the garden. Bartering = more sales and better prices. Needs a Market Stall from the Home Center.' },
-    { label: 'Navigate the ship', value: 'navigator', disabled: ((h.skills || {}).sailing || 0) < ((D.sea || {}).navigatorMinSailing || 3) && G.helpers[id].role !== 'navigator', desc: `Steers your boat: sailing is 10% faster and they learn from every voyage. At hireling level ${(D.sea || {}).autopilotLevel || 5} they can sail you to any port you've visited (press G at sea). Needs Sailing ${(D.sea || {}).navigatorMinSailing || 3}.` },
+    { label: 'Navigate the ship', value: 'navigator', disabled: ((h.skills || {}).sailing || 0) < ((D.sea || {}).navigatorMinSailing || 3) && G.helpers[id].role !== 'navigator', desc: `Steers your boat: sailing is 10% faster and they learn from every voyage. At companion level ${(D.sea || {}).autopilotLevel || 5} they can sail you to any port you've visited (press G at sea). Needs Sailing ${(D.sea || {}).navigatorMinSailing || 3}.` },
     { label: 'Stay idle', value: 'idle', desc: 'Still paid a wage.' },
     { label: 'Dismiss', value: 'dismiss', desc: `${h.name} goes back to where you found them.` }], { width: 460 });
   if (!c) return;
@@ -31853,11 +32062,18 @@ async function revealDarkLord() {
   toast(`New: ${DL().meterName || 'The Dark Lord'} (top left). Hover over it for details.`, '#c080ff');
   saveGame(true);
 }
+function markCleared(id) {
+  G.clears = G.clears || {}; G.clearUntil = G.clearUntil || {};
+  const n = G.clears[id] = (G.clears[id] || 0) + 1, days = Math.min(n, (D.meta.clearBufferMax || 7));
+  G.clearUntil[id] = G.day + days;
+  setTimeout(() => toast(`${R.map.name} cleared! Monsters stay away ${days === 1 ? 'until tomorrow' : 'for ' + days + ' days'}.`, UI.green), 60);
+}
 async function passOut() { await say('', ['You are exhausted... you collapse and wake up at home.', 'Someone found you and carried you back. Your purse feels lighter.']); G.gold = Math.floor(G.gold * 0.9); await newDay('passout'); }
 async function newDay(reason, atSea) {
   const report = [];
   await fadeTo(() => {
-    G.day++; G.time = D.meta.dayStart * 60; if (reason !== 'dawn') G.hp = maxHp(); G.defeated = {};
+    G.day++; G.time = D.meta.dayStart * 60; if (reason !== 'dawn') G.hp = maxHp();
+    { const keep = {}; for (const [m, until] of Object.entries(G.clearUntil || {})) if (until > G.day && G.defeated[m]) keep[m] = G.defeated[m]; G.defeated = keep; }
     addDread(DL().perDay || 0); G.mined = {};
     if (G.boat) { const sh = ship(); if (sh.hull < sh.max) sh.hull = Math.min(sh.max, sh.hull + Math.round(sh.max * ((D.sea || {}).hullRepairPerNight || 0.25))); }
     if ((G.day - 1) % cal().daysPerMonth === 0) {
@@ -31950,21 +32166,21 @@ function fieldCast(id) {
   });
 }
 async function skillsMenu() {
-  await openMenu({ title: (() => { const p = lvlProgress(); return `Skills  -  Level ${p.l}  (XP ${p.cur}/${p.need} to level ${p.l + 1})`; })(), width: 600, closeKey: 'k',
+  await openMenu({ title: (() => { const p = lvlProgress(); return `${heroName()}  -  Level ${p.l}  (XP ${p.cur}/${p.need} to level ${p.l + 1})`; })(), width: 600, closeKey: 'k',
     items: () => Object.entries(D.skills).map(([id, s]) => { if (!skillUnlocked(id)) { const rq = s.requires; return { label: `${s.name}  (advanced)`, right: 'locked', disabled: true, desc: `${s.desc}  Unlocks at ${(D.skills[rq.skill] || {}).name} ${rq.level} (now ${skillLvl(rq.skill)}).` }; } const l = skillLvl(id), xp = G.skills[id] || 0, a = xpForLevel(l), b = xpForLevel(l + 1); return { label: s.name + (s.requires ? '  (advanced)' : '') + (perkAvail(id).length ? '   * perk!' : ''), right: `Lv ${l}`, bar: (xp - a) / Math.max(1, b - a), desc: `${s.desc}  (XP ${xp}/${b})  Enter: perks`, value: id }; }),
     footer: 'Skills rise as you use them. Level rises from battle XP.  Enter: perks (skill 5/10/15/20)',
     onSelect: it => { script(() => perksMenu(it.value)); return false; } });
 }
 const HUB_TABS = ['Crew', 'Party', 'Garden', 'Stall', 'Adventures', 'Reports', 'Payroll'];
 async function helpersMenu() {
-  await openMenu({ title: 'Hirelings', width: 720, closeKey: 'h', tabs: HUB_TABS.map(l => ({ label: l })), tab: R.hubTab || 0, minRows: 9, onTab: i => { R.hubTab = i; },
+  await openMenu({ title: 'Companions', width: 720, closeKey: 'h', tabs: HUB_TABS.map(l => ({ label: l })), tab: R.hubTab || 0, minRows: 9, onTab: i => { R.hubTab = i; },
     footer: m => ['Enter: job, equipment or dismiss', `Enter: add or remove.  Party ${partyCount()}/${maxParty()} (Tactics raises this)`, 'Enter: change the planting plan', 'Enter: change a rule', 'Enter: send a party, or read a report', 'Enter: read the full report', `Gold ${G.gold}`][m.tab] + `      Payroll ${payroll()}g/day`,
     items: m => hubItems(m.tab), onSelect: it => { if (it.act) it.act(); return false; } });
 }
 function partyCount() { return Object.values(G.helpers).filter(s => s.role === 'party' && !s.guest).length; }
 function hubItems(tab) {
   const ids = Object.keys(G.helpers).filter(id => D.helpers[id]);
-  const none = [{ label: 'No hirelings yet', disabled: true, desc: 'Hire hirelings at the Sleepy Toad tavern and in other towns.' }];
+  const none = [{ label: 'No companions yet', disabled: true, desc: 'Recruit companions at the Sleepy Toad tavern and in other towns.' }];
   const job = id => ROLES[G.helpers[id].role] || G.helpers[id].role;
   if (tab === 0) return ids.length ? ids.map(id => { const h = D.helpers[id], l = hLvl(id), xp = G.helpers[id].xp || 0;
     return { label: `${h.name} the ${h.title}`, icon: h.sprite, right: `Lv ${l}   ${job(id)}`, desc: `Skills: ${skillStr(h.skills)}.  Ability: ${h.ability ? h.ability.name : 'none'}.  Wage ${wageOf(id)}g a day.  XP ${xp}/${xpForLevel(l + 1)}.`, act: () => script(() => helperActions(id)) }; }) : none;
@@ -31973,25 +32189,25 @@ function hubItems(tab) {
       act: () => { if (G.helpers[id].role === 'away') { toast(`${h.name} is away on an expedition.`); return; } if (G.helpers[id].guest) { toast(`${h.name} is travelling home with you and won't stay behind.`); return; } if (inP) { G.helpers[id].role = 'idle'; toast(`${h.name} stays behind (now Idle).`); } else if (partyCount() >= maxParty()) toast(`Your party is full (${maxParty()}). Tactics lets you lead more.`, UI.red); else { const was = job(id); G.helpers[id].role = 'party'; toast(`${h.name} joins your party${was !== 'Idle' ? ` (was ${was})` : ''}.`, UI.green); } AU.sfx('select'); } }; }) : none;
   if (tab === 2) { const gs = ids.filter(id => G.helpers[id].role === 'greenhouse'); const seeds = Object.keys(G.discovered).map(r => item(r).seed).filter(sd => sd && D.items[sd]); const plans = ['same', 'lowest'].concat(seeds);
     const rows = [{ label: 'Planting plan', right: planLabel(G.garden.plan || 'same'), desc: 'What your gardener plants in empty beds. "Replant the same crop" falls back to whatever you have least of when that seed runs out.', act: () => { const i = plans.indexOf(G.garden.plan || 'same'); G.garden.plan = plans[(i + 1) % plans.length]; AU.sfx('menu'); } },
-      { label: 'Gardener', right: gs.length ? gs.map(id => D.helpers[id].name).join(', ') : 'none', disabled: !gs.length, desc: gs.length ? 'Works every night they are paid.' : 'Give a hireling the Gardener job (Crew tab) to tend your beds every night.' }];
+      { label: 'Gardener', right: gs.length ? gs.map(id => D.helpers[id].name).join(', ') : 'none', disabled: !gs.length, desc: gs.length ? 'Works every night they are paid.' : 'Give a companion the Gardener job (Crew tab) to tend your beds every night.' }];
     for (const k of plotKeys()) { const p = G.planters[k]; rows.push({ label: plotName(k), icon: p ? item(item(p.seed).grows).sprite : null, right: p ? (p.growth >= p.days ? `${item(item(p.seed).grows).name}  ripe!` : `${item(item(p.seed).grows).name}  ${p.growth}/${p.days} days`) : 'empty', desc: p ? `Planted with ${item(p.seed).name}.` : 'Empty. Plant it yourself or let your gardener do it tonight.' }); }
     return rows; }
   if (tab === 3) { const sk = ids.filter(id => G.helpers[id].role === 'shop'); const own = Object.keys(G.inv).filter(id => STALL_TYPES.includes(item(id).type)); const ruled = Object.keys(G.stall.items).filter(id => D.items[id] && !own.includes(id));
     const RS = [0, 3, 5, 10];
-    const rows = [{ label: 'Shopkeeper', right: sk.length ? sk.map(id => D.helpers[id].name).join(', ') : 'none', disabled: true, desc: !home().up.stall ? 'You need a Market Stall from Gideon\'s Home Center first.' : sk.length ? 'Sells by these rules every night they are paid.' : 'Give a hireling the Shopkeeper job (Crew tab).' },
+    const rows = [{ label: 'Shopkeeper', right: sk.length ? sk.map(id => D.helpers[id].name).join(', ') : 'none', disabled: true, desc: !home().up.stall ? 'You need a Market Stall from Gideon\'s Home Center first.' : sk.length ? 'Sells by these rules every night they are paid.' : 'Give a companion the Shopkeeper job (Crew tab).' },
       { label: 'Restock seeds for the garden', right: G.stall.restock ? `Keep ${G.stall.restock} of each` : 'Off', desc: 'Each night the shopkeeper buys seeds for every reagent you have discovered, up to this many of each.', act: () => { G.stall.restock = RS[(RS.indexOf(G.stall.restock || 0) + 1) % RS.length]; AU.sfx('menu'); } }];
     for (const id of own.concat(ruled)) rows.push({ label: `${item(id).name}  x${count(id)}`, icon: item(id).sprite, right: keepLabel(stallKeep(id)), desc: `${itemDesc(id)}  Sells for about ${item(id).sell}g each.`, act: () => { const cur = stallKeep(id); G.stall.items[id] = KEEP_STEPS[(KEEP_STEPS.indexOf(cur) + 1) % KEEP_STEPS.length]; AU.sfx('menu'); } });
     return rows; }
   if (tab === 4) return expeditionRows();
-  if (tab === 5) { const rs = G.reports || []; return rs.length ? rs.map(r => ({ label: r.date || `Day ${r.day}`, right: [r.stall && r.stall.earned ? `+${r.stall.earned}g sales` : '', r.wages ? `-${r.wages}g wages` : ''].filter(Boolean).join('   '), desc: (r.lines || []).join('  '), act: () => script(() => say(r.date || `Day ${r.day}`, r.lines && r.lines.length ? r.lines : ['A quiet night.'])) })) : [{ label: 'No reports yet', disabled: true, desc: 'Each morning your hirelings report what they did overnight. The last two weeks are kept here.' }]; }
+  if (tab === 5) { const rs = G.reports || []; return rs.length ? rs.map(r => ({ label: r.date || `Day ${r.day}`, right: [r.stall && r.stall.earned ? `+${r.stall.earned}g sales` : '', r.wages ? `-${r.wages}g wages` : ''].filter(Boolean).join('   '), desc: (r.lines || []).join('  '), act: () => script(() => say(r.date || `Day ${r.day}`, r.lines && r.lines.length ? r.lines : ['A quiet night.'])) })) : [{ label: 'No reports yet', disabled: true, desc: 'Each morning your companions report what they did overnight. The last two weeks are kept here.' }]; }
   const rows = ids.map(id => ({ label: D.helpers[id].name, icon: D.helpers[id].sprite, right: `${wageOf(id)}g a day`, desc: `${job(id)}.  Base wage ${D.helpers[id].wage}g${wageOf(id) < D.helpers[id].wage ? ' (your hearth and perks lower it)' : ''}.`, disabled: true }));
-  const pay = payroll(); rows.push({ label: 'Total payroll', right: `${pay}g a day`, disabled: true, desc: 'Paid each morning. A hireling you can\'t pay doesn\'t work that day.' });
+  const pay = payroll(); rows.push({ label: 'Total payroll', right: `${pay}g a day`, disabled: true, desc: 'Paid each morning. A companion you can\'t pay doesn\'t work that day.' });
   rows.push({ label: 'Your gold covers', right: pay ? `${Math.floor(G.gold / pay)} days` : '-', disabled: true, desc: `You have ${G.gold}g.` });
   return rows;
 }
 async function helperActions(id) {
   const h = D.helpers[id];
-  const c = await choose(`${h.name} the ${h.title}  (Lv ${hLvl(id)})`, [{ label: 'Change job', right: ROLES[G.helpers[id].role], value: 'job' }, { label: 'Equipment', value: 'gear', desc: 'Open the equipment screen for this hireling.' }, { label: 'Dismiss', value: 'dismiss', desc: `${h.name} leaves your service.` }, { label: 'Back', value: 'back' }], { width: 420 });
+  const c = await choose(`${h.name} the ${h.title}  (Lv ${hLvl(id)})`, [{ label: 'Change job', right: ROLES[G.helpers[id].role], value: 'job' }, { label: 'Equipment', value: 'gear', desc: 'Open the equipment screen for this companion.' }, { label: 'Dismiss', value: 'dismiss', desc: `${h.name} leaves your service.` }, { label: 'Back', value: 'back' }], { width: 420 });
   if (c === 'job') { if (G.helpers[id].role === 'away') toast(`${h.name} is away on an expedition.`); else await assignRole(id); }
   if (c === 'gear') await paperdoll(id);
   if (c === 'dismiss') { const ok = await choose(`Really dismiss ${h.name}?`, [{ label: 'Keep them', value: 'n' }, { label: 'Dismiss', value: 'y' }], { width: 340 }); if (ok === 'y') { delete G.helpers[id]; toast(`${h.name} was dismissed.`); } }
@@ -32005,7 +32221,7 @@ async function questMenu() {
 const MB = 46;   // height of the tab strip
 const MTABS = [{ label: 'Items', key: 'i', id: 'inventory', run: () => inventoryMenu() }, { label: 'Equipment', key: 'p', id: 'gear', run: () => paperdoll() },
   { label: 'Spells', key: 'm', id: 'spells', run: () => spellMenu(), land: true }, { label: 'Skills', key: 'k', id: 'skills', run: () => skillsMenu() },
-  { label: 'Hirelings', key: 'h', id: 'hirelings', run: () => helpersMenu() }, { label: 'Quests', key: 'j', id: 'quests', run: () => questMenu() },
+  { label: 'Companions', key: 'h', id: 'companions', run: () => helpersMenu() }, { label: 'Quests', key: 'j', id: 'quests', run: () => questMenu() },
   { label: 'Game', key: 'escape', run: () => gameScreen() }];
 let MASTER = null;
 function mtabOff(i) { return MTABS[i].land && R.scene === 'sea'; }
@@ -32033,7 +32249,7 @@ function masterEnter() { MASTER.focus = 'screen'; const b = masterBase(); if (b)
 // returns true when the master menu used the key
 function masterKey(k) {
   const base = masterBase(), top = menus[menus.length - 1];
-  if (DOLL && base && dollTop()) return false;        // equipment opened from inside a screen (e.g. a hireling's gear)
+  if (DOLL && base && dollTop()) return false;        // equipment opened from inside a screen (e.g. a companion's gear)
   if (top && top !== base) return false;             // a sub-menu (perks, job picker...) is open
   const hot = MTABS.findIndex(t => t.key === k);
   if (MASTER.focus === 'bar') {
@@ -32133,7 +32349,7 @@ async function gameScreen() {
   if (c === 'x') exportSave();
   if (c === 'i') importSave();
   if (c === 'l') loadGame();
-  if (c === 'c') await say('Controls', [`Move: ${K('up')}${K('left')}${K('down')}${K('right')} / Arrow keys.  Interact / talk / confirm: ${K('interact')}, Space or Enter.  Change keys in Settings > Key bindings.`, `Menu button (top right) or a screen key opens the menu: ${K('inventory')} Items   ${K('gear')} Equipment   ${K('spells')} Spellbook   ${K('skills')} Skills   ${K('hirelings')} Hirelings   ${K('quests')} Quests   Esc Game.  Left/Right picks a tab, Down enters it, Up at the top goes back to the tabs.`, `Map button or ${K('map')}: World map.`, `Combat: move with ${K('up')}${K('left')}${K('down')}${K('right')}/arrows (walk into an enemy to attack) or click a blue tile. Space/${K('interact')} attacks the nearest enemy in range.`, `${K('spell')} Spell   ${K('ability')} Ability   ${K('item')} Item   ${K('defend')} Defend   ${K('taunt')} Taunt (fighters)   ${K('next')} next unit   Enter end turn   ${K('flee')} flee.  Hover an enemy to see its stats.`, 'The coloured dot over a monster shows how dangerous it is for your party: green easy, yellow fair, orange hard, red deadly.']);
+  if (c === 'c') await say('Controls', [`Move: ${K('up')}${K('left')}${K('down')}${K('right')} / Arrow keys.  Interact / talk / confirm: ${K('interact')}, Space or Enter.  Change keys in Settings > Key bindings.`, `Menu button (top right) or a screen key opens the menu: ${K('inventory')} Items   ${K('gear')} Equipment   ${K('spells')} Spellbook   ${K('skills')} Skills   ${K('companions')} Companions   ${K('quests')} Quests   Esc Game.  Left/Right picks a tab, Down enters it, Up at the top goes back to the tabs.`, `Map button or ${K('map')}: World map.`, `Combat: move with ${K('up')}${K('left')}${K('down')}${K('right')}/arrows (walk into an enemy to attack) or click a blue tile. Space/${K('interact')} attacks the nearest enemy in range.`, `${K('spell')} Spell   ${K('ability')} Ability   ${K('item')} Item   ${K('defend')} Defend   ${K('taunt')} Taunt (fighters)   ${K('next')} next unit   Enter end turn   ${K('flee')} flee.  Hover an enemy to see its stats.`, 'The coloured dot over a monster shows how dangerous it is for your party: green easy, yellow fair, orange hard, red deadly.']);
   if (c === 'u') { if (UPD.online) { await checkUpdate(); if (UPD.latest) getUpdate(); else toast(`You have the latest version (v${D.meta.version}).`, UI.green); } else getUpdate(); }
   if (c === 'd') window.open(D.meta.discordInvite, '_blank');
   if (c === 'q') { R.scene = 'title'; return; }
@@ -32143,7 +32359,8 @@ async function gameScreen() {
 function pauseMenu() { return gameScreen(); }
 
 // ================= COMBAT =================
-const AW = 14, AH = 9, AX = (VW - AW * TILE) / 2, AY = 30;
+const CT = 40, AW = 17, AH = 11, AX = (VW - AW * CT) / 2, AY = 30;
+const SO = [Math.floor((AW - 14) / 2), Math.floor((AH - 9) / 2)];   // sea layouts were drawn for 14x9: centre them
 let C = null;
 function cPass(x, y, u) { if (x < 0 || y < 0 || x >= AW || y >= AH) return false; if (fxAt(x, y, 'wall')) return false; const t = tileDef(C.grid[y][x]); if (C.sea) return u && u.swim ? !!t.water : !t.water && !t.solid; return !t.solid; }
 function cUnitAt(x, y) { return C.units.find(u => !u.dead && u.x === x && u.y === y); }
@@ -32170,17 +32387,50 @@ function helperUnit(id) {
   const ghp = hp + gearStat(id, 'hp');
   return { side: 'party', helperId: id, who: id, name: h.name, sprite: h.sprite, hp: ghp, maxHp: ghp, atk: h.atk + (l - 1) + Math.floor(((h.skills || {}).swordplay || 0) / 2) + gearStat(id, 'atk') + perk('partyAtk') + Math.floor(advLvl('tactics') / 4), def: h.def + Math.floor((l - 1) / 3) + gearStat(id, 'def') + perk('partyDef'), move: Math.max(2, h.move + gearStat(id, 'move') + perk('partyMove')), range: 1, ability: h.ability ? Object.assign({}, h.ability, { power: h.ability.power + (l - 1) }) : null, cd: 0 };
 }
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function plural(n) { return /f$/.test(n) ? n.slice(0, -1) + 'ves' : /(s|sh|ch|x)$/.test(n) ? n + 'es' : /[^aeiou]y$/.test(n) ? n.slice(0, -1) + 'ies' : n + 's'; }
+function foeCry(def, id) {
+  const BT = D.battleTalk || {}; const key = String(id || '') + ' ' + (def.sprite || '');
+  if (def.cry) return def.cry;
+  if ((BT.humanoids || []).some(h => key.includes(h))) return pick(BT.humanoidTaunts || ['Get them!']);
+  for (const [subs, lines] of BT.cries || []) if (subs.some(x => key.includes(x))) return pick(lines);
+  return pick(BT.defaultCry || ['*a menacing growl*']);
+}
+// every fight starts with a short exchange; you choose to fight, flee, or (against much weaker foes) ignore
+function fleeChance(th) { const t = (D.battleTalk || {}).fleeChance || {}; return t[th.label] != null ? t[th.label] : 0.5; }
+function encounter(en, opts = {}) {
+  if (R.busy) return; R.moving = null; keys.clear();
+  script(async () => {
+    const BT = D.battleTalk || {}, def = en.def; if (!def) return startCombat(en, opts);
+    const cm = (!opts.sea && R.map && R.map.caveMult) || 1, th = threat(def, cm), g = def.group || [1, 1];
+    const many = g[1] > 1 || def.escort, foe = many ? plural(def.name) : 'this ' + def.name, Foe = foe[0].toUpperCase() + foe.slice(1);
+    const fill = l => sub(l).replace(/\{foe\}/g, foe).replace(/\{Foe\}/g, Foe);
+    const party = Object.keys(G.helpers).filter(id => G.helpers[id].role === 'party' && D.helpers[id] && !G.helpers[id].guest);
+    const champ = party.sort((a, b) => (((D.helpers[b].skills || {}).swordplay || 0) - ((D.helpers[a].skills || {}).swordplay || 0)))[0];
+    if (champ) await say(D.helpers[champ].name, [fill(pick(BT.companionTaunts || ['These {foe} are no match for us!']))], D.helpers[champ].sprite);
+    else await say(heroName(), [fill(pick(BT.selfDoubt || ['Can I take {foe} on my own?']))], 'c_player');
+    await say(def.name, [foeCry(def, en.id)], def.sprite);
+    const easy = th.r > (BT.ignoreRatio || 6);
+    const c = await choose(`${def.name}${many ? ' (a group)' : ''}  -  Danger: ${th.label}`, [
+      { label: 'Fight', value: 'fight', desc: th.why },
+      easy ? { label: 'Ignore', value: 'ignore', desc: 'They are no threat to you. Walk on by.' } : { label: 'Flee', right: `${Math.round(fleeChance(th) * 100)}%`, value: 'flee', desc: `Try to get away before the fight starts: ${Math.round(fleeChance(th) * 100)}% chance. If it fails, the fight begins.` }], { width: 380 });
+    if (c === 'fight') { await say(heroName(), [fill(pick(BT.fightLines || ['Have at you!']))], 'c_player'); if (!C) startCombat(en, opts); return; }
+    if (c !== 'ignore' && Math.random() >= fleeChance(th)) { await say(heroName(), [fill(pick(BT.fleeFailLines || ['No way out!']))], 'c_player'); stat('fleeFails'); if (!C) startCombat(en, opts); return; }
+    await say(heroName(), [fill(pick(c === 'ignore' ? (BT.ignoreLines || ['Not worth my time.']) : (BT.fleeLines || ['Discretion is the better part of valour.'])))], 'c_player');
+    en.stun = c === 'ignore' ? 6 : 3; stat(c === 'ignore' ? 'ignores' : 'flees');
+  });
+}
 function startCombat(en, opts = {}) {
   const sea = !!opts.sea; const board = sea && !!(en.def && en.def.pirate); const SA = board ? { deck: [2, 2, 6, 6], deck2: [7, 2, 11, 6], arbalests: [[2, 4]], monsterMinRange: 1 } : ((D.sea || {}).shipArena || { deck: [4, 3, 8, 5], arbalests: [[8, 4]] });
   const zone = sea ? { ground: 'B', terrain: {}, music: (D.sea || {}).combatMusic } : (R.map.combat || { ground: '.', terrain: {} });
   const grid = [];
   for (let y = 0; y < AH; y++) { grid.push([]); for (let x = 0; x < AW; x++) {
-    if (sea) { const [a, b, c, d] = SA.deck; const d2 = SA.deck2; grid[y].push(x >= a && x <= c && y >= b && y <= d ? 'B' : d2 && x >= d2[0] && x <= d2[2] && y >= d2[1] && y <= d2[3] ? 'P' : '~'); continue; }
+    if (sea) { const [a, b, c, d] = SA.deck; const d2 = SA.deck2; const X = x - SO[0], Y = y - SO[1]; grid[y].push(X >= a && X <= c && Y >= b && Y <= d ? 'B' : d2 && X >= d2[0] && X <= d2[2] && Y >= d2[1] && Y <= d2[3] ? 'P' : '~'); continue; }
     let ch = zone.ground || '.', r = Math.random(), acc = 0; const edge = x <= 2 || x >= AW - 3 ? 0.25 : 1;
     for (const [t, p] of Object.entries(zone.terrain || {})) { acc += p * edge; if (r < acc) { ch = t; break; } }
     grid[y].push(D.tiles[ch] ? ch : '.');
   } }
-  if (sea) for (const [x, y] of SA.arbalests || []) if (grid[y]) grid[y][x] = 'A';
+  if (sea) for (const [x0, y0] of SA.arbalests || []) { const x = x0 + SO[0], y = y0 + SO[1]; if (grid[y]) grid[y][x] = 'A'; }
   const units = [];
   const wy = weary(); units.push({ side: 'party', isPlayer: true, who: 'player', name: 'You', sprite: 'c_player', hp: G.hp, maxHp: maxHp(), atk: wy ? Math.max(1, Math.round(playerAtk() * 0.8)) : playerAtk(), def: wy ? Math.floor(playerDef() * 0.8) : playerDef(), move: playerMove(), range: playerRange() });
   for (const id of Object.keys(G.helpers)) if (G.helpers[id].role === 'party' && D.helpers[id]) units.push(helperUnit(id));
@@ -32189,12 +32439,12 @@ function startCombat(en, opts = {}) {
   if (def.escort) for (let i = 0; i < (def.escortCount || 1); i++) foes.push(morphId(def.escort));
   const cm = (!sea && R.map && R.map.caveMult) || 1;
   for (const fid of foes) { const f = D.enemies[fid]; if (!f) continue; const sc = scaled(f); const hp = Math.round(sc.hp * cm); units.push({ side: 'enemy', enemyId: fid, swim: !!f.sea, name: f.name, sprite: f.sprite, hp, maxHp: hp, atk: Math.round(sc.atk * (1 + (cm - 1) * 0.6)), def: sc.def + Math.floor((cm - 1) * 4), move: f.move, range: f.range || 1 }); }
-  const spots = [4, 3, 5, 2, 6, 1, 7];
+  const mid = Math.floor(AH / 2), spots = [0, -1, 1, -2, 2, -3, 3, -4, 4].map(d => mid + d);
   let pi = 0, ei = 0;
   for (const u of units) {
     Object.assign(u, { buffs: [], slow: 0, moved: false, done: false, dead: false, cd: u.cd || 0 });
     if (sea) { const PS = board ? [[5, 4], [4, 3], [4, 5], [5, 2], [5, 6]] : [[6, 4], [5, 3], [5, 5], [7, 3], [7, 5]], ES = def.shield ? [[12, 4], [3, 3], [3, 5], [9, 2], [9, 6], [6, 2], [6, 6], [3, 4]] : board ? [[8, 4], [8, 3], [8, 5], [9, 2], [9, 6], [10, 4], [10, 3]] : [[11, 4], [11, 2], [11, 6], [1, 4], [12, 3], [12, 5], [1, 2]];
-      if (u.side === 'party') { [u.x, u.y] = PS[pi % PS.length]; pi++; } else { [u.x, u.y] = ES[ei % ES.length]; ei++; } continue; }
+      if (u.side === 'party') { [u.x, u.y] = PS[pi % PS.length]; pi++; } else { [u.x, u.y] = ES[ei % ES.length]; ei++; } u.x += SO[0]; u.y += SO[1]; continue; }
     if (u.side === 'party') { u.x = pi % 2 ? 1 : 2; u.y = spots[pi % spots.length]; pi++; }
     else { u.x = ei % 2 ? AW - 2 : AW - 3; u.y = spots[ei % spots.length]; ei++; }
     grid[u.y][u.x] = zone.ground || '.';
@@ -32204,7 +32454,7 @@ function startCombat(en, opts = {}) {
   selectNext();
 }
 function clog(s) { C.log.push(s); if (C.log.length > 40) C.log.shift(); }
-function float(u, s, col) { C.floats.push({ x: AX + u.x * TILE + TILE / 2, y: AY + u.y * TILE, s, col, t: 0 }); }
+function float(u, s, col) { C.floats.push({ x: AX + u.x * CT + CT / 2, y: AY + u.y * CT, s, col, t: 0 }); }
 function selectNext() {
   const ready = alive('party').filter(u => !u.done);
   if (!ready.length) { enemyPhase(); return; }
@@ -32241,10 +32491,10 @@ function startSpell() {
   const list = G.spells.filter(s => D.spells[s] && ['damage', 'heal', 'buff', 'debuff', 'terrain'].includes(D.spells[s].kind));
   if (!list.length) { toast('You know no combat spells yet.'); return; }
   choose('Cast which spell?', list.map(s => { const sp = D.spells[s]; return { label: sp.name, right: ((D.magic || {}).schools || {})[spellSchool(sp)] || '', desc: `${spellInfo(sp)}  Cost: ${reagentStr(sp)} (you have ${Object.keys(sp.reagents).map(r => count(r)).join('/')}).`, value: s, disabled: !hasReagents(sp) }; }), { width: 560 })
-    .then(s => { if (!s || !C) return; const sp = D.spells[s]; C.action = { type: 'spell', id: s, sp };
+    .then(s => { if (!s || !C) return; const sp = D.spells[s]; const rng = sp.range + perk('spellRange'); C.action = { type: 'spell', id: s, sp, rng };
       if (sp.kind === 'terrain') { startTileTarget(u, sp); return; } C.mode = 'target';
-      C.targets = C.units.filter(t => !t.dead && !shielded(t) && (sp.kind === 'damage' || sp.kind === 'debuff' ? t.side === 'enemy' : t.side === 'party') && man(u, t) <= sp.range + perk('spellRange') && los(u, t));
-      if (!C.targets.length) { toast('No target in range.'); C.mode = 'move'; } });
+      C.targets = C.units.filter(t => !t.dead && !shielded(t) && (sp.kind === 'damage' || sp.kind === 'debuff' ? t.side === 'enemy' : t.side === 'party') && man(u, t) <= rng && los(u, t));
+      if (!C.targets.length) toast(`No target within ${rng} tiles. ${SET.mobile ? 'B' : 'Esc'} cancels.`); });
 }
 function startAbility() {
   const u = C.sel; if (!u || !u.ability || u.cd > 0 || C.phase !== 'party') return;
@@ -32273,7 +32523,7 @@ function terrainTiles(u, sp, x, y) {
 }
 function startTileTarget(u, sp) {
   const r = sp.range + perk('spellRange'); C.tiles = new Set();
-  for (let y = 0; y < AH; y++) for (let x = 0; x < AW; x++) { if (Math.abs(x - u.x) + Math.abs(y - u.y) > r || (x === u.x && y === u.y)) continue; const td = tileDef(C.grid[y][x]); if (td.solid || td.water) continue; if (!losXY(u.x, u.y, x, y)) continue; C.tiles.add(x + ',' + y); }
+  for (let y = 0; y < AH; y++) for (let x = 0; x < AW; x++) { if (man({ x, y }, u) > r || (x === u.x && y === u.y)) continue; const td = tileDef(C.grid[y][x]); if (td.solid || td.water) continue; if (!losXY(u.x, u.y, x, y)) continue; C.tiles.add(x + ',' + y); }
   if (!C.tiles.size) { toast('No room to cast that here.'); C.mode = 'move'; return; }
   const near = alive('enemy').map(e => [e.x, e.y]).find(([x, y]) => C.tiles.has(x + ',' + y)) || [...C.tiles][0].split(',').map(Number);
   C.cur = { x: near[0], y: near[1] }; C.mode = 'tile';
@@ -32343,8 +32593,8 @@ function enemyAct(e) {
     while (q.length) { const [x, y] = q.shift(); for (const [dx, dy] of N4) { const nx = x + dx, ny = y + dy; const st = fxAt(nx, ny, 'mire') ? 2 : 1; if (cPass(nx, ny, e) && field[ny][nx] > field[y][x] + st) { field[ny][nx] = field[y][x] + st; q.push([nx, ny]); } } }
     const reach = bfs(e, uMove(e)); let best = null, bestS = 1e9;
     for (const [k, steps] of reach) {
-      const [x, y] = k.split(',').map(Number); const d = Math.min(...targets.map(t => Math.abs(t.x - x) + Math.abs(t.y - y)));
-      const shot = targets.some(t => Math.abs(t.x - x) + Math.abs(t.y - y) <= e.range && losXY(x, y, t.x, t.y));
+      const [x, y] = k.split(',').map(Number); const d = Math.min(...targets.map(t => man({ x, y }, t)));
+      const shot = targets.some(t => man({ x, y }, t) <= e.range && losXY(x, y, t.x, t.y));
       const s = (shot ? (e.range - d) * 0.5 : field[y][x] * 10 + 5) + steps * 0.01;
       if (s < bestS) { bestS = s; best = [x, y]; }
     }
@@ -32398,6 +32648,7 @@ function endCombat(how) {
   if (how === 'fled') { G.hp = Math.max(1, player.hp); en.stun = 3; stat('flees'); }
   if (how === 'won') stat('wins'); if (how === 'lost') stat('deaths');
   const fin = how === 'won' && C.finalWin; const sunk = C.sunk;
+  if (how === 'won' && !sea && R.map && !R.map.cave && !R.map.town && (R.map.enemies || []).length && !R.enemies.some(e => e.idx < 1000)) markCleared(R.mapId);
   if (how === 'won' && R.map && R.map.cave && !sea && R.enemies.filter(e => e !== en).length === 0) setTimeout(() => toast('Level cleared! Ore veins and crystals can now be mined (E).', UI.green), 50);
   R.scene = sea && SEA && how !== 'lost' ? 'sea' : 'world'; C = null;
   if (fin) script(finalEnding);
@@ -32416,7 +32667,7 @@ function updateCombat(dt) {
     }
   }
 }
-function arenaTile(p) { const x = Math.floor((p.x - AX) / TILE), y = Math.floor((p.y - AY) / TILE); return (x >= 0 && y >= 0 && x < AW && y < AH) ? { x, y } : null; }
+function arenaTile(p) { const x = Math.floor((p.x - AX) / CT), y = Math.floor((p.y - AY) / CT); return (x >= 0 && y >= 0 && x < AW && y < AH) ? { x, y } : null; }
 function combatClick(c) {
   if (C.phase === 'won' || C.phase === 'lost') return;
   if (C.phase !== 'party') return;
@@ -32523,12 +32774,12 @@ function threat(def, cm = 1) {
   const out = pu.reduce((a, u) => a + Math.max(1, u.atk - eDef + 1), 0), pDef = pu.reduce((a, u) => a + u.def, 0) / pu.length;
   const tKill = n * eHp / out, tDie = pu.reduce((a, u) => a + u.hp, 0) / (n * Math.max(1, eAtk - pDef + 1));
   const r = tDie / tKill;
-  if (r > 3) return { label: 'Easy', col: '#5fd35a', why: 'You should win comfortably.' };
-  if (r > 1.6) return { label: 'Fair', col: '#f2d24a', why: 'A fair fight. Keep a potion handy.' };
-  if (r > 0.9) return { label: 'Hard', col: '#f08a32', why: 'Risky. Bring hirelings, spells and potions.' };
-  return { label: 'Deadly', col: '#e03c34', why: 'Very likely to beat you right now.' };
+  if (r > 3) return { r, label: 'Easy', col: '#5fd35a', why: 'You should win comfortably.' };
+  if (r > 1.6) return { r, label: 'Fair', col: '#f2d24a', why: 'A fair fight. Keep a potion handy.' };
+  if (r > 0.9) return { r, label: 'Hard', col: '#f08a32', why: 'Risky. Bring companions, spells and potions.' };
+  return { r, label: 'Deadly', col: '#e03c34', why: 'Very likely to beat you right now.' };
 }
-function shadow(x, y) { ctx.fillStyle = 'rgba(0,0,0,.22)'; ctx.beginPath(); ctx.ellipse(x + TILE / 2, y + TILE - 3, 14, 5, 0, 0, 7); ctx.fill(); }
+function shadow(x, y, sz = TILE) { ctx.fillStyle = 'rgba(0,0,0,.22)'; ctx.beginPath(); ctx.ellipse(x + sz / 2, y + sz - 3, sz * 0.3, 5, 0, 0, 7); ctx.fill(); }
 function clock() { const m = Math.floor(G.time) % (24 * 60); const h = Math.floor(m / 60), mm = Math.floor(m % 60 / 10) * 10; return `${String(h).padStart(2, '0')}:${String(mm).padStart(2, '0')}`; }
 function renderHud() {
   panel(10, 10, 238, 78);
@@ -32541,47 +32792,52 @@ function renderHud() {
   if (G.flags.dreadKnown && mouse.x >= 10 && mouse.x <= 248 && mouse.y >= 92 && mouse.y <= 126)
     tooltip([`${DL().meterName || 'Attention'}: ${Math.round(dread() * 100)}%  (${tierName()})`, 'Magic, battles and new discoveries draw his eye. As it rises, monsters grow tougher and adapt to your wards.', 'Defeat him to push it back.'], 16, 132, 360);
   if (DRAFT) text('PLAYTESTING DRAFT DATA', VW / 2, 14, { bold: true, align: 'center', color: '#ff6a5a', shadow: true });
-  if (!MASTER && !SET.mobile) text(R.scene === 'sea' ? `Arrows: sail   ${K('map')} chart   ${K('navigator')} navigator   ${K('interact')} dock   ${K('inventory')} items   ${K('gear')} gear   ${K('skills')} skills   ${K('hirelings')} hirelings   Esc menu` : `${K('interact')} interact   ${K('inventory')} items   ${K('gear')} gear   ${K('spells')} spells   ${K('skills')} skills   ${K('hirelings')} hirelings   ${K('quests')} quests   ${K('map')} map   Esc menu`, VW / 2, VH - 22, { size: 13, align: 'center', color: '#fff', shadow: true });
+  if (!MASTER && !SET.mobile) text(R.scene === 'sea' ? `Arrows: sail   ${K('map')} chart   ${K('navigator')} navigator   ${K('interact')} dock   ${K('inventory')} items   ${K('gear')} gear   ${K('skills')} skills   ${K('companions')} companions   Esc menu` : `${K('interact')} interact   ${K('inventory')} items   ${K('gear')} gear   ${K('spells')} spells   ${K('skills')} skills   ${K('companions')} companions   ${K('quests')} quests   ${K('map')} map   Esc menu`, VW / 2, VH - 22, { size: 13, align: 'center', color: '#fff', shadow: true });
 }
 function renderCombat() {
   ctx.fillStyle = '#2a2238'; ctx.fillRect(0, 0, VW, VH);
   const sh = C.shake > 0 ? rnd(-3, 3) : 0;
   ctx.save(); ctx.translate(sh, 0);
-  for (let y = 0; y < AH; y++) for (let x = 0; x < AW; x++) drawSpr(tileDef(C.grid[y][x]).sprite, AX + x * TILE, AY + y * TILE);
-  for (const f of C.fx || []) { drawSpr(f.type === 'wall' ? 'fx_bramble' : 'fx_mire', AX + f.x * TILE, AY + f.y * TILE); text(String(f.turns), AX + f.x * TILE + TILE - 10, AY + f.y * TILE + 2, { size: 11, bold: true, color: '#fff', shadow: true }); }
-  if (C.mode === 'tile' && C.tiles && C.sel) { for (const k of C.tiles) { const [x, y] = k.split(',').map(Number); ctx.fillStyle = 'rgba(200,140,255,.18)'; ctx.fillRect(AX + x * TILE + 2, AY + y * TILE + 2, TILE - 4, TILE - 4); }
+  for (let y = 0; y < AH; y++) for (let x = 0; x < AW; x++) drawSpr(tileDef(C.grid[y][x]).sprite, AX + x * CT, AY + y * CT, CT);
+  for (const f of C.fx || []) { drawSpr(f.type === 'wall' ? 'fx_bramble' : 'fx_mire', AX + f.x * CT, AY + f.y * CT, CT); text(String(f.turns), AX + f.x * CT + CT - 10, AY + f.y * CT + 2, { size: 11, bold: true, color: '#fff', shadow: true }); }
+  if (C.mode === 'tile' && C.tiles && C.sel) { for (const k of C.tiles) { const [x, y] = k.split(',').map(Number); ctx.fillStyle = 'rgba(200,140,255,.18)'; ctx.fillRect(AX + x * CT + 2, AY + y * CT + 2, CT - 4, CT - 4); }
     const hvT = arenaTile(mouse); if (hvT && C.tiles.has(hvT.x + ',' + hvT.y) && mouse.moved) C.cur = hvT;
-    for (const [x, y] of terrainTiles(C.sel, C.action.sp, C.cur.x, C.cur.y)) { if (x < 0 || y < 0 || x >= AW || y >= AH) continue; ctx.strokeStyle = C.tiles.has(C.cur.x + ',' + C.cur.y) ? '#e8c0ff' : '#ff6060'; ctx.lineWidth = 3; ctx.strokeRect(AX + x * TILE + 3, AY + y * TILE + 3, TILE - 6, TILE - 6); } }
-  ctx.strokeStyle = UI.border; ctx.lineWidth = 4; ctx.strokeRect(AX - 2, AY - 2, AW * TILE + 4, AH * TILE + 4);
+    for (const [x, y] of terrainTiles(C.sel, C.action.sp, C.cur.x, C.cur.y)) { if (x < 0 || y < 0 || x >= AW || y >= AH) continue; ctx.strokeStyle = C.tiles.has(C.cur.x + ',' + C.cur.y) ? '#e8c0ff' : '#ff6060'; ctx.lineWidth = 3; ctx.strokeRect(AX + x * CT + 3, AY + y * CT + 3, CT - 6, CT - 6); } }
+  ctx.strokeStyle = UI.border; ctx.lineWidth = 4; ctx.strokeRect(AX - 2, AY - 2, AW * CT + 4, AH * CT + 4);
   const s = C.sel;
   if (C.phase === 'party' && s) {
-    if (C.mode === 'move' && movesLeft(s) > 0) { for (const k of bfs(s, movesLeft(s)).keys()) { const [x, y] = k.split(',').map(Number); ctx.fillStyle = 'rgba(70,140,255,.32)'; ctx.fillRect(AX + x * TILE + 2, AY + y * TILE + 2, TILE - 4, TILE - 4); } }
+    if (C.mode === 'move' && movesLeft(s) > 0) { for (const k of bfs(s, movesLeft(s)).keys()) { const [x, y] = k.split(',').map(Number); ctx.fillStyle = 'rgba(70,140,255,.32)'; ctx.fillRect(AX + x * CT + 2, AY + y * CT + 2, CT - 4, CT - 4); } }
     if (C.mode === 'move') for (const e of alive('enemy')) if (canAttack(s, e)) ring(e, '#ff4030');
     if (C.mode === 'target') { if (!C.targets.includes(C.tsel)) C.tsel = C.targets[0]; for (const t of C.targets) ring(t, t === C.tsel ? '#ffffff' : '#ffd23a'); }
   }
-  const hv = arenaTile(mouse); if (hv && C.phase === 'party') { ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 2; ctx.strokeRect(AX + hv.x * TILE + 1, AY + hv.y * TILE + 1, TILE - 2, TILE - 2); }
+  if (C.phase === 'party' && C.sel && (C.mode === 'target' || C.mode === 'tile') && C.action && C.action.rng) {
+    const r = C.action.rng, u0 = C.sel, x0 = Math.max(0, u0.x - r), y0 = Math.max(0, u0.y - r), x1 = Math.min(AW - 1, u0.x + r), y1 = Math.min(AH - 1, u0.y + r);
+    if (C.mode === 'target') { ctx.fillStyle = 'rgba(190,130,255,.20)'; for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) if (x !== u0.x || y !== u0.y) ctx.fillRect(AX + x * CT + 1, AY + y * CT + 1, CT - 2, CT - 2); }
+    ctx.strokeStyle = 'rgba(220,180,255,.9)'; ctx.lineWidth = 2; ctx.setLineDash([6, 4]); ctx.strokeRect(AX + x0 * CT + 1, AY + y0 * CT + 1, (x1 - x0 + 1) * CT - 2, (y1 - y0 + 1) * CT - 2); ctx.setLineDash([]);
+  }
+  const hv = arenaTile(mouse); if (hv && C.phase === 'party') { ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 2; ctx.strokeRect(AX + hv.x * CT + 1, AY + hv.y * CT + 1, CT - 2, CT - 2); }
   for (const u of C.units) {
     if (u.dead) continue;
-    const x = AX + u.x * TILE, y = AY + u.y * TILE; const b = u === s ? Math.abs(Math.sin(R.t * 6)) * 4 : 0;
-    shadow(x, y); drawActor(u.sprite, x, y - b * 0.5, u.side === 'enemy' ? 'left' : 'right', R.t * (u === s ? 8 : 3), u === s, u.done && C.phase === 'party' ? 0.55 : 1, u.who || null);
-    bar(x + 4, y + TILE - 6, TILE - 8, 6, u.hp / u.maxHp, u.side === 'party' ? '#4fc44a' : '#e0503c');
-    if (u.buffs.length) text('+', x + TILE - 10, y, { bold: true, color: '#ffe07a', shadow: true });
+    const x = AX + u.x * CT, y = AY + u.y * CT; const b = u === s ? Math.abs(Math.sin(R.t * 6)) * 4 : 0;
+    shadow(x, y, CT); drawActor(u.sprite, x, y - b * 0.5, u.side === 'enemy' ? 'left' : 'right', R.t * (u === s ? 8 : 3), u === s, u.done && C.phase === 'party' ? 0.55 : 1, u.who || null, CT);
+    bar(x + 4, y + CT - 6, CT - 8, 6, u.hp / u.maxHp, u.side === 'party' ? '#4fc44a' : '#e0503c');
+    if (u.buffs.length) text('+', x + CT - 10, y, { bold: true, color: '#ffe07a', shadow: true });
     if (u.slow > 0) text('*', x + 2, y, { bold: true, color: '#9fe0ff', shadow: true });
-    if (shielded(u)) text('shielded', x + TILE / 2, y - 12, { bold: true, size: 11, align: 'center', color: '#c8a0ff', shadow: true });
+    if (shielded(u)) text('shielded', x + CT / 2, y - 12, { bold: true, size: 11, align: 'center', color: '#c8a0ff', shadow: true });
   }
-  if (hv) { const e = cUnitAt(hv.x, hv.y); if (e && e.side === 'enemy') tooltip([e.name + (e.tauntT > 0 && e.tauntBy ? `  (taunted by ${e.tauntBy.isPlayer ? 'you' : e.tauntBy.name})` : ''), `HP ${e.hp}/${e.maxHp}   ATK ${Math.max(0, e.atk + e.buffs.reduce((a, b) => a + (b.stat === 'atk' ? b.amt : 0), 0))}   DEF ${uDef(e)}`, `Move ${e.move}   Reach ${e.range}${e.swim ? '   (in the water)' : ''}${shielded(e) ? '   Shielded' : ''}`], AX + hv.x * TILE + TILE + 4, AY + hv.y * TILE - 8, 250); }
+  if (hv) { const e = cUnitAt(hv.x, hv.y); if (e && e.side === 'enemy') tooltip([e.name + (e.tauntT > 0 && e.tauntBy ? `  (taunted by ${e.tauntBy.isPlayer ? 'you' : e.tauntBy.name})` : ''), `HP ${e.hp}/${e.maxHp}   ATK ${Math.max(0, e.atk + e.buffs.reduce((a, b) => a + (b.stat === 'atk' ? b.amt : 0), 0))}   DEF ${uDef(e)}`, `Move ${e.move}   Reach ${e.range}${e.swim ? '   (in the water)' : ''}${shielded(e) ? '   Shielded' : ''}`], AX + hv.x * CT + CT + 4, AY + hv.y * CT - 8, 250); }
   for (const f of C.floats) text(f.s, f.x, f.y - f.t * 40, { bold: true, size: 20, align: 'center', color: f.col, shadow: true });
   ctx.restore();
   const banner = C.phase === 'party' ? `Round ${C.round} - Your turn` : C.phase === 'enemy' ? `Round ${C.round} - Enemy turn` : '';
   if (banner) text(banner, VW / 2, 6, { bold: true, align: 'center', color: '#fff', shadow: true });
   if (C.sea && !C.board) { text('Hull', 16, 8, { bold: true, size: 13, color: '#fff', shadow: true }); bar(52, 10, 110, 12, ship().hull / ship().max, '#e0a040'); text(`${ship().hull}/${ship().max}`, 168, 8, { size: 12, color: '#fff', shadow: true }); }
   // bottom panel
-  const py = AY + AH * TILE + 10; panel(10, py, VW - 20, VH - py - 8);
+  const py = AY + AH * CT + 10; panel(10, py, VW - 20, VH - py - 8);
   if (s) {
     drawSpr(s.sprite, 26, py + 14, 48);
     text(s.name, 84, py + 14, { bold: true });
     text(`HP ${s.hp}/${s.maxHp}   ATK ${s.atk}   DEF ${uDef(s)}   MOVE ${uMove(s)}`, 84, py + 36, { size: 13 });
-    text(C.mode === 'tile' ? 'Pick where to cast: click a tile, or arrows + Enter (Esc cancels)' : C.mode === 'target' ? 'Pick a target: click it, or arrows + Enter (Esc cancels)' : movesLeft(s) <= 0 ? (SET.mobile ? 'Done moving. Attack (A), or tap Spell or Defend.' : `Done moving. Attack (Space), cast (${K('spell')}) or defend (${K('defend')}).`) : (C.board ? 'Boarding! Fight across the decks. Bows reach 4.' : C.sea ? 'Bows reach 4 tiles. Arbalest (A) tiles fire 6.' : `${SET.mobile ? 'Move with the joystick or tap' : `Move with ${K('up')}${K('left')}${K('down')}${K('right')}/arrows or click`} blue (${movesLeft(s)} left). Walk into a foe to attack.`), 84, py + 56, { size: 13, color: UI.dim });
+    text(C.mode === 'tile' ? 'Pick where to cast: click a tile, or arrows + Enter (Esc cancels)' : C.mode === 'target' ? (C.targets.length ? (SET.mobile ? 'Pick a target: tap it, or joystick + A (B cancels)' : 'Pick a target: click it, or arrows + Enter (Esc cancels)') : `No target in range. ${SET.mobile ? 'B' : 'Esc'} cancels.`) : movesLeft(s) <= 0 ? (SET.mobile ? 'Done moving. Attack (A), or tap Spell or Defend.' : `Done moving. Attack (Space), cast (${K('spell')}) or defend (${K('defend')}).`) : (C.board ? 'Boarding! Fight across the decks. Bows reach 4.' : C.sea ? 'Bows reach 4 tiles. Arbalest (A) tiles fire 6.' : `${SET.mobile ? 'Move with the joystick or tap' : `Move with ${K('up')}${K('left')}${K('down')}${K('right')}/arrows or click`} blue (${movesLeft(s)} left). Walk into a foe to attack.`), 84, py + 56, { size: 13, color: UI.dim });
     var bx = 26; const by = py + 82;
     if (s.isPlayer) { button(bx, by, 72, 32, `Spell (${K('spell')})`, startSpell, { disabled: !G.spells.length }); bx += 76; }
     if (s.ability) { button(bx, by, 124, 32, `${s.ability.name} (${K('ability')})` + (s.cd > 0 ? ` ${s.cd}` : ''), startAbility, { disabled: s.cd > 0 }); bx += 128; }
@@ -32603,7 +32859,7 @@ function renderCombat() {
     button(VW / 2 - 70, 336, 140, 36, 'Continue', () => endCombat(won ? 'won' : 'lost'), { hot: true });
   }
 }
-function ring(u, col) { ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.beginPath(); ctx.ellipse(AX + u.x * TILE + TILE / 2, AY + u.y * TILE + TILE - 6, 20, 8, 0, 0, 7); ctx.stroke(); }
+function ring(u, col) { ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.beginPath(); ctx.ellipse(AX + u.x * CT + CT / 2, AY + u.y * CT + CT - 5, 17, 7, 0, 0, 7); ctx.stroke(); }
 
 function renderTitle() {
   const mp = D.maps[D.start.map === 'house' ? 'briarwick' : D.start.map] || D.maps[Object.keys(D.maps)[0]];
@@ -32818,7 +33074,7 @@ function renderDoll() {
     if (gearVal('player', 'yield')) lines.push(`+${gearVal('player', 'yield')} reagent per harvest`);
     if (!lines.length) lines.push('No magical bonuses yet.');
     lines.slice(0, 7).forEach(l => { text(l, sx, y, { size: 14, color: UI.blue }); y += 20; });
-  } else { y += 8; text('Hirelings use attack, defense, HP and move from gear.', sx, y, { size: 13, color: UI.dim }); }
+  } else { y += 8; text('Companions use attack, defense, HP and move from gear.', sx, y, { size: 13, color: UI.dim }); }
   // selected slot details
   const s = (D.equipSlots || [])[DOLL.slot]; const cur = s && eq[s.id] && D.items[eq[s.id]];
   ctx.fillStyle = UI.bg2; ctx.fillRect(sx, 404, 370, 2);
@@ -33068,7 +33324,7 @@ function updateSea(dt) {
     if (d) S_.auto = null;
     else if (S_.auto) { const nx0 = S_.auto.shift(); if (!nx0) { S_.auto = null; } else d = nx0[0] > S_.x ? 'right' : nx0[0] < S_.x ? 'left' : nx0[1] > S_.y ? 'down' : 'up'; }
     if (d) { S_.dir = d; const [dx, dy] = DIRS[d]; const nx = S_.x + dx, ny = S_.y + dy;
-      const mon = S_.monsters.find(m => m.x === nx && m.y === ny); if (mon && mon.stun <= 0) { startCombat(mon, { sea: true }); return; }
+      const mon = S_.monsters.find(m => m.x === nx && m.y === ny); if (mon && mon.stun <= 0) { encounter(mon, { sea: true }); return; }
       if (seaPass(nx, ny)) { const z = seaZone(nx, ny);
         if (!zoneOk(z)) { if (R.t - S_.lastBlock > 2.5) { S_.lastBlock = R.t; const rq = z.requires; toast(`${z.name}: the currents are too wild. Needs ${(D.skills[rq.skill] || { name: rq.skill }).name} ${rq.level}.`, UI.red); } }
         else S_.moving = { fx: S_.x, fy: S_.y, tx: nx, ty: ny, t: 0 }; } }
@@ -33097,7 +33353,7 @@ function updateSeaMonsters(dt) {
     if (dist <= 6 - perk('seaAvoid') && m.stun <= 0) { const ax = S_.x - m.x, ay = S_.y - m.y; if (Math.abs(ax) > Math.abs(ay)) dx = Math.sign(ax); else dy = Math.sign(ay); }
     else { if (Math.random() < 0.5) continue; const d = N4[rnd(0, 3)]; dx = d[0]; dy = d[1]; }
     const nx = m.x + dx, ny = m.y + dy;
-    if ((nx === S_.x && ny === S_.y) || (nx === pt.x && ny === pt.y)) { if (m.stun <= 0) { startCombat(m, { sea: true }); return; } continue; }
+    if ((nx === S_.x && ny === S_.y) || (nx === pt.x && ny === pt.y)) { if (m.stun <= 0) { encounter(m, { sea: true }); return; } continue; }
     if (seaPass(nx, ny) && !portAt(nx, ny) && zoneOk(seaZone(nx, ny)) === zoneOk(seaZone(m.x, m.y)) && !S_.monsters.some(o => o !== m && o.x === nx && o.y === ny)) {
       m.x = nx; m.y = ny; m.dx = dx; m.dy = dy; m.anim = 0; if (dx) m.dir = dx > 0 ? 'right' : 'left'; }
   }
@@ -33256,7 +33512,7 @@ function ship() { G.ship = G.ship || { hull: (D.sea || {}).hull || 60, max: (D.s
 function adjacentDeck(e) { return N4.some(([dx, dy]) => { const c = (C.grid[e.y + dy] || [])[e.x + dx]; return c === 'B' || c === 'A' || c === 'P'; }); }
 function ramHull(e) {
   const dmg = Math.max(1, Math.round(e.atk * 0.6)); const s = ship(); s.hull = Math.max(0, s.hull - dmg);
-  C.floats.push({ x: AX + e.x * TILE + TILE / 2, y: AY + e.y * TILE, s: `-${dmg} hull`, col: '#ffb040', t: 0 }); C.shake = 0.2; AU.sfx('hit');
+  C.floats.push({ x: AX + e.x * CT + CT / 2, y: AY + e.y * CT, s: `-${dmg} hull`, col: '#ffb040', t: 0 }); C.shake = 0.2; AU.sfx('hit');
   clog(`${e.name} rams the hull! (-${dmg}) Put a crew member at the rail!`);
   if (s.hull <= 0) { clog('The hull gives way!'); C.phase = 'lost'; C.sunk = true; }
 }
@@ -33268,7 +33524,11 @@ function SV() { return D.survivors || { list: [], daysBetween: 7 }; }
 function survDef(id) { return (SV().list || []).find(s => s.id === id); }
 function checkSurvivorArrival() {
   if (G.surv || G.escort) return null; const done = G.survDone || [];
-  const next = (SV().list || []).find(s => !done.includes(s.id)); if (!next || playerLvl() < next.level) return null;
+  const next = (SV().list || []).find(s => !done.includes(s.id)); if (!next) return null;
+  noteKingdoms(); const wait = SV().arrivalWait || 7;
+  if (!done.length) { if (G.day < 1 + wait) return null; }
+  else { const d0 = (G.kingdomDay || {})[done[done.length - 1]]; if (d0 == null || G.day < d0 + wait) return null; }
+  if (R.scene === 'sea' || outdoorOf(R.mapId) !== 'briarwick') return null;
   G.surv = { id: next.id, step: 0, readyDay: G.day }; G.flags.survivorCare = true; G.flags['sick_' + next.id] = true; return next;
 }
 async function survivorStepDone(q) {
@@ -33283,6 +33543,14 @@ async function survivorStepDone(q) {
   await offerHome(s);
   R.npcs = R.npcs.filter(n => !n.flag || G.flags[n.flag]);
 }
+// a kingdom is fully unlocked when every quest its ruler opens (and the chain after it) is done
+function kingdomQuestIds(sv) {
+  const ids = new Set(D.quests.filter(q => q.unlockFlag === 'home_' + sv.id).map(q => q.id)); let grew = true;
+  while (grew) { grew = false; for (const q of D.quests) if (q.requires && ids.has(q.requires) && !ids.has(q.id)) { ids.add(q.id); grew = true; } }
+  return [...ids];
+}
+function kingdomUnlocked(sv) { const ids = kingdomQuestIds(sv); return !!G.flags['home_' + sv.id] && ids.length > 0 && ids.every(id => G.quests[id] === 'done'); }
+function noteKingdoms() { G.kingdomDay = G.kingdomDay || {}; for (const sv of SV().list || []) if (G.kingdomDay[sv.id] == null && kingdomUnlocked(sv)) { G.kingdomDay[sv.id] = G.day; } }
 function hiredCount() { return Object.values(G.helpers).filter(h => !h.guest).length; }
 async function offerHome(s) {
   const h = D.helpers[s.helper] || { name: s.helper }, q = D.quests.find(x => x.escort === s.id);
@@ -33300,7 +33568,7 @@ async function finishEscort(s, npc) {
   if (q) { G.quests[q.id] = 'done'; grantReward(q.reward); toast(`Quest complete: ${q.name}`, UI.green); }
   G.flags['home_' + s.id] = true; G.escort = null; const st = G.helpers[s.helper];
   if (st) { delete st.guest; if (hiredCount() > helperBeds()) { delete G.helpers[s.helper]; G.flags['avail_' + s.helper] = true; await say(h.name, [`'I'd gladly keep working for you - but you'll need a bed for me at your cottage. Find me at the Sleepy Toad when you have one.'`], h.sprite); }
-    else await say(h.name, [`'I'll stay on with you, if you'll have me. (${h.name} is now a hireling: ${h.wage}g a day.)'`], h.sprite); }
+    else await say(h.name, [`'I'll stay on with you, if you'll have me. (${h.name} is now a companion: ${h.wage}g a day.)'`], h.sprite); }
 }
 function registerEnchant(nid, base, gem) {
   const b = D.items[base], e = (D.enchants || {})[gem]; if (!b || !e) return; const it = JSON.parse(JSON.stringify(b));
@@ -33447,7 +33715,7 @@ function renderWorldMap() {
     tooltip(lines, hover.x + 16, hover.y - 10, 320); }
 }
 
-// ================= EXPEDITIONS: adventures and trade voyages run by hirelings =================
+// ================= EXPEDITIONS: adventures and trade voyages run by companions =================
 function XP_() { return D.expeditions || {}; }
 const hopCache = {};
 function hopsFrom(start) {
@@ -33548,8 +33816,8 @@ function resolveTrade(ex) {
 }
 // ---- menus ----
 function expeditionRows() {
-  const rows = [{ label: 'Send a party on an adventure...', right: 'Adventure', desc: 'Hirelings clear a zone or cave level you have been to and come back with XP, gold and loot - if all goes well.', act: () => script(planAdventure) },
-    { label: 'Send a trade voyage...', right: G.boat ? 'Trade' : 'needs a boat', disabled: !G.boat, desc: G.boat ? 'Hirelings sail your boat to a port you have visited, sell the goods you send and buy what you ask for.' : 'Buy a boat from the shipwright first.', act: () => script(planTrade) }];
+  const rows = [{ label: 'Send a party on an adventure...', right: 'Adventure', desc: 'Companions clear a zone or cave level you have been to and come back with XP, gold and loot - if all goes well.', act: () => script(planAdventure) },
+    { label: 'Send a trade voyage...', right: G.boat ? 'Trade' : 'needs a boat', disabled: !G.boat, desc: G.boat ? 'Companions sail your boat to a port you have visited, sell the goods you send and buy what you ask for.' : 'Buy a boat from the shipwright first.', act: () => script(planTrade) }];
   for (const ex of G.expeditions || []) { const d = ex.returnDay - G.day; rows.push({ label: `${ex.kind === 'trade' ? 'Trade: ' : ''}${ex.kind === 'trade' ? (((D.sea || {}).ports || []).find(p => p.id === ex.port) || {}).name : zoneName(ex.zone)}`, right: d <= 1 ? 'back tomorrow' : `back in ${d} days`, disabled: true, desc: `${ex.members.map(id => (D.helpers[id] || { name: id }).name).join(', ')}.  ${Math.round(ex.success * 100)}% success.` }); }
   for (const rp of (G.expLog || []).slice(0, 6)) rows.push({ label: `Report: ${rp.title}`, right: rp.ok ? 'success' : 'trouble', desc: rp.summary, act: () => script(() => showExpeditionReport(rp)) });
   return rows;
@@ -33558,8 +33826,8 @@ function freeHirelings() { return Object.keys(G.helpers).filter(id => D.helpers[
 async function pickMembers(title, max) {
   const pick = new Set(Object.keys(G.helpers).filter(id => G.helpers[id].role === 'party' && !G.helpers[id].guest && freeHirelings().includes(id)).slice(0, max)); let done = false;
   await openMenu({ title, width: 600, items: () => freeHirelings().map(id => { const h = D.helpers[id], u = helperUnit(id); return { label: `${pick.has(id) ? '[x]' : '[  ]'}  ${h.name}`, icon: h.sprite, right: `Lv ${hLvl(id)}  ${ROLES[G.helpers[id].role]}`, desc: `HP ${u.maxHp}  ATK ${u.atk}  DEF ${u.def}.  Skills: ${skillStr(h.skills)}.`, value: id }; })
-      .concat([{ label: pick.size ? `Continue with ${pick.size}` : 'Choose at least one hireling', value: '__go', disabled: !pick.size }]),
-    footer: `Enter: add or remove (up to ${max}).  Hirelings who go stop their jobs until they return.`,
+      .concat([{ label: pick.size ? `Continue with ${pick.size}` : 'Choose at least one companion', value: '__go', disabled: !pick.size }]),
+    footer: `Enter: add or remove (up to ${max}).  Companions who go stop their jobs until they return.`,
     onSelect: it => { if (it.value === '__go') { done = true; return true; } if (pick.has(it.value)) pick.delete(it.value); else if (pick.size < max) pick.add(it.value); else toast(`At most ${max}.`); return false; } });
   return done ? [...pick] : null;
 }
@@ -33571,7 +33839,7 @@ async function chooseSupplies(kinds) {
 }
 async function planAdventure() {
   const zones = adventureZones(); if (!zones.length) { toast('Explore a monster area first - adventures only go where you have been.'); return; }
-  if (!freeHirelings().length) { toast('You have no free hirelings to send.'); return; }
+  if (!freeHirelings().length) { toast('You have no free companions to send.'); return; }
   const ids = await pickMembers('Adventure party', XP_().maxMembers || 4); if (!ids) return;
   const zone = await choose('Where should they go?', zones.map(z => { const o = adventureOdds(ids, z), t = zoneTravel(z); return { label: zoneName(z), right: `${Math.round(o.success * 100)}%   ${t.near ? 'tonight' : t.days + ' days'}`, desc: `${o.battles} battles. Success ${Math.round(o.success * 100)}%, chance someone dies ${Math.round(o.death * 100)}%. ${t.near ? 'Close to home: back tomorrow morning.' : `Round trip about ${t.days} days.`}`, value: z }; })
     .sort((a, b) => parseInt(b.right) - parseInt(a.right)).concat([{ label: 'Never mind', value: null }]), { width: 620 }); if (!zone) return;
@@ -33582,12 +33850,12 @@ async function planAdventure() {
   for (const [k, n] of Object.entries(sup)) take(k, n);
   const prev = {}; for (const id of ids) { prev[id] = G.helpers[id].role; G.helpers[id].role = 'away'; }
   G.expeditions = (G.expeditions || []).concat([{ kind: 'adventure', zone, members: ids, prevRoles: prev, items: sup, success: o.success, dOk: o.dOk, dFail: o.dFail, days: t.days, returnDay: G.day + t.days }]);
-  toast(`${ids.length} hireling${ids.length > 1 ? 's' : ''} set out for ${zoneName(zone)}.`, UI.green);
+  toast(`${ids.length} companion${ids.length > 1 ? 's' : ''} set out for ${zoneName(zone)}.`, UI.green);
 }
 async function planTrade() {
   if (!G.boat) { toast('You need a boat.'); return; } if ((G.expeditions || []).some(x => x.kind === 'trade')) { toast('Your boat is already away on a voyage.'); return; }
   const ports = tradePorts(); if (!ports.length) { toast('Visit another port with a market first - voyages only go where you have sailed.'); return; }
-  if (!freeHirelings().length) { toast('You have no free hirelings to crew the boat.'); return; }
+  if (!freeHirelings().length) { toast('You have no free companions to crew the boat.'); return; }
   const ids = await pickMembers('Trade crew (sailors and hagglers help)', 3); if (!ids) return;
   const pid = await choose('Sail to which port?', ports.map(p => { const o = tradeOdds(ids, p); return { label: p.name, right: `${Math.round(o.success * 100)}%   ${o.days} days`, desc: `Round trip ${o.days} days. Success ${Math.round(o.success * 100)}% (sea distance, your crew's Sailing ${crewBest(ids, 'sailing')}, hull ${ship().hull}/${ship().max}). Markets: ${portMarket(p).map(s => D.shops[s].name).join(', ')}.`, value: p.id }; }).concat([{ label: 'Never mind', value: null }]), { width: 620 }); if (!pid) return;
   const port = ports.find(p => p.id === pid), shops = portMarket(port).map(s => D.shops[s]), buys = new Set(shops.flatMap(sh => sh.buysTypes || [])), sells = [...new Set(shops.flatMap(sh => sh.sells || []))].filter(id => D.items[id]), bart = crewBest(ids, 'bartering');
@@ -33625,14 +33893,14 @@ addEventListener('error', e => { SESSION.errors.push(String(e.message || e).slic
 function stat(k, n = 1) { if (!G) return; G.stats = G.stats || {}; G.stats[k] = (G.stats[k] || 0) + n; }
 function statsReport(why) {
   const mins = Math.round((Date.now() - SESSION.start) / 60000);
-  const head = `**${SET.name || 'Player ' + SESSION.id}** - v${D.meta.version} (${UPD.online ? 'online' : 'file'}) - ${why} - session ${mins} min`;
+  const head = `**${SET.name || (G && G.name ? G.name + ' (hero)' : 'Player ' + SESSION.id)}** - v${D.meta.version} (${UPD.online ? 'online' : 'file'}) - ${why} - session ${mins} min`;
   if (!G) return head + '\nOn the title screen (no game loaded).';
   const st = G.stats || {}, q = Object.values(G.quests || {}), sk = Object.keys(D.skills).filter(id => skillLvl(id) > 1).map(id => `${D.skills[id].name} ${skillLvl(id)}`);
   const lines = [head,
     `Day ${G.day} (${dateStr()} ${clock()}) - Level ${playerLvl()} - ${G.gold}g - HP ${G.hp}/${maxHp()} - at ${(R.map || {}).name || R.mapId}`,
     `Quests: ${q.filter(v => v === 'done').length} done, ${q.filter(v => v === 'active').length} active (${D.quests.filter(x => G.quests[x.id] === 'active').map(x => x.name).slice(0, 4).join(', ') || '-'})`,
     `Skills: ${sk.join(', ') || 'all 1'} - Spells: ${G.spells.length} - Greenhouse: ${G.gh < 0 ? 'ruined' : G.gh} - Boat: ${G.boat ? 'yes' : 'no'} - Ports: ${Object.keys(G.ports || {}).length}`,
-    `Hirelings: ${Object.entries(G.helpers || {}).map(([id, h]) => `${(D.helpers[id] || {}).name || id} (${ROLES[h.role] || h.role})`).join(', ') || 'none'}`,
+    `Companions: ${Object.entries(G.helpers || {}).map(([id, h]) => `${(D.helpers[id] || {}).name || id} (${ROLES[h.role] || h.role})`).join(', ') || 'none'}`,
     `Battles ${st.battles || 0}, won ${st.wins || 0}, fled ${st.flees || 0}, lost ${st.deaths || 0} - spells cast ${st.casts || 0} - total play ${Math.round((st.playMs || 0) / 60000)} min`,
     `Hollow King: ${G.flags.dreadKnown ? Math.round(dread() * 100) + '% (' + tierName() + ')' : 'not revealed'} - Settings: walk ${SET.walk}, battle ${SET.battle}, music ${Math.round(AU.volume.music * 100)}%, sfx ${Math.round(AU.volume.sfx * 100)}%`];
   if (SESSION.errors.length) lines.push('Errors: ' + SESSION.errors.join(' | '));
@@ -33731,7 +33999,7 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 // debug/test hook (harmless in production)
-window.__game = { setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
+window.__game = { encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
 })();
 
 </script>
