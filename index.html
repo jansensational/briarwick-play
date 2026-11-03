@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.19.0</title>
+<title>Reagents of Briarwick v0.19.1</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.19.0",
+  "version": "0.19.1",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -30314,6 +30314,1075 @@ window.GAME_DATA = {
     "flag": "shipyard",
     "gold": 0
    }
+  },
+  {
+   "id": "fav_brenna_1",
+   "name": "Brenna: Mother's blight-salve",
+   "giver": "comp_brenna",
+   "companion": "brenna",
+   "side": true,
+   "choice": true,
+   "needTier": 2,
+   "intro": [
+    "Before I plant Mother's seeds I want her old blight-salve ready, just in case.",
+    "Bring me 8 Glowcap and 8 Moonpetal?"
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "glowcap",
+     "qty": 8
+    },
+    {
+     "type": "collect",
+     "item": "moonpetal",
+     "qty": 8
+    }
+   ],
+   "done": [
+    "That's the smell of her kitchen. Thank you."
+   ],
+   "reward": {
+    "gold": 20,
+    "favour": {
+     "who": "brenna",
+     "appr": 25
+    }
+   }
+  },
+  {
+   "id": "fav_brenna_2",
+   "name": "Brenna: The first planting",
+   "giver": "comp_brenna",
+   "companion": "brenna",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "I'm ready to plant them. The soil needs to hold water, and slime gel does that better than anything.",
+    "Six Slime Gel and six Ironbark for the bed frame, please."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "slime_gel",
+     "qty": 6
+    },
+    {
+     "type": "collect",
+     "item": "ironbark",
+     "qty": 6
+    }
+   ],
+   "done": [
+    "They're in the ground. I'll watch them like a hawk."
+   ],
+   "reward": {
+    "gold": 40,
+    "favour": {
+     "who": "brenna",
+     "close": 1
+    }
+   },
+   "requires": "fav_brenna_1"
+  },
+  {
+   "id": "fav_brenna_3",
+   "name": "Brenna: Trampled fields",
+   "giver": "comp_brenna",
+   "companion": "brenna",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "Farmers on the Kingsroad say shadow hounds trample their fields at night.",
+    "Mother would have marched out there herself. Will you?"
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "shadow_hound",
+     "qty": 8
+    }
+   ],
+   "done": [
+    "They'll have a harvest this year because of you."
+   ],
+   "reward": {
+    "gold": 60,
+    "favour": {
+     "who": "brenna",
+     "close": 1
+    }
+   },
+   "requires": "fav_brenna_2"
+  },
+  {
+   "id": "fav_brenna_4",
+   "name": "Brenna: A garden for Mother",
+   "giver": "comp_brenna",
+   "companion": "brenna",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "Her seeds came up! I want to plant a herb from every kingdom around them.",
+    "A cutting each of Jadeleaf, Tidecoral, Bloodmoss and Cinderlotus. Three of each."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "jadeleaf",
+     "qty": 3
+    },
+    {
+     "type": "collect",
+     "item": "tidecoral",
+     "qty": 3
+    },
+    {
+     "type": "collect",
+     "item": "bloodmoss",
+     "qty": 3
+    },
+    {
+     "type": "collect",
+     "item": "cinderlotus",
+     "qty": 3
+    }
+   ],
+   "done": [
+    "It's beautiful. She'd have loved it. And... I'm glad it was you who helped."
+   ],
+   "reward": {
+    "gold": 100,
+    "favour": {
+     "who": "brenna",
+     "close": 1
+    }
+   },
+   "requires": "fav_brenna_3"
+  },
+  {
+   "id": "fav_kael_1",
+   "name": "Kael: Old debts",
+   "giver": "comp_kael",
+   "companion": "kael",
+   "side": true,
+   "choice": true,
+   "needTier": 2,
+   "intro": [
+    "The Red Hoods still work the roads. Every badge we take is one less crew on the Kingsroad.",
+    "Six of them, and five of their badges."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "bandit",
+     "qty": 6
+    },
+    {
+     "type": "collect",
+     "item": "bandit_badge",
+     "qty": 5
+    }
+   ],
+   "done": [
+    "The road's a little safer. That's what honest work looks like."
+   ],
+   "reward": {
+    "gold": 20,
+    "favour": {
+     "who": "kael",
+     "appr": 25
+    }
+   }
+  },
+  {
+   "id": "fav_kael_2",
+   "name": "Kael: The captain's new friends",
+   "giver": "comp_kael",
+   "companion": "kael",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "My old captain sails with the corsairs now. I want his new crew to feel it.",
+    "Five corsairs."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "corsair",
+     "qty": 5
+    }
+   ],
+   "done": [
+    "He'll hear about this. Good."
+   ],
+   "reward": {
+    "gold": 40,
+    "favour": {
+     "who": "kael",
+     "close": 1
+    }
+   },
+   "requires": "fav_kael_1"
+  },
+  {
+   "id": "fav_kael_3",
+   "name": "Kael: Blades for the road wardens",
+   "giver": "comp_kael",
+   "companion": "kael",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "The new road wardens have nothing but sticks. Iron and some silver and I'll get them proper blades.",
+    "Six Iron Ore and two Silver Ore."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "iron_ore",
+     "qty": 6
+    },
+    {
+     "type": "collect",
+     "item": "silver_ore",
+     "qty": 2
+    }
+   ],
+   "done": [
+    "They'll stand a chance now. So will the caravans."
+   ],
+   "reward": {
+    "gold": 60,
+    "favour": {
+     "who": "kael",
+     "close": 1
+    }
+   },
+   "requires": "fav_kael_2"
+  },
+  {
+   "id": "fav_kael_4",
+   "name": "Kael: Black sails",
+   "giver": "comp_kael",
+   "companion": "kael",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "Last I heard, he's flying a black sail. I'm done running from it.",
+    "Three black sails. Then it's over."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "black_sail",
+     "qty": 3
+    }
+   ],
+   "done": [
+    "It's finished. I can sleep. You stood with me, and I won't forget it."
+   ],
+   "reward": {
+    "gold": 100,
+    "favour": {
+     "who": "kael",
+     "close": 1
+    }
+   },
+   "requires": "fav_kael_3"
+  },
+  {
+   "id": "fav_pip_1",
+   "name": "Pip: A real spellbook",
+   "giver": "comp_pip",
+   "companion": "pip",
+   "side": true,
+   "choice": true,
+   "needTier": 2,
+   "intro": [
+    "I want to copy out a spell properly, not scribble it. Wisp essence makes ink that holds magic.",
+    "Six Wisp Essence?"
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "wisp_essence",
+     "qty": 6
+    }
+   ],
+   "done": [
+    "Look at that. A real page of a real spell. Mine!"
+   ],
+   "reward": {
+    "gold": 20,
+    "favour": {
+     "who": "pip",
+     "appr": 25
+    }
+   }
+  },
+  {
+   "id": "fav_pip_2",
+   "name": "Pip: Proper reagents",
+   "giver": "comp_pip",
+   "companion": "pip",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "A proper student keeps a proper reagent shelf.",
+    "Five each of Emberroot, Frostmint and Shadebloom."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "emberroot",
+     "qty": 5
+    },
+    {
+     "type": "collect",
+     "item": "frostmint",
+     "qty": 5
+    },
+    {
+     "type": "collect",
+     "item": "shadebloom",
+     "qty": 5
+    }
+   ],
+   "done": [
+    "Labelled, sorted, alphabetical. The conjurer never did that."
+   ],
+   "reward": {
+    "gold": 40,
+    "favour": {
+     "who": "pip",
+     "close": 1
+    }
+   },
+   "requires": "fav_pip_1"
+  },
+  {
+   "id": "fav_pip_3",
+   "name": "Pip: A crystal focus",
+   "giver": "comp_pip",
+   "companion": "pip",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "Every mage I've read about has a focus. Quartz to shape it, amethyst to tune it.",
+    "Three Quartz and one Amethyst."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "quartz",
+     "qty": 3
+    },
+    {
+     "type": "collect",
+     "item": "amethyst",
+     "qty": 1
+    }
+   ],
+   "done": [
+    "It hums when I hold it! It actually hums!"
+   ],
+   "reward": {
+    "gold": 60,
+    "favour": {
+     "who": "pip",
+     "close": 1
+    }
+   },
+   "requires": "fav_pip_2"
+  },
+  {
+   "id": "fav_pip_4",
+   "name": "Pip: The crystal towers",
+   "giver": "comp_pip",
+   "companion": "pip",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "I want to see the Ember Isles: the place real mages come from. And a starstone, if we can find one, to remember it by."
+   ],
+   "objectives": [
+    {
+     "type": "visit",
+     "map": "ember_town"
+    },
+    {
+     "type": "collect",
+     "item": "starstone",
+     "qty": 1
+    }
+   ],
+   "done": [
+    "I'm going to write to all six of my brothers and sisters. Every one. Thank you for believing me."
+   ],
+   "reward": {
+    "gold": 100,
+    "favour": {
+     "who": "pip",
+     "close": 1
+    }
+   },
+   "requires": "fav_pip_3"
+  },
+  {
+   "id": "fav_seren_1",
+   "name": "Seren: Teeth for the shrine",
+   "giver": "comp_seren",
+   "companion": "seren",
+   "side": true,
+   "choice": true,
+   "needTier": 2,
+   "intro": [
+    "Saltmere's ferrymen keep a shrine for the ones the sea took. Shark teeth are the old offering.",
+    "Five Shark Teeth?"
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "shark_tooth",
+     "qty": 5
+    }
+   ],
+   "done": [
+    "I'll lay them out for him next time we pass."
+   ],
+   "reward": {
+    "gold": 20,
+    "favour": {
+     "who": "seren",
+     "appr": 25
+    }
+   }
+  },
+  {
+   "id": "fav_seren_2",
+   "name": "Seren: Ink of the beast",
+   "giver": "comp_seren",
+   "companion": "seren",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "They say kraken ink, burned at the shrine, lets the drowned rest.",
+    "Three Kraken Ink."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "kraken_ink",
+     "qty": 3
+    }
+   ],
+   "done": [
+    "It burns black and smells awful. That's how you know it's real."
+   ],
+   "reward": {
+    "gold": 40,
+    "favour": {
+     "who": "seren",
+     "close": 1
+    }
+   },
+   "requires": "fav_seren_1"
+  },
+  {
+   "id": "fav_seren_3",
+   "name": "Seren: The drowned",
+   "giver": "comp_seren",
+   "companion": "seren",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "Some nights I see the drowned walking the shallows. I don't want him to be one of them.",
+    "Six of them, please. Gently, if you can."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "drowned",
+     "qty": 6
+    }
+   ],
+   "done": [
+    "Quiet water tonight. Thank you."
+   ],
+   "reward": {
+    "gold": 60,
+    "favour": {
+     "who": "seren",
+     "close": 1
+    }
+   },
+   "requires": "fav_seren_2"
+  },
+  {
+   "id": "fav_seren_4",
+   "name": "Seren: Goodbye, Father",
+   "giver": "comp_seren",
+   "companion": "seren",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "One more thing. Break the kraken's grip on that shore, then walk Saltmere's beach with me."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "kraken_tentacle",
+     "qty": 6
+    },
+    {
+     "type": "visit",
+     "map": "saltmere_shore"
+    }
+   ],
+   "done": [
+    "...Goodbye, Father. I think I'm ready to sail somewhere new. With you, if you'll have me."
+   ],
+   "reward": {
+    "gold": 100,
+    "favour": {
+     "who": "seren",
+     "close": 1
+    }
+   },
+   "requires": "fav_seren_3"
+  },
+  {
+   "id": "fav_rowan_1",
+   "name": "Rowan: Seedlings for the grove",
+   "giver": "comp_rowan",
+   "companion": "rowan",
+   "side": true,
+   "choice": true,
+   "needTier": 2,
+   "intro": [
+    "I want to start new saplings for Grandmother's grove. Jadeleaf feeds young roots.",
+    "Eight Jadeleaf?"
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "jadeleaf",
+     "qty": 8
+    }
+   ],
+   "done": [
+    "They'll take years to grow. That's fine. Groves are patient."
+   ],
+   "reward": {
+    "gold": 20,
+    "favour": {
+     "who": "rowan",
+     "appr": 25
+    }
+   }
+  },
+  {
+   "id": "fav_rowan_2",
+   "name": "Rowan: Clear the paths",
+   "giver": "comp_rowan",
+   "companion": "rowan",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "Vine creepers strangle anything new on Verdant. The saplings won't last a week.",
+    "Six of them."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "vine_creeper",
+     "qty": 6
+    }
+   ],
+   "done": [
+    "The paths are clear. Grandmother kept them like that."
+   ],
+   "reward": {
+    "gold": 40,
+    "favour": {
+     "who": "rowan",
+     "close": 1
+    }
+   },
+   "requires": "fav_rowan_1"
+  },
+  {
+   "id": "fav_rowan_3",
+   "name": "Rowan: A salve for old roots",
+   "giver": "comp_rowan",
+   "companion": "rowan",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "The old roots are blighted, but not dead. Ironbark and moonpetal make a salve for them.",
+    "Six Ironbark and four Moonpetal."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "ironbark",
+     "qty": 6
+    },
+    {
+     "type": "collect",
+     "item": "moonpetal",
+     "qty": 4
+    }
+   ],
+   "done": [
+    "I felt them drink it in. The grove remembers."
+   ],
+   "reward": {
+    "gold": 60,
+    "favour": {
+     "who": "rowan",
+     "close": 1
+    }
+   },
+   "requires": "fav_rowan_2"
+  },
+  {
+   "id": "fav_rowan_4",
+   "name": "Rowan: The grove again",
+   "giver": "comp_rowan",
+   "companion": "rowan",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "The jungle cats have made their dens where the grove stood. Come with me to the Verdant wilds?"
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "jungle_cat",
+     "qty": 4
+    },
+    {
+     "type": "visit",
+     "map": "verdant_wilds"
+    }
+   ],
+   "done": [
+    "Saplings in the old ground. She'd be laughing at me for crying. Thank you, truly."
+   ],
+   "reward": {
+    "gold": 100,
+    "favour": {
+     "who": "rowan",
+     "close": 1
+    }
+   },
+   "requires": "fav_rowan_3"
+  },
+  {
+   "id": "fav_marisol_1",
+   "name": "Marisol: Sea charts",
+   "giver": "comp_marisol",
+   "companion": "marisol",
+   "side": true,
+   "choice": true,
+   "needTier": 2,
+   "intro": [
+    "I'm redrawing my charts from memory. Tidecoral marks the reefs: I need samples.",
+    "Six Tidecoral?"
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "tidecoral",
+     "qty": 6
+    }
+   ],
+   "done": [
+    "The reefs are on paper again. That's half my old life back."
+   ],
+   "reward": {
+    "gold": 20,
+    "favour": {
+     "who": "marisol",
+     "appr": 25
+    }
+   }
+  },
+  {
+   "id": "fav_marisol_2",
+   "name": "Marisol: The corsairs' wake",
+   "giver": "comp_marisol",
+   "companion": "marisol",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "The corsairs who took the flagship still raid the same lanes.",
+    "Five of them."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "corsair",
+     "qty": 5
+    }
+   ],
+   "done": [
+    "One of them had a page of my old log. They're real, and they're mine."
+   ],
+   "reward": {
+    "gold": 40,
+    "favour": {
+     "who": "marisol",
+     "close": 1
+    }
+   },
+   "requires": "fav_marisol_1"
+  },
+  {
+   "id": "fav_marisol_3",
+   "name": "Marisol: Siren song",
+   "giver": "comp_marisol",
+   "companion": "marisol",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "The reef sirens lure ships onto the rocks. The admiral blamed that on me too.",
+    "Four of them."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "reef_siren",
+     "qty": 4
+    }
+   ],
+   "done": [
+    "The lane is safe. They'll have to admit I was right about that reef."
+   ],
+   "reward": {
+    "gold": 60,
+    "favour": {
+     "who": "marisol",
+     "close": 1
+    }
+   },
+   "requires": "fav_marisol_2"
+  },
+  {
+   "id": "fav_marisol_4",
+   "name": "Marisol: My name back",
+   "giver": "comp_marisol",
+   "companion": "marisol",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "Sapphires were the old navigators' seal. Bring me two, sink three black sails, and I'll take my report to the admiral."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "sapphire",
+     "qty": 2
+    },
+    {
+     "type": "defeat",
+     "enemy": "black_sail",
+     "qty": 3
+    }
+   ],
+   "done": [
+    "The admiral read it twice. My name is cleared. And I know who to thank."
+   ],
+   "reward": {
+    "gold": 100,
+    "favour": {
+     "who": "marisol",
+     "close": 1
+    }
+   },
+   "requires": "fav_marisol_3"
+  },
+  {
+   "id": "fav_thorne_1",
+   "name": "Thorne: Hold the line",
+   "giver": "comp_thorne",
+   "companion": "thorne",
+   "side": true,
+   "choice": true,
+   "needTier": 2,
+   "intro": [
+    "The orc raiders still come over the hills. Fight beside me, just once, so I know I didn't forget how.",
+    "Six of them."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "orc_raider",
+     "qty": 6
+    }
+   ],
+   "done": [
+    "We held. Good."
+   ],
+   "reward": {
+    "gold": 20,
+    "favour": {
+     "who": "thorne",
+     "appr": 25
+    }
+   }
+  },
+  {
+   "id": "fav_thorne_2",
+   "name": "Thorne: A plaque for the fallen",
+   "giver": "comp_thorne",
+   "companion": "thorne",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "I want to forge a plaque with my company's names. Iron for the plate, bloodmoss for the red of Thornhaven.",
+    "Six Iron Ore and three Bloodmoss."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "iron_ore",
+     "qty": 6
+    },
+    {
+     "type": "collect",
+     "item": "bloodmoss",
+     "qty": 3
+    }
+   ],
+   "done": [
+    "Every name. I remembered every name."
+   ],
+   "reward": {
+    "gold": 40,
+    "favour": {
+     "who": "thorne",
+     "close": 1
+    }
+   },
+   "requires": "fav_thorne_1"
+  },
+  {
+   "id": "fav_thorne_3",
+   "name": "Thorne: The hounds of the pass",
+   "giver": "comp_thorne",
+   "companion": "thorne",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "War hounds run the Iron Pass now. They'll not foul that ground.",
+    "Four of them."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "war_hound",
+     "qty": 4
+    }
+   ],
+   "done": [
+    "It's quiet there now. As it should be."
+   ],
+   "reward": {
+    "gold": 60,
+    "favour": {
+     "who": "thorne",
+     "close": 1
+    }
+   },
+   "requires": "fav_thorne_2"
+  },
+  {
+   "id": "fav_thorne_4",
+   "name": "Thorne: At the pass",
+   "giver": "comp_thorne",
+   "companion": "thorne",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "A ruby for the plaque, like the king's own seal. Then come with me to Thornhaven to set it in place."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "ruby",
+     "qty": 1
+    },
+    {
+     "type": "visit",
+     "map": "thornhaven_town"
+    }
+   ],
+   "done": [
+    "I obeyed, and I lived. I'm going to stop apologising for that. You helped me see it."
+   ],
+   "reward": {
+    "gold": 100,
+    "favour": {
+     "who": "thorne",
+     "close": 1
+    }
+   },
+   "requires": "fav_thorne_3"
+  },
+  {
+   "id": "fav_sylas_1",
+   "name": "Sylas: Star ink",
+   "giver": "comp_sylas",
+   "companion": "sylas",
+   "side": true,
+   "choice": true,
+   "needTier": 2,
+   "intro": [
+    "I write my observations in cinderlotus ink. It doesn't fade, even in starlight.",
+    "Six Cinderlotus?"
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "cinderlotus",
+     "qty": 6
+    }
+   ],
+   "done": [
+    "My notes, in proper ink again. Everything feels more real."
+   ],
+   "reward": {
+    "gold": 20,
+    "favour": {
+     "who": "sylas",
+     "appr": 25
+    }
+   }
+  },
+  {
+   "id": "fav_sylas_2",
+   "name": "Sylas: Imps at the observatory",
+   "giver": "comp_sylas",
+   "companion": "sylas",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "Fire imps have nested in the old observatory on the Ember Isles.",
+    "Five of them, please."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "fire_imp",
+     "qty": 5
+    }
+   ],
+   "done": [
+    "The lenses are cracked, but they're mine to fix."
+   ],
+   "reward": {
+    "gold": 40,
+    "favour": {
+     "who": "sylas",
+     "close": 1
+    }
+   },
+   "requires": "fav_sylas_1"
+  },
+  {
+   "id": "fav_sylas_3",
+   "name": "Sylas: Proof",
+   "giver": "comp_sylas",
+   "companion": "sylas",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "The council wants proof. Starstones and hollow shards together show the pattern plainly.",
+    "Two Starstones and four Hollow Shards."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "starstone",
+     "qty": 2
+    },
+    {
+     "type": "collect",
+     "item": "hollow_shard",
+     "qty": 4
+    }
+   ],
+   "done": [
+    "It glows exactly as I predicted. They can't deny this."
+   ],
+   "reward": {
+    "gold": 60,
+    "favour": {
+     "who": "sylas",
+     "close": 1
+    }
+   },
+   "requires": "fav_sylas_2"
+  },
+  {
+   "id": "fav_sylas_4",
+   "name": "Sylas: Open the tower",
+   "giver": "comp_sylas",
+   "companion": "sylas",
+   "side": true,
+   "choice": true,
+   "needTier": 3,
+   "intro": [
+    "Clear the magma slimes from my tower steps, and bring four wisp essence to break the council's seal."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "magma_slime",
+     "qty": 4
+    },
+    {
+     "type": "collect",
+     "item": "wisp_essence",
+     "qty": 4
+    }
+   ],
+   "done": [
+    "My tower is open. But I think I'd rather keep my feet on the ground now, beside you."
+   ],
+   "reward": {
+    "gold": 100,
+    "favour": {
+     "who": "sylas",
+     "close": 1
+    }
+   },
+   "requires": "fav_sylas_3"
   }
  ],
  "greenhouse": {
@@ -33443,6 +34512,112 @@ window.GAME_DATA = {
     "mithril_ore"
    ]
   ]
+ },
+ "companions": {
+  "tiers": [
+   [
+    0,
+    "Wary"
+   ],
+   [
+    20,
+    "Content"
+   ],
+   [
+    50,
+    "Friendly"
+   ],
+   [
+    100,
+    "Devoted"
+   ]
+  ],
+  "weekly": 7,
+  "roleMult": 1.5,
+  "unpaidLoss": 2,
+  "pay": [
+   {
+    "label": "Standard",
+    "wage": 1,
+    "gain": 1
+   },
+   {
+    "label": "Generous",
+    "wage": 1.25,
+    "gain": 1.5
+   },
+   {
+    "label": "Lavish",
+    "wage": 1.5,
+    "gain": 2
+   }
+  ],
+  "closeNames": [
+   "",
+   "Trusted",
+   "Close",
+   "Inseparable"
+  ],
+  "idle": {
+   "Wary": [
+    "Still finding my feet here.",
+    "Pay's on time. That's a start."
+   ],
+   "Content": [
+    "Steady work. I appreciate it.",
+    "Briarwick's growing on me."
+   ],
+   "Friendly": [
+    "Good to see you, {hero}.",
+    "Got a minute? I'm glad you came by."
+   ],
+   "Devoted": [
+    "Wherever you're headed, {hero}, I'm with you.",
+    "I don't say it enough. Thank you."
+   ]
+  },
+  "stories": {
+   "brenna": [
+    "My mother kept the best herb rows in the valley. When the blight came, she worked herself sick trying to save them.",
+    "She didn't make it through that winter. I kept one jar of her seeds, and I've never had the nerve to plant them.",
+    "Working your garden... it's the first time anywhere has felt like home since."
+   ],
+   "kael": [
+    "I guarded caravans on the Kingsroad for ten years. Good pay, until the Red Hoods paid my captain more than the merchants did.",
+    "We were told to look the other way. I didn't. Three of us walked off that job, and only I made it to Briarwick.",
+    "So when I say I want honest work, I mean it."
+   ],
+   "pip": [
+    "I'm the youngest of seven. Everyone at home had a trade picked out for me: baker, cooper, fishwife.",
+    "I ran off with a travelling conjurer when I was twelve. He turned out to be a fraud with very good patter.",
+    "But one night he cast a real spell by accident, and I saw it. I've wanted that ever since."
+   ],
+   "seren": [
+    "My father ran the ferry at Saltmere, and his father before him. I was steering before I could walk straight.",
+    "Then the kraken took his boat, and him with it, off the Saltmere shore.",
+    "I tell everyone I know every current. The truth is, I learned them all looking for him."
+   ],
+   "rowan": [
+    "On Verdant every family keeps a garden, and every garden keeps a story. Ours was the oldest grove on the isle.",
+    "The thorn treants came up through it the year the Hollow King stirred. My grandmother wouldn't leave it.",
+    "I heal people because I couldn't heal her grove."
+   ],
+   "marisol": [
+    "I was the youngest navigator in the Azure fleet. The admiral said I'd have my own ship by twenty.",
+    "Then the corsairs took the flagship, with my charts on board, and the admiral blamed me.",
+    "One day I'll have my name back."
+   ],
+   "thorne": [
+    "I swore my oath to King Aldric at sixteen. A knight of Thornhaven never retreats: it's the first thing they teach you.",
+    "At the Iron Pass my whole company held the line. I was ordered back with a message, and I was the only one who left.",
+    "I've never forgiven myself for obeying."
+   ],
+   "sylas": [
+    "In the crystal towers we study the stars until we forget there's ground beneath us.",
+    "I found a pattern in the falling stars that matched the Hollow King's rising. The council called it heresy and sealed my tower.",
+    "So I came to see the world I'd been ignoring. It's much louder than I expected."
+   ]
+  }
  }
 };
 
@@ -34267,6 +35442,7 @@ function grantReward(r) {
   if (r.shopUnlock) { const su = r.shopUnlock; G.shopUnlocks[su.shop] = [...new Set((G.shopUnlocks[su.shop] || []).concat(su.items || []))]; toast('New stock: ' + (su.items || []).map(i => item(i).name).join(', '), UI.blue); }
   if (r.hull) { const sh = ship(); sh.max += r.hull; sh.hull += r.hull; toast(`Ship hull strengthened (+${r.hull})`, UI.blue); }
   if (r.flag) G.flags[r.flag] = true;
+  if (r.favour && G.helpers[r.favour.who]) { const f = r.favour, st = G.helpers[f.who]; if (f.appr) addAppr(f.who, f.appr); if (f.close) { st.close = Math.min((CMP().closeNames || ['', 1, 2, 3]).length - 1, (st.close || 0) + f.close); AU.sfx('discover'); toast(`${D.helpers[f.who].name}: ${closeLabel(f.who)} ${'♥'.repeat(st.close)}`, UI.green); } }
   if (r.wardPlace) placeTownWard(r.wardPlace.map, r.wardPlace.enemy);
   if (r.regionWard) { G.regionWarded = G.regionWarded || {}; G.regionWarded[r.regionWard] = G.day; AU.sfx('discover'); toast(`${(D.regions[r.regionWard] || {}).name} is under the great ward!`, UI.green); }
   if (r.caveWard) { G.caveWarded = G.caveWarded || {}; G.caveWarded[r.caveWard] = G.day; guildTick(); toast(`${(D.caves[r.caveWard] || {}).name} is warded. The Miners' Guild sells its ore in town.`, UI.green); }
@@ -34518,7 +35694,29 @@ function skillStr(sk) { return Object.entries(sk || {}).filter(([, v]) => v > 0)
 const ROLES = { party: 'Party', greenhouse: 'Gardener', shop: 'Shopkeeper', navigator: 'Navigator', idle: 'Idle', away: 'Away', fleet: 'Fleet crew' };
 const STALL_TYPES = ['reagent', 'material', 'metal', 'gem', 'consumable'];
 const KEEP_STEPS = [-1, 0, 5, 10, 20];
-function wageOf(id) { const h = D.helpers[id]; if ((G.helpers[id] || {}).guest) return 0; return h ? Math.round(h.wage * (1 - perk('wageDiscount') - (home().furn.hearth ? 0.1 : 0))) : 0; }
+function wageOf(id) { const h = D.helpers[id]; if ((G.helpers[id] || {}).guest) return 0; return h ? Math.round(h.wage * payLvl(id).wage * (1 - perk('wageDiscount') - (home().furn.hearth ? 0.1 : 0))) : 0; }
+// ---- companion appreciation and closeness ----
+function CMP() { return D.companions || { tiers: [[0, 'Wary']], pay: [{ label: 'Standard', wage: 1, gain: 1 }], closeNames: [''] }; }
+function payLvl(id) { const P = CMP().pay || [{ label: 'Standard', wage: 1, gain: 1 }]; return P[Math.min(P.length - 1, (G.helpers[id] || {}).pay || 0)] || P[0]; }
+function apprMax() { const t = CMP().tiers; return t[t.length - 1][0]; }
+function appr(id) { return (G.helpers[id] || {}).appr || 0; }
+function apprTier(id) { const a = appr(id); let i = 0; CMP().tiers.forEach(([v], k) => { if (a >= v) i = k; }); return i; }
+function apprName(id) { return CMP().tiers[apprTier(id)][1]; }
+function closeness(id) { return (G.helpers[id] || {}).close || 0; }
+function closeLabel(id) { const c = closeness(id); return c ? ((CMP().closeNames || [])[c] || 'Close') : ''; }
+function bondLine(id) { const t = CMP().tiers, a = appr(id), nx = t[apprTier(id) + 1]; return `${apprName(id)}${nx ? ` (${Math.floor(a)}/${nx[0]})` : ''}${closeness(id) ? `, ${closeLabel(id)} ${'♥'.repeat(closeness(id))}` : ''}`; }
+function addAppr(id, n, report) { const st = G.helpers[id]; if (!st || !D.helpers[id]) return; const t0 = apprTier(id); st.appr = Math.max(0, Math.min(apprMax(), (st.appr || 0) + n)); const t1 = apprTier(id);
+  if (t1 > t0) { const nm = D.helpers[id].name, msg = t1 === CMP().tiers.length - 1 ? `${nm} is now Devoted to you. Talk to them (Companions, Crew tab): they may want to ask you something.` : t1 === 2 ? `${nm} is now Friendly. Talk to them (Companions, Crew tab): they'd like to tell you about themselves.` : `${nm} is now ${apprName(id)}.`; if (report) report.push(msg); else toast(msg, UI.green); } }
+function apprTick(working, report) { const C = CMP(); const paid = new Set(working.map(w => w.id));
+  for (const [id, st] of Object.entries(G.helpers)) { if (!D.helpers[id] || st.guest) continue;
+    if (!paid.has(id)) { addAppr(id, -(C.unpaidLoss || 2)); continue; }
+    addAppr(id, (C.weekly || 7) / 7 * payLvl(id).gain * (st.role && st.role !== 'idle' ? (C.roleMult || 1.5) : 1), report); } }
+async function companionTalk(id) {
+  const h = D.helpers[id], st = G.helpers[id], C = CMP(), npc = { id: 'comp_' + id, def: { name: h.name, sprite: h.sprite, role: 'companion' } };
+  if (apprTier(id) >= 2 && !st.past && (C.stories || {})[id]) { st.past = true; await say(h.name, C.stories[id], h.sprite); }
+  const any = await giverQuests(npc, { progress: true });
+  if (!any) { const lines = (C.idle || {})[apprName(id)] || ['...']; await say(h.name, [lines[Math.floor(Math.random() * lines.length)], apprTier(id) < 2 ? `(${h.name} is ${apprName(id)}. Steady pay and a job help them warm to you.)` : ''].filter(Boolean), h.sprite); }
+}
 function payroll() { return Object.keys(G.helpers).reduce((a, id) => a + wageOf(id), 0); }
 function hLvl(id) { return levelFromXp((G.helpers[id] || {}).xp || 0); }
 function navigatorId() { return Object.keys(G.helpers).find(id => G.helpers[id].role === 'navigator' && D.helpers[id]); }
@@ -34639,6 +35837,7 @@ async function newDay(reason, atSea) {
       if (G.gold >= wage) { G.gold -= wage; wages += wage; working.push({ id, st, h }); }
       else report.push(`${h.name} went unpaid and did not work.`);
     }
+    apprTick(working, report);
     const gardeners = working.filter(w => w.st.role === 'greenhouse');
     const gardenSkill = gardeners.reduce((a, w) => a + ((w.h.skills || {}).herbalism || 0), 0);
     const plots = plotKeys(); let boosted = 0; const rec = { day: G.day, date: dateStr(), garden: null, stall: null };
@@ -34752,7 +35951,7 @@ function hubItems(tab) {
   const none = [{ label: 'No companions yet', disabled: true, desc: 'Recruit companions at the Sleepy Toad tavern and in other towns.' }];
   const job = id => ROLES[G.helpers[id].role] || G.helpers[id].role;
   if (tab === 0) return ids.length ? ids.map(id => { const h = D.helpers[id], l = hLvl(id), xp = G.helpers[id].xp || 0;
-    return { label: `${h.name} the ${h.title}`, icon: h.sprite, right: `Lv ${l}   ${job(id)}`, desc: `Skills: ${skillStr(h.skills)}.  Ability: ${h.ability ? h.ability.name : 'none'}.  Wage ${wageOf(id)}g a day.  XP ${xp}/${xpForLevel(l + 1)}.`, act: () => script(() => helperActions(id)) }; }) : none;
+    return { label: `${h.name} the ${h.title}${closeness(id) ? '  ' + '♥'.repeat(closeness(id)) : ''}`, icon: h.sprite, right: `Lv ${l}   ${job(id)}`, desc: `${bondLine(id)}.  Skills: ${skillStr(h.skills)}.  Ability: ${h.ability ? h.ability.name : 'none'}.  Wage ${wageOf(id)}g a day.  XP ${xp}/${xpForLevel(l + 1)}.`, act: () => script(() => helperActions(id)) }; }) : none;
   if (tab === 1) return ids.length ? ids.map(id => { const h = D.helpers[id], inP = G.helpers[id].role === 'party';
     return { label: `${inP ? '[x]' : '[  ]'}  ${h.name}`, icon: h.sprite, right: inP ? 'Travelling with you' : job(id), desc: `Lv ${hLvl(id)}.  HP ${helperUnit(id).maxHp}, ATK ${helperUnit(id).atk}, DEF ${helperUnit(id).def}, Move ${helperUnit(id).move}.  Ability: ${h.ability ? h.ability.name : 'none'}.`,
       act: () => { if (G.helpers[id].role === 'away') { toast(`${h.name} is away on an expedition.`); return; } if (G.helpers[id].guest) { toast(`${h.name} is travelling home with you and won't stay behind.`); return; } if (inP) { G.helpers[id].role = 'idle'; toast(`${h.name} stays behind (now Idle).`); } else if (partyCount() >= maxParty()) toast(`Your party is full (${maxParty()}). Tactics lets you lead more.`, UI.red); else { const was = job(id); G.helpers[id].role = 'party'; toast(`${h.name} joins your party${was !== 'Idle' ? ` (was ${was})` : ''}.`, UI.green); } AU.sfx('select'); } }; }) : none;
@@ -34769,15 +35968,17 @@ function hubItems(tab) {
     return rows; }
   if (tab === 4) return expeditionRows();
   if (tab === 5) { const rs = G.reports || []; return rs.length ? rs.map(r => ({ label: r.date || `Day ${r.day}`, right: [r.stall && r.stall.earned ? `+${r.stall.earned}g sales` : '', r.wages ? `-${r.wages}g wages` : ''].filter(Boolean).join('   '), desc: (r.lines || []).join('  '), act: () => script(() => say(r.date || `Day ${r.day}`, r.lines && r.lines.length ? r.lines : ['A quiet night.'])) })) : [{ label: 'No reports yet', disabled: true, desc: 'Each morning your companions report what they did overnight. The last two weeks are kept here.' }]; }
-  const rows = ids.map(id => ({ label: D.helpers[id].name, icon: D.helpers[id].sprite, right: `${wageOf(id)}g a day`, desc: `${job(id)}.  Base wage ${D.helpers[id].wage}g${wageOf(id) < D.helpers[id].wage ? ' (your hearth and perks lower it)' : ''}.`, disabled: true }));
+  const rows = ids.map(id => ({ label: `${D.helpers[id].name}  -  ${payLvl(id).label}`, icon: D.helpers[id].sprite, right: `${wageOf(id)}g a day`, desc: `${job(id)}.  ${bondLine(id)}.  Base wage ${D.helpers[id].wage}g.  Enter: change pay. Better pay makes companions warm to you faster (${(CMP().pay || []).map(p => `${p.label} x${p.wage} wage, x${p.gain} appreciation`).join('; ')}). A job helps too.`, disabled: !!G.helpers[id].guest,
+    act: () => { const P = CMP().pay || []; G.helpers[id].pay = ((G.helpers[id].pay || 0) + 1) % Math.max(1, P.length); AU.sfx('menu'); } }));
   const pay = payroll(); rows.push({ label: 'Total payroll', right: `${pay}g a day`, disabled: true, desc: 'Paid each morning. A companion you can\'t pay doesn\'t work that day.' });
   rows.push({ label: 'Your gold covers', right: pay ? `${Math.floor(G.gold / pay)} days` : '-', disabled: true, desc: `You have ${G.gold}g.` });
   return rows;
 }
 async function helperActions(id) {
   const h = D.helpers[id];
-  const c = await choose(`${h.name} the ${h.title}  (Lv ${hLvl(id)})`, [{ label: 'Change job', right: ROLES[G.helpers[id].role], value: 'job' }, { label: 'Equipment', value: 'gear', desc: 'Open the equipment screen for this companion.' }, { label: 'Points', right: cpUnspent(id) ? `${cpUnspent(id)} unspent` : (cpState(id).mode === 'auto' ? 'Auto' : 'Manual'), value: 'points', desc: 'Spend level-up points on HP, Attack and Defense, by hand or automatically by priority.' }, { label: 'Dismiss', value: 'dismiss', desc: `${h.name} leaves your service.` }, { label: 'Back', value: 'back' }], { width: 420 });
+  const c = await choose(`${h.name} the ${h.title}  (Lv ${hLvl(id)})`, [{ label: 'Talk', right: bondLine(id), value: 'talk', desc: 'Chat, hear their story once they trust you, and take on their favours.' }, { label: 'Change job', right: ROLES[G.helpers[id].role], value: 'job' }, { label: 'Equipment', value: 'gear', desc: 'Open the equipment screen for this companion.' }, { label: 'Points', right: cpUnspent(id) ? `${cpUnspent(id)} unspent` : (cpState(id).mode === 'auto' ? 'Auto' : 'Manual'), value: 'points', desc: 'Spend level-up points on HP, Attack and Defense, by hand or automatically by priority.' }, { label: 'Dismiss', value: 'dismiss', desc: `${h.name} leaves your service.` }, { label: 'Back', value: 'back' }], { width: 420 });
   if (c === 'job') { if (G.helpers[id].role === 'away') toast(`${h.name} is away on an expedition.`); else await assignRole(id); }
+  if (c === 'talk') await companionTalk(id);
   if (c === 'gear') await paperdoll(id);
   if (c === 'points') await companionPointsMenu(id);
   if (c === 'dismiss') { const ok = await choose(`Really dismiss ${h.name}?`, [{ label: 'Keep them', value: 'n' }, { label: 'Dismiss', value: 'y' }], { width: 340 }); if (ok === 'y') { delete G.helpers[id]; toast(`${h.name} was dismissed.`); } }
@@ -35792,6 +36993,7 @@ function baneMult(a, b) { const dk = a.isPlayer && b.enemyId && (D.enemies[b.ene
 function questAvailable(q, giver) {
   if (q.escort || q.giver !== giver || G.quests[q.id]) return false;
   if (q.requires && G.quests[q.requires] !== 'done') return false;
+  if (q.companion && (!G.helpers[q.companion] || apprTier(q.companion) < (q.needTier || 0))) return false;
   if (q.unlockKills && ((G.kills || {})[q.unlockKills.enemy] || 0) < q.unlockKills.count) return false;
   if (q.unlockDread && dread() < q.unlockDread - 1e-9) return false;
   if (q.unlockSeen && !(G.seen || {})[q.unlockSeen]) return false;
@@ -36672,7 +37874,7 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 // debug/test hook (harmless in production)
-window.__game = { prosperLvl, prosperName, addProsper, stockLeft, stockCap, smithVisit, smithCost, eqOf, fleet, flagship, fleetMenu, fleetTick, routes, fleetLimit, shipyardMenu, unloadHold, holdLine, ordersMenu, shipActions, storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
+window.__game = { apprTick, appr, apprTier, apprName, addAppr, companionTalk, closeness, payLvl, hubItems, prosperLvl, prosperName, addProsper, stockLeft, stockCap, smithVisit, smithCost, eqOf, fleet, flagship, fleetMenu, fleetTick, routes, fleetLimit, shipyardMenu, unloadHold, holdLine, ordersMenu, shipActions, storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
 })();
 
 </script>
