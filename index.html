@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.19.1</title>
+<title>Reagents of Briarwick v0.19.2</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.19.1",
+  "version": "0.19.2",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -18958,6 +18958,46 @@ window.GAME_DATA = {
     "..kDk...........",
     "...k............"
    ]
+  },
+  "t_lot": {
+   "pixels": [
+    "dddddddddddddddd",
+    "dddddddddddddddd",
+    "eeeeeeeeeeeeeeee",
+    "dddddddddddddddd",
+    "dddddddddddddddd",
+    "dddddddddddddddd",
+    "eeeeeeeeeeeeeeee",
+    "dddddddddddddddd",
+    "dddddddddddddddd",
+    "dddddddddddddddd",
+    "eeeeeeeeeeeeeeee",
+    "dddddddddddddddd",
+    "dddddddddddddddd",
+    "dddddddddddddddd",
+    "eeeeeeeeeeeeeeee",
+    "dddddddddddddddd"
+   ]
+  },
+  "t_lotpost": {
+   "pixels": [
+    "ggggggggggggGggg",
+    "ggGggGgggglggggg",
+    "gglgggglgggggggg",
+    "gghhhhhhhhhhhhgg",
+    "glffffffffffffgg",
+    "ggffhhhhhhhhffgg",
+    "GgffffffffffffGg",
+    "ggffhhhhhhffffgg",
+    "ggffffffffffffgg",
+    "gghhhhhhhhhhhhgg",
+    "ggglggGhhggglGgg",
+    "gggGggghhggggggg",
+    "ggggggghhggggGgg",
+    "ggggggghhggggggg",
+    "gggglllhhggggggg",
+    "ggggggghhGlgggGg"
+   ]
   }
  },
  "tiles": {
@@ -19240,6 +19280,16 @@ window.GAME_DATA = {
    "sprite": "t_chest",
    "solid": true,
    "interact": "storehouse"
+  },
+  "V": {
+   "name": "Empty lot",
+   "sprite": "t_lot"
+  },
+  "U": {
+   "name": "Lot post",
+   "sprite": "t_lotpost",
+   "solid": true,
+   "interact": "lot"
   }
  },
  "items": {
@@ -23533,6 +23583,86 @@ window.GAME_DATA = {
    "dialog": [
     "Welcome to the Briarwick yard! Timber in your storehouse, gold in your purse, and I'll build you anything that floats."
    ]
+  },
+  "appr_highmoor": {
+   "name": "Tam, apprentice from Highmoor",
+   "sprite": "c_villager",
+   "role": "shop",
+   "shop": "appr_highmoor",
+   "dialog": [
+    "Business in Highmoor is booming, so my master sent me to open a stall here.",
+    "Same goods as back home, no sea voyage needed."
+   ]
+  },
+  "appr_gannet": {
+   "name": "Nell, apprentice from Gannet Cove",
+   "sprite": "c_harbor",
+   "role": "shop",
+   "shop": "appr_gannet",
+   "dialog": [
+    "Business in Gannet Cove is booming, so my master sent me to open a stall here.",
+    "Same goods as back home, no sea voyage needed."
+   ]
+  },
+  "appr_southwatch": {
+   "name": "Corwin, apprentice from Southwatch",
+   "sprite": "c_townsfolk2",
+   "role": "shop",
+   "shop": "appr_southwatch",
+   "dialog": [
+    "Business in Southwatch is booming, so my master sent me to open a stall here.",
+    "Same goods as back home, no sea voyage needed."
+   ]
+  },
+  "appr_saltmere": {
+   "name": "Pell, apprentice from Saltmere",
+   "sprite": "c_ferryman",
+   "role": "shop",
+   "shop": "appr_saltmere",
+   "dialog": [
+    "Business in Saltmere is booming, so my master sent me to open a stall here.",
+    "Same goods as back home, no sea voyage needed."
+   ]
+  },
+  "appr_verdant": {
+   "name": "Fern, apprentice from the Verdant Isles",
+   "sprite": "c_verdant_innkeeper",
+   "role": "shop",
+   "shop": "appr_verdant",
+   "dialog": [
+    "Business in the Verdant Isles is booming, so my master sent me to open a stall here.",
+    "Same goods as back home, no sea voyage needed."
+   ]
+  },
+  "appr_azure": {
+   "name": "Coral, apprentice from Azure Atoll",
+   "sprite": "c_azure_innkeeper",
+   "role": "shop",
+   "shop": "appr_azure",
+   "dialog": [
+    "Business in Azure Atoll is booming, so my master sent me to open a stall here.",
+    "Same goods as back home, no sea voyage needed."
+   ]
+  },
+  "appr_thornhaven": {
+   "name": "Brannoc, apprentice from Thornhaven",
+   "sprite": "c_thornhaven_innkeeper",
+   "role": "shop",
+   "shop": "appr_thornhaven",
+   "dialog": [
+    "Business in Thornhaven is booming, so my master sent me to open a stall here.",
+    "Same goods as back home, no sea voyage needed."
+   ]
+  },
+  "appr_ember": {
+   "name": "Ashlin, apprentice from the Ember Isles",
+   "sprite": "c_ember_innkeeper",
+   "role": "shop",
+   "shop": "appr_ember",
+   "dialog": [
+    "Business in the Ember Isles is booming, so my master sent me to open a stall here.",
+    "Same goods as back home, no sea voyage needed."
+   ]
   }
  },
  "shops": {
@@ -23922,6 +24052,121 @@ window.GAME_DATA = {
     "metal",
     "gem"
    ]
+  },
+  "appr_highmoor": {
+   "name": "Tam's stall (Highmoor goods)",
+   "sells": [],
+   "buysTypes": [
+    "consumable",
+    "gear",
+    "gem",
+    "metal"
+   ],
+   "apprenticeOf": [
+    "highmoor_smith",
+    "arcanum"
+   ]
+  },
+  "appr_gannet": {
+   "name": "Nell's stall (Gannet Cove goods)",
+   "sells": [],
+   "buysTypes": [
+    "consumable",
+    "material",
+    "reagent"
+   ],
+   "apprenticeOf": [
+    "gannet_goods",
+    "fen"
+   ]
+  },
+  "appr_southwatch": {
+   "name": "Corwin's stall (Southwatch goods)",
+   "sells": [],
+   "buysTypes": [
+    "gear",
+    "metal"
+   ],
+   "apprenticeOf": [
+    "southwatch_arms"
+   ]
+  },
+  "appr_saltmere": {
+   "name": "Pell's stall (Saltmere goods)",
+   "sells": [],
+   "buysTypes": [
+    "gear",
+    "gem",
+    "metal",
+    "reagent"
+   ],
+   "apprenticeOf": [
+    "trader"
+   ]
+  },
+  "appr_verdant": {
+   "name": "Fern's stall (the Verdant Isles goods)",
+   "sells": [],
+   "buysTypes": [
+    "build",
+    "gear",
+    "gem",
+    "material",
+    "metal",
+    "reagent"
+   ],
+   "apprenticeOf": [
+    "verdant_trader",
+    "verdant_crafter"
+   ]
+  },
+  "appr_azure": {
+   "name": "Coral's stall (Azure Atoll goods)",
+   "sells": [],
+   "buysTypes": [
+    "build",
+    "gear",
+    "gem",
+    "material",
+    "metal",
+    "reagent"
+   ],
+   "apprenticeOf": [
+    "azure_trader",
+    "azure_crafter"
+   ]
+  },
+  "appr_thornhaven": {
+   "name": "Brannoc's stall (Thornhaven goods)",
+   "sells": [],
+   "buysTypes": [
+    "build",
+    "gear",
+    "gem",
+    "material",
+    "metal",
+    "reagent"
+   ],
+   "apprenticeOf": [
+    "thornhaven_trader",
+    "thornhaven_crafter"
+   ]
+  },
+  "appr_ember": {
+   "name": "Ashlin's stall (the Ember Isles goods)",
+   "sells": [],
+   "buysTypes": [
+    "build",
+    "gear",
+    "gem",
+    "material",
+    "metal",
+    "reagent"
+   ],
+   "apprenticeOf": [
+    "ember_trader",
+    "ember_crafter"
+   ]
   }
  },
  "maps": {
@@ -23945,9 +24190,9 @@ window.GAME_DATA = {
     "T..gggggg...RRRRRRRR..T.qqqqq.znnnnnnn.T",
     "T..HHHDHH...HHHHDHHH....qqqqq.zHHHDHHH.T",
     "T..T..z.T....T,.z.......,....,zzzzz....T",
-    "T.TT..zzzzzzzzzzzzzzzzz.T.........,....T",
-    "TT.T...qqOqqqqqqqqqqqqz..........,..,..T",
-    "T......qqqqqqqqqqqqqqqz................T",
+    "T.TT..zzzzzzzzzzzzzzzzz.TVVVVVVVVVVVVVVT",
+    "TT.T...qqOqqqqqqqqqqqqz.VVVVVVVVVVVVVVVT",
+    "T......qqqqqqqqqqqqqqqzUVVVVVVVVVVVVVVVT",
     "TKKKKKKKKKKKKKKKKKKKKKBBKKKKKKKKKKKKKKKT",
     "~~~~~~~~~~~~~~~~~~~~~~BB~~~~~~~~~~~~~~~~",
     "~~~~~~~~~~~~~~~~~~~~~~BB~~~~~~~~~~~~~~~~",
@@ -24047,6 +24292,54 @@ window.GAME_DATA = {
      "x": 21,
      "y": 15,
      "flag": "shipyard"
+    },
+    {
+     "id": "appr_highmoor",
+     "x": 24,
+     "y": 15,
+     "flag": "appr_highmoor"
+    },
+    {
+     "id": "appr_gannet",
+     "x": 26,
+     "y": 15,
+     "flag": "appr_gannet"
+    },
+    {
+     "id": "appr_southwatch",
+     "x": 28,
+     "y": 15,
+     "flag": "appr_southwatch"
+    },
+    {
+     "id": "appr_saltmere",
+     "x": 30,
+     "y": 15,
+     "flag": "appr_saltmere"
+    },
+    {
+     "id": "appr_verdant",
+     "x": 32,
+     "y": 15,
+     "flag": "appr_verdant"
+    },
+    {
+     "id": "appr_azure",
+     "x": 34,
+     "y": 15,
+     "flag": "appr_azure"
+    },
+    {
+     "id": "appr_thornhaven",
+     "x": 36,
+     "y": 15,
+     "flag": "appr_thornhaven"
+    },
+    {
+     "id": "appr_ember",
+     "x": 38,
+     "y": 15,
+     "flag": "appr_ember"
     }
    ],
    "signs": [
@@ -24142,9 +24435,65 @@ window.GAME_DATA = {
      "y": 11,
      "sprite": "i_stall",
      "solid": true
+    },
+    {
+     "x": 26,
+     "y": 14,
+     "sprite": "i_stall",
+     "solid": true,
+     "flag": "appr_gannet"
+    },
+    {
+     "x": 28,
+     "y": 14,
+     "sprite": "i_stall",
+     "solid": true,
+     "flag": "appr_southwatch"
+    },
+    {
+     "x": 30,
+     "y": 14,
+     "sprite": "i_stall",
+     "solid": true,
+     "flag": "appr_saltmere"
+    },
+    {
+     "x": 32,
+     "y": 14,
+     "sprite": "i_stall",
+     "solid": true,
+     "flag": "appr_verdant"
+    },
+    {
+     "x": 34,
+     "y": 14,
+     "sprite": "i_stall",
+     "solid": true,
+     "flag": "appr_azure"
+    },
+    {
+     "x": 36,
+     "y": 14,
+     "sprite": "i_stall",
+     "solid": true,
+     "flag": "appr_thornhaven"
+    },
+    {
+     "x": 38,
+     "y": 14,
+     "sprite": "i_stall",
+     "solid": true,
+     "flag": "appr_ember"
     }
    ],
-   "gardenName": "Cottage garden"
+   "gardenName": "Cottage garden",
+   "lots": [
+    {
+     "x": 23,
+     "y": 16,
+     "kind": "market"
+    }
+   ]
   },
   "house": {
    "name": "Gran's Cottage",
@@ -24424,14 +24773,14 @@ window.GAME_DATA = {
     "T.T....T.....=..TT.........T.=...\".T",
     "T.TTT......T.=.TT\".....T.....=.\"T..T",
     "TT...T.....T.=======================",
-    "T..,,,,,,,...,.....T...TT..r\"\".....T",
-    "T..T,,,,,,..T..\"T...T\"....\"T.....TTT",
-    "T.T.,,,,,,T.....T..TT..T....T..T..TT",
-    "T.TC,,,,,,T..\"..TT.T.T.,T.T........T",
-    "TT..,,,,,,.TT....\".............T,.TT",
-    "TT.T\"T...\".\"...T.....\".\".\".,...T\"\".T",
-    "T.....T..T.T\"..\"...T......T...rT..\"T",
-    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
+    "T..,,,,,,,...,.....T...T=..r\"\".....T",
+    "T..T,,,,,,..T..\"T...T\"..=.\"T.....TTT",
+    "T.T.,,,,,,T.....T..TT..T=...T..T..TT",
+    "T.TC,,,,,,T..\"..TT.T.T.,=.T........T",
+    "TT..,,,,,,.TT....\"......=......T,.TT",
+    "TT.T\"T...\".\"...T.....\".\"=\".,...T\"\".T",
+    "T.....T..T.T\"..\"...T....=.T...rT..\"T",
+    "TTTTTTTTTTTTTTTTTTTTTTTT=TTTTTTTTTTT"
    ],
    "warps": [
     {
@@ -24468,6 +24817,13 @@ window.GAME_DATA = {
      "to": "cave:hollow:1",
      "tx": "E",
      "ty": "E"
+    },
+    {
+     "x": 24,
+     "y": 23,
+     "to": "mistfen",
+     "tx": 18,
+     "ty": 1
     }
    ],
    "npcs": [],
@@ -24622,9 +24978,9 @@ window.GAME_DATA = {
     "~~~aKKzzz.\".,T..T.TS.T..aaa~~~",
     "BBBBzzzzzzzzzzzzzzzzzzzzzzz~~~",
     "BBBBKKzzz..T.\"T...TT...Taaa~~~",
-    "~~~aaaT........Q..T.,...aaa~~~",
-    "~~~aaa.......,..T..,....aaa~~~",
-    "~~~aaa...\",..\"...,....\".aaa~~~",
+    "~~~aaaT..VVV...Q..T.,...aaa~~~",
+    "~~~aaa...VVV.,..T..,....aaa~~~",
+    "~~~aaa..UVVV.\"...,....\".aaa~~~",
     "~~~aaa.\"..T.......\"T....aaa~~~",
     "~~~aaaaaaaaaaaaaaaaaaaaaaaa~~~",
     "~~~aaraaaaaaaaraaaaaaaaaaaa~~~",
@@ -24719,6 +25075,56 @@ window.GAME_DATA = {
      "x": 14,
      "y": 7,
      "sprite": "b_tavern"
+    },
+    {
+     "x": 9,
+     "y": 11,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_saltmere"
+    },
+    {
+     "x": 10,
+     "y": 11,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_saltmere"
+    },
+    {
+     "x": 11,
+     "y": 11,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_saltmere"
+    },
+    {
+     "x": 9,
+     "y": 12,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_saltmere"
+    },
+    {
+     "x": 10,
+     "y": 12,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_saltmere"
+    },
+    {
+     "x": 11,
+     "y": 12,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_saltmere"
+    }
+   ],
+   "lots": [
+    {
+     "x": 8,
+     "y": 13,
+     "kind": "greenhouse",
+     "reagent": "brinekelp"
     }
    ]
   },
@@ -25152,17 +25558,17 @@ window.GAME_DATA = {
    "level": 3,
    "music": "village",
    "tiles": [
-    "TTTTTTTTTTTTTTTTTTTTzTTTTTTTTTTTTTTTTTTT",
-    "T......,..........T.zTT...............TT",
-    "TT....T..T,T...T.,..zT..........T......T",
-    "T....T.,.,.......,..zT..TTT...r........T",
-    "T...,.....,.........zT...T...rCr...,...T",
-    "T.T.....,........T..z..................T",
-    "T,...T,..,...T.T,.T.z....,.,..z.,......T",
-    "T......TT.,.........z.....T...z........T",
-    "T....T,.T....T.,.,..z.........z......T.T",
-    "T......T..,.....T...z,.,...T..z...T....T",
-    "TT..T...,.....T...T.zS.T......z........z",
+    "TTTTTTTTzTTTTTTTTTTTzTTTTTTTTTTTTTTTTTTT",
+    "T......,z.........T.zTT...............TT",
+    "TT....T.zT,T...T.,..zT..........T......T",
+    "T....T.,z,.......,..zT..TTT...r........T",
+    "T...,...z.,.........zT...T...rCr...,...T",
+    "T.T.....z........T..z..................T",
+    "T,...T,.z,...T.T,.T.z....,.,..z.,......T",
+    "T......Tz.,.........z.....T...z........T",
+    "T....T,.z....T.,.,..z.........z......T.T",
+    "T......Tz.,.....T...z,.,...T..z...T....T",
+    "TT..T...z.....T...T.zS.T......z........z",
     "zzzzzz....z...zzzzzzzzzzzzzzzzzT.....zzz",
     "z,..zzzzzz.zzzzzzz....zzzzzzzzzzzzzzzzzT",
     "T.......z....zz...zzzzzz..zTz.z...Tzz,.T",
@@ -25210,6 +25616,13 @@ window.GAME_DATA = {
      "to": "cave:deepdelve:1",
      "tx": "E",
      "ty": "E"
+    },
+    {
+     "x": 8,
+     "y": 0,
+     "to": "castle_ruins",
+     "tx": 18,
+     "ty": 20
     }
    ],
    "npcs": [],
@@ -25217,7 +25630,7 @@ window.GAME_DATA = {
     {
      "x": 21,
      "y": 10,
-     "text": "THE KINGSROAD | North: Gannet Cove. South: Southwatch. East: Highmoor. | Deepdelve Mine is up the hill to the north-east."
+     "text": "THE KINGSROAD | North: Gannet Cove, and the old castle ruins up the west track. South: Southwatch. East: Highmoor. | Deepdelve Mine is up the hill to the north-east."
     }
    ],
    "forage": [
@@ -25399,17 +25812,17 @@ window.GAME_DATA = {
    "ground": "t_grass",
    "music": "village",
    "tiles": [
-    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
-    "T................................T",
-    "T................................T",
-    "T..................T.............T",
-    "T..........,.....,...............T",
-    "T................................T",
-    "T..RRRRRR...RRRRRR...............T",
-    "T..RRRRRR...RRRRRR.......T.......T",
-    "T.,HHHDHHT..HHHDHH......T........T",
-    "T.....z........z.............T...T",
-    "T.....z.......qzqqqq.............T",
+    "TTTTTTTTTTTTTTTTTTTTzTTTTTTTTTTTTT",
+    "T...................z............T",
+    "T...................z............T",
+    "T..................Tz............T",
+    "T..........,.....,..z............T",
+    "T...................z............T",
+    "T..RRRRRR...RRRRRR..z............T",
+    "T..RRRRRR...RRRRRR..z....T.......T",
+    "T.,HHHDHHT..HHHDHH..z...T........T",
+    "T.....z........z....z........T...T",
+    "T.....z.......qzqqqqz............T",
     "zzzzzzzzzzzzzzqqqqqqzzzzzzzzzzzzzT",
     "T.z...........qqqOqq.............T",
     "T.zRRRRRR.,.........T...........,T",
@@ -25450,6 +25863,13 @@ window.GAME_DATA = {
      "to": "kingsroad",
      "tx": 38,
      "ty": 11
+    },
+    {
+     "x": 20,
+     "y": 0,
+     "to": "quarry",
+     "tx": 18,
+     "ty": 20
     }
    ],
    "npcs": [
@@ -25955,9 +26375,9 @@ window.GAME_DATA = {
     "~~~K.=.......=aaaaaa.............T",
     "~~~K.=hhhhhh.=hhhhhh.............T",
     "~~~K.=hhhhhh.=hhhhhh,.......,.\"..T",
-    "~~~K.=lllDll.=lllDll\".........T..T",
-    "~~~K.=====...=====...............T",
-    "~~~K.............................T",
+    "~~~K.=lllDll.=lllDll\"....VVV..T..T",
+    "~~~K.=====...=====.......VVV.....T",
+    "~~~K....................UVVV.....T",
     "~~~K.y...,.......................T",
     "~~~K........................,T...T",
     "~~~K.....\"...........T.\".........T",
@@ -26030,6 +26450,48 @@ window.GAME_DATA = {
      "x": 18,
      "y": 15,
      "sprite": "b_tavern"
+    },
+    {
+     "x": 25,
+     "y": 15,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_verdant_town"
+    },
+    {
+     "x": 26,
+     "y": 15,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_verdant_town"
+    },
+    {
+     "x": 27,
+     "y": 15,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_verdant_town"
+    },
+    {
+     "x": 25,
+     "y": 16,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_verdant_town"
+    },
+    {
+     "x": 26,
+     "y": 16,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_verdant_town"
+    },
+    {
+     "x": 27,
+     "y": 16,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_verdant_town"
     }
    ],
    "combat": {
@@ -26047,7 +26509,15 @@ window.GAME_DATA = {
     "x": 17,
     "y": 11
    },
-   "region": "verdant"
+   "region": "verdant",
+   "lots": [
+    {
+     "x": 24,
+     "y": 17,
+     "kind": "greenhouse",
+     "reagent": "jadeleaf"
+    }
+   ]
   },
   "verdant_wilds": {
    "name": "Verdant Isles Wilds",
@@ -26329,9 +26799,9 @@ window.GAME_DATA = {
     "BBBBzzzzzzzzzzqqqqqqzzzzzzzzzzzzzz",
     "~~~KazaaaaaaazqqqOqqaaaaaaaaaaaaay",
     "~~~Kaznnnnnnaznnnnnna,aa,aaaaaaaay",
-    "~~~Kaznnnnnnaznnnnnnaaaa,aaaaaaaay",
-    "~~~KazmmmDmmazmmmDmmaaaaaaaa,aaaay",
-    "~~~Kazzzzzaaazzzzzaaaaaaaaaaa,aayy",
+    "~~~Kaznnnnnnaznnnnnnaaaa,VVVaaaaay",
+    "~~~KazmmmDmmazmmmDmmaaaaaVVV,aaaay",
+    "~~~KazzzzzaaazzzzzaaaaaaUVVVa,aayy",
     "~~~Kaaaraaaaaaaaa,aaaaaaaar,aaraay",
     "~~~Kaaaaaaaaaaaaaaaaaaaaaaaaaaaaay",
     "~~~Kaaaaaaaaaaaaaaaaaaaaaaaaaaaayy",
@@ -26405,6 +26875,48 @@ window.GAME_DATA = {
      "x": 18,
      "y": 15,
      "sprite": "b_tavern"
+    },
+    {
+     "x": 25,
+     "y": 14,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_azure_town"
+    },
+    {
+     "x": 26,
+     "y": 14,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_azure_town"
+    },
+    {
+     "x": 27,
+     "y": 14,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_azure_town"
+    },
+    {
+     "x": 25,
+     "y": 15,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_azure_town"
+    },
+    {
+     "x": 26,
+     "y": 15,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_azure_town"
+    },
+    {
+     "x": 27,
+     "y": 15,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_azure_town"
     }
    ],
    "combat": {
@@ -26422,7 +26934,15 @@ window.GAME_DATA = {
     "x": 17,
     "y": 11
    },
-   "region": "azure"
+   "region": "azure",
+   "lots": [
+    {
+     "x": 24,
+     "y": 16,
+     "kind": "greenhouse",
+     "reagent": "tidecoral"
+    }
+   ]
   },
   "azure_wilds": {
    "name": "Azure Atoll Wilds",
@@ -26705,9 +27225,9 @@ window.GAME_DATA = {
     "~~~K.z.......zqqqOqq.............#",
     "~~~K.znnnnnn.znnnnnn.............#",
     "~~~K.znnnnnn.znnnnnn..r..........#",
-    "~~~K.z###D##.z###D##.r...........#",
-    "~~~K.zzzzz...zzzzz...............#",
-    "~~~K.............................#",
+    "~~~K.z###D##.z###D##.r...VVV.....#",
+    "~~~K.zzzzz...zzzzz.......VVV.....#",
+    "~~~K....................UVVV.....#",
     "~~~K..........................T..#",
     "~~~K...r......T.....r............#",
     "~~~K................r............#",
@@ -26780,6 +27300,48 @@ window.GAME_DATA = {
      "x": 18,
      "y": 15,
      "sprite": "b_tavern"
+    },
+    {
+     "x": 25,
+     "y": 15,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_thornhaven_town"
+    },
+    {
+     "x": 26,
+     "y": 15,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_thornhaven_town"
+    },
+    {
+     "x": 27,
+     "y": 15,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_thornhaven_town"
+    },
+    {
+     "x": 25,
+     "y": 16,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_thornhaven_town"
+    },
+    {
+     "x": 26,
+     "y": 16,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_thornhaven_town"
+    },
+    {
+     "x": 27,
+     "y": 16,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_thornhaven_town"
     }
    ],
    "combat": {
@@ -26797,7 +27359,15 @@ window.GAME_DATA = {
     "x": 17,
     "y": 11
    },
-   "region": "thornhaven"
+   "region": "thornhaven",
+   "lots": [
+    {
+     "x": 24,
+     "y": 17,
+     "kind": "greenhouse",
+     "reagent": "bloodmoss"
+    }
+   ]
   },
   "thornhaven_wilds": {
    "name": "Thornhaven Wilds",
@@ -27085,9 +27655,9 @@ window.GAME_DATA = {
     "~~~Kxqxxxxxxxqqqqqqqxxxxxxxxxxxxx*",
     "~~~Kxqiiiiiixqiiiiiixxxxxxxxxxxxx*",
     "~~~Kxqiiiiiixqiiiiiixxxxxxxxxxxxx*",
-    "~~~KxqmmmDmmxqmmmDmmxxxxxxxxxxxxx*",
-    "~~~Kxqqqqqxxxqqqqqxxxxxxxxxxxx*xx*",
-    "~~~Kxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*",
+    "~~~KxqmmmDmmxqmmmDmmxxxxxVVVxxxxx*",
+    "~~~KxqqqqqxxxqqqqqxxxxxxxVVVxx*xx*",
+    "~~~KxxxxxxxxxxxxxxxxxxxxUVVVxxxxx*",
     "~~~Kxxxxxxxxxxxxxxxxxxxxxxxrxxxxx*",
     "~~~Kxxxxxxxxxxxxxr*xxxxxxxxxxxxxx*",
     "~~~Kxxxxxxxrxrxxxxxrxrxxxxrxxxxxx*",
@@ -27160,6 +27730,48 @@ window.GAME_DATA = {
      "x": 18,
      "y": 15,
      "sprite": "b_tavern"
+    },
+    {
+     "x": 25,
+     "y": 15,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_ember_town"
+    },
+    {
+     "x": 26,
+     "y": 15,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_ember_town"
+    },
+    {
+     "x": 27,
+     "y": 15,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_ember_town"
+    },
+    {
+     "x": 25,
+     "y": 16,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_ember_town"
+    },
+    {
+     "x": 26,
+     "y": 16,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_ember_town"
+    },
+    {
+     "x": 27,
+     "y": 16,
+     "sprite": "t_glass",
+     "solid": true,
+     "flag": "gh_ember_town"
     }
    ],
    "combat": {
@@ -27177,7 +27789,15 @@ window.GAME_DATA = {
     "x": 17,
     "y": 11
    },
-   "region": "ember"
+   "region": "ember",
+   "lots": [
+    {
+     "x": 24,
+     "y": 17,
+     "kind": "greenhouse",
+     "reagent": "cinderlotus"
+    }
+   ]
   },
   "ember_wilds": {
    "name": "The Ember Isles Wilds",
@@ -27356,6 +27976,368 @@ window.GAME_DATA = {
    "forage": [],
    "enemies": [],
    "signs": []
+  },
+  "castle_ruins": {
+   "name": "Castle Ruins",
+   "outdoor": true,
+   "ground": "t_grass",
+   "level": 5,
+   "music": "forest",
+   "region": "mainland",
+   "tiles": [
+    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+    "T........T..\"...................,..T",
+    "T...r\".T...T..T........T.....r.....T",
+    "T.....rr#..................#\"#.....T",
+    "T...,..#r.###########..#.#.##..T...T",
+    "T..,..r#.zz..zzz.z..z......rrr\"..T.T",
+    "T......#..z.z....z.....r....#..\".T.T",
+    "T......#z.zz...zz.........z........T",
+    "T......#\"...\".#zr#z#zzzzz...#......T",
+    "TT.....#....z.#zrzrrz#z...z.#...\"..T",
+    "T......#..z..z#rzrzzz#.z.zz.#....,\"T",
+    "T......#.....z###r####..z...#...\"..T",
+    "T....r.#.z....z...z...z...z.#......T",
+    "T......#\".z.z...r.zz.......z#......T",
+    "T....,...z.....zz.z.......z.#......T",
+    "T......#.z..r.....z..z...z..#......T",
+    "T.....r#r..z..z...zz.......#rr.....T",
+    "T..T...r.########.z#####.####......T",
+    "T.....r##.........z........###.....T",
+    "T......T.\"...T,..Sz...,..T.........T",
+    "T..........T.,.\"..z.r...,..........T",
+    "TTTTTTTTTTTTTTTTTTzTTTTTTTTTTTTTTTTT"
+   ],
+   "warps": [
+    {
+     "x": 18,
+     "y": 21,
+     "to": "kingsroad",
+     "tx": 8,
+     "ty": 1
+    }
+   ],
+   "npcs": [],
+   "signs": [
+    {
+     "x": 17,
+     "y": 19,
+     "text": "Whoever built this, they built it to last. | Nobody in Briarwick remembers whose castle it was."
+    }
+   ],
+   "forage": [
+    {
+     "x": 4,
+     "y": 6,
+     "item": "shadebloom",
+     "respawn": 3
+    },
+    {
+     "x": 31,
+     "y": 14,
+     "item": "shadebloom",
+     "respawn": 3
+    },
+    {
+     "x": 11,
+     "y": 19,
+     "item": "glowcap",
+     "respawn": 2
+    },
+    {
+     "x": 25,
+     "y": 2,
+     "item": "moonpetal",
+     "respawn": 3
+    }
+   ],
+   "enemies": [
+    {
+     "id": "hollow_knight",
+     "x": 18,
+     "y": 10
+    },
+    {
+     "id": "hollow_knight",
+     "x": 24,
+     "y": 7
+    },
+    {
+     "id": "wraith",
+     "x": 11,
+     "y": 13
+    },
+    {
+     "id": "wraith",
+     "x": 25,
+     "y": 14
+    },
+    {
+     "id": "wraith",
+     "x": 10,
+     "y": 6
+    },
+    {
+     "id": "shadow_hound",
+     "x": 30,
+     "y": 9
+    },
+    {
+     "id": "shadow_hound",
+     "x": 4,
+     "y": 15
+    },
+    {
+     "id": "shadow_hound",
+     "x": 20,
+     "y": 19
+    }
+   ],
+   "combat": {
+    "ground": ".",
+    "terrain": {
+     "#": 0.05,
+     "r": 0.06,
+     "\"": 0.08
+    },
+    "music": "battle"
+   }
+  },
+  "mistfen": {
+   "name": "Mistfen Marsh",
+   "outdoor": true,
+   "ground": "t_grass",
+   "level": 2,
+   "music": "forest",
+   "region": "mainland",
+   "tiles": [
+    "TTTTTTTTTTTTTTTTTT=TTTTTTTTTTTTTTTTT",
+    "T........T,\"..,...=S,........\"~\"s..T",
+    "T..T..\".......\"...=......s,,~~~~~..T",
+    "T.\"\".,~.,.........=.\".T,s~\"~~~~~~~\"T",
+    "T..,~~~~~\"...\".\"\"~=...,~~~~~~~.~~~,T",
+    "T.,~~~~~~~=========~..s~~~~~~~~~~~,T",
+    "T.\"~~~~~~~=..s~~~~~~~\"\"~~~~.~~~~~..T",
+    "T.s~~~~~~~=T.\"~~~~~~~s.,s~s,s\"~,,..T",
+    "T.T\"~~.~~~=\".\"~~~~~~~,...\"....,..\".T",
+    "T..\"ss~~.,=...,~~~~~\".......,......T",
+    "T,..T.,\"..=....,\"~\"..T....T\".......T",
+    "T......,..=\".....\"........T....\"...T",
+    "T.ss~,.\"..================.....\".,\"T",
+    "Ts~~~~~s.....\"\"~\"s......\"=.........T",
+    "T,~~~~~\"\".T..~~~~~~.,\"...=.........T",
+    "T,~~~~~.~..,~~.~~~~~~\".\".=.........T",
+    "T.s~~~~~~~\".~~~~~~~~~~,..=....,..\".T",
+    "T.\"~~~~~~~,s~~~~~~~~~~...=........\"T",
+    "T.\"~~~~~~~s\",~~~~~~~~~s..======....T",
+    "T..,~~~~~,..\".s~~~~~~,..........\"..T",
+    "T...ss~\".......\",.~,\".......\"..\"...T",
+    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
+   ],
+   "warps": [
+    {
+     "x": 18,
+     "y": 0,
+     "to": "whisperwood",
+     "tx": 24,
+     "ty": 22
+    }
+   ],
+   "npcs": [],
+   "signs": [
+    {
+     "x": 19,
+     "y": 1,
+     "text": "MISTFEN | Keep to the boards. The bog keeps what it takes."
+    }
+   ],
+   "forage": [
+    {
+     "x": 6,
+     "y": 10,
+     "item": "moonpetal",
+     "respawn": 2
+    },
+    {
+     "x": 14,
+     "y": 13,
+     "item": "shadebloom",
+     "respawn": 3
+    },
+    {
+     "x": 27,
+     "y": 6,
+     "item": "frostmint",
+     "respawn": 3
+    },
+    {
+     "x": 31,
+     "y": 15,
+     "item": "glowcap",
+     "respawn": 2
+    },
+    {
+     "x": 20,
+     "y": 9,
+     "item": "moonpetal",
+     "respawn": 2
+    }
+   ],
+   "enemies": [
+    {
+     "id": "slime",
+     "x": 12,
+     "y": 8
+    },
+    {
+     "id": "slime",
+     "x": 22,
+     "y": 14
+    },
+    {
+     "id": "slime",
+     "x": 28,
+     "y": 10
+    },
+    {
+     "id": "wisp",
+     "x": 7,
+     "y": 15
+    },
+    {
+     "id": "wisp",
+     "x": 16,
+     "y": 3
+    },
+    {
+     "id": "wisp",
+     "x": 29,
+     "y": 7
+    },
+    {
+     "id": "wolf",
+     "x": 24,
+     "y": 19
+    }
+   ],
+   "combat": {
+    "ground": ".",
+    "terrain": {
+     "\"": 0.18,
+     "~": 0.05
+    },
+    "music": "battle"
+   }
+  },
+  "quarry": {
+   "name": "The Old Quarry",
+   "outdoor": true,
+   "quarry": true,
+   "ground": "t_grass",
+   "level": 4,
+   "music": "forest",
+   "region": "mainland",
+   "tiles": [
+    "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+    "r.aaaa..a\".aa.a.\".a...a.aa..aa...aar",
+    "ra...a..a.aaa..a.a.....aa.a..a.a.aar",
+    "raarrrrrr.rrrrj..aaarrrrrarrrrrrr\".r",
+    "raarrrrarr...r.a.a.arrrrrrrrrrrra.ar",
+    "raaaa..aj.a...a..aaaaajaaaaaa..jaaar",
+    "raa....a..aa..aaaa.a.a..aa.aaa.aa..r",
+    "ra...aa.aaaazzzzzzzzzzzzzzzzza.a.a.r",
+    "ra.aaaaaa...zaa..a.a.a....rrrrraa.ar",
+    "r.a.arrrrr..zaa.\"aaaaa.aaarrrr.aaaar",
+    "raaaarrrrrj.z.aaaaaaa..aa.rr.rr.\".ar",
+    "r....r.rrra.zzzzzzz.aa.aajrarrraa.ar",
+    "raaa.rrrra......a.z.aa\".a.rrrrraaa.r",
+    "r..a.rrrrraaaaaaaTz...aaaarrrrraa.ar",
+    "raa.arrrr.aaaaa.j.z\"a..aaarrrrr....r",
+    "ra.aarrrraa.rrrrrrz.rrrraarrrrr.aa.r",
+    "r....aa.aaaarrrrrrzrrrrr.aa.a...aTar",
+    "r.aaaaaaa..aaa.aaaz..j.aaa..aa..a.ar",
+    "raaaaa..aa.a...aaaz.a.aaaa.aaaaa.\"ar",
+    "r..a..a....\".aa.aSzaaa..a.aaa......r",
+    "ra.aaaa.aaaaaaaaa.zaaa.aa.a.....a\".r",
+    "rrrrrrrrrrrrrrrrrrzrrrrrrrrrrrrrrrrr"
+   ],
+   "warps": [
+    {
+     "x": 18,
+     "y": 21,
+     "to": "highmoor",
+     "tx": 20,
+     "ty": 1
+    }
+   ],
+   "npcs": [],
+   "signs": [
+    {
+     "x": 17,
+     "y": 19,
+     "text": "THE OLD QUARRY | Closed when the goblins moved in. | Clear them out and the veins are anyone's to dig."
+    }
+   ],
+   "forage": [
+    {
+     "x": 3,
+     "y": 18,
+     "item": "ironbark",
+     "respawn": 3
+    },
+    {
+     "x": 33,
+     "y": 17,
+     "item": "frostmint",
+     "respawn": 3
+    },
+    {
+     "x": 2,
+     "y": 7,
+     "item": "ironbark",
+     "respawn": 3
+    }
+   ],
+   "enemies": [
+    {
+     "id": "goblin_miner",
+     "x": 11,
+     "y": 7
+    },
+    {
+     "id": "goblin_miner",
+     "x": 24,
+     "y": 7
+    },
+    {
+     "id": "goblin_miner",
+     "x": 19,
+     "y": 13
+    },
+    {
+     "id": "crystal_spider",
+     "x": 6,
+     "y": 17
+    },
+    {
+     "id": "crystal_spider",
+     "x": 30,
+     "y": 17
+    },
+    {
+     "id": "stone_golem",
+     "x": 17,
+     "y": 9
+    }
+   ],
+   "combat": {
+    "ground": ".",
+    "terrain": {
+     "r": 0.08,
+     "\"": 0.06
+    },
+    "music": "battle"
+   }
   }
  },
  "quests": [
@@ -33807,6 +34789,18 @@ window.GAME_DATA = {
    "ember_wilds": [
     90,
     55
+   ],
+   "castle_ruins": [
+    27,
+    21
+   ],
+   "mistfen": [
+    22,
+    41
+   ],
+   "quarry": [
+    50,
+    20
    ]
   },
   "caves": {
@@ -33828,7 +34822,10 @@ window.GAME_DATA = {
      "kingsroad",
      "highmoor",
      "gannet",
-     "southwatch"
+     "southwatch",
+     "castle_ruins",
+     "mistfen",
+     "quarry"
     ],
     "always": true
    },
@@ -34266,7 +35263,10 @@ window.GAME_DATA = {
     "kingsroad",
     "highmoor",
     "gannet",
-    "southwatch"
+    "southwatch",
+    "castle_ruins",
+    "mistfen",
+    "quarry"
    ],
    "boss": "bandit_chief",
    "offering": {
@@ -34617,6 +35617,74 @@ window.GAME_DATA = {
     "I found a pattern in the falling stars that matched the Hollow King's rising. The council called it heresy and sealed my tower.",
     "So I came to see the world I'd been ignoring. It's much louder than I expected."
    ]
+  }
+ },
+ "lots": {
+  "market": {
+   "cost": 800,
+   "name": "Briarwick Market"
+  },
+  "greenhouse": {
+   "cost": 500,
+   "perDay": 2,
+   "cap": 30
+  },
+  "apprenticeLevel": 4,
+  "apprentices": {
+   "appr_highmoor": {
+    "town": "Highmoor",
+    "shops": [
+     "highmoor_smith",
+     "arcanum"
+    ]
+   },
+   "appr_gannet": {
+    "town": "Gannet Cove",
+    "shops": [
+     "gannet_goods",
+     "fen"
+    ]
+   },
+   "appr_southwatch": {
+    "town": "Southwatch",
+    "shops": [
+     "southwatch_arms"
+    ]
+   },
+   "appr_saltmere": {
+    "town": "Saltmere",
+    "shops": [
+     "trader"
+    ]
+   },
+   "appr_verdant": {
+    "town": "the Verdant Isles",
+    "shops": [
+     "verdant_trader",
+     "verdant_crafter"
+    ]
+   },
+   "appr_azure": {
+    "town": "Azure Atoll",
+    "shops": [
+     "azure_trader",
+     "azure_crafter"
+    ]
+   },
+   "appr_thornhaven": {
+    "town": "Thornhaven",
+    "shops": [
+     "thornhaven_trader",
+     "thornhaven_crafter"
+    ]
+   },
+   "appr_ember": {
+    "town": "the Ember Isles",
+    "shops": [
+     "ember_trader",
+     "ember_crafter"
+    ]
+   }
   }
  }
 };
@@ -35389,6 +36457,7 @@ function interact() {
   if (td.interact === 'bed') return script(useBed);
   if (td.interact === 'ledger') return script(useLedger);
   if (td.interact === 'storehouse') return script(storehouseMenu);
+  if (td.interact === 'lot') return script(() => lotMenu(tx, ty));
   if (td.interact === 'sign') { const s = (R.map.signs || []).find(s => s.x === tx && s.y === ty); return script(() => say('Sign', (s ? s.text : '(The sign is blank.)').split('|').map(x => x.trim()))); }
 }
 
@@ -35531,14 +36600,14 @@ async function shopTalk(npc, skipIntro) {
     if (c === 'buy') await openMenu({ title: 'Buy', width: 560, footer: () => `Gold: ${G.gold}    Enter: buy 1    Shift+Enter: buy 5${flagship() && G.shipAt === outdoorOf(R.mapId) ? '    Hold: ' + holdLine(flagship()) : ''}`,
       items: () => {
         let ids = shop.sellsDiscoveredSeeds ? Object.keys(G.discovered).map(r => item(r).seed).filter(s => s && D.items[s]) : [];
-        ids = ids.concat(shop.sells || []).concat((G.shopUnlocks || {})[npc.def.shop] || []).concat(sid ? prosperIds(sid) : []).concat(Object.entries(shop.researchSells || {}).filter(([, r]) => (G.research || {})[r]).map(([i]) => i)).filter(id => D.items[id] && !(item(id).type === 'upgrade' && item(id).up && home().up[item(id).up]) && !(item(id).gh != null && G.gh !== item(id).gh - 1));
+        ids = ids.concat(shop.sells || []).concat(apprenticeIds(shop)).concat((G.shopUnlocks || {})[npc.def.shop] || []).concat(sid ? prosperIds(sid) : []).concat(Object.entries(shop.researchSells || {}).filter(([, r]) => (G.research || {})[r]).map(([i]) => i)).filter(id => D.items[id] && !(item(id).type === 'upgrade' && item(id).up && home().up[item(id).up]) && !(item(id).gh != null && G.gh !== item(id).gh - 1));
         const gd = guildFor(npc.def.shop); for (const g of Object.keys(gd)) if (!ids.includes(g)) ids.push(g);
         for (const [bid, kg] of Object.entries(shop.kingdomSells || {})) if ((G.kingdomDay || {})[kg] != null && !ids.includes(bid)) ids.push(bid);
-        ids = [...new Set(ids)]; const fromS = id => (shop.sells || []).includes(id) || ((G.shopUnlocks || {})[npc.def.shop] || []).includes(id) || (sid && prosperIds(sid).includes(id));
+        ids = [...new Set(ids)]; const fromS = id => (shop.sells || []).includes(id) || apprenticeIds(shop).includes(id) || ((G.shopUnlocks || {})[npc.def.shop] || []).includes(id) || (sid && prosperIds(sid).includes(id));
         return ids.map(id => { const left = gd[id] && !fromS(id) ? Infinity : stockLeft(sid, id); return { label: item(id).name + ownedLabel(id) + (gd[id] && !fromS(id) ? `  (Miners' Guild: ${gd[id].n} left)` : '') + (item(id).unique ? (left ? '  (one of a kind)' : '  (sold)') : ''), icon: item(id).sprite, right: (left === Infinity || item(id).unique ? '' : left ? `x${left}  ` : 'sold out  ') + buyPrice(id) + 'g', desc: `${itemDesc(id)}  (You have ${count(id)})`, value: id, disabled: G.gold < buyPrice(id) || left <= 0 }; });
       },
       onSelect: it => { if (item(it.value).type === 'build') { const fs = flagship(), here = outdoorOf(R.mapId); if (!fs || G.shipAt !== here) { toast('Too bulky to carry. Sail your own ship here to load it into the hold.', UI.red); return false; } const n0 = Math.min(keys.has('shift') ? 10 : 1, holdRoom(fs, 'bulk'), Math.floor(G.gold / buyPrice(it.value))); if (n0 <= 0) { toast(!(shipType(fs).bulk) ? `Your flagship (${shipType(fs).name}) has no bulk hold. A cog or a yard-built ship can carry it.` : holdRoom(fs, 'bulk') ? 'Not enough gold.' : 'Your flagship\'s bulk hold is full.', UI.red); return false; } G.gold -= n0 * buyPrice(it.value); addProsper(sid, n0 * buyPrice(it.value)); fs.hold[it.value] = (fs.hold[it.value] || 0) + n0; AU.sfx('coin'); toast(`${n0} ${item(it.value).name} loaded into ${fs.name}'s hold (${holdLine(fs)}).`); return false; }
-        const n = keys.has('shift') ? 5 : 1; let b = 0; const gsrc = guildFor(npc.def.shop)[it.value], fromShop = (shop.sells || []).includes(it.value) || ((G.shopUnlocks || {})[npc.def.shop] || []).includes(it.value); const fromP = sid && prosperIds(sid).includes(it.value); for (let i = 0; i < n && G.gold >= buyPrice(it.value); i++) { if (gsrc && !fromShop && !fromP) { if (G.guild[gsrc.cid][it.value] <= 0) break; G.guild[gsrc.cid][it.value]--; } else { if (stockLeft(sid, it.value) <= 0) { if (!b) toast('Sold out for today. Fresh stock tomorrow.', UI.red); break; } } if (['furniture', 'upgrade'].includes(item(it.value).type)) { if (!buyFurniture(it.value)) break; G.gold -= buyPrice(it.value); addProsper(sid, buyPrice(it.value)); b++; continue; } G.gold -= buyPrice(it.value); addProsper(sid, buyPrice(it.value)); if (!(gsrc && !fromShop && !fromP)) useStock(sid, it.value, 1); add(it.value, 1, true); b++; } if (b) { AU.sfx('coin'); addSkillXp('bartering', 1); toast(`Bought ${b} ${item(it.value).name}`); } return false; } });
+        const n = keys.has('shift') ? 5 : 1; let b = 0; const gsrc = guildFor(npc.def.shop)[it.value], fromShop = (shop.sells || []).includes(it.value) || apprenticeIds(shop).includes(it.value) || ((G.shopUnlocks || {})[npc.def.shop] || []).includes(it.value); const fromP = sid && prosperIds(sid).includes(it.value); for (let i = 0; i < n && G.gold >= buyPrice(it.value); i++) { if (gsrc && !fromShop && !fromP) { if (G.guild[gsrc.cid][it.value] <= 0) break; G.guild[gsrc.cid][it.value]--; } else { if (stockLeft(sid, it.value) <= 0) { if (!b) toast('Sold out for today. Fresh stock tomorrow.', UI.red); break; } } if (['furniture', 'upgrade'].includes(item(it.value).type)) { if (!buyFurniture(it.value)) break; G.gold -= buyPrice(it.value); addProsper(sid, buyPrice(it.value)); b++; continue; } G.gold -= buyPrice(it.value); addProsper(sid, buyPrice(it.value)); if (!(gsrc && !fromShop && !fromP)) useStock(sid, it.value, 1); add(it.value, 1, true); b++; } if (b) { AU.sfx('coin'); addSkillXp('bartering', 1); toast(`Bought ${b} ${item(it.value).name}`); } return false; } });
     else if (c === 'hold') await openMenu({ title: () => `Sell from the hold  -  ${holdLine(flagship())}`, width: 560, footer: () => `Gold: ${G.gold}    Enter: sell 1    Shift+Enter: sell all`,
       items: () => Object.keys(flagship().hold || {}).filter(id => flagship().hold[id] > 0 && (shop.buysTypes || []).includes(item(id).type)).map(id => ({ label: item(id).name, icon: item(id).sprite, right: `${sellPrice(id)}g  (x${flagship().hold[id]})`, value: id })),
       onSelect: it => { const fs = flagship(); const n = keys.has('shift') ? fs.hold[it.value] : 1; for (let i = 0; i < n; i++) { fs.hold[it.value]--; G.gold += sellPrice(it.value); addProsper(sid, sellPrice(it.value)); } if (!fs.hold[it.value]) delete fs.hold[it.value]; AU.sfx('coin'); addSkillXp('bartering', 1); return false; } });
@@ -35665,7 +36734,7 @@ async function ordersMenu(sh) {
 // route ships sail on their own: leave at dawn, trade, come home, repeat
 function fleetTick(out) {
   for (const sh of fleet()) {
-    if (sh.away && G.day >= sh.away.returnDay) { const ex = sh.away; sh.away = null; const rp = resolveTrade(Object.assign({}, ex, { toStore: true, shipRef: sh })); rp.title = `${sh.name}: ${rp.title}`; G.expLog = [rp].concat(G.expLog || []).slice(0, 14); out.push(rp);
+    if (sh.away && G.day >= sh.away.returnDay) { const ex = sh.away; sh.away = null; const rp = resolveTrade(Object.assign({}, ex, { toStore: true, shipRef: sh })); rp.title = `${sh.name}: ${rp.title}`; { const pm = (((D.sea || {}).ports || []).find(p => p.id === ex.port) || {}).map, gh = pm && pghOf(pm); if (gh && gh.stock) { G.store = G.store || {}; G.store[gh.reagent] = (G.store[gh.reagent] || 0) + gh.stock; rp.summary = `${rp.summary || ''} Picked up ${gh.stock} ${item(gh.reagent).name} from your greenhouse.`; gh.stock = 0; } } G.expLog = [rp].concat(G.expLog || []).slice(0, 14); out.push(rp);
       for (const id of [sh.captain, sh.navigator]) if (id && G.helpers[id] && sh.route) G.helpers[id].role = 'fleet'; }
     if (!sh.away && sh.route && sh.captain && G.helpers[sh.captain] && sh.uid !== (flagship() || {}).uid) {
       const port = ((D.sea || {}).ports || []).find(p => p.id === sh.route); if (!port) continue; const O = sh.orders || { sell: {}, buy: {}, purse: 0 };
@@ -35837,7 +36906,7 @@ async function newDay(reason, atSea) {
       if (G.gold >= wage) { G.gold -= wage; wages += wage; working.push({ id, st, h }); }
       else report.push(`${h.name} went unpaid and did not work.`);
     }
-    apprTick(working, report);
+    apprTick(working, report); lotTick(report);
     const gardeners = working.filter(w => w.st.role === 'greenhouse');
     const gardenSkill = gardeners.reduce((a, w) => a + ((w.h.skills || {}).herbalism || 0), 0);
     const plots = plotKeys(); let boosted = 0; const rec = { day: G.day, date: dateStr(), garden: null, stall: null };
@@ -35890,6 +36959,34 @@ async function newDay(reason, atSea) {
 // ================= MENUS =================
 const INV_TABS = [['All', () => true], ['Gear', i => i.type === 'gear'], ['Potions', i => i.type === 'consumable'], ['Reagents', i => i.type === 'reagent'], ['Seeds', i => i.type === 'seed'],
   ['Materials', i => ['material', 'metal', 'gem'].includes(i.type)], ['Other', i => !['gear', 'consumable', 'reagent', 'seed', 'material', 'metal', 'gem'].includes(i.type)]];
+// ---- town lots: Briarwick market, port greenhouses; vendor apprentices ----
+function LOTS() { return D.lots || { market: { cost: 800 }, greenhouse: { cost: 500, perDay: 2, cap: 30 }, apprentices: {} }; }
+function pghOf(m) { G.pgh = G.pgh || {}; return G.pgh[m]; }
+async function lotMenu(tx, ty) {
+  const lot = (R.map.lots || []).find(l => l.x === tx && l.y === ty); if (!lot) return; const L = LOTS();
+  if (lot.kind === 'market') {
+    if (!G.flags.market) { const c = L.market.cost;
+      await say('Empty lot', ['A cleared plot by the harbour, marked out with stakes. "FOR SALE: ideal for a market. Enquire at the town hall."']);
+      const r = await choose(`Build ${L.market.name || 'a market'}?`, [{ label: 'Build the market', right: c + 'g', value: 'y', disabled: G.gold < c, desc: 'Stalls for traders. When a shop elsewhere grows to Thriving, it sends an apprentice to sell its goods here.' }, { label: 'Not now', value: 'n' }], { width: 520 });
+      if (r === 'y') { G.gold -= c; G.flags.market = true; AU.sfx('discover'); toast(`${L.market.name || 'The market'} is open! Grow shops elsewhere to Thriving and their apprentices will come.`, UI.green); apprenticeTick([]); }
+      return; }
+    const A = L.apprentices || {}, here = Object.keys(A).filter(a => G.flags[a]), lvN = (PR().names || [])[L.apprenticeLevel || 4] || 'Thriving';
+    return say(L.market.name || 'Market', [here.length ? `Stalls: ${here.map(a => D.npcs[a] ? D.npcs[a].name : a).join('; ')}.` : 'The stalls are empty for now.', `Still to come: ${Object.keys(A).filter(a => !G.flags[a]).map(a => A[a].town).join(', ') || 'nobody - every stall is taken!'}.`, `A town sends an apprentice once one of its shops is ${lvN}.`]);
+  }
+  if (lot.kind === 'greenhouse') { const rg = item(lot.reagent), st = pghOf(R.mapId), G0 = L.greenhouse;
+    if (!st) { await say('Empty lot', [`A sunny plot, staked out for sale. ${rg.name} grows wild here; under glass it would grow all year.`]);
+      const r = await choose(`Build a ${rg.name} greenhouse?`, [{ label: 'Build it', right: G0.cost + 'g', value: 'y', disabled: G.gold < G0.cost, desc: `A local keeps it for you. It grows ${G0.perDay} ${rg.name} a day (holds up to ${G0.cap}). Collect here, or a ship on a trade route to this port brings it home to your storehouse.` }, { label: 'Not now', value: 'n' }], { width: 560 });
+      if (r === 'y') { G.gold -= G0.cost; G.pgh = G.pgh || {}; G.pgh[R.mapId] = { reagent: lot.reagent, stock: 0 }; G.flags['gh_' + R.mapId] = true; AU.sfx('discover'); toast(`Your ${rg.name} greenhouse is built.`, UI.green); }
+      return; }
+    if (!st.stock) return say(`${rg.name} greenhouse`, ['Nothing ready yet. Check back in a day or two.']);
+    const n = st.stock; st.stock = 0; add(st.reagent, n, true); AU.sfx('coin'); return say(`${rg.name} greenhouse`, [`You collect ${n} ${rg.name}. (Anything your pockets can't hold goes to your storehouse.)`]);
+  }
+}
+function lotTick(report) { const G0 = LOTS().greenhouse; for (const [m, st] of Object.entries(G.pgh || {})) st.stock = Math.min(G0.cap || 30, (st.stock || 0) + (G0.perDay || 2)); apprenticeTick(report); }
+function apprenticeTick(report) { if (!G.flags.market) return; const L = LOTS();
+  for (const [a, def] of Object.entries(L.apprentices || {})) { if (G.flags[a]) continue; if (!(def.shops || []).some(s => prosperLvl(s) >= (L.apprenticeLevel || 4))) continue;
+    G.flags[a] = true; const msg = `An apprentice from ${def.town} has opened a stall in the Briarwick market.`; if (report) report.push(msg); toast(msg, UI.green); } }
+function apprenticeIds(shop) { const out = []; for (const s of shop.apprenticeOf || []) if (D.shops[s] && prosperLvl(s) >= (LOTS().apprenticeLevel || 4)) for (const id of D.shops[s].sells || []) if (D.items[id] && !item(id).unique && !out.includes(id)) out.push(id); return out; }
 async function storehouseMenu() {
   G.store = G.store || {};
   for (;;) {
@@ -36533,7 +37630,7 @@ function renderWorld() {
   const [cx, cy] = camera(ppx, ppy, mw, mh);
   ctx.fillStyle = '#120e18'; ctx.fillRect(0, 0, VW, VH);
   drawMapTiles(mp, cx, cy);
-  for (const d of mp.decor || []) drawSpr(d.sprite, d.x * TILE - cx, d.y * TILE - cy);
+  for (const d of mp.decor || []) if (!d.flag || G.flags[d.flag]) drawSpr(d.sprite, d.x * TILE - cx, d.y * TILE - cy);
   for (const f of placedFurniture()) drawSpr(f.sprite, f.x * TILE - cx, f.y * TILE - cy);
   if (G.gh < 0 && R.mapId === 'briarwick') mp.tiles.forEach((row, yy) => { for (let xx = 0; xx < row.length; xx++) if (row[xx] === 'G') { const sx = xx * TILE - cx, sy = yy * TILE - cy; if (sx < -TILE || sx > VW || sy < -TILE || sy > VH) continue;
     ctx.fillStyle = 'rgba(50,40,30,.45)'; ctx.fillRect(sx, sy, TILE, TILE); ctx.strokeStyle = 'rgba(30,20,20,.8)'; ctx.lineWidth = 2; ctx.beginPath(); const h = (xx * 7 + yy * 13) % 5; ctx.moveTo(sx + 6 + h * 4, sy + 4); ctx.lineTo(sx + 22, sy + 24); ctx.lineTo(sx + 14 + h * 3, sy + 44); ctx.moveTo(sx + 22, sy + 24); ctx.lineTo(sx + 42, sy + 18 + h * 3); ctx.stroke();
@@ -36936,7 +38033,7 @@ function placedFurniture() {
   return out;
 }
 function furnAt(x, y) { return placedFurniture().find(f => f.x === x && f.y === y); }
-function decorAt(x, y) { return (R.map.decor || []).find(d => d.x === x && d.y === y && d.solid); }
+function decorAt(x, y) { return (R.map.decor || []).find(d => d.x === x && d.y === y && d.solid && (!d.flag || G.flags[d.flag])); }
 function buyFurniture(id) {
   const it = item(id), h = home();
   if (it.gh != null) { if (G.gh !== it.gh - 1) { toast('Not available yet.'); return false; } G.gh = it.gh; toast(it.gh === 0 ? "Gran's greenhouse is restored!" : `Greenhouse expanded: ${ghPlanters()} planters!`, UI.green); return true; }
@@ -37350,7 +38447,7 @@ function genCave(id) {
   return (genCache[key] = mp);
 }
 async function mine(tx, ty, kind) {
-  if (!R.map.cave) return say('', [kind === 'gem' ? 'Glittering crystals. They are part of this place - best leave them.' : 'Solid rock.']);
+  if (!R.map.cave && !R.map.quarry) return say('', [kind === 'gem' ? 'Glittering crystals. They are part of this place - best leave them.' : 'Solid rock.']);
   if (caveWarded(R.map.caveId)) return say('', ['A Miners\' Guild seal is stamped on the rock: these seams belong to the Guild now. Their ore is sold in town.']);
   if (R.enemies.length) return say('', ['Too dangerous to dig while monsters prowl this level. Clear it first!']);
   const key = R.mapId + ':' + tx + ',' + ty; G.mined = G.mined || {}; if (G.mined[key]) return say('', ['Already picked clean.']);
@@ -37874,7 +38971,7 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 // debug/test hook (harmless in production)
-window.__game = { apprTick, appr, apprTier, apprName, addAppr, companionTalk, closeness, payLvl, hubItems, prosperLvl, prosperName, addProsper, stockLeft, stockCap, smithVisit, smithCost, eqOf, fleet, flagship, fleetMenu, fleetTick, routes, fleetLimit, shipyardMenu, unloadHold, holdLine, ordersMenu, shipActions, storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
+window.__game = { lotMenu, lotTick, apprenticeTick, apprenticeIds, apprTick, appr, apprTier, apprName, addAppr, companionTalk, closeness, payLvl, hubItems, prosperLvl, prosperName, addProsper, stockLeft, stockCap, smithVisit, smithCost, eqOf, fleet, flagship, fleetMenu, fleetTick, routes, fleetLimit, shipyardMenu, unloadHold, holdLine, ordersMenu, shipActions, storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
 })();
 
 </script>
