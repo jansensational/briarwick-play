@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.14.0</title>
+<title>Reagents of Briarwick v0.15.0</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -69,7 +69,7 @@ window.GAME_DATA = {
  },
  "player": {
   "hp": 34,
-  "hpPerLevel": 6,
+  "hpPerLevel": 4,
   "atk": 6,
   "def": 1,
   "move": 4
@@ -30750,7 +30750,7 @@ window.GAME_DATA = {
  "skillCurve": {
   "base": 10,
   "exp": 1.5,
-  "maxLevel": 20
+  "maxLevel": 21
  },
  "enchants": {
   "quartz": {
@@ -31145,6 +31145,196 @@ window.GAME_DATA = {
    "They cut off my escape! I'll have to fight.",
    "No way out. Here they come!"
   ]
+ },
+ "skillPoints": {
+  "battleXpMult": 1,
+  "voyageXp": 6,
+  "companionPointsPerLevel": 2,
+  "options": {
+   "swordplay": [
+    {
+     "id": "hp",
+     "label": "+8 max HP",
+     "amt": 8,
+     "desc": "More health in every fight (on top of the 4 HP every level gives)."
+    },
+    {
+     "id": "atk",
+     "label": "+1 Attack",
+     "amt": 1,
+     "desc": "Harder hits with every weapon."
+    },
+    {
+     "id": "def",
+     "label": "+1 Defense",
+     "amt": 1,
+     "desc": "Take less damage from every hit."
+    }
+   ],
+   "magery": [
+    {
+     "id": "power",
+     "label": "+4% spell power",
+     "amt": 0.04,
+     "pct": true,
+     "desc": "Every spell hits and heals harder."
+    },
+    {
+     "id": "save",
+     "label": "+3% reagent saving",
+     "amt": 0.03,
+     "pct": true,
+     "desc": "A chance that a cast costs no reagents."
+    },
+    {
+     "id": "resist",
+     "label": "+3% magic resistance",
+     "amt": 0.03,
+     "pct": true,
+     "desc": "Take less damage from magical foes (wisps, imps, sirens, wraiths and the like). Up to 60%."
+    }
+   ],
+   "sailing": [
+    {
+     "id": "dmg",
+     "label": "+1 ship weapon damage",
+     "amt": 1,
+     "desc": "Your bow and arbalest hit harder in sea battles."
+    },
+    {
+     "id": "man",
+     "label": "+1 Maneuvers",
+     "amt": 1,
+     "desc": "Your ship takes 1 less hull damage from each blow."
+    },
+    {
+     "id": "slip",
+     "label": "+4% slip away",
+     "amt": 0.04,
+     "pct": true,
+     "desc": "A chance to slip past sea monsters before a battle starts."
+    }
+   ],
+   "bartering": [
+    {
+     "id": "buy",
+     "label": "-2% buy prices",
+     "amt": 0.02,
+     "pct": true,
+     "desc": "Pay less in every shop."
+    },
+    {
+     "id": "sell",
+     "label": "+2% sell prices",
+     "amt": 0.02,
+     "pct": true,
+     "desc": "Get more for everything you sell."
+    },
+    {
+     "id": "stock",
+     "label": "+5% shop stock",
+     "amt": 0.05,
+     "pct": true,
+     "desc": "Bigger shop stock. (Takes effect when shops start keeping stock, with vendor prosperity in a later update.)"
+    }
+   ],
+   "herbalism": [
+    {
+     "id": "yield",
+     "label": "+3% bonus yield",
+     "amt": 0.03,
+     "pct": true,
+     "desc": "A chance of one extra crop from each bed you harvest."
+    },
+    {
+     "id": "seed",
+     "label": "+3% seed saving",
+     "amt": 0.03,
+     "pct": true,
+     "desc": "A chance to plant without using up the seed."
+    },
+    {
+     "id": "grow",
+     "label": "+2% faster growth",
+     "amt": 0.02,
+     "pct": true,
+     "desc": "Each night, a chance that crops you planted grow an extra day."
+    }
+   ]
+  },
+  "companionOptions": [
+   {
+    "id": "hp",
+    "label": "+8 max HP",
+    "amt": 8
+   },
+   {
+    "id": "atk",
+    "label": "+1 Attack",
+    "amt": 1
+   },
+   {
+    "id": "def",
+    "label": "+1 Defense",
+    "amt": 1
+   }
+  ],
+  "magicFoes": [
+   "wisp",
+   "imp",
+   "siren",
+   "shaman",
+   "wraith",
+   "hollow_king",
+   "drake",
+   "warden",
+   "magma"
+  ],
+  "callings": {
+   "swordplay": {
+    "tag": "Sword & shield",
+    "icon": "i_iron_sword",
+    "desc": "You were the strongest in the village. Start with Combat 1 and an iron sword.",
+    "items": {
+     "iron_sword": 1
+    }
+   },
+   "magery": {
+    "tag": "Gran's spellbook",
+    "icon": "i_potion",
+    "desc": "Gran taught you a little magic. Start with Magery 1, the Singe spell and a few reagents.",
+    "spells": [
+     "spark"
+    ],
+    "items": {
+     "emberroot": 5,
+     "glowcap": 5
+    }
+   },
+   "herbalism": {
+    "tag": "Green thumb",
+    "icon": "i_seed_emberroot",
+    "desc": "You grew up in Gran's garden. Start with Herbalism 1 and a bag of seeds.",
+    "items": {
+     "seed_emberroot": 4,
+     "seed_glowcap": 4
+    }
+   },
+   "bartering": {
+    "tag": "Silver tongue",
+    "icon": "i_gold",
+    "desc": "You can talk anyone into a deal. Start with Bartering 1 and 60 extra gold.",
+    "gold": 60,
+    "items": {}
+   },
+   "sailing": {
+    "tag": "Born on the water",
+    "icon": "i_seed_seapearl",
+    "desc": "You worked the fishing boats. Start with Sailing 1 and 30 extra gold.",
+    "gold": 30,
+    "items": {}
+   }
+  }
  }
 };
 
@@ -31588,19 +31778,38 @@ function levelFromXp(xp, c) {
   return l;
 }
 function xpForLevel(l, c) { c = c || D.skillCurve || D.xpCurve; let need = 0; for (let i = 1; i < l; i++) need += Math.round(c.base * Math.pow(i, c.exp)); return need; }
-function skillLvl(id) { if (D.skills[id] && D.skills[id].requires && !skillUnlocked(id)) return 0; return levelFromXp((G.skills[id] || 0)); }
+function skillLvl(id) { if (D.skills[id] && D.skills[id].requires && !skillUnlocked(id)) return 0; return Math.max(0, levelFromXp((G.skills[id] || 0)) - 1); }   // skills start at 0
+function xpForSkill(l) { return l <= 0 ? 0 : xpForLevel(l + 1); }
+// ---- skill points: every skill level gives one point to spend in that skill (D.skillPoints)
+function SP() { return D.skillPoints || { options: {} }; }
+function ptOpts(sk) { return (SP().options || {})[sk] || []; }
+function pts(sk) { G.pts = G.pts || {}; return G.pts[sk] || (G.pts[sk] = {}); }
+function ptVal(sk, opt) { if (!G) return 0; const o = ptOpts(sk).find(o => o.id === opt); return o ? ((G.pts || {})[sk] || {})[opt] * o.amt || 0 : 0; }
+function spentPts(sk) { return Object.values((G.pts || {})[sk] || {}).reduce((a, b) => a + b, 0); }
+function unspent(sk) { return ptOpts(sk).length ? Math.max(0, skillLvl(sk) - spentPts(sk)) : 0; }
+function totalUnspent() { return Object.keys(SP().options || {}).reduce((a, sk) => a + unspent(sk), 0); }
+function isMagicFoe(id) { return !!id && (SP().magicFoes || []).some(x => String(id).includes(x)); }
+function optLine(sk, o) { const v = ptVal(sk, o.id); return o.pct ? `${Math.round(v * 100)}%` : `+${v}`; }
+async function pointsMenu(sk) {
+  if (!ptOpts(sk).length) return;
+  await openMenu({ title: () => `${D.skills[sk].name}  -  ${unspent(sk)} point${unspent(sk) === 1 ? '' : 's'} to spend`, width: 600,
+    footer: 'Points are permanent. Perks at levels 5, 10, 15 and 20 work as before.',
+    items: () => ptOpts(sk).map(o => ({ label: o.label, right: `now ${optLine(sk, o)}  (${pts(sk)[o.id] || 0} pt${(pts(sk)[o.id] || 0) === 1 ? '' : 's'})`, disabled: !unspent(sk), desc: o.desc || '', value: o.id }))
+      .concat([{ label: unspent(sk) ? 'Save the rest for later' : 'Done', value: '__done', desc: 'Spend remaining points any time from Skills (K).' }]),
+    onSelect: it => { if (it.value === '__done') return true; if (!unspent(sk)) return false; pts(sk)[it.value] = (pts(sk)[it.value] || 0) + 1; AU.sfx('select'); if (it.value === 'hp') G.hp = Math.min(maxHp(), G.hp + ptOpts(sk).find(o => o.id === 'hp').amt); invalidateComp && invalidateComp(); return unspent(sk) ? false : true; } });
+}
 function addSkillXp(id, n) {
   if (!G || !skillUnlocked(id)) return;
   if (id === 'magery' && home().furn.desk) n = Math.ceil(n * 1.25);
   const before = skillLvl(id); G.skills[id] = (G.skills[id] || 0) + n; const after = skillLvl(id);
-  if (after > before) { toast(`${D.skills[id] ? D.skills[id].name : id} rose to ${after}!`, UI.green); AU.sfx('levelup'); if (perkAvail(id).length) toast('New perk available! Press K', UI.blue); checkUnlocks(); checkSpellLearn(); }
+  if (after > before) { toast(`${D.skills[id] ? D.skills[id].name : id} rose to ${after}!${ptOpts(id).length ? '  +1 point' : ''}`, UI.green); AU.sfx('levelup'); if (ptOpts(id).length) (R.pointQ = R.pointQ || []).includes(id) || R.pointQ.push(id); if (perkAvail(id).length) toast('New perk available! Press K', UI.blue); checkUnlocks(); checkSpellLearn(); }
 }
-function playerLvl() { return levelFromXp(G.xp, D.xpCurve); }
-function lvlProgress() { const l = playerLvl(), a = xpForLevel(l, D.xpCurve), b = xpForLevel(l + 1, D.xpCurve); return { l, cur: G.xp - a, need: b - a, frac: b > a ? (G.xp - a) / (b - a) : 1 }; }
-function maxHp() { return D.player.hp + (playerLvl() - 1) * D.player.hpPerLevel + gearStat('player', 'hp') + perk('hp'); }
-function playerAtk() { return D.player.atk + (skillLvl('swordplay') - 1) + (playerLvl() - 1) + gearStat('player', 'atk') + perk('atk'); }
-function playerDef() { return D.player.def + Math.floor((playerLvl() - 1) / 2) + gearStat('player', 'def') + perk('def'); }
-function spellMult() { const M = D.magic || {}, m = skillLvl('magery') - 1; return ((M.base == null ? 0.85 : M.base) + (M.lin == null ? 0.04 : M.lin) * m + (M.quad == null ? 0.006 : M.quad) * m * m) * (1 - castPenalty()); }
+function playerLvl() { return Math.max(1, Object.keys(D.skills).reduce((a, id) => a + skillLvl(id), 0)); }   // your level = the sum of your skill levels
+function lvlProgress() { return { l: playerLvl(), cur: 0, need: 0, frac: 1 }; }
+function maxHp() { return D.player.hp + (playerLvl() - 1) * (D.player.hpPerLevel || 4) + ptVal('swordplay', 'hp') + gearStat('player', 'hp') + perk('hp'); }
+function playerAtk() { return D.player.atk + skillLvl('swordplay') + ptVal('swordplay', 'atk') + gearStat('player', 'atk') + perk('atk'); }
+function playerDef() { return D.player.def + ptVal('swordplay', 'def') + gearStat('player', 'def') + perk('def'); }
+function spellMult() { const M = D.magic || {}, m = skillLvl('magery'); return ((M.base == null ? 0.85 : M.base) + (M.lin == null ? 0.04 : M.lin) * m + (M.quad == null ? 0.006 : M.quad) * m * m) * (1 + ptVal('magery', 'power')) * (1 - castPenalty()); }
 function castPenalty() { const raw = gearItems('player').reduce((a, it) => a + (it.castPenalty || 0), 0) * (1 - perk('castFocus')); return Math.min((D.magic || {}).penaltyCap == null ? 0.6 : D.magic.penaltyCap, raw); }
 function spellSchool(sp) { return sp.school || (sp.kind === 'heal' ? 'healing' : sp.kind === 'buff' ? 'enhancement' : sp.kind === 'debuff' || sp.kind === 'terrain' ? 'control' : 'destruction'); }
 function spellInfo(sp) {
@@ -31614,7 +31823,7 @@ function spellInfo(sp) {
   return `[${sc}]  ${bits.join(', ')}.`;
 }
 function areaBonus(sp) { const k = sp.kind; return k === 'debuff' ? perk('controlArea') : k === 'buff' ? perk('buffArea') : k === 'heal' ? perk('healArea') : 0; }
-function debuffAmt(sp, t) { if (sp.pct && t) return Math.max(1, Math.round(((sp.stat === 'atk' ? t.atk : t.def) || 0) * sp.pct)); return (sp.power || 2) + perk('debuffPower') + Math.floor((skillLvl('magery') - 1) / ((D.magic || {}).debuffPerMagery || 4)); }
+function debuffAmt(sp, t) { if (sp.pct && t) return Math.max(1, Math.round(((sp.stat === 'atk' ? t.atk : t.def) || 0) * sp.pct)); return (sp.power || 2) + perk('debuffPower') + Math.floor(skillLvl('magery') / ((D.magic || {}).debuffPerMagery || 4)); }
 function checkSpellLearn(quiet) {
   if (!G) return; for (const [id, sp] of Object.entries(D.spells)) { const la = sp.learnAt; if (!la || G.spells.includes(id) || skillLvl(la.skill || 'magery') < la.level) continue;
     G.spells.push(id); if (!quiet) { AU.sfx('discover'); toast(`New spell: ${sp.name}! (M to read about it)`, UI.blue); } }
@@ -31663,6 +31872,40 @@ function askName(current) {
     inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); done(); } });
   });
 }
+async function chooseCalling() {
+  const CL = SP().callings || {};
+  const ids = Object.keys(CL).filter(k => D.skills[k]);
+  let c = null; while (!c) c = await choose('Choose your calling', ids.map(k => ({ label: D.skills[k].name, right: CL[k].tag || '', icon: CL[k].icon, desc: CL[k].desc || '', value: k })), { width: 640, footer: 'This skill starts at level 1. Every other skill starts at 0 and grows as you use it.' });
+  G.calling = c; G.skills[c] = xpForSkill(1);
+  const b = CL[c] || {}; for (const [id, n] of Object.entries(b.items || {})) add(id, n, true); if (b.gold) G.gold += b.gold;
+  for (const sp of b.spells || []) if (!G.spells.includes(sp)) G.spells.push(sp);
+  G.hp = maxHp(); toast(`${D.skills[c].name}: you have 1 point to spend (Skills, K).`, UI.green);
+}
+// saves from before 0.15: every skill goes back to 0 and the player shares out the same number of levels again
+async function rebuildHero() {
+  const pool = G.rebuildPool; if (!pool) return; const lv = {}; const base = Object.keys(D.skills).filter(k => !D.skills[k].requires), adv = Object.keys(D.skills).filter(k => D.skills[k].requires);
+  const left = () => pool - Object.values(lv).reduce((a, b) => a + b, 0);
+  const ok = k => !D.skills[k].requires || (lv[D.skills[k].requires.skill] || 0) >= D.skills[k].requires.level;
+  await say('', [`${heroName()}, the way skills work has changed. Every skill now starts at 0, your level is the sum of your skill levels, and each skill level gives a point to spend.`, `You have ${pool} skill levels to share out however you like. Choose carefully: this happens once.`]);
+  for (;;) {
+    const r = await openMenu({ title: () => `Rebuild your hero  -  ${left()} level${left() === 1 ? '' : 's'} left to assign`, width: 620, minRows: 9,
+      footer: 'Left/Right: add or remove levels.  Advanced skills open at 10 in their base skill.',
+      items: () => base.concat(adv.filter(ok)).map(k => ({ label: D.skills[k].name + (D.skills[k].requires ? '  (advanced)' : ''), right: `Lv ${lv[k] || 0}`, value: k, desc: D.skills[k].desc }))
+        .concat([{ label: left() ? `Assign all ${pool} levels to continue` : 'Done: rebuild my hero', value: '__ok', disabled: !!left() }]),
+      onKey: (k, it) => { if (!it || it.value === '__ok') return; const d = (k === 'arrowright' || k === 'd') ? 1 : (k === 'arrowleft' || k === 'a') ? -1 : 0; if (!d) return;
+        if (d > 0 && left() > 0 && (lv[it.value] || 0) < 20) lv[it.value] = (lv[it.value] || 0) + 1; if (d < 0 && lv[it.value]) lv[it.value]--;
+        for (const a of adv) if (!ok(a)) delete lv[a]; AU.sfx('menu'); },
+      onSelect: it => { if (it.value === '__ok') return true; if (left() > 0 && (lv[it.value] || 0) < 20) { lv[it.value] = (lv[it.value] || 0) + 1; AU.sfx('menu'); } return false; } });
+    if (r && r.value === '__ok' || r === '__ok') break;
+    if (!left()) break;
+  }
+  G.skills = {}; for (const [k, n] of Object.entries(lv)) if (n) G.skills[k] = xpForSkill(n);
+  for (const [sk, pm] of Object.entries(G.perks || {})) for (const l of Object.keys(pm)) if (skillLvl(sk) < +l) delete pm[l];
+  G.pts = {}; G.sv2 = true; delete G.rebuildPool; G.hp = maxHp(); checkSpellLearn(true);
+  toast(`Rebuilt! You are level ${playerLvl()}. Spend your points in Skills (K).`, UI.green);
+  const sk = Object.keys(SP().options || {}).find(k => unspent(k)); if (sk) { const c = await choose(`You have ${totalUnspent()} skill points to spend.`, [{ label: 'Spend now', value: 'now' }, { label: 'Later', value: 'later', desc: 'They wait for you in Skills (K).' }], { width: 460 }); if (c === 'now') for (const k of Object.keys(SP().options || {})) if (unspent(k)) await pointsMenu(k); }
+  saveGame(true);
+}
 function newGame() {
   const s = D.start;
   G = { v: 1, map: s.map, x: s.x, y: s.y, day: 1, time: D.meta.dayStart * 60, gold: s.gold, inv: Object.assign({}, s.items), discovered: {}, spells: [], skills: {}, xp: 0, hp: 1,
@@ -31670,14 +31913,18 @@ function newGame() {
   SEA = null;
   G.hp = maxHp();
   loadMap(s.map, s.x, s.y); R.scene = 'world';
-  script(async () => { G.name = await askName(); await say('', s.intro); });
+  G.sv2 = true; G.pts = {};
+  script(async () => { G.name = await askName(); await chooseCalling(); await say('', s.intro); });
 }
 function saveGame(quiet) { try { localStorage.setItem(SAVE_KEY, JSON.stringify(G)); if (!quiet) toast('Game saved.'); } catch (e) { toast('Could not save: ' + e.message, UI.red); } }
 function hasSave() { try { return !!localStorage.getItem(SAVE_KEY); } catch (e) { return false; } }
 function loadGame() {
-  try { const s = JSON.parse(localStorage.getItem(SAVE_KEY)); if (!s) return false; G = s; if ((G.curveV || 1) < (D.meta.curveVersion || 1) && D.skillCurve) { const oc = D.skillCurve, L = levelFromXp(G.xp, oc), a = xpForLevel(L, oc), b = xpForLevel(L + 1, oc), f = b > a ? Math.min(1, (G.xp - a) / (b - a)) : 0; G.xp = Math.round(xpForLevel(L, D.xpCurve) + f * (xpForLevel(L + 1, D.xpCurve) - xpForLevel(L, D.xpCurve))); }
+  try { const s = JSON.parse(localStorage.getItem(SAVE_KEY)); if (!s) return false; G = s;
+  if (!G.sv2 && G.rebuildPool == null) { G.rebuildPool = 1 + Object.keys(D.skills).reduce((a, k) => a + ((D.skills[k].requires && levelFromXp(G.skills[(D.skills[k].requires || {}).skill] || 0) < D.skills[k].requires.level) ? 0 : Math.max(0, levelFromXp(G.skills[k] || 0) - 1)), 0); }
+  if (!G.sv2 && (G.curveV || 1) < (D.meta.curveVersion || 1) && D.skillCurve) { const oc = D.skillCurve, L = levelFromXp(G.xp, oc), a = xpForLevel(L, oc), b = xpForLevel(L + 1, oc), f = b > a ? Math.min(1, (G.xp - a) / (b - a)) : 0; G.xp = Math.round(xpForLevel(L, D.xpCurve) + f * (xpForLevel(L + 1, D.xpCurve) - xpForLevel(L, D.xpCurve))); }
   G.curveV = D.meta.curveVersion || 1; G.enchanted = G.enchanted || {}; for (const [nid, [b0, g0]] of Object.entries(G.enchanted)) registerEnchant(nid, b0, g0);
-  setTimeout(() => { if (G && !G.name) script(async () => { G.name = await askName(); toast(`Welcome back, ${G.name}.`, UI.green); });
+  setTimeout(() => { if (G && (!G.name || G.rebuildPool)) script(async () => { if (!G.name) { G.name = await askName(); toast(`Welcome back, ${G.name}.`, UI.green); } if (G.rebuildPool) await rebuildHero(); autoCompanionPoints(); });
+    autoCompanionPoints();
     checkSpellLearn(true); for (const [sk, pm] of Object.entries(G.perks || {})) { const ms = ((D.perks || {})[sk] || {}).milestones || []; for (const lv of Object.keys(pm)) { const m = ms.find(x => String(x.level) === lv); if (!m || !m.options.some(o => o.id === pm[lv])) delete pm[lv]; } }
     for (const sv of (D.survivors || {}).list || []) if ((G.survDone || []).includes(sv.id) && !G.flags['home_' + sv.id] && (G.helpers[sv.helper] || D.quests.some(q => q.unlockFlag === 'home_' + sv.id && G.quests[q.id]))) G.flags['home_' + sv.id] = true; }, 0); G.garden = G.garden || { plan: 'same' }; G.stall = G.stall || { items: {}, restock: 0 }; G.stall.items = G.stall.items || {}; G.reports = G.reports || []; G.equip = G.equip || { player: {} }; G.perks = G.perks || {}; G.home = G.home || { furn: { bed: Object.keys(G.helpers || {}).length }, up: {} }; G.kills = G.kills || {}; G.research = G.research || {}; G.wards = G.wards || {}; G.ports = G.ports || {}; G.flags = G.flags || {}; G.dread = G.dread || 0; G.morph = G.morph || {}; G.visions = G.visions || []; SEA = null; invalidateComp(); if (!mapDef(G.map)) G.map = D.start.map; G.seen = G.seen || Object.fromEntries(Object.keys(G.inv).map(k => [k, true])); G.shopUnlocks = G.shopUnlocks || {}; G.charts = G.charts || {}; loadMap(G.map, G.x, G.y); R.scene = 'world'; toast('Welcome back!'); return true; }
   catch (e) { toast('Save could not be loaded: ' + e.message, UI.red); return false; }
@@ -31725,10 +31972,11 @@ function overlayActive() { return MOB.portrait() || menus.length || dialogs.leng
 
 function updateWorld(dt) {
   updateEnemyAnims(dt);
-  if (overlayActive() || R.busy) return;
+  if (overlayActive() || R.busy || G.rebuildPool) return;
   const wasWeary = weary(); G.time += dt * D.meta.minutesPerSecond;
   if (!wasWeary && weary()) { toast('Past midnight - you are Weary (slower, weaker in battle).', UI.red); toast('Sleep in a bed, or camp outdoors with a bedroll.', UI.red); }
   if (G.time >= dawnHour() * 60) { script(() => newDay('dawn')); return; }
+  if (R.pointQ && R.pointQ.length && !C) { const sk = R.pointQ.shift(); if (unspent(sk)) { script(async () => { const c = await choose(`${D.skills[sk].name} rose to ${skillLvl(sk)}!  You have ${unspent(sk)} point${unspent(sk) === 1 ? '' : 's'} to spend.`, [{ label: 'Spend now', value: 'now' }, { label: 'Later', value: 'later', desc: 'Your points wait for you in Skills (K).' }], { width: 520 }); if (c === 'now') await pointsMenu(sk); }); return; } }
   if (!G.flags.dreadKnown && (playerLvl() >= (DL().revealLevel || 5) || dread() >= (DL().revealAt || 0.12))) { script(revealDarkLord); return; }
   updateRaid();
   if (R.moving) {
@@ -31893,8 +32141,8 @@ async function wizardQuests(npc) {
   const any = await giverQuests(npc, { progress: true });
   if (!any) await say(npc.def.name, (npc.def.dialog || []).concat(npc.def.role === 'wizard' && G.flags.dreadKnown && dread() >= 0.1 ? (DL().aldwin || []) : []).concat([npc.def.role === 'wizard' ? '(No new tasks right now. Hunt monsters to unlock Bane research quests - and more zones are coming!)' : '(No new tasks right now.)']), npc.def.sprite);
 }
-function buyPrice(id) { return Math.max(1, Math.round(item(id).price * Math.max(0.3, 1 - 0.03 * (skillLvl('bartering') - 1) - perk('buyDiscount') - (item(id).type === 'seed' ? perk('seedDiscount') : 0)))); }
-function sellPrice(id) { return Math.max(1, Math.round(item(id).sell * (1 + 0.05 * (skillLvl('bartering') - 1) + perk('sellBonus') + gearVal('player', 'sellBonus') + premium(id)))); }
+function buyPrice(id) { return Math.max(1, Math.round(item(id).price * Math.max(0.3, 1 - 0.03 * skillLvl('bartering') - ptVal('bartering', 'buy') - perk('buyDiscount') - (item(id).type === 'seed' ? perk('seedDiscount') : 0)))); }
+function sellPrice(id) { return Math.max(1, Math.round(item(id).sell * (1 + 0.05 * skillLvl('bartering') + ptVal('bartering', 'sell') + perk('sellBonus') + gearVal('player', 'sellBonus') + premium(id)))); }
 async function shopTalk(npc, skipIntro) {
   const shop = D.shops[npc.def.shop] || { name: 'Shop', sells: [], buysTypes: ['reagent'] };
   if (!skipIntro) await say(npc.def.name, npc.def.dialog, npc.def.sprite);
@@ -32000,7 +32248,7 @@ async function assignRole(id) {
 }
 
 // ================= GREENHOUSE / DAY CYCLE =================
-function harvestYield(seedId, herb) { return ((item(seedId).yield || 1) + Math.floor((herb - 1) / 3) + perk('yield')) * (D.greenhouse.yieldMult || 1); }
+function harvestYield(seedId, herb) { return ((item(seedId).yield || 1) + Math.floor(herb / 3) + perk('yield')) * (D.greenhouse.yieldMult || 1); }
 async function usePlanter(x, y) {
   const pl = R.planters.find(p => p.x === x && p.y === y); if (!pl) return; const locked = q => q.gh && q.i >= ghPlanters();
   if (locked(pl)) return say('Greenhouse', ['This planter is cracked and full of weeds.', "Gideon's Home Center can repair more of the greenhouse."]);
@@ -32016,7 +32264,8 @@ async function usePlanter(x, y) {
     }
     const c = await choose('Plant what?', opts, { width: 480 }); if (!c) return;
     const targets = c.all ? empties : [pl.key]; let n = 0;
-    for (const i of targets) { if (!take(c.s, 1)) break; G.planters[i] = { seed: c.s, growth: 0, days: item(c.s).days || 2 }; n++; }
+    let saved = 0; for (const i of targets) { if (!count(c.s)) break; if (Math.random() < ptVal('herbalism', 'seed')) saved++; else take(c.s, 1); G.planters[i] = { seed: c.s, growth: 0, days: item(c.s).days || 2, by: 'player' }; n++; }
+    if (saved) toast(`Green thumb: ${saved} seed${saved > 1 ? 's' : ''} saved.`, UI.green);
     addSkillXp('herbalism', n); AU.sfx('plant'); toast(`Planted ${n} ${item(c.s).name}`);
     return;
   }
@@ -32026,9 +32275,9 @@ async function usePlanter(x, y) {
     const herb = skillLvl('herbalism'); let total = {}, seeds = 0;
     R.planters.forEach(q0 => { const i = q0.key;
       const q = G.planters[i]; if (!q || q.growth < q.days) return;
-      const rid = item(q.seed).grows; const n = harvestYield(q.seed, herb) + gearVal('player', 'yield');
+      const rid = item(q.seed).grows; const n = harvestYield(q.seed, herb) + gearVal('player', 'yield') + (Math.random() < ptVal('herbalism', 'yield') ? 1 : 0);
       total[rid] = (total[rid] || 0) + n; add(rid, n, true);
-      if (Math.random() < D.greenhouse.seedReturnBase + D.greenhouse.seedReturnPerLevel * (herb - 1) + perk('seedReturn')) { add(q.seed, 1); seeds++; }
+      if (Math.random() < D.greenhouse.seedReturnBase + D.greenhouse.seedReturnPerLevel * herb + perk('seedReturn')) { add(q.seed, 1); seeds++; }
       G.planters[i] = null; addSkillXp('herbalism', 1);
     });
     AU.sfx('pickup'); toast('Harvested ' + Object.entries(total).map(([r, n]) => `${n} ${item(r).name}`).join(', ') + (seeds ? ` (+${seeds} seeds)` : ''), UI.green);
@@ -32092,7 +32341,7 @@ async function newDay(reason, atSea) {
     const gardeners = working.filter(w => w.st.role === 'greenhouse');
     const gardenSkill = gardeners.reduce((a, w) => a + ((w.h.skills || {}).herbalism || 0), 0);
     const plots = plotKeys(); let boosted = 0; const rec = { day: G.day, date: dateStr(), garden: null, stall: null };
-    for (const k of plots) { const p = G.planters[k]; if (!p || p.growth >= p.days) continue; p.growth++; if (Math.random() < perk('growChance')) p.growth = Math.min(p.days, p.growth + 1); if (gardenSkill && Math.random() < gardenSkill * 0.05) { p.growth = Math.min(p.days, p.growth + 1); boosted++; } }
+    for (const k of plots) { const p = G.planters[k]; if (!p || p.growth >= p.days) continue; p.growth++; if (Math.random() < perk('growChance') || (p.by === 'player' && Math.random() < ptVal('herbalism', 'grow'))) p.growth = Math.min(p.days, p.growth + 1); if (gardenSkill && Math.random() < gardenSkill * 0.05) { p.growth = Math.min(p.days, p.growth + 1); boosted++; } }
     let herb = 1; const got = {}, prev = {};
     if (gardeners.length) { // 1) harvest everything ripe
       herb = Math.max(...gardeners.map(w => (w.h.skills || {}).herbalism || 1)) + perk('helperHerb');
@@ -32128,7 +32377,7 @@ async function newDay(reason, atSea) {
       loadMap(D.maps.house ? 'house' : D.start.map, hpos.x, hpos.y); R.dir = 'down'; }
     else if (!atSea) loadMap(R.mapId, G.x, G.y); // wake where you slept (monsters and forage respawn)
   });
-  const back = resolveExpeditions();
+  const back = resolveExpeditions(); autoCompanionPoints();
   if (reason !== 'dawn') saveGame(true);
   if (reason === 'dawn') report.unshift('The sun rises. You stayed up all night and feel far from rested (HP not restored).');
   if (reason === 'camp') report.unshift('You break camp at first light.');
@@ -32166,10 +32415,10 @@ function fieldCast(id) {
   });
 }
 async function skillsMenu() {
-  await openMenu({ title: (() => { const p = lvlProgress(); return `${heroName()}  -  Level ${p.l}  (XP ${p.cur}/${p.need} to level ${p.l + 1})`; })(), width: 600, closeKey: 'k',
-    items: () => Object.entries(D.skills).map(([id, s]) => { if (!skillUnlocked(id)) { const rq = s.requires; return { label: `${s.name}  (advanced)`, right: 'locked', disabled: true, desc: `${s.desc}  Unlocks at ${(D.skills[rq.skill] || {}).name} ${rq.level} (now ${skillLvl(rq.skill)}).` }; } const l = skillLvl(id), xp = G.skills[id] || 0, a = xpForLevel(l), b = xpForLevel(l + 1); return { label: s.name + (s.requires ? '  (advanced)' : '') + (perkAvail(id).length ? '   * perk!' : ''), right: `Lv ${l}`, bar: (xp - a) / Math.max(1, b - a), desc: `${s.desc}  (XP ${xp}/${b})  Enter: perks`, value: id }; }),
-    footer: 'Skills rise as you use them. Level rises from battle XP.  Enter: perks (skill 5/10/15/20)',
-    onSelect: it => { script(() => perksMenu(it.value)); return false; } });
+  await openMenu({ title: (() => { const p = lvlProgress(); return `${heroName()}  -  Level ${p.l}  (the sum of your skill levels)`; })(), width: 600, closeKey: 'k',
+    items: () => Object.entries(D.skills).map(([id, s]) => { if (!skillUnlocked(id)) { const rq = s.requires; return { label: `${s.name}  (advanced)`, right: 'locked', disabled: true, desc: `${s.desc}  Unlocks at ${(D.skills[rq.skill] || {}).name} ${rq.level} (now ${skillLvl(rq.skill)}).` }; } const l = skillLvl(id), xp = G.skills[id] || 0, a = xpForSkill(l), b = xpForSkill(l + 1); return { label: s.name + (s.requires ? '  (advanced)' : '') + (unspent(id) ? `   (${unspent(id)} point${unspent(id) === 1 ? '' : 's'} to spend)` : '') + (perkAvail(id).length ? '   * perk!' : ''), right: `Lv ${l}`, bar: (xp - a) / Math.max(1, b - a), desc: `${s.desc}  (XP ${xp}/${b})  Enter: perks`, value: id }; }),
+    footer: 'Each skill level gives a point to spend in that skill.  Enter: spend points or pick a perk',
+    onSelect: it => { const sk = it.value; script(async () => { if (unspent(sk) && perkAvail(sk).length) { const c = await choose(D.skills[sk].name, [{ label: `Spend points (${unspent(sk)})`, value: 'p' }, { label: 'Choose a perk', value: 'k' }], { width: 360 }); if (c === 'p') return pointsMenu(sk); if (c === 'k') return perksMenu(sk); return; } if (unspent(sk)) return pointsMenu(sk); if (ptOpts(sk).length && !perkAvail(sk).length && !((D.perks || {})[sk])) return pointsMenu(sk); return perksMenu(sk); }); return false; } });
 }
 const HUB_TABS = ['Crew', 'Party', 'Garden', 'Stall', 'Adventures', 'Reports', 'Payroll'];
 async function helpersMenu() {
@@ -32207,9 +32456,10 @@ function hubItems(tab) {
 }
 async function helperActions(id) {
   const h = D.helpers[id];
-  const c = await choose(`${h.name} the ${h.title}  (Lv ${hLvl(id)})`, [{ label: 'Change job', right: ROLES[G.helpers[id].role], value: 'job' }, { label: 'Equipment', value: 'gear', desc: 'Open the equipment screen for this companion.' }, { label: 'Dismiss', value: 'dismiss', desc: `${h.name} leaves your service.` }, { label: 'Back', value: 'back' }], { width: 420 });
+  const c = await choose(`${h.name} the ${h.title}  (Lv ${hLvl(id)})`, [{ label: 'Change job', right: ROLES[G.helpers[id].role], value: 'job' }, { label: 'Equipment', value: 'gear', desc: 'Open the equipment screen for this companion.' }, { label: 'Points', right: cpUnspent(id) ? `${cpUnspent(id)} unspent` : (cpState(id).mode === 'auto' ? 'Auto' : 'Manual'), value: 'points', desc: 'Spend level-up points on HP, Attack and Defense, by hand or automatically by priority.' }, { label: 'Dismiss', value: 'dismiss', desc: `${h.name} leaves your service.` }, { label: 'Back', value: 'back' }], { width: 420 });
   if (c === 'job') { if (G.helpers[id].role === 'away') toast(`${h.name} is away on an expedition.`); else await assignRole(id); }
   if (c === 'gear') await paperdoll(id);
+  if (c === 'points') await companionPointsMenu(id);
   if (c === 'dismiss') { const ok = await choose(`Really dismiss ${h.name}?`, [{ label: 'Keep them', value: 'n' }, { label: 'Dismiss', value: 'y' }], { width: 340 }); if (ok === 'y') { delete G.helpers[id]; toast(`${h.name} was dismissed.`); } }
 }
 async function questMenu() {
@@ -32381,11 +32631,31 @@ function bfs(u, maxSteps) {
   for (const k of [...res.keys()]) { const [x, y] = k.split(',').map(Number); const o = cUnitAt(x, y); if (o && o !== u) res.delete(k); }
   return res;
 }
+function cpOpts() { return SP().companionOptions || [{ id: 'hp', label: '+8 max HP', amt: 8 }, { id: 'atk', label: '+1 Attack', amt: 1 }, { id: 'def', label: '+1 Defense', amt: 1 }]; }
+function cpState(id) { const st = G.helpers[id]; st.cp = st.cp || { mode: 'auto', w: {}, spent: {} }; for (const o of cpOpts()) { if (st.cp.w[o.id] == null) st.cp.w[o.id] = 3; st.cp.spent[o.id] = st.cp.spent[o.id] || 0; } return st.cp; }
+function cpUnspent(id) { const cp = cpState(id); return Math.max(0, (hLvl(id) - 1) * (SP().companionPointsPerLevel || 2) - Object.values(cp.spent).reduce((a, b) => a + b, 0)); }
+function cpVal(id, opt) { const st = G.helpers[id]; if (!st || !st.cp) return 0; const o = cpOpts().find(o => o.id === opt); return o ? (st.cp.spent[opt] || 0) * o.amt : 0; }
+function cpAuto(id) { const cp = cpState(id); let n = cpUnspent(id); const os = cpOpts().filter(o => cp.w[o.id] > 0); if (!os.length) return;
+  while (n-- > 0) { const o = os.slice().sort((a, b) => (cp.spent[a.id] / cp.w[a.id]) - (cp.spent[b.id] / cp.w[b.id]))[0]; cp.spent[o.id]++; } }
+function autoCompanionPoints() { if (!G) return; for (const id of Object.keys(G.helpers || {})) if (D.helpers[id] && cpState(id).mode === 'auto') cpAuto(id); }
+async function companionPointsMenu(id) {
+  const h = D.helpers[id], cp = cpState(id); const bars = n => '|'.repeat(n).padEnd(5, '.') + `  ${n}`;
+  await openMenu({ title: () => `${h.name}: points  (${cpUnspent(id)} unspent)`, width: 600,
+    footer: 'Left/Right: change a priority.  Auto spends new points by priority (all equal = balanced).',
+    items: () => [{ label: 'Spending', right: cp.mode === 'auto' ? 'Auto (by priority)' : 'Manual', value: 'mode', desc: 'Auto spends points as soon as they are earned, following the priorities below. Manual saves them for you.' }]
+      .concat(cpOpts().map(o => ({ label: `${o.label}  priority`, right: bars(cp.w[o.id]), value: 'w:' + o.id, desc: `${o.label}: ${cp.spent[o.id]} points spent so far (+${cpVal(id, o.id)}). 0 = never.` })))
+      .concat(cp.mode === 'manual' ? cpOpts().map(o => ({ label: `Spend a point: ${o.label}`, right: `${cp.spent[o.id]} pts`, disabled: !cpUnspent(id), value: 's:' + o.id })) : []),
+    onKey: (k, it) => { if (!it || !String(it.value).startsWith('w:')) return; const d = (k === 'arrowright' || k === 'd') ? 1 : (k === 'arrowleft' || k === 'a') ? -1 : 0; if (!d) return; const o = it.value.slice(2); cp.w[o] = Math.max(0, Math.min(5, cp.w[o] + d)); AU.sfx('menu'); if (cp.mode === 'auto') cpAuto(id); },
+    onSelect: it => { if (it.value === 'mode') { cp.mode = cp.mode === 'auto' ? 'manual' : 'auto'; if (cp.mode === 'auto') cpAuto(id); }
+      else if (String(it.value).startsWith('w:')) { const o = it.value.slice(2); cp.w[o] = (cp.w[o] + 1) % 6; if (cp.mode === 'auto') cpAuto(id); }
+      else if (String(it.value).startsWith('s:') && cpUnspent(id)) cp.spent[it.value.slice(2)]++;
+      AU.sfx('menu'); return false; } });
+}
 function helperUnit(id) {
   const h = D.helpers[id], st = G.helpers[id], l = levelFromXp(st.xp || 0);
-  const hp = h.hp + 4 * (l - 1);
+  const hp = h.hp + (l - 1) * (D.player.hpPerLevel || 4) + cpVal(id, 'hp');
   const ghp = hp + gearStat(id, 'hp');
-  return { side: 'party', helperId: id, who: id, name: h.name, sprite: h.sprite, hp: ghp, maxHp: ghp, atk: h.atk + (l - 1) + Math.floor(((h.skills || {}).swordplay || 0) / 2) + gearStat(id, 'atk') + perk('partyAtk') + Math.floor(advLvl('tactics') / 4), def: h.def + Math.floor((l - 1) / 3) + gearStat(id, 'def') + perk('partyDef'), move: Math.max(2, h.move + gearStat(id, 'move') + perk('partyMove')), range: 1, ability: h.ability ? Object.assign({}, h.ability, { power: h.ability.power + (l - 1) }) : null, cd: 0 };
+  return { side: 'party', helperId: id, who: id, name: h.name, sprite: h.sprite, hp: ghp, maxHp: ghp, atk: h.atk + cpVal(id, 'atk') + Math.floor(((h.skills || {}).swordplay || 0) / 2) + gearStat(id, 'atk') + perk('partyAtk') + Math.floor(advLvl('tactics') / 4), def: h.def + cpVal(id, 'def') + gearStat(id, 'def') + perk('partyDef'), move: Math.max(2, h.move + gearStat(id, 'move') + perk('partyMove')), range: 1, ability: h.ability ? Object.assign({}, h.ability, { power: h.ability.power + (l - 1) }) : null, cd: 0 };
 }
 const pick = a => a[Math.floor(Math.random() * a.length)];
 function plural(n) { return /f$/.test(n) ? n.slice(0, -1) + 'ves' : /(s|sh|ch|x)$/.test(n) ? n + 'es' : /[^aeiou]y$/.test(n) ? n.slice(0, -1) + 'ies' : n + 's'; }
@@ -32400,6 +32670,7 @@ function foeCry(def, id) {
 function fleeChance(th) { const t = (D.battleTalk || {}).fleeChance || {}; return t[th.label] != null ? t[th.label] : 0.5; }
 function encounter(en, opts = {}) {
   if (R.busy) return; R.moving = null; keys.clear();
+  if (opts.sea && Math.random() < ptVal('sailing', 'slip')) { en.stun = 4; toast('You slip past them unseen.', UI.blue); return; }
   script(async () => {
     const BT = D.battleTalk || {}, def = en.def; if (!def) return startCombat(en, opts);
     const cm = (!opts.sea && R.map && R.map.caveMult) || 1, th = threat(def, cm), g = def.group || [1, 1];
@@ -32468,7 +32739,8 @@ function hit(a, b, power, label) {
   if (b.isPlayer && a.side === 'enemy' && man(a, b) <= 1 && Math.random() < wTrait('parry')) { float(b, 'Parry!', '#cfe8ff'); clog(`You parry ${a.name}'s blow!`); return; }
   power += (a.buffs || []).reduce((s, bf) => s + (bf.stat === 'atk' ? bf.amt : 0), 0);
   power = power * baneMult(a, b) - (a.side === 'enemy' && (G.research || {})[a.enemyId] ? perk('baneGuard') : 0);
-  const dmg = Math.max(1, Math.round(power + rnd(0, 2) - uDef(b)));
+  let dmg = Math.max(1, Math.round(power + rnd(0, 2) - uDef(b)));
+  if (b.isPlayer && a.side === 'enemy' && isMagicFoe(a.enemyId)) dmg = Math.max(1, Math.round(dmg * (1 - Math.min(0.6, ptVal('magery', 'resist')))));
   b.hp -= dmg; float(b, '-' + dmg, '#ff5a4a'); C.shake = 0.15; AU.sfx('hit');
   clog(`${a.name}${label ? ' (' + label + ')' : ''} ${a.isPlayer ? 'hit' : 'hits'} ${b.isPlayer ? 'you' : b.name} for ${dmg}.`);
   if (b.hp <= 0 && b.enemyId && (D.enemies[b.enemyId] || {}).shield) { for (const u of C.units) if (u.enemyId === D.enemies[b.enemyId].shield && !u.dead) { u.dead = true; u.hp = 0; } clog('The remaining tentacles sink beneath the waves!'); }
@@ -32476,7 +32748,8 @@ function hit(a, b, power, label) {
 }
 function onArbalest(u) { return C.sea && C.grid[u.y][u.x] === 'A'; }
 function atkRange(u) { if (C.sea && u.side === 'party') { const SA = (D.sea || {}).shipArena || {}; return onArbalest(u) ? (SA.arbalestRange || 6) : (SA.bowRange || 4); } return u.range; }
-function attack(a, b) { if (C.sea && a.side === 'party' && (onArbalest(a) || man(a, b) > 1)) { const SA = (D.sea || {}).shipArena || {}; if (onArbalest(a)) hit(a, b, a.atk + (SA.arbalestPower || 8) + perk('arbalestPower'), 'Arbalest'); else hit(a, b, Math.max(1, a.atk - 1), 'Bow'); } else if (a.isPlayer) playerStrike(a, b); else hit(a, b, a.atk); if (a.isPlayer) addSkillXp('swordplay', 1); finishUnit(a); }
+function act(u, sk) { if (u && u.isPlayer && C) { C.acts = C.acts || {}; C.acts[sk] = (C.acts[sk] || 0) + 1; } }
+function attack(a, b) { act(a, 'swordplay'); if (C.sea && a.side === 'party' && (onArbalest(a) || man(a, b) > 1)) { const SA = (D.sea || {}).shipArena || {}; const sd = a.isPlayer ? ptVal('sailing', 'dmg') : 0; if (onArbalest(a)) hit(a, b, a.atk + (SA.arbalestPower || 8) + perk('arbalestPower') + sd, 'Arbalest'); else hit(a, b, Math.max(1, a.atk - 1) + sd, 'Bow'); } else if (a.isPlayer) playerStrike(a, b); else hit(a, b, a.atk); if (a.isPlayer) addSkillXp('swordplay', 1); finishUnit(a); }
 function playerStrike(a, b) {
   const t = wpnType(), wsp = wSpec(t); let mult = 1 + ((D.weaponSpec || {}).damage || 0.15) * wsp, label = '';
   if (t === 'bow' && man(a, b) <= 1) { mult *= 1 - wTrait('closePenalty'); label = 'point-blank'; }
@@ -32543,13 +32816,14 @@ function canTaunt(u) { const cb = D.combat || {}; if (u.side !== 'party') return
 function doTaunt() {
   const u = C.sel; if (!u || C.phase !== 'party' || !canTaunt(u) || (u.tcd || 0) > 0) return; const cb = D.combat || {};
   const hit_ = alive('enemy').filter(e => man(e, u) <= (cb.tauntRange || 3)); if (!hit_.length) { toast(`No enemies within ${cb.tauntRange || 3} tiles to taunt.`); return; }
-  for (const e of hit_) { e.tauntBy = u; e.tauntT = cb.tauntTurns || 2; float(e, '!', '#ff8a4a'); }
+  act(u, 'swordplay'); for (const e of hit_) { e.tauntBy = u; e.tauntT = cb.tauntTurns || 2; float(e, '!', '#ff8a4a'); }
   u.buffs.push({ stat: 'def', amt: cb.tauntDef || 2, turns: 1 }); u.tcd = (cb.tauntCooldown || 3) + 1; AU.sfx('hit'); float(u, 'Taunt!', '#ffb04a');
   clog(`${u.isPlayer ? 'You roar' : u.name + ' roars'} a challenge! ${hit_.length} ${hit_.length > 1 ? 'enemies turn' : 'enemy turns'} to fight ${u.isPlayer ? 'you' : u.name} (+${cb.tauntDef || 2} DEF).`);
   finishUnit(u);
 }
 function doTarget(t) {
   const u = C.sel, a = C.action; if (!u || !a || !C.targets.includes(t)) return;
+  act(u, a.type === 'spell' ? 'magery' : a.type === 'item' ? 'herbalism' : 'swordplay');
   if (a.type === 'spell') {
     if (!hasReagents(a.sp)) { toast('Not enough reagents!'); C.mode = 'move'; return; }
     payReagents(a.sp); addSkillXp('magery', 2); AU.sfx(a.sp.kind === 'damage' || a.sp.kind === 'debuff' ? 'spell' : 'heal');
@@ -32561,7 +32835,7 @@ function doTarget(t) {
   C.mode = 'move'; C.action = null; C.targets = [];
   finishUnit(u);
 }
-function waitUnit() { const u = C.sel; if (!u || C.phase !== 'party') return; const amt = Math.max(2, Math.ceil(u.def * 0.5)); u.buffs.push({ stat: 'def', amt, turns: 1 }); float(u, `Defend +${amt}`, '#ffe07a'); clog(`${u.isPlayer ? 'You brace' : u.name + ' braces'} for the enemy (+${amt} defense this round).`); finishUnit(u); }
+function waitUnit() { const u = C.sel; if (!u || C.phase !== 'party') return; act(u, 'swordplay'); const amt = Math.max(2, Math.ceil(u.def * 0.5)); u.buffs.push({ stat: 'def', amt, turns: 1 }); float(u, `Defend +${amt}`, '#ffe07a'); clog(`${u.isPlayer ? 'You brace' : u.name + ' braces'} for the enemy (+${amt} defense this round).`); finishUnit(u); }
 function endTurn() { if (C.phase !== 'party') return; for (const u of alive('party')) u.done = true; enemyPhase(); }
 async function confirmEndTurn() {
   if (C.phase !== 'party') return; const idle = alive('party').filter(u => !u.done);
@@ -32634,10 +32908,14 @@ function victory() {
     for (const q of D.quests) if (G.quests[q.id] === 'active') q.objectives.forEach((o, i) => { if (o.type === 'defeat' && o.enemy === k.enemyId) { G.qprog[q.id] = G.qprog[q.id] || {}; G.qprog[q.id][i] = (G.qprog[q.id][i] || 0) + 1; } });
   }
   gold = Math.round(gold * (1 + perk('goldBonus'))); if (Math.random() < perk('pearlFind')) loot.seapearl = (loot.seapearl || 0) + 1;
-  const lvlBefore = playerLvl(), hpB = maxHp(), atkB = playerAtk(), defB = playerDef(); G.xp += xp; G.gold += gold;
+  const lvlBefore = playerLvl(); G.gold += gold;
+  const acts = Object.assign({}, C.acts || {}); const tot = Object.values(acts).reduce((a, b) => a + b, 0) || (acts.swordplay = 1); const sxp = Math.round(xp * (SP().battleXpMult || 1));
+  const split = Object.entries(acts).filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1]).map(([sk, n]) => ({ sk, n, xp: Math.max(1, Math.round(sxp * n / tot)) }));
+  const ups = []; for (const p of split) { const b0 = skillLvl(p.sk); addSkillXp(p.sk, p.xp); if (skillLvl(p.sk) > b0) ups.push(`${D.skills[p.sk].name} reached ${skillLvl(p.sk)}!${ptOpts(p.sk).length ? ' +1 point' : ''}`); }
   for (const [id, n] of Object.entries(loot)) add(id, n, true);
   for (const u of C.units) if (u.helperId && G.helpers[u.helperId]) G.helpers[u.helperId].xp = (G.helpers[u.helperId].xp || 0) + Math.round(xp * (1 + perk('helperXp')));
-  C.result = { xp, gold, loot, levelUp: playerLvl() > lvlBefore, gains: [`+${maxHp() - hpB} max HP`, atkB !== playerAtk() ? `+${playerAtk() - atkB} attack` : '', defB !== playerDef() ? `+${playerDef() - defB} defense` : '', 'fully healed'].filter(Boolean).join(',  ') };
+  C.result = { xp, gold, loot, levelUp: playerLvl() > lvlBefore, split: split.map(p => `${D.skills[p.sk].name} +${p.xp} XP (${p.n} of ${tot} action${tot === 1 ? '' : 's'})`).join('    '), gains: ups.join('   ') };
+  autoCompanionPoints();
   if (C.sea) { addSkillXp('sailing', 4); addSkillXp('navigation', 3); }
   if (C.units.some(u => u.helperId)) addSkillXp('tactics', 2);
 }
@@ -32854,7 +33132,8 @@ function renderCombat() {
       const r = C.result; text(`+${r.xp} XP     +${r.gold} gold`, VW / 2, 215, { align: 'center', bold: true });
       const l = Object.entries(r.loot).map(([id, n]) => `${n} ${item(id).name}`).join(', ');
       wrap(l ? 'Loot: ' + l : 'No loot.', 380).forEach((ln, i) => text(ln, VW / 2, 245 + i * 20, { align: 'center' }));
-      if (r.levelUp) { text(`LEVEL UP!  You are now level ${playerLvl()}.`, VW / 2, 290, { align: 'center', bold: true, color: UI.blue }); text(r.gains, VW / 2, 312, { align: 'center', size: 14, color: UI.blue }); }
+      if (r.split) text(r.split, VW / 2, 268, { align: 'center', size: 13, color: UI.dim });
+      if (r.levelUp || r.gains) { text(r.levelUp ? `LEVEL UP!  You are now level ${playerLvl()}.` : 'Skill up!', VW / 2, 290, { align: 'center', bold: true, color: UI.blue }); text(r.gains, VW / 2, 312, { align: 'center', size: 14, color: UI.blue }); }
     } else text('You will wake up at home.', VW / 2, 225, { align: 'center' });
     button(VW / 2 - 70, 336, 140, 36, 'Continue', () => endCombat(won ? 'won' : 'lost'), { hot: true });
   }
@@ -32901,7 +33180,7 @@ function renderMenus(from = 0, to = menus.length) {
     const tabH = m.tabs ? 34 : 0; const w = m.width, h = 56 + tabH + vis * rowH + descH + footH;
     const x = (VW - w) / 2; let y = Math.max(MASTER ? MB + 8 : 10, (VH - h) / 2 - 20); if (MASTER && y + h > VH - 30) y = Math.max(MB + 4, VH - 30 - h);
     panel(x, y, w, h); m._box = { x, y, w, h }; m._rows = [];
-    text(m.title, x + 20, y + 16, { bold: true, size: 18, color: UI.border });
+    text(typeof m.title === 'function' ? m.title(m) : m.title, x + 20, y + 16, { bold: true, size: 18, color: UI.border });
     m._tabs = null;
     if (m.tabs) { m._tabs = []; const tw = (w - 32) / m.tabs.length; m.tabs.forEach((t, i) => { const tx = x + 16 + i * tw, ty = y + 44, r = { x: tx, y: ty, w: tw - 4, h: 26, i }; m._tabs.push(r);
       const on = i === m.tab, hov = mouse.x >= r.x && mouse.x <= r.x + r.w && mouse.y >= r.y && mouse.y <= r.y + r.h;
@@ -32946,7 +33225,7 @@ function elemBonus(sp, who = 'player') {
   for (const it of gearItems(who)) { const e = it.elementPower || {}; b += (e.all || 0) + (e[el] || 0); }
   return b;
 }
-function reagentSaveChance(id) { let c = perk('reagentSave'); for (const it of gearItems('player')) { c += it.reagentSaveAll || 0; const r = it.reagentSave; if (typeof r === 'number') c += r; else if (r && r[id]) c += r[id]; } return Math.min(0.75, c); }
+function reagentSaveChance(id) { let c = perk('reagentSave') + ptVal('magery', 'save'); for (const it of gearItems('player')) { c += it.reagentSaveAll || 0; const r = it.reagentSave; if (typeof r === 'number') c += r; else if (r && r[id]) c += r[id]; } return Math.min(0.75, c); }
 function playerMove() { return Math.max(2, D.player.move + gearStat('player', 'move') + perk('move')); }
 function slotsFor(itemId) { const it = D.items[itemId]; return (D.equipSlots || []).filter(s => it && s.accepts === it.slot); }
 function equip(who, slotId, itemId) {
@@ -33055,7 +33334,7 @@ function renderDoll() {
   // stats
   const sx = 520; let y = 92;
   text(st.name, sx, y, { bold: true, size: 18 });
-  if (who === 'player') { const p = lvlProgress(); text(`Level ${p.l}`, sx + 120, y + 2, { bold: true, size: 15, color: UI.blue }); bar(sx + 190, y + 6, 100, 10, p.frac, '#5aa0e0'); text(`${p.cur}/${p.need} XP`, sx + 298, y + 3, { size: 12, color: UI.dim }); }
+  if (who === 'player') { text(`Level ${playerLvl()}`, sx + 120, y + 2, { bold: true, size: 15, color: UI.blue }); if (totalUnspent()) text(`${totalUnspent()} skill point${totalUnspent() === 1 ? '' : 's'} to spend (K)`, sx + 196, y + 3, { size: 12, color: UI.green, bold: true }); }
   else if (G.helpers[who]) text(`Level ${hLvl(who)}`, sx + 120, y + 2, { bold: true, size: 15, color: UI.blue });
   y += 30;
   for (const [lab, k] of [['HP', 'hp'], ['Attack', 'atk'], ['Defense', 'def'], ['Move', 'move']]) {
@@ -33111,8 +33390,8 @@ async function respecOffer(npc) {
 }
 
 // ================= v0.4: ADVANCED SKILLS =================
-function skillUnlocked(id) { const s = D.skills[id]; if (!s || !s.requires || !G) return true; return levelFromXp(G.skills[s.requires.skill] || 0) >= s.requires.level; }
-function advLvl(id) { return skillUnlocked(id) ? levelFromXp(G.skills[id] || 0) : 0; }
+function skillUnlocked(id) { const s = D.skills[id]; if (!s || !s.requires || !G) return true; return levelFromXp(G.skills[s.requires.skill] || 0) - 1 >= s.requires.level; }
+function advLvl(id) { return skillUnlocked(id) ? skillLvl(id) : 0; }
 function checkUnlocks() {
   for (const [id, s] of Object.entries(D.skills)) if (s.requires && !G.flags['unlock_' + id] && skillUnlocked(id)) {
     G.flags['unlock_' + id] = true; addDread(DL().perUnlock || 0); AU.sfx('discover'); toast(`Advanced skill unlocked: ${s.name}! (K)`, UI.blue);
@@ -33154,7 +33433,7 @@ function itemRegion(id) { const it = item(id); return it.region || (/(Saltmere|S
 function premium(id) { if (!skillUnlocked('commerce') || item(id).type !== 'reagent' || !R.mapId || itemRegion(id) === mapRegion(R.mapId)) return 0; return 0.25 + 0.03 * advLvl('commerce') + perk('premiumBonus'); }
 
 // ================= ALCHEMY & CRAFTING =================
-function potionMult() { return 1 + 0.1 * Math.max(0, advLvl('alchemy') - 1) + perk('potionPower'); }
+function potionMult() { return 1 + 0.1 * advLvl('alchemy') + perk('potionPower'); }
 function needsOf(r) { const disc = r.skill === 'wardcraft' ? perk('wardDiscount') : 0; const out = {}; for (const [id, q] of Object.entries(r.needs || {})) out[id] = item(id).type === 'material' ? Math.max(1, Math.ceil(q * (1 - disc))) : q; return out; }
 function recipeState(r) {
   const sk = D.skills[r.skill];
@@ -33167,7 +33446,7 @@ function recipeState(r) {
 function craft(r) {
   if (r.skill === 'alchemy' && Math.random() < perk('brewSave')) toast('A perfect brew - no reagents used!', UI.blue);
   else for (const [id, q] of Object.entries(needsOf(r))) take(id, q);
-  let q = r.qty || 1; if (r.skill === 'alchemy' && Math.random() < perk('brewExtra') + 0.05 * Math.max(0, advLvl('alchemy') - 1)) q++;
+  let q = r.qty || 1; if (r.skill === 'alchemy' && Math.random() < perk('brewExtra') + 0.05 * advLvl('alchemy')) q++;
   add(r.makes, q, true); addSkillXp(r.skill, r.xp || 3); AU.sfx('heal'); toast(`Made ${q} ${item(r.makes).name}`, UI.green); G.time += 10;
 }
 async function brewMenu() {
@@ -33289,7 +33568,7 @@ async function enterSea(fromMap) {
   const p = seaPortFor(fromMap); if (!p || !seaMap()) { toast('No sea route from here.'); return; }
   if ((G.expeditions || []).some(x => x.kind === 'trade')) { const x = G.expeditions.find(x => x.kind === 'trade'); toast(`Your boat is away on a trade voyage (back ${x.returnDay - G.day <= 1 ? 'tomorrow' : 'in ' + (x.returnDay - G.day) + ' days'}).`, UI.red); return; }
   await say('', ['You cast off in your skiff. The wind fills the sail...', 'Steer with the arrow keys. Sail into a harbour to go ashore. N: sea chart.']);
-  await fadeTo(() => { SEA = { x: p.x, y: p.y, dir: 'right', moving: null, monsters: [], spawnT: 0, tiles: 0, lastBlock: -9 }; G.ports[p.id] = true; reveal(p.x, p.y); R.scene = 'sea'; R.chart = false; });
+  await fadeTo(() => { SEA = { from: p.id, x: p.x, y: p.y, dir: 'right', moving: null, monsters: [], spawnT: 0, tiles: 0, lastBlock: -9 }; G.ports[p.id] = true; reveal(p.x, p.y); R.scene = 'sea'; R.chart = false; });
 }
 async function portPrompt(p) {
   if (p.soon) { await say(p.name, [p.note || `${p.name} - coming in a future update.`]); return; }
@@ -33299,6 +33578,7 @@ async function portPrompt(p) {
   const c = await choose(p.name, [{ label: `Go ashore at ${p.name}`, value: 'y' }, { label: 'Keep sailing', value: 'n' }], { width: 380 });
   if (c !== 'y') return;
   addSkillXp('sailing', 2);
+  if (SEA && SEA.from && SEA.from !== p.id) { const v = (SP().voyageXp || 6) + Math.floor((SEA.tiles || 0) / 10); addSkillXp('sailing', v); const nav = navigatorId(); if (nav && G.helpers[nav]) G.helpers[nav].xp = (G.helpers[nav].xp || 0) + v; toast(`Voyage complete: +${v} Sailing XP${nav ? ` (and ${D.helpers[nav].name}, your navigator)` : ''}.`, UI.blue); autoCompanionPoints(); }
   await fadeTo(() => { SEA = null; R.scene = 'world'; loadMap(p.map, m.dock.x, m.dock.y); });
   if (!(R.map.npcs || []).some(n => (D.npcs[n.id] || {}).role === 'ferry')) toast('Press E on the dock to set sail again.', UI.blue);
 }
@@ -33511,7 +33791,7 @@ async function mine(tx, ty, kind) {
 function ship() { G.ship = G.ship || { hull: (D.sea || {}).hull || 60, max: (D.sea || {}).hull || 60 }; return G.ship; }
 function adjacentDeck(e) { return N4.some(([dx, dy]) => { const c = (C.grid[e.y + dy] || [])[e.x + dx]; return c === 'B' || c === 'A' || c === 'P'; }); }
 function ramHull(e) {
-  const dmg = Math.max(1, Math.round(e.atk * 0.6)); const s = ship(); s.hull = Math.max(0, s.hull - dmg);
+  const dmg = Math.max(1, Math.round(e.atk * 0.6) - ptVal('sailing', 'man')); const s = ship(); s.hull = Math.max(0, s.hull - dmg);
   C.floats.push({ x: AX + e.x * CT + CT / 2, y: AY + e.y * CT, s: `-${dmg} hull`, col: '#ffb040', t: 0 }); C.shake = 0.2; AU.sfx('hit');
   clog(`${e.name} rams the hull! (-${dmg}) Put a crew member at the rail!`);
   if (s.hull <= 0) { clog('The hull gives way!'); C.phase = 'lost'; C.sunk = true; }
@@ -33808,7 +34088,7 @@ function resolveTrade(ex) {
   purse += rp.earned;
   for (const [id, want] of Object.entries(ex.orders)) { const pr = tradeBuyPrice(id, bart); let got = 0; while (got < want && purse >= pr) { purse -= pr; got++; } if (got) { rp.bought[id] = got; rp.spent += got * pr; add(id, got, true); } }
   G.gold += purse; rp.gold = purse; rp.purseOut = ex.purse;
-  for (const id of ex.members) { if (!G.helpers[id]) continue; const st = G.helpers[id], before = hLvl(id), gain = 10 * ex.days; st.xp = (st.xp || 0) + gain; rp.members.push({ id, xp: gain, from: before, to: hLvl(id) }); }
+  for (const id of ex.members) { if (!G.helpers[id]) continue; const st = G.helpers[id], before = hLvl(id), gain = 10 * ex.days + (id === ex.members[0] ? 15 : id === ex.members[1] ? 10 : 0); st.xp = (st.xp || 0) + gain; rp.members.push({ id, xp: gain, from: before, to: hLvl(id) }); }
   addSkillXp('commerce', Math.round(rp.earned / 40)); addSkillXp('bartering', Math.round(rp.earned / 60));
   deathRoll(ex, ok ? 0 : ex.death * 2, rp);
   rp.summary = ok ? `Sold ${Object.values(rp.sold).reduce((a, b) => a + b, 0)} goods for ${rp.earned}g and spent ${rp.spent}g. ${purse}g came home.` : `Pirates struck! Some cargo was lost and the hull took damage. ${purse}g came home.`;
@@ -33999,7 +34279,7 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 // debug/test hook (harmless in production)
-window.__game = { encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
+window.__game = { pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
 })();
 
 </script>
