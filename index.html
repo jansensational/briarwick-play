@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.18.0</title>
+<title>Reagents of Briarwick v0.19.0</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -18838,6 +18838,126 @@ window.GAME_DATA = {
     ".....kkkPkkk....",
     "........k......."
    ]
+  },
+  "i_hildas_warhammer": {
+   "pixels": [
+    "................",
+    ".........kkkk...",
+    "........kyyyyk..",
+    "........kyzzyk..",
+    "........kyyyyk..",
+    ".........kkkk...",
+    "........kDk.....",
+    ".......kDk......",
+    "......kDk.......",
+    ".....kDk........",
+    "....kDk.........",
+    "...kDk..........",
+    "..kyk...........",
+    "..kk............",
+    "................",
+    "................"
+   ]
+  },
+  "i_watch_longbow": {
+   "pixels": [
+    "................",
+    "......kkk.......",
+    ".....khhhk.k....",
+    "....khk..kkvk...",
+    "....khk...kvk...",
+    "...khk....kvk...",
+    "...khk....kvk...",
+    "...khk....kvk...",
+    "...khk....kvk...",
+    "...khk....kvk...",
+    "....khk...kvk...",
+    "....khk..kkvk...",
+    ".....khhhk.k....",
+    "......kkk.......",
+    "................",
+    "................"
+   ]
+  },
+  "i_grovewarden_boots": {
+   "pixels": [
+    "................",
+    "................",
+    "...kkkk..kkkk...",
+    "..kUUUUkkUUUUk..",
+    "..kUUUUkkUUUUk..",
+    "..kUUUUkkUUUUk..",
+    "..kUUUUkkUUUUk..",
+    "..kUUUUkkUUUUk..",
+    "..kUUUUkkUUUUk..",
+    "..kUUUUkkUUUUk..",
+    "..kUUUUkkUUUUkk.",
+    "..kUUUUUUUUUUUUk",
+    "..kUUUUUUUUUUUUk",
+    "..kXXXXXXXXXXXXk",
+    "...kkkkkkkkkkkk.",
+    "................"
+   ]
+  },
+  "i_tidecaller_trident": {
+   "pixels": [
+    "..............k.",
+    ".............kck",
+    "............kcck",
+    "...........kcck.",
+    "..........kDkk..",
+    ".........kDk....",
+    "........kDk.....",
+    ".......kDk......",
+    "......kDk.......",
+    ".....kDk........",
+    "....kDk.........",
+    "...kDk..........",
+    "..kDk...........",
+    ".kDk............",
+    ".kk.............",
+    "................"
+   ]
+  },
+  "i_warlord_greataxe": {
+   "pixels": [
+    "................",
+    "........kkkk....",
+    ".......kRRRzk...",
+    "......kRRRzzzk..",
+    "......kRRRzzzk..",
+    ".......kkRzzk...",
+    "........kDkk....",
+    ".......kDk......",
+    "......kDk.......",
+    ".....kDk........",
+    "....kDk.........",
+    "...kDk..........",
+    "..kDk...........",
+    "..kk............",
+    "................",
+    "................"
+   ]
+  },
+  "i_starfall_focus": {
+   "pixels": [
+    "...........kkkk.",
+    "..........kppppk",
+    "..........kppppk",
+    "..........kppppk",
+    "..........kppppk",
+    "...........kDkk.",
+    "..........kDk...",
+    ".........kDk....",
+    "........kDk.....",
+    ".......kDk......",
+    "......kDk.......",
+    ".....kDk........",
+    "....kDk.........",
+    "...kDk..........",
+    "..kDk...........",
+    "...k............"
+   ]
   }
  },
  "tiles": {
@@ -20644,6 +20764,105 @@ window.GAME_DATA = {
    "price": 30,
    "sell": 15,
    "desc": "A stone humming with Starfall ward-magic. Shields ships; and perhaps more. A build material: too bulky to carry, it travels in a ship's hold and is kept in your storehouse."
+  },
+  "hildas_warhammer": {
+   "type": "gear",
+   "sprite": "i_hildas_warhammer",
+   "sell": 300,
+   "unique": true,
+   "name": "Hilda's Warhammer",
+   "slot": "main",
+   "wtype": "mace",
+   "overlay": "o_mace",
+   "price": 900,
+   "stats": {
+    "atk": 11,
+    "def": 1
+   },
+   "desc": "Hilda's own design: a hammer that rings like a bell. One of a kind on the Mainland."
+  },
+  "watch_longbow": {
+   "type": "gear",
+   "sprite": "i_watch_longbow",
+   "sell": 316,
+   "unique": true,
+   "name": "Watchtower Longbow",
+   "slot": "main",
+   "wtype": "bow",
+   "overlay": "o_bow",
+   "price": 950,
+   "stats": {
+    "atk": 10
+   },
+   "desc": "Drawn only by Southwatch's best. Hits from the far edge of the field."
+  },
+  "grovewarden_boots": {
+   "type": "gear",
+   "sprite": "i_grovewarden_boots",
+   "sell": 266,
+   "unique": true,
+   "name": "Grovewarden Boots",
+   "slot": "feet",
+   "price": 800,
+   "stats": {
+    "move": 2,
+    "def": 2
+   },
+   "forage": 0.15,
+   "desc": "Woven from living vine. +2 move, and a chance of an extra herb when you forage."
+  },
+  "tidecaller_trident": {
+   "type": "gear",
+   "sprite": "i_tidecaller_trident",
+   "sell": 366,
+   "unique": true,
+   "name": "Tidecaller Trident",
+   "slot": "main",
+   "wtype": "spear",
+   "overlay": "o_spear",
+   "price": 1100,
+   "stats": {
+    "atk": 12
+   },
+   "elementPower": {
+    "water": 0.2
+   },
+   "desc": "Sings when the tide turns. Water spells +20%."
+  },
+  "warlord_greataxe": {
+   "type": "gear",
+   "sprite": "i_warlord_greataxe",
+   "sell": 433,
+   "unique": true,
+   "name": "Warlord's Greataxe",
+   "slot": "main",
+   "wtype": "axe",
+   "overlay": "o_axe",
+   "price": 1300,
+   "stats": {
+    "atk": 15
+   },
+   "castPenalty": 0.1,
+   "desc": "Thornhaven's pride. Enormous, and slightly unwieldy for casters."
+  },
+  "starfall_focus": {
+   "type": "gear",
+   "sprite": "i_starfall_focus",
+   "sell": 466,
+   "unique": true,
+   "name": "Starfall Focus",
+   "slot": "main",
+   "wtype": "staff",
+   "overlay": "o_staff_oak",
+   "price": 1400,
+   "stats": {
+    "atk": 3
+   },
+   "elementPower": {
+    "all": 0.3
+   },
+   "reagentSave": 0.1,
+   "desc": "A staff crowned with a fallen star. All spells +30% and a 10% chance to save reagents."
   }
  },
  "spells": {
@@ -23347,6 +23566,14 @@ window.GAME_DATA = {
     "ward_rock_slime": "rock_slime",
     "ward_hollow_bandit": "hollow_bandit",
     "ward_bone_shark": "bone_shark"
+   },
+   "prosperSells": {
+    "2": [
+     "great_potion"
+    ],
+    "4": [
+     "fine_pouch"
+    ]
    }
   },
   "outfitter": {
@@ -23374,7 +23601,21 @@ window.GAME_DATA = {
    "buysTypes": [
     "gear",
     "metal"
-   ]
+   ],
+   "prosperSells": {
+    "2": [
+     "copper_mail",
+     "copper_shield"
+    ],
+    "3": [
+     "battle_axe",
+     "longbow"
+    ],
+    "4": [
+     "steel_sword",
+     "steel_plate"
+    ]
+   }
   },
   "trader": {
    "name": "Isla's Curiosities",
@@ -23394,7 +23635,18 @@ window.GAME_DATA = {
     "reagent",
     "gear",
     "metal"
-   ]
+   ],
+   "prosperSells": {
+    "2": [
+     "tricorne"
+    ],
+    "3": [
+     "admirals_coat"
+    ],
+    "5": [
+     "archmage_robe"
+    ]
+   }
   },
   "homecenter": {
    "name": "Gideon's Home Center",
@@ -23426,7 +23678,12 @@ window.GAME_DATA = {
     "consumable",
     "material",
     "reagent"
-   ]
+   ],
+   "prosperSells": {
+    "2": [
+     "great_potion"
+    ]
+   }
   },
   "highmoor_smith": {
    "name": "Hilda's Forge",
@@ -23437,12 +23694,18 @@ window.GAME_DATA = {
     "iron_helm",
     "wooden_shield",
     "battle_axe",
-    "war_hammer"
+    "war_hammer",
+    "hildas_warhammer"
    ],
    "buysTypes": [
     "metal",
     "gear"
-   ]
+   ],
+   "prosperSells": {
+    "3": [
+     "royal_plate"
+    ]
+   }
   },
   "arcanum": {
    "name": "The Arcanum",
@@ -23457,7 +23720,15 @@ window.GAME_DATA = {
    "buysTypes": [
     "gem",
     "consumable"
-   ]
+   ],
+   "prosperSells": {
+    "3": [
+     "ember_robe"
+    ],
+    "5": [
+     "archmage_robe"
+    ]
+   }
   },
   "fen": {
    "name": "Fen's Catch",
@@ -23487,7 +23758,12 @@ window.GAME_DATA = {
     "reagent",
     "material",
     "consumable"
-   ]
+   ],
+   "prosperSells": {
+    "2": [
+     "cutlass"
+    ]
+   }
   },
   "southwatch_arms": {
    "name": "Southwatch Armoury",
@@ -23499,12 +23775,18 @@ window.GAME_DATA = {
     "travel_boots",
     "pike",
     "longbow",
-    "battle_axe"
+    "battle_axe",
+    "watch_longbow"
    ],
    "buysTypes": [
     "gear",
     "metal"
-   ]
+   ],
+   "prosperSells": {
+    "3": [
+     "war_hammer"
+    ]
+   }
   },
   "verdant_trader": {
    "name": "Oakhollow Market",
@@ -23531,7 +23813,8 @@ window.GAME_DATA = {
    "sells": [
     "leafweave",
     "sea_boots",
-    "leather_jerkin"
+    "leather_jerkin",
+    "grovewarden_boots"
    ],
    "buysTypes": [
     "gear",
@@ -23563,7 +23846,8 @@ window.GAME_DATA = {
    "sells": [
     "admirals_coat",
     "sea_boots",
-    "leather_jerkin"
+    "leather_jerkin",
+    "tidecaller_trident"
    ],
    "buysTypes": [
     "gear",
@@ -23596,7 +23880,8 @@ window.GAME_DATA = {
    "sells": [
     "royal_plate",
     "iron_helm",
-    "chainmail"
+    "chainmail",
+    "warlord_greataxe"
    ],
    "buysTypes": [
     "gear",
@@ -23629,7 +23914,8 @@ window.GAME_DATA = {
    "sells": [
     "archmage_robe",
     "oak_staff",
-    "wizard_hat"
+    "wizard_hat",
+    "starfall_focus"
    ],
    "buysTypes": [
     "gear",
@@ -32800,7 +33086,7 @@ window.GAME_DATA = {
      "label": "+5% shop stock",
      "amt": 0.05,
      "pct": true,
-     "desc": "Bigger shop stock. (Takes effect when shops start keeping stock, with vendor prosperity in a later update.)"
+     "desc": "Shops keep more of each item in stock every day."
     }
    ],
    "herbalism": [
@@ -33096,6 +33382,66 @@ window.GAME_DATA = {
    10,
    20,
    40
+  ]
+ },
+ "prosperity": {
+  "thresholds": [
+   0,
+   200,
+   600,
+   1500,
+   3500,
+   8000
+  ],
+  "names": [
+   "Struggling",
+   "Getting by",
+   "Steady",
+   "Busy",
+   "Thriving",
+   "Famous"
+  ],
+  "baseStock": 3,
+  "stockPerLevel": 2,
+  "seedStockMult": 3,
+  "unlimitedTypes": [
+   "upgrade",
+   "furniture",
+   "tool"
+  ]
+ },
+ "smithing": {
+  "homeShops": [
+   "outfitter",
+   "trader"
+  ],
+  "admireChance": 0.3,
+  "admireMinPrice": 100,
+  "buyBonus": 0.1,
+  "learnDays": [
+   3,
+   7
+  ],
+  "askAfterDays": 2,
+  "goldShare": 0.3,
+  "oreShare": 0.6,
+  "ores": [
+   [
+    200,
+    "copper_ore"
+   ],
+   [
+    500,
+    "iron_ore"
+   ],
+   [
+    1000,
+    "silver_ore"
+   ],
+   [
+    99999,
+    "mithril_ore"
+   ]
   ]
  }
 };
@@ -33955,28 +34301,74 @@ async function wizardQuests(npc) {
 }
 function buyPrice(id) { return Math.max(1, Math.round(item(id).price * Math.max(0.3, 1 - 0.03 * skillLvl('bartering') - ptVal('bartering', 'buy') - perk('buyDiscount') - (item(id).type === 'seed' ? perk('seedDiscount') : 0)))); }
 function sellPrice(id) { return Math.max(1, Math.round(item(id).sell * (1 + 0.05 * skillLvl('bartering') + ptVal('bartering', 'sell') + perk('sellBonus') + gearVal('player', 'sellBonus') + premium(id)))); }
+// ---- vendor prosperity: every gold traded with a shop builds it up; bigger daily stock and new goods ----
+function PR() { return D.prosperity || { thresholds: [0], names: [''], baseStock: 99, stockPerLevel: 0 }; }
+function prosperLvl(sid) { const g = (G.prosper || {})[sid] || 0; let l = 0; (PR().thresholds || [0]).forEach((v, i) => { if (g >= v) l = i; }); return l; }
+function prosperName(sid) { return (PR().names || [])[prosperLvl(sid)] || ''; }
+function prosperNext(sid) { const t = PR().thresholds || [], l = prosperLvl(sid); return t[l + 1] == null ? null : t[l + 1] - ((G.prosper || {})[sid] || 0); }
+function addProsper(sid, gold) { if (!sid || !D.shops[sid] || gold <= 0) return; G.prosper = G.prosper || {}; const l0 = prosperLvl(sid); G.prosper[sid] = (G.prosper[sid] || 0) + gold; const l1 = prosperLvl(sid);
+  if (l1 > l0) { const ps = ((D.shops[sid].prosperSells || {})[l1] || []).filter(i => D.items[i]); toast(`${D.shops[sid].name} is now ${prosperName(sid)}! Bigger stock${ps.length ? ', and new goods: ' + ps.map(i => item(i).name).join(', ') : ''}.`, UI.green); } }
+function prosperIds(sid) { const ps = (D.shops[sid] || {}).prosperSells || {}, l = prosperLvl(sid), out = []; for (const [k, ids] of Object.entries(ps)) if (+k <= l) out.push(...ids); return out; }
+function stockCap(sid, id) { const it = item(id), P = PR(); if (!sid || (P.unlimitedTypes || []).includes(it.type) || it.type === 'build') return Infinity; if (it.unique) return (G.uniqueBought || {})[id] ? 0 : 1;
+  let n = ((P.baseStock == null ? 3 : P.baseStock) + (P.stockPerLevel == null ? 2 : P.stockPerLevel) * prosperLvl(sid)) * (1 + ptVal('bartering', 'stock')); if (it.type === 'seed') n *= P.seedStockMult || 3; return Math.max(1, Math.round(n)); }
+function stockLeft(sid, id) { const c = stockCap(sid, id); if (c === Infinity) return c; if (G.stockDay !== G.day) { G.stock = {}; G.stockDay = G.day; } G.stock = G.stock || {}; return Math.max(0, c - ((G.stock[sid] || {})[id] || 0)); }
+function useStock(sid, id, n) { if (item(id).unique) { G.uniqueBought = G.uniqueBought || {}; G.uniqueBought[id] = true; return; } if (stockCap(sid, id) === Infinity) return; stockLeft(sid, id); const st = G.stock[sid] = G.stock[sid] || {}; st[id] = (st[id] || 0) + n; }
+// ---- hometown smiths: admire your gear, offer to buy it, and learn to make it from your materials ----
+function SMI() { return D.smithing || {}; }
+function smithCost(id) { const p = item(id).price || 0, S = SMI(); const ore = ((S.ores || []).find(([mx]) => p < mx) || [0, 'iron_ore'])[1]; return { ore, qty: Math.max(2, Math.ceil(p * (S.oreShare == null ? 0.6 : S.oreShare) / ((D.items[ore] || {}).price || 30))), gold: Math.round(p * (S.goldShare == null ? 0.3 : S.goldShare)) }; }
+function smithLearnDays() { const [a, b] = SMI().learnDays || [3, 7]; return a + Math.floor(Math.random() * (b - a + 1)); }
+function anArt(n) { return /^[aeiou]/i.test(n) ? 'an' : 'a'; }
+async function smithVisit(npc) {
+  const sid = npc.def.shop, S = SMI(), nm = npc.def.name, fn = nm.split(' ')[0], sp = npc.def.sprite; if (!(S.homeShops || []).includes(sid)) return;
+  G.smith = G.smith || {}; const st = G.smith[sid] = G.smith[sid] || { seen: {} }; st.seen = st.seen || {};
+  if (st.learn && G.day >= st.learn.ready) { const id = st.learn.id; G.shopUnlocks[sid] = [...new Set((G.shopUnlocks[sid] || []).concat([id]))]; st.learn = null;
+    await say(nm, [`Look at this! My own ${item(id).name}. Took a few tries, but I've got the knack of it now.`, 'I\'ll keep them on the shelf from now on.'], sp); AU.sfx('discover'); toast(`${D.shops[sid].name} now sells ${item(id).name}.`, UI.green); return; }
+  if (st.learn) return;
+  if (st.ask && G.day - st.ask.day >= (S.askAfterDays || 2)) { const id = st.ask.id, c = smithCost(id), have = count(c.ore);
+    await say(nm, [`I can't stop thinking about that ${item(id).name} of yours. Exquisite work.`, `Bring me ${c.qty} ${item(c.ore).name} and ${c.gold} gold for the forge, and I'll learn to make them myself.`], sp);
+    const r = await choose(`Help ${fn} learn to make the ${item(id).name}?`, [{ label: `Hand over ${c.qty} ${item(c.ore).name} and ${c.gold}g`, value: 'y', disabled: have < c.qty || G.gold < c.gold, desc: `You have ${have} ${item(c.ore).name}. You keep yours; ${fn} sells copies a few days later.` }, { label: 'Not now', value: 'n', desc: `${fn} will ask again in a couple of days.` }, { label: 'No. Keep it one of a kind', value: 'x', desc: `${fn} won't ask again.` }], { width: 540 });
+    if (r === 'y') { take(c.ore, c.qty); G.gold -= c.gold; addProsper(sid, c.gold); st.learn = { id, ready: G.day + smithLearnDays() }; st.ask = null; AU.sfx('coin'); await say(nm, ['Wonderful! Give me a few days at the forge.'], sp); }
+    else if (r === 'x') st.ask = null; else st.ask.day = G.day;
+    return; }
+  if (st.ask || st.day === G.day) return; st.day = G.day;
+  if (Math.random() >= (S.admireChance == null ? 0.3 : S.admireChance)) return;
+  const sells = new Set((D.shops[sid].sells || []).concat(G.shopUnlocks[sid] || []).concat(prosperIds(sid)));
+  const cand = Object.entries(eqOf('player')).filter(([slot, id]) => slot !== 'pouch' && D.items[id] && !item(id).unique && (item(id).price || 0) >= (S.admireMinPrice || 100) && !sells.has(id) && !st.seen[id]);
+  if (!cand.length) return;
+  const [slot, id] = cand[Math.floor(Math.random() * cand.length)]; st.seen[id] = true;
+  const offer = Math.round(item(id).price * (1 + (S.buyBonus == null ? 0.1 : S.buyBonus)) * (1 + 0.05 * skillLvl('bartering') + ptVal('bartering', 'sell')));
+  await say(nm, [`Hold on... is that ${anArt(item(id).name)} ${item(id).name}? May I see it?`, `Fine work. I'd pay you ${offer} gold for it, right now.`], sp);
+  const r = await choose(`Sell your ${item(id).name} to ${fn}?`, [{ label: 'Sell it', right: offer + 'g', value: 'y', desc: `More than a shop would ever pay. ${fn} will study it and start making copies.` }, { label: 'It\'s not for sale', value: 'n', desc: `You keep it. ${fn} may ask to copy it instead.` }], { width: 500 });
+  if (r === 'y') { delete eqOf('player')[slot]; invalidateComp(); G.hp = Math.min(G.hp, maxHp()); G.gold += offer; addProsper(sid, offer); AU.sfx('coin'); addSkillXp('bartering', 3); st.learn = { id, ready: G.day + smithLearnDays() };
+    await say(nm, ['Pleasure doing business! Give me a few days and there\'ll be copies on my shelves.'], sp); }
+  else { st.ask = { id, day: G.day }; await say(nm, ['A shame. Well, I\'ll be thinking about it...'], sp); }
+}
 async function shopTalk(npc, skipIntro) {
   const shop = D.shops[npc.def.shop] || { name: 'Shop', sells: [], buysTypes: ['reagent'] };
+  const sid = D.shops[npc.def.shop] ? npc.def.shop : null;
   if (!skipIntro) await say(npc.def.name, npc.def.dialog, npc.def.sprite);
+  if (sid) await smithVisit(npc);
   for (;;) {
     const fsH = flagship(), hasHold = fsH && G.shipAt === outdoorOf(R.mapId) && Object.keys(fsH.hold || {}).some(id => (shop.buysTypes || []).includes(item(id).type));
-    const c = await choose(shop.name, [{ label: 'Buy', value: 'buy' }, { label: 'Sell', value: 'sell' }, ...(hasHold ? [{ label: `Sell from ${fsH.name}'s hold`, value: 'hold' }] : []), { label: 'Leave', value: 'leave' }], { width: 300 });
+    const nx = sid ? prosperNext(sid) : null;
+    const c = await choose(sid ? `${shop.name}  -  ${prosperName(sid)}` : shop.name, [{ label: 'Buy', value: 'buy', desc: sid ? `${prosperName(sid)}: stock refills every morning.${nx != null ? `  Trade ${nx} more gold here and the shop will grow.` : '  As big as a shop gets.'}` : '' }, { label: 'Sell', value: 'sell' }, ...(hasHold ? [{ label: `Sell from ${fsH.name}'s hold`, value: 'hold' }] : []), { label: 'Leave', value: 'leave' }], { width: 300 });
     if (c === 'buy') await openMenu({ title: 'Buy', width: 560, footer: () => `Gold: ${G.gold}    Enter: buy 1    Shift+Enter: buy 5${flagship() && G.shipAt === outdoorOf(R.mapId) ? '    Hold: ' + holdLine(flagship()) : ''}`,
       items: () => {
         let ids = shop.sellsDiscoveredSeeds ? Object.keys(G.discovered).map(r => item(r).seed).filter(s => s && D.items[s]) : [];
-        ids = ids.concat(shop.sells || []).concat((G.shopUnlocks || {})[npc.def.shop] || []).concat(Object.entries(shop.researchSells || {}).filter(([, r]) => (G.research || {})[r]).map(([i]) => i)).filter(id => D.items[id] && !(item(id).type === 'upgrade' && item(id).up && home().up[item(id).up]) && !(item(id).gh != null && G.gh !== item(id).gh - 1));
+        ids = ids.concat(shop.sells || []).concat((G.shopUnlocks || {})[npc.def.shop] || []).concat(sid ? prosperIds(sid) : []).concat(Object.entries(shop.researchSells || {}).filter(([, r]) => (G.research || {})[r]).map(([i]) => i)).filter(id => D.items[id] && !(item(id).type === 'upgrade' && item(id).up && home().up[item(id).up]) && !(item(id).gh != null && G.gh !== item(id).gh - 1));
         const gd = guildFor(npc.def.shop); for (const g of Object.keys(gd)) if (!ids.includes(g)) ids.push(g);
         for (const [bid, kg] of Object.entries(shop.kingdomSells || {})) if ((G.kingdomDay || {})[kg] != null && !ids.includes(bid)) ids.push(bid);
-        return ids.map(id => ({ label: item(id).name + ownedLabel(id) + (gd[id] ? `  (Miners' Guild: ${gd[id].n} left)` : ''), icon: item(id).sprite, right: buyPrice(id) + 'g', desc: `${itemDesc(id)}  (You have ${count(id)})`, value: id, disabled: G.gold < buyPrice(id) }));
+        ids = [...new Set(ids)]; const fromS = id => (shop.sells || []).includes(id) || ((G.shopUnlocks || {})[npc.def.shop] || []).includes(id) || (sid && prosperIds(sid).includes(id));
+        return ids.map(id => { const left = gd[id] && !fromS(id) ? Infinity : stockLeft(sid, id); return { label: item(id).name + ownedLabel(id) + (gd[id] && !fromS(id) ? `  (Miners' Guild: ${gd[id].n} left)` : '') + (item(id).unique ? (left ? '  (one of a kind)' : '  (sold)') : ''), icon: item(id).sprite, right: (left === Infinity || item(id).unique ? '' : left ? `x${left}  ` : 'sold out  ') + buyPrice(id) + 'g', desc: `${itemDesc(id)}  (You have ${count(id)})`, value: id, disabled: G.gold < buyPrice(id) || left <= 0 }; });
       },
-      onSelect: it => { if (item(it.value).type === 'build') { const fs = flagship(), here = outdoorOf(R.mapId); if (!fs || G.shipAt !== here) { toast('Too bulky to carry. Sail your own ship here to load it into the hold.', UI.red); return false; } const n0 = Math.min(keys.has('shift') ? 10 : 1, holdRoom(fs, 'bulk'), Math.floor(G.gold / buyPrice(it.value))); if (n0 <= 0) { toast(!(shipType(fs).bulk) ? `Your flagship (${shipType(fs).name}) has no bulk hold. A cog or a yard-built ship can carry it.` : holdRoom(fs, 'bulk') ? 'Not enough gold.' : 'Your flagship\'s bulk hold is full.', UI.red); return false; } G.gold -= n0 * buyPrice(it.value); fs.hold[it.value] = (fs.hold[it.value] || 0) + n0; AU.sfx('coin'); toast(`${n0} ${item(it.value).name} loaded into ${fs.name}'s hold (${holdLine(fs)}).`); return false; }
-        const n = keys.has('shift') ? 5 : 1; let b = 0; const gsrc = guildFor(npc.def.shop)[it.value], fromShop = (shop.sells || []).includes(it.value) || ((G.shopUnlocks || {})[npc.def.shop] || []).includes(it.value); for (let i = 0; i < n && G.gold >= buyPrice(it.value); i++) { if (gsrc && !fromShop) { if (G.guild[gsrc.cid][it.value] <= 0) break; G.guild[gsrc.cid][it.value]--; } if (['furniture', 'upgrade'].includes(item(it.value).type)) { if (!buyFurniture(it.value)) break; G.gold -= buyPrice(it.value); b++; continue; } G.gold -= buyPrice(it.value); add(it.value, 1, true); b++; } if (b) { AU.sfx('coin'); addSkillXp('bartering', 1); toast(`Bought ${b} ${item(it.value).name}`); } return false; } });
+      onSelect: it => { if (item(it.value).type === 'build') { const fs = flagship(), here = outdoorOf(R.mapId); if (!fs || G.shipAt !== here) { toast('Too bulky to carry. Sail your own ship here to load it into the hold.', UI.red); return false; } const n0 = Math.min(keys.has('shift') ? 10 : 1, holdRoom(fs, 'bulk'), Math.floor(G.gold / buyPrice(it.value))); if (n0 <= 0) { toast(!(shipType(fs).bulk) ? `Your flagship (${shipType(fs).name}) has no bulk hold. A cog or a yard-built ship can carry it.` : holdRoom(fs, 'bulk') ? 'Not enough gold.' : 'Your flagship\'s bulk hold is full.', UI.red); return false; } G.gold -= n0 * buyPrice(it.value); addProsper(sid, n0 * buyPrice(it.value)); fs.hold[it.value] = (fs.hold[it.value] || 0) + n0; AU.sfx('coin'); toast(`${n0} ${item(it.value).name} loaded into ${fs.name}'s hold (${holdLine(fs)}).`); return false; }
+        const n = keys.has('shift') ? 5 : 1; let b = 0; const gsrc = guildFor(npc.def.shop)[it.value], fromShop = (shop.sells || []).includes(it.value) || ((G.shopUnlocks || {})[npc.def.shop] || []).includes(it.value); const fromP = sid && prosperIds(sid).includes(it.value); for (let i = 0; i < n && G.gold >= buyPrice(it.value); i++) { if (gsrc && !fromShop && !fromP) { if (G.guild[gsrc.cid][it.value] <= 0) break; G.guild[gsrc.cid][it.value]--; } else { if (stockLeft(sid, it.value) <= 0) { if (!b) toast('Sold out for today. Fresh stock tomorrow.', UI.red); break; } } if (['furniture', 'upgrade'].includes(item(it.value).type)) { if (!buyFurniture(it.value)) break; G.gold -= buyPrice(it.value); addProsper(sid, buyPrice(it.value)); b++; continue; } G.gold -= buyPrice(it.value); addProsper(sid, buyPrice(it.value)); if (!(gsrc && !fromShop && !fromP)) useStock(sid, it.value, 1); add(it.value, 1, true); b++; } if (b) { AU.sfx('coin'); addSkillXp('bartering', 1); toast(`Bought ${b} ${item(it.value).name}`); } return false; } });
     else if (c === 'hold') await openMenu({ title: () => `Sell from the hold  -  ${holdLine(flagship())}`, width: 560, footer: () => `Gold: ${G.gold}    Enter: sell 1    Shift+Enter: sell all`,
       items: () => Object.keys(flagship().hold || {}).filter(id => flagship().hold[id] > 0 && (shop.buysTypes || []).includes(item(id).type)).map(id => ({ label: item(id).name, icon: item(id).sprite, right: `${sellPrice(id)}g  (x${flagship().hold[id]})`, value: id })),
-      onSelect: it => { const fs = flagship(); const n = keys.has('shift') ? fs.hold[it.value] : 1; for (let i = 0; i < n; i++) { fs.hold[it.value]--; G.gold += sellPrice(it.value); } if (!fs.hold[it.value]) delete fs.hold[it.value]; AU.sfx('coin'); addSkillXp('bartering', 1); return false; } });
+      onSelect: it => { const fs = flagship(); const n = keys.has('shift') ? fs.hold[it.value] : 1; for (let i = 0; i < n; i++) { fs.hold[it.value]--; G.gold += sellPrice(it.value); addProsper(sid, sellPrice(it.value)); } if (!fs.hold[it.value]) delete fs.hold[it.value]; AU.sfx('coin'); addSkillXp('bartering', 1); return false; } });
     else if (c === 'sell') await openMenu({ title: 'Sell', width: 560, footer: () => `Gold: ${G.gold}    Enter: sell 1    Shift+Enter: sell all`,
       items: () => Object.keys(G.inv).filter(id => (shop.buysTypes || []).includes(item(id).type) && count(id) > 0).map(id => ({ label: `${item(id).name}  x${count(id)}`, icon: item(id).sprite, right: sellPrice(id) + 'g', desc: itemDesc(id), value: id })),
-      onSelect: it => { const n = keys.has('shift') ? count(it.value) : 1; let s = 0; for (let i = 0; i < n && take(it.value, 1); i++) { G.gold += sellPrice(it.value); s++; } if (s) { AU.sfx('coin'); addSkillXp('bartering', 1); addSkillXp('commerce', 1); toast(`Sold ${s} ${item(it.value).name} (+${s * sellPrice(it.value)}g)`); } const m = menus[menus.length - 1]; m.index = Math.max(0, Math.min(m.index, menuItems(m).length - 1)); return false; } });
+      onSelect: it => { const n = keys.has('shift') ? count(it.value) : 1; let s = 0; for (let i = 0; i < n && take(it.value, 1); i++) { G.gold += sellPrice(it.value); addProsper(sid, sellPrice(it.value)); s++; } if (s) { AU.sfx('coin'); addSkillXp('bartering', 1); addSkillXp('commerce', 1); toast(`Sold ${s} ${item(it.value).name} (+${s * sellPrice(it.value)}g)`); } const m = menus[menus.length - 1]; m.index = Math.max(0, Math.min(m.index, menuItems(m).length - 1)); return false; } });
     else break;
   }
 }
@@ -36280,7 +36672,7 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 // debug/test hook (harmless in production)
-window.__game = { fleet, flagship, fleetMenu, fleetTick, routes, fleetLimit, shipyardMenu, unloadHold, holdLine, ordersMenu, shipActions, storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
+window.__game = { prosperLvl, prosperName, addProsper, stockLeft, stockCap, smithVisit, smithCost, eqOf, fleet, flagship, fleetMenu, fleetTick, routes, fleetLimit, shipyardMenu, unloadHold, holdLine, ordersMenu, shipActions, storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
 })();
 
 </script>
