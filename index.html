@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.19.4</title>
+<title>Reagents of Briarwick v0.19.5</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.19.4",
+  "version": "0.19.5",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -47,7 +47,8 @@ window.GAME_DATA = {
   "discordInvite": "https://discord.gg/KHZkNGfgjK",
   "curveVersion": 2,
   "clearBufferMax": 7,
-  "storehouseTile": "Z"
+  "storehouseTile": "Z",
+  "wikiUrl": "https://jansensational.github.io/briarwick-play/wiki/"
  },
  "start": {
   "map": "house",
@@ -37875,7 +37876,7 @@ function importSave() {
 async function gameScreen() {
   let idx = 0;
   for (;;) {
-  const c = await choose(`Game   (v${D.meta.version})`, [{ label: 'Resume', value: 'r' }, { label: 'Save game', value: 's' }, { label: 'Load last save', value: 'l', disabled: !hasSave() }, { label: 'Settings', value: 'a', desc: 'Music and sound volume, walking speed, battle speed.' }, { label: 'Export save file', value: 'x', desc: 'Download your progress as a file you can keep or move to another computer.' }, { label: 'Import save file', value: 'i', desc: 'Load progress from a save file (replaces your current game).' }, { label: 'Controls', value: 'c' }, { label: UPD.online ? 'Check for updates' : 'Play the latest version online', value: 'u', desc: UPD.online ? 'See whether a newer version is out.' : 'Opens the online version, which always has the newest build. (Export your save first, then Import it there.)' }, { label: 'Join the Discord', value: 'd', desc: 'Chat with other testers, report bugs and get news about new versions.', disabled: !D.meta.discordInvite }, { label: 'Quit to title', value: 'q' }], { width: 360, index: idx, onKey: (k, it, m) => { idx = m.index; } });
+  const c = await choose(`Game   (v${D.meta.version})`, [{ label: 'Resume', value: 'r' }, { label: 'Save game', value: 's' }, { label: 'Load last save', value: 'l', disabled: !hasSave() }, { label: 'Settings', value: 'a', desc: 'Music and sound volume, walking speed, battle speed.' }, { label: 'Export save file', value: 'x', desc: 'Download your progress as a file you can keep or move to another computer.' }, { label: 'Import save file', value: 'i', desc: 'Load progress from a save file (replaces your current game).' }, { label: 'Controls', value: 'c' }, { label: UPD.online ? 'Check for updates' : 'Play the latest version online', value: 'u', desc: UPD.online ? 'See whether a newer version is out.' : 'Opens the online version, which always has the newest build. (Export your save first, then Import it there.)' }, { label: 'Open the game wiki', value: 'w', desc: 'Items, monsters, places, shops, prices and guides, in a new browser tab.' }, { label: 'Join the Discord', value: 'd', desc: 'Chat with other testers, report bugs and get news about new versions.', disabled: !D.meta.discordInvite }, { label: 'Quit to title', value: 'q' }], { width: 360, index: idx, onKey: (k, it, m) => { idx = m.index; } });
   if (!c || c === 'r') return;
   idx = ['r', 's', 'l', 'a', 'x', 'i', 'c', 'u', 'd', 'q'].indexOf(c);
   if (c === 's') saveGame();
@@ -37886,6 +37887,7 @@ async function gameScreen() {
   if (c === 'c') await say('Controls', [`Move: ${K('up')}${K('left')}${K('down')}${K('right')} / Arrow keys.  Interact / talk / confirm: ${K('interact')}, Space or Enter.  Change keys in Settings > Key bindings.`, `Menu button (top right) or a screen key opens the menu: ${K('inventory')} Items   ${K('gear')} Equipment   ${K('spells')} Spellbook   ${K('skills')} Skills   ${K('companions')} Companions   ${K('quests')} Quests   Esc Game.  Left/Right picks a tab, Down enters it, Up at the top goes back to the tabs.`, `Map button or ${K('map')}: World map.`, `Combat: move with ${K('up')}${K('left')}${K('down')}${K('right')}/arrows (walk into an enemy to attack) or click a blue tile. Space/${K('interact')} attacks the nearest enemy in reach, or defends if none is in reach.`, `${K('spell')} Spell   ${K('ability')} Ability   ${K('item')} Item   ${K('defend')} Defend   ${K('taunt')} Taunt (fighters)   ${K('next')} next unit   Enter end turn   ${K('flee')} flee.  Hover an enemy to see its stats.`, 'The coloured dot over a monster shows how dangerous it is for your party: green easy, yellow fair, orange hard, red deadly.']);
   if (c === 'u') { if (UPD.online) { await checkUpdate(); if (UPD.latest) getUpdate(); else toast(`You have the latest version (v${D.meta.version}).`, UI.green); } else getUpdate(); }
   if (c === 'd') window.open(D.meta.discordInvite, '_blank');
+  if (c === 'w') openWiki();
   if (c === 'q') { R.scene = 'title'; return; }
   if (c === 'l' || c === 'u') return;
   }
@@ -38435,11 +38437,12 @@ function renderTitle() {
   ctx.fillStyle = 'rgba(20,14,30,.35)'; ctx.fillRect(0, 0, VW, VH);
   text(D.meta.title, VW / 2, 110, { bold: true, size: 52, align: 'center', color: '#fff4c8', shadow: true });
   text('a reagent-magic farming adventure  -  v' + D.meta.version + (DRAFT ? '  (DRAFT DATA)' : ''), VW / 2, 176, { size: 18, align: 'center', color: '#fff', shadow: true });
-  const opts = [['New Game', () => newGame()], ['Continue', () => loadGame(), !hasSave()], ['Import save file', () => importSave()], ['Settings', () => script(settingsMenu)], [`Mobile Play: ${SET.mobile ? 'On' : 'Off'}`, () => setMobile(!SET.mobile)]];
+  const opts = [['New Game', () => newGame()], ['Continue', () => loadGame(), !hasSave()], ['Import save file', () => importSave()], ['Settings', () => script(settingsMenu)], [`Mobile Play: ${SET.mobile ? 'On' : 'Off'}`, () => setMobile(!SET.mobile)], ['Game Wiki', () => openWiki()]];
   R.titleOpts = opts;
-  opts.forEach(([l, fn, dis], i) => button(VW / 2 - 110, 236 + i * 50, 220, 40, (R.titleIdx === i ? '> ' : '') + l, fn, { disabled: dis, hot: R.titleIdx === i }));
+  opts.forEach(([l, fn, dis], i) => button(VW / 2 - 110, 226 + i * 48, 220, 40, (R.titleIdx === i ? '> ' : '') + l, fn, { disabled: dis, hot: R.titleIdx === i }));
   if (!UPD.online && !SET.mobile) text('Edit art, items, maps and quests with admin.html (in the same folder).', VW / 2, VH - 40, { size: 14, align: 'center', color: '#fff', shadow: true });
 }
+function openWiki() { const u = D.meta.wikiUrl || ((D.meta.playUrl || 'https://jansensational.github.io/briarwick-play/').replace(/\/?$/, '/') + 'wiki/'); try { window.open(u, '_blank', 'noopener'); } catch (e) { location.href = u; } }
 function titleKey(k) {
   const o = R.titleOpts || []; if (!o.length) return;
   if (k === 'arrowup' || k === 'w') R.titleIdx = (R.titleIdx + o.length - 1) % o.length;
