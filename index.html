@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.20.0</title>
+<title>Reagents of Briarwick v0.20.1</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.20.0",
+  "version": "0.20.1",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -21033,7 +21033,7 @@ window.GAME_DATA = {
    "desc": "A hermit's charm that pulls a fallen soul back to its body. Pack it for an adventure or voyage to save one life."
   },
   "gran_pouch": {
-   "name": "Gran's Pouch",
+   "name": "Old Reagent Pouch",
    "type": "gear",
    "slot": "pouch",
    "sprite": "i_gran_pouch",
@@ -21041,7 +21041,7 @@ window.GAME_DATA = {
    "sell": 5,
    "stats": {},
    "reagentSave": 0,
-   "desc": "Gran's old reagent pouch. Holds any number of reagents, but nothing comes back out; spells draw from it first. Swap pouches and the contents follow by magic."
+   "desc": "Your grandmother's old reagent pouch. Holds any number of reagents, but nothing comes back out; spells draw from it first. Swap pouches and the contents follow by magic."
   },
   "seed_satchel": {
    "name": "Bottomless Seed Satchel",
@@ -37260,11 +37260,13 @@ addEventListener('blur', () => { keys.clear(); dirOrder.length = 0; });
 function canvasPos(e) { const r = cv.getBoundingClientRect(); return { x: (e.clientX - r.left) * VW / r.width, y: (e.clientY - r.top) * VH / r.height }; }
 cv.addEventListener('mousemove', e => { const p = canvasPos(e); mouse.x = p.x; mouse.y = p.y; mouse.moved = true; });
 let lastTouch = 0, touchT = null;
-cv.addEventListener('mousedown', e => { if (Date.now() - lastTouch < 900) return; const p = canvasPos(e); mouse.x = p.x; mouse.y = p.y; clicks.push(p); });
+cv.addEventListener('mousedown', e => { if (e.button !== 0 || Date.now() - lastTouch < 900) return; const p = canvasPos(e); mouse.x = p.x; mouse.y = p.y; clicks.push(p); });
 cv.addEventListener('pointerdown', e => { if (e.pointerType !== 'touch') return; e.preventDefault(); lastTouch = Date.now(); const p = canvasPos(e); mouse.x = p.x; mouse.y = p.y; mouse.moved = true; touchT = { t: Date.now(), x: p.x, y: p.y }; });
 cv.addEventListener('pointermove', e => { if (e.pointerType !== 'touch' || !touchT) return; const p = canvasPos(e); mouse.x = p.x; mouse.y = p.y; mouse.moved = true; });
 cv.addEventListener('pointerup', e => { if (e.pointerType !== 'touch' || !touchT) return; lastTouch = Date.now(); const p = canvasPos(e); if (Date.now() - touchT.t < 420 && Math.hypot(p.x - touchT.x, p.y - touchT.y) < 24) clicks.push(p); touchT = null; });
-cv.addEventListener('contextmenu', e => e.preventDefault());
+cv.addEventListener('contextmenu', e => { e.preventDefault(); if (Date.now() - lastTouch < 900) return; if (menus.length || dialogs.length || MASTER || (R.scene === 'combat' && C && C.mode && C.mode !== 'move')) hits.push('escape'); });
+let wheelAcc = 0;
+cv.addEventListener('wheel', e => { if (!menus.length) return; e.preventDefault(); wheelAcc += e.deltaY; const m = menus[menus.length - 1]; while (Math.abs(wheelAcc) >= 90) { const n = menuItems(m).length; m.index = Math.max(0, Math.min(n - 1, m.index + (wheelAcc > 0 ? 1 : -1))); wheelAcc -= Math.sign(wheelAcc) * 90; } }, { passive: false }); // scroll without wrapping
 document.addEventListener('gesturestart', e => e.preventDefault());
 document.addEventListener('touchmove', e => { if (window.__mobileOn) e.preventDefault(); }, { passive: false });
 document.addEventListener('dblclick', e => e.preventDefault());
@@ -38898,7 +38900,7 @@ function startSpell() {
   const u = C.sel; if (!u || !u.isPlayer || C.phase !== 'party') return;
   const list = G.spells.filter(s => D.spells[s] && ['damage', 'heal', 'buff', 'debuff', 'terrain'].includes(D.spells[s].kind));
   if (!list.length) { toast('You know no combat spells yet.'); return; }
-  choose('Cast which spell?', list.map(s => { const sp = D.spells[s]; return { label: sp.name, right: ((D.magic || {}).schools || {})[spellSchool(sp)] || '', desc: `${spellInfo(sp)}  Cost: ${reagentStr(sp)} (you have ${Object.keys(sp.reagents).map(r => count(r)).join('/')}).`, value: s, disabled: !hasReagents(sp) }; }), { width: 560 })
+  choose('Cast which spell?', list.map(s => { const sp = D.spells[s]; return { label: sp.name, right: ((D.magic || {}).schools || {})[spellSchool(sp)] || '', desc: `${spellInfo(sp)}  Cost: ${reagentStr(sp)} (you have ${Object.keys(sp.reagents).map(r => count(r) + pouchCount(r)).join('/')}).`, value: s, disabled: !hasReagents(sp) }; }), { width: 560 })
     .then(s => { if (!s || !C) return; const sp = D.spells[s]; const rng = sp.range + perk('spellRange'); C.action = { type: 'spell', id: s, sp, rng };
       if (sp.kind === 'terrain') { startTileTarget(u, sp); return; } C.mode = 'target';
       C.targets = C.units.filter(t => !t.dead && !shielded(t) && (sp.kind === 'damage' || sp.kind === 'debuff' ? t.side === 'enemy' : t.side === 'party') && man(u, t) <= rng && los(u, t));
@@ -39722,10 +39724,16 @@ function startItem() {
   const u = C.sel; if (!u || C.phase !== 'party') return;
   const list = Object.keys(G.inv).filter(id => item(id).type === 'consumable' && combatUse(item(id)));
   if (!list.length) { toast('No usable items. Brew or buy potions!'); return; }
-  choose('Use which item?', list.map(id => ({ label: `${item(id).name} x${count(id)}`, icon: item(id).sprite, desc: item(id).desc, value: id })), { width: 520 }).then(id => {
-    if (!id || !C) return; const eff = combatUse(item(id));
-    C.mode = 'target'; C.action = { type: 'item', id, sp: eff };
-    C.targets = C.units.filter(t => !t.dead && !shielded(t) && (eff.kind === 'damage' ? t.side === 'enemy' : t.side === 'party') && man(u, t) <= (eff.range || 1) && los(u, t));
+  const rows = [];
+  for (const id of list) { const eff = combatUse(item(id)), it = item(id);
+    if (eff.kind === 'damage') { rows.push({ label: `${it.name} x${count(id)}`, right: 'pick a target', icon: it.sprite, desc: it.desc, value: { id } }); continue; }
+    const allies = C.units.filter(t => !t.dead && t.side === 'party' && (t === u || (man(u, t) <= (eff.range || 1) && los(u, t)))).sort((p, q) => (q === u) - (p === u));
+    for (const t of allies) rows.push({ label: `${it.name} x${count(id)}`, right: t === u ? `yourself  ${t.hp}/${t.maxHp}` : `${t.name}  ${t.hp}/${t.maxHp}`, icon: it.sprite, desc: it.desc, value: { id, t } }); }
+  choose('Use which item?', rows, { width: 560 }).then(v => {
+    if (!v || !C) return; const eff = combatUse(item(v.id));
+    C.action = { type: 'item', id: v.id, sp: eff };
+    if (v.t) { C.mode = 'target'; C.targets = [v.t]; doTarget(v.t); return; }
+    C.mode = 'target'; C.targets = C.units.filter(t => !t.dead && !shielded(t) && t.side === 'enemy' && man(u, t) <= (eff.range || 1) && los(u, t));
     if (!C.targets.length) { toast('No target in range.'); C.mode = 'move'; }
   });
 }
@@ -39955,9 +39963,11 @@ function genCave(id) {
   const pool = (cv.enemies || []).filter(e => D.enemies[e.id] && (e.min || 1) <= lv && (!e.max || lv <= e.max)).map(e => e.id);
   const floor = best.filter(([x, y]) => t[y][x] === 'x' && dist[y][x] >= 8); const enemies = []; const wardedCave = caveWarded(id);
   for (let i = 0; i < (wardedCave ? 0 : 3 + Math.floor(lv / 2)) && floor.length && pool.length; i++) { const [x, y] = pick(floor); enemies.push({ id: pool[Math.floor(r() * pool.length)], x, y }); }
-  if (deepest && cv.boss && D.enemies[cv.boss] && !wardedCave) { t[far[1]][far[0]] = 'x'; enemies.push({ id: cv.boss, x: far[0], y: far[1] }); }
+  if (deepest) t[far[1]][far[0]] = 'E';  // the old miners' rope: straight back up to the surface
+  if (deepest && cv.boss && D.enemies[cv.boss] && !wardedCave) enemies.push({ id: cv.boss, x: far[0], y: far[1] });
   const warps = [{ x: ent[0], y: ent[1], to: lv === 1 ? cv.exit.map : `cave:${cid}:${lv - 1}`, tx: lv === 1 ? cv.exit.x : 'v', ty: lv === 1 ? cv.exit.y : 'v' }];
   if (!deepest) warps.push({ x: far[0], y: far[1], to: `cave:${cid}:${lv + 1}`, tx: 'E', ty: 'E' });
+  else warps.push({ x: far[0], y: far[1], to: cv.exit.map, tx: cv.exit.x, ty: cv.exit.y, rope: true });
   const mp = { name: `${cv.name} - Level ${lv}${deepest ? ' (deepest)' : ''}`, cave: true, caveId: cid, level: lv, outdoor: false, dark: Math.min(0.45, 0.12 + 0.03 * lv), music: cv.music || 'cave', ground: 't_cave',
     tiles: t.map(row => row.join('')), warps, npcs: [], forage: [], enemies, signs: [], combat: { ground: 'x', terrain: { '*': 0.04, 'X': 0.05 }, music: 'battle' },
     caveMult: 1 + (CR.perLevelHp == null ? 0.12 : CR.perLevelHp) * (lv - 1 + (cv.offset || 0)) };
@@ -40488,7 +40498,7 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 // debug/test hook (harmless in production)
-window.__game = { questMenu, shopRequests, requestTick, requestRows, notePartKill, makeRequest, rollLoot, add, resolveRoute, routeSellQuote, routeBuyPrice, routeBarter, crewBarter, shipBarter, demandCap, routeDays, routeSuccess, buyPrice, sellPrice, vendorBuys, haggleMenu, haggleLimit, haggleRoom, townLvl, demandLeft, tradeSellPrice, tradeBuyPrice, lotMenu, lotTick, apprenticeTick, apprenticeIds, apprTick, appr, apprTier, apprName, addAppr, companionTalk, closeness, payLvl, hubItems, prosperLvl, prosperName, addProsper, stockLeft, stockCap, smithVisit, smithCost, eqOf, fleet, flagship, fleetMenu, fleetTick, routes, fleetLimit, shipyardMenu, unloadHold, holdLine, ordersMenu, shipActions, storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
+window.__game = { get MASTER() { return MASTER; }, questMenu, shopRequests, requestTick, requestRows, notePartKill, makeRequest, rollLoot, add, resolveRoute, routeSellQuote, routeBuyPrice, routeBarter, crewBarter, shipBarter, demandCap, routeDays, routeSuccess, buyPrice, sellPrice, vendorBuys, haggleMenu, haggleLimit, haggleRoom, townLvl, demandLeft, tradeSellPrice, tradeBuyPrice, lotMenu, lotTick, apprenticeTick, apprenticeIds, apprTick, appr, apprTier, apprName, addAppr, companionTalk, closeness, payLvl, hubItems, prosperLvl, prosperName, addProsper, stockLeft, stockCap, smithVisit, smithCost, eqOf, fleet, flagship, fleetMenu, fleetTick, routes, fleetLimit, shipyardMenu, unloadHold, holdLine, ordersMenu, shipActions, storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
 })();
 
 </script>
