@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.19.2</title>
+<title>Reagents of Briarwick v0.19.3</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.19.2",
+  "version": "0.19.3",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -23674,9 +23674,10 @@ window.GAME_DATA = {
     "apprentice_robe",
     "moonstone_focus",
     "glowcap_locket",
-    "scroll_of_return",
     "potion_belt",
-    "reagent_case"
+    "reagent_case",
+    "emberroot",
+    "glowcap"
    ],
    "buysTypes": [
     "gem",
@@ -23721,7 +23722,6 @@ window.GAME_DATA = {
     "oak_staff",
     "wooden_shield",
     "herb_pouch",
-    "potion",
     "hand_axe",
     "iron_mace",
     "spear",
@@ -23758,7 +23758,7 @@ window.GAME_DATA = {
     "frost_charm",
     "lucky_coin",
     "fine_pouch",
-    "potion"
+    "seapearl"
    ],
    "buysTypes": [
     "gem",
@@ -23798,11 +23798,10 @@ window.GAME_DATA = {
   "alchemist": {
    "name": "Mirelle's Alchemy",
    "sells": [
-    "potion",
     "fire_oil",
-    "ironskin",
     "phoenix_draught",
-    "potion_belt"
+    "potion_belt",
+    "great_potion"
    ],
    "buysTypes": [
     "consumable",
@@ -23825,7 +23824,9 @@ window.GAME_DATA = {
     "wooden_shield",
     "battle_axe",
     "war_hammer",
-    "hildas_warhammer"
+    "hildas_warhammer",
+    "copper_ore",
+    "iron_ore"
    ],
    "buysTypes": [
     "metal",
@@ -23845,7 +23846,11 @@ window.GAME_DATA = {
     "wizard_hat",
     "herb_pouch",
     "scroll_of_return",
-    "reagent_case"
+    "reagent_case",
+    "moonpetal",
+    "frostmint",
+    "quartz",
+    "amethyst"
    ],
    "buysTypes": [
     "gem",
@@ -23864,7 +23869,7 @@ window.GAME_DATA = {
    "name": "Fen's Catch",
    "sells": [
     "rum",
-    "potion"
+    "brinekelp"
    ],
    "buysTypes": [
     "material",
@@ -23875,14 +23880,11 @@ window.GAME_DATA = {
    "name": "Gannet Goods",
    "sells": [
     "bedroll",
-    "rum",
-    "potion",
-    "great_potion",
     "sea_boots",
-    "fire_oil",
     "longbow",
-    "phoenix_draught",
-    "potion_belt"
+    "potion_belt",
+    "ironbark",
+    "shadebloom"
    ],
    "buysTypes": [
     "reagent",
@@ -23922,10 +23924,8 @@ window.GAME_DATA = {
    "name": "Oakhollow Market",
    "sells": [
     "seed_jadeleaf",
-    "potion",
-    "great_potion",
-    "rum",
-    "seed_satchel"
+    "seed_satchel",
+    "jadeleaf"
    ],
    "buysTypes": [
     "reagent",
@@ -23956,9 +23956,8 @@ window.GAME_DATA = {
    "name": "Port Azure Market",
    "sells": [
     "seed_tidecoral",
-    "potion",
-    "great_potion",
-    "rum"
+    "tidecoral",
+    "swift_elixir"
    ],
    "buysTypes": [
     "reagent",
@@ -23977,7 +23976,8 @@ window.GAME_DATA = {
     "admirals_coat",
     "sea_boots",
     "leather_jerkin",
-    "tidecaller_trident"
+    "tidecaller_trident",
+    "sapphire"
    ],
    "buysTypes": [
     "gear",
@@ -23989,9 +23989,8 @@ window.GAME_DATA = {
    "name": "Thornhaven Market",
    "sells": [
     "seed_bloodmoss",
-    "potion",
-    "great_potion",
-    "rum"
+    "bloodmoss",
+    "silver_ore"
    ],
    "buysTypes": [
     "reagent",
@@ -24011,7 +24010,8 @@ window.GAME_DATA = {
     "royal_plate",
     "iron_helm",
     "chainmail",
-    "warlord_greataxe"
+    "warlord_greataxe",
+    "ruby"
    ],
    "buysTypes": [
     "gear",
@@ -24023,10 +24023,8 @@ window.GAME_DATA = {
    "name": "Starfall Market",
    "sells": [
     "seed_cinderlotus",
-    "potion",
-    "great_potion",
-    "rum",
-    "reagent_case"
+    "reagent_case",
+    "cinderlotus"
    ],
    "buysTypes": [
     "reagent",
@@ -24045,7 +24043,9 @@ window.GAME_DATA = {
     "archmage_robe",
     "oak_staff",
     "wizard_hat",
-    "starfall_focus"
+    "starfall_focus",
+    "mithril_ore",
+    "starstone"
    ],
    "buysTypes": [
     "gear",
@@ -25124,7 +25124,7 @@ window.GAME_DATA = {
      "x": 8,
      "y": 13,
      "kind": "greenhouse",
-     "reagent": "brinekelp"
+     "reagent": "seapearl"
     }
    ]
   },
@@ -35361,12 +35361,18 @@ window.GAME_DATA = {
   "caps": {
    "seed": 100,
    "reagent": 30,
-   "consumable": 10
+   "consumable": 10,
+   "metal": 30,
+   "gem": 20,
+   "material": 30
   },
   "labels": {
    "seed": "Seeds",
    "reagent": "Reagents",
-   "consumable": "Potions"
+   "consumable": "Potions",
+   "metal": "Ore",
+   "gem": "Gems",
+   "material": "Monster parts"
   }
  },
  "ships": {
@@ -35386,7 +35392,7 @@ window.GAME_DATA = {
     "hull": 80,
     "speed": 0.9,
     "bulk": 40,
-    "dry": 40,
+    "dry": 60,
     "price": 1400,
     "used": true,
     "desc": "Slow and tubby, but there's a proper hold."
@@ -35396,7 +35402,7 @@ window.GAME_DATA = {
     "hull": 110,
     "speed": 1.15,
     "bulk": 60,
-    "dry": 60,
+    "dry": 90,
     "price": 600,
     "timber": 40,
     "yard": true,
@@ -35407,7 +35413,7 @@ window.GAME_DATA = {
     "hull": 160,
     "speed": 1.0,
     "bulk": 150,
-    "dry": 100,
+    "dry": 160,
     "price": 1600,
     "timber": 100,
     "yard": true,
@@ -35685,6 +35691,541 @@ window.GAME_DATA = {
      "ember_crafter"
     ]
    }
+  }
+ },
+ "market": {
+  "towns": {
+   "briarwick": {
+    "name": "Briarwick",
+    "danger": 0
+   },
+   "gannet": {
+    "name": "Gannet Cove",
+    "danger": 0
+   },
+   "southwatch": {
+    "name": "Southwatch",
+    "danger": 0
+   },
+   "highmoor": {
+    "name": "Highmoor",
+    "danger": 0
+   },
+   "saltmere": {
+    "name": "Saltmere",
+    "danger": 1
+   },
+   "verdant": {
+    "name": "Verdant Isles",
+    "danger": 2
+   },
+   "azure": {
+    "name": "Azure Atoll",
+    "danger": 3
+   },
+   "thornhaven": {
+    "name": "Thornhaven",
+    "danger": 4
+   },
+   "ember": {
+    "name": "Ember Isles",
+    "danger": 5
+   }
+  },
+  "goods": [
+   "amethyst",
+   "bandit_badge",
+   "bloodmoss",
+   "brinekelp",
+   "cinderlotus",
+   "copper_ore",
+   "crab_shell",
+   "cut_stone",
+   "emberroot",
+   "fire_oil",
+   "frostmint",
+   "glowcap",
+   "glyphstone",
+   "great_potion",
+   "hollow_shard",
+   "iron_ore",
+   "ironbark",
+   "ironskin",
+   "jadeleaf",
+   "kraken_ink",
+   "mithril_ore",
+   "moonpetal",
+   "phoenix_draught",
+   "potion",
+   "quartz",
+   "ruby",
+   "rum",
+   "sailcloth",
+   "sapphire",
+   "scroll_of_return",
+   "seapearl",
+   "seed_bloodmoss",
+   "seed_cinderlotus",
+   "seed_jadeleaf",
+   "seed_tidecoral",
+   "shadebloom",
+   "shark_tooth",
+   "silver_ore",
+   "slime_gel",
+   "starstone",
+   "swift_elixir",
+   "thorn_iron",
+   "tidecoral",
+   "timber",
+   "wisp_essence",
+   "wolf_fang"
+  ],
+  "vendors": {
+   "apothecary": {
+    "town": "briarwick",
+    "sells": {
+     "emberroot": 16,
+     "glowcap": 12,
+     "potion": 30
+    },
+    "buys": {
+     "moonpetal": 1.04,
+     "frostmint": 1.1,
+     "shadebloom": 1.0,
+     "brinekelp": 1.02,
+     "jadeleaf": 1.19,
+     "tidecoral": 1.25,
+     "bloodmoss": 1.35,
+     "ruby": 1.39,
+     "starstone": 1.36
+    }
+   },
+   "alchemist": {
+    "town": "briarwick",
+    "sells": {
+     "great_potion": 90,
+     "fire_oil": 60,
+     "phoenix_draught": 120
+    },
+    "buys": {
+     "moonpetal": 1.06,
+     "frostmint": 1.07,
+     "ironbark": 1.05,
+     "shadebloom": 1.0,
+     "brinekelp": 1.0,
+     "jadeleaf": 1.2,
+     "cinderlotus": 1.39,
+     "swift_elixir": 1.24,
+     "scroll_of_return": 1.04,
+     "crab_shell": 1.19,
+     "wisp_essence": 1.14,
+     "shark_tooth": 0.99
+    }
+   },
+   "outfitter": {
+    "town": "briarwick",
+    "sells": {},
+    "buys": {
+     "copper_ore": 1.13,
+     "iron_ore": 1.1,
+     "silver_ore": 1.34,
+     "mithril_ore": 1.34,
+     "crab_shell": 1.24,
+     "wisp_essence": 1.23,
+     "shark_tooth": 1.0,
+     "kraken_ink": 1.18
+    }
+   },
+   "fen": {
+    "town": "gannet",
+    "sells": {
+     "brinekelp": 80,
+     "rum": 15
+    },
+    "buys": {
+     "emberroot": 1.02,
+     "glowcap": 1.01,
+     "moonpetal": 1.01,
+     "tidecoral": 1.13,
+     "bloodmoss": 1.2,
+     "cinderlotus": 1.26,
+     "great_potion": 1.08,
+     "fire_oil": 1.03,
+     "phoenix_draught": 1.03,
+     "scroll_of_return": 1.01,
+     "slime_gel": 1.03,
+     "wisp_essence": 1.05,
+     "kraken_ink": 1.07,
+     "hollow_shard": 1.03,
+     "bandit_badge": 1.02
+    }
+   },
+   "gannet_goods": {
+    "town": "gannet",
+    "sells": {
+     "ironbark": 30,
+     "shadebloom": 56
+    },
+    "buys": {
+     "frostmint": 0.97,
+     "seapearl": 1.1,
+     "jadeleaf": 1.01,
+     "cinderlotus": 1.25,
+     "potion": 1.06,
+     "phoenix_draught": 0.98,
+     "scroll_of_return": 0.93,
+     "sapphire": 1.12,
+     "wolf_fang": 1.03,
+     "crab_shell": 1.01,
+     "wisp_essence": 1.02,
+     "hollow_shard": 1.0,
+     "bandit_badge": 1.05
+    }
+   },
+   "southwatch_arms": {
+    "town": "southwatch",
+    "sells": {
+     "ironskin": 70
+    },
+    "buys": {
+     "potion": 0.99,
+     "fire_oil": 1.08,
+     "phoenix_draught": 0.99,
+     "scroll_of_return": 0.98,
+     "rum": 1.02,
+     "copper_ore": 1.0,
+     "iron_ore": 1.0,
+     "slime_gel": 1.02,
+     "wolf_fang": 1.0,
+     "crab_shell": 1.12,
+     "wisp_essence": 1.04,
+     "shark_tooth": 1.05,
+     "kraken_ink": 1.02,
+     "hollow_shard": 1.05,
+     "bandit_badge": 0.99
+    }
+   },
+   "highmoor_smith": {
+    "town": "highmoor",
+    "sells": {
+     "copper_ore": 20,
+     "iron_ore": 32
+    },
+    "buys": {
+     "silver_ore": 1.1,
+     "mithril_ore": 1.19,
+     "sapphire": 1.07,
+     "starstone": 1.16,
+     "wolf_fang": 1.11,
+     "crab_shell": 0.99,
+     "wisp_essence": 0.92,
+     "shark_tooth": 0.99,
+     "kraken_ink": 0.97,
+     "bandit_badge": 1.1
+    }
+   },
+   "arcanum": {
+    "town": "highmoor",
+    "sells": {
+     "moonpetal": 24,
+     "frostmint": 36,
+     "scroll_of_return": 150,
+     "quartz": 24,
+     "amethyst": 44
+    },
+    "buys": {
+     "glowcap": 1.13,
+     "ironbark": 1.0,
+     "shadebloom": 0.94,
+     "brinekelp": 0.97,
+     "seapearl": 0.95,
+     "jadeleaf": 1.02,
+     "tidecoral": 1.04,
+     "bloodmoss": 1.08,
+     "potion": 1.09,
+     "great_potion": 1.11,
+     "phoenix_draught": 1.08,
+     "ironskin": 0.97,
+     "sapphire": 1.01,
+     "slime_gel": 1.08,
+     "crab_shell": 0.93,
+     "shark_tooth": 1.02,
+     "kraken_ink": 1.01,
+     "hollow_shard": 1.1,
+     "bandit_badge": 1.04
+    }
+   },
+   "trader": {
+    "town": "saltmere",
+    "sells": {
+     "seapearl": 70
+    },
+    "buys": {
+     "glowcap": 1.25,
+     "moonpetal": 0.98,
+     "ironbark": 1.06,
+     "jadeleaf": 1.0,
+     "tidecoral": 1.09,
+     "bloodmoss": 1.08,
+     "cinderlotus": 1.16,
+     "potion": 1.23,
+     "fire_oil": 1.25,
+     "ironskin": 1.08,
+     "swift_elixir": 1.09,
+     "scroll_of_return": 1.04,
+     "silver_ore": 1.07,
+     "mithril_ore": 1.17,
+     "quartz": 1.05,
+     "amethyst": 1.01,
+     "sapphire": 1.07,
+     "starstone": 1.17,
+     "wolf_fang": 1.22,
+     "shark_tooth": 1.06,
+     "bandit_badge": 1.25
+    }
+   },
+   "verdant_trader": {
+    "town": "verdant",
+    "sells": {
+     "jadeleaf": 60,
+     "timber": 8,
+     "seed_jadeleaf": 40
+    },
+    "buys": {
+     "emberroot": 1.34,
+     "glowcap": 1.34,
+     "moonpetal": 1.15,
+     "ironbark": 1.11,
+     "brinekelp": 1.14,
+     "tidecoral": 1.3,
+     "bloodmoss": 1.06,
+     "phoenix_draught": 1.3,
+     "swift_elixir": 1.25,
+     "scroll_of_return": 1.12,
+     "rum": 1.13,
+     "copper_ore": 1.14,
+     "iron_ore": 1.12,
+     "mithril_ore": 1.33,
+     "quartz": 1.1,
+     "amethyst": 1.13,
+     "sapphire": 1.3,
+     "slime_gel": 1.34,
+     "wolf_fang": 1.34,
+     "crab_shell": 1.07,
+     "wisp_essence": 1.1,
+     "shark_tooth": 1.17,
+     "kraken_ink": 1.04,
+     "hollow_shard": 1.35,
+     "bandit_badge": 1.33
+    }
+   },
+   "verdant_crafter": {
+    "town": "verdant",
+    "sells": {},
+    "buys": {
+     "copper_ore": 1.14,
+     "silver_ore": 1.14,
+     "quartz": 1.14,
+     "amethyst": 1.13,
+     "slime_gel": 1.29,
+     "wolf_fang": 1.37,
+     "crab_shell": 1.04,
+     "shark_tooth": 1.19,
+     "kraken_ink": 1.09,
+     "hollow_shard": 1.3,
+     "bandit_badge": 1.37
+    }
+   },
+   "azure_trader": {
+    "town": "azure",
+    "sells": {
+     "tidecoral": 80,
+     "swift_elixir": 80,
+     "sailcloth": 10,
+     "seed_tidecoral": 50
+    },
+    "buys": {
+     "moonpetal": 1.23,
+     "frostmint": 1.23,
+     "ironbark": 1.28,
+     "shadebloom": 1.3,
+     "seapearl": 1.21,
+     "jadeleaf": 1.31,
+     "bloodmoss": 1.33,
+     "cinderlotus": 1.19,
+     "great_potion": 1.33,
+     "fire_oil": 1.34,
+     "phoenix_draught": 1.4,
+     "scroll_of_return": 1.19,
+     "rum": 1.29,
+     "iron_ore": 1.23,
+     "silver_ore": 1.29,
+     "mithril_ore": 1.13,
+     "quartz": 1.21,
+     "amethyst": 1.21,
+     "ruby": 1.34,
+     "starstone": 1.12,
+     "wisp_essence": 1.18,
+     "shark_tooth": 1.31,
+     "kraken_ink": 1.25,
+     "bandit_badge": 1.35
+    }
+   },
+   "azure_crafter": {
+    "town": "azure",
+    "sells": {
+     "sapphire": 68
+    },
+    "buys": {
+     "iron_ore": 1.19,
+     "mithril_ore": 1.12,
+     "quartz": 1.15,
+     "ruby": 1.35,
+     "starstone": 1.13,
+     "slime_gel": 1.39,
+     "wolf_fang": 1.35,
+     "crab_shell": 1.24,
+     "wisp_essence": 1.24,
+     "shark_tooth": 1.36,
+     "bandit_badge": 1.38
+    }
+   },
+   "thornhaven_trader": {
+    "town": "thornhaven",
+    "sells": {
+     "bloodmoss": 100,
+     "silver_ore": 56,
+     "cut_stone": 6,
+     "thorn_iron": 14,
+     "seed_bloodmoss": 60
+    },
+    "buys": {
+     "glowcap": 1.45,
+     "ironbark": 1.4,
+     "brinekelp": 1.4,
+     "seapearl": 1.26,
+     "tidecoral": 1.41,
+     "cinderlotus": 1.32,
+     "great_potion": 1.45,
+     "fire_oil": 1.45,
+     "phoenix_draught": 1.45,
+     "ironskin": 1.43,
+     "swift_elixir": 1.38,
+     "scroll_of_return": 1.33,
+     "rum": 1.39,
+     "copper_ore": 1.35,
+     "iron_ore": 1.31,
+     "mithril_ore": 1.31,
+     "quartz": 1.36,
+     "amethyst": 1.34,
+     "sapphire": 1.33,
+     "starstone": 1.28,
+     "slime_gel": 1.45,
+     "wolf_fang": 1.45,
+     "crab_shell": 1.17,
+     "wisp_essence": 1.19,
+     "kraken_ink": 1.25,
+     "hollow_shard": 1.45,
+     "bandit_badge": 1.45
+    }
+   },
+   "thornhaven_crafter": {
+    "town": "thornhaven",
+    "sells": {
+     "ruby": 96
+    },
+    "buys": {
+     "copper_ore": 1.33,
+     "mithril_ore": 1.36,
+     "quartz": 1.33,
+     "amethyst": 1.36,
+     "sapphire": 1.37,
+     "starstone": 1.29,
+     "slime_gel": 1.45,
+     "wolf_fang": 1.45,
+     "wisp_essence": 1.17,
+     "shark_tooth": 1.43,
+     "kraken_ink": 1.25,
+     "hollow_shard": 1.45,
+     "bandit_badge": 1.45
+    }
+   },
+   "ember_trader": {
+    "town": "ember",
+    "sells": {
+     "cinderlotus": 120,
+     "glyphstone": 30,
+     "seed_cinderlotus": 70
+    },
+    "buys": {
+     "emberroot": 1.45,
+     "glowcap": 1.45,
+     "moonpetal": 1.44,
+     "frostmint": 1.44,
+     "ironbark": 1.45,
+     "shadebloom": 1.45,
+     "brinekelp": 1.45,
+     "jadeleaf": 1.45,
+     "tidecoral": 1.24,
+     "bloodmoss": 1.39,
+     "potion": 1.45,
+     "fire_oil": 1.45,
+     "phoenix_draught": 1.45,
+     "ironskin": 1.45,
+     "scroll_of_return": 1.39,
+     "rum": 1.45,
+     "copper_ore": 1.43,
+     "silver_ore": 1.41,
+     "quartz": 1.36,
+     "amethyst": 1.42,
+     "sapphire": 1.29,
+     "ruby": 1.36,
+     "wolf_fang": 1.45,
+     "wisp_essence": 1.33,
+     "shark_tooth": 1.45,
+     "hollow_shard": 1.45
+    }
+   },
+   "ember_crafter": {
+    "town": "ember",
+    "sells": {
+     "mithril_ore": 100,
+     "starstone": 160
+    },
+    "buys": {
+     "silver_ore": 1.34,
+     "quartz": 1.44,
+     "amethyst": 1.4,
+     "sapphire": 1.27,
+     "ruby": 1.41,
+     "crab_shell": 1.31,
+     "wisp_essence": 1.31,
+     "shark_tooth": 1.45,
+     "kraken_ink": 1.29,
+     "hollow_shard": 1.45
+    }
+   }
+  },
+  "rules": {
+   "vendorDiscount": 0.02,
+   "townBonus": 0.03,
+   "barterBuyPerLvl": 0.02,
+   "barterBuyCap": 0.2,
+   "barterSellPerLvl": 0.025,
+   "barterSellCap": 0.25,
+   "standingShare": 0.5,
+   "demandBase": 10,
+   "demandPerTown": 5,
+   "satDrop": 0.02,
+   "satFloor": 0.5,
+   "haggleJitter": [
+    0.6,
+    1.2
+   ],
+   "haggleSteps": 12,
+   "tipBartering": 3,
+   "apprenticeMarkup": 1.5,
+   "townThresholdMult": 2
   }
  }
 };
@@ -36544,8 +37085,61 @@ async function wizardQuests(npc) {
   const any = await giverQuests(npc, { progress: true });
   if (!any) await say(npc.def.name, (npc.def.dialog || []).concat(npc.def.role === 'wizard' && G.flags.dreadKnown && dread() >= 0.1 ? (DL().aldwin || []) : []).concat([npc.def.role === 'wizard' ? '(No new tasks right now. Hunt monsters to unlock Bane research quests - and more zones are coming!)' : '(No new tasks right now.)']), npc.def.sprite);
 }
-function buyPrice(id) { return Math.max(1, Math.round(item(id).price * Math.max(0.3, 1 - 0.03 * skillLvl('bartering') - ptVal('bartering', 'buy') - perk('buyDiscount') - (item(id).type === 'seed' ? perk('seedDiscount') : 0)))); }
-function sellPrice(id) { return Math.max(1, Math.round(item(id).sell * (1 + 0.05 * skillLvl('bartering') + ptVal('bartering', 'sell') + perk('sellBonus') + gearVal('player', 'sellBonus') + premium(id)))); }
+// ---- the trade network (D.market): each vendor sells or buys a good; prices = base x Bartering x prosperity x distance ----
+function MK() { return D.market || { vendors: {}, goods: [], rules: {}, towns: {} }; }
+function MR() { return MK().rules || {}; }
+function mkV(sid) { return sid ? MK().vendors[sid] : null; }
+function isTradeGood(id) { MK()._g = MK()._g || new Set(MK().goods || []); return MK()._g.has(id); }
+function townOfShop(sid) { const v = mkV(sid); if (v) return v.town; return null; }
+function townLvl(town) { if (!town) return 0; const g = Object.entries(MK().vendors).filter(([, v]) => v.town === town).reduce((a, [s]) => a + ((G.prosper || {})[s] || 0), 0); const m = MR().townThresholdMult || 2; let l = 0; (PR().thresholds || [0]).forEach((t, i) => { if (g >= t * m) l = i; }); return l; }
+// Bartering: the full effect, half of it built into the standing price, the other half only by haggling
+function barterRaw(kind) { const R0 = MR(), L = skillLvl('bartering'); return kind === 'buy' ? Math.min(R0.barterBuyCap == null ? 0.2 : R0.barterBuyCap, (R0.barterBuyPerLvl == null ? 0.02 : R0.barterBuyPerLvl) * L + ptVal('bartering', 'buy') + perk('buyDiscount'))
+  : Math.min(R0.barterSellCap == null ? 0.25 : R0.barterSellCap, (R0.barterSellPerLvl == null ? 0.025 : R0.barterSellPerLvl) * L + ptVal('bartering', 'sell') + perk('sellBonus') + gearVal('player', 'sellBonus')); }
+function barterStanding(kind) { return barterRaw(kind) * (MR().standingShare == null ? 0.5 : MR().standingShare); }
+function haggleRoom(kind) { return barterRaw(kind) - barterStanding(kind); }
+function soldToday(sid, id) { const S = G.sold; return S && S.day === G.day ? ((S.v[sid] || {})[id] || 0) : 0; }
+function markSold(sid, id, n) { if (!sid) return; if (!G.sold || G.sold.day !== G.day) G.sold = { day: G.day, v: {} }; const v = G.sold.v[sid] = G.sold.v[sid] || {}; v[id] = (v[id] || 0) + n; }
+function demandLeft(sid, id) { const R0 = MR(); return Math.max(0, (R0.demandBase || 10) + (R0.demandPerTown || 5) * townLvl(townOfShop(sid)) - soldToday(sid, id)); }
+function satMult(sid, id) { const R0 = MR(), N = (R0.demandBase || 10) + (R0.demandPerTown || 5) * townLvl(townOfShop(sid)), sold = soldToday(sid, id); return sold < N ? 1 : Math.max(R0.satFloor || 0.5, 1 - (R0.satDrop || 0.02) * (sold - N + 1)); }
+function buyPrice(id, sid) { const it = item(id), sh = sid && D.shops[sid]; let p = it.price * (1 - (MR().vendorDiscount == null ? 0.02 : MR().vendorDiscount) * (sid ? prosperLvl(sid) : 0)) * Math.max(0.3, 1 - barterStanding('buy') - (it.type === 'seed' ? perk('seedDiscount') : 0));
+  if (sh && sh.apprenticeOf && isTradeGood(id)) p *= MR().apprenticeMarkup || 1.5; return Math.max(1, Math.round(p)); }
+function vendorBuys(sid, id) { const v = mkV(sid); if (v) { if ((v.buys || {})[id] != null) return true; if (isTradeGood(id)) return false; } else if (isTradeGood(id)) return false; const sh = D.shops[sid] || {}; return (sh.buysTypes || []).includes(item(id).type) && !(sh.sells || []).includes(id); }
+function sellPrice(id, sid) { const v = mkV(sid), f = v && (v.buys || {})[id];
+  if (f != null) return Math.max(1, Math.round(item(id).price * f * (1 + (MR().townBonus == null ? 0.03 : MR().townBonus) * townLvl(v.town)) * (1 + barterStanding('sell')) * satMult(sid, id)));
+  return Math.max(1, Math.round(item(id).sell * (1 + barterStanding('sell') + (isTradeGood(id) ? 0 : premium(id))))); }
+function haggleTipper() { const R0 = MR(); let best = null; for (const [id, st] of Object.entries(G.helpers || {})) { if (st.role !== 'party' || !D.helpers[id]) continue; const b = (D.helpers[id].skills || {}).bartering || 0; if (b >= (R0.tipBartering || 3) && (!best || b > best.b)) best = { id, b }; } return best && D.helpers[best.id]; }
+function haggleLimit(sid, kind) { let h = 0; for (const c of `${sid}:${G.day}:${kind}`) h = (h * 31 + c.charCodeAt(0)) >>> 0; const [a, b] = MR().haggleJitter || [0.6, 1.2]; return haggleRoom(kind) * (a + (h % 1000) / 1000 * (b - a)); }
+function tradeRoomFor(id) { const fs = flagship(), here = R.mapId && outdoorOf(R.mapId); return pocketRoom(id) + (fs && G.shipAt === here ? holdRoom(fs, holdKind(id)) : 0); }
+function stowBought(id, n) { const pr = Math.min(n, pocketRoom(id)); if (pr > 0) add(id, pr, true); const rest = n - pr; if (rest > 0) { const fs = flagship(); fs.hold[id] = (fs.hold[id] || 0) + rest; toast(`${rest} ${item(id).name} stowed in ${fs.name}'s hold.`); } }
+async function haggleMenu(npc, shop, sid) {
+  const nm = npc.def.name, sp = npc.def.sprite, tip = haggleTipper();
+  const mode = await choose('Haggle', [{ label: 'Buy for less', value: 'buy', desc: 'Name your price for a batch. Ask too much off and the shopkeeper is insulted and won\'t deal with you again today.' }, { label: 'Sell for more', value: 'sell', desc: 'Ask a higher price for a batch. Push too far and they\'ll throw you out for the day.' }, { label: 'Never mind', value: null }], { width: 480 });
+  if (!mode) return;
+  let ids;
+  if (mode === 'buy') { const gd = guildFor(sid); ids = [...new Set((shop.sells || []).concat(apprenticeIds(shop)).concat((G.shopUnlocks || {})[sid] || []).concat(prosperIds(sid)))].filter(id => D.items[id] && !gd[id] && !['furniture', 'upgrade', 'build'].includes(item(id).type) && stockLeft(sid, id) > 0); }
+  else ids = Object.keys(G.inv).filter(id => count(id) > 0 && vendorBuys(sid, id));
+  if (!ids.length) { toast(mode === 'buy' ? 'Nothing left to buy today.' : 'You have nothing they want.'); return; }
+  const id = await choose(mode === 'buy' ? 'Haggle to buy which?' : 'Haggle to sell which?', ids.map(i => ({ label: item(i).name, icon: item(i).sprite, right: (mode === 'buy' ? buyPrice(i, sid) : sellPrice(i, sid)) + 'g', value: i, desc: itemDesc(i) })).concat([{ label: 'Never mind', value: null }]), { width: 520 });
+  if (!id) return;
+  const std = mode === 'buy' ? buyPrice(id, sid) : sellPrice(id, sid);
+  const max = mode === 'buy' ? Math.min(stockLeft(sid, id), Math.floor(G.gold / Math.max(1, std * 0.85)), isTradeGood(id) ? tradeRoomFor(id) : 99) : count(id);
+  if (max <= 0) { toast(mode === 'buy' ? (isTradeGood(id) && !tradeRoomFor(id) ? 'No room: your pockets are full and your ship isn\'t docked here.' : 'You can\'t afford any.') : 'You have none.'); return; }
+  const qs = [...new Set([1, 5, 10, 20, max].filter(q => q <= max))];
+  const q = await choose(`How many ${item(id).name}?`, qs.map(n => ({ label: n === max && n > 1 ? `${n} (all)` : String(n), value: n })).concat([{ label: 'Never mind', value: null }]), { width: 320 });
+  if (!q) return;
+  const lim = haggleLimit(sid, mode), totAt = pc => Math.max(1, Math.round(std * q * (mode === 'buy' ? 1 - pc / 100 : 1 + pc / 100))), floorT = totAt(lim * 100);
+  const rows = [], seen = new Set(); for (let p = 1; p <= (MR().haggleSteps || 12); p++) { const t = totAt(p); if (seen.has(t) || t === std * q) continue; seen.add(t); rows.push({ label: `${mode === 'buy' ? 'Offer' : 'Ask for'} ${t}g`, right: `${mode === 'buy' ? '-' : '+'}${p}%`, value: p }); }
+  const hint = tip ? `${tip.name} whispers: "${mode === 'buy' ? 'They won\'t take less than' : 'They won\'t pay more than'} about ${floorT}g for the lot."` : 'A companion with a head for bargains (Bartering 3+) in your party could tell you how far they\'ll go.';
+  if (!rows.length) { toast('Too small a deal to haggle over. Try a bigger batch.'); return; }
+  const p = await choose(`${item(id).name} x${q}: standing price ${std * q}g`, rows.concat([{ label: 'Never mind', value: null }]), { width: 520, footer: hint });
+  if (!p) return;
+  if (p / 100 > lim + 1e-9) { G.insulted = G.insulted || {}; G.insulted[sid] = G.day; AU.sfx('hit');
+    await say(nm, [mode === 'buy' ? `${totAt(p)} gold for ${q}? Are you trying to insult me?` : `${totAt(p)} gold for ${q}? Do you take me for a fool?`, 'I\'m done talking to you today. Come back tomorrow.'], sp); return 'insult'; }
+  const tot = totAt(p);
+  if (mode === 'buy') { if (G.gold < tot) { toast('You can\'t afford that.'); return; } G.gold -= tot; addProsper(sid, tot); useStock(sid, id, q); if (isTradeGood(id)) stowBought(id, q); else add(id, q, true); }
+  else { take(id, q); G.gold += tot; addProsper(sid, tot); markSold(sid, id, q); }
+  AU.sfx('coin'); addSkillXp('bartering', 2 + Math.floor(p / 3)); await say(nm, [p >= lim * 100 * 0.8 ? 'Hmph. You drive a hard bargain. Deal.' : 'Fair enough. Deal.'], sp);
+}
 // ---- vendor prosperity: every gold traded with a shop builds it up; bigger daily stock and new goods ----
 function PR() { return D.prosperity || { thresholds: [0], names: [''], baseStock: 99, stockPerLevel: 0 }; }
 function prosperLvl(sid) { const g = (G.prosper || {})[sid] || 0; let l = 0; (PR().thresholds || [0]).forEach((v, i) => { if (g >= v) l = i; }); return l; }
@@ -36592,11 +37186,13 @@ async function shopTalk(npc, skipIntro) {
   const shop = D.shops[npc.def.shop] || { name: 'Shop', sells: [], buysTypes: ['reagent'] };
   const sid = D.shops[npc.def.shop] ? npc.def.shop : null;
   if (!skipIntro) await say(npc.def.name, npc.def.dialog, npc.def.sprite);
+  if (sid && (G.insulted || {})[sid] === G.day) { await say(npc.def.name, ['You again? I\'ve nothing to say to you today.'], npc.def.sprite); return; }
   if (sid) await smithVisit(npc);
   for (;;) {
-    const fsH = flagship(), hasHold = fsH && G.shipAt === outdoorOf(R.mapId) && Object.keys(fsH.hold || {}).some(id => (shop.buysTypes || []).includes(item(id).type));
+    const fsH = flagship(), hasHold = fsH && G.shipAt === outdoorOf(R.mapId) && Object.keys(fsH.hold || {}).some(id => fsH.hold[id] > 0 && vendorBuys(sid || npc.def.shop, id));
     const nx = sid ? prosperNext(sid) : null;
-    const c = await choose(sid ? `${shop.name}  -  ${prosperName(sid)}` : shop.name, [{ label: 'Buy', value: 'buy', desc: sid ? `${prosperName(sid)}: stock refills every morning.${nx != null ? `  Trade ${nx} more gold here and the shop will grow.` : '  As big as a shop gets.'}` : '' }, { label: 'Sell', value: 'sell' }, ...(hasHold ? [{ label: `Sell from ${fsH.name}'s hold`, value: 'hold' }] : []), { label: 'Leave', value: 'leave' }], { width: 300 });
+    const c = await choose(sid ? `${shop.name}  -  ${prosperName(sid)}` : shop.name, [{ label: 'Buy', value: 'buy', desc: sid ? `${prosperName(sid)}: stock refills every morning.${nx != null ? `  Trade ${nx} more gold here and the shop will grow.` : '  As big as a shop gets.'}` : '' }, { label: 'Sell', value: 'sell' }, ...(sid ? [{ label: 'Haggle', value: 'haggle', desc: `Name your own price for a batch.  Bartering ${skillLvl('bartering')}: up to about ${Math.round(haggleRoom('buy') * 100)}% off when buying, ${Math.round(haggleRoom('sell') * 100)}% more when selling.` }] : []), ...(hasHold ? [{ label: `Sell from ${fsH.name}'s hold`, value: 'hold' }] : []), { label: 'Leave', value: 'leave' }], { width: 300 });
+    if (c === 'haggle') { if ((await haggleMenu(npc, shop, sid)) === 'insult') break; continue; }
     if (c === 'buy') await openMenu({ title: 'Buy', width: 560, footer: () => `Gold: ${G.gold}    Enter: buy 1    Shift+Enter: buy 5${flagship() && G.shipAt === outdoorOf(R.mapId) ? '    Hold: ' + holdLine(flagship()) : ''}`,
       items: () => {
         let ids = shop.sellsDiscoveredSeeds ? Object.keys(G.discovered).map(r => item(r).seed).filter(s => s && D.items[s]) : [];
@@ -36604,16 +37200,16 @@ async function shopTalk(npc, skipIntro) {
         const gd = guildFor(npc.def.shop); for (const g of Object.keys(gd)) if (!ids.includes(g)) ids.push(g);
         for (const [bid, kg] of Object.entries(shop.kingdomSells || {})) if ((G.kingdomDay || {})[kg] != null && !ids.includes(bid)) ids.push(bid);
         ids = [...new Set(ids)]; const fromS = id => (shop.sells || []).includes(id) || apprenticeIds(shop).includes(id) || ((G.shopUnlocks || {})[npc.def.shop] || []).includes(id) || (sid && prosperIds(sid).includes(id));
-        return ids.map(id => { const left = gd[id] && !fromS(id) ? Infinity : stockLeft(sid, id); return { label: item(id).name + ownedLabel(id) + (gd[id] && !fromS(id) ? `  (Miners' Guild: ${gd[id].n} left)` : '') + (item(id).unique ? (left ? '  (one of a kind)' : '  (sold)') : ''), icon: item(id).sprite, right: (left === Infinity || item(id).unique ? '' : left ? `x${left}  ` : 'sold out  ') + buyPrice(id) + 'g', desc: `${itemDesc(id)}  (You have ${count(id)})`, value: id, disabled: G.gold < buyPrice(id) || left <= 0 }; });
+        return ids.map(id => { const left = gd[id] && !fromS(id) ? Infinity : stockLeft(sid, id); return { label: item(id).name + ownedLabel(id) + (gd[id] && !fromS(id) ? `  (Miners' Guild: ${gd[id].n} left)` : '') + (item(id).unique ? (left ? '  (one of a kind)' : '  (sold)') : ''), icon: item(id).sprite, right: (left === Infinity || item(id).unique ? '' : left ? `x${left}  ` : 'sold out  ') + buyPrice(id, sid) + 'g', desc: `${itemDesc(id)}  (You have ${count(id)})`, value: id, disabled: G.gold < buyPrice(id, sid) || left <= 0 }; });
       },
-      onSelect: it => { if (item(it.value).type === 'build') { const fs = flagship(), here = outdoorOf(R.mapId); if (!fs || G.shipAt !== here) { toast('Too bulky to carry. Sail your own ship here to load it into the hold.', UI.red); return false; } const n0 = Math.min(keys.has('shift') ? 10 : 1, holdRoom(fs, 'bulk'), Math.floor(G.gold / buyPrice(it.value))); if (n0 <= 0) { toast(!(shipType(fs).bulk) ? `Your flagship (${shipType(fs).name}) has no bulk hold. A cog or a yard-built ship can carry it.` : holdRoom(fs, 'bulk') ? 'Not enough gold.' : 'Your flagship\'s bulk hold is full.', UI.red); return false; } G.gold -= n0 * buyPrice(it.value); addProsper(sid, n0 * buyPrice(it.value)); fs.hold[it.value] = (fs.hold[it.value] || 0) + n0; AU.sfx('coin'); toast(`${n0} ${item(it.value).name} loaded into ${fs.name}'s hold (${holdLine(fs)}).`); return false; }
-        const n = keys.has('shift') ? 5 : 1; let b = 0; const gsrc = guildFor(npc.def.shop)[it.value], fromShop = (shop.sells || []).includes(it.value) || apprenticeIds(shop).includes(it.value) || ((G.shopUnlocks || {})[npc.def.shop] || []).includes(it.value); const fromP = sid && prosperIds(sid).includes(it.value); for (let i = 0; i < n && G.gold >= buyPrice(it.value); i++) { if (gsrc && !fromShop && !fromP) { if (G.guild[gsrc.cid][it.value] <= 0) break; G.guild[gsrc.cid][it.value]--; } else { if (stockLeft(sid, it.value) <= 0) { if (!b) toast('Sold out for today. Fresh stock tomorrow.', UI.red); break; } } if (['furniture', 'upgrade'].includes(item(it.value).type)) { if (!buyFurniture(it.value)) break; G.gold -= buyPrice(it.value); addProsper(sid, buyPrice(it.value)); b++; continue; } G.gold -= buyPrice(it.value); addProsper(sid, buyPrice(it.value)); if (!(gsrc && !fromShop && !fromP)) useStock(sid, it.value, 1); add(it.value, 1, true); b++; } if (b) { AU.sfx('coin'); addSkillXp('bartering', 1); toast(`Bought ${b} ${item(it.value).name}`); } return false; } });
+      onSelect: it => { if (item(it.value).type === 'build') { const fs = flagship(), here = outdoorOf(R.mapId); if (!fs || G.shipAt !== here) { toast('Too bulky to carry. Sail your own ship here to load it into the hold.', UI.red); return false; } const n0 = Math.min(keys.has('shift') ? 10 : 1, holdRoom(fs, 'bulk'), Math.floor(G.gold / buyPrice(it.value, sid))); if (n0 <= 0) { toast(!(shipType(fs).bulk) ? `Your flagship (${shipType(fs).name}) has no bulk hold. A cog or a yard-built ship can carry it.` : holdRoom(fs, 'bulk') ? 'Not enough gold.' : 'Your flagship\'s bulk hold is full.', UI.red); return false; } G.gold -= n0 * buyPrice(it.value, sid); addProsper(sid, n0 * buyPrice(it.value, sid)); fs.hold[it.value] = (fs.hold[it.value] || 0) + n0; AU.sfx('coin'); toast(`${n0} ${item(it.value).name} loaded into ${fs.name}'s hold (${holdLine(fs)}).`); return false; }
+        const n = keys.has('shift') ? 5 : 1; let b = 0; const gsrc = guildFor(npc.def.shop)[it.value], fromShop = (shop.sells || []).includes(it.value) || apprenticeIds(shop).includes(it.value) || ((G.shopUnlocks || {})[npc.def.shop] || []).includes(it.value); const fromP = sid && prosperIds(sid).includes(it.value); for (let i = 0; i < n && G.gold >= buyPrice(it.value, sid); i++) { if (gsrc && !fromShop && !fromP) { if (G.guild[gsrc.cid][it.value] <= 0) break; G.guild[gsrc.cid][it.value]--; } else { if (stockLeft(sid, it.value) <= 0) { if (!b) toast('Sold out for today. Fresh stock tomorrow.', UI.red); break; } } if (['furniture', 'upgrade'].includes(item(it.value).type)) { if (!buyFurniture(it.value)) break; G.gold -= buyPrice(it.value, sid); addProsper(sid, buyPrice(it.value, sid)); b++; continue; } if (isTradeGood(it.value) && tradeRoomFor(it.value) <= 0) { if (!b) toast('No room: your pockets are full and your ship isn\'t docked here.', UI.red); break; } G.gold -= buyPrice(it.value, sid); addProsper(sid, buyPrice(it.value, sid)); if (!(gsrc && !fromShop && !fromP)) useStock(sid, it.value, 1); if (isTradeGood(it.value)) stowBought(it.value, 1); else add(it.value, 1, true); b++; } if (b) { AU.sfx('coin'); addSkillXp('bartering', 1); toast(`Bought ${b} ${item(it.value).name}`); } return false; } });
     else if (c === 'hold') await openMenu({ title: () => `Sell from the hold  -  ${holdLine(flagship())}`, width: 560, footer: () => `Gold: ${G.gold}    Enter: sell 1    Shift+Enter: sell all`,
-      items: () => Object.keys(flagship().hold || {}).filter(id => flagship().hold[id] > 0 && (shop.buysTypes || []).includes(item(id).type)).map(id => ({ label: item(id).name, icon: item(id).sprite, right: `${sellPrice(id)}g  (x${flagship().hold[id]})`, value: id })),
-      onSelect: it => { const fs = flagship(); const n = keys.has('shift') ? fs.hold[it.value] : 1; for (let i = 0; i < n; i++) { fs.hold[it.value]--; G.gold += sellPrice(it.value); addProsper(sid, sellPrice(it.value)); } if (!fs.hold[it.value]) delete fs.hold[it.value]; AU.sfx('coin'); addSkillXp('bartering', 1); return false; } });
+      items: () => Object.keys(flagship().hold || {}).filter(id => flagship().hold[id] > 0 && vendorBuys(sid || npc.def.shop, id)).map(id => ({ label: item(id).name, icon: item(id).sprite, right: `${sellPrice(id, sid)}g  (x${flagship().hold[id]})`, value: id })),
+      onSelect: it => { const fs = flagship(); const n = keys.has('shift') ? fs.hold[it.value] : 1; for (let i = 0; i < n; i++) { const pr = sellPrice(it.value, sid); fs.hold[it.value]--; G.gold += pr; addProsper(sid, pr); markSold(sid, it.value, 1); } if (!fs.hold[it.value]) delete fs.hold[it.value]; AU.sfx('coin'); addSkillXp('bartering', 1); return false; } });
     else if (c === 'sell') await openMenu({ title: 'Sell', width: 560, footer: () => `Gold: ${G.gold}    Enter: sell 1    Shift+Enter: sell all`,
-      items: () => Object.keys(G.inv).filter(id => (shop.buysTypes || []).includes(item(id).type) && count(id) > 0).map(id => ({ label: `${item(id).name}  x${count(id)}`, icon: item(id).sprite, right: sellPrice(id) + 'g', desc: itemDesc(id), value: id })),
-      onSelect: it => { const n = keys.has('shift') ? count(it.value) : 1; let s = 0; for (let i = 0; i < n && take(it.value, 1); i++) { G.gold += sellPrice(it.value); addProsper(sid, sellPrice(it.value)); s++; } if (s) { AU.sfx('coin'); addSkillXp('bartering', 1); addSkillXp('commerce', 1); toast(`Sold ${s} ${item(it.value).name} (+${s * sellPrice(it.value)}g)`); } const m = menus[menus.length - 1]; m.index = Math.max(0, Math.min(m.index, menuItems(m).length - 1)); return false; } });
+      items: () => Object.keys(G.inv).filter(id => count(id) > 0 && vendorBuys(sid || npc.def.shop, id)).map(id => ({ label: `${item(id).name}  x${count(id)}`, icon: item(id).sprite, right: sellPrice(id, sid) + 'g', desc: `${itemDesc(id)}${mkV(sid) && isTradeGood(id) ? `  They'll take ${demandLeft(sid, id)} more at full price today.` : ''}`, value: id })),
+      onSelect: it => { const n = keys.has('shift') ? count(it.value) : 1; let s = 0; let got = 0; for (let i = 0; i < n && take(it.value, 1); i++) { const pr = sellPrice(it.value, sid); G.gold += pr; got += pr; addProsper(sid, pr); markSold(sid, it.value, 1); s++; } if (s) { AU.sfx('coin'); addSkillXp('bartering', 1); addSkillXp('commerce', 1); toast(`Sold ${s} ${item(it.value).name} (+${got}g)`); } const m = menus[menus.length - 1]; m.index = Math.max(0, Math.min(m.index, menuItems(m).length - 1)); return false; } });
     else break;
   }
 }
@@ -38768,8 +39364,8 @@ function tradePorts() { return ((D.sea || {}).ports || []).filter(p => p.id !== 
 function crewBest(ids, sk) { return Math.max(1, ...ids.filter(id => D.helpers[id]).map(id => ((D.helpers[id].skills || {})[sk] || 0))); }
 function tradeOdds(ids, port) { const days = 2 * Math.max(1, Math.ceil(seaDays(port) * (navigatorId() ? 0.9 : 1))), sh = ship();
   const success = clamp(0.97 - 0.012 * seaDays(port) * 4 + 0.02 * crewBest(ids, 'sailing') + 0.15 * (sh.hull / sh.max - 1), 0.3, 0.98); return { days, success, death: (1 - success) * 0.25 }; }
-function tradeSellPrice(id, port, bart) { const prem = itemRegion(id) !== mapRegion(port.map) ? 0.25 + 0.03 * advLvl('commerce') : 0; return Math.max(1, Math.round(item(id).sell * (1 + 0.05 * (bart - 1) + prem + perk('sellBonus')))); }
-function tradeBuyPrice(id, bart) { return Math.max(1, Math.round(item(id).price * Math.max(0.5, 1 - 0.03 * (bart - 1)))); }
+function tradeSellPrice(id, port, bart) { if (isTradeGood(id)) { const b = Math.min(MR().barterSellCap || 0.25, (MR().barterSellPerLvl || 0.025) * bart) * (MR().standingShare || 0.5); let best = 0; for (const s of portMarket(port)) { const v = mkV(s), f = v && v.buys[id]; if (f != null) best = Math.max(best, Math.round(item(id).price * f * (1 + (MR().townBonus || 0.03) * townLvl(v.town)) * (1 + b))); } if (best) return best; return Math.max(1, Math.round(item(id).sell * 0.5)); } const prem = itemRegion(id) !== mapRegion(port.map) ? 0.25 + 0.03 * advLvl('commerce') : 0; return Math.max(1, Math.round(item(id).sell * (1 + 0.05 * (bart - 1) + prem + perk('sellBonus')))); }
+function tradeBuyPrice(id, bart, port) { if (port && isTradeGood(id)) { if (!portMarket(port).some(s => (mkV(s) || { sells: {} }).sells[id] != null)) return null; return Math.max(1, Math.round(item(id).price * (1 - Math.min(MR().barterBuyCap || 0.2, (MR().barterBuyPerLvl || 0.02) * bart) * (MR().standingShare || 0.5)))); } return Math.max(1, Math.round(item(id).price * Math.max(0.5, 1 - 0.03 * (bart - 1)))); }
 function resolveTrade(ex) {
   const port = ((D.sea || {}).ports || []).find(p => p.id === ex.port), bart = crewBest(ex.members, 'bartering'), ok = Math.random() < ex.success;
   const rp = { kind: 'trade', title: `Trade voyage to ${port.name}`, day: G.day, ok, sold: {}, bought: {}, earned: 0, spent: 0, lost: {}, gold: 0, members: [], loot: {} };
@@ -38778,7 +39374,7 @@ function resolveTrade(ex) {
   const roomLeft = ex.shipRef ? { bulk: shipType(ex.shipRef).bulk || 0, dry: shipType(ex.shipRef).dry || 0 } : null;
   for (const [id, n] of Object.entries(ex.cargo)) { const k = Math.round(n * keepFrac); if (n - k) rp.lost[id] = n - k; if (!k) continue; const pr = tradeSellPrice(id, port, bart); rp.sold[id] = k; rp.earned += pr * k; }
   purse += rp.earned;
-  for (const [id, want] of Object.entries(ex.orders)) { const pr = tradeBuyPrice(id, bart); let got = 0; while (got < want && purse >= pr && (!roomLeft || roomLeft[holdKind(id)] > 0)) { purse -= pr; got++; if (roomLeft) roomLeft[holdKind(id)]--; } if (got) { rp.bought[id] = got; rp.spent += got * pr; if (ex.toStore) { G.store = G.store || {}; G.store[id] = (G.store[id] || 0) + got; } else add(id, got, true); } }
+  for (const [id, want] of Object.entries(ex.orders)) { const pr = tradeBuyPrice(id, bart, port); if (pr == null) continue; let got = 0; while (got < want && purse >= pr && (!roomLeft || roomLeft[holdKind(id)] > 0)) { purse -= pr; got++; if (roomLeft) roomLeft[holdKind(id)]--; } if (got) { rp.bought[id] = got; rp.spent += got * pr; if (ex.toStore) { G.store = G.store || {}; G.store[id] = (G.store[id] || 0) + got; } else add(id, got, true); } }
   G.gold += purse; rp.gold = purse; rp.purseOut = ex.purse;
   for (const id of ex.members) { if (!G.helpers[id]) continue; const st = G.helpers[id], before = hLvl(id), gain = 10 * (ex.days || 2) + (id === ex.members[0] ? 15 : id === ex.members[1] ? 10 : 0); st.xp = (st.xp || 0) + gain; rp.members.push({ id, xp: gain, from: before, to: hLvl(id) }); }
   addSkillXp('commerce', Math.round(rp.earned / 40)); addSkillXp('bartering', Math.round(rp.earned / 60));
@@ -38971,7 +39567,7 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 // debug/test hook (harmless in production)
-window.__game = { lotMenu, lotTick, apprenticeTick, apprenticeIds, apprTick, appr, apprTier, apprName, addAppr, companionTalk, closeness, payLvl, hubItems, prosperLvl, prosperName, addProsper, stockLeft, stockCap, smithVisit, smithCost, eqOf, fleet, flagship, fleetMenu, fleetTick, routes, fleetLimit, shipyardMenu, unloadHold, holdLine, ordersMenu, shipActions, storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
+window.__game = { buyPrice, sellPrice, vendorBuys, haggleMenu, haggleLimit, haggleRoom, townLvl, demandLeft, tradeSellPrice, tradeBuyPrice, lotMenu, lotTick, apprenticeTick, apprenticeIds, apprTick, appr, apprTier, apprName, addAppr, companionTalk, closeness, payLvl, hubItems, prosperLvl, prosperName, addProsper, stockLeft, stockCap, smithVisit, smithCost, eqOf, fleet, flagship, fleetMenu, fleetTick, routes, fleetLimit, shipyardMenu, unloadHold, holdLine, ordersMenu, shipActions, storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
 })();
 
 </script>
