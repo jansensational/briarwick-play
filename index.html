@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.20.1</title>
+<title>Reagents of Briarwick v0.20.2</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.20.1",
+  "version": "0.20.2",
   "tileSize": 16,
   "scale": 3,
   "dayStart": 6,
@@ -28849,8 +28849,8 @@ window.GAME_DATA = {
    "giver": "aldwin",
    "requires": null,
    "intro": [
-    "So. Gran's grandchild at last. She grew reagents for me, you know.",
-    "Magic here is not wished into being - it is GROWN. Each spell is paid for in reagents.",
+    "{happy}So. Gran's grandchild at last. She grew reagents for me, you know.",
+    "{stern}Magic here is not wished into being - it is GROWN! Each spell is paid for in reagents.",
     "Bring me 3 Emberroot and 2 Glowcap from the Whisperwood, east of town, and I will teach you your first spell."
    ],
    "objectives": [
@@ -28866,8 +28866,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Good, good. Smell that? Fire and binding.",
-    "Here is SINGE. Every cast burns 1 Emberroot and 1 Glowcap - so keep that greenhouse full!",
+    "{surprised}Good, good. Smell that? Fire and binding!",
+    "{happy}Here is SINGE. Every cast burns 1 Emberroot and 1 Glowcap - so keep that greenhouse full!",
     "Anything you find in the wild, you can now grow. Marta at the Apothecary will sell you seeds."
    ],
    "reward": {
@@ -37024,6 +37024,818 @@ window.GAME_DATA = {
    "{name}: I hear {shop} in {town} pays well for {item}.",
    "{name}: Someone at the tavern said {shop} in {town} is after {item}."
   ]
+ },
+ "portraits": {
+  "c_aldwin": {
+   "height": 340,
+   "credit": "Placeholder shapes. Replace any part's shape with an image to use real art.",
+   "parts": [
+    {
+     "id": "staff",
+     "parent": "armL",
+     "at": [
+      -4,
+      96
+     ],
+     "z": 0,
+     "shape": [
+      {
+       "rect": [
+        -5,
+        -175,
+        10,
+        240
+       ],
+       "fill": "e",
+       "stroke": "D",
+       "w": 2
+      }
+     ]
+    },
+    {
+     "id": "crystal",
+     "parent": "staff",
+     "at": [
+      0,
+      -182
+     ],
+     "z": 1,
+     "shape": [
+      {
+       "poly": [
+        [
+         0,
+         -24
+        ],
+        [
+         14,
+         0
+        ],
+        [
+         0,
+         22
+        ],
+        [
+         -14,
+         0
+        ]
+       ],
+       "fill": "c",
+       "stroke": "B",
+       "w": 2.5
+      }
+     ],
+     "glow": "#aee4ff"
+    },
+    {
+     "id": "body",
+     "parent": null,
+     "at": [
+      0,
+      0
+     ],
+     "z": 2,
+     "shape": [
+      {
+       "poly": [
+        [
+         -82,
+         0
+        ],
+        [
+         82,
+         0
+        ],
+        [
+         62,
+         -118
+        ],
+        [
+         42,
+         -160
+        ],
+        [
+         -42,
+         -160
+        ],
+        [
+         -62,
+         -118
+        ]
+       ],
+       "fill": "P",
+       "stroke": "k",
+       "w": 2.5
+      },
+      {
+       "poly": [
+        [
+         -9,
+         -160
+        ],
+        [
+         9,
+         -160
+        ],
+        [
+         16,
+         0
+        ],
+        [
+         -16,
+         0
+        ]
+       ],
+       "fill": "p",
+       "stroke": null,
+       "w": 2.5
+      },
+      {
+       "ell": [
+        0,
+        -60,
+        7,
+        7
+       ],
+       "fill": "y",
+       "stroke": "o",
+       "w": 2
+      }
+     ]
+    },
+    {
+     "id": "armL",
+     "parent": "body",
+     "at": [
+      -60,
+      -142
+     ],
+     "z": 3,
+     "shape": [
+      {
+       "poly": [
+        [
+         14,
+         0
+        ],
+        [
+         -14,
+         0
+        ],
+        [
+         -22,
+         86
+        ],
+        [
+         6,
+         92
+        ]
+       ],
+       "fill": "P",
+       "stroke": "k",
+       "w": 2.5
+      },
+      {
+       "ell": [
+        -4,
+        96,
+        13,
+        12
+       ],
+       "fill": "n",
+       "stroke": "k",
+       "w": 2.5
+      }
+     ]
+    },
+    {
+     "id": "head",
+     "parent": "body",
+     "at": [
+      0,
+      -156
+     ],
+     "z": 4,
+     "shape": [
+      {
+       "ell": [
+        -35,
+        -52,
+        11,
+        24
+       ],
+       "fill": "v",
+       "stroke": "z",
+       "w": 2.5
+      },
+      {
+       "ell": [
+        35,
+        -52,
+        11,
+        24
+       ],
+       "fill": "v",
+       "stroke": "z",
+       "w": 2.5
+      },
+      {
+       "ell": [
+        0,
+        -50,
+        36,
+        44
+       ],
+       "fill": "n",
+       "stroke": "k",
+       "w": 2.5
+      }
+     ]
+    },
+    {
+     "id": "nose",
+     "parent": "head",
+     "at": [
+      0,
+      -38
+     ],
+     "z": 6,
+     "shape": [
+      {
+       "ell": [
+        0,
+        0,
+        6,
+        8
+       ],
+       "fill": "N",
+       "stroke": "D",
+       "w": 1.5
+      }
+     ]
+    },
+    {
+     "id": "beard",
+     "parent": "head",
+     "at": [
+      0,
+      -34
+     ],
+     "z": 5,
+     "shape": [
+      {
+       "poly": [
+        [
+         -34,
+         -4
+        ],
+        [
+         34,
+         -4
+        ],
+        [
+         28,
+         30
+        ],
+        [
+         12,
+         64
+        ],
+        [
+         0,
+         76
+        ],
+        [
+         -12,
+         64
+        ],
+        [
+         -28,
+         30
+        ]
+       ],
+       "fill": "w",
+       "stroke": "s",
+       "w": 2.5
+      }
+     ]
+    },
+    {
+     "id": "mouth",
+     "parent": "head",
+     "at": [
+      0,
+      -20
+     ],
+     "z": 8,
+     "states": {
+      "closed": [
+       {
+        "rect": [
+         -8,
+         -1.5,
+         16,
+         3
+        ],
+        "fill": "#6e3434",
+        "stroke": null,
+        "w": 2
+       }
+      ],
+      "open": [
+       {
+        "ell": [
+         0,
+         0,
+         7,
+         6
+        ],
+        "fill": "#4a1a24",
+        "stroke": "#4a1a24",
+        "w": 1
+       }
+      ],
+      "smile": [
+       {
+        "poly": [
+         [
+          -11,
+          -2
+         ],
+         [
+          11,
+          -2
+         ],
+         [
+          6,
+          5
+         ],
+         [
+          -6,
+          5
+         ]
+        ],
+        "fill": "#4a1a24",
+        "stroke": null,
+        "w": 2.5
+       }
+      ],
+      "o": [
+       {
+        "ell": [
+         0,
+         0,
+         4,
+         6
+        ],
+        "fill": "#4a1a24",
+        "stroke": "#4a1a24",
+        "w": 1
+       }
+      ],
+      "frown": [
+       {
+        "poly": [
+         [
+          -9,
+          3
+         ],
+         [
+          9,
+          3
+         ],
+         [
+          6,
+          -2
+         ],
+         [
+          -6,
+          -2
+         ]
+        ],
+        "fill": "#4a1a24",
+        "stroke": null,
+        "w": 2.5
+       }
+      ]
+     }
+    },
+    {
+     "id": "mustache",
+     "parent": "head",
+     "at": [
+      0,
+      -28
+     ],
+     "z": 9,
+     "shape": [
+      {
+       "poly": [
+        [
+         -24,
+         0
+        ],
+        [
+         0,
+         4
+        ],
+        [
+         24,
+         0
+        ],
+        [
+         18,
+         8
+        ],
+        [
+         0,
+         7
+        ],
+        [
+         -18,
+         8
+        ]
+       ],
+       "fill": "v",
+       "stroke": "s",
+       "w": 1.5
+      }
+     ]
+    },
+    {
+     "id": "eyeL",
+     "parent": "head",
+     "at": [
+      -14,
+      -56
+     ],
+     "z": 7,
+     "states": {
+      "open": [
+       {
+        "ell": [
+         0,
+         0,
+         4,
+         5
+        ],
+        "fill": "k",
+        "stroke": null,
+        "w": 2.5
+       }
+      ],
+      "closed": [
+       {
+        "rect": [
+         -5,
+         -1,
+         10,
+         2.5
+        ],
+        "fill": "k",
+        "stroke": null,
+        "w": 2
+       }
+      ]
+     }
+    },
+    {
+     "id": "eyeR",
+     "parent": "head",
+     "at": [
+      14,
+      -56
+     ],
+     "z": 7,
+     "states": {
+      "open": [
+       {
+        "ell": [
+         0,
+         0,
+         4,
+         5
+        ],
+        "fill": "k",
+        "stroke": null,
+        "w": 2.5
+       }
+      ],
+      "closed": [
+       {
+        "rect": [
+         -5,
+         -1,
+         10,
+         2.5
+        ],
+        "fill": "k",
+        "stroke": null,
+        "w": 2
+       }
+      ]
+     }
+    },
+    {
+     "id": "browL",
+     "parent": "head",
+     "at": [
+      -14,
+      -64
+     ],
+     "z": 7,
+     "shape": [
+      {
+       "rect": [
+        -10,
+        -2,
+        20,
+        5
+       ],
+       "fill": "z",
+       "stroke": "s",
+       "w": 2
+      }
+     ]
+    },
+    {
+     "id": "browR",
+     "parent": "head",
+     "at": [
+      14,
+      -64
+     ],
+     "z": 7,
+     "shape": [
+      {
+       "rect": [
+        -10,
+        -2,
+        20,
+        5
+       ],
+       "fill": "z",
+       "stroke": "s",
+       "w": 2
+      }
+     ]
+    },
+    {
+     "id": "hat",
+     "parent": "head",
+     "at": [
+      0,
+      -90
+     ],
+     "z": 10,
+     "shape": [
+      {
+       "poly": [
+        [
+         -36,
+         2
+        ],
+        [
+         36,
+         2
+        ],
+        [
+         16,
+         -60
+        ],
+        [
+         40,
+         -104
+        ],
+        [
+         2,
+         -66
+        ]
+       ],
+       "fill": "P",
+       "stroke": "k",
+       "w": 2.5
+      },
+      {
+       "rect": [
+        -34,
+        -8,
+        68,
+        8
+       ],
+       "fill": "p",
+       "stroke": null,
+       "w": 2
+      },
+      {
+       "poly": [
+        [
+         -6,
+         -40
+        ],
+        [
+         0,
+         -52
+        ],
+        [
+         6,
+         -40
+        ],
+        [
+         0,
+         -44
+        ]
+       ],
+       "fill": "y",
+       "stroke": "o",
+       "w": 1.5
+      },
+      {
+       "ell": [
+        0,
+        4,
+        56,
+        11
+       ],
+       "fill": "P",
+       "stroke": "k",
+       "w": 2.5
+      }
+     ]
+    },
+    {
+     "id": "armR",
+     "parent": "body",
+     "at": [
+      60,
+      -142
+     ],
+     "z": 11,
+     "shape": [
+      {
+       "poly": [
+        [
+         -14,
+         0
+        ],
+        [
+         14,
+         0
+        ],
+        [
+         22,
+         86
+        ],
+        [
+         -6,
+         92
+        ]
+       ],
+       "fill": "P",
+       "stroke": "k",
+       "w": 2.5
+      },
+      {
+       "ell": [
+        8,
+        96,
+        13,
+        12
+       ],
+       "fill": "n",
+       "stroke": "k",
+       "w": 2.5
+      }
+     ]
+    }
+   ],
+   "idle": {
+    "body": {
+     "sy": [
+      0.012,
+      3.6
+     ]
+    },
+    "head": {
+     "rot": [
+      1.6,
+      5.2
+     ]
+    },
+    "hat": {
+     "rot": [
+      2.4,
+      4.1,
+      0.5
+     ]
+    },
+    "armR": {
+     "rot": [
+      1.5,
+      4.0
+     ]
+    },
+    "armL": {
+     "rot": [
+      1.0,
+      4.4,
+      0.3
+     ]
+    },
+    "beard": {
+     "rot": [
+      0.8,
+      5.2,
+      0.2
+     ]
+    }
+   },
+   "talk": {
+    "part": "mouth",
+    "open": "open",
+    "rate": 0.11,
+    "perChar": 0.045,
+    "max": 3.5,
+    "head": 1.4
+   },
+   "blink": {
+    "parts": [
+     "eyeL",
+     "eyeR"
+    ],
+    "every": [
+     2.5,
+     5.5
+    ],
+    "dur": 0.13
+   },
+   "gesture": {
+    "part": "armR",
+    "keys": [
+     [
+      0,
+      0
+     ],
+     [
+      0.25,
+      -58
+     ],
+     [
+      1.2,
+      -52
+     ],
+     [
+      1.6,
+      0
+     ]
+    ]
+   },
+   "expr": {
+    "neutral": {
+     "mouth": "closed"
+    },
+    "happy": {
+     "mouth": "smile",
+     "browL": {
+      "rot": 8,
+      "dy": -3
+     },
+     "browR": {
+      "rot": -8,
+      "dy": -3
+     }
+    },
+    "stern": {
+     "mouth": "frown",
+     "browL": {
+      "rot": -16,
+      "dy": 3
+     },
+     "browR": {
+      "rot": 16,
+      "dy": 3
+     }
+    },
+    "surprised": {
+     "mouth": "o",
+     "browL": {
+      "dy": -5
+     },
+     "browR": {
+      "dy": -5
+     }
+    },
+    "sad": {
+     "mouth": "frown",
+     "browL": {
+      "rot": 14
+     },
+     "browR": {
+      "rot": -14
+     }
+    }
+   }
+  }
  }
 };
 
@@ -39300,14 +40112,60 @@ function titleKey(k) {
   if (k === 'enter' || k === ' ' || k === 'e') { const it = o[R.titleIdx]; if (!it[2]) it[1](); }
 }
 
+// ================= ANIMATED CUT-OUT PORTRAITS (D.portraits[spriteId]) =================
+const PORT_TAG = /^\{(neutral|happy|stern|surprised|sad)\}\s*/;
+function lineText(l) { return String(l == null ? '' : l).replace(PORT_TAG, ''); }
+function lineExpr(l) { const m = String(l == null ? '' : l).match(PORT_TAG); return m ? m[1] : null; }
+function portraitFor(d) { return SET.portraits !== false && d && d.spr && (D.portraits || {})[d.spr]; }
+const portImg = {};
+function pcol(c) { return c ? ((D.palette || {})[c] || c) : null; }
+function drawShapes(list) { for (const s of list || []) {
+  if (s.img) { let im = portImg[s.img]; if (!im) { im = portImg[s.img] = new Image(); im.src = s.img; } if (im.complete && im.naturalWidth) ctx.drawImage(im, s.x || 0, s.y || 0, s.w || im.naturalWidth, s.h || im.naturalHeight); continue; }
+  ctx.beginPath();
+  if (s.poly) { s.poly.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.closePath(); }
+  else if (s.ell) ctx.ellipse(s.ell[0], s.ell[1], s.ell[2], s.ell[3], 0, 0, Math.PI * 2);
+  else if (s.rect) ctx.rect(s.rect[0], s.rect[1], s.rect[2], s.rect[3]);
+  if (s.fill) { ctx.fillStyle = pcol(s.fill); ctx.fill(); }
+  if (s.stroke) { ctx.lineWidth = s.w || 2; ctx.lineJoin = 'round'; ctx.strokeStyle = pcol(s.stroke); ctx.stroke(); } } }
+function drawPortrait(P, d, cx, by, height) {
+  const st = d.port = d.port || {}, t = R.t, T = P.talk || {}, B = P.blink || {}, G = P.gesture;
+  if (st.in == null) st.in = t;
+  if (st.line !== d.i) { st.line = d.i; st.t0 = t; const raw = d.lines[d.i] || ''; st.expr = lineExpr(raw) || st.expr || 'neutral'; st.len = lineText(raw).length; if (G && /!/.test(raw)) st.g0 = t; }
+  if (st.blinkAt == null) st.blinkAt = t + 1.2;
+  if (t > st.blinkAt + (B.dur || 0.13)) { const e = B.every || [3, 5]; st.blinkAt = t + e[0] + Math.random() * (e[1] - e[0]); }
+  const blinking = t >= st.blinkAt && t < st.blinkAt + (B.dur || 0.13);
+  const talking = t - st.t0 < Math.min(T.max || 3.5, st.len * (T.perChar || 0.045));
+  const E = (P.expr || {})[st.expr] || {}, k = height / (P.height || 300);
+  const a = Math.min(1, (t - st.in) / 0.25), ox = (1 - a) * -140;
+  const kids = {}; for (const p of P.parts) (kids[p.parent || '_'] = kids[p.parent || '_'] || []).push(p);
+  const wave = v => v ? v[0] * Math.sin((t / v[1] + (v[2] || 0)) * Math.PI * 2) : 0;
+  const motion = p => { const id = (P.idle || {})[p.id] || {}; let rot = wave(id.rot), dx = wave(id.dx), dy = wave(id.dy), sx = 1 + wave(id.sx), sy = 1 + wave(id.sy);
+    if (talking && p.id === 'head' && T.head) rot += T.head * Math.sin(t * 14);
+    const ex = E[p.id]; if (ex && typeof ex === 'object') { rot += ex.rot || 0; dx += ex.dx || 0; dy += ex.dy || 0; }
+    if (G && st.g0 != null && p.id === G.part) { const gt = t - st.g0, ks = G.keys; for (let i = 1; i < ks.length; i++) if (gt <= ks[i][0]) { const [t0, v0] = ks[i - 1], [t1, v1] = ks[i], f = (gt - t0) / (t1 - t0); rot += v0 + (v1 - v0) * f * f * (3 - 2 * f); break; } }
+    return { rot, dx, dy, sx, sy }; };
+  const shapeOf = p => { if (!p.states) return p.shape; let n;
+    if ((B.parts || []).includes(p.id)) n = blinking ? 'closed' : 'open';
+    else if (T.part === p.id) { const rest = typeof E[p.id] === 'string' ? E[p.id] : 'closed'; n = talking && Math.floor((t - st.t0) / (T.rate || 0.11)) % 2 ? (T.open || 'open') : rest; }
+    else n = typeof E[p.id] === 'string' ? E[p.id] : Object.keys(p.states)[0];
+    return p.states[n] || Object.values(p.states)[0]; };
+  const calls = [];
+  const walk = p => { ctx.save(); const m = motion(p); ctx.translate(p.at[0] + m.dx, p.at[1] + m.dy); ctx.rotate(m.rot * Math.PI / 180); ctx.scale(m.sx, m.sy);
+    calls.push({ z: p.z || 0, m: ctx.getTransform(), p, sh: shapeOf(p) }); for (const c of kids[p.id] || []) walk(c); ctx.restore(); };
+  ctx.save(); ctx.translate(cx + ox, by); ctx.scale(k, k); for (const r of kids._ || []) walk(r); ctx.restore();
+  calls.sort((x, y) => x.z - y.z);
+  for (const c of calls) { ctx.save(); ctx.setTransform(c.m); ctx.globalAlpha = a; if (c.p.glow) { ctx.shadowColor = c.p.glow; ctx.shadowBlur = 12 + 8 * Math.sin(t * 3); } drawShapes(c.sh); ctx.restore(); }
+}
 function renderDialog() {
   const d = dialogs[0]; if (!d) return;
   const x = 20, w = VW - 40, h = 150, y = VH - h - 16;
+  const PT = portraitFor(d); if (PT) drawPortrait(PT, d, x + 120, y + 22, 330);
   panel(x, y, w, h);
   let tx = x + 24;
-  if (d.spr) { ctx.fillStyle = UI.bg2; rr(x + 18, y + 22, 104, 104, 6); ctx.fill(); drawSpr(d.spr, x + 22, y + 26, 96); tx = x + 140; }
+  if (PT) tx = x + 236;
+  else if (d.spr) { ctx.fillStyle = UI.bg2; rr(x + 18, y + 22, 104, 104, 6); ctx.fill(); drawSpr(d.spr, x + 22, y + 26, 96); tx = x + 140; }
   if (d.speaker) text(d.speaker, tx, y + 18, { bold: true, size: 18, color: UI.border });
-  wrap(d.lines[d.i] || '', w - (tx - x) - 30, 17).slice(0, 5).forEach((l, i) => text(l, tx, y + (d.speaker ? 46 : 26) + i * 22, { size: 17 }));
+  wrap(lineText(d.lines[d.i]), w - (tx - x) - 30, 17).slice(0, 5).forEach((l, i) => text(l, tx, y + (d.speaker ? 46 : 26) + i * 22, { size: 17 }));
   if (Math.floor(R.t * 2) % 2) text('v', x + w - 30, y + h - 30, { bold: true, color: UI.border });
 }
 function renderMenus(from = 0, to = menus.length) {
@@ -40120,10 +40978,12 @@ async function settingsMenu() {
     if (it.value === 'mobile') { setMobile(!SET.mobile); return; }
     if (it.value === 'keys') { if (d > 0) script(keybindMenu); return; }
     if (it.value === 'send') { if (!SET.stats) toast('Turn on Share play stats first.'); else if (sendStats('sent a report from Settings', true)) toast('Report sent - thank you!', UI.green); }
+    if (it.value === 'portraits') SET.portraits = SET.portraits === false;
     saveSettings(); AU.sfx('menu');
   };
   await openMenu({ title: 'Settings  (Left/Right or click to change)', width: 500,
     items: () => [{ label: 'Music volume', right: lbl(AU.volume.music), value: 'music' }, { label: 'Sound effects', right: lbl(AU.volume.sfx), value: 'sfx' },
+      { label: 'Animated portraits', right: SET.portraits === false ? 'Off' : 'On', value: 'portraits', desc: 'Large animated portraits in conversations (a prototype: only Old Aldwin has one so far).' },
       { label: 'Walking speed', right: SET.walk, value: 'walk', desc: 'How quickly you walk from tile to tile.' }, { label: 'Battle speed', right: SET.battle, value: 'battle', desc: 'How quickly enemies take their turns.' },
       { label: 'Share play stats', right: SET.stats ? 'On' : 'Off', value: 'stats', desc: 'When you close the game, a short summary (version, day, level, quests, settings, any errors) goes to the developer to help improve the game. No personal information.' },
       { label: 'Your name in reports', right: SET.name || '(not set)', value: 'name', desc: 'Optional. Lets the developer know whose play stats these are.' },
@@ -40498,7 +41358,7 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 // debug/test hook (harmless in production)
-window.__game = { get MASTER() { return MASTER; }, questMenu, shopRequests, requestTick, requestRows, notePartKill, makeRequest, rollLoot, add, resolveRoute, routeSellQuote, routeBuyPrice, routeBarter, crewBarter, shipBarter, demandCap, routeDays, routeSuccess, buyPrice, sellPrice, vendorBuys, haggleMenu, haggleLimit, haggleRoom, townLvl, demandLeft, tradeSellPrice, tradeBuyPrice, lotMenu, lotTick, apprenticeTick, apprenticeIds, apprTick, appr, apprTier, apprName, addAppr, companionTalk, closeness, payLvl, hubItems, prosperLvl, prosperName, addProsper, stockLeft, stockCap, smithVisit, smithCost, eqOf, fleet, flagship, fleetMenu, fleetTick, routes, fleetLimit, shipyardMenu, unloadHold, holdLine, ordersMenu, shipActions, storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
+window.__game = { drawPortrait, lineText, get MASTER() { return MASTER; }, questMenu, shopRequests, requestTick, requestRows, notePartKill, makeRequest, rollLoot, add, resolveRoute, routeSellQuote, routeBuyPrice, routeBarter, crewBarter, shipBarter, demandCap, routeDays, routeSuccess, buyPrice, sellPrice, vendorBuys, haggleMenu, haggleLimit, haggleRoom, townLvl, demandLeft, tradeSellPrice, tradeBuyPrice, lotMenu, lotTick, apprenticeTick, apprenticeIds, apprTick, appr, apprTier, apprName, addAppr, companionTalk, closeness, payLvl, hubItems, prosperLvl, prosperName, addProsper, stockLeft, stockCap, smithVisit, smithCost, eqOf, fleet, flagship, fleetMenu, fleetTick, routes, fleetLimit, shipyardMenu, unloadHold, holdLine, ordersMenu, shipActions, storehouseMenu, pouchPrompt, pocketCap, pocketUsed, pouchCount, townWarded, regionWarded, regionOf, champZones, guildTick, guildFor, placeTownWard, wardStatusLines, pointsMenu, companionPointsMenu, rebuildHero, chooseCalling, ptVal, unspent, totalUnspent, cpUnspent, cpAuto, autoCompanionPoints, skillLvl, playerLvl, addSkillXp, xpForSkill, encounter, markCleared, plural, askName, kingdomUnlocked, kingdomQuestIds, noteKingdoms, setMobile, MOB, openMaster, closeMaster, get MASTER() { return MASTER; }, keybindMenu, bind, setBind, SET, openWorldMap, adventureOdds, adventureZones, zoneTravel, resolveExpeditions, planAdventure, planTrade, tradePorts, tradeOdds, offerHome, finishEscort, enchantTalk, survDef, talk, playerRange, lvlProgress, harvestYield, spellMult, spellPower: s => spellPower(s), playerAtk, checkSpellLearn, spellMenu, castTile, doTaunt, startSpell, helpersMenu, plotKeys, autopilot, seaPath, shopTalk, campOut, revealDarkLord, threat, settingsMenu, newDay, startCombat, loadMap, weary, inventoryMenu, get G() { return G; }, get R() { return R; }, get C() { return C; }, get DOLL() { return DOLL; }, get SEA() { return SEA; }, exportSave, importSave, genCave, mine, ship, crewSkill, maxParty, checkSurvivorArrival, enterSea, placeWard, buyFurniture, brewMenu, home, addDread, dateStr, morphShare, scaled, D, newGame, loadMap, startCombat, newDay, menus, dialogs, perk, maxHp, playerAtk, playerDef, spellPower, autoEquip };
 })();
 
 </script>
