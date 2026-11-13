@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.25.0</title>
+<title>Reagents of Briarwick v0.26.0</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.25.0",
+  "version": "0.26.0",
   "tileSize": 16,
   "scale": 4,
   "dayStart": 6,
@@ -45,10 +45,11 @@ window.GAME_DATA = {
   "updateUrl": "https://jansensational.github.io/briarwick-play/version.json",
   "reportWebhook": "https://discord.com/api/webhooks/1566515455265349643/JyhpBnAjaNgwGaXYmk-v1CSGBU97GFoeodAeJKo3vFZct_p50jtApa7xBt8F6pNthWX1",
   "discordInvite": "https://discord.gg/KHZkNGfgjK",
-  "curveVersion": 2,
+  "curveVersion": 3,
   "clearBufferMax": 7,
   "storehouseTile": "Z",
-  "wikiUrl": "https://jansensational.github.io/briarwick-play/wiki/"
+  "wikiUrl": "https://jansensational.github.io/briarwick-play/wiki/",
+  "curveScale": 2.2
  },
  "start": {
   "map": "house",
@@ -71,7 +72,7 @@ window.GAME_DATA = {
  },
  "player": {
   "hp": 34,
-  "hpPerLevel": 4,
+  "hpPerLevel": 2,
   "atk": 6,
   "def": 1,
   "move": 4
@@ -36379,6 +36380,10 @@ window.GAME_DATA = {
    "pirate_gunner",
    "skeleton_captain",
    "skeleton_pirate"
+  ],
+  "levelHeal": 0.3,
+  "aldwinReach": [
+   "whisperwood"
   ]
  },
  "weapons": {
@@ -36422,7 +36427,7 @@ window.GAME_DATA = {
   "range": 1
  },
  "skillCurve": {
-  "base": 10,
+  "base": 22,
   "exp": 1.5,
   "maxLevel": 21
  },
@@ -44878,12 +44883,15 @@ function newGame() {
   G.sv2 = true; G.pts = {}; G.pouch = {}; G.store = {}; if (D.items.gran_pouch && !eqOf('player').pouch) eqOf('player').pouch = 'gran_pouch';
   script(async () => { G.name = await askName(); await chooseLook(); await chooseCalling(); await say('', s.intro); });
 }
-function saveGame(quiet) { try { localStorage.setItem(SAVE_KEY, JSON.stringify(G)); if (!quiet) toast('Game saved.'); } catch (e) { toast('Could not save: ' + e.message, UI.red); } }
+function canSave() { return !!R.mapId && (R.mapId === 'house' || R.mapId === 'tavern' || /_inn$/.test(R.mapId)); }      // you save at your own cottage or in a tavern
+function lastSaveStr() { const a = G && G.savedAt; if (!a) return 'the start of your game'; const h = Math.floor(a.time / 60) % 24, m = Math.floor(a.time % 60); return `day ${a.day}, ${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`; }
+function saveGame(quiet) { try { G.savedAt = { day: G.day, time: G.time }; localStorage.setItem(SAVE_KEY, JSON.stringify(G)); if (!quiet) toast('Game saved.'); } catch (e) { toast('Could not save: ' + e.message, UI.red); } }
 function hasSave() { try { return !!localStorage.getItem(SAVE_KEY); } catch (e) { return false; } }
 function loadGame() {
   try { const s = JSON.parse(localStorage.getItem(SAVE_KEY)); if (!s) return false; G = s;
   if (!G.sv2 && G.rebuildPool == null) { G.rebuildPool = 1 + Object.keys(D.skills).reduce((a, k) => a + ((D.skills[k].requires && levelFromXp(G.skills[(D.skills[k].requires || {}).skill] || 0) < D.skills[k].requires.level) ? 0 : Math.max(0, levelFromXp(G.skills[k] || 0) - 1)), 0); }
   if (!G.sv2 && (G.curveV || 1) < (D.meta.curveVersion || 1) && D.skillCurve) { const oc = D.skillCurve, L = levelFromXp(G.xp, oc), a = xpForLevel(L, oc), b = xpForLevel(L + 1, oc), f = b > a ? Math.min(1, (G.xp - a) / (b - a)) : 0; G.xp = Math.round(xpForLevel(L, D.xpCurve) + f * (xpForLevel(L + 1, D.xpCurve) - xpForLevel(L, D.xpCurve))); }
+  if ((G.curveV || 1) < 3 && (D.meta.curveVersion || 1) >= 3) { const k = D.meta.curveScale || 1; for (const id of Object.keys(G.skills || {})) G.skills[id] = Math.round(G.skills[id] * k); for (const st of Object.values(G.helpers || {})) st.xp = Math.round((st.xp || 0) * k); }      // v0.26: skills need more XP; saved heroes and companions keep their levels
   G.curveV = D.meta.curveVersion || 1; G.enchanted = G.enchanted || {}; for (const [nid, [b0, g0]] of Object.entries(G.enchanted)) registerEnchant(nid, b0, g0);
   setTimeout(() => { if (G && (!G.name || G.rebuildPool || !G.look)) script(async () => { if (!G.name) { G.name = await askName(); toast(`Welcome back, ${G.name}.`, UI.green); } if (!G.look && (D.heroLooks || []).length) await chooseLook(); if (G.rebuildPool) await rebuildHero(); autoCompanionPoints(); });
     autoCompanionPoints();
@@ -45634,6 +45642,8 @@ async function useBed() {
   const c = await choose('Sleep until morning?', [{ label: 'Sleep', value: 'y', desc: 'Restores HP and saves your game.' }, { label: 'Not yet', value: 'n' }], { width: 340 });
   if (c === 'y') await newDay('sleep');
 }
+function shaken() { return !!G && G.shakenDay === G.day; }      // the day after Aldwin revives you
+function aldwinReach(mapId) { return ((D.combat || {}).aldwinReach || ['whisperwood']).some(m => mapId === m || String(mapId).startsWith(m)); }
 function weary() { return !!G && G.time >= (D.meta.wearyHour || 24) * 60; }
 function dawnHour() { return D.meta.dawnHour || 30; }
 async function campOut() {
@@ -45962,8 +45972,8 @@ function hudButtons() {
 function exportSave() {
   try {
     if (!G) { toast('No game to export yet.'); return; }
-    saveGame(true);
-    const blob = new Blob([JSON.stringify({ game: 'reagents-of-briarwick', version: D.meta.version, savedAt: new Date().toISOString(), data: G }, null, 1)], { type: 'application/json' });
+    let data = G; if (canSave()) saveGame(true); else { try { data = JSON.parse(localStorage.getItem(SAVE_KEY)) || G; } catch (e) { data = G; } toast(`Exported your last save (${lastSaveStr()}). Save at your cottage or a tavern to export newer progress.`, UI.blue); }      // an export is a copy of your save, not a way to save anywhere
+    const blob = new Blob([JSON.stringify({ game: 'reagents-of-briarwick', version: D.meta.version, savedAt: new Date().toISOString(), data }, null, 1)], { type: 'application/json' });
     const d = new Date(); const stamp = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `briarwick-save-${stamp}.json`; document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 5000);
@@ -45986,10 +45996,10 @@ function importSave() {
 async function gameScreen() {
   let idx = 0;
   for (;;) {
-  const c = await choose(`Game   (v${D.meta.version})`, [{ label: 'Resume', value: 'r' }, { label: 'Save game', value: 's' }, { label: 'Load last save', value: 'l', disabled: !hasSave() }, { label: 'Settings', value: 'a', desc: 'Music and sound volume, walking speed, battle speed.' }, { label: 'Export save file', value: 'x', desc: 'Download your progress as a file you can keep or move to another computer.' }, { label: 'Import save file', value: 'i', desc: 'Load progress from a save file (replaces your current game).' }, { label: 'Controls', value: 'c' }, { label: UPD.online ? 'Check for updates' : 'Play the latest version online', value: 'u', desc: UPD.online ? 'See whether a newer version is out.' : 'Opens the online version, which always has the newest build. (Export your save first, then Import it there.)' }, { label: 'Open the game wiki', value: 'w', desc: 'Items, monsters, places, shops, prices and guides, in a new browser tab.' }, { label: 'Join the Discord', value: 'd', desc: 'Chat with other testers, report bugs and get news about new versions.', disabled: !D.meta.discordInvite }, { label: 'Quit to title', value: 'q' }], { width: 360, index: idx, onKey: (k, it, m) => { idx = m.index; } });
+  const c = await choose(`Game   (v${D.meta.version})`, [{ label: 'Resume', value: 'r' }, { label: 'Save game', value: 's', disabled: !canSave(), desc: canSave() ? 'Save your progress here.' : `You can only save at your cottage or in a tavern (sleeping saves too). If you close the game here, you go back to your last save: ${lastSaveStr()}.` }, { label: 'Load last save', value: 'l', disabled: !hasSave() }, { label: 'Settings', value: 'a', desc: 'Music and sound volume, walking speed, battle speed.' }, { label: 'Export save file', value: 'x', desc: 'Download your progress as a file you can keep or move to another computer.' }, { label: 'Import save file', value: 'i', desc: 'Load progress from a save file (replaces your current game).' }, { label: 'Controls', value: 'c' }, { label: UPD.online ? 'Check for updates' : 'Play the latest version online', value: 'u', desc: UPD.online ? 'See whether a newer version is out.' : 'Opens the online version, which always has the newest build. (Export your save first, then Import it there.)' }, { label: 'Open the game wiki', value: 'w', desc: 'Items, monsters, places, shops, prices and guides, in a new browser tab.' }, { label: 'Join the Discord', value: 'd', desc: 'Chat with other testers, report bugs and get news about new versions.', disabled: !D.meta.discordInvite }, { label: 'Quit to title', value: 'q' }], { width: 360, index: idx, onKey: (k, it, m) => { idx = m.index; } });
   if (!c || c === 'r') return;
   idx = ['r', 's', 'l', 'a', 'x', 'i', 'c', 'u', 'd', 'q'].indexOf(c);
-  if (c === 's') saveGame();
+  if (c === 's' && canSave()) saveGame();
   if (c === 'a') await settingsMenu();
   if (c === 'x') exportSave();
   if (c === 'i') importSave();
@@ -45998,7 +46008,8 @@ async function gameScreen() {
   if (c === 'u') { if (UPD.online) { await checkUpdate(); if (UPD.latest) getUpdate(); else toast(`You have the latest version (v${D.meta.version}).`, UI.green); } else getUpdate(); }
   if (c === 'd') window.open(D.meta.discordInvite, '_blank');
   if (c === 'w') openWiki();
-  if (c === 'q') { R.scene = 'title'; return; }
+  if (c === 'q') { if (canSave()) saveGame(true); else { const q = await choose(`Quit without saving?  Your last save was ${lastSaveStr()}.`, [{ label: 'Keep playing', value: 'n', desc: 'Go to your cottage or a tavern and save first (Esc, Save game), or sleep.' }, { label: 'Quit now', value: 'y', desc: 'Everything since your last save is lost.' }], { width: 520 }); if (q !== 'y') continue; }
+    R.scene = 'title'; return; }
   if (c === 'l' || c === 'u') return;
   }
 }
@@ -46123,7 +46134,7 @@ function startCombat(en, opts = {}) {
   }
 
   const units = [];
-  const wy = weary(); units.push({ side: 'party', isPlayer: true, who: 'player', name: 'You', sprite: heroBase(), hp: G.hp, maxHp: maxHp(), atk: wy ? Math.max(1, Math.round(playerAtk() * 0.8)) : playerAtk(), def: wy ? Math.floor(playerDef() * 0.8) : playerDef(), move: playerMove(), range: playerRange() });
+  const wy = weary() || shaken(); units.push({ side: 'party', isPlayer: true, who: 'player', name: 'You', sprite: heroBase(), hp: G.hp, maxHp: maxHp(), atk: wy ? Math.max(1, Math.round(playerAtk() * 0.8)) : playerAtk(), def: wy ? Math.floor(playerDef() * 0.8) : playerDef(), move: playerMove(), range: playerRange() });
   for (const id of Object.keys(G.helpers)) if (G.helpers[id].role === 'party' && D.helpers[id]) units.push(helperUnit(id));
   const foes = []; const def = en.def; const n = rnd(def.group ? def.group[0] : 1, def.group ? def.group[1] : 1);
   for (let i = 0; i < n; i++) foes.push(i === 0 ? en.id : morphId(def.baseOf || en.id));
@@ -46140,11 +46151,14 @@ function startCombat(en, opts = {}) {
     else { u.x = ei % 2 ? AW - 2 : AW - 3; u.y = spots[ei % spots.length]; ei++; }
     grid[u.y][u.x] = zone.ground || '.';
   }
-  const th = threat(def, cm); C = { caveMult: cm, sea, board, music: def.music || zone.music || 'battle', grid, units, phase: 'party', sel: null, mode: 'move', action: null, targets: [], log: [`${def.name} attacks!  (Danger: ${th.label})`].concat(wy ? ['You are Weary: -20% attack and defense.'] : []), floats: [], timer: 0, queue: [], en, round: 1, result: null, shake: 0 };
+  const th = threat(def, cm); C = { caveMult: cm, sea, board, music: def.music || zone.music || 'battle', grid, units, phase: 'party', sel: null, mode: 'move', action: null, targets: [], log: [`${def.name} attacks!  (Danger: ${th.label})`].concat(wy ? [shaken() && !weary() ? 'You are Shaken from your revival: -20% attack and defense.' : 'You are Weary: -20% attack and defense.'] : []), floats: [], timer: 0, queue: [], en, round: 1, result: null, shake: 0 };
   if (sea && shipShield()) for (const u of C.units) if (u.side === 'party') u.buffs.push({ stat: 'def', amt: 3, turns: 3 });
   R.scene = 'combat'; R.moving = null; if (SEA) SEA.auto = null; stat('battles');
   selectNext();
 }
+// Armour takes a share of every blow instead of being subtracted from it (v0.26): damage = attack x attack / (attack + defence).
+// Equal attack and defence halves the blow; armour always helps and never makes anyone immune.
+function hitDmg(atk, def) { atk = Math.max(1, atk); def = Math.max(0, def); return Math.max(1, Math.round(atk * atk / (atk + def))); }
 function clog(s) { C.log.push(s); if (C.log.length > 40) C.log.shift(); }
 function float(u, s, col) { const p = unitScreen(u); C.floats.push({ x: p.x, y: p.y, s, col, t: 0 }); }
 function selectNext() {
@@ -46156,12 +46170,12 @@ function selectNext() {
 function cycleUnit() { const ready = alive('party').filter(u => !u.done); if (!ready.length) return; const i = ready.indexOf(C.sel); C.sel = ready[(i + 1) % ready.length]; C.mode = 'move'; C.targets = []; }
 function movesLeft(u) { return u.moved ? 0 : Math.max(0, uMove(u) - (u.steps || 0)); }
 function finishUnit(u) { u.done = true; u.moved = true; if (checkEnd()) return; C.sel = null; selectNext(); }
-function hit(a, b, power, label) {
+function hit(a, b, power, label, ignore = 0) {      // ignore: the share of the target's armour this blow gets past (spells)
   if (!(a.castT && R.t - a.castT < 0.05)) { a.atkT = R.t; a.atkTo = [b.x, b.y]; } b.hurtT = R.t + (a.castT && R.t - a.castT < 0.05 ? 0.35 : 0.12);   // battle figures: lunge, then the target recoils
   if (b.isPlayer && a.side === 'enemy' && man(a, b) <= 1 && Math.random() < wTrait('parry')) { float(b, 'Parry!', '#cfe8ff'); clog(`You parry ${a.name}'s blow!`); return; }
   power += (a.buffs || []).reduce((s, bf) => s + (bf.stat === 'atk' ? bf.amt : 0), 0);
   power = power * baneMult(a, b) - (a.side === 'enemy' && (G.research || {})[a.enemyId] ? perk('baneGuard') : 0);
-  let dmg = Math.max(1, Math.round(power + rnd(0, 2) - uDef(b)));
+  let dmg = hitDmg(power, uDef(b) * (1 - ignore)) + rnd(0, 2);
   if (b.isPlayer && a.side === 'enemy' && isMagicFoe(a.enemyId)) dmg = Math.max(1, Math.round(dmg * (1 - Math.min(0.6, ptVal('magery', 'resist')))));
   b.hp -= dmg; float(b, '-' + dmg, '#ff5a4a'); C.shake = 0.15; AU.sfx('hit');
   clog(`${a.name}${label ? ' (' + label + ')' : ''} ${a.isPlayer ? 'hit' : 'hits'} ${b.isPlayer ? 'you' : b.name} for ${dmg}.`);
@@ -46224,7 +46238,7 @@ function applyEffect(u, t, sp, power, label) {
   u.castT = R.t; u.castAt = [t.x, t.y];
   const foes = side => alive(side).filter(e => e === t || (sp.area && man(e, t) <= sp.area && los(t, e)));
   if (sp.kind === 'damage') {
-    for (const v of foes(t.side)) { hit(u, v, power, label); if (sp.slow && !v.dead) { v.slow = Math.max(v.slow || 0, sp.slow); float(v, 'slowed', '#9fe0ff'); } }
+    for (const v of foes(t.side)) { hit(u, v, power, label, sp.ignore || 0); if (sp.slow && !v.dead) { v.slow = Math.max(v.slow || 0, sp.slow); float(v, 'slowed', '#9fe0ff'); } }
   } else if (sp.kind === 'debuff') {
     for (const v of foes(t.side)) { const amt = sp.pct ? debuffAmt(sp, v) + (sp.fromPlayer ? perk('debuffPower') : 0) : (sp.fromPlayer ? debuffAmt(sp) : sp.power || 2); v.buffs.push({ stat: sp.stat || 'def', amt: -amt, turns: sp.turns || 3 }); float(v, `-${amt} ${(sp.stat || 'def').toUpperCase()}`, '#d79cff'); clog(`${label}: ${v.name} ${sp.stat === 'atk' ? 'is weakened' : 'loses armour'} (-${amt} ${(sp.stat || 'def').toUpperCase()} for ${sp.turns || 3} rounds).`); }
   } else if (sp.kind === 'heal') {
@@ -46275,7 +46289,7 @@ function doTarget(t) {
     payReagents(a.sp); addSkillXp('magery', 2); AU.sfx(a.sp.kind === 'damage' || a.sp.kind === 'debuff' ? 'spell' : 'heal');
     const sp = Object.assign({}, a.sp, { area: (a.sp.area || 0) + areaBonus(a.sp), turns: (a.sp.turns || 3) + (a.sp.kind === 'buff' ? perk('buffTurns') : a.sp.kind === 'debuff' ? perk('controlTurns') : 0), slow: a.sp.slow ? a.sp.slow + perk('controlTurns') : 0, fromPlayer: true });
     const p = sp.kind === 'buff' ? sp.power + perk('buffPower') : sp.kind === 'debuff' ? 0 : Math.round(spellPower(sp) * (0.9 + Math.random() * 0.2));
-    applyEffect(u, t, sp, sp.kind === 'damage' ? p + uDef(t) * ((D.magic || {}).armorIgnore == null ? 0.5 : D.magic.armorIgnore) : p, sp.name); // spells partly ignore armour
+    sp.ignore = (D.magic || {}).armorIgnore == null ? 0.5 : D.magic.armorIgnore; applyEffect(u, t, sp, p, sp.name); // spells get past part of the target's armour
   } else if (a.type === 'item') { take(a.id, 1); const it = item(a.id); const sp = Object.assign({}, a.sp, { turns: (a.sp.turns || 3) + perk('potionTurns') }); applyEffect(u, t, sp, sp.kind === 'buff' ? sp.power : Math.round(sp.power * potionMult()), it.name); AU.sfx(sp.kind === 'damage' ? 'spell' : 'heal'); }
   else { applyEffect(u, t, a.sp, a.sp.power, a.sp.name); u.cd = (a.sp.cooldown || 2) + 1; }
   C.mode = 'move'; C.action = null; C.targets = [];
@@ -46370,7 +46384,7 @@ function victory() {
 function endCombat(how) {
   const player = C.units.find(u => u.isPlayer);
   const en = C.en, sea = C.sea;
-  if (how === 'won') { G.hp = Math.max(1, player.hp); if (sea) { if (SEA) SEA.monsters = SEA.monsters.filter(m => m !== en); } else { (G.defeated[R.mapId] = G.defeated[R.mapId] || []).push(en.idx); R.enemies = R.enemies.filter(e => e !== en); } if (C.result.levelUp) { G.hp = maxHp(); addDread(DL().perLevel || 0); AU.sfx('levelup'); toast(`Level ${playerLvl()}! ${C.result.gains}.`, UI.green); } }
+  if (how === 'won') { G.hp = Math.max(1, player.hp); if (sea) { if (SEA) SEA.monsters = SEA.monsters.filter(m => m !== en); } else { (G.defeated[R.mapId] = G.defeated[R.mapId] || []).push(en.idx); R.enemies = R.enemies.filter(e => e !== en); } if (C.result.levelUp) { const lh = (D.combat || {}).levelHeal; G.hp = lh == null ? maxHp() : Math.min(maxHp(), Math.round(G.hp + maxHp() * lh)); addDread(DL().perLevel || 0); AU.sfx('levelup'); toast(`Level ${playerLvl()}! ${C.result.gains}.`, UI.green); } }
   if (how === 'fled') { G.hp = Math.max(1, player.hp); en.stun = 3; stat('flees'); }
   if (how === 'won') stat('wins'); if (how === 'lost') stat('deaths');
   const fin = how === 'won' && C.finalWin; const sunk = C.sunk;
@@ -46379,7 +46393,11 @@ function endCombat(how) {
   R.scene = sea && SEA && how !== 'lost' ? 'sea' : 'world'; C = null;
   if (fin) script(finalEnding);
   if (how === 'lost') SEA = null;
-  if (how === 'lost') script(async () => { if (sunk) ship().hull = Math.round(ship().max * 0.3); await say('', sunk ? ['Your skiff is holed and goes under!', 'Fishermen pull you from the water and carry you home. (Repair your hull at a shipwright or ferry dock.)'] : ['Everything goes dark...', 'You wake in your own bed, bruised. Some of your gold is missing.']); G.gold = Math.floor(G.gold * 0.8); await newDay('defeat'); });
+  if (how === 'lost') script(async () => { if (sunk) ship().hull = Math.round(ship().max * 0.3); const near = !sunk && !sea && aldwinReach(R.mapId);
+    if (near) { const A = D.npcs.aldwin || {}, first = !G.flags.aldwinRevived; G.flags.aldwinRevived = true; G.shakenDay = G.day + 1;
+      await say('', ['Everything goes dark...']); await say(A.name || 'Old Aldwin', first ? ["'Easy now. Breathe. You were all but gone when I found you.'", "'The old magic lets me call you back, but only this close to Briarwick, where my wards still hold. Out past the Whisperwood I cannot reach you.'", "'You will feel it tomorrow. Rest, and do not make a habit of dying.'", '(Aldwin revived you. You keep your gold, but you are Shaken until tomorrow night: -20% attack and defense.)'] : ["'Again? Hold still.'", "'Remember: beyond the Whisperwood, I cannot do this for you.'", '(Aldwin revived you. You are Shaken until tomorrow night: -20% attack and defense.)'], A.sprite);
+      await newDay('defeat'); return; }
+    await say('', sunk ? ['Your skiff is holed and goes under!', 'Fishermen pull you from the water and carry you home. (Repair your hull at a shipwright or ferry dock.)'] : ['Everything goes dark...', 'You wake in your own bed, bruised. Some of your gold is missing.']); G.gold = Math.floor(G.gold * 0.8); await newDay('defeat'); });
 }
 function updateCombat(dt) {
   for (const f of C.floats) f.t += dt; C.floats = C.floats.filter(f => f.t < 1);
@@ -46812,8 +46830,8 @@ function threat(def, cm = 1) {
   if (!def) return { label: '?', col: '#999', why: '' };
   const pu = partyUnits(); const sc = scaled(def); const g = def.group || [1, 1]; const n = (g[0] + g[1]) / 2 + (def.escort ? (def.escortCount || 1) : 0);
   const eHp = sc.hp * cm, eAtk = sc.atk * (1 + (cm - 1) * 0.6), eDef = sc.def + Math.floor((cm - 1) * 4);
-  const out = pu.reduce((a, u) => a + Math.max(1, u.atk - eDef + 1), 0), pDef = pu.reduce((a, u) => a + u.def, 0) / pu.length;
-  const tKill = n * eHp / out, tDie = pu.reduce((a, u) => a + u.hp, 0) / (n * Math.max(1, eAtk - pDef + 1));
+  const out = pu.reduce((a, u) => a + hitDmg(u.atk + 1, eDef), 0), pDef = pu.reduce((a, u) => a + u.def, 0) / pu.length;
+  const tKill = n * eHp / out, tDie = pu.reduce((a, u) => a + u.hp, 0) / (n * hitDmg(eAtk + 1, pDef));
   const r = tDie / tKill;
   if (r > 3) return { r, label: 'Easy', col: '#5fd35a', why: 'You should win comfortably.' };
   if (r > 1.6) return { r, label: 'Fair', col: '#f2d24a', why: 'A fair fight. Keep a potion handy.' };
@@ -48496,8 +48514,8 @@ function expUnits(ids) { return ids.filter(id => G.helpers[id] && D.helpers[id])
 function encounterRatio(units, eid, cm) {
   const def = D.enemies[eid], sc = scaled(def), g = def.group || [1, 1], n = (g[0] + g[1]) / 2 + (def.escort ? (def.escortCount || 1) : 0);
   const eHp = sc.hp * cm, eAtk = sc.atk * (1 + (cm - 1) * 0.6), eDef = sc.def + Math.floor((cm - 1) * 4);
-  const out = units.reduce((a, u) => a + Math.max(1, u.atk - eDef + 1), 0), pDef = units.reduce((a, u) => a + u.def, 0) / units.length;
-  return (units.reduce((a, u) => a + u.hp, 0) / (n * Math.max(1, eAtk - pDef + 1))) / (n * eHp / out);
+  const out = units.reduce((a, u) => a + hitDmg(u.atk + 1, eDef), 0), pDef = units.reduce((a, u) => a + u.def, 0) / units.length;
+  return (units.reduce((a, u) => a + u.hp, 0) / (n * hitDmg(eAtk + 1, pDef))) / (n * eHp / out);
 }
 function adventureOdds(ids, zone, potions = 0) {
   const units = expUnits(ids), enc = zoneEncounters(zone), cm = (mapDef(zone) || {}).caveMult || 1; if (!units.length || !enc.length) return { success: 0, death: 0, ratio: 0, battles: 0 };
@@ -48692,7 +48710,8 @@ async function reportBlocked(why) {
     catch (e) { await say('Play report', ['Your browser would not let the game copy. Press F12, or take a screenshot of this:', txt.slice(0, 300)]); } }
   if (pick === 'off') { SET.stats = false; saveSettings(); toast('Play reports turned off.'); }
 }
-addEventListener('pagehide', () => { if (G) { saveGame(true); } sendStats('closed the game'); });
+addEventListener('pagehide', () => { if (G && R.scene !== 'title' && canSave()) { saveGame(true); } sendStats('closed the game'); });      // closing only keeps your place where you could have saved
+addEventListener('beforeunload', e => { if (G && R.scene !== 'title' && !canSave() && !R.leaving) { e.preventDefault(); e.returnValue = 'You have not saved here. Closing now returns you to your last save.'; } });      // the browser asks "Leave site?" so the player can go and save first
 addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && Date.now() - SESSION.start > 120000) sendStats('left the game window'); });
 setInterval(() => { if (G && R.scene !== 'title') { G.stats = G.stats || {}; G.stats.playMs = (G.stats.playMs || 0) + 10000; } }, 10000);
 
@@ -48709,7 +48728,7 @@ function getUpdate() {
   if (!UPD.online) { if (D.meta.playUrl) window.open(D.meta.playUrl, '_blank'); return; }
   if (R.scene === 'combat' || R.scene === 'sea') { toast('Finish your battle or voyage and go ashore first - then update.', UI.red); return; }
   if (G && R.scene === 'world') saveGame(true);
-  location.reload();
+  R.leaving = true; location.reload();
 }
 function renderUpdateBanner() {
   if (!UPD.latest || UPD.hidden) return;
