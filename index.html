@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.26.0</title>
+<title>Reagents of Briarwick v0.27.0</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.26.0",
+  "version": "0.27.0",
   "tileSize": 16,
   "scale": 4,
   "dayStart": 6,
@@ -45,11 +45,16 @@ window.GAME_DATA = {
   "updateUrl": "https://jansensational.github.io/briarwick-play/version.json",
   "reportWebhook": "https://discord.com/api/webhooks/1566515455265349643/JyhpBnAjaNgwGaXYmk-v1CSGBU97GFoeodAeJKo3vFZct_p50jtApa7xBt8F6pNthWX1",
   "discordInvite": "https://discord.gg/KHZkNGfgjK",
-  "curveVersion": 3,
+  "curveVersion": 4,
   "clearBufferMax": 7,
   "storehouseTile": "Z",
   "wikiUrl": "https://jansensational.github.io/briarwick-play/wiki/",
-  "curveScale": 2.2
+  "curveScale": 2.2,
+  "oldCurve": {
+   "base": 22,
+   "exp": 1.5,
+   "maxLevel": 21
+  }
  },
  "start": {
   "map": "house",
@@ -72,10 +77,11 @@ window.GAME_DATA = {
  },
  "player": {
   "hp": 34,
-  "hpPerLevel": 2,
+  "hpPerLevel": 4,
   "atk": 6,
   "def": 1,
-  "move": 4
+  "move": 4,
+  "hpFrom": "fight"
  },
  "xpCurve": {
   "base": 15,
@@ -22894,14 +22900,24 @@ window.GAME_DATA = {
   },
   "magery": {
    "name": "Magery",
-   "desc": "Your spells grow stronger with every level - slowly at first, then faster (x0.85 at 1, x1.7 at 10, x3.8 at 20). New spells come at Magery 2 to 12. Trains when you cast spells."
+   "desc": "Your spells grow stronger with every level - slowly at first, then faster (x0.85 at 1, x1.7 at 10, x3.8 at 20). New spells come at Magery 2 to 12. Trains when you cast spells.",
+   "curve": {
+    "base": 150,
+    "mult": 1.41,
+    "maxLevel": 11
+   }
   },
   "swordplay": {
-   "name": "Combat",
-   "desc": "Adds +1 weapon attack per level. Your weapon type matters - choose a weapon specialty at Combat 5. Trains when you attack with a weapon."
+   "name": "Martial",
+   "desc": "Adds +1 weapon attack per level. Your weapon type matters - choose a weapon specialty at Martial 5. Trains when you attack with a weapon.",
+   "curve": {
+    "base": 150,
+    "mult": 1.41,
+    "maxLevel": 11
+   }
   },
   "bartering": {
-   "name": "Bartering",
+   "name": "Negotiating",
    "desc": "Better shop prices (+5% when selling and -3% when buying, per level). Trains when you buy and sell."
   },
   "sailing": {
@@ -22923,7 +22939,7 @@ window.GAME_DATA = {
    "advanced": true,
    "requires": {
     "skill": "magery",
-    "level": 10
+    "level": 5
    }
   },
   "tactics": {
@@ -22932,7 +22948,12 @@ window.GAME_DATA = {
    "advanced": true,
    "requires": {
     "skill": "swordplay",
-    "level": 10
+    "level": 5
+   },
+   "curve": {
+    "base": 60,
+    "mult": 1.41,
+    "maxLevel": 11
    }
   },
   "commerce": {
@@ -23061,7 +23082,7 @@ window.GAME_DATA = {
    "def": 3,
    "move": 3,
    "range": 1,
-   "xp": 60,
+   "xp": 400,
    "gold": [
     80,
     120
@@ -23084,7 +23105,10 @@ window.GAME_DATA = {
      "qty": 1
     }
    ],
-   "music": "boss"
+   "music": "boss",
+   "ward": {
+    "turns": 2
+   }
   },
   "crab": {
    "name": "Reef Crab",
@@ -23847,7 +23871,7 @@ window.GAME_DATA = {
    "atk": 13,
    "move": 3,
    "range": 1,
-   "xp": 120,
+   "xp": 500,
    "gold": [
     80,
     140
@@ -23880,7 +23904,7 @@ window.GAME_DATA = {
    "atk": 18,
    "move": 2,
    "range": 1,
-   "xp": 300,
+   "xp": 700,
    "gold": [
     0,
     0
@@ -26677,7 +26701,11 @@ window.GAME_DATA = {
     },
     "music": "battle"
    },
-   "music": "forest"
+   "music": "forest",
+   "tier": {
+    "level": 1,
+    "mult": 1.0
+   }
   },
   "saltmere": {
    "name": "Saltmere Isle",
@@ -26845,7 +26873,11 @@ window.GAME_DATA = {
      "kind": "greenhouse",
      "reagent": "seapearl"
     }
-   ]
+   ],
+   "tier": {
+    "level": 5,
+    "mult": 1
+   }
   },
   "homecenter": {
    "name": "Gideon's Home Center",
@@ -27039,6 +27071,10 @@ window.GAME_DATA = {
      "~": 0.04
     },
     "music": "battle"
+   },
+   "tier": {
+    "level": 5,
+    "mult": 1
    }
   },
   "shipwreck": {
@@ -27148,6 +27184,10 @@ window.GAME_DATA = {
      "T": 0.04
     },
     "music": "battle"
+   },
+   "tier": {
+    "level": 6,
+    "mult": 1
    }
   },
   "sea": {
@@ -27268,6 +27308,10 @@ window.GAME_DATA = {
      "*": 0.07
     },
     "music": "darklord"
+   },
+   "tier": {
+    "level": 10,
+    "mult": 1
    }
   },
   "kingsroad": {
@@ -27417,6 +27461,10 @@ window.GAME_DATA = {
      "\"": 0.1
     },
     "music": "battle"
+   },
+   "tier": {
+    "level": 2,
+    "mult": 1.25
    }
   },
   "hm_smith": {
@@ -28236,7 +28284,11 @@ window.GAME_DATA = {
      "kind": "greenhouse",
      "reagent": "jadeleaf"
     }
-   ]
+   ],
+   "tier": {
+    "level": 7,
+    "mult": 1
+   }
   },
   "verdant_wilds": {
    "name": "Verdant Isles Wilds",
@@ -28355,7 +28407,11 @@ window.GAME_DATA = {
     },
     "music": "battle"
    },
-   "region": "verdant"
+   "region": "verdant",
+   "tier": {
+    "level": 7,
+    "mult": 1
+   }
   },
   "azure_hall": {
    "name": "Fleet Admiral Coralie's Hall",
@@ -28661,7 +28717,11 @@ window.GAME_DATA = {
      "kind": "greenhouse",
      "reagent": "tidecoral"
     }
-   ]
+   ],
+   "tier": {
+    "level": 8,
+    "mult": 1
+   }
   },
   "azure_wilds": {
    "name": "Azure Atoll Wilds",
@@ -28780,7 +28840,11 @@ window.GAME_DATA = {
     },
     "music": "battle"
    },
-   "region": "azure"
+   "region": "azure",
+   "tier": {
+    "level": 8,
+    "mult": 1
+   }
   },
   "thornhaven_hall": {
    "name": "King Aldric's Hall",
@@ -29086,7 +29150,11 @@ window.GAME_DATA = {
      "kind": "greenhouse",
      "reagent": "bloodmoss"
     }
-   ]
+   ],
+   "tier": {
+    "level": 9,
+    "mult": 1
+   }
   },
   "thornhaven_wilds": {
    "name": "Thornhaven Wilds",
@@ -29205,7 +29273,11 @@ window.GAME_DATA = {
     },
     "music": "battle"
    },
-   "region": "thornhaven"
+   "region": "thornhaven",
+   "tier": {
+    "level": 9,
+    "mult": 1
+   }
   },
   "ember_hall": {
    "name": "Archmage Ysolde's Hall",
@@ -29516,7 +29588,11 @@ window.GAME_DATA = {
      "kind": "greenhouse",
      "reagent": "cinderlotus"
     }
-   ]
+   ],
+   "tier": {
+    "level": 10,
+    "mult": 1
+   }
   },
   "ember_wilds": {
    "name": "The Ember Isles Wilds",
@@ -29635,7 +29711,11 @@ window.GAME_DATA = {
     },
     "music": "battle"
    },
-   "region": "ember"
+   "region": "ember",
+   "tier": {
+    "level": 10,
+    "mult": 1
+   }
   },
   "backroom": {
    "name": "Apothecary Back Room",
@@ -29820,6 +29900,10 @@ window.GAME_DATA = {
      "\"": 0.08
     },
     "music": "battle"
+   },
+   "tier": {
+    "level": 5,
+    "mult": 2.2
    }
   },
   "mistfen": {
@@ -29946,6 +30030,10 @@ window.GAME_DATA = {
      "~": 0.05
     },
     "music": "battle"
+   },
+   "tier": {
+    "level": 3,
+    "mult": 1.5
    }
   },
   "quarry": {
@@ -30056,6 +30144,10 @@ window.GAME_DATA = {
      "\"": 0.06
     },
     "music": "battle"
+   },
+   "tier": {
+    "level": 4,
+    "mult": 1.8
    }
   }
  },
@@ -30093,7 +30185,7 @@ window.GAME_DATA = {
      "spark"
     ],
     "xp": {
-     "magery": 12
+     "magery": 60
     },
     "items": {
      "seed_emberroot": 2,
@@ -30127,8 +30219,8 @@ window.GAME_DATA = {
      "mend"
     ],
     "xp": {
-     "magery": 10,
-     "swordplay": 5
+     "magery": 40,
+     "fight": 150
     }
    }
   },
@@ -30163,8 +30255,9 @@ window.GAME_DATA = {
      "stoneskin"
     ],
     "xp": {
-     "magery": 10,
-     "herbalism": 10
+     "magery": 60,
+     "herbalism": 10,
+     "fight": 150
     }
    }
   },
@@ -30198,8 +30291,8 @@ window.GAME_DATA = {
      "frost_lance"
     ],
     "xp": {
-     "magery": 14,
-     "sailing": 10
+     "sailing": 10,
+     "fight": 250
     }
    }
   },
@@ -30210,7 +30303,8 @@ window.GAME_DATA = {
    "requires": "q4",
    "intro": [
     "Bandits have camped in the deep north-east of the Whisperwood, led by one they call the Red Hood.",
-    "They hoard Shadebloom - the rarest reagent this side of the sea. Defeat their leader."
+    "They hoard Shadebloom - the rarest reagent this side of the sea. Defeat their leader.",
+    "One warning. He wears a stolen ward-charm: steel slides off him. Break the ward with a spell, any spell that burns or bites, and your blades will find him for a moment. Then it closes again."
    ],
    "objectives": [
     {
@@ -30231,7 +30325,7 @@ window.GAME_DATA = {
      "gate"
     ],
     "xp": {
-     "magery": 20
+     "fight": 400
     }
    }
   },
@@ -30270,7 +30364,7 @@ window.GAME_DATA = {
     "research": "wolf",
     "gold": 50,
     "xp": {
-     "magery": 8
+     "fight": 60
     }
    }
   },
@@ -30309,7 +30403,7 @@ window.GAME_DATA = {
     "research": "slime",
     "gold": 50,
     "xp": {
-     "magery": 8
+     "fight": 60
     }
    }
   },
@@ -30348,7 +30442,7 @@ window.GAME_DATA = {
     "research": "crab",
     "gold": 50,
     "xp": {
-     "magery": 8
+     "fight": 60
     }
    }
   },
@@ -30387,7 +30481,7 @@ window.GAME_DATA = {
     "research": "wisp",
     "gold": 50,
     "xp": {
-     "magery": 8
+     "fight": 60
     }
    }
   },
@@ -30426,7 +30520,7 @@ window.GAME_DATA = {
     "research": "bandit",
     "gold": 50,
     "xp": {
-     "magery": 8
+     "fight": 60
     }
    }
   },
@@ -30465,7 +30559,7 @@ window.GAME_DATA = {
     "research": "shark",
     "gold": 50,
     "xp": {
-     "magery": 8
+     "fight": 60
     }
    }
   },
@@ -30503,7 +30597,7 @@ window.GAME_DATA = {
     "research": "ironshell_crab",
     "gold": 120,
     "xp": {
-     "magery": 10
+     "fight": 60
     }
    }
   },
@@ -30541,7 +30635,7 @@ window.GAME_DATA = {
     "research": "storm_wisp",
     "gold": 120,
     "xp": {
-     "magery": 10
+     "fight": 60
     }
    }
   },
@@ -30579,7 +30673,7 @@ window.GAME_DATA = {
     "research": "dire_wolf",
     "gold": 120,
     "xp": {
-     "magery": 10
+     "fight": 60
     }
    }
   },
@@ -30617,7 +30711,7 @@ window.GAME_DATA = {
     "research": "rock_slime",
     "gold": 120,
     "xp": {
-     "magery": 10
+     "fight": 60
     }
    }
   },
@@ -30655,7 +30749,7 @@ window.GAME_DATA = {
     "research": "hollow_bandit",
     "gold": 120,
     "xp": {
-     "magery": 10
+     "fight": 60
     }
    }
   },
@@ -30693,7 +30787,7 @@ window.GAME_DATA = {
     "research": "bone_shark",
     "gold": 120,
     "xp": {
-     "magery": 10
+     "fight": 60
     }
    }
   },
@@ -36010,7 +36104,12 @@ window.GAME_DATA = {
     }
    ],
    "boss": "goblin_chief",
-   "guildShop": "outfitter"
+   "guildShop": "outfitter",
+   "tier": {
+    "level": 1,
+    "mult": 1.1,
+    "levelPerDepth": 0.75
+   }
   },
   "deepdelve": {
    "name": "Deepdelve Mine",
@@ -36046,7 +36145,12 @@ window.GAME_DATA = {
     }
    ],
    "boss": "golem_king",
-   "guildShop": "highmoor_smith"
+   "guildShop": "highmoor_smith",
+   "tier": {
+    "level": 4,
+    "mult": 1.6,
+    "levelPerDepth": 0.5
+   }
   }
  },
  "caveRules": {
@@ -36384,7 +36488,9 @@ window.GAME_DATA = {
   "levelHeal": 0.3,
   "aldwinReach": [
    "whisperwood"
-  ]
+  ],
+  "staleXp": 0.5,
+  "staleFloor": 0.02
  },
  "weapons": {
   "sword": {
@@ -36988,7 +37094,7 @@ window.GAME_DATA = {
    "swordplay": {
     "tag": "Sword & shield",
     "icon": "i_iron_sword",
-    "desc": "You were the strongest in the village. Start with Combat 1 and an iron sword.",
+    "desc": "You were the strongest in the village. Start with Martial 1 and an iron sword.",
     "items": {
      "iron_sword": 1
     }
@@ -37017,7 +37123,7 @@ window.GAME_DATA = {
    "bartering": {
     "tag": "Silver tongue",
     "icon": "i_gold",
-    "desc": "You can talk anyone into a deal. Start with Bartering 1 and 60 extra gold.",
+    "desc": "You can talk anyone into a deal. Start with Negotiating 1 and 60 extra gold.",
     "gold": 60,
     "items": {}
    },
@@ -37402,6 +37508,11 @@ window.GAME_DATA = {
     "I found a pattern in the falling stars that matched the Hollow King's rising. The council called it heresy and sealed my tower.",
     "So I came to see the world I'd been ignoring. It's much louder than I expected."
    ]
+  },
+  "curve": {
+   "base": 150,
+   "mult": 1.41,
+   "maxLevel": 10
   }
  },
  "lots": {
@@ -44720,14 +44831,23 @@ let G = null; // saved game state
 const R = { scene: 'title', mapId: null, map: null, enemies: [], npcs: [], planters: [], moving: null, dir: 'down', busy: 0, t: 0, titleIdx: 0 };
 async function script(fn) { R.busy++; try { await fn(); } catch (e) { console.error(e); toast('Error: ' + e.message, UI.red); } finally { R.busy--; } }
 
+// A curve is { base, exp, maxLevel } (step i costs base x i^exp) or { base, mult, maxLevel } (each step costs mult times the last).
+// Fighting skills (D.skills[id].curve) use the second kind and stop at 10; working skills keep the first.
+function stepXp(c, i) { return Math.round(c.mult ? c.base * Math.pow(c.mult, i - 1) : c.base * Math.pow(i, c.exp)); }
+function curveOf(id) { return (D.skills[id] && D.skills[id].curve) || D.skillCurve || D.xpCurve; }
+function helperCurve() { return (CMP && CMP().curve) || D.skillCurve || D.xpCurve; }
 function levelFromXp(xp, c) {
   c = c || D.skillCurve || D.xpCurve; let l = 1, need = 0;
-  while (l < c.maxLevel) { need += Math.round(c.base * Math.pow(l, c.exp)); if (xp >= need) l++; else break; }
+  while (l < c.maxLevel) { need += stepXp(c, l); if (xp >= need) l++; else break; }
   return l;
 }
-function xpForLevel(l, c) { c = c || D.skillCurve || D.xpCurve; let need = 0; for (let i = 1; i < l; i++) need += Math.round(c.base * Math.pow(i, c.exp)); return need; }
-function skillLvl(id) { if (D.skills[id] && D.skills[id].requires && !skillUnlocked(id)) return 0; return Math.max(0, levelFromXp((G.skills[id] || 0)) - 1); }   // skills start at 0
-function xpForSkill(l) { return l <= 0 ? 0 : xpForLevel(l + 1); }
+function xpForLevel(l, c) { c = c || D.skillCurve || D.xpCurve; let need = 0; for (let i = 1; i < l; i++) need += stepXp(c, i); return need; }
+function skillMax(id) { return curveOf(id).maxLevel - 1; }
+const FIGHT_SKILLS = ['swordplay', 'magery', 'tactics'];
+function fightLvl() { return FIGHT_SKILLS.reduce((a, id) => a + (D.skills[id] ? skillLvl(id) : 0), 0); }      // only fighting skills make you tougher
+function bestFightLvl() { return Math.max(skillLvl('swordplay'), skillLvl('magery')); }
+function skillLvl(id) { if (D.skills[id] && D.skills[id].requires && !skillUnlocked(id)) return 0; return Math.max(0, levelFromXp((G.skills[id] || 0), curveOf(id)) - 1); }   // skills start at 0
+function xpForSkill(l, id) { return l <= 0 ? 0 : xpForLevel(l + 1, curveOf(id)); }
 // ---- skill points: every skill level gives one point to spend in that skill (D.skillPoints)
 function SP() { return D.skillPoints || { options: {} }; }
 function ptOpts(sk) { return (SP().options || {})[sk] || []; }
@@ -44750,11 +44870,11 @@ function addSkillXp(id, n) {
   if (!G || !skillUnlocked(id)) return;
   if (id === 'magery' && home().furn.desk) n = Math.ceil(n * 1.25);
   const before = skillLvl(id); G.skills[id] = (G.skills[id] || 0) + n; const after = skillLvl(id);
-  if (after > before) { toast(`${D.skills[id] ? D.skills[id].name : id} rose to ${after}!${ptOpts(id).length ? '  +1 point' : ''}`, UI.green); AU.sfx('levelup'); if (ptOpts(id).length) (R.pointQ = R.pointQ || []).includes(id) || R.pointQ.push(id); if (perkAvail(id).length) toast('New perk available! Press K', UI.blue); checkUnlocks(); checkSpellLearn(); }
+  if (after > before) { toast(`${D.skills[id] ? D.skills[id].name : id} rose to ${after}!${ptOpts(id).length ? '  +1 point' : ''}`, UI.green); if (after >= skillMax(id) && (id === 'swordplay' || id === 'magery') && !G.flags['master_' + id]) { G.flags['master_' + id] = true; (R.sceneQ = R.sceneQ || []).push(id); } AU.sfx('levelup'); if (ptOpts(id).length) (R.pointQ = R.pointQ || []).includes(id) || R.pointQ.push(id); if (perkAvail(id).length) toast('New perk available! Press K', UI.blue); checkUnlocks(); checkSpellLearn(); }
 }
 function playerLvl() { return Math.max(1, Object.keys(D.skills).reduce((a, id) => a + skillLvl(id), 0)); }   // your level = the sum of your skill levels
 function lvlProgress() { return { l: playerLvl(), cur: 0, need: 0, frac: 1 }; }
-function maxHp() { return D.player.hp + (playerLvl() - 1) * (D.player.hpPerLevel || 4) + ptVal('swordplay', 'hp') + gearStat('player', 'hp') + perk('hp'); }
+function maxHp() { return D.player.hp + (D.player.hpFrom === 'fight' ? fightLvl() : playerLvl() - 1) * (D.player.hpPerLevel || 4) + ptVal('swordplay', 'hp') + gearStat('player', 'hp') + perk('hp'); }
 function playerAtk() { return D.player.atk + skillLvl('swordplay') + ptVal('swordplay', 'atk') + gearStat('player', 'atk') + perk('atk'); }
 function playerDef() { return D.player.def + ptVal('swordplay', 'def') + gearStat('player', 'def') + perk('def'); }
 function spellMult() { const M = D.magic || {}, m = skillLvl('magery'); return ((M.base == null ? 0.85 : M.base) + (M.lin == null ? 0.04 : M.lin) * m + (M.quad == null ? 0.006 : M.quad) * m * m) * (1 + ptVal('magery', 'power')) * (1 - castPenalty()); }
@@ -44843,7 +44963,7 @@ async function chooseCalling() {
   const CL = SP().callings || {};
   const ids = Object.keys(CL).filter(k => D.skills[k]);
   let c = null; while (!c) c = await choose('Choose your calling', ids.map(k => ({ label: D.skills[k].name, right: CL[k].tag || '', icon: CL[k].icon, desc: CL[k].desc || '', value: k })), { width: 640, footer: 'This skill starts at level 1. Every other skill starts at 0 and grows as you use it.' });
-  G.calling = c; G.skills[c] = xpForSkill(1);
+  G.calling = c; G.skills[c] = xpForSkill(1, c);
   const b = CL[c] || {}; for (const [id, n] of Object.entries(b.items || {})) add(id, n, true); if (b.gold) G.gold += b.gold;
   for (const sp of b.spells || []) if (!G.spells.includes(sp)) G.spells.push(sp);
   G.hp = maxHp(); toast(`${D.skills[c].name}: you have 1 point to spend (Skills, K).`, UI.green);
@@ -44866,7 +44986,7 @@ async function rebuildHero() {
     if (r && r.value === '__ok' || r === '__ok') break;
     if (!left()) break;
   }
-  G.skills = {}; for (const [k, n] of Object.entries(lv)) if (n) G.skills[k] = xpForSkill(n);
+  G.skills = {}; for (const [k, n] of Object.entries(lv)) if (n) G.skills[k] = xpForSkill(n, k);
   for (const [sk, pm] of Object.entries(G.perks || {})) for (const l of Object.keys(pm)) if (skillLvl(sk) < +l) delete pm[l];
   G.pts = {}; G.sv2 = true; delete G.rebuildPool; G.hp = maxHp(); checkSpellLearn(true);
   toast(`Rebuilt! You are level ${playerLvl()}. Spend your points in Skills (K).`, UI.green);
@@ -44892,6 +45012,10 @@ function loadGame() {
   if (!G.sv2 && G.rebuildPool == null) { G.rebuildPool = 1 + Object.keys(D.skills).reduce((a, k) => a + ((D.skills[k].requires && levelFromXp(G.skills[(D.skills[k].requires || {}).skill] || 0) < D.skills[k].requires.level) ? 0 : Math.max(0, levelFromXp(G.skills[k] || 0) - 1)), 0); }
   if (!G.sv2 && (G.curveV || 1) < (D.meta.curveVersion || 1) && D.skillCurve) { const oc = D.skillCurve, L = levelFromXp(G.xp, oc), a = xpForLevel(L, oc), b = xpForLevel(L + 1, oc), f = b > a ? Math.min(1, (G.xp - a) / (b - a)) : 0; G.xp = Math.round(xpForLevel(L, D.xpCurve) + f * (xpForLevel(L + 1, D.xpCurve) - xpForLevel(L, D.xpCurve))); }
   if ((G.curveV || 1) < 3 && (D.meta.curveVersion || 1) >= 3) { const k = D.meta.curveScale || 1; for (const id of Object.keys(G.skills || {})) G.skills[id] = Math.round(G.skills[id] * k); for (const st of Object.values(G.helpers || {})) st.xp = Math.round((st.xp || 0) * k); }      // v0.26: skills need more XP; saved heroes and companions keep their levels
+  if ((G.curveV || 1) < 4 && (D.meta.curveVersion || 1) >= 4) { const old = D.meta.oldCurve || { base: 22, exp: 1.5, maxLevel: 21 }; let changed = false;
+    for (const id of FIGHT_SKILLS) { if (!D.skills[id] || !G.skills[id]) continue; const ol = levelFromXp(G.skills[id], old) - 1, nl = Math.min(skillMax(id), Math.ceil(ol / 2)); G.skills[id] = xpForSkill(nl, id); if (G.pts) delete G.pts[id]; if (G.perks && G.perks[id]) for (const lv of Object.keys(G.perks[id])) if (+lv > nl) delete G.perks[id][lv]; changed = true; }
+    for (const st of Object.values(G.helpers || {})) { const ol = levelFromXp(st.xp || 0, old), nl = Math.min(helperCurve().maxLevel, Math.ceil(ol / 2)); st.xp = xpForLevel(nl, helperCurve()); if (st.cp) delete st.cp; }
+    if (changed) { G.hp = Math.min(G.hp, maxHp()); setTimeout(() => toast('Fighting skills now run from 0 to 10. Yours were converted, and their points are yours to spend again (K).', UI.blue), 800); } }
   G.curveV = D.meta.curveVersion || 1; G.enchanted = G.enchanted || {}; for (const [nid, [b0, g0]] of Object.entries(G.enchanted)) registerEnchant(nid, b0, g0);
   setTimeout(() => { if (G && (!G.name || G.rebuildPool || !G.look)) script(async () => { if (!G.name) { G.name = await askName(); toast(`Welcome back, ${G.name}.`, UI.green); } if (!G.look && (D.heroLooks || []).length) await chooseLook(); if (G.rebuildPool) await rebuildHero(); autoCompanionPoints(); });
     autoCompanionPoints();
@@ -44977,6 +45101,10 @@ function updateWorld(dt) {
   const wasWeary = weary(); G.time += dt * D.meta.minutesPerSecond;
   if (!wasWeary && weary()) { toast('Past midnight - you are Weary (slower, weaker in battle).', UI.red); toast('Sleep in a bed, or camp outdoors with a bedroll.', UI.red); }
   if (G.time >= dawnHour() * 60) { script(() => newDay('dawn')); return; }
+  if (R.sceneQ && R.sceneQ.length && !C) { const sk = R.sceneQ.shift(), M = (D.combat || {}).mastery || {}, A = D.npcs.aldwin || {};      // the mastery scene: levels end here, learning does not
+    script(async () => { AU.sfx('discover'); await fadeTo(() => {}); await say('', M[sk] || (sk === 'magery' ? ['The last pattern settles into place. There is no spell-shape left that your hands do not know.', 'You have mastered Magery.'] : ['Your blade moves before the thought does. There is no stance, guard or strike left to drill.', 'You have mastered the Martial arts.']));
+      await say(A.name || 'Old Aldwin', M.aldwin || ["'So. You have climbed as high as practice alone can take you.'", "'Do not mistake the top of the stair for the top of the tower. There are talents no drill will teach: strikes that fall twice, wards that turn a killing blow, spells older than this kingdom.'", "'They are kept by those who earned them, in lands you have not yet walked. Go and find them.'"], A.sprite);
+      toast(`${D.skills[sk].name} mastered. New talents are learned from quests in the far lands.`, UI.blue); }); return; }
   if (R.pointQ && R.pointQ.length && !C) { const sk = R.pointQ.shift(); if (unspent(sk)) { script(async () => { const c = await choose(`${D.skills[sk].name} rose to ${skillLvl(sk)}!  You have ${unspent(sk)} point${unspent(sk) === 1 ? '' : 's'} to spend.`, [{ label: 'Spend now', value: 'now' }, { label: 'Later', value: 'later', desc: 'Your points wait for you in Skills (K).' }], { width: 520 }); if (c === 'now') await pointsMenu(sk); }); return; } }
   if (!G.flags.dreadKnown && (playerLvl() >= (DL().revealLevel || 5) || dread() >= (DL().revealAt || 0.12))) { script(revealDarkLord); return; }
   updateRaid();
@@ -45115,7 +45243,7 @@ function grantReward(r) {
   if (!r) return;
   if (r.gold) { G.gold += r.gold; toast(`+${r.gold} gold`); }
   for (const s of r.spells || []) if (!G.spells.includes(s)) { G.spells.push(s); addDread(DL().perSpell || 0); toast(`Learned spell: ${D.spells[s] ? D.spells[s].name : s}!`, UI.blue); }
-  for (const [s, n] of Object.entries(r.xp || {})) addSkillXp(s, n);
+  for (const [s, n] of Object.entries(r.xp || {})) { if (s === 'fight') { const a = G.skills.swordplay || 0, b = G.skills.magery || 0, f = a + b > 0 ? a / (a + b) : 0.5; if (Math.round(n * f)) addSkillXp('swordplay', Math.round(n * f)); if (Math.round(n * (1 - f))) addSkillXp('magery', Math.round(n * (1 - f))); } else addSkillXp(s, n); }
   for (const [id, n] of Object.entries(r.items || {})) { add(id, n, true); toast(`+${n} ${item(id).name}`); }
   if (r.shopUnlock) { const su = r.shopUnlock; G.shopUnlocks[su.shop] = [...new Set((G.shopUnlocks[su.shop] || []).concat(su.items || []))]; toast('New stock: ' + (su.items || []).map(i => item(i).name).join(', '), UI.blue); }
   if (r.hull) { const sh = ship(); sh.max += r.hull; sh.hull += r.hull; toast(`Ship hull strengthened (+${r.hull})`, UI.blue); }
@@ -45153,14 +45281,14 @@ async function wizardQuests(npc) {
   const any = await giverQuests(npc, { progress: true });
   if (!any) await say(npc.def.name, (npc.def.dialog || []).concat(npc.def.role === 'wizard' && G.flags.dreadKnown && dread() >= 0.1 ? (DL().aldwin || []) : []).concat([npc.def.role === 'wizard' ? '(No new tasks right now. Hunt monsters to unlock Bane research quests - and more zones are coming!)' : '(No new tasks right now.)']), npc.def.sprite);
 }
-// ---- the trade network (D.market): each vendor sells or buys a good; prices = base x Bartering x prosperity x distance ----
+// ---- the trade network (D.market): each vendor sells or buys a good; prices = base x Negotiating x prosperity x distance ----
 function MK() { return D.market || { vendors: {}, goods: [], rules: {}, towns: {} }; }
 function MR() { return MK().rules || {}; }
 function mkV(sid) { return sid ? MK().vendors[sid] : null; }
 function isTradeGood(id) { MK()._g = MK()._g || new Set(MK().goods || []); return MK()._g.has(id); }
 function townOfShop(sid) { const v = mkV(sid); if (v) return v.town; return null; }
 function townLvl(town) { if (!town) return 0; const g = Object.entries(MK().vendors).filter(([, v]) => v.town === town).reduce((a, [s]) => a + ((G.prosper || {})[s] || 0), 0); const m = MR().townThresholdMult || 2; let l = 0; (PR().thresholds || [0]).forEach((t, i) => { if (g >= t * m) l = i; }); return l; }
-// Bartering: the full effect, half of it built into the standing price, the other half only by haggling
+// Negotiating: the full effect, half of it built into the standing price, the other half only by haggling
 function barterRaw(kind) { const R0 = MR(), L = skillLvl('bartering'); return kind === 'buy' ? Math.min(R0.barterBuyCap == null ? 0.2 : R0.barterBuyCap, (R0.barterBuyPerLvl == null ? 0.02 : R0.barterBuyPerLvl) * L + ptVal('bartering', 'buy') + perk('buyDiscount'))
   : Math.min(R0.barterSellCap == null ? 0.25 : R0.barterSellCap, (R0.barterSellPerLvl == null ? 0.025 : R0.barterSellPerLvl) * L + ptVal('bartering', 'sell') + perk('sellBonus') + gearVal('player', 'sellBonus')); }
 function barterStanding(kind) { return barterRaw(kind) * (MR().standingShare == null ? 0.5 : MR().standingShare); }
@@ -45199,7 +45327,7 @@ async function haggleMenu(npc, shop, sid) {
   if (!q) return;
   const lim = haggleLimit(sid, mode), totAt = pc => Math.max(1, Math.round(std * q * (mode === 'buy' ? 1 - pc / 100 : 1 + pc / 100))), floorT = totAt(lim * 100);
   const rows = [], seen = new Set(); for (let p = 1; p <= (MR().haggleSteps || 12); p++) { const t = totAt(p); if (seen.has(t) || t === std * q) continue; seen.add(t); rows.push({ label: `${mode === 'buy' ? 'Offer' : 'Ask for'} ${t}g`, right: `${mode === 'buy' ? '-' : '+'}${p}%`, value: p }); }
-  const hint = tip ? `${tip.name} whispers: "${mode === 'buy' ? 'They won\'t take less than' : 'They won\'t pay more than'} about ${floorT}g for the lot."` : 'A companion with a head for bargains (Bartering 3+) in your party could tell you how far they\'ll go.';
+  const hint = tip ? `${tip.name} whispers: "${mode === 'buy' ? 'They won\'t take less than' : 'They won\'t pay more than'} about ${floorT}g for the lot."` : 'A companion with a head for bargains (Negotiating 3+) in your party could tell you how far they\'ll go.';
   if (!rows.length) { toast('Too small a deal to haggle over. Try a bigger batch.'); return; }
   const p = await choose(`${item(id).name} x${q}: standing price ${std * q}g`, rows.concat([{ label: 'Never mind', value: null }]), { width: 520, footer: hint });
   if (!p) return;
@@ -45300,7 +45428,7 @@ function requestTick(report) { G.requests = (G.requests || []).filter(r => { if 
   for (const pid of Object.keys(G.partSeen || {})) { if (G.partReported[pid] || (G.leads || {})[pid] || (G.requests || []).some(r => r.item === pid)) continue; const b = bestBuyerOf(pid); if (!b) continue; G.partReported[pid] = true; (G.leads = G.leads || {})[pid] = b;
     report.push(fillLine(pickOne(RQ().reports), { name: D.helpers[id].name, shop: D.shops[b].name, town: shopTownName(b), item: item(pid).name })); break; } }
 function requestRows() { const rows = [];
-  for (const r of G.requests || []) rows.push({ label: `Request: ${r.qty} ${item(r.item).name} for ${D.shops[r.sid].name}`, icon: item(r.item).sprite, right: `${r.got}/${r.qty}   ${r.expires - G.day}d left`, desc: `${shopKeeper(r.sid)} in ${shopTownName(r.sid)} pays ${r.unit}g each. You have ${count(r.item)}.  ${r.tip || 'Nobody has told you where to find it yet. A companion with Bartering 3+ might know.'}` });
+  for (const r of G.requests || []) rows.push({ label: `Request: ${r.qty} ${item(r.item).name} for ${D.shops[r.sid].name}`, icon: item(r.item).sprite, right: `${r.got}/${r.qty}   ${r.expires - G.day}d left`, desc: `${shopKeeper(r.sid)} in ${shopTownName(r.sid)} pays ${r.unit}g each. You have ${count(r.item)}.  ${r.tip || 'Nobody has told you where to find it yet. A companion with Negotiating 3+ might know.'}` });
   for (const [pid, s] of Object.entries(G.leads || {})) if (!(G.requests || []).some(r => r.item === pid)) rows.push({ label: `Lead: ${D.shops[s].name} wants ${item(pid).name}`, icon: item(pid).sprite, right: shopTownName(s), desc: `You heard that ${shopKeeper(s)} at ${D.shops[s].name} in ${shopTownName(s)} buys ${item(pid).name}. You have ${count(pid)}.`, disabled: true });
   return rows; }
 async function shopTalk(npc, skipIntro) {
@@ -45313,7 +45441,7 @@ async function shopTalk(npc, skipIntro) {
   for (;;) {
     const fsH = flagship(), hasHold = fsH && G.shipAt === outdoorOf(R.mapId) && Object.keys(fsH.hold || {}).some(id => fsH.hold[id] > 0 && vendorBuys(sid || npc.def.shop, id));
     const nx = sid ? prosperNext(sid) : null;
-    const c = await choose(sid ? `${shop.name}  -  ${prosperName(sid)}` : shop.name, [{ label: 'Buy', value: 'buy', desc: sid ? `${prosperName(sid)}: stock refills every morning.${nx != null ? `  Trade ${nx} more gold here and the shop will grow.` : '  As big as a shop gets.'}` : '' }, { label: 'Sell', value: 'sell' }, ...(sid ? [{ label: 'Haggle', value: 'haggle', desc: `Name your own price for a batch.  Bartering ${skillLvl('bartering')}: up to about ${Math.round(haggleRoom('buy') * 100)}% off when buying, ${Math.round(haggleRoom('sell') * 100)}% more when selling.` }] : []), ...(hasHold ? [{ label: `Sell from ${fsH.name}'s hold`, value: 'hold' }] : []), { label: 'Leave', value: 'leave' }], { width: 300 });
+    const c = await choose(sid ? `${shop.name}  -  ${prosperName(sid)}` : shop.name, [{ label: 'Buy', value: 'buy', desc: sid ? `${prosperName(sid)}: stock refills every morning.${nx != null ? `  Trade ${nx} more gold here and the shop will grow.` : '  As big as a shop gets.'}` : '' }, { label: 'Sell', value: 'sell' }, ...(sid ? [{ label: 'Haggle', value: 'haggle', desc: `Name your own price for a batch.  Negotiating ${skillLvl('bartering')}: up to about ${Math.round(haggleRoom('buy') * 100)}% off when buying, ${Math.round(haggleRoom('sell') * 100)}% more when selling.` }] : []), ...(hasHold ? [{ label: `Sell from ${fsH.name}'s hold`, value: 'hold' }] : []), { label: 'Leave', value: 'leave' }], { width: 300 });
     if (c === 'haggle') { if ((await haggleMenu(npc, shop, sid)) === 'insult') break; continue; }
     if (c === 'buy') await openMenu({ title: 'Buy', width: 560, footer: () => `Gold: ${G.gold}    Enter: buy 1    Shift+Enter: buy 5${flagship() && G.shipAt === outdoorOf(R.mapId) ? '    Hold: ' + holdLine(flagship()) : ''}`,
       items: () => {
@@ -45413,16 +45541,16 @@ async function fleetMenu() {
 function freeCrew() { return Object.keys(G.helpers || {}).filter(id => D.helpers[id] && !G.helpers[id].guest && !['away', 'fleet', 'party'].includes(G.helpers[id].role)); }
 async function pickCrew(title, cur) {
   const ids = freeCrew().concat(cur ? [cur] : []).filter(id => G.helpers[id]);
-  const c = await choose(title, [{ label: 'Nobody', value: '__none' }].concat(ids.map(id => ({ label: D.helpers[id].name, icon: D.helpers[id].sprite, right: `Sailing ${((D.helpers[id].skills || {}).sailing || 0)}  Bartering ${((D.helpers[id].skills || {}).bartering || 0)}`, value: id, desc: ROLES[G.helpers[id].role] || '' }))), { width: 560 });
+  const c = await choose(title, [{ label: 'Nobody', value: '__none' }].concat(ids.map(id => ({ label: D.helpers[id].name, icon: D.helpers[id].sprite, right: `Sailing ${((D.helpers[id].skills || {}).sailing || 0)}  Negotiating ${((D.helpers[id].skills || {}).bartering || 0)}`, value: id, desc: ROLES[G.helpers[id].role] || '' }))), { width: 560 });
   return c;
 }
 async function shipActions(sh) {
   const home = R.mapId === 'briarwick' || outdoorOf(R.mapId) === 'briarwick', fl = sh.uid === (flagship() || {}).uid;
   const rows = [];
   if (!fl && !sh.away && !sh.route) rows.push({ label: 'Make this my flagship', value: 'flag', disabled: R.scene === 'sea', desc: 'The ship you sail yourself.' });
-  if (!fl) rows.push({ label: 'Captain', right: sh.captain && D.helpers[sh.captain] ? D.helpers[sh.captain].name : 'none', value: 'cap', disabled: !!sh.away, desc: 'Route ships need a companion captain. Bartering sets prices; Sailing keeps the ship safe.' });
+  if (!fl) rows.push({ label: 'Captain', right: sh.captain && D.helpers[sh.captain] ? D.helpers[sh.captain].name : 'none', value: 'cap', disabled: !!sh.away, desc: 'Route ships need a companion captain. Negotiating sets prices; Sailing keeps the ship safe.' });
   rows.push({ label: 'Navigator', right: sh.navigator && D.helpers[sh.navigator] ? D.helpers[sh.navigator].name : 'none', value: 'nav', disabled: !!sh.away, desc: 'Optional. Shortens voyages and earns Sailing XP.' });
-  if (!fl) rows.push({ label: 'Quartermaster', right: sh.quartermaster && D.helpers[sh.quartermaster] ? `${D.helpers[sh.quartermaster].name} (Bartering ${crewBarter(sh.quartermaster)})` : 'none', value: 'qm', disabled: !!sh.away, desc: 'Optional. Buys and sells on route trips with their own Bartering, and haggles too (fully from Bartering 5). Without one, the captain trades at half their skill.' });
+  if (!fl) rows.push({ label: 'Quartermaster', right: sh.quartermaster && D.helpers[sh.quartermaster] ? `${D.helpers[sh.quartermaster].name} (Negotiating ${crewBarter(sh.quartermaster)})` : 'none', value: 'qm', disabled: !!sh.away, desc: 'Optional. Buys and sells on route trips with their own Negotiating, and haggles too (fully from Negotiating 5). Without one, the captain trades at half their skill.' });
   if (!fl) rows.push({ label: 'Trade route', right: sh.route ? portName(sh.route) : 'none', value: 'route', disabled: !!sh.away || !routes().length, desc: routes().length ? 'The ship sails this route on its own, repeating its standing orders every round trip.' : 'No trade routes yet.' });
   if (sh.route) rows.push({ label: 'Standing orders', value: 'orders', desc: 'What to sell, what to buy and how much gold to take each trip.' });
   if (fl && home && !sh.away) { rows.push({ label: 'Load cargo from the storehouse', value: 'load', desc: 'Dry goods (reagents, gems, ore, potions...) to sell at other ports.' }); rows.push({ label: 'Unload everything to the storehouse', value: 'unload', disabled: !Object.keys(sh.hold || {}).length }); }
@@ -45450,8 +45578,8 @@ async function ordersMenu(sh) {
   const est = () => { const lvl = shipBarter(sh); let sales = 0, cost = 0, purse = O.purse || 0;
     for (const [id, n] of Object.entries(O.sell)) sales += routeSellQuote(port, id, Math.min(n, (G.store || {})[id] || 0), lvl, false).gold;
     let pool = purse + sales; for (const [id, n] of Object.entries(O.buy)) { const pr = routeBuyPrice(port, id, lvl); if (pr == null) continue; const k = Math.min(n, Math.floor(pool / pr)); pool -= k * pr; cost += k * pr; } return { sales, cost }; };
-  const crewRow = (key, label, what) => { const id = sh[key]; return { label, icon: id && D.helpers[id] ? D.helpers[id].sprite : null, right: id && G.helpers[id] ? `${D.helpers[id].name}  (${what === 'b' ? 'Bartering ' + crewBarter(id) : 'Sailing ' + (((D.helpers[id] || {}).skills || {}).sailing || 0)})` : 'none', value: 'crew:' + key,
-    desc: { captain: 'Required. Sails the ship; their Sailing keeps her safe.', navigator: 'Optional. Cuts sailing time by 10%.', quartermaster: 'Optional. Sells and buys with their Bartering and haggles for you (fully from Bartering 5). Without one, the captain trades at half their skill.' }[key] }; };
+  const crewRow = (key, label, what) => { const id = sh[key]; return { label, icon: id && D.helpers[id] ? D.helpers[id].sprite : null, right: id && G.helpers[id] ? `${D.helpers[id].name}  (${what === 'b' ? 'Negotiating ' + crewBarter(id) : 'Sailing ' + (((D.helpers[id] || {}).skills || {}).sailing || 0)})` : 'none', value: 'crew:' + key,
+    desc: { captain: 'Required. Sails the ship; their Sailing keeps her safe.', navigator: 'Optional. Cuts sailing time by 10%.', quartermaster: 'Optional. Sells and buys with their Negotiating and haggles for you (fully from Negotiating 5). Without one, the captain trades at half their skill.' }[key] }; };
   await openMenu({ title: () => `${sh.name}: route to ${port.name}`, width: 700, minRows: 12,
     footer: () => { const e = est(); return `Gold ${G.gold}   Out: dry ${used(O.sell, 'dry')}/${T.dry || 0}   Home: dry ${used(O.buy, 'dry')}/${T.dry || 0}, bulk ${used(O.buy, 'bulk')}/${T.bulk || 0}    Est. sales ${e.sales}g, purchases ${e.cost}g`; },
     items: () => { const lvl = shipBarter(sh), succ = Math.round(routeSuccess(sh, port) * 100);
@@ -45490,7 +45618,7 @@ function crewBarter(id) { if (!id || !D.helpers[id] || !G.helpers[id]) return 0;
 function crewName(id) { return id && D.helpers[id] ? D.helpers[id].name : 'none'; }
 function shipCrew(sh) { return [sh.captain, sh.navigator, sh.quartermaster].filter(id => id && G.helpers[id]); }
 function shipBarter(sh) { return sh.quartermaster && G.helpers[sh.quartermaster] ? crewBarter(sh.quartermaster) : Math.max(0, ...shipCrew(sh).map(crewBarter)) * 0.5; }
-// a quartermaster gets the standing Bartering price, plus a share of the haggling room that grows to all of it at Bartering 5
+// a quartermaster gets the standing Negotiating price, plus a share of the haggling room that grows to all of it at Negotiating 5
 function routeBarter(lvl, kind) { const R0 = MR(), raw = kind === 'buy' ? Math.min(R0.barterBuyCap || 0.2, (R0.barterBuyPerLvl || 0.02) * lvl) : Math.min(R0.barterSellCap || 0.25, (R0.barterSellPerLvl || 0.025) * lvl), st = R0.standingShare == null ? 0.5 : R0.standingShare; return raw * st + raw * (1 - st) * Math.min(1, lvl / 5); }
 function portBuyers(port, id) { return portMarket(port).filter(s => (mkV(s) || { buys: {} }).buys[id] != null); }
 function portSellers(port, id) { return portMarket(port).filter(s => (mkV(s) || { sells: {} }).sells[id] != null); }
@@ -45568,7 +45696,7 @@ async function companionTalk(id) {
   if (!any) { const lines = (C.idle || {})[apprName(id)] || ['...']; await say(h.name, [lines[Math.floor(Math.random() * lines.length)], apprTier(id) < 2 ? `(${h.name} is ${apprName(id)}. Steady pay and a job help them warm to you.)` : ''].filter(Boolean), h.sprite); }
 }
 function payroll() { return Object.keys(G.helpers).reduce((a, id) => a + wageOf(id), 0); }
-function hLvl(id) { return levelFromXp((G.helpers[id] || {}).xp || 0); }
+function hLvl(id) { return levelFromXp((G.helpers[id] || {}).xp || 0, helperCurve()); }
 function navigatorId() { return Object.keys(G.helpers).find(id => G.helpers[id].role === 'navigator' && D.helpers[id]); }
 function stallKeep(id) { const r = ((G.stall || {}).items || {})[id]; if (r !== undefined) return r; return item(id).type === 'reagent' ? 5 : -1; }
 function keepLabel(k) { return k < 0 ? 'Never sell' : k === 0 ? 'Sell all' : `Keep ${k}`; }
@@ -45587,7 +45715,7 @@ async function assignRole(id) {
   const c = await choose(`${h.name}: what should they do?`, [
     { label: 'Join my party', value: 'party', disabled: !isParty && partyN >= maxParty(), desc: `Fights beside you. Max ${maxParty()} companions in the party (Tactics raises this). Uses their Combat skill and ability.` },
     { label: 'Tend the garden', value: 'greenhouse', desc: 'Each night: harvests ripe beds (garden and greenhouse) and plants empty ones by your Garden plan, using your seeds. Herbalism speeds growth.' },
-    { label: 'Run the shop stall', value: 'shop', disabled: !home().up.stall && G.helpers[id].role !== 'shop', desc: 'Each night: sells your goods by your Stall rules and can restock seeds for the garden. Bartering = more sales and better prices. Needs a Market Stall from the Home Center.' },
+    { label: 'Run the shop stall', value: 'shop', disabled: !home().up.stall && G.helpers[id].role !== 'shop', desc: 'Each night: sells your goods by your Stall rules and can restock seeds for the garden. Negotiating = more sales and better prices. Needs a Market Stall from the Home Center.' },
     { label: 'Navigate the ship', value: 'navigator', disabled: ((h.skills || {}).sailing || 0) < ((D.sea || {}).navigatorMinSailing || 3) && G.helpers[id].role !== 'navigator', desc: `Steers your boat: sailing is 10% faster and they learn from every voyage. At companion level ${(D.sea || {}).autopilotLevel || 5} they can sail you to any port you've visited (press G at sea). Needs Sailing ${(D.sea || {}).navigatorMinSailing || 3}.` },
     { label: 'Stay idle', value: 'idle', desc: 'Still paid a wage.' },
     { label: 'Dismiss', value: 'dismiss', desc: `${h.name} goes back to where you found them.` }], { width: 460 });
@@ -45819,7 +45947,7 @@ function fieldCast(id) {
 }
 async function skillsMenu() {
   await openMenu({ title: (() => { const p = lvlProgress(); return `${heroName()}  -  Level ${p.l}  (the sum of your skill levels)`; })(), width: 600, closeKey: 'k',
-    items: () => Object.entries(D.skills).map(([id, s]) => { if (!skillUnlocked(id)) { const rq = s.requires; return { label: `${s.name}  (advanced)`, right: 'locked', disabled: true, desc: `${s.desc}  Unlocks at ${(D.skills[rq.skill] || {}).name} ${rq.level} (now ${skillLvl(rq.skill)}).` }; } const l = skillLvl(id), xp = G.skills[id] || 0, a = xpForSkill(l), b = xpForSkill(l + 1); return { label: s.name + (s.requires ? '  (advanced)' : '') + (unspent(id) ? `   (${unspent(id)} point${unspent(id) === 1 ? '' : 's'} to spend)` : '') + (perkAvail(id).length ? '   * perk!' : ''), right: `Lv ${l}`, bar: (xp - a) / Math.max(1, b - a), desc: `${s.desc}  (XP ${xp}/${b})  Enter: perks`, value: id }; }),
+    items: () => Object.entries(D.skills).map(([id, s]) => { if (!skillUnlocked(id)) { const rq = s.requires; return { label: `${s.name}  (advanced)`, right: 'locked', disabled: true, desc: `${s.desc}  Unlocks at ${(D.skills[rq.skill] || {}).name} ${rq.level} (now ${skillLvl(rq.skill)}).` }; } const l = skillLvl(id), xp = G.skills[id] || 0, top = l >= skillMax(id), a = xpForSkill(l, id), b = xpForSkill(l + 1, id); return { label: s.name + (s.requires ? '  (advanced)' : '') + (unspent(id) ? `   (${unspent(id)} point${unspent(id) === 1 ? '' : 's'} to spend)` : '') + (perkAvail(id).length ? '   * perk!' : ''), right: top ? `Lv ${l} (max)` : `Lv ${l}`, bar: top ? 1 : (xp - a) / Math.max(1, b - a), desc: `${s.desc}  (${top ? 'Mastered' : `XP ${xp}/${b}`})  Enter: perks`, value: id }; }),
     footer: 'Each skill level gives a point to spend in that skill.  Enter: spend points or pick a perk',
     onSelect: it => { const sk = it.value; script(async () => { if (unspent(sk) && perkAvail(sk).length) { const c = await choose(D.skills[sk].name, [{ label: `Spend points (${unspent(sk)})`, value: 'p' }, { label: 'Choose a perk', value: 'k' }], { width: 360 }); if (c === 'p') return pointsMenu(sk); if (c === 'k') return perksMenu(sk); return; } if (unspent(sk)) return pointsMenu(sk); if (ptOpts(sk).length && !perkAvail(sk).length && !((D.perks || {})[sk])) return pointsMenu(sk); return perksMenu(sk); }); return false; } });
 }
@@ -46071,7 +46199,7 @@ async function companionPointsMenu(id) {
       AU.sfx('menu'); return false; } });
 }
 function helperUnit(id) {
-  const h = D.helpers[id], st = G.helpers[id], l = levelFromXp(st.xp || 0);
+  const h = D.helpers[id], st = G.helpers[id], l = levelFromXp(st.xp || 0, helperCurve());
   const hp = h.hp + (l - 1) * (D.player.hpPerLevel || 4) + cpVal(id, 'hp');
   const ghp = hp + gearStat(id, 'hp');
   return { side: 'party', helperId: id, who: id, name: h.name, sprite: h.sprite, hp: ghp, maxHp: ghp, atk: h.atk + cpVal(id, 'atk') + Math.floor(((h.skills || {}).swordplay || 0) / 2) + gearStat(id, 'atk') + perk('partyAtk') + Math.floor(advLvl('tactics') / 4), def: h.def + cpVal(id, 'def') + gearStat(id, 'def') + perk('partyDef'), move: Math.max(2, h.move + gearStat(id, 'move') + perk('partyMove')), range: 1, ability: h.ability ? Object.assign({}, h.ability, { power: h.ability.power + (l - 1) }) : null, cd: 0 };
@@ -46170,12 +46298,15 @@ function selectNext() {
 function cycleUnit() { const ready = alive('party').filter(u => !u.done); if (!ready.length) return; const i = ready.indexOf(C.sel); C.sel = ready[(i + 1) % ready.length]; C.mode = 'move'; C.targets = []; }
 function movesLeft(u) { return u.moved ? 0 : Math.max(0, uMove(u) - (u.steps || 0)); }
 function finishUnit(u) { u.done = true; u.moved = true; if (checkEnd()) return; C.sel = null; selectNext(); }
-function hit(a, b, power, label, ignore = 0) {      // ignore: the share of the target's armour this blow gets past (spells)
+function hit(a, b, power, label, ignore = 0, spell = false) {      // ignore: the share of the target's armour this blow gets past (spells); spell: true for spells (they break wards)
   if (!(a.castT && R.t - a.castT < 0.05)) { a.atkT = R.t; a.atkTo = [b.x, b.y]; } b.hurtT = R.t + (a.castT && R.t - a.castT < 0.05 ? 0.35 : 0.12);   // battle figures: lunge, then the target recoils
   if (b.isPlayer && a.side === 'enemy' && man(a, b) <= 1 && Math.random() < wTrait('parry')) { float(b, 'Parry!', '#cfe8ff'); clog(`You parry ${a.name}'s blow!`); return; }
   power += (a.buffs || []).reduce((s, bf) => s + (bf.stat === 'atk' ? bf.amt : 0), 0);
   power = power * baneMult(a, b) - (a.side === 'enemy' && (G.research || {})[a.enemyId] ? perk('baneGuard') : 0);
   let dmg = hitDmg(power, uDef(b) * (1 - ignore)) + rnd(0, 2);
+  const wd = b.enemyId && (D.enemies[b.enemyId] || {}).ward;      // a warded foe: only magic can open it up
+  if (wd) { if (spell) { if (!(b.wardOpen > 0)) { float(b, 'Ward broken!', '#c9a0ff'); clog(`${label || 'The spell'} shatters ${b.name}'s ward! Weapons can bite for ${wd.turns || 2} rounds.`); } b.wardOpen = (wd.turns || 2) + 1; }
+    else if (!(b.wardOpen > 0)) { dmg = 1; if (!b.wardTold) { b.wardTold = true; clog(`${b.name} is warded: weapons glance off. Only a spell can break the ward.`); } float(b, 'Warded', '#c9a0ff'); } }
   if (b.isPlayer && a.side === 'enemy' && isMagicFoe(a.enemyId)) dmg = Math.max(1, Math.round(dmg * (1 - Math.min(0.6, ptVal('magery', 'resist')))));
   b.hp -= dmg; float(b, '-' + dmg, '#ff5a4a'); C.shake = 0.15; AU.sfx('hit');
   clog(`${a.name}${label ? ' (' + label + ')' : ''} ${a.isPlayer ? 'hit' : 'hits'} ${b.isPlayer ? 'you' : b.name} for ${dmg}.`);
@@ -46238,7 +46369,7 @@ function applyEffect(u, t, sp, power, label) {
   u.castT = R.t; u.castAt = [t.x, t.y];
   const foes = side => alive(side).filter(e => e === t || (sp.area && man(e, t) <= sp.area && los(t, e)));
   if (sp.kind === 'damage') {
-    for (const v of foes(t.side)) { hit(u, v, power, label, sp.ignore || 0); if (sp.slow && !v.dead) { v.slow = Math.max(v.slow || 0, sp.slow); float(v, 'slowed', '#9fe0ff'); } }
+    for (const v of foes(t.side)) { hit(u, v, power, label, sp.ignore || 0, !!(sp.fromPlayer || sp.spell)); if (sp.slow && !v.dead) { v.slow = Math.max(v.slow || 0, sp.slow); float(v, 'slowed', '#9fe0ff'); } }
   } else if (sp.kind === 'debuff') {
     for (const v of foes(t.side)) { const amt = sp.pct ? debuffAmt(sp, v) + (sp.fromPlayer ? perk('debuffPower') : 0) : (sp.fromPlayer ? debuffAmt(sp) : sp.power || 2); v.buffs.push({ stat: sp.stat || 'def', amt: -amt, turns: sp.turns || 3 }); float(v, `-${amt} ${(sp.stat || 'def').toUpperCase()}`, '#d79cff'); clog(`${label}: ${v.name} ${sp.stat === 'atk' ? 'is weakened' : 'loses armour'} (-${amt} ${(sp.stat || 'def').toUpperCase()} for ${sp.turns || 3} rounds).`); }
   } else if (sp.kind === 'heal') {
@@ -46346,7 +46477,7 @@ function enemyAct(e) {
   if (t2) { eShoot(e, t2); if (t2.isPlayer && !t2.dead && man(e, t2) <= 1 && Math.random() < perk('counter')) hit(t2, e, t2.atk, 'Riposte'); }
 }
 function endRound() {
-  for (const u of C.units) { if (u.dead) continue; u.buffs = u.buffs.filter(b => --b.turns > 0); if (u.slow > 0) u.slow--; if (u.cd > 0) u.cd--; if (u.tcd > 0) u.tcd--; if (u.tauntT > 0 && --u.tauntT <= 0) u.tauntBy = null; u.done = false; u.moved = false; u.steps = 0; }
+  for (const u of C.units) { if (u.dead) continue; u.buffs = u.buffs.filter(b => --b.turns > 0); if (u.slow > 0) u.slow--; if (u.cd > 0) u.cd--; if (u.tcd > 0) u.tcd--; if (u.tauntT > 0 && --u.tauntT <= 0) u.tauntBy = null; u.done = false; u.moved = false; u.steps = 0; if (u.wardOpen > 0 && --u.wardOpen <= 0) { float(u, 'Ward reforms', '#c9a0ff'); clog(`${u.name}'s ward closes again.`); } }
   C.fx = (C.fx || []).filter(f => --f.turns > 0);
   C.round++; C.phase = 'party'; C.sel = null; clog(`- Round ${C.round} -`); selectNext();
 }
@@ -46364,7 +46495,7 @@ function victory() {
   for (const k of killed) {
     const kdef = D.enemies[k.enemyId] || {}, qid = kdef.champion ? kdef.baseOf : k.enemyId; if (kdef.champion) (G.champDead = G.champDead || {})[R.mapId] = G.day; if (kdef.wanderer) (G.wanderNext = G.wanderNext || {})[R.mapId] = G.day + 7; if (isRegionBoss(qid)) (G.bossDown = G.bossDown || {})[qid] = G.day;
     G.kills[qid] = (G.kills[qid] || 0) + 1; if ((G.research || {})[qid]) addSkillXp('wardcraft', 2); notePartKill(qid);
-    const d = D.enemies[k.enemyId]; const sc = scaled(d); xp += Math.round((d.xp || 0) * sc.xpM * (C.caveMult || 1)); gold += Math.round(rnd((d.gold || [0, 0])[0], (d.gold || [0, 0])[1]) * sc.goldM);
+    const d = D.enemies[k.enemyId]; const sc = scaled(d); xp += Math.max(1, Math.round((d.xp || 0) * sc.xpM * (C.caveMult || 1) * (d.music === 'boss' || C.sea ? 1 : staleXp(zoneTier().level)))); gold += Math.round(rnd((d.gold || [0, 0])[0], (d.gold || [0, 0])[1]) * sc.goldM);
     addDread((DL().perKill || 0) + (d.music === 'boss' ? (DL().perBoss || 0) : 0)); if (d.final) C.finalWin = true;
     for (const l of d.loot || []) if (Math.random() < l.chance) loot[l.item] = (loot[l.item] || 0) + (l.qty || 1);
     for (const q of D.quests) if (G.quests[q.id] === 'active') q.objectives.forEach((o, i) => { if (o.type === 'defeat' && o.enemy === qid) { G.qprog[q.id] = G.qprog[q.id] || {}; G.qprog[q.id][i] = (G.qprog[q.id][i] || 0) + 1; } });
@@ -47781,7 +47912,7 @@ async function respecOffer(npc) {
 }
 
 // ================= v0.4: ADVANCED SKILLS =================
-function skillUnlocked(id) { const s = D.skills[id]; if (!s || !s.requires || !G) return true; return levelFromXp(G.skills[s.requires.skill] || 0) - 1 >= s.requires.level; }
+function skillUnlocked(id) { const s = D.skills[id]; if (!s || !s.requires || !G) return true; return levelFromXp(G.skills[s.requires.skill] || 0, curveOf(s.requires.skill)) - 1 >= s.requires.level; }
 function advLvl(id) { return skillUnlocked(id) ? skillLvl(id) : 0; }
 function checkUnlocks() {
   for (const [id, s] of Object.entries(D.skills)) if (s.requires && !G.flags['unlock_' + id] && skillUnlocked(id)) {
@@ -48155,10 +48286,13 @@ function addDread(n) {
   const before = dreadTier(); G.dread = Math.min(1, dread() + n); const after = dreadTier();
   if (after > before) { for (let i = before + 1; i <= after; i++) G.visions = (G.visions || []).concat([i]); if (G.flags.dreadKnown) AU.sfx('hit'); if (G.flags.dreadKnown) toast(`${DL().meterName || 'The Dark Lord'}: ${DL().tiers[after].name}...`, '#c080ff'); }
 }
+// Zone tiers (v0.27): every place has a fixed strength. D.maps[id].tier = { level, mult }; caves take D.caves[id].tier and climb with depth.
+function zoneTier(mp) { mp = mp || R.map; if (!mp) return { level: 1, mult: 1 }; if (mp.cave) { const t = ((D.caves || {})[mp.caveId] || {}).tier || { level: 1, mult: 1 }; return { level: t.level + Math.floor(((mp.level || 1) - 1) * (t.levelPerDepth || 0)), mult: t.mult }; } return mp.tier || { level: 1, mult: 1 }; }
+function staleXp(level) { const f = (D.combat || {}).staleXp; if (!f || !G) return 1; return Math.max((D.combat || {}).staleFloor || 0.02, Math.pow(f, Math.max(0, bestFightLvl() - level))); }      // each level you are above a place halves what its monsters teach
 function scaled(def) {
   if (def.noScale) return { hp: def.hp, atk: def.atk, def: def.def, xpM: 1, goldM: 1 };
-  const d = dread(), s = DL().scaling || {};
-  return { hp: Math.round(def.hp * (1 + (s.hp || 0) * d)), atk: Math.round(def.atk * (1 + (s.atk || 0) * d)), def: def.def + Math.floor((s.def || 0) * d), xpM: 1 + (s.reward || 0) * d, goldM: 1 + (s.reward || 0) * d };
+  const d = dread(), s = DL().scaling || {}, z = zoneTier().mult || 1;
+  return { hp: Math.round(def.hp * z * (1 + (s.hp || 0) * d)), atk: Math.round(def.atk * z * (1 + (s.atk || 0) * d)), def: def.def + Math.floor((s.def || 0) * d) + Math.round((z - 1) * 3), xpM: (1 + (s.reward || 0) * d) * z, goldM: (1 + (s.reward || 0) * d) * z };
 }
 function morphShare(base) { return Math.min(DL().morphCap == null ? 0.95 : DL().morphCap, (DL().morphPerMonth == null ? 0.25 : DL().morphPerMonth) * ((G.morph || {})[base] || 0)); }
 function morphId(id) { const e = D.enemies[id]; if (!e || !e.variant || !D.enemies[e.variant]) return id; return Math.random() < morphShare(id) ? e.variant : id; }
