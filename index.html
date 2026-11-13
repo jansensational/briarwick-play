@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.27.0</title>
+<title>Reagents of Briarwick v0.28.0</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.27.0",
+  "version": "0.28.0",
   "tileSize": 16,
   "scale": 4,
   "dayStart": 6,
@@ -73,7 +73,8 @@ window.GAME_DATA = {
   "equip": {
    "main": "rusty_sword",
    "body": "linen_tunic"
-  }
+  },
+  "beds": 1
  },
  "player": {
   "hp": 34,
@@ -20997,8 +20998,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "head",
    "sprite": "i_iron_helm",
-   "price": 180,
-   "sell": 60,
+   "price": 300,
+   "sell": 100,
    "stats": {
     "def": 4,
     "move": 0
@@ -21012,8 +21013,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "head",
    "sprite": "i_wizard_hat",
-   "price": 260,
-   "sell": 86,
+   "price": 450,
+   "sell": 150,
    "stats": {
     "def": 1
    },
@@ -21054,8 +21055,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "body",
    "sprite": "i_chainmail",
-   "price": 320,
-   "sell": 106,
+   "price": 600,
+   "sell": 200,
    "stats": {
     "def": 6,
     "move": -1
@@ -21083,8 +21084,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "body",
    "sprite": "i_ember_robe",
-   "price": 340,
-   "sell": 113,
+   "price": 620,
+   "sell": 207,
    "stats": {
     "def": 2
    },
@@ -21134,8 +21135,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "feet",
    "sprite": "i_sea_boots",
-   "price": 150,
-   "sell": 50,
+   "price": 260,
+   "sell": 87,
    "stats": {
     "move": 1,
     "def": 1
@@ -21193,8 +21194,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "main",
    "sprite": "i_ember_wand",
-   "price": 400,
-   "sell": 133,
+   "price": 800,
+   "sell": 267,
    "stats": {
     "atk": 2
    },
@@ -21226,8 +21227,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "off",
    "sprite": "i_moonstone_focus",
-   "price": 160,
-   "sell": 53,
+   "price": 280,
+   "sell": 93,
    "stats": {},
    "elementPower": {
     "life": 0.25
@@ -21242,8 +21243,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "trinket",
    "sprite": "i_lucky_coin",
-   "price": 120,
-   "sell": 40,
+   "price": 220,
+   "sell": 73,
    "stats": {},
    "sellBonus": 0.1,
    "desc": "It always lands face up. Shops pay you 10% more."
@@ -21253,8 +21254,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "trinket",
    "sprite": "i_frost_charm",
-   "price": 200,
-   "sell": 66,
+   "price": 350,
+   "sell": 117,
    "stats": {},
    "elementPower": {
     "ice": 0.25
@@ -21266,8 +21267,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "trinket",
    "sprite": "i_glowcap_locket",
-   "price": 140,
-   "sell": 46,
+   "price": 240,
+   "sell": 80,
    "stats": {
     "hp": 5
    },
@@ -21292,8 +21293,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "pouch",
    "sprite": "i_fine_pouch",
-   "price": 300,
-   "sell": 100,
+   "price": 500,
+   "sell": 167,
    "stats": {},
    "reagentSave": 0.18,
    "desc": "Finely stitched and lined. 18% chance each reagent is not used up. Holds any number of reagents (spells draw from it first); the contents follow you to any new pouch."
@@ -21368,7 +21369,8 @@ window.GAME_DATA = {
    "sprite": "i_crab_shell",
    "price": 20,
    "sell": 8,
-   "desc": "A cracked reef-crab shell. Ward-making material."
+   "desc": "A cracked reef-crab shell. Ward-making material.",
+   "from": "isles"
   },
   "wisp_essence": {
    "name": "Wisp Essence",
@@ -21376,7 +21378,8 @@ window.GAME_DATA = {
    "sprite": "i_wisp_essence",
    "price": 20,
    "sell": 8,
-   "desc": "A cold glimmer of a brine wisp."
+   "desc": "A cold glimmer of a brine wisp.",
+   "from": "mainland"
   },
   "wolf_fang": {
    "name": "Wolf Fang",
@@ -21384,7 +21387,8 @@ window.GAME_DATA = {
    "sprite": "i_wolf_fang",
    "price": 20,
    "sell": 8,
-   "desc": "Long and sharp."
+   "desc": "Long and sharp.",
+   "from": "mainland"
   },
   "slime_gel": {
    "name": "Slime Gel",
@@ -21392,7 +21396,8 @@ window.GAME_DATA = {
    "sprite": "i_slime_gel",
    "price": 20,
    "sell": 8,
-   "desc": "Sticky. Smells of moss."
+   "desc": "Sticky. Smells of moss.",
+   "from": "mainland"
   },
   "bandit_badge": {
    "name": "Red Hood Insignia",
@@ -21400,7 +21405,8 @@ window.GAME_DATA = {
    "sprite": "i_bandit_badge",
    "price": 20,
    "sell": 8,
-   "desc": "Torn from a bandit's cloak."
+   "desc": "Torn from a bandit's cloak.",
+   "from": "mainland"
   },
   "shark_tooth": {
    "name": "Shark Tooth",
@@ -21408,7 +21414,8 @@ window.GAME_DATA = {
    "sprite": "i_shark_tooth",
    "price": 20,
    "sell": 8,
-   "desc": "Serrated. Sailors wear them for luck."
+   "desc": "Serrated. Sailors wear them for luck.",
+   "from": "sea"
   },
   "kraken_ink": {
    "name": "Kraken Ink",
@@ -21416,7 +21423,8 @@ window.GAME_DATA = {
    "sprite": "i_kraken_ink",
    "price": 20,
    "sell": 8,
-   "desc": "Jet-black ink from a kraken arm."
+   "desc": "Jet-black ink from a kraken arm.",
+   "from": "sea"
   },
   "great_potion": {
    "name": "Greater Healing Draught",
@@ -21552,7 +21560,8 @@ window.GAME_DATA = {
    "sprite": "i_hollow_shard",
    "price": 60,
    "sell": 25,
-   "desc": "A splinter of the Hollow King's will. Cold to the touch."
+   "desc": "A splinter of the Hollow King's will. Cold to the touch.",
+   "from": "mainland"
   },
   "rum": {
    "name": "Pirate Rum",
@@ -21568,8 +21577,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "main",
    "sprite": "i_cutlass",
-   "price": 220,
-   "sell": 70,
+   "price": 400,
+   "sell": 133,
    "stats": {
     "atk": 6
    },
@@ -21582,8 +21591,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "head",
    "sprite": "i_tricorne",
-   "price": 260,
-   "sell": 80,
+   "price": 480,
+   "sell": 160,
    "stats": {
     "def": 2
    },
@@ -21652,7 +21661,8 @@ window.GAME_DATA = {
    "price": 20,
    "sell": 10,
    "minDepth": 1,
-   "desc": "Raw copper ore from the deep caves. Blacksmiths buy it - and can forge new gear from it."
+   "desc": "Raw copper ore from the deep caves. Blacksmiths buy it - and can forge new gear from it.",
+   "from": "mainland"
   },
   "iron_ore": {
    "name": "Iron Ore",
@@ -21661,7 +21671,8 @@ window.GAME_DATA = {
    "price": 32,
    "sell": 16,
    "minDepth": 3,
-   "desc": "Raw iron ore from the deep caves. Blacksmiths buy it - and can forge new gear from it."
+   "desc": "Raw iron ore from the deep caves. Blacksmiths buy it - and can forge new gear from it.",
+   "from": "mainland"
   },
   "silver_ore": {
    "name": "Silver Ore",
@@ -21670,7 +21681,8 @@ window.GAME_DATA = {
    "price": 56,
    "sell": 28,
    "minDepth": 5,
-   "desc": "Raw silver ore from the deep caves. Blacksmiths buy it - and can forge new gear from it."
+   "desc": "Raw silver ore from the deep caves. Blacksmiths buy it - and can forge new gear from it.",
+   "from": "mainland"
   },
   "mithril_ore": {
    "name": "Mithril Ore",
@@ -21679,7 +21691,8 @@ window.GAME_DATA = {
    "price": 100,
    "sell": 50,
    "minDepth": 8,
-   "desc": "Raw mithril ore from the deep caves. Blacksmiths buy it - and can forge new gear from it."
+   "desc": "Raw mithril ore from the deep caves. Blacksmiths buy it - and can forge new gear from it.",
+   "from": "mainland"
   },
   "quartz": {
    "name": "Quartz",
@@ -21688,7 +21701,8 @@ window.GAME_DATA = {
    "price": 24,
    "sell": 12,
    "minDepth": 1,
-   "desc": "A cut-able quartz. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (+1 DEF and +5 HP)."
+   "desc": "A cut-able quartz. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (+1 DEF and +5 HP).",
+   "from": "mainland"
   },
   "amethyst": {
    "name": "Amethyst",
@@ -21697,7 +21711,8 @@ window.GAME_DATA = {
    "price": 44,
    "sell": 22,
    "minDepth": 3,
-   "desc": "A cut-able amethyst. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (6% chance each reagent is not used up)."
+   "desc": "A cut-able amethyst. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (6% chance each reagent is not used up).",
+   "from": "mainland"
   },
   "sapphire": {
    "name": "Sapphire",
@@ -21706,7 +21721,8 @@ window.GAME_DATA = {
    "price": 68,
    "sell": 34,
    "minDepth": 5,
-   "desc": "A cut-able sapphire. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (+1 DEF and ice spells +15%)."
+   "desc": "A cut-able sapphire. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (+1 DEF and ice spells +15%).",
+   "from": "mainland"
   },
   "ruby": {
    "name": "Ruby",
@@ -21715,7 +21731,8 @@ window.GAME_DATA = {
    "price": 96,
    "sell": 48,
    "minDepth": 7,
-   "desc": "A cut-able ruby. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (+2 ATK and fire spells +10%)."
+   "desc": "A cut-able ruby. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (+2 ATK and fire spells +10%).",
+   "from": "mainland"
   },
   "starstone": {
    "name": "Starstone",
@@ -21724,15 +21741,16 @@ window.GAME_DATA = {
    "price": 160,
    "sell": 80,
    "minDepth": 9,
-   "desc": "A cut-able starstone. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (+5 HP and all spells +10%)."
+   "desc": "A cut-able starstone. Magic shops buy gems, and Vael the Enchanter in the Ember Isles can bind one into your gear (+5 HP and all spells +10%).",
+   "from": "mainland"
   },
   "copper_mail": {
    "name": "Copper Scale Mail",
    "type": "gear",
    "slot": "body",
    "sprite": "i_copper_mail",
-   "price": 160,
-   "sell": 53,
+   "price": 320,
+   "sell": 107,
    "stats": {
     "def": 4
    },
@@ -21745,8 +21763,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "off",
    "sprite": "i_copper_shield",
-   "price": 110,
-   "sell": 36,
+   "price": 220,
+   "sell": 73,
    "stats": {
     "def": 3
    },
@@ -21758,8 +21776,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "main",
    "sprite": "i_steel_sword",
-   "price": 280,
-   "sell": 93,
+   "price": 1800,
+   "sell": 600,
    "stats": {
     "atk": 7
    },
@@ -21772,8 +21790,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "body",
    "sprite": "i_steel_plate",
-   "price": 420,
-   "sell": 140,
+   "price": 2600,
+   "sell": 867,
    "stats": {
     "def": 7,
     "move": -1
@@ -21787,8 +21805,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "main",
    "sprite": "i_silver_saber",
-   "price": 520,
-   "sell": 173,
+   "price": 3000,
+   "sell": 1000,
    "stats": {
     "atk": 8
    },
@@ -21802,8 +21820,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "head",
    "sprite": "i_silver_circlet",
-   "price": 380,
-   "sell": 126,
+   "price": 1600,
+   "sell": 533,
    "stats": {
     "def": 2
    },
@@ -21817,8 +21835,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "body",
    "sprite": "i_mithril_mail",
-   "price": 900,
-   "sell": 300,
+   "price": 7000,
+   "sell": 2333,
    "stats": {
     "def": 9
    },
@@ -21830,8 +21848,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "main",
    "sprite": "i_mithril_blade",
-   "price": 1000,
-   "sell": 333,
+   "price": 7500,
+   "sell": 2500,
    "stats": {
     "atk": 11
    },
@@ -21844,8 +21862,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "main",
    "sprite": "i_quartz_wand",
-   "price": 240,
-   "sell": 80,
+   "price": 450,
+   "sell": 150,
    "stats": {
     "atk": 1
    },
@@ -21861,8 +21879,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "trinket",
    "sprite": "i_amethyst_amulet",
-   "price": 360,
-   "sell": 120,
+   "price": 1200,
+   "sell": 400,
    "stats": {},
    "desc": "A violet gem on a chain. 12% chance each reagent is not used up.",
    "reagentSave": 0.12
@@ -21872,8 +21890,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "trinket",
    "sprite": "i_sapphire_ring",
-   "price": 420,
-   "sell": 140,
+   "price": 1800,
+   "sell": 600,
    "stats": {
     "hp": 5
    },
@@ -21887,8 +21905,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "trinket",
    "sprite": "i_ruby_ring",
-   "price": 480,
-   "sell": 160,
+   "price": 2200,
+   "sell": 733,
    "stats": {
     "hp": 5
    },
@@ -21902,8 +21920,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "main",
    "sprite": "i_starstone_staff",
-   "price": 1200,
-   "sell": 400,
+   "price": 6000,
+   "sell": 2000,
    "stats": {
     "atk": 3
    },
@@ -21951,8 +21969,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "body",
    "sprite": "i_leafweave",
-   "price": 840,
-   "sell": 280,
+   "price": 3400,
+   "sell": 1133,
    "stats": {
     "def": 3
    },
@@ -21987,8 +22005,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "body",
    "sprite": "i_admirals_coat",
-   "price": 960,
-   "sell": 320,
+   "price": 3800,
+   "sell": 1267,
    "stats": {
     "def": 5,
     "move": 1
@@ -22024,8 +22042,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "body",
    "sprite": "i_royal_plate",
-   "price": 1080,
-   "sell": 360,
+   "price": 5200,
+   "sell": 1733,
    "stats": {
     "def": 10,
     "hp": 10
@@ -22061,8 +22079,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "body",
    "sprite": "i_archmage_robe",
-   "price": 1200,
-   "sell": 400,
+   "price": 5000,
+   "sell": 1667,
    "stats": {
     "def": 3
    },
@@ -22178,8 +22196,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "main",
    "sprite": "i_battle_axe",
-   "price": 320,
-   "sell": 106,
+   "price": 600,
+   "sell": 200,
    "stats": {
     "atk": 9
    },
@@ -22192,8 +22210,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "main",
    "sprite": "i_war_hammer",
-   "price": 300,
-   "sell": 100,
+   "price": 560,
+   "sell": 187,
    "stats": {
     "atk": 8
    },
@@ -22206,8 +22224,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "main",
    "sprite": "i_pike",
-   "price": 300,
-   "sell": 100,
+   "price": 560,
+   "sell": 187,
    "stats": {
     "atk": 8
    },
@@ -22220,8 +22238,8 @@ window.GAME_DATA = {
    "type": "gear",
    "slot": "main",
    "sprite": "i_longbow",
-   "price": 340,
-   "sell": 113,
+   "price": 620,
+   "sell": 207,
    "stats": {
     "atk": 7
    },
@@ -22334,13 +22352,13 @@ window.GAME_DATA = {
   "hildas_warhammer": {
    "type": "gear",
    "sprite": "i_hildas_warhammer",
-   "sell": 300,
+   "sell": 1500,
    "unique": true,
    "name": "Hilda's Warhammer",
    "slot": "main",
    "wtype": "mace",
    "overlay": "o_mace",
-   "price": 900,
+   "price": 4500,
    "stats": {
     "atk": 11,
     "def": 1
@@ -22350,13 +22368,13 @@ window.GAME_DATA = {
   "watch_longbow": {
    "type": "gear",
    "sprite": "i_watch_longbow",
-   "sell": 316,
+   "sell": 1600,
    "unique": true,
    "name": "Watchtower Longbow",
    "slot": "main",
    "wtype": "bow",
    "overlay": "o_bow",
-   "price": 950,
+   "price": 4800,
    "stats": {
     "atk": 10
    },
@@ -22365,11 +22383,11 @@ window.GAME_DATA = {
   "grovewarden_boots": {
    "type": "gear",
    "sprite": "i_grovewarden_boots",
-   "sell": 266,
+   "sell": 1333,
    "unique": true,
    "name": "Grovewarden Boots",
    "slot": "feet",
-   "price": 800,
+   "price": 4000,
    "stats": {
     "move": 2,
     "def": 2
@@ -22380,13 +22398,13 @@ window.GAME_DATA = {
   "tidecaller_trident": {
    "type": "gear",
    "sprite": "i_tidecaller_trident",
-   "sell": 366,
+   "sell": 1833,
    "unique": true,
    "name": "Tidecaller Trident",
    "slot": "main",
    "wtype": "spear",
    "overlay": "o_spear",
-   "price": 1100,
+   "price": 5500,
    "stats": {
     "atk": 12
    },
@@ -22398,13 +22416,13 @@ window.GAME_DATA = {
   "warlord_greataxe": {
    "type": "gear",
    "sprite": "i_warlord_greataxe",
-   "sell": 433,
+   "sell": 2167,
    "unique": true,
    "name": "Warlord's Greataxe",
    "slot": "main",
    "wtype": "axe",
    "overlay": "o_axe",
-   "price": 1300,
+   "price": 6500,
    "stats": {
     "atk": 15
    },
@@ -22414,13 +22432,13 @@ window.GAME_DATA = {
   "starfall_focus": {
    "type": "gear",
    "sprite": "i_starfall_focus",
-   "sell": 466,
+   "sell": 2333,
    "unique": true,
    "name": "Starfall Focus",
    "slot": "main",
    "wtype": "staff",
    "overlay": "o_staff_oak",
-   "price": 1400,
+   "price": 7000,
    "stats": {
     "atk": 3
    },
@@ -22436,7 +22454,8 @@ window.GAME_DATA = {
    "sprite": "i_bat_wing",
    "price": 15,
    "sell": 7,
-   "desc": "A leathery cave-bat wing. Alchemists grind them for night-sight tonics. A monster part: some shops buy it."
+   "desc": "A leathery cave-bat wing. Alchemists grind them for night-sight tonics. A monster part: some shops buy it.",
+   "from": "mainland"
   },
   "spider_silk": {
    "name": "Crystal Spider Silk",
@@ -22444,7 +22463,8 @@ window.GAME_DATA = {
    "sprite": "i_spider_silk",
    "price": 45,
    "sell": 22,
-   "desc": "Glittering silk that rings like glass when plucked. A monster part: some shops buy it."
+   "desc": "Glittering silk that rings like glass when plucked. A monster part: some shops buy it.",
+   "from": "mainland"
   },
   "golem_core": {
    "name": "Golem Core",
@@ -22452,7 +22472,8 @@ window.GAME_DATA = {
    "sprite": "i_golem_core",
    "price": 70,
    "sell": 35,
-   "desc": "The warm stone heart of a golem. Still hums faintly. A monster part: some shops buy it."
+   "desc": "The warm stone heart of a golem. Still hums faintly. A monster part: some shops buy it.",
+   "from": "mainland"
   },
   "serpent_scale": {
    "name": "Serpent Scale",
@@ -22460,7 +22481,8 @@ window.GAME_DATA = {
    "sprite": "i_serpent_scale",
    "price": 90,
    "sell": 45,
-   "desc": "A plate-sized scale from a sea serpent. Armourers pay well. A monster part: some shops buy it."
+   "desc": "A plate-sized scale from a sea serpent. Armourers pay well. A monster part: some shops buy it.",
+   "from": "sea"
   },
   "wraith_shroud": {
    "name": "Wraith Shroud",
@@ -22468,7 +22490,8 @@ window.GAME_DATA = {
    "sprite": "i_wraith_shroud",
    "price": 50,
    "sell": 25,
-   "desc": "A scrap of cold, grey cloth that never quite stops moving. A monster part: some shops buy it."
+   "desc": "A scrap of cold, grey cloth that never quite stops moving. A monster part: some shops buy it.",
+   "from": "mainland"
   },
   "creeper_vine": {
    "name": "Creeper Vine",
@@ -22476,7 +22499,8 @@ window.GAME_DATA = {
    "sprite": "i_creeper_vine",
    "price": 35,
    "sell": 17,
-   "desc": "Tough, springy vine. Makes rope that never rots. A monster part: some shops buy it."
+   "desc": "Tough, springy vine. Makes rope that never rots. A monster part: some shops buy it.",
+   "from": "verdant"
   },
   "cat_pelt": {
    "name": "Jungle Cat Pelt",
@@ -22484,7 +22508,8 @@ window.GAME_DATA = {
    "sprite": "i_cat_pelt",
    "price": 45,
    "sell": 22,
-   "desc": "A spotted pelt, soft and warm. A monster part: some shops buy it."
+   "desc": "A spotted pelt, soft and warm. A monster part: some shops buy it.",
+   "from": "verdant"
   },
   "heartwood": {
    "name": "Treant Heartwood",
@@ -22492,7 +22517,8 @@ window.GAME_DATA = {
    "sprite": "i_heartwood",
    "price": 150,
    "sell": 75,
-   "desc": "Living wood from a thorn treant's core. Still sprouting. A monster part: some shops buy it."
+   "desc": "Living wood from a thorn treant's core. Still sprouting. A monster part: some shops buy it.",
+   "from": "verdant"
   },
   "siren_scale": {
    "name": "Siren Scale",
@@ -22500,7 +22526,8 @@ window.GAME_DATA = {
    "sprite": "i_siren_scale",
    "price": 50,
    "sell": 25,
-   "desc": "Iridescent and faintly singing. A monster part: some shops buy it."
+   "desc": "Iridescent and faintly singing. A monster part: some shops buy it.",
+   "from": "azure"
   },
   "living_coral": {
    "name": "Living Coral",
@@ -22508,7 +22535,8 @@ window.GAME_DATA = {
    "sprite": "i_living_coral",
    "price": 55,
    "sell": 27,
-   "desc": "A branch of coral that keeps growing in a bowl of seawater. A monster part: some shops buy it."
+   "desc": "A branch of coral that keeps growing in a bowl of seawater. A monster part: some shops buy it.",
+   "from": "azure"
   },
   "warden_pearl": {
    "name": "Warden's Pearl",
@@ -22516,7 +22544,8 @@ window.GAME_DATA = {
    "sprite": "i_warden_pearl",
    "price": 180,
    "sell": 90,
-   "desc": "The tide warden's pearl, big as a fist. A monster part: some shops buy it."
+   "desc": "The tide warden's pearl, big as a fist. A monster part: some shops buy it.",
+   "from": "azure"
   },
   "hound_hide": {
    "name": "War Hound Hide",
@@ -22524,7 +22553,8 @@ window.GAME_DATA = {
    "sprite": "i_hound_hide",
    "price": 55,
    "sell": 27,
-   "desc": "Thick, scarred hide from a Thornhaven war hound. A monster part: some shops buy it."
+   "desc": "Thick, scarred hide from a Thornhaven war hound. A monster part: some shops buy it.",
+   "from": "thornhaven"
   },
   "imp_horn": {
    "name": "Imp Horn",
@@ -22532,7 +22562,8 @@ window.GAME_DATA = {
    "sprite": "i_imp_horn",
    "price": 60,
    "sell": 30,
-   "desc": "Still warm. Starfall enchanters use them as sparks. A monster part: some shops buy it."
+   "desc": "Still warm. Starfall enchanters use them as sparks. A monster part: some shops buy it.",
+   "from": "ember"
   },
   "magma_gel": {
    "name": "Magma Gel",
@@ -22540,7 +22571,8 @@ window.GAME_DATA = {
    "sprite": "i_magma_gel",
    "price": 60,
    "sell": 30,
-   "desc": "A glowing blob that never quite cools. A monster part: some shops buy it."
+   "desc": "A glowing blob that never quite cools. A monster part: some shops buy it.",
+   "from": "ember"
   },
   "drake_scale": {
    "name": "Drake Scale",
@@ -22548,7 +22580,8 @@ window.GAME_DATA = {
    "sprite": "i_drake_scale",
    "price": 220,
    "sell": 110,
-   "desc": "A scale from an ember drake. Nothing burns through it. A monster part: some shops buy it."
+   "desc": "A scale from an ember drake. Nothing burns through it. A monster part: some shops buy it.",
+   "from": "ember"
   }
  },
  "spells": {
@@ -22850,7 +22883,7 @@ window.GAME_DATA = {
    "element": "arcane",
    "learnAt": {
     "skill": "magery",
-    "level": 12
+    "level": 10
    },
    "desc": "Enfeebles the target and everything next to it: 30% less damage for 3 rounds.",
    "school": "control"
@@ -26876,7 +26909,7 @@ window.GAME_DATA = {
    ],
    "tier": {
     "level": 5,
-    "mult": 1
+    "mult": 2.4
    }
   },
   "homecenter": {
@@ -27074,7 +27107,7 @@ window.GAME_DATA = {
    },
    "tier": {
     "level": 5,
-    "mult": 1
+    "mult": 3.0
    }
   },
   "shipwreck": {
@@ -27187,7 +27220,7 @@ window.GAME_DATA = {
    },
    "tier": {
     "level": 6,
-    "mult": 1
+    "mult": 2.2
    }
   },
   "sea": {
@@ -34211,6 +34244,382 @@ window.GAME_DATA = {
     "gold": 150,
     "flag": "castleFound"
    }
+  },
+  {
+   "id": "talent_riposte",
+   "name": "The Admiral's Riposte",
+   "giver": "admiral_coralie",
+   "side": true,
+   "unlockFlag": "master_swordplay",
+   "intro": [
+    "My duellists answer every cut with one of their own. Clear eight Reef Sirens from our waters and I will have them teach you."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "reef_siren",
+     "qty": 8
+    }
+   ],
+   "done": [
+    "You have earned it. (Talent learned: Riposte.)"
+   ],
+   "reward": {
+    "talent": "riposte",
+    "gold": 300
+   }
+  },
+  {
+   "id": "talent_twin_strike",
+   "name": "Two Blows for One",
+   "giver": "admiral_coralie",
+   "side": true,
+   "unlockFlag": "master_swordplay",
+   "intro": [
+    "A corsair trick: one swing, two wounds. Break five Coral Golems and bring me four pieces of Living Coral, and it is yours."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "coral_golem",
+     "qty": 5
+    },
+    {
+     "type": "collect",
+     "item": "living_coral",
+     "qty": 4
+    }
+   ],
+   "done": [
+    "You have earned it. (Talent learned: Twin Strike.)"
+   ],
+   "reward": {
+    "talent": "twin_strike",
+    "gold": 300
+   }
+  },
+  {
+   "id": "talent_lifebinder",
+   "name": "The Tide's Mercy",
+   "giver": "admiral_coralie",
+   "side": true,
+   "unlockFlag": "master_magery",
+   "intro": [
+    "Our healers bind many wounds with one spell. Bring eight Tidecoral and four Siren Scales for the rite."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "tidecoral",
+     "qty": 8
+    },
+    {
+     "type": "collect",
+     "item": "siren_scale",
+     "qty": 4
+    }
+   ],
+   "done": [
+    "You have earned it. (Talent learned: Lifebinder.)"
+   ],
+   "reward": {
+    "talent": "lifebinder",
+    "gold": 300
+   }
+  },
+  {
+   "id": "talent_hexer",
+   "name": "The Warden's Curse",
+   "giver": "admiral_coralie",
+   "side": true,
+   "unlockFlag": "master_magery",
+   "intro": [
+    "The Tide Warden's curses spread like oil on water. Defeat it, and learn how it is done."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "tide_warden",
+     "qty": 1
+    }
+   ],
+   "done": [
+    "You have earned it. (Talent learned: Hexer.)"
+   ],
+   "reward": {
+    "talent": "hexer",
+    "gold": 300
+   }
+  },
+  {
+   "id": "talent_weapon_master",
+   "name": "The King's Master-at-Arms",
+   "giver": "king_aldric",
+   "side": true,
+   "unlockFlag": "master_swordplay",
+   "intro": [
+    "A knight of Thornhaven masters one weapon above all. Cut down ten Orc Raiders and my master-at-arms will finish your training."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "orc_raider",
+     "qty": 10
+    }
+   ],
+   "done": [
+    "You have earned it. (Talent learned: Weapon Master.)"
+   ],
+   "reward": {
+    "talent": "weapon_master",
+    "gold": 300
+   }
+  },
+  {
+   "id": "talent_captain",
+   "name": "A Captain's Voice",
+   "giver": "king_aldric",
+   "side": true,
+   "unlockFlag": "master_swordplay",
+   "intro": [
+    "Soldiers fight harder for a captain they trust. Hunt eight War Hounds beside your companions and bring five hides."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "war_hound",
+     "qty": 8
+    },
+    {
+     "type": "collect",
+     "item": "hound_hide",
+     "qty": 5
+    }
+   ],
+   "done": [
+    "You have earned it. (Talent learned: Captain.)"
+   ],
+   "reward": {
+    "talent": "captain",
+    "gold": 300
+   }
+  },
+  {
+   "id": "talent_bulwark",
+   "name": "The Shield Wall",
+   "giver": "king_aldric",
+   "side": true,
+   "unlockFlag": "master_swordplay",
+   "intro": [
+    "Have twelve bars of Thorn Iron in your storehouse and bring six Bloodmoss, and my sergeants will teach your companions to stand as one."
+   ],
+   "objectives": [
+    {
+     "type": "store",
+     "item": "thorn_iron",
+     "qty": 12
+    },
+    {
+     "type": "collect",
+     "item": "bloodmoss",
+     "qty": 6
+    }
+   ],
+   "done": [
+    "You have earned it. (Talent learned: Bulwark.)"
+   ],
+   "reward": {
+    "talent": "bulwark",
+    "gold": 300
+   }
+  },
+  {
+   "id": "talent_last_stand",
+   "name": "Never Retreat",
+   "giver": "king_aldric",
+   "side": true,
+   "unlockFlag": "master_swordplay",
+   "intro": [
+    "The first oath of Thornhaven: a knight does not fall while there is work to do. Defeat the Iron Warlord and you will have earned it."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "iron_warlord",
+     "qty": 1
+    }
+   ],
+   "done": [
+    "You have earned it. (Talent learned: Last Stand.)"
+   ],
+   "reward": {
+    "talent": "last_stand",
+    "gold": 300
+   }
+  },
+  {
+   "id": "talent_warder",
+   "name": "Wards of the Old Keep",
+   "giver": "king_aldric",
+   "side": true,
+   "unlockFlag": "master_magery",
+   "intro": [
+    "Our court mages ward a whole rank at once. Bring eight Bloodmoss and prove yourself against six Orc Raiders."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "bloodmoss",
+     "qty": 8
+    },
+    {
+     "type": "defeat",
+     "enemy": "orc_raider",
+     "qty": 6
+    }
+   ],
+   "done": [
+    "You have earned it. (Talent learned: Warder.)"
+   ],
+   "reward": {
+    "talent": "warder",
+    "gold": 300
+   }
+  },
+  {
+   "id": "talent_crit_eye",
+   "name": "The Eye of the Forge",
+   "giver": "archmage_ysolde",
+   "side": true,
+   "unlockFlag": "master_swordplay",
+   "intro": [
+    "The imps are quick. Strike down ten and you will learn to see the opening before it comes."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "fire_imp",
+     "qty": 10
+    }
+   ],
+   "done": [
+    "You have earned it. (Talent learned: Critical Eye.)"
+   ],
+   "reward": {
+    "talent": "crit_eye",
+    "gold": 300
+   }
+  },
+  {
+   "id": "talent_elementalist",
+   "name": "Fire and Ice",
+   "giver": "archmage_ysolde",
+   "side": true,
+   "unlockFlag": "master_magery",
+   "intro": [
+    "Bring eight Cinderlotus and five Magma Gel. With them I can show you how flame and frost are one art."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "cinderlotus",
+     "qty": 8
+    },
+    {
+     "type": "collect",
+     "item": "magma_gel",
+     "qty": 5
+    }
+   ],
+   "done": [
+    "You have earned it. (Talent learned: Elementalist.)"
+   ],
+   "reward": {
+    "talent": "elementalist",
+    "gold": 300
+   }
+  },
+  {
+   "id": "talent_alchemist",
+   "name": "Nothing Wasted",
+   "giver": "archmage_ysolde",
+   "side": true,
+   "unlockFlag": "master_magery",
+   "intro": [
+    "The crystal towers waste nothing. Six Imp Horns and two Starstones, and I will teach you our economy of reagents."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "imp_horn",
+     "qty": 6
+    },
+    {
+     "type": "collect",
+     "item": "starstone",
+     "qty": 2
+    }
+   ],
+   "done": [
+    "You have earned it. (Talent learned: Reagent Alchemist.)"
+   ],
+   "reward": {
+    "talent": "alchemist",
+    "gold": 300
+   }
+  },
+  {
+   "id": "talent_guardian_ward",
+   "name": "The Guardian Ward",
+   "giver": "archmage_ysolde",
+   "side": true,
+   "unlockFlag": "master_magery",
+   "intro": [
+    "There is a ward that turns one killing blow from each of your friends. Clear eight Magma Slimes and bring a Starstone to anchor it."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "magma_slime",
+     "qty": 8
+    },
+    {
+     "type": "collect",
+     "item": "starstone",
+     "qty": 1
+    }
+   ],
+   "done": [
+    "You have earned it. (Talent learned: Guardian Ward.)"
+   ],
+   "reward": {
+    "talent": "guardian_ward",
+    "gold": 300
+   }
+  },
+  {
+   "id": "talent_archmage",
+   "name": "The Last Lesson",
+   "giver": "archmage_ysolde",
+   "side": true,
+   "unlockFlag": "master_magery",
+   "intro": [
+    "Defeat the Ember Drake. Then there is nothing more I can teach you, and you will cast as I do."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "ember_drake",
+     "qty": 1
+    }
+   ],
+   "done": [
+    "You have earned it. (Talent learned: Archmage.)"
+   ],
+   "reward": {
+    "talent": "archmage",
+    "gold": 300
+   }
   }
  ],
  "greenhouse": {
@@ -34243,8 +34652,8 @@ window.GAME_DATA = {
    "Gran's greenhouse. Half the panes are smashed and brambles have taken the beds.",
    "Gideon's Home Center could restore it for you."
   ],
-  "yieldMult": 3,
-  "forageMult": 2
+  "yieldMult": 1.5,
+  "forageMult": 1
  },
  "travel": {
   "ferries": [
@@ -34742,10 +35151,10 @@ window.GAME_DATA = {
       },
       {
        "id": "reach",
-       "name": "Arcane Reach",
-       "desc": "+1 range on all spells.",
+       "name": "Arcane Focus",
+       "desc": "All spells +10% power.",
        "effect": {
-        "spellRange": 1
+        "spellPower": 0.1
        }
       },
       {
@@ -34754,68 +35163,6 @@ window.GAME_DATA = {
        "desc": "Heavy armour only hurts your spells half as much.",
        "effect": {
         "castFocus": 0.5
-       }
-      }
-     ]
-    },
-    {
-     "level": 15,
-     "options": [
-      {
-       "id": "elementalist",
-       "name": "Elementalist",
-       "desc": "Destruction mastery: fire and ice spells +25%.",
-       "effect": {
-        "firePower": 0.25,
-        "icePower": 0.25
-       }
-      },
-      {
-       "id": "hexer",
-       "name": "Hexer",
-       "desc": "Control mastery: curses are 2 stronger and spread to foes next to the target.",
-       "effect": {
-        "debuffPower": 2,
-        "controlArea": 1
-       }
-      },
-      {
-       "id": "warder",
-       "name": "Warder",
-       "desc": "Enhancement mastery: buffs are 2 stronger and also reach allies next to the target.",
-       "effect": {
-        "buffPower": 2,
-        "buffArea": 1
-       }
-      },
-      {
-       "id": "lifebinder",
-       "name": "Lifebinder",
-       "desc": "Healing mastery: heals also reach allies next to the target and cure slows and curses.",
-       "effect": {
-        "healArea": 1,
-        "healCleanse": 1
-       }
-      }
-     ]
-    },
-    {
-     "level": 20,
-     "options": [
-      {
-       "id": "archmage",
-       "name": "Archmage",
-       "desc": "All spells +20% power.",
-       "effect": {
-        "spellPower": 0.2
-       }
-      },
-      {
-       "id": "alchemist",
-       "name": "Reagent Alchemist",
-       "desc": "25% chance each reagent is not used up.",
-       "effect": {
-        "reagentSave": 0.25
        }
       }
      ]
@@ -34886,56 +35233,6 @@ window.GAME_DATA = {
        "desc": "+15 max HP.",
        "effect": {
         "hp": 15
-       }
-      }
-     ]
-    },
-    {
-     "level": 15,
-     "options": [
-      {
-       "id": "weapon_master",
-       "name": "Weapon Master",
-       "desc": "Your weapon specialty bonuses are doubled.",
-       "effect": {
-        "specMastery": 1
-       }
-      },
-      {
-       "id": "crit_eye",
-       "name": "Critical Eye",
-       "desc": "15% chance your attacks deal x1.75 damage.",
-       "effect": {
-        "crit": 0.15
-       }
-      },
-      {
-       "id": "riposte",
-       "name": "Riposte",
-       "desc": "30% chance to strike back when hit in melee.",
-       "effect": {
-        "counter": 0.3
-       }
-      }
-     ]
-    },
-    {
-     "level": 20,
-     "options": [
-      {
-       "id": "captain",
-       "name": "Captain",
-       "desc": "Party companions get +2 attack.",
-       "effect": {
-        "partyAtk": 2
-       }
-      },
-      {
-       "id": "bulwark",
-       "name": "Bulwark",
-       "desc": "Party companions get +2 defense.",
-       "effect": {
-        "partyDef": 2
        }
       }
      ]
@@ -35724,7 +36021,11 @@ window.GAME_DATA = {
     "name": "Home Waters",
     "enemies": [
      "shark"
-    ]
+    ],
+    "tier": {
+     "level": 5,
+     "mult": 1.6
+    }
    },
    {
     "name": "Unfamiliar Seas",
@@ -35749,7 +36050,11 @@ window.GAME_DATA = {
     "enemies": [
      "shark",
      "tentacle"
-    ]
+    ],
+    "tier": {
+     "level": 6,
+     "mult": 1.5
+    }
    },
    {
     "name": "The Deep",
@@ -35776,7 +36081,11 @@ window.GAME_DATA = {
      "serpent",
      "shark",
      "kraken"
-    ]
+    ],
+    "tier": {
+     "level": 8,
+     "mult": 1.7
+    }
    },
    {
     "name": "Verdant Waters",
@@ -35795,7 +36104,11 @@ window.GAME_DATA = {
     "enemies": [
      "shark",
      "murkfin"
-    ]
+    ],
+    "tier": {
+     "level": 7,
+     "mult": 1.6
+    }
    },
    {
     "name": "Azure Deep",
@@ -35816,7 +36129,11 @@ window.GAME_DATA = {
      "bone_shark",
      "kraken",
      "corsair_captain"
-    ]
+    ],
+    "tier": {
+     "level": 8,
+     "mult": 1.8
+    }
    },
    {
     "name": "Iron Coast",
@@ -35836,7 +36153,11 @@ window.GAME_DATA = {
      "black_sail",
      "serpent",
      "tentacle"
-    ]
+    ],
+    "tier": {
+     "level": 9,
+     "mult": 2.0
+    }
    },
    {
     "name": "Ember Sea",
@@ -35856,7 +36177,11 @@ window.GAME_DATA = {
      "skeleton_pirate",
      "serpent",
      "skeleton_captain"
-    ]
+    ],
+    "tier": {
+     "level": 10,
+     "mult": 2.2
+    }
    }
   ],
   "shipArena": {
@@ -35885,7 +36210,11 @@ window.GAME_DATA = {
   "hullRepairPerNight": 0.25,
   "hullRepairCost": 2,
   "autopilotLevel": 5,
-  "navigatorMinSailing": 3
+  "navigatorMinSailing": 3,
+  "tier": {
+   "level": 5,
+   "mult": 1.6
+  }
  },
  "calendar": {
   "daysPerMonth": 28,
@@ -36159,8 +36488,8 @@ window.GAME_DATA = {
   "fill": 0.45,
   "smooth": 4,
   "perLevelHp": 0.12,
-  "oresBase": 4,
-  "gemsBase": 2
+  "oresBase": 2,
+  "gemsBase": 1
  },
  "survivors": {
   "daysBetween": 2,
@@ -36490,7 +36819,9 @@ window.GAME_DATA = {
    "whisperwood"
   ],
   "staleXp": 0.5,
-  "staleFloor": 0.02
+  "staleFloor": 0.02,
+  "staleLoot": true,
+  "staleLootFloor": 0.1
  },
  "weapons": {
   "sword": {
@@ -38300,8 +38631,8 @@ window.GAME_DATA = {
    "barterSellPerLvl": 0.025,
    "barterSellCap": 0.25,
    "standingShare": 0.5,
-   "satDrop": 0.01,
-   "satFloor": 0.6,
+   "satDrop": 0.02,
+   "satFloor": 0.35,
    "haggleJitter": [
     0.6,
     1.2
@@ -38313,7 +38644,11 @@ window.GAME_DATA = {
    "demandScale": 200,
    "demandTownMult": 0.25,
    "stockScale": 120,
-   "stockPerLevel": 0.3
+   "stockPerLevel": 0.3,
+   "localSell": 0.5,
+   "satRecover": 0.5,
+   "wave": 0.2,
+   "wavePeriod": 7
   }
  },
  "requests": {
@@ -44382,6 +44717,152 @@ window.GAME_DATA = {
     24
    ]
   }
+ },
+ "talents": {
+  "riposte": {
+   "name": "Riposte",
+   "desc": "30% chance to strike back when hit in melee.",
+   "effect": {
+    "counter": 0.3
+   },
+   "kind": "martial",
+   "where": "Azure Atoll",
+   "hint": "Taught by Fleet Admiral Coralie in Azure Atoll to a master of Martial."
+  },
+  "twin_strike": {
+   "name": "Twin Strike",
+   "desc": "Every weapon attack also strikes a second foe in reach for 60% damage.",
+   "effect": {
+    "twinStrike": 0.6
+   },
+   "kind": "martial",
+   "where": "Azure Atoll",
+   "hint": "Taught by Fleet Admiral Coralie in Azure Atoll to a master of Martial."
+  },
+  "lifebinder": {
+   "name": "Lifebinder",
+   "desc": "Healing mastery: heals also reach allies next to the target and cure slows and curses.",
+   "effect": {
+    "healArea": 1,
+    "healCleanse": 1
+   },
+   "kind": "magery",
+   "where": "Azure Atoll",
+   "hint": "Taught by Fleet Admiral Coralie in Azure Atoll to a master of Magery."
+  },
+  "hexer": {
+   "name": "Hexer",
+   "desc": "Control mastery: curses are 2 stronger and spread to foes next to the target.",
+   "effect": {
+    "debuffPower": 2,
+    "controlArea": 1
+   },
+   "kind": "magery",
+   "where": "Azure Atoll",
+   "hint": "Taught by Fleet Admiral Coralie in Azure Atoll to a master of Magery."
+  },
+  "weapon_master": {
+   "name": "Weapon Master",
+   "desc": "Your weapon specialty bonuses are doubled.",
+   "effect": {
+    "specMastery": 1
+   },
+   "kind": "martial",
+   "where": "Thornhaven",
+   "hint": "Taught by King Aldric in Thornhaven to a master of Martial."
+  },
+  "captain": {
+   "name": "Captain",
+   "desc": "Party companions get +2 attack.",
+   "effect": {
+    "partyAtk": 2
+   },
+   "kind": "martial",
+   "where": "Thornhaven",
+   "hint": "Taught by King Aldric in Thornhaven to a master of Martial."
+  },
+  "bulwark": {
+   "name": "Bulwark",
+   "desc": "Party companions get +2 defense.",
+   "effect": {
+    "partyDef": 2
+   },
+   "kind": "martial",
+   "where": "Thornhaven",
+   "hint": "Taught by King Aldric in Thornhaven to a master of Martial."
+  },
+  "last_stand": {
+   "name": "Last Stand",
+   "desc": "Once per battle, a blow that would fell you leaves you at 1 health.",
+   "effect": {
+    "lastStand": 1
+   },
+   "kind": "martial",
+   "where": "Thornhaven",
+   "hint": "Taught by King Aldric in Thornhaven to a master of Martial."
+  },
+  "warder": {
+   "name": "Warder",
+   "desc": "Enhancement mastery: buffs are 2 stronger and also reach allies next to the target.",
+   "effect": {
+    "buffPower": 2,
+    "buffArea": 1
+   },
+   "kind": "magery",
+   "where": "Thornhaven",
+   "hint": "Taught by King Aldric in Thornhaven to a master of Magery."
+  },
+  "crit_eye": {
+   "name": "Critical Eye",
+   "desc": "15% chance your attacks deal x1.75 damage.",
+   "effect": {
+    "crit": 0.15
+   },
+   "kind": "martial",
+   "where": "the Ember Isles",
+   "hint": "Taught by Archmage Ysolde in the Ember Isles to a master of Martial."
+  },
+  "elementalist": {
+   "name": "Elementalist",
+   "desc": "Destruction mastery: fire and ice spells +25%.",
+   "effect": {
+    "firePower": 0.25,
+    "icePower": 0.25
+   },
+   "kind": "magery",
+   "where": "the Ember Isles",
+   "hint": "Taught by Archmage Ysolde in the Ember Isles to a master of Magery."
+  },
+  "alchemist": {
+   "name": "Reagent Alchemist",
+   "desc": "25% chance each reagent is not used up.",
+   "effect": {
+    "reagentSave": 0.25
+   },
+   "kind": "magery",
+   "where": "the Ember Isles",
+   "hint": "Taught by Archmage Ysolde in the Ember Isles to a master of Magery."
+  },
+  "guardian_ward": {
+   "name": "Guardian Ward",
+   "desc": "Once per battle, each companion survives a blow that would fell them.",
+   "effect": {
+    "partyLastStand": 1
+   },
+   "kind": "magery",
+   "where": "the Ember Isles",
+   "hint": "Taught by Archmage Ysolde in the Ember Isles to a master of Magery."
+  },
+  "archmage": {
+   "name": "Archmage",
+   "desc": "All spells +20% power.",
+   "effect": {
+    "spellPower": 0.2
+   },
+   "kind": "magery",
+   "where": "the Ember Isles",
+   "hint": "Taught by Archmage Ysolde in the Ember Isles to a master of Magery."
+  }
  }
 };
 
@@ -45000,7 +45481,7 @@ function newGame() {
   SEA = null;
   G.hp = maxHp();
   loadMap(s.map, s.x, s.y); R.scene = 'world';
-  G.sv2 = true; G.pts = {}; G.pouch = {}; G.store = {}; if (D.items.gran_pouch && !eqOf('player').pouch) eqOf('player').pouch = 'gran_pouch';
+  G.sv2 = true; G.pts = {}; G.pouch = {}; G.store = {}; if (s.beds) G.home.furn.bed = s.beds; if (D.items.gran_pouch && !eqOf('player').pouch) eqOf('player').pouch = 'gran_pouch';
   script(async () => { G.name = await askName(); await chooseLook(); await chooseCalling(); await say('', s.intro); });
 }
 function canSave() { return !!R.mapId && (R.mapId === 'house' || R.mapId === 'tavern' || /_inn$/.test(R.mapId)); }      // you save at your own cottage or in a tavern
@@ -45252,6 +45733,7 @@ function grantReward(r) {
   if (r.wardPlace) placeTownWard(r.wardPlace.map, r.wardPlace.enemy);
   if (r.regionWard) { G.regionWarded = G.regionWarded || {}; G.regionWarded[r.regionWard] = G.day; AU.sfx('discover'); toast(`${(D.regions[r.regionWard] || {}).name} is under the great ward!`, UI.green); }
   if (r.caveWard) { G.caveWarded = G.caveWarded || {}; G.caveWarded[r.caveWard] = G.day; guildTick(); toast(`${(D.caves[r.caveWard] || {}).name} is warded. The Miners' Guild sells its ore in town.`, UI.green); }
+  if (r.talent) learnTalent(r.talent);
   if (r.research) { G.research[r.research] = true; AU.sfx('discover'); toast(`You learned the ${(D.enemies[r.research] || { name: r.research }).name}'s weakness!`, UI.blue); }
 }
 async function wizardTalk(npc) { await wizardQuests(npc); await respecOffer(npc); }
@@ -45293,16 +45775,22 @@ function barterRaw(kind) { const R0 = MR(), L = skillLvl('bartering'); return ki
   : Math.min(R0.barterSellCap == null ? 0.25 : R0.barterSellCap, (R0.barterSellPerLvl == null ? 0.025 : R0.barterSellPerLvl) * L + ptVal('bartering', 'sell') + perk('sellBonus') + gearVal('player', 'sellBonus')); }
 function barterStanding(kind) { return barterRaw(kind) * (MR().standingShare == null ? 0.5 : MR().standingShare); }
 function haggleRoom(kind) { return barterRaw(kind) - barterStanding(kind); }
-function soldToday(sid, id) { const S = G.sold; return S && S.day === G.day ? ((S.v[sid] || {})[id] || 0) : 0; }
-function markSold(sid, id, n) { if (!sid) return; if (!G.sold || G.sold.day !== G.day) G.sold = { day: G.day, v: {} }; const v = G.sold.v[sid] = G.sold.v[sid] || {}; v[id] = (v[id] || 0) + n; }
+function soldToday(sid, id) { const S = G.sold; return S ? ((S.v[sid] || {})[id] || 0) : 0; }      // v0.28: not just today - the pile shrinks by a share each night (MR().satRecover)
+function markSold(sid, id, n) { if (!sid) return; if (!G.sold) G.sold = { day: G.day, v: {} }; const v = G.sold.v[sid] = G.sold.v[sid] || {}; v[id] = (v[id] || 0) + n; }
+function soldDecay() { const S = G.sold, k = MR().satRecover == null ? 0 : MR().satRecover; if (!S) return; for (const v of Object.values(S.v)) for (const id of Object.keys(v)) { v[id] = Math.floor(v[id] * (1 - k)); if (v[id] <= 0) delete v[id]; } }
+// Trade prices move: each shop's price for each trade good swings around its list value over about a week (MR().wave, MR().wavePeriod).
+function mkWave(sid, id) { const a = MR().wave || 0; if (!a || !G) return 1; let h = 0; for (const c of sid + ':' + id) h = (h * 31 + c.charCodeAt(0)) >>> 0; const per = (MR().wavePeriod || 7) * (0.8 + (h % 5) * 0.1); return 1 + a * Math.sin(2 * Math.PI * (G.day / per + (h % 1000) / 1000)); }
+// Goods are cheap where they come from: a shop in the region an item comes from pays only a share of its usual price (MR().localSell).
+function townRegion(town) { return ['briarwick', 'gannet', 'southwatch', 'highmoor'].includes(town) ? 'mainland' : town === 'saltmere' ? 'isles' : town; }
+function localGlut(sid, id) { const k = MR().localSell; if (k == null) return 1; const it = item(id); if (!['material', 'metal', 'gem', 'reagent'].includes(it.type)) return 1; return itemRegion(id) === townRegion(townOfShop(sid)) ? k : 1; }
 function demandCap(sid, id) { const R0 = MR(); return Math.max(5, Math.round((R0.demandScale || 200) / Math.sqrt(Math.max(1, item(id).price)) * (1 + (R0.demandTownMult == null ? 0.25 : R0.demandTownMult) * townLvl(townOfShop(sid))))); }
 function demandLeft(sid, id) { return Math.max(0, demandCap(sid, id) - soldToday(sid, id)); }
 function satMult(sid, id, extra = 0) { const R0 = MR(), N = demandCap(sid, id), sold = soldToday(sid, id) + extra; return sold < N ? 1 : Math.max(R0.satFloor || 0.6, 1 - (R0.satDrop || 0.01) * (sold - N + 1)); }
 function buyPrice(id, sid) { const it = item(id), sh = sid && D.shops[sid]; let p = it.price * (1 - (MR().vendorDiscount == null ? 0.02 : MR().vendorDiscount) * (sid ? prosperLvl(sid) : 0)) * Math.max(0.3, 1 - barterStanding('buy') - (it.type === 'seed' ? perk('seedDiscount') : 0));
-  if (sh && sh.apprenticeOf && isTradeGood(id)) p *= MR().apprenticeMarkup || 1.5; return Math.max(1, Math.round(p)); }
+  if (sh && sh.apprenticeOf && isTradeGood(id)) p *= MR().apprenticeMarkup || 1.5; if (sid && isTradeGood(id) && mkV(sid)) p *= mkWave(sid, id); return Math.max(1, Math.round(p)); }
 function vendorBuys(sid, id) { const v = mkV(sid); if (v) { if ((v.buys || {})[id] != null) return true; if (isTradeGood(id)) return false; } else if (isTradeGood(id)) return false; const sh = D.shops[sid] || {}; return (sh.buysTypes || []).includes(item(id).type) && !(sh.sells || []).includes(id); }
 function sellPrice(id, sid) { const v = mkV(sid), f = v && (v.buys || {})[id];
-  if (f != null) return Math.max(1, Math.round(item(id).price * f * (1 + (MR().townBonus == null ? 0.03 : MR().townBonus) * townLvl(v.town)) * (1 + barterStanding('sell')) * satMult(sid, id)));
+  if (f != null) return Math.max(1, Math.round(item(id).price * f * localGlut(sid, id) * mkWave(sid, id) * (1 + (MR().townBonus == null ? 0.03 : MR().townBonus) * townLvl(v.town)) * (1 + barterStanding('sell')) * satMult(sid, id)));
   return Math.max(1, Math.round(item(id).sell * (1 + barterStanding('sell') + (isTradeGood(id) ? 0 : premium(id))))); }
 function haggleTipper() { const R0 = MR(); let best = null; for (const [id, st] of Object.entries(G.helpers || {})) { if (st.role !== 'party' || !D.helpers[id]) continue; const b = (D.helpers[id].skills || {}).bartering || 0; if (b >= (R0.tipBartering || 3) && (!best || b > best.b)) best = { id, b }; } return best && D.helpers[best.id]; }
 function haggleLimit(sid, kind) { let h = 0; for (const c of `${sid}:${G.day}:${kind}`) h = (h * 31 + c.charCodeAt(0)) >>> 0; const [a, b] = MR().haggleJitter || [0.6, 1.2]; return haggleRoom(kind) * (a + (h % 1000) / 1000 * (b - a)); }
@@ -45725,7 +46213,7 @@ async function assignRole(id) {
 }
 
 // ================= GREENHOUSE / DAY CYCLE =================
-function harvestYield(seedId, herb) { return ((item(seedId).yield || 1) + Math.floor(herb / 3) + perk('yield')) * (D.greenhouse.yieldMult || 1); }
+function harvestYield(seedId, herb) { return Math.max(1, Math.round(((item(seedId).yield || 1) + Math.floor(herb / 3) + perk('yield')) * (D.greenhouse.yieldMult || 1))); }
 async function usePlanter(x, y) {
   const pl = R.planters.find(p => p.x === x && p.y === y); if (!pl) return; const locked = q => q.gh && q.i >= ghPlanters();
   if (locked(pl)) return say('Greenhouse', ['This planter is cracked and full of weeds.', "Gideon's Home Center can repair more of the greenhouse."]);
@@ -45802,7 +46290,7 @@ async function newDay(reason, atSea) {
   await fadeTo(() => {
     G.day++; G.time = D.meta.dayStart * 60; if (reason !== 'dawn') G.hp = maxHp();
     { const keep = {}; for (const [m, until] of Object.entries(G.clearUntil || {})) if (until > G.day && G.defeated[m]) keep[m] = G.defeated[m]; G.defeated = keep; }
-    addDread(DL().perDay || 0); G.mined = {};
+    addDread(DL().perDay || 0); G.mined = {}; soldDecay();
     if (G.boat) { const sh = ship(); if (sh.hull < sh.max) sh.hull = Math.min(sh.max, sh.hull + Math.round(sh.max * ((D.sea || {}).hullRepairPerNight || 0.25))); }
     if ((G.day - 1) % cal().daysPerMonth === 0) {
       report.push(`A new month begins: ${dateStr()}.`);
@@ -45947,9 +46435,9 @@ function fieldCast(id) {
 }
 async function skillsMenu() {
   await openMenu({ title: (() => { const p = lvlProgress(); return `${heroName()}  -  Level ${p.l}  (the sum of your skill levels)`; })(), width: 600, closeKey: 'k',
-    items: () => Object.entries(D.skills).map(([id, s]) => { if (!skillUnlocked(id)) { const rq = s.requires; return { label: `${s.name}  (advanced)`, right: 'locked', disabled: true, desc: `${s.desc}  Unlocks at ${(D.skills[rq.skill] || {}).name} ${rq.level} (now ${skillLvl(rq.skill)}).` }; } const l = skillLvl(id), xp = G.skills[id] || 0, top = l >= skillMax(id), a = xpForSkill(l, id), b = xpForSkill(l + 1, id); return { label: s.name + (s.requires ? '  (advanced)' : '') + (unspent(id) ? `   (${unspent(id)} point${unspent(id) === 1 ? '' : 's'} to spend)` : '') + (perkAvail(id).length ? '   * perk!' : ''), right: top ? `Lv ${l} (max)` : `Lv ${l}`, bar: top ? 1 : (xp - a) / Math.max(1, b - a), desc: `${s.desc}  (${top ? 'Mastered' : `XP ${xp}/${b}`})  Enter: perks`, value: id }; }),
+    items: () => Object.entries(D.skills).map(([id, s]) => { if (!skillUnlocked(id)) { const rq = s.requires; return { label: `${s.name}  (advanced)`, right: 'locked', disabled: true, desc: `${s.desc}  Unlocks at ${(D.skills[rq.skill] || {}).name} ${rq.level} (now ${skillLvl(rq.skill)}).` }; } const l = skillLvl(id), xp = G.skills[id] || 0, top = l >= skillMax(id), a = xpForSkill(l, id), b = xpForSkill(l + 1, id); return { label: s.name + (s.requires ? '  (advanced)' : '') + (unspent(id) ? `   (${unspent(id)} point${unspent(id) === 1 ? '' : 's'} to spend)` : '') + (perkAvail(id).length ? '   * perk!' : ''), right: top ? `Lv ${l} (max)` : `Lv ${l}`, bar: top ? 1 : (xp - a) / Math.max(1, b - a), desc: `${s.desc}  (${top ? 'Mastered' : `XP ${xp}/${b}`})  Enter: perks`, value: id }; }).concat(D.talents ? [{ label: 'Talents', right: `${(G.talents || []).length} of ${Object.keys(D.talents).length}`, desc: 'Abilities learned from quests in the far lands, once you have mastered Martial or Magery.', value: '__talents' }] : []),
     footer: 'Each skill level gives a point to spend in that skill.  Enter: spend points or pick a perk',
-    onSelect: it => { const sk = it.value; script(async () => { if (unspent(sk) && perkAvail(sk).length) { const c = await choose(D.skills[sk].name, [{ label: `Spend points (${unspent(sk)})`, value: 'p' }, { label: 'Choose a perk', value: 'k' }], { width: 360 }); if (c === 'p') return pointsMenu(sk); if (c === 'k') return perksMenu(sk); return; } if (unspent(sk)) return pointsMenu(sk); if (ptOpts(sk).length && !perkAvail(sk).length && !((D.perks || {})[sk])) return pointsMenu(sk); return perksMenu(sk); }); return false; } });
+    onSelect: it => { const sk = it.value; if (sk === '__talents') { script(talentsMenu); return false; } script(async () => { if (unspent(sk) && perkAvail(sk).length) { const c = await choose(D.skills[sk].name, [{ label: `Spend points (${unspent(sk)})`, value: 'p' }, { label: 'Choose a perk', value: 'k' }], { width: 360 }); if (c === 'p') return pointsMenu(sk); if (c === 'k') return perksMenu(sk); return; } if (unspent(sk)) return pointsMenu(sk); if (ptOpts(sk).length && !perkAvail(sk).length && !((D.perks || {})[sk])) return pointsMenu(sk); return perksMenu(sk); }); return false; } });
 }
 const HUB_TABS = ['Crew', 'Party', 'Garden', 'Stall', 'Adventures', 'Reports', 'Payroll'];
 async function helpersMenu() {
@@ -46311,6 +46799,7 @@ function hit(a, b, power, label, ignore = 0, spell = false) {      // ignore: th
   b.hp -= dmg; float(b, '-' + dmg, '#ff5a4a'); C.shake = 0.15; AU.sfx('hit');
   clog(`${a.name}${label ? ' (' + label + ')' : ''} ${a.isPlayer ? 'hit' : 'hits'} ${b.isPlayer ? 'you' : b.name} for ${dmg}.`);
   if (b.hp <= 0 && b.enemyId && (D.enemies[b.enemyId] || {}).shield) { for (const u of C.units) if (u.enemyId === D.enemies[b.enemyId].shield && !u.dead) { u.dead = true; u.hp = 0; } clog('The remaining tentacles sink beneath the waves!'); }
+  if (b.hp <= 0 && b.side === 'party' && !b.stood && (b.isPlayer ? perk('lastStand') : perk('partyLastStand'))) { b.stood = true; b.hp = 1; float(b, b.isPlayer ? 'Last Stand!' : 'Guardian Ward!', '#ffe07a'); clog(`${b.isPlayer ? 'You refuse' : b.name + ' refuses'} to fall! (once per battle)`); }
   if (b.hp <= 0) { b.hp = 0; b.dead = true; clog(b.isPlayer ? 'You fall!' : `${b.name} ${b.side === 'enemy' ? 'is defeated!' : 'falls!'}`); }
 }
 function onArbalest(u) { return C.sea && C.grid[u.y][u.x] === 'A'; }
@@ -46324,6 +46813,7 @@ function playerStrike(a, b) {
   if (Math.random() < perk('crit')) { mult *= 1.75; label = 'Critical!'; }
   const pierce = Math.min(wTrait('pierce'), Math.max(0, uDef(b)));
   hit(a, b, Math.round(a.atk * mult) + pierce, label || (t === 'mace' && pierce ? 'Crush' : ''));
+  if (perk('twinStrike')) { const o = alive('enemy').filter(e => e !== b && !e.dead && !shielded(e) && man(a, e) <= Math.max(1, atkRange(a)) && los(a, e)).sort((x, y) => x.hp - y.hp)[0]; if (o) hit(a, o, Math.max(1, Math.round(a.atk * mult * perk('twinStrike'))), 'Twin Strike'); }
   if (t === 'axe' && Math.random() < wTrait('cleave')) { const o = alive('enemy').find(e => e !== b && man(a, e) <= 1 && !shielded(e)); if (o) hit(a, o, Math.max(1, Math.round(a.atk * mult * 0.5)), 'Cleave'); }
 }
 function isBow(u) { return !!C && (u.side === 'party' ? (C.sea || (u.isPlayer && wpnType() === 'bow')) : u.range >= 2 && !isMagicFoe(u.enemyId)); }      // bows can shoot any distance (enemy archers too)...
@@ -46495,9 +46985,9 @@ function victory() {
   for (const k of killed) {
     const kdef = D.enemies[k.enemyId] || {}, qid = kdef.champion ? kdef.baseOf : k.enemyId; if (kdef.champion) (G.champDead = G.champDead || {})[R.mapId] = G.day; if (kdef.wanderer) (G.wanderNext = G.wanderNext || {})[R.mapId] = G.day + 7; if (isRegionBoss(qid)) (G.bossDown = G.bossDown || {})[qid] = G.day;
     G.kills[qid] = (G.kills[qid] || 0) + 1; if ((G.research || {})[qid]) addSkillXp('wardcraft', 2); notePartKill(qid);
-    const d = D.enemies[k.enemyId]; const sc = scaled(d); xp += Math.max(1, Math.round((d.xp || 0) * sc.xpM * (C.caveMult || 1) * (d.music === 'boss' || C.sea ? 1 : staleXp(zoneTier().level)))); gold += Math.round(rnd((d.gold || [0, 0])[0], (d.gold || [0, 0])[1]) * sc.goldM);
+    const d = D.enemies[k.enemyId]; const sc = scaled(d); xp += Math.max(1, Math.round((d.xp || 0) * sc.xpM * (C.caveMult || 1) * (d.music === 'boss' || C.sea ? 1 : staleXp(zoneTier().level)))); { const st = d.music === 'boss' || C.sea || !(D.combat || {}).staleLoot ? 1 : Math.max((D.combat || {}).staleLootFloor || 0.1, staleXp(zoneTier().level)); k._stale = st; gold += Math.round(rnd((d.gold || [0, 0])[0], (d.gold || [0, 0])[1]) * sc.goldM * st); }
     addDread((DL().perKill || 0) + (d.music === 'boss' ? (DL().perBoss || 0) : 0)); if (d.final) C.finalWin = true;
-    for (const l of d.loot || []) if (Math.random() < l.chance) loot[l.item] = (loot[l.item] || 0) + (l.qty || 1);
+    for (const l of d.loot || []) if (Math.random() < l.chance * (k._stale == null ? 1 : k._stale)) loot[l.item] = (loot[l.item] || 0) + (l.qty || 1);
     for (const q of D.quests) if (G.quests[q.id] === 'active') q.objectives.forEach((o, i) => { if (o.type === 'defeat' && o.enemy === qid) { G.qprog[q.id] = G.qprog[q.id] || {}; G.qprog[q.id][i] = (G.qprog[q.id][i] || 0) + 1; } });
   }
   gold = Math.round(gold * (1 + perk('goldBonus'))); if (Math.random() < perk('pearlFind')) loot.seapearl = (loot.seapearl || 0) + 1;
@@ -46964,9 +47454,10 @@ function threat(def, cm = 1) {
   const out = pu.reduce((a, u) => a + hitDmg(u.atk + 1, eDef), 0), pDef = pu.reduce((a, u) => a + u.def, 0) / pu.length;
   const tKill = n * eHp / out, tDie = pu.reduce((a, u) => a + u.hp, 0) / (n * hitDmg(eAtk + 1, pDef));
   const r = tDie / tKill;
-  if (r > 3) return { r, label: 'Easy', col: '#5fd35a', why: 'You should win comfortably.' };
-  if (r > 1.6) return { r, label: 'Fair', col: '#f2d24a', why: 'A fair fight. Keep a potion handy.' };
-  if (r > 0.9) return { r, label: 'Hard', col: '#f08a32', why: 'Risky. Bring companions, spells and potions.' };
+  // thresholds re-measured in the simulator (v0.28): the raw ratio ignores potions, spells and abilities, so it reads low
+  if (r > 1) return { r, label: 'Easy', col: '#5fd35a', why: 'You should win comfortably.' };
+  if (r > 0.55) return { r, label: 'Fair', col: '#f2d24a', why: 'A fair fight. Keep a potion handy.' };
+  if (r > 0.3) return { r, label: 'Hard', col: '#f08a32', why: 'Risky. Bring companions, spells and potions.' };
   return { r, label: 'Deadly', col: '#e03c34', why: 'Very likely to beat you right now.' };
 }
 function shadow(x, y, sz = TILE) { ctx.fillStyle = 'rgba(0,0,0,.22)'; ctx.beginPath(); ctx.ellipse(x + sz / 2, y + sz - 3, sz * 0.3, 5, 0, 0, 7); ctx.fill(); }
@@ -47738,8 +48229,13 @@ function gearVal(who, k) { return gearItems(who).reduce((a, it) => a + (typeof i
 function perkList() {
   const out = []; if (!G || !G.perks) return out;
   for (const [sk, chosen] of Object.entries(G.perks)) { const pd = (D.perks || {})[sk]; if (!pd) continue; for (const m of pd.milestones || []) { const id = chosen[m.level]; const o = id && (m.options || []).find(o => o.id === id); if (o) out.push(o); } }
+  for (const id of G.talents || []) { const t = (D.talents || {})[id]; if (t) out.push(t); }      // talents: abilities learned from quests in the far lands (v0.28)
   return out;
 }
+function learnTalent(id) { const t = (D.talents || {})[id]; if (!t) return; G.talents = G.talents || []; if (G.talents.includes(id)) return; G.talents.push(id); AU.sfx('discover'); toast(`New talent: ${t.name}!  ${t.desc}`, UI.blue); }
+async function talentsMenu() { const T = D.talents || {}, have = G.talents || [];
+  await openMenu({ title: () => `Talents  -  ${have.length} of ${Object.keys(T).length} learned`, width: 640, footer: 'Talents are not bought with levels. Masters in the far lands teach them to those who earn it.',
+    items: () => Object.entries(T).map(([id, t]) => ({ label: t.name, right: have.includes(id) ? 'learned' : (t.where || 'not yet learned'), disabled: !have.includes(id), desc: have.includes(id) ? t.desc : `${t.desc}  ${t.hint || ''}`, value: id })).concat([{ label: 'Back', value: '__done' }]), onSelect: () => true }); }
 function perk(k) { return perkList().reduce((a, o) => a + (+((o.effect || {})[k]) || 0), 0); }
 function elemBonus(sp, who = 'player') {
   const el = sp.element || (sp.kind === 'heal' ? 'life' : 'arcane');
@@ -47951,7 +48447,7 @@ function ownedLabel(id) { const it = item(id); if (it.type === 'upgrade') return
 
 // ================= REGIONS / COMMERCE =================
 function mapRegion(id) { const m = D.maps[id] || {}; return m.region || (/^(saltmere|shipwreck)/.test(id) ? 'isles' : 'mainland'); }
-function itemRegion(id) { const it = item(id); return it.region || (/(Saltmere|Shipwreck)/.test(it.foundIn || '') ? 'isles' : 'mainland'); }
+function itemRegion(id) { const it = item(id); return it.region || it.from || (/(Saltmere|Shipwreck)/.test(it.foundIn || '') ? 'isles' : 'mainland'); }      // it.from: where monster parts, ore and gems come from (v0.28)
 function premium(id) { if (!skillUnlocked('commerce') || item(id).type !== 'reagent' || !R.mapId || itemRegion(id) === mapRegion(R.mapId)) return 0; return 0.25 + 0.03 * advLvl('commerce') + perk('premiumBonus'); }
 
 // ================= ALCHEMY & CRAFTING =================
@@ -48287,7 +48783,8 @@ function addDread(n) {
   if (after > before) { for (let i = before + 1; i <= after; i++) G.visions = (G.visions || []).concat([i]); if (G.flags.dreadKnown) AU.sfx('hit'); if (G.flags.dreadKnown) toast(`${DL().meterName || 'The Dark Lord'}: ${DL().tiers[after].name}...`, '#c080ff'); }
 }
 // Zone tiers (v0.27): every place has a fixed strength. D.maps[id].tier = { level, mult }; caves take D.caves[id].tier and climb with depth.
-function zoneTier(mp) { mp = mp || R.map; if (!mp) return { level: 1, mult: 1 }; if (mp.cave) { const t = ((D.caves || {})[mp.caveId] || {}).tier || { level: 1, mult: 1 }; return { level: t.level + Math.floor(((mp.level || 1) - 1) * (t.levelPerDepth || 0)), mult: t.mult }; } return mp.tier || { level: 1, mult: 1 }; }
+function zoneTier(mp) { if (!mp && SEA && (R.scene === 'sea' || (C && C.sea))) return seaZone(SEA.x, SEA.y).tier || (D.sea || {}).tier || { level: 5, mult: 1 };      // at sea: the waters you are in
+  mp = mp || R.map; if (!mp) return { level: 1, mult: 1 }; if (mp.cave) { const t = ((D.caves || {})[mp.caveId] || {}).tier || { level: 1, mult: 1 }; return { level: t.level + Math.floor(((mp.level || 1) - 1) * (t.levelPerDepth || 0)), mult: t.mult }; } return mp.tier || { level: 1, mult: 1 }; }
 function staleXp(level) { const f = (D.combat || {}).staleXp; if (!f || !G) return 1; return Math.max((D.combat || {}).staleFloor || 0.02, Math.pow(f, Math.max(0, bestFightLvl() - level))); }      // each level you are above a place halves what its monsters teach
 function scaled(def) {
   if (def.noScale) return { hp: def.hp, atk: def.atk, def: def.def, xpM: 1, goldM: 1 };
@@ -48659,7 +49156,7 @@ function adventureOdds(ids, zone, potions = 0) {
   return { success, death: (1 - success) * dFail + success * dOk, dFail, dOk, ratio: avg, battles: enc.length };
 }
 function rollLoot(eid, cm) { const d = D.enemies[eid], sc = scaled(d), g = d.group || [1, 1], n = Math.max(1, Math.round((g[0] + g[1]) / 2)); const loot = {}; let gold = 0, xp = 0;
-  for (let i = 0; i < n; i++) { xp += Math.round((d.xp || 0) * sc.xpM * cm); gold += Math.round(rnd((d.gold || [0, 0])[0], (d.gold || [0, 0])[1]) * sc.goldM); for (const l of d.loot || []) if (Math.random() < l.chance) loot[l.item] = (loot[l.item] || 0) + (l.qty || 1); }
+  for (let i = 0; i < n; i++) { xp += Math.round((d.xp || 0) * sc.xpM * cm); { const st = d.music === 'boss' || C.sea || !(D.combat || {}).staleLoot ? 1 : Math.max((D.combat || {}).staleLootFloor || 0.1, staleXp(zoneTier().level)); k._stale = st; gold += Math.round(rnd((d.gold || [0, 0])[0], (d.gold || [0, 0])[1]) * sc.goldM * st); } for (const l of d.loot || []) if (Math.random() < l.chance) loot[l.item] = (loot[l.item] || 0) + (l.qty || 1); }
   return { n, loot, gold, xp };
 }
 function reviveCount(items) { return Object.entries(items || {}).filter(([id]) => item(id).revive).reduce((a, [, n]) => a + n, 0); }
