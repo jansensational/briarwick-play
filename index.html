@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.29.0</title>
+<title>Reagents of Briarwick v0.29.1</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.29.0",
+  "version": "0.29.1",
   "tileSize": 16,
   "scale": 4,
   "dayStart": 6,
@@ -27885,7 +27885,7 @@ window.GAME_DATA = {
    },
    "tier": {
     "level": 30,
-    "mult": 4.0
+    "mult": 4.5
    }
   },
   "kingsroad": {
@@ -28986,7 +28986,7 @@ window.GAME_DATA = {
    "region": "verdant",
    "tier": {
     "level": 15,
-    "mult": 2.4
+    "mult": 2.7
    }
   },
   "azure_hall": {
@@ -29419,7 +29419,7 @@ window.GAME_DATA = {
    "region": "azure",
    "tier": {
     "level": 20,
-    "mult": 2.4
+    "mult": 2.7
    }
   },
   "thornhaven_hall": {
@@ -29852,7 +29852,7 @@ window.GAME_DATA = {
    "region": "thornhaven",
    "tier": {
     "level": 25,
-    "mult": 2.4
+    "mult": 2.7
    }
   },
   "ember_hall": {
@@ -30290,7 +30290,7 @@ window.GAME_DATA = {
    "region": "ember",
    "tier": {
     "level": 30,
-    "mult": 2.4
+    "mult": 2.7
    }
   },
   "backroom": {
@@ -49174,7 +49174,7 @@ function wlog(w, text, gold) { G.wlog = G.wlog || []; G.wlog.push({ d: G.day, w,
 function isWorkerLine(l) { return /\((stall|garden|scribe)\)/.test(l); }
 function wlogNight(rec, report) { const byName = n => Object.keys(G.helpers).find(id => D.helpers[id] && D.helpers[id].name === n);
   for (const l of report) { if (!isWorkerLine(l)) continue; const names = l.split(' (')[0].split(/, | and /); const gold = /\(stall\)/.test(l) && rec.stall ? (rec.stall.earned || 0) - (rec.stall.spent || 0) : 0; names.forEach((n, i) => { const id = byName(n.trim()); if (id) wlog(id, l, i ? 0 : gold); }); } }
-function wlogBack(back) { for (const rp of back || []) { const who = (rp.members && rp.members.length ? rp.members : [rp.captain]).filter(id => id && G.helpers[id]); who.forEach((id, i) => wlog(id, `${rp.title}: ${rp.summary || ''}`, i ? 0 : rp.gold)); } }
+function wlogBack(back) { for (const rp of back || []) { const who = [...new Set([rp.captain].concat((rp.members || []).map(m => typeof m === 'string' ? m : m && m.id)))].filter(id => id && G.helpers[id]); who.forEach((id, i) => wlog(id, `${rp.title}: ${rp.summary || ''}`, i ? 0 : rp.gold)); } }
 function scribeNight(report) {      // workers told to write scrolls: a daily limit that grows with their skill; reagents come from the storehouse, then your pockets
   if (!D.scribing) return; const have = r => ((G.store || {})[r] || 0) + count(r), pay = (r, n) => { const s = Math.min(n, (G.store || {})[r] || 0); if (s) { G.store[r] -= s; if (!G.store[r]) delete G.store[r]; } if (n - s) take(r, n - s); };
   for (const [id, st] of Object.entries(G.helpers || {})) { const o = st.scribe, h = D.helpers[id]; if (!o || !h || !(o.n > 0) || !D.items['scroll_' + o.spell] || !['house', 'greenhouse'].includes(workerPlace(id))) continue;
@@ -50338,7 +50338,7 @@ async function ordersMenu(sh) {
 // route ships sail on their own: leave at dawn, trade, come home, repeat
 function fleetTick(out) {
   for (const sh of fleet()) {
-    if (sh.away && G.day >= sh.away.returnDay) { const ex = sh.away; sh.away = null; sh.rest = { until: G.day + restDays() }; const rp = resolveRoute(sh, ex); rp.title = `${sh.name}: ${rp.title}`; { const pm = (((D.sea || {}).ports || []).find(p => p.id === ex.port) || {}).map, gh = pm && pghOf(pm); if (gh && gh.stock) { G.store = G.store || {}; G.store[gh.reagent] = (G.store[gh.reagent] || 0) + gh.stock; rp.summary = `${rp.summary || ''} Picked up ${gh.stock} ${item(gh.reagent).name} from your greenhouse.`; gh.stock = 0; } } G.expLog = [rp].concat(G.expLog || []).slice(0, 14); out.push(rp);
+    if (sh.away && G.day >= sh.away.returnDay) { const ex = sh.away; sh.away = null; sh.rest = { until: G.day + restDays() }; const rp = resolveRoute(sh, ex); rp.title = `${sh.name}: ${rp.title}`; rp.captain = ex.captain; if (!(rp.members || []).length) rp.members = (ex.members || []).filter(id => G.helpers[id]); { const pm = (((D.sea || {}).ports || []).find(p => p.id === ex.port) || {}).map, gh = pm && pghOf(pm); if (gh && gh.stock) { G.store = G.store || {}; G.store[gh.reagent] = (G.store[gh.reagent] || 0) + gh.stock; rp.summary = `${rp.summary || ''} Picked up ${gh.stock} ${item(gh.reagent).name} from your greenhouse.`; gh.stock = 0; } } G.expLog = [rp].concat(G.expLog || []).slice(0, 14); out.push(rp);
       for (const id of shipCrew(sh)) if (sh.route) G.helpers[id].role = 'fleet'; }
     if (!sh.away && sh.uid !== (flagship() || {}).uid && sh.hull < shipMax(sh)) sh.hull = Math.min(shipMax(sh), sh.hull + Math.round(shipMax(sh) * ((D.sea || {}).hullRepairPerNight || 0.25)));
     if (!sh.away && sh.route && sh.captain && G.helpers[sh.captain] && sh.uid !== (flagship() || {}).uid && !(sh.rest && G.day < sh.rest.until)) {
