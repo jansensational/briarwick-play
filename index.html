@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.28.0</title>
+<title>Reagents of Briarwick v0.28.2</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.28.0",
+  "version": "0.28.2",
   "tileSize": 16,
   "scale": 4,
   "dayStart": 6,
@@ -23117,8 +23117,8 @@ window.GAME_DATA = {
    "range": 1,
    "xp": 400,
    "gold": [
-    80,
-    120
+    400,
+    500
    ],
    "group": [
     1,
@@ -23906,8 +23906,8 @@ window.GAME_DATA = {
    "range": 1,
    "xp": 500,
    "gold": [
-    80,
-    140
+    450,
+    550
    ],
    "group": [
     1,
@@ -25960,9 +25960,9 @@ window.GAME_DATA = {
     "T..gggggg...RRRRRRRR..T.qqqqq.znnnnnnn.T",
     "T..HHHDHH...HHHHDHHH....qqqqq.zHHHDHHH.T",
     "T..T..z.T....T,.z.......,....,zzzzz....T",
-    "T.TT..zzzzzzzzzzzzzzzzz.TVVVVVVVVVVVVVVT",
-    "TT.T...qqOqqqqqqqqqqqqz.VVVVVVVVVVVVVVVT",
-    "T......qqqqqqqqqqqqqqqzUVVVVVVVVVVVVVVVT",
+    "T.TT..zzzzzzzzzzzzzzzzz.T.....,........T",
+    "TT.T...qqOqqqqqqqqqqqqz...,.........,..T",
+    "T......qqqqqqqqqqqqqqqz........,.......T",
     "TKKKKKKKKKKKKKKKKKKKKKBBKKKKKKKKKKKKKKKT",
     "~~~~~~~~~~~~~~~~~~~~~~BB~~~~~~~~~~~~~~~~",
     "~~~~~~~~~~~~~~~~~~~~~~BB~~~~~~~~~~~~~~~~",
@@ -26257,13 +26257,7 @@ window.GAME_DATA = {
     }
    ],
    "gardenName": "Cottage garden",
-   "lots": [
-    {
-     "x": 23,
-     "y": 16,
-     "kind": "market"
-    }
-   ]
+   "lots": []
   },
   "house": {
    "name": "Gran's Cottage",
@@ -30191,9 +30185,11 @@ window.GAME_DATA = {
    "giver": "aldwin",
    "requires": null,
    "intro": [
-    "{happy}So. Gran's grandchild at last. She grew reagents for me, you know.",
-    "{stern}Magic here is not wished into being - it is GROWN! Each spell is paid for in reagents.",
-    "Bring me 3 Emberroot and 2 Glowcap from the Whisperwood, east of town, and I will teach you your first spell."
+    "{happy}So. Gran's grandchild at last, {hero}. Sit, if you can find a rock you like. She talked about you every time she brought my order up the hill.",
+    "Your gran grew reagents for me for forty years. Roots, caps, petals. When she died her beds went to seed, and for the first time since I was a boy this valley has no one growing magic.",
+    "{stern}Understand this before anything else. Magic here is not wished into being. It is GROWN. Every spell is paid for in reagents, and a mage with an empty pouch is a villager with a stick.",
+    "So we start where she started. The Whisperwood lies east of town. Emberroot smoulders at the foot of old stumps; Glowcap shines under the ferns. Bring me 3 Emberroot and 2 Glowcap.",
+    "Do that and I will teach you your first spell. Go on. The wolves mostly keep to the deep wood before dark."
    ],
    "objectives": [
     {
@@ -30208,12 +30204,13 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "{surprised}Good, good. Smell that? Fire and binding!",
-    "{happy}Here is SINGE. Every cast burns 1 Emberroot and 1 Glowcap - so keep that greenhouse full!",
-    "Anything you find in the wild, you can now grow. Marta at the Apothecary will sell you seeds."
+    "{surprised}Good, good. Hold them up. Smell that? Fire in the root, binding in the cap. Your gran used to say Emberroot smells like a kitchen about to go wrong.",
+    "{happy}Then here is SINGE. One Emberroot and one Glowcap, burned in the hand, and something in front of you has a very bad moment. It will grow stronger as your Magery does.",
+    "Now the real lesson. Anything you have found in the wild, you can grow. Marta at the Apothecary sells the seeds, and Gran's garden beds are waiting outside your door.",
+    "Keep them full, {hero}. A spell you cannot pay for is only a word."
    ],
    "reward": {
-    "gold": 40,
+    "gold": 120,
     "spells": [
      "spark"
     ],
@@ -30224,7 +30221,8 @@ window.GAME_DATA = {
      "seed_emberroot": 2,
      "seed_glowcap": 2
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "q2",
@@ -30232,8 +30230,9 @@ window.GAME_DATA = {
    "giver": "aldwin",
    "requires": "q1",
    "intro": [
-    "Wolves have been prowling the Whisperwood road. Thin the pack - defeat 3 Grey Wolves.",
-    "Hire some help at the Sleepy Toad if you need it. A wizard alone is a wizard eaten."
+    "The Whisperwood road has grown teeth. Grey Wolves, bolder every week. Hal tells me a carter lost a mule to them within sight of the town.",
+    "Wolves do not come this close for no reason. Something deeper in the wood is pushing them out. I mean to learn what, but first the road must be safe to walk. Defeat 3 Grey Wolves.",
+    "{stern}Take help if you can get it. Tobin at the Sleepy Toad knows who is looking for work. A wizard alone is a wizard eaten, and Singe will not stop three sets of jaws at once."
    ],
    "objectives": [
     {
@@ -30243,11 +30242,12 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "You came back with all your fingers. Excellent.",
-    "Take MEND. Moonpetal and Glowcap. Moonpetal grows in the glade south-west in the wood."
+    "{happy}You came back with all your fingers. Excellent. I had a small wager with myself.",
+    "You will not always be so lucky. So take MEND: one Moonpetal and one Glowcap, and a wound knits closed. It works outside a fight as well, which is when sensible people use it.",
+    "Moonpetal opens in the clearings of the Whisperwood. Pick some, plant some. And {hero}: those wolves were thin. Hungry. Remember that."
    ],
    "reward": {
-    "gold": 80,
+    "gold": 240,
     "spells": [
      "mend"
     ],
@@ -30255,7 +30255,8 @@ window.GAME_DATA = {
      "magery": 40,
      "fight": 150
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "q3",
@@ -30263,8 +30264,9 @@ window.GAME_DATA = {
    "giver": "aldwin",
    "requires": "q2",
    "intro": [
-    "A true reagent-mage grows what she needs. Bring me 6 Moonpetal and 2 Ironbark.",
-    "Plant in Gran's garden beds. When you have the coin, Gideon's Home Center can restore her greenhouse for many more planters."
+    "A true reagent-mage grows what the work needs and never begs a shop for it. Your gran could coax Moonpetal out of an old boot. Let us see what you can do.",
+    "Bring me 6 Moonpetal and 2 Ironbark. Moonpetal you know. Ironbark comes off the oldest trees in the Whisperwood, the ones too stubborn to fall.",
+    "Plant in Gran's garden beds; picking the wood bare is the slow way. And when you have the coin, see Gideon at the Home Center. Her greenhouse is in ruins, but he can restore it, and it holds many more planters."
    ],
    "objectives": [
     {
@@ -30279,11 +30281,12 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Fine, healthy petals. Your gran would be proud.",
-    "STONESKIN, then. Ironbark and Moonpetal. Your friends will thank you."
+    "{happy}Fine, healthy petals. Your gran would be proud, and she was not a woman who was proud easily.",
+    "STONESKIN, then. One Ironbark and one Moonpetal, and for a few moments a friend's skin turns hard as old oak. Cast it on whoever stands in front. They will thank you.",
+    "You have fire, mending and a shield now. That is everything this valley can teach. The next lesson is across the water."
    ],
    "reward": {
-    "gold": 120,
+    "gold": 360,
     "spells": [
      "stoneskin"
     ],
@@ -30292,7 +30295,8 @@ window.GAME_DATA = {
      "herbalism": 10,
      "fight": 150
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "q4",
@@ -30300,8 +30304,9 @@ window.GAME_DATA = {
    "giver": "aldwin",
    "requires": "q3",
    "intro": [
-    "Some reagents do not grow on the mainland. Take Hal's ferry to Saltmere Isle.",
-    "Bring me 2 Sea Pearls from its beaches."
+    "Some reagents will not grow in mainland soil at all. They want salt and tide. For those you must go to Saltmere Isle.",
+    "Ferryman Hal runs his boat from the Briarwick dock every day, weather willing, for a small fare. On Saltmere's beaches you will find Sea Pearls in the wet sand. Bring me 2.",
+    "Look about you while you are there. Frostmint grows on the island and nowhere here. And the island folk pay well for things we think common."
    ],
    "objectives": [
     {
@@ -30315,11 +30320,12 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "The sea's own tears. Now you can grow them too - in brine, mind.",
-    "FROST LANCE: Frostmint and Sea Pearl."
+    "{happy}The sea's own tears. Now you can grow them too. In brine, mind; plant one in plain water and you will get a very sad pebble.",
+    "FROST LANCE: one Frostmint and one Sea Pearl. A spear of ice that bites and slows whatever it strikes. Slow a thing, and your friends reach it before it reaches you.",
+    "{stern}Now I can tell you what is pushing the wolves out of the wood. Men. A camp of them, in the deep north-east. Come back when you are ready to hear it."
    ],
    "reward": {
-    "gold": 150,
+    "gold": 450,
     "spells": [
      "frost_lance"
     ],
@@ -30327,7 +30333,8 @@ window.GAME_DATA = {
      "sailing": 10,
      "fight": 250
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "q5",
@@ -30335,9 +30342,10 @@ window.GAME_DATA = {
    "giver": "aldwin",
    "requires": "q4",
    "intro": [
-    "Bandits have camped in the deep north-east of the Whisperwood, led by one they call the Red Hood.",
-    "They hoard Shadebloom - the rarest reagent this side of the sea. Defeat their leader.",
-    "One warning. He wears a stolen ward-charm: steel slides off him. Break the ward with a spell, any spell that burns or bites, and your blades will find him for a moment. Then it closes again."
+    "Bandits have dug in at the deep north-east of the Whisperwood. They rob the carters on the Kingsroad, and the wolves they drove out are the ones at our door. Their chief is called the Red Hood.",
+    "They hoard Shadebloom, the rarest reagent this side of the sea. It grows only in the deep wood, and they have taken the best of it. I want that wood open again.",
+    "{stern}One warning, and listen to it. He wears a stolen ward-charm, and steel slides off him like rain. A spell breaks the ward: anything that burns or bites. Then your blades will find him, for a moment, before it closes again.",
+    "A sword alone will not win this. Bring reagents enough to break that ward again and again, bring potions, and bring friends. Defeat the Red Hood."
    ],
    "objectives": [
     {
@@ -30347,12 +30355,13 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "The wood breathes easier. And you have Shadebloom!",
-    "I'll teach you two things. FIREBALL - and GATE, the portal spell. Visit a town once, and you may return by Gate.",
-    "Beyond Saltmere lie the Tide Caves... but that is a story for another day."
+    "{happy}The wood breathes easier, and so do I. And you have Shadebloom! Plant it and it will grow for you like anything else.",
+    "Two spells for this. FIREBALL: two Emberroot and a Shadebloom, and it bursts over everything standing near your target. And GATE: Sea Pearl, Moonpetal and Shadebloom. Visit a town once, and Gate will carry you back to it.",
+    "{stern}Now the part I kept from you. That charm was no bandit's work. It was old warding, the Hollow King's kind, and it means he is stirring. While the land lies open to him, no help can reach us from the kingdoms over the sea.",
+    "The hermits keep the old ward stones. Fill the stone in every town, then raise the great ward over the Mainland and over Saltmere. Old Fennick in Highmoor will show you how. Do that, {hero}, and we shall see who the tide brings in."
    ],
    "reward": {
-    "gold": 250,
+    "gold": 750,
     "spells": [
      "fireball",
      "gate"
@@ -30360,7 +30369,8 @@ window.GAME_DATA = {
     "xp": {
      "fight": 400
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "bane_wolf",
@@ -30373,7 +30383,7 @@ window.GAME_DATA = {
     "count": 10
    },
    "intro": [
-    "You've fought a good many of the Grey Wolfs. Have you noticed how they move? Where they're soft?",
+    "You've fought a good many of the Grey Wolves. Have you noticed how they move? Where they're soft?",
     "Defeat 8 more and bring me 4 Wolf Fangs. Together we'll learn their weakness."
    ],
    "objectives": [
@@ -30390,16 +30400,17 @@ window.GAME_DATA = {
    ],
    "done": [
     "Yes... see here, and here. The Grey Wolf has a weakness - and now you know it. You'll hit them harder from now on.",
-    "With Wardcraft (Magery 10) you can craft a Grey Wolf Ward at an alembic. Or tell Marta what you learned - she can have one made, for a price.",
+    "With Wardcraft (it needs Magery 5) you can craft a Grey Wolf Ward at an alembic. Or tell Marta what you learned - she can have one made, for a price.",
     "Place a ward at a town's ward stone and that creature will never raid it again."
    ],
    "reward": {
     "research": "wolf",
-    "gold": 50,
+    "gold": 150,
     "xp": {
      "fight": 60
     }
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "bane_slime",
@@ -30413,7 +30424,7 @@ window.GAME_DATA = {
    },
    "intro": [
     "You've fought a good many of the Moss Slimes. Have you noticed how they move? Where they're soft?",
-    "Defeat 8 more and bring me 4 Slime Gels. Together we'll learn their weakness."
+    "Defeat 8 more and bring me 4 Slime Gel. Together we'll learn their weakness."
    ],
    "objectives": [
     {
@@ -30429,16 +30440,17 @@ window.GAME_DATA = {
    ],
    "done": [
     "Yes... see here, and here. The Moss Slime has a weakness - and now you know it. You'll hit them harder from now on.",
-    "With Wardcraft (Magery 10) you can craft a Moss Slime Ward at an alembic. Or tell Marta what you learned - she can have one made, for a price.",
+    "With Wardcraft (it needs Magery 5) you can craft a Moss Slime Ward at an alembic. Or tell Marta what you learned - she can have one made, for a price.",
     "Place a ward at a town's ward stone and that creature will never raid it again."
    ],
    "reward": {
     "research": "slime",
-    "gold": 50,
+    "gold": 150,
     "xp": {
      "fight": 60
     }
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "bane_crab",
@@ -30468,16 +30480,17 @@ window.GAME_DATA = {
    ],
    "done": [
     "Yes... see here, and here. The Reef Crab has a weakness - and now you know it. You'll hit them harder from now on.",
-    "With Wardcraft (Magery 10) you can craft a Reef Crab Ward at an alembic. Or tell Marta what you learned - she can have one made, for a price.",
+    "With Wardcraft (it needs Magery 5) you can craft a Reef Crab Ward at an alembic. Or tell Marta what you learned - she can have one made, for a price.",
     "Place a ward at a town's ward stone and that creature will never raid it again."
    ],
    "reward": {
     "research": "crab",
-    "gold": 50,
+    "gold": 150,
     "xp": {
      "fight": 60
     }
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "bane_wisp",
@@ -30491,7 +30504,7 @@ window.GAME_DATA = {
    },
    "intro": [
     "You've fought a good many of the Brine Wisps. Have you noticed how they move? Where they're soft?",
-    "Defeat 6 more and bring me 4 Wisp Essences. Together we'll learn their weakness."
+    "Defeat 6 more and bring me 4 Wisp Essence. Together we'll learn their weakness."
    ],
    "objectives": [
     {
@@ -30507,16 +30520,17 @@ window.GAME_DATA = {
    ],
    "done": [
     "Yes... see here, and here. The Brine Wisp has a weakness - and now you know it. You'll hit them harder from now on.",
-    "With Wardcraft (Magery 10) you can craft a Brine Wisp Ward at an alembic. Or tell Marta what you learned - she can have one made, for a price.",
+    "With Wardcraft (it needs Magery 5) you can craft a Brine Wisp Ward at an alembic. Or tell Marta what you learned - she can have one made, for a price.",
     "Place a ward at a town's ward stone and that creature will never raid it again."
    ],
    "reward": {
     "research": "wisp",
-    "gold": 50,
+    "gold": 150,
     "xp": {
      "fight": 60
     }
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "bane_bandit",
@@ -30546,16 +30560,17 @@ window.GAME_DATA = {
    ],
    "done": [
     "Yes... see here, and here. The Wood Bandit has a weakness - and now you know it. You'll hit them harder from now on.",
-    "With Wardcraft (Magery 10) you can craft a Wood Bandit Ward at an alembic. Or tell Marta what you learned - she can have one made, for a price.",
+    "With Wardcraft (it needs Magery 5) you can craft a Wood Bandit Ward at an alembic. Or tell Marta what you learned - she can have one made, for a price.",
     "Place a ward at a town's ward stone and that creature will never raid it again."
    ],
    "reward": {
     "research": "bandit",
-    "gold": 50,
+    "gold": 150,
     "xp": {
      "fight": 60
     }
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "bane_shark",
@@ -30569,7 +30584,7 @@ window.GAME_DATA = {
    },
    "intro": [
     "You've fought a good many of the Reef Sharks. Have you noticed how they move? Where they're soft?",
-    "Defeat 6 more and bring me 4 Shark Tooths. Together we'll learn their weakness."
+    "Defeat 6 more and bring me 4 Shark Teeth. Together we'll learn their weakness."
    ],
    "objectives": [
     {
@@ -30585,16 +30600,17 @@ window.GAME_DATA = {
    ],
    "done": [
     "Yes... see here, and here. The Reef Shark has a weakness - and now you know it. You'll hit them harder from now on.",
-    "With Wardcraft (Magery 10) you can craft a Reef Shark Ward at an alembic. Or tell Marta what you learned - she can have one made, for a price.",
+    "With Wardcraft (it needs Magery 5) you can craft a Reef Shark Ward at an alembic. Or tell Marta what you learned - she can have one made, for a price.",
     "Place a ward at a town's ward stone and that creature will never raid it again."
    ],
    "reward": {
     "research": "shark",
-    "gold": 50,
+    "gold": 150,
     "xp": {
      "fight": 60
     }
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "bane_ironshell_crab",
@@ -30624,15 +30640,16 @@ window.GAME_DATA = {
    ],
    "done": [
     "There - the seam in the Ironshell Crab's armour. You'll strike true now.",
-    "A Ironshell Crab Ward needs Wardcraft 5, or Marta can have one made - at a steeper price."
+    "An Ironshell Crab Ward needs Wardcraft 5, or Marta can have one made - at a steeper price."
    ],
    "reward": {
     "research": "ironshell_crab",
-    "gold": 120,
+    "gold": 360,
     "xp": {
      "fight": 60
     }
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "bane_storm_wisp",
@@ -30666,11 +30683,12 @@ window.GAME_DATA = {
    ],
    "reward": {
     "research": "storm_wisp",
-    "gold": 120,
+    "gold": 360,
     "xp": {
      "fight": 60
     }
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "bane_dire_wolf",
@@ -30704,11 +30722,12 @@ window.GAME_DATA = {
    ],
    "reward": {
     "research": "dire_wolf",
-    "gold": 120,
+    "gold": 360,
     "xp": {
      "fight": 60
     }
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "bane_rock_slime",
@@ -30742,11 +30761,12 @@ window.GAME_DATA = {
    ],
    "reward": {
     "research": "rock_slime",
-    "gold": 120,
+    "gold": 360,
     "xp": {
      "fight": 60
     }
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "bane_hollow_bandit",
@@ -30780,11 +30800,12 @@ window.GAME_DATA = {
    ],
    "reward": {
     "research": "hollow_bandit",
-    "gold": 120,
+    "gold": 360,
     "xp": {
      "fight": 60
     }
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "bane_bone_shark",
@@ -30818,11 +30839,12 @@ window.GAME_DATA = {
    ],
    "reward": {
     "research": "bone_shark",
-    "gold": 120,
+    "gold": 360,
     "xp": {
      "fight": 60
     }
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "q_final",
@@ -30831,9 +30853,10 @@ window.GAME_DATA = {
    "requires": "q5",
    "unlockDread": 1.0,
    "intro": [
-    "You feel it too. He is fully awake. The Hollow Spire has risen in the Deep, far to the south-east.",
-    "Malgrath was sealed with reagent-magic once. He fears what you grow.",
-    "Sail there - you'll need Navigation to brave the Deep. Bring potions. Bring friends. End this."
+    "You feel it too. He is fully awake. The Hollow Spire has risen out of the Deep, far to the south-east, where no chart shows land.",
+    "Malgrath was sealed once before, with reagent-magic: grown, gathered and spent by people like your gran. That is why he hunted the gardeners first, and why he fears what you grow.",
+    "Six lands stand warded behind you. He cannot reach them now, so he will wait for you in the one place he still rules.",
+    "{stern}Sail there. You will need Navigation to brave the Deep. Fill every pouch. Bring potions. Bring every friend you have made. End this, {hero}."
    ],
    "objectives": [
     {
@@ -30843,16 +30866,25 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "You did it. The Hollow King is broken, his shadow scattered on the wind.",
-    "The monsters will lose their edge... though some shadows linger. They always do.",
-    "Gran would be so proud."
+    "{happy}You did it. The Hollow King is broken, and his shadow is scattered on the wind.",
+    "The monsters will lose their edge now, though some shadows linger. They always do. That is what wards and gardeners are for.",
+    "Your gran kept this valley alive with a trowel and a stubborn heart. You have done the same for six kingdoms. She would be so proud, {hero}. So am I."
    ],
    "reward": {
     "gold": 2000,
     "xp": {
      "magery": 50
     }
-   }
+   },
+   "group": "main",
+   "needWards": [
+    "mainland",
+    "saltmere",
+    "verdant",
+    "azure",
+    "thornhaven",
+    "ember"
+   ]
   },
   {
    "id": "bram_copper",
@@ -30873,7 +30905,7 @@ window.GAME_DATA = {
     "Fine copper. I'll keep scale mail and bucklers in stock for you now."
    ],
    "reward": {
-    "gold": 60,
+    "gold": 180,
     "shopUnlock": {
      "shop": "outfitter",
      "items": [
@@ -30882,7 +30914,8 @@ window.GAME_DATA = {
      ]
     }
    },
-   "unlockSeen": "copper_ore"
+   "unlockSeen": "copper_ore",
+   "group": "economic"
   },
   {
    "id": "bram_iron",
@@ -30903,7 +30936,7 @@ window.GAME_DATA = {
     "Steel longswords and plate, on my shelves from today."
    ],
    "reward": {
-    "gold": 100,
+    "gold": 300,
     "shopUnlock": {
      "shop": "outfitter",
      "items": [
@@ -30912,7 +30945,8 @@ window.GAME_DATA = {
      ]
     }
    },
-   "unlockSeen": "iron_ore"
+   "unlockSeen": "iron_ore",
+   "group": "economic"
   },
   {
    "id": "hilda_silver",
@@ -30942,7 +30976,8 @@ window.GAME_DATA = {
      ]
     }
    },
-   "unlockSeen": "silver_ore"
+   "unlockSeen": "silver_ore",
+   "group": "economic"
   },
   {
    "id": "hilda_mithril",
@@ -30972,7 +31007,8 @@ window.GAME_DATA = {
      ]
     }
    },
-   "unlockSeen": "mithril_ore"
+   "unlockSeen": "mithril_ore",
+   "group": "economic"
   },
   {
    "id": "hilda_iron",
@@ -30998,7 +31034,8 @@ window.GAME_DATA = {
      "bartering": 6
     }
    },
-   "unlockSeen": "iron_ore"
+   "unlockSeen": "iron_ore",
+   "group": "economic"
   },
   {
    "id": "vesper_quartz",
@@ -31027,7 +31064,8 @@ window.GAME_DATA = {
      ]
     }
    },
-   "unlockSeen": "quartz"
+   "unlockSeen": "quartz",
+   "group": "economic"
   },
   {
    "id": "vesper_amethyst",
@@ -31056,7 +31094,8 @@ window.GAME_DATA = {
      ]
     }
    },
-   "unlockSeen": "amethyst"
+   "unlockSeen": "amethyst",
+   "group": "economic"
   },
   {
    "id": "vesper_sapphire",
@@ -31085,7 +31124,8 @@ window.GAME_DATA = {
      ]
     }
    },
-   "unlockSeen": "sapphire"
+   "unlockSeen": "sapphire",
+   "group": "economic"
   },
   {
    "id": "vesper_ruby",
@@ -31114,7 +31154,8 @@ window.GAME_DATA = {
      ]
     }
    },
-   "unlockSeen": "ruby"
+   "unlockSeen": "ruby",
+   "group": "economic"
   },
   {
    "id": "vesper_star",
@@ -31143,7 +31184,8 @@ window.GAME_DATA = {
      ]
     }
    },
-   "unlockSeen": "starstone"
+   "unlockSeen": "starstone",
+   "group": "economic"
   },
   {
    "id": "gideon_bunk",
@@ -31176,7 +31218,8 @@ window.GAME_DATA = {
      ]
     }
    },
-   "unlockSeen": "iron_ore"
+   "unlockSeen": "iron_ore",
+   "group": "economic"
   },
   {
    "id": "mirelle_glass",
@@ -31205,7 +31248,8 @@ window.GAME_DATA = {
      "alchemy": 15
     }
    },
-   "unlockSeen": "quartz"
+   "unlockSeen": "quartz",
+   "group": "economic"
   },
   {
    "id": "tobin_cellar",
@@ -31228,7 +31272,8 @@ window.GAME_DATA = {
    "reward": {
     "gold": 140
    },
-   "unlockSeen": "rum"
+   "unlockSeen": "rum",
+   "group": "economic"
   },
   {
    "id": "isla_curios",
@@ -31254,7 +31299,8 @@ window.GAME_DATA = {
      "lucky_coin": 1
     }
    },
-   "unlockSeen": "sapphire"
+   "unlockSeen": "sapphire",
+   "group": "economic"
   },
   {
    "id": "orrin_hull1",
@@ -31277,7 +31323,8 @@ window.GAME_DATA = {
    "reward": {
     "hull": 30
    },
-   "unlockSeen": "iron_ore"
+   "unlockSeen": "iron_ore",
+   "group": "economic"
   },
   {
    "id": "orrin_hull2",
@@ -31300,7 +31347,8 @@ window.GAME_DATA = {
    "reward": {
     "hull": 20
    },
-   "unlockSeen": "copper_ore"
+   "unlockSeen": "copper_ore",
+   "group": "economic"
   },
   {
    "id": "orrin_hull3",
@@ -31323,7 +31371,8 @@ window.GAME_DATA = {
    "reward": {
     "hull": 50
    },
-   "unlockSeen": "mithril_ore"
+   "unlockSeen": "mithril_ore",
+   "group": "economic"
   },
   {
    "id": "fen_teeth",
@@ -31346,7 +31395,8 @@ window.GAME_DATA = {
    "reward": {
     "gold": 160
    },
-   "unlockSeen": "shark_tooth"
+   "unlockSeen": "shark_tooth",
+   "group": "economic"
   },
   {
    "id": "marta_herbs",
@@ -31373,7 +31423,8 @@ window.GAME_DATA = {
      "seed_ironbark": 2
     }
    },
-   "unlockSeen": "amethyst"
+   "unlockSeen": "amethyst",
+   "group": "economic"
   },
   {
    "id": "harl_wolves",
@@ -31394,11 +31445,12 @@ window.GAME_DATA = {
     "The road's quieter already. Here - you've earned it."
    ],
    "reward": {
-    "gold": 200,
+    "gold": 600,
     "items": {
      "ironskin": 2
     }
-   }
+   },
+   "group": "economic"
   },
   {
    "id": "mags_tar",
@@ -31421,7 +31473,8 @@ window.GAME_DATA = {
    "reward": {
     "gold": 240
    },
-   "unlockSeen": "kraken_ink"
+   "unlockSeen": "kraken_ink",
+   "group": "economic"
   },
   {
    "id": "verdant_q1",
@@ -31447,7 +31500,8 @@ window.GAME_DATA = {
      "herbalism": 8
     }
    },
-   "unlockFlag": "home_rowan"
+   "unlockFlag": "home_rowan",
+   "group": "main"
   },
   {
    "id": "verdant_q2",
@@ -31473,7 +31527,8 @@ window.GAME_DATA = {
      "great_potion": 2
     }
    },
-   "requires": "verdant_q1"
+   "requires": "verdant_q1",
+   "group": "main"
   },
   {
    "id": "verdant_q3",
@@ -31505,71 +31560,81 @@ window.GAME_DATA = {
      "magery": 15
     }
    },
-   "requires": "verdant_q2"
+   "requires": "verdant_q2",
+   "group": "main"
   },
   {
    "id": "verdant_tq1",
    "side": true,
-   "name": "Oakhollow Trade Goods",
+   "name": "Salt and Shell for Oakhollow",
    "giver": "verdant_trader",
    "intro": [
-    "Merchants back west pay well for our wares. Bring me 3 Ironbark and 3 Moonpetal to trade."
+    "We are forest folk; the sea gives us little.",
+    "Bring 6 Crab Shell and 4 Sea Pearl from Saltmere and I will pay well, with seed besides."
    ],
    "objectives": [
     {
      "type": "collect",
-     "item": "ironbark",
-     "qty": 3
+     "item": "crab_shell",
+     "qty": 6
     },
     {
      "type": "collect",
-     "item": "moonpetal",
-     "qty": 3
+     "item": "seapearl",
+     "qty": 4
     }
    ],
    "done": [
-    "A fine trade for both of us."
+    "Shell for the potters and pearls for the healers. Take these seeds with our thanks."
    ],
    "reward": {
     "gold": 240,
     "items": {
      "seed_jadeleaf": 3
     }
-   }
+   },
+   "group": "economic"
   },
   {
    "id": "verdant_tq2",
    "side": true,
-   "name": "Oakhollow Workshop Order",
+   "name": "Bowstrings for Oakhollow",
    "giver": "verdant_crafter",
    "intro": [
-    "My workshop needs metal from your western mines: 6 iron ore."
+    "Our bowyers want iron for arrowheads and crystal spider silk for strings.",
+    "6 Iron Ore and 3 Crystal Spider Silk from your western caves."
    ],
    "objectives": [
     {
      "type": "collect",
      "item": "iron_ore",
      "qty": 6
+    },
+    {
+     "type": "collect",
+     "item": "spider_silk",
+     "qty": 3
     }
    ],
    "done": [
-    "Good iron. I can make more for you now."
+    "Fine silk. I can string war bows and forge axe heads for you now."
    ],
    "reward": {
     "gold": 272,
     "shopUnlock": {
      "shop": "verdant_crafter",
      "items": [
-      "steel_sword",
-      "copper_mail"
+      "longbow",
+      "battle_axe"
      ]
     }
-   }
+   },
+   "group": "economic"
   },
   {
    "id": "verdant_tq3",
    "side": true,
-   "name": "Supplies for the Oakhollow Inn",
+   "name": "Rum for the Oakhollow Inn",
    "giver": "verdant_innkeeper",
    "intro": [
     "Our cellar's empty and the Vine Creepers ate the last shipment. Bring 3 rum and defeat 3 Vine Creepers."
@@ -31591,7 +31656,8 @@ window.GAME_DATA = {
    ],
    "reward": {
     "gold": 208
-   }
+   },
+   "group": "economic"
   },
   {
    "id": "azure_q1",
@@ -31617,7 +31683,8 @@ window.GAME_DATA = {
      "herbalism": 8
     }
    },
-   "unlockFlag": "home_marisol"
+   "unlockFlag": "home_marisol",
+   "group": "main"
   },
   {
    "id": "azure_q2",
@@ -31643,7 +31710,8 @@ window.GAME_DATA = {
      "great_potion": 2
     }
    },
-   "requires": "azure_q1"
+   "requires": "azure_q1",
+   "group": "main"
   },
   {
    "id": "azure_q3",
@@ -31651,7 +31719,7 @@ window.GAME_DATA = {
    "giver": "admiral_coralie",
    "side": true,
    "intro": [
-    "The The Tide Warden has corrupted our land since the Hollow King stirred. End it."
+    "The Tide Warden has corrupted our land since the Hollow King stirred. End it."
    ],
    "objectives": [
     {
@@ -31675,80 +31743,91 @@ window.GAME_DATA = {
      "magery": 15
     }
    },
-   "requires": "azure_q2"
+   "requires": "azure_q2",
+   "group": "main"
   },
   {
    "id": "azure_tq1",
    "side": true,
-   "name": "Port Azure Trade Goods",
+   "name": "Forest Goods for Port Azure",
    "giver": "azure_trader",
    "intro": [
-    "Merchants back west pay well for our wares. Bring me 3 Ironbark and 3 Moonpetal to trade."
+    "An atoll grows no vines and hunts no cats.",
+    "Bring 6 Creeper Vine and 4 Jungle Cat Pelt from the Verdant Isles."
    ],
    "objectives": [
     {
      "type": "collect",
-     "item": "ironbark",
-     "qty": 3
+     "item": "creeper_vine",
+     "qty": 6
     },
     {
      "type": "collect",
-     "item": "moonpetal",
-     "qty": 3
+     "item": "cat_pelt",
+     "qty": 4
     }
    ],
    "done": [
-    "A fine trade for both of us."
+    "Rope and fur for the fleet. Seeds for you, with the Admiral's compliments."
    ],
    "reward": {
     "gold": 270,
     "items": {
      "seed_tidecoral": 3
     }
-   }
+   },
+   "group": "economic"
   },
   {
    "id": "azure_tq2",
    "side": true,
-   "name": "Port Azure Workshop Order",
+   "name": "Sheathing for Port Azure",
    "giver": "azure_crafter",
    "intro": [
-    "My workshop needs metal from your western mines: 6 iron ore."
+    "Worm eats a hull that copper would save.",
+    "6 Copper Ore from your mines and 2 Treant Heartwood for the keels."
    ],
    "objectives": [
     {
      "type": "collect",
-     "item": "iron_ore",
+     "item": "copper_ore",
      "qty": 6
+    },
+    {
+     "type": "collect",
+     "item": "heartwood",
+     "qty": 2
     }
    ],
    "done": [
-    "Good iron. I can make more for you now."
+    "Sound metal, sound wood. I will cut sailors' blades and hats for you now."
    ],
    "reward": {
     "gold": 308,
     "shopUnlock": {
      "shop": "azure_crafter",
      "items": [
-      "steel_sword",
-      "copper_mail"
+      "cutlass",
+      "tricorne"
      ]
     }
-   }
+   },
+   "group": "economic"
   },
   {
    "id": "azure_tq3",
    "side": true,
-   "name": "Supplies for the Port Azure Inn",
+   "name": "Tea for the Port Azure Inn",
    "giver": "azure_innkeeper",
    "intro": [
-    "Our cellar's empty and the Reef Sirens ate the last shipment. Bring 3 rum and defeat 3 Reef Sirens."
+    "Sailors drink the Verdant folk's Jadeleaf tea by the barrel, and the sirens sink the boats that bring it.",
+    "6 Jadeleaf, and 3 Reef Sirens the fewer."
    ],
    "objectives": [
     {
      "type": "collect",
-     "item": "rum",
-     "qty": 3
+     "item": "jadeleaf",
+     "qty": 6
     },
     {
      "type": "defeat",
@@ -31757,11 +31836,12 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Drinks are on the house - forever!"
+    "The kettle is on. Quieter water, too."
    ],
    "reward": {
     "gold": 232
-   }
+   },
+   "group": "economic"
   },
   {
    "id": "thornhaven_q1",
@@ -31787,11 +31867,12 @@ window.GAME_DATA = {
      "herbalism": 8
     }
    },
-   "unlockFlag": "home_thorne"
+   "unlockFlag": "home_thorne",
+   "group": "main"
   },
   {
    "id": "thornhaven_q2",
-   "name": "Beasts of the Thornhaven",
+   "name": "Beasts of Thornhaven",
    "giver": "king_aldric",
    "side": true,
    "intro": [
@@ -31813,7 +31894,8 @@ window.GAME_DATA = {
      "great_potion": 2
     }
    },
-   "requires": "thornhaven_q1"
+   "requires": "thornhaven_q1",
+   "group": "main"
   },
   {
    "id": "thornhaven_q3",
@@ -31821,7 +31903,7 @@ window.GAME_DATA = {
    "giver": "king_aldric",
    "side": true,
    "intro": [
-    "The The Iron Warlord has corrupted our land since the Hollow King stirred. End it."
+    "The Iron Warlord has corrupted our land since the Hollow King stirred. End it."
    ],
    "objectives": [
     {
@@ -31845,80 +31927,86 @@ window.GAME_DATA = {
      "magery": 15
     }
    },
-   "requires": "thornhaven_q2"
+   "requires": "thornhaven_q2",
+   "group": "main"
   },
   {
    "id": "thornhaven_tq1",
    "side": true,
-   "name": "Thornhaven Trade Goods",
+   "name": "Sea Goods for Thornhaven",
    "giver": "thornhaven_trader",
    "intro": [
-    "Merchants back west pay well for our wares. Bring me 3 Ironbark and 3 Moonpetal to trade."
+    "A fortress kingdom has iron and little else.",
+    "Bring 6 Living Coral and 4 Siren Scale from Azure Atoll."
    ],
    "objectives": [
     {
      "type": "collect",
-     "item": "ironbark",
-     "qty": 3
+     "item": "living_coral",
+     "qty": 6
     },
     {
      "type": "collect",
-     "item": "moonpetal",
-     "qty": 3
+     "item": "siren_scale",
+     "qty": 4
     }
    ],
    "done": [
-    "A fine trade for both of us."
+    "Coral for the masons, scale for the armourers. Seeds for your trouble."
    ],
    "reward": {
     "gold": 300,
     "items": {
      "seed_bloodmoss": 3
     }
-   }
+   },
+   "group": "economic"
   },
   {
    "id": "thornhaven_tq2",
    "side": true,
-   "name": "Thornhaven Workshop Order",
+   "name": "Cores for the Thornhaven Forge",
    "giver": "thornhaven_crafter",
    "intro": [
-    "My workshop needs metal from your western mines: 6 iron ore."
+    "Our bellows are driven by golem cores, and ours are spent.",
+    "4 Golem Cores from the deep mines of your Mainland."
    ],
    "objectives": [
     {
      "type": "collect",
-     "item": "iron_ore",
-     "qty": 6
+     "item": "golem_core",
+     "qty": 4
     }
    ],
    "done": [
-    "Good iron. I can make more for you now."
+    "They still hum. The forge can pour plate and hammers for you now."
    ],
    "reward": {
     "gold": 344,
     "shopUnlock": {
      "shop": "thornhaven_crafter",
      "items": [
-      "steel_sword",
-      "copper_mail"
+      "steel_plate",
+      "war_hammer"
      ]
     }
-   }
+   },
+   "group": "economic"
   },
   {
    "id": "thornhaven_tq3",
    "side": true,
-   "name": "Supplies for the Thornhaven Inn",
+   "name": "Salt Coral for the Thornhaven Inn",
    "giver": "thornhaven_innkeeper",
    "intro": [
-    "Our cellar's empty and the Orc Raiders ate the last shipment. Bring 3 rum and defeat 3 Orc Raiders."
+    "The garrison eats salt meat and we have no salt left.",
+    "6 Tidecoral from Azure Atoll, and 3 Orc Raiders off the road."
    ],
    "objectives": [
     {
      "type": "collect",
-     "item": "rum",
-     "qty": 3
+     "item": "tidecoral",
+     "qty": 6
     },
     {
      "type": "defeat",
@@ -31927,11 +32015,12 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Drinks are on the house - forever!"
+    "Salted and stored. The road is safer for it."
    ],
    "reward": {
     "gold": 256
-   }
+   },
+   "group": "economic"
   },
   {
    "id": "ember_q1",
@@ -31957,7 +32046,8 @@ window.GAME_DATA = {
      "herbalism": 8
     }
    },
-   "unlockFlag": "home_sylas"
+   "unlockFlag": "home_sylas",
+   "group": "main"
   },
   {
    "id": "ember_q2",
@@ -31983,7 +32073,8 @@ window.GAME_DATA = {
      "great_potion": 2
     }
    },
-   "requires": "ember_q1"
+   "requires": "ember_q1",
+   "group": "main"
   },
   {
    "id": "ember_q3",
@@ -31991,7 +32082,7 @@ window.GAME_DATA = {
    "giver": "archmage_ysolde",
    "side": true,
    "intro": [
-    "The The Ember Drake has corrupted our land since the Hollow King stirred. End it."
+    "The Ember Drake has corrupted our land since the Hollow King stirred. End it."
    ],
    "objectives": [
     {
@@ -32015,80 +32106,91 @@ window.GAME_DATA = {
      "magery": 15
     }
    },
-   "requires": "ember_q2"
+   "requires": "ember_q2",
+   "group": "main"
   },
   {
    "id": "ember_tq1",
    "side": true,
-   "name": "Starfall Trade Goods",
+   "name": "Hides for Starfall",
    "giver": "ember_trader",
    "intro": [
-    "Merchants back west pay well for our wares. Bring me 3 Ironbark and 3 Moonpetal to trade."
+    "Nothing with a hide lives long on a volcano.",
+    "Bring 6 War Hound Hide and 3 Bloodmoss from Thornhaven."
    ],
    "objectives": [
     {
      "type": "collect",
-     "item": "ironbark",
-     "qty": 3
+     "item": "hound_hide",
+     "qty": 6
     },
     {
      "type": "collect",
-     "item": "moonpetal",
+     "item": "bloodmoss",
      "qty": 3
     }
    ],
    "done": [
-    "A fine trade for both of us."
+    "Tough leather, strong moss. Lotus seeds for you."
    ],
    "reward": {
     "gold": 330,
     "items": {
      "seed_cinderlotus": 3
     }
-   }
+   },
+   "group": "economic"
   },
   {
    "id": "ember_tq2",
    "side": true,
-   "name": "Starfall Workshop Order",
+   "name": "Gems for the Starfall Workshop",
    "giver": "ember_crafter",
    "intro": [
-    "My workshop needs metal from your western mines: 6 iron ore."
+    "A focus needs cold stones to hold hot magic.",
+    "4 Sapphire and 3 Amethyst."
    ],
    "objectives": [
     {
      "type": "collect",
-     "item": "iron_ore",
-     "qty": 6
+     "item": "sapphire",
+     "qty": 4
+    },
+    {
+     "type": "collect",
+     "item": "amethyst",
+     "qty": 3
     }
    ],
    "done": [
-    "Good iron. I can make more for you now."
+    "Clear and deep. I can bind fire into robes and frost into charms for you now."
    ],
    "reward": {
     "gold": 380,
     "shopUnlock": {
      "shop": "ember_crafter",
      "items": [
-      "steel_sword",
-      "copper_mail"
+      "ember_robe",
+      "frost_charm"
      ]
     }
-   }
+   },
+   "group": "economic"
   },
   {
    "id": "ember_tq3",
    "side": true,
-   "name": "Supplies for the Starfall Inn",
+   "name": "Cooling Tea for the Starfall Inn",
    "giver": "ember_innkeeper",
    "intro": [
-    "Our cellar's empty and the Fire Imps ate the last shipment. Bring 3 rum and defeat 3 Fire Imps."
+    "On an island of fire, the best seller is anything cold.",
+    "6 Frostmint from the Mainland, and 3 Fire Imps out of my cellar."
    ],
    "objectives": [
     {
      "type": "collect",
-     "item": "rum",
-     "qty": 3
+     "item": "frostmint",
+     "qty": 6
     },
     {
      "type": "defeat",
@@ -32097,11 +32199,12 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Drinks are on the house - forever!"
+    "{happy}Iced tea on a volcano. You will drink free here."
    ],
    "reward": {
     "gold": 280
-   }
+   },
+   "group": "economic"
   },
   {
    "id": "surv_rowan_1",
@@ -32134,7 +32237,8 @@ window.GAME_DATA = {
      "herbalism": 6,
      "alchemy": 6
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "surv_rowan_2",
@@ -32166,7 +32270,8 @@ window.GAME_DATA = {
      "herbalism": 6,
      "alchemy": 6
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "surv_rowan_3",
@@ -32198,7 +32303,8 @@ window.GAME_DATA = {
      "herbalism": 6,
      "alchemy": 6
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "surv_marisol_1",
@@ -32231,7 +32337,8 @@ window.GAME_DATA = {
      "herbalism": 6,
      "alchemy": 6
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "surv_marisol_2",
@@ -32258,7 +32365,8 @@ window.GAME_DATA = {
      "herbalism": 6,
      "alchemy": 6
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "surv_marisol_3",
@@ -32290,7 +32398,8 @@ window.GAME_DATA = {
      "herbalism": 6,
      "alchemy": 6
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "surv_thorne_1",
@@ -32323,7 +32432,8 @@ window.GAME_DATA = {
      "herbalism": 6,
      "alchemy": 6
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "surv_thorne_2",
@@ -32350,7 +32460,8 @@ window.GAME_DATA = {
      "herbalism": 6,
      "alchemy": 6
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "surv_thorne_3",
@@ -32382,7 +32493,8 @@ window.GAME_DATA = {
      "herbalism": 6,
      "alchemy": 6
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "surv_sylas_1",
@@ -32415,7 +32527,8 @@ window.GAME_DATA = {
      "herbalism": 6,
      "alchemy": 6
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "surv_sylas_2",
@@ -32447,7 +32560,8 @@ window.GAME_DATA = {
      "herbalism": 6,
      "alchemy": 6
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "surv_sylas_3",
@@ -32479,7 +32593,8 @@ window.GAME_DATA = {
      "herbalism": 6,
      "alchemy": 6
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "home_rowan",
@@ -32488,7 +32603,7 @@ window.GAME_DATA = {
    "giver": null,
    "escort": "rowan",
    "intro": [
-    "'I'm well enough to travel now - and I want to go home to Verdant Isles.'",
+    "'I'm well enough to travel now - and I want to go home to the Verdant Isles.'",
     "'Will you take me? I'll fight beside you on the way.'"
    ],
    "objectives": [
@@ -32509,7 +32624,8 @@ window.GAME_DATA = {
      "sailing": 10,
      "tactics": 5
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "home_marisol",
@@ -32539,7 +32655,8 @@ window.GAME_DATA = {
      "sailing": 10,
      "tactics": 5
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "home_thorne",
@@ -32569,7 +32686,8 @@ window.GAME_DATA = {
      "sailing": 10,
      "tactics": 5
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "home_sylas",
@@ -32578,7 +32696,7 @@ window.GAME_DATA = {
    "giver": null,
    "escort": "sylas",
    "intro": [
-    "'I'm well enough to travel now - and I want to go home to The Ember Isles.'",
+    "'I'm well enough to travel now - and I want to go home to the Ember Isles.'",
     "'Will you take me? I'll fight beside you on the way.'"
    ],
    "objectives": [
@@ -32599,7 +32717,8 @@ window.GAME_DATA = {
      "sailing": 10,
      "tactics": 5
     }
-   }
+   },
+   "group": "main"
   },
   {
    "id": "ward_saltmere_crab",
@@ -32607,7 +32726,8 @@ window.GAME_DATA = {
    "giver": "hermit_saltmere",
    "side": true,
    "intro": [
-    "Reef Crabs raid Saltmere Isle every night. Bring me what they leave behind and thin their numbers, and I'll bind them out of the stone."
+    "Every night the Reef Crabs come up the beach and into the lanes. They cut nets, they pinch ankles, and last week one got into Isla's stockroom.",
+    "A ward stone can bind a creature out, but it must be taught what to refuse. Bring me 8 Crab Shells so the stone knows them, and defeat 6 so the rest think twice."
    ],
    "objectives": [
     {
@@ -32622,7 +32742,7 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "There. The stone remembers the Reef Crabs now. They'll not set foot in Saltmere Isle again."
+    "There. The stone remembers the Reef Crabs now. They will not set claw in Saltmere again, and Isla can stop sleeping on her counter."
    ],
    "reward": {
     "wardPlace": {
@@ -32630,7 +32750,8 @@ window.GAME_DATA = {
      "enemy": "crab"
     },
     "gold": 30
-   }
+   },
+   "group": "main"
   },
   {
    "id": "ward_saltmere_wisp",
@@ -32638,7 +32759,8 @@ window.GAME_DATA = {
    "giver": "hermit_saltmere",
    "side": true,
    "intro": [
-    "Brine Wisps raid Saltmere Isle every night. Bring me what they leave behind and thin their numbers, and I'll bind them out of the stone."
+    "Brine Wisps drift in off the water after dark. They sour the wells and spoil the catch, and you cannot bar a door against a light.",
+    "The stone can refuse them, once it knows them. Bring me 8 Wisp Essence, and put out 6 of the things yourself."
    ],
    "objectives": [
     {
@@ -32653,7 +32775,7 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "There. The stone remembers the Brine Wisps now. They'll not set foot in Saltmere Isle again."
+    "The stone holds their light now. The wells will run sweet by morning."
    ],
    "reward": {
     "wardPlace": {
@@ -32661,7 +32783,8 @@ window.GAME_DATA = {
      "enemy": "wisp"
     },
     "gold": 30
-   }
+   },
+   "group": "main"
   },
   {
    "id": "ward_southwatch_bandit",
@@ -32669,7 +32792,8 @@ window.GAME_DATA = {
    "giver": "hermit_southwatch",
    "side": true,
    "intro": [
-    "Wood Bandits raid Southwatch every night. Bring me what they leave behind and thin their numbers, and I'll bind them out of the stone."
+    "Southwatch was built to watch the road, and now the road watches us. Wood Bandits come over the wall at night for whatever is not nailed down.",
+    "Captain Harl's men can hold a gate. A ward holds a town. Bring me 8 Red Hood Insignia so the stone learns their mark, and defeat 6 of them."
    ],
    "objectives": [
     {
@@ -32684,7 +32808,7 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "There. The stone remembers the Wood Bandits now. They'll not set foot in Southwatch again."
+    "The stone knows the Red Hood's mark. No one wearing it will cross the wall again."
    ],
    "reward": {
     "wardPlace": {
@@ -32692,7 +32816,8 @@ window.GAME_DATA = {
      "enemy": "bandit"
     },
     "gold": 30
-   }
+   },
+   "group": "main"
   },
   {
    "id": "ward_southwatch_wolf",
@@ -32700,7 +32825,8 @@ window.GAME_DATA = {
    "giver": "hermit_southwatch",
    "side": true,
    "intro": [
-    "Grey Wolves raid Southwatch every night. Bring me what they leave behind and thin their numbers, and I'll bind them out of the stone."
+    "The Grey Wolves follow the bandits like gulls follow a boat. Every night they are at the stock pens, and every morning there is one sheep fewer.",
+    "Bring me 8 Wolf Fangs and defeat 6 wolves. The stone will do the rest."
    ],
    "objectives": [
     {
@@ -32715,7 +32841,7 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "There. The stone remembers the Grey Wolves now. They'll not set foot in Southwatch again."
+    "Quiet pens tonight. The stone remembers the Grey Wolves, and they will keep to the wood."
    ],
    "reward": {
     "wardPlace": {
@@ -32723,7 +32849,8 @@ window.GAME_DATA = {
      "enemy": "wolf"
     },
     "gold": 30
-   }
+   },
+   "group": "main"
   },
   {
    "id": "ward_highmoor_goblin_miner",
@@ -32731,7 +32858,8 @@ window.GAME_DATA = {
    "giver": "hermit_highmoor",
    "side": true,
    "intro": [
-    "Goblin Miners raid Highmoor every night. Bring me what they leave behind and thin their numbers, and I'll bind them out of the stone."
+    "Goblin Miners. They tunnel up under the town at night and help themselves to the ore sheds. Hilda found one asleep in her coal.",
+    "Bring me 8 Copper Ore, the thing they love best, to bait the stone, and defeat 6 of them."
    ],
    "objectives": [
     {
@@ -32746,7 +32874,7 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "There. The stone remembers the Goblin Miners now. They'll not set foot in Highmoor again."
+    "There. The stone remembers the Goblin Miners. They can dig where they like, but not up into Highmoor."
    ],
    "reward": {
     "wardPlace": {
@@ -32754,7 +32882,8 @@ window.GAME_DATA = {
      "enemy": "goblin_miner"
     },
     "gold": 30
-   }
+   },
+   "group": "main"
   },
   {
    "id": "rward_mainland_1",
@@ -32764,8 +32893,9 @@ window.GAME_DATA = {
    "regionTowns": "mainland",
    "choice": true,
    "intro": [
-    "Every town in The Mainland is warded. Now for the hard part: a region ward.",
-    "First, the Red Hood must fall. While it rules the wilds, no ward will hold."
+    "Every town on the Mainland is warded. That keeps the streets safe. It does nothing for the roads and the woods between them.",
+    "For that we raise a great ward over the whole land, and no great ward holds while a champion of the wild still rules it. Here that is the Red Hood.",
+    "If you have beaten him before, beat him again. His kind do not stay down until the ward is raised."
    ],
    "objectives": [
     {
@@ -32775,11 +32905,12 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Good. It will not rise again."
+    "Good. This time he will not rise again."
    ],
    "reward": {
     "gold": 80
-   }
+   },
+   "group": "main"
   },
   {
    "id": "rward_mainland_2",
@@ -32789,8 +32920,9 @@ window.GAME_DATA = {
    "choice": true,
    "requires": "rward_mainland_1",
    "intro": [
-    "Bring me the offering and I'll raise the ward over the whole region.",
-    "Every monster native to these lands will be bound out for good. Once a week a single stranger, as strong as the region's boss, may still wander in."
+    "Now the offering. A great ward is paid for with the land's own troubles: 6 Wolf Fangs, 6 Red Hood Insignia and 6 Copper Ore.",
+    "When it is raised, every monster native to the Mainland is bound out for good. Once a week a single stranger, as strong as a champion, may still wander in. No ward is perfect.",
+    "The woods will be quiet after this. If you have hunting left to do here, do it first."
    ],
    "objectives": [
     {
@@ -32810,12 +32942,13 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "It is done. The Mainland is under the great ward."
+    "It is done. The Mainland is under the great ward. Tell Aldwin; he has waited a long time to hear it."
    ],
    "reward": {
     "regionWard": "mainland",
     "gold": 150
-   }
+   },
+   "group": "main"
   },
   {
    "id": "rward_saltmere_2",
@@ -32825,8 +32958,9 @@ window.GAME_DATA = {
    "choice": true,
    "regionTowns": "saltmere",
    "intro": [
-    "Bring me the offering and I'll raise the ward over the whole region.",
-    "Every monster native to these lands will be bound out for good. Once a week a single stranger, as strong as the region's boss, may still wander in."
+    "Both of Saltmere's troubles are bound out of the town. Now we can ward the island entire.",
+    "Bring me 10 Crab Shells, 10 Wisp Essence and 3 Sea Pearls. The island has no champion, only the tide, so the offering is all it asks.",
+    "The beaches will be quiet after this. If you have hunting left to do here, do it first."
    ],
    "objectives": [
     {
@@ -32846,22 +32980,23 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "It is done. Saltmere Isle is under the great ward."
+    "It is done. Saltmere Isle is under the great ward. Ships can come in without fear now, from as far away as they like."
    ],
    "reward": {
     "regionWard": "saltmere",
     "gold": 150
-   }
+   },
+   "group": "main"
   },
   {
    "id": "rward_verdant_1",
-   "name": "Region ward: Verdant Isles's champion",
+   "name": "Region ward: the Verdant Isles' champion",
    "giver": "hermit_verdant",
    "side": true,
    "regionTowns": "verdant",
    "choice": true,
    "intro": [
-    "Every town in Verdant Isles is warded. Now for the hard part: a region ward.",
+    "Every town in the Verdant Isles is warded. Now for the hard part: a region ward.",
     "First, the Thorn Treant must fall. While it rules the wilds, no ward will hold."
    ],
    "objectives": [
@@ -32876,7 +33011,8 @@ window.GAME_DATA = {
    ],
    "reward": {
     "gold": 80
-   }
+   },
+   "group": "main"
   },
   {
    "id": "rward_verdant_2",
@@ -32902,7 +33038,8 @@ window.GAME_DATA = {
    "reward": {
     "regionWard": "verdant",
     "gold": 150
-   }
+   },
+   "group": "main"
   },
   {
    "id": "rward_azure_1",
@@ -32913,7 +33050,7 @@ window.GAME_DATA = {
    "choice": true,
    "intro": [
     "Every town in Azure Atoll is warded. Now for the hard part: a region ward.",
-    "First, the The Tide Warden must fall. While it rules the wilds, no ward will hold."
+    "First, the Tide Warden must fall. While it rules the wilds, no ward will hold."
    ],
    "objectives": [
     {
@@ -32927,7 +33064,8 @@ window.GAME_DATA = {
    ],
    "reward": {
     "gold": 80
-   }
+   },
+   "group": "main"
   },
   {
    "id": "rward_azure_2",
@@ -32953,7 +33091,8 @@ window.GAME_DATA = {
    "reward": {
     "regionWard": "azure",
     "gold": 150
-   }
+   },
+   "group": "main"
   },
   {
    "id": "rward_thornhaven_1",
@@ -32964,7 +33103,7 @@ window.GAME_DATA = {
    "choice": true,
    "intro": [
     "Every town in Thornhaven is warded. Now for the hard part: a region ward.",
-    "First, the The Iron Warlord must fall. While it rules the wilds, no ward will hold."
+    "First, the Iron Warlord must fall. While it rules the wilds, no ward will hold."
    ],
    "objectives": [
     {
@@ -32978,7 +33117,8 @@ window.GAME_DATA = {
    ],
    "reward": {
     "gold": 80
-   }
+   },
+   "group": "main"
   },
   {
    "id": "rward_thornhaven_2",
@@ -33004,18 +33144,19 @@ window.GAME_DATA = {
    "reward": {
     "regionWard": "thornhaven",
     "gold": 150
-   }
+   },
+   "group": "main"
   },
   {
    "id": "rward_ember_1",
-   "name": "Region ward: Ember Isles's champion",
+   "name": "Region ward: the Ember Isles' champion",
    "giver": "hermit_ember",
    "side": true,
    "regionTowns": "ember",
    "choice": true,
    "intro": [
-    "Every town in Ember Isles is warded. Now for the hard part: a region ward.",
-    "First, the The Ember Drake must fall. While it rules the wilds, no ward will hold."
+    "Every town in the Ember Isles is warded. Now for the hard part: a region ward.",
+    "First, the Ember Drake must fall. While it rules the wilds, no ward will hold."
    ],
    "objectives": [
     {
@@ -33029,7 +33170,8 @@ window.GAME_DATA = {
    ],
    "reward": {
     "gold": 80
-   }
+   },
+   "group": "main"
   },
   {
    "id": "rward_ember_2",
@@ -33055,7 +33197,8 @@ window.GAME_DATA = {
    "reward": {
     "regionWard": "ember",
     "gold": 150
-   }
+   },
+   "group": "main"
   },
   {
    "id": "cward_hollow",
@@ -33085,7 +33228,8 @@ window.GAME_DATA = {
    "reward": {
     "caveWard": "hollow",
     "gold": 60
-   }
+   },
+   "group": "main"
   },
   {
    "id": "cward_deepdelve",
@@ -33115,7 +33259,8 @@ window.GAME_DATA = {
    "reward": {
     "caveWard": "deepdelve",
     "gold": 60
-   }
+   },
+   "group": "main"
   },
   {
    "id": "shipyard",
@@ -33141,7 +33286,8 @@ window.GAME_DATA = {
    "reward": {
     "flag": "shipyard",
     "gold": 0
-   }
+   },
+   "group": "economic"
   },
   {
    "id": "fav_brenna_1",
@@ -33176,7 +33322,8 @@ window.GAME_DATA = {
      "who": "brenna",
      "appr": 25
     }
-   }
+   },
+   "group": "companion"
   },
   {
    "id": "fav_brenna_2",
@@ -33212,7 +33359,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_brenna_1"
+   "requires": "fav_brenna_1",
+   "group": "companion"
   },
   {
    "id": "fav_brenna_3",
@@ -33243,7 +33391,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_brenna_2"
+   "requires": "fav_brenna_2",
+   "group": "companion"
   },
   {
    "id": "fav_brenna_4",
@@ -33289,7 +33438,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_brenna_3"
+   "requires": "fav_brenna_3",
+   "group": "companion"
   },
   {
    "id": "fav_kael_1",
@@ -33324,7 +33474,8 @@ window.GAME_DATA = {
      "who": "kael",
      "appr": 25
     }
-   }
+   },
+   "group": "companion"
   },
   {
    "id": "fav_kael_2",
@@ -33355,7 +33506,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_kael_1"
+   "requires": "fav_kael_1",
+   "group": "companion"
   },
   {
    "id": "fav_kael_3",
@@ -33391,7 +33543,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_kael_2"
+   "requires": "fav_kael_2",
+   "group": "companion"
   },
   {
    "id": "fav_kael_4",
@@ -33422,7 +33575,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_kael_3"
+   "requires": "fav_kael_3",
+   "group": "companion"
   },
   {
    "id": "fav_pip_1",
@@ -33452,7 +33606,8 @@ window.GAME_DATA = {
      "who": "pip",
      "appr": 25
     }
-   }
+   },
+   "group": "companion"
   },
   {
    "id": "fav_pip_2",
@@ -33493,7 +33648,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_pip_1"
+   "requires": "fav_pip_1",
+   "group": "companion"
   },
   {
    "id": "fav_pip_3",
@@ -33529,7 +33685,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_pip_2"
+   "requires": "fav_pip_2",
+   "group": "companion"
   },
   {
    "id": "fav_pip_4",
@@ -33563,7 +33720,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_pip_3"
+   "requires": "fav_pip_3",
+   "group": "companion"
   },
   {
    "id": "fav_seren_1",
@@ -33593,7 +33751,8 @@ window.GAME_DATA = {
      "who": "seren",
      "appr": 25
     }
-   }
+   },
+   "group": "companion"
   },
   {
    "id": "fav_seren_2",
@@ -33624,7 +33783,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_seren_1"
+   "requires": "fav_seren_1",
+   "group": "companion"
   },
   {
    "id": "fav_seren_3",
@@ -33655,7 +33815,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_seren_2"
+   "requires": "fav_seren_2",
+   "group": "companion"
   },
   {
    "id": "fav_seren_4",
@@ -33689,7 +33850,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_seren_3"
+   "requires": "fav_seren_3",
+   "group": "companion"
   },
   {
    "id": "fav_rowan_1",
@@ -33719,7 +33881,8 @@ window.GAME_DATA = {
      "who": "rowan",
      "appr": 25
     }
-   }
+   },
+   "group": "companion"
   },
   {
    "id": "fav_rowan_2",
@@ -33750,7 +33913,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_rowan_1"
+   "requires": "fav_rowan_1",
+   "group": "companion"
   },
   {
    "id": "fav_rowan_3",
@@ -33786,7 +33950,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_rowan_2"
+   "requires": "fav_rowan_2",
+   "group": "companion"
   },
   {
    "id": "fav_rowan_4",
@@ -33820,7 +33985,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_rowan_3"
+   "requires": "fav_rowan_3",
+   "group": "companion"
   },
   {
    "id": "fav_marisol_1",
@@ -33850,7 +34016,8 @@ window.GAME_DATA = {
      "who": "marisol",
      "appr": 25
     }
-   }
+   },
+   "group": "companion"
   },
   {
    "id": "fav_marisol_2",
@@ -33881,7 +34048,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_marisol_1"
+   "requires": "fav_marisol_1",
+   "group": "companion"
   },
   {
    "id": "fav_marisol_3",
@@ -33912,7 +34080,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_marisol_2"
+   "requires": "fav_marisol_2",
+   "group": "companion"
   },
   {
    "id": "fav_marisol_4",
@@ -33947,7 +34116,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_marisol_3"
+   "requires": "fav_marisol_3",
+   "group": "companion"
   },
   {
    "id": "fav_thorne_1",
@@ -33977,7 +34147,8 @@ window.GAME_DATA = {
      "who": "thorne",
      "appr": 25
     }
-   }
+   },
+   "group": "companion"
   },
   {
    "id": "fav_thorne_2",
@@ -34013,7 +34184,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_thorne_1"
+   "requires": "fav_thorne_1",
+   "group": "companion"
   },
   {
    "id": "fav_thorne_3",
@@ -34044,7 +34216,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_thorne_2"
+   "requires": "fav_thorne_2",
+   "group": "companion"
   },
   {
    "id": "fav_thorne_4",
@@ -34078,7 +34251,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_thorne_3"
+   "requires": "fav_thorne_3",
+   "group": "companion"
   },
   {
    "id": "fav_sylas_1",
@@ -34108,7 +34282,8 @@ window.GAME_DATA = {
      "who": "sylas",
      "appr": 25
     }
-   }
+   },
+   "group": "companion"
   },
   {
    "id": "fav_sylas_2",
@@ -34139,7 +34314,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_sylas_1"
+   "requires": "fav_sylas_1",
+   "group": "companion"
   },
   {
    "id": "fav_sylas_3",
@@ -34175,7 +34351,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_sylas_2"
+   "requires": "fav_sylas_2",
+   "group": "companion"
   },
   {
    "id": "fav_sylas_4",
@@ -34210,7 +34387,8 @@ window.GAME_DATA = {
      "close": 1
     }
    },
-   "requires": "fav_sylas_3"
+   "requires": "fav_sylas_3",
+   "group": "companion"
   },
   {
    "id": "castle_1",
@@ -34221,9 +34399,9 @@ window.GAME_DATA = {
    "choice": true,
    "unlockFlag": "stoneImported",
    "intro": [
-    "Thornhaven stone. Dressed, squared, and sitting in your storehouse. I haven't seen the like on this coast in a hundred years.",
-    "There's a ruin north of the Kingsroad. Nobody goes there, and nobody remembers why it fell.",
-    "Go and stand in it, {hero}. Tell me what you find."
+    "Thornhaven stone. Dressed, squared, and sitting in your storehouse. I have not seen the like on this coast in a hundred years.",
+    "There is a ruin north of the Kingsroad built of the same stone. Nobody goes there, and nobody remembers why it fell. I have wondered about it since before your gran was born.",
+    "Go and stand in it, {hero}. If anything stands there with you, deal with it: 3 Hollow Knights, if my guess is right. Then tell me what you find."
    ],
    "objectives": [
     {
@@ -34237,13 +34415,14 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Hollow knights, guarding a heap of rubble? Then it matters to him. And if it matters to him, it matters to us.",
-    "Stone by stone, then. We'll talk about how when you're ready."
+    "Hollow Knights, guarding a heap of rubble? Then it matters to him. And if it matters to him, it matters to us.",
+    "A castle fell there once, and stone like yours could raise its walls again. Think on that."
    ],
    "reward": {
     "gold": 150,
     "flag": "castleFound"
-   }
+   },
+   "group": "main"
   },
   {
    "id": "talent_riposte",
@@ -34267,7 +34446,8 @@ window.GAME_DATA = {
    "reward": {
     "talent": "riposte",
     "gold": 300
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "talent_twin_strike",
@@ -34296,7 +34476,8 @@ window.GAME_DATA = {
    "reward": {
     "talent": "twin_strike",
     "gold": 300
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "talent_lifebinder",
@@ -34325,7 +34506,8 @@ window.GAME_DATA = {
    "reward": {
     "talent": "lifebinder",
     "gold": 300
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "talent_hexer",
@@ -34349,7 +34531,8 @@ window.GAME_DATA = {
    "reward": {
     "talent": "hexer",
     "gold": 300
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "talent_weapon_master",
@@ -34373,7 +34556,8 @@ window.GAME_DATA = {
    "reward": {
     "talent": "weapon_master",
     "gold": 300
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "talent_captain",
@@ -34402,7 +34586,8 @@ window.GAME_DATA = {
    "reward": {
     "talent": "captain",
     "gold": 300
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "talent_bulwark",
@@ -34431,7 +34616,8 @@ window.GAME_DATA = {
    "reward": {
     "talent": "bulwark",
     "gold": 300
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "talent_last_stand",
@@ -34455,7 +34641,8 @@ window.GAME_DATA = {
    "reward": {
     "talent": "last_stand",
     "gold": 300
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "talent_warder",
@@ -34484,7 +34671,8 @@ window.GAME_DATA = {
    "reward": {
     "talent": "warder",
     "gold": 300
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "talent_crit_eye",
@@ -34508,7 +34696,8 @@ window.GAME_DATA = {
    "reward": {
     "talent": "crit_eye",
     "gold": 300
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "talent_elementalist",
@@ -34537,7 +34726,8 @@ window.GAME_DATA = {
    "reward": {
     "talent": "elementalist",
     "gold": 300
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "talent_alchemist",
@@ -34566,7 +34756,8 @@ window.GAME_DATA = {
    "reward": {
     "talent": "alchemist",
     "gold": 300
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "talent_guardian_ward",
@@ -34595,7 +34786,8 @@ window.GAME_DATA = {
    "reward": {
     "talent": "guardian_ward",
     "gold": 300
-   }
+   },
+   "group": "ability"
   },
   {
    "id": "talent_archmage",
@@ -34619,7 +34811,333 @@ window.GAME_DATA = {
    "reward": {
     "talent": "archmage",
     "gold": 300
-   }
+   },
+   "group": "ability"
+  },
+  {
+   "id": "trade_1",
+   "name": "Buy Low, Sell Far",
+   "giver": "marta",
+   "requires": "q2",
+   "choice": true,
+   "intro": [
+    "{happy}A word of advice, dear. I pay what I pay because every forager in Briarwick brings me the same roots.",
+    "Take a ferry. On Saltmere they have never seen a wolf fang or a sprig of Moonpetal, and Isla pays like it.",
+    "Sell ten things from the Mainland on the far side of the water, then come and tell me I was wrong."
+   ],
+   "objectives": [
+    {
+     "type": "did",
+     "what": "export",
+     "from": "mainland",
+     "qty": 10,
+     "text": "Sell 10 Mainland goods in a town across the sea"
+    }
+   ],
+   "done": [
+    "{happy}There. Same fangs, same herbs, a heavier purse. Goods are worth most where they are rare.",
+    "Now think about what you carried home. An empty pack earns nothing."
+   ],
+   "reward": {
+    "gold": 150,
+    "xp": {
+     "bartering": 30
+    }
+   },
+   "side": true,
+   "group": "economic"
+  },
+  {
+   "id": "trade_2",
+   "name": "Never Sail Empty",
+   "giver": "isla",
+   "requires": "trade_1",
+   "choice": true,
+   "intro": [
+    "You sold me Mainland goods. Good. Now do it the other way.",
+    "Crab shell, wisp essence, sea pearls: common as sand here, curiosities over there.",
+    "Sell ten things from Saltmere in a Mainland shop. A trader earns on both legs of the trip."
+   ],
+   "objectives": [
+    {
+     "type": "did",
+     "what": "export",
+     "from": "isles",
+     "qty": 10,
+     "text": "Sell 10 Saltmere goods in a Mainland shop"
+    }
+   ],
+   "done": [
+    "Both legs paid. That is the whole trade, and everything after is a bigger boat."
+   ],
+   "reward": {
+    "gold": 150,
+    "xp": {
+     "bartering": 30
+    }
+   },
+   "side": true,
+   "group": "economic"
+  },
+  {
+   "id": "trade_3",
+   "name": "What the Shelf Wants",
+   "giver": "tobin",
+   "requires": "trade_1",
+   "choice": true,
+   "intro": [
+    "Shopkeepers talk in here, you know. Mostly they complain about what they cannot get.",
+    "When one of them asks you for something, they pay about double for it. Ask around the shops; someone always wants something.",
+    "Fill one of those requests, all of it, and the next round is on me."
+   ],
+   "objectives": [
+    {
+     "type": "did",
+     "what": "request",
+     "qty": 1,
+     "text": "Fill a shopkeeper's request completely (J shows your requests)"
+    }
+   ],
+   "done": [
+    "{happy}Double price and a friend behind the counter. A shop you keep supplied grows, and stocks better things."
+   ],
+   "reward": {
+    "gold": 120,
+    "xp": {
+     "bartering": 20
+    },
+    "items": {
+     "rum": 2
+    }
+   },
+   "side": true,
+   "group": "economic"
+  },
+  {
+   "id": "trade_4",
+   "name": "A Hold of Your Own",
+   "giver": "orrin",
+   "requires": "trade_2",
+   "choice": true,
+   "intro": [
+    "Hal's ferry takes you and your pockets. It will never take timber, stone or sailcloth.",
+    "A cog is slow and tubby, but she has a proper hold. Buy a ship that carries cargo and the far kingdoms' building goods are yours to move."
+   ],
+   "objectives": [
+    {
+     "type": "did",
+     "what": "hold",
+     "qty": 1,
+     "text": "Own a ship with a cargo hold (a cog or larger)"
+    }
+   ],
+   "done": [
+    "Now you are a merchant and not a passenger. Mind the hull, and never leave harbour with the hold empty."
+   ],
+   "reward": {
+    "gold": 250,
+    "xp": {
+     "sailing": 40
+    }
+   },
+   "side": true,
+   "group": "economic"
+  },
+  {
+   "id": "trade_5",
+   "name": "Glass on a Far Shore",
+   "giver": "isla",
+   "requires": "trade_4",
+   "choice": true,
+   "intro": [
+    "There is a staked plot here on Saltmere. Sea pearls grow wild on this island; under glass they would grow all year.",
+    "Build a greenhouse in a port away from home. A local keeps it, and it fills while you are elsewhere."
+   ],
+   "objectives": [
+    {
+     "type": "did",
+     "what": "portgh",
+     "qty": 1,
+     "text": "Build a greenhouse in a port away from Briarwick"
+    }
+   ],
+   "done": [
+    "Now the island works for you while you sleep. Every far port has a plot like it."
+   ],
+   "reward": {
+    "gold": 200,
+    "xp": {
+     "herbalism": 30
+    }
+   },
+   "side": true,
+   "group": "economic"
+  },
+  {
+   "id": "trade_6",
+   "name": "Standing Orders",
+   "giver": "orrin",
+   "requires": "trade_4",
+   "choice": true,
+   "intro": [
+    "One ship, one captain, one trip at a time: that is a living. A fleet on standing routes is a fortune.",
+    "Once a far kingdom welcomes you, give a second ship a route there. She sails without you and comes home loaded."
+   ],
+   "objectives": [
+    {
+     "type": "did",
+     "what": "route",
+     "qty": 1,
+     "text": "Put one of your ships on a trade route (Fleet, O)"
+    }
+   ],
+   "done": [
+    "She will come and go on her own now. Buy what a route brings cheap, sell it where it is rare, and build another ship."
+   ],
+   "reward": {
+    "gold": 400,
+    "xp": {
+     "commerce": 40,
+     "sailing": 40
+    }
+   },
+   "side": true,
+   "group": "economic"
+  },
+  {
+   "id": "carry_harl",
+   "name": "Fire for the Watch",
+   "giver": "south_guard",
+   "intro": [
+    "The watch-fires eat oil faster than the quartermaster sends it.",
+    "Mirelle in Briarwick brews Fire Oil. Bring me 6 flasks and the Watch pays well over her price."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "fire_oil",
+     "qty": 6
+    }
+   ],
+   "done": [
+    "Six flasks. The beacons stay lit another month."
+   ],
+   "reward": {
+    "gold": 540,
+    "xp": {
+     "bartering": 15
+    }
+   },
+   "side": true,
+   "group": "economic"
+  },
+  {
+   "id": "carry_mags",
+   "name": "Nails for Gannet",
+   "giver": "gannet_trader",
+   "intro": [
+    "Every boat in the cove needs nails and nobody here digs iron.",
+    "Hilda's Forge in Highmoor sells ore. Bring 8 and I will make it worth the walk."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "iron_ore",
+     "qty": 8
+    }
+   ],
+   "done": [
+    "Good ore. The cove floats on this."
+   ],
+   "reward": {
+    "gold": 380,
+    "xp": {
+     "bartering": 15
+    }
+   },
+   "side": true,
+   "group": "economic"
+  },
+  {
+   "id": "carry_fen",
+   "name": "Draughts for the Boats",
+   "giver": "fen",
+   "intro": [
+    "Hooks, ropes and reef sharks. My lads bleed for a living.",
+    "Marta's Apothecary in Briarwick sells Healing Draughts. Bring 6 for the boats."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "potion",
+     "qty": 6
+    }
+   ],
+   "done": [
+    "That will stitch up a season of bad luck. Thank you."
+   ],
+   "reward": {
+    "gold": 270,
+    "xp": {
+     "bartering": 15
+    }
+   },
+   "side": true,
+   "group": "economic"
+  },
+  {
+   "id": "carry_mirelle",
+   "name": "Kelp for the Still",
+   "giver": "mirelle",
+   "intro": [
+    "My best tonics start with Brinekelp, and it does not grow this far from the tide.",
+    "Fen sells it in Gannet Cove. Bring me 6."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "brinekelp",
+     "qty": 6
+    }
+   ],
+   "done": [
+    "{happy}Fresh, too. The still will be busy tonight."
+   ],
+   "reward": {
+    "gold": 720,
+    "xp": {
+     "bartering": 15
+    }
+   },
+   "side": true,
+   "group": "economic"
+  },
+  {
+   "id": "carry_vesper",
+   "name": "Shade for the Arcanum",
+   "giver": "vesper",
+   "intro": [
+    "Shadebloom will not grow on the moor, and my students go through it like bread.",
+    "Gannet Goods in the cove stocks it. Bring 6."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "shadebloom",
+     "qty": 6
+    }
+   ],
+   "done": [
+    "Dark petals, well kept. The Arcanum is in your debt."
+   ],
+   "reward": {
+    "gold": 500,
+    "xp": {
+     "bartering": 15
+    }
+   },
+   "side": true,
+   "group": "economic"
   }
  ],
  "greenhouse": {
@@ -36559,6 +37077,10 @@ window.GAME_DATA = {
     "homeOffer": [
      "'I'm well enough to travel now - and I want to go home to Verdant Isles.'",
      "'Will you take me? I'll fight beside you on the way.'"
+    ],
+    "needWards": [
+     "mainland",
+     "saltmere"
     ]
    },
    {
@@ -36620,6 +37142,9 @@ window.GAME_DATA = {
     "homeOffer": [
      "'I'm well enough to travel now - and I want to go home to Azure Atoll.'",
      "'Will you take me? I'll fight beside you on the way.'"
+    ],
+    "needWards": [
+     "verdant"
     ]
    },
    {
@@ -36681,6 +37206,9 @@ window.GAME_DATA = {
     "homeOffer": [
      "'I'm well enough to travel now - and I want to go home to Thornhaven.'",
      "'Will you take me? I'll fight beside you on the way.'"
+    ],
+    "needWards": [
+     "azure"
     ]
    },
    {
@@ -36747,6 +37275,9 @@ window.GAME_DATA = {
     "homeOffer": [
      "'I'm well enough to travel now - and I want to go home to The Ember Isles.'",
      "'Will you take me? I'll fight beside you on the way.'"
+    ],
+    "needWards": [
+     "thornhaven"
     ]
    }
   ],
@@ -38645,7 +39176,7 @@ window.GAME_DATA = {
    "demandTownMult": 0.25,
    "stockScale": 120,
    "stockPerLevel": 0.3,
-   "localSell": 0.5,
+   "localSell": 0.65,
    "satRecover": 0.5,
    "wave": 0.2,
    "wavePeriod": 7
@@ -45116,15 +45647,60 @@ document.addEventListener('touchmove', e => { if (window.__mobileOn) e.preventDe
 document.addEventListener('dblclick', e => e.preventDefault());
 
 // ================= UI PRIMITIVES =================
-const UI = { bg: '#f6ecd0', bg2: '#e2cf9f', border: '#5e3b22', text: '#3a2618', dim: '#8c7656', sel: '#f2c862', red: '#b83a30', green: '#3d8a3a', blue: '#2e6bb0', white: '#fff8e6' };
+const UI = { bg: '#f5e6c0', bg2: '#dfc68d', border: '#5a3519', text: '#33200f', dim: '#86704e', sel: '#f7c948', red: '#b83a30', green: '#3d8a3a', blue: '#2e6bb0', white: '#fff8e6' };
 const FONT = '"Trebuchet MS", Verdana, sans-serif';
 let buttons = [];
 function rr(x, y, w, h, r) { ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(x, y, w, h, r); else ctx.rect(x, y, w, h); }
+// v0.28.2 glossy windows: a lit parchment face, a bevelled wood frame with a gold inlay, and a soft sheen across the top
+function shade(c, f) { const m = /^#([0-9a-f]{6})$/i.exec(c); if (!m) return c; const n = parseInt(m[1], 16), ch = v => Math.max(0, Math.min(255, Math.round(f >= 0 ? v + (255 - v) * f : v * (1 + f)))); return `rgb(${ch(n >> 16)},${ch(n >> 8 & 255)},${ch(n & 255)})`; }
+function vgrad(y0, y1, stops) { const g = ctx.createLinearGradient(0, y0, 0, y1); stops.forEach(([o, c]) => g.addColorStop(o, c)); return g; }
+let PAPER = null;
+function paper() { if (PAPER) return PAPER; const c = document.createElement('canvas'); c.width = c.height = 96; const g = c.getContext('2d'); let sd = 7; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 520; i++) { g.fillStyle = rnd() < 0.5 ? `rgba(90,60,25,${0.03 + rnd() * 0.05})` : `rgba(255,250,225,${0.05 + rnd() * 0.08})`; g.fillRect(Math.floor(rnd() * 96), Math.floor(rnd() * 96), 1 + Math.floor(rnd() * 5), 1); }
+  return PAPER = ctx.createPattern(c, 'repeat'); }
+function chip(x, y, w, h, c, r = 5, o = {}) {      // a glossy pill: tabs, selected rows, name plates
+  if (o.shadow !== false) { ctx.fillStyle = 'rgba(0,0,0,.22)'; rr(x + 1, y + 2, w, h, r); ctx.fill(); }
+  ctx.fillStyle = vgrad(y, y + h, [[0, shade(c, 0.42)], [0.5, c], [1, shade(c, -0.22)]]); rr(x, y, w, h, r); ctx.fill();
+  ctx.fillStyle = 'rgba(255,255,255,.32)'; rr(x + 2, y + 2, w - 4, Math.max(2, h * 0.36), Math.max(1, r - 2)); ctx.fill();
+  ctx.lineWidth = o.line || 1.5; ctx.strokeStyle = o.stroke || shade(c, -0.55); rr(x, y, w, h, r); ctx.stroke();
+}
+function glass(x, y, w, h, r = 7, edge = '#d9b45a') {      // dark glass: toasts, tooltips, key hints
+  ctx.fillStyle = vgrad(y, y + h, [[0, 'rgba(58,40,52,.94)'], [1, 'rgba(22,14,24,.94)']]); rr(x, y, w, h, r); ctx.fill();
+  ctx.fillStyle = 'rgba(255,255,255,.10)'; rr(x + 2, y + 2, w - 4, Math.max(2, h * 0.4), Math.max(1, r - 2)); ctx.fill();
+  ctx.lineWidth = 1.5; ctx.strokeStyle = edge; rr(x, y, w, h, r); ctx.stroke();
+}
 function panel(x, y, w, h, bg = UI.bg) {
-  ctx.fillStyle = 'rgba(0,0,0,.28)'; rr(x + 4, y + 5, w, h, 9); ctx.fill();
-  ctx.fillStyle = bg; rr(x, y, w, h, 9); ctx.fill();
-  ctx.lineWidth = 4; ctx.strokeStyle = UI.border; ctx.stroke();
-  ctx.lineWidth = 2; ctx.strokeStyle = UI.bg2; rr(x + 6, y + 6, w - 12, h - 12, 5); ctx.stroke();
+  const F = 7;      // frame thickness
+  ctx.fillStyle = 'rgba(0,0,0,.16)'; rr(x + 1, y + 3, w + 5, h + 7, 13); ctx.fill(); ctx.fillStyle = 'rgba(0,0,0,.34)'; rr(x + 3, y + 6, w, h, 11); ctx.fill();
+  // wood frame
+  ctx.fillStyle = '#24130a'; rr(x - 1, y - 1, w + 2, h + 2, 11); ctx.fill();
+  ctx.fillStyle = vgrad(y, y + h, [[0, '#a8713d'], [0.12, '#7c4c25'], [0.5, UI.border], [1, '#341d0e']]); rr(x, y, w, h, 10); ctx.fill();
+  ctx.fillStyle = 'rgba(255,225,170,.35)'; rr(x + 1.5, y + 1.5, w - 3, 2.5, 2); ctx.fill();      // lit top edge
+  ctx.fillStyle = '#24130a'; rr(x + F - 2, y + F - 2, w - 2 * F + 4, h - 2 * F + 4, 6); ctx.fill();
+  ctx.fillStyle = vgrad(y, y + h, [[0, '#ffe08a'], [0.5, '#d9a441'], [1, '#9a6a1f']]); rr(x + F - 1, y + F - 1, w - 2 * F + 2, h - 2 * F + 2, 5); ctx.fill();      // gold inlay
+  // parchment face
+  const fx = x + F + 1, fy = y + F + 1, fw = w - 2 * F - 2, fh = h - 2 * F - 2;
+  ctx.fillStyle = vgrad(fy, fy + fh, [[0, shade(bg, 0.42)], [0.45, bg], [1, shade(bg, -0.12)]]); rr(fx, fy, fw, fh, 4); ctx.fill();
+  ctx.save(); rr(fx, fy, fw, fh, 4); ctx.clip();
+  ctx.fillStyle = paper(); ctx.fillRect(fx, fy, fw, fh);
+  ctx.fillStyle = vgrad(fy, fy + Math.min(fh * 0.5, 44), [[0, 'rgba(255,255,255,.40)'], [1, 'rgba(255,255,255,0)']]); ctx.fillRect(fx, fy, fw, Math.min(fh * 0.5, 44));      // sheen
+  const e = 10; let g = ctx.createLinearGradient(fx, 0, fx + e, 0); g.addColorStop(0, 'rgba(90,55,20,.22)'); g.addColorStop(1, 'rgba(90,55,20,0)'); ctx.fillStyle = g; ctx.fillRect(fx, fy, e, fh);      // soft inner shadow
+  g = ctx.createLinearGradient(fx + fw, 0, fx + fw - e, 0); g.addColorStop(0, 'rgba(90,55,20,.22)'); g.addColorStop(1, 'rgba(90,55,20,0)'); ctx.fillStyle = g; ctx.fillRect(fx + fw - e, fy, e, fh);
+  ctx.fillStyle = vgrad(fy + fh - e, fy + fh, [[0, 'rgba(90,55,20,0)'], [1, 'rgba(90,55,20,.25)']]); ctx.fillRect(fx, fy + fh - e, fw, e); ctx.restore();
+  // gold corner caps with a stud
+  if (w >= 60 && h >= 36) for (const [cx, cy, sx, sy] of [[x, y, 1, 1], [x + w, y, -1, 1], [x, y + h, 1, -1], [x + w, y + h, -1, -1]]) {
+    ctx.fillStyle = '#24130a'; ctx.fillRect(cx + (sx > 0 ? -1 : -14), cy + (sy > 0 ? -1 : -14), 15, 15);
+    ctx.fillStyle = vgrad(cy - 14, cy + 14, [[0, '#ffe79a'], [0.5, '#e0aa3e'], [1, '#a26f1c']]); ctx.fillRect(cx + (sx > 0 ? 0 : -13), cy + (sy > 0 ? 0 : -13), 13, 13);
+    ctx.fillStyle = '#24130a'; ctx.fillRect(cx + (sx > 0 ? 5 : -13), cy + (sy > 0 ? 5 : -13), 8, 8);      // notch: leaves an L
+    ctx.fillStyle = vgrad(cy - 14, cy + 14, [[0, '#a8713d'], [1, '#4a2a14']]); ctx.fillRect(cx + (sx > 0 ? 6 : -13), cy + (sy > 0 ? 6 : -13), 7, 7);
+    ctx.fillStyle = '#fff3c4'; ctx.fillRect(cx + (sx > 0 ? 1 : -4), cy + (sy > 0 ? 1 : -4), 3, 3); ctx.fillStyle = '#8a5a14'; ctx.fillRect(cx + (sx > 0 ? 2 : -3), cy + (sy > 0 ? 2 : -3), 2, 2); }
+}
+// a wood title band across the top of a window
+function titleBand(x, y, w, label, align = 'left') {
+  ctx.fillStyle = vgrad(y + 8, y + 40, [[0, '#8f5c30'], [0.5, '#6b4222'], [1, '#4a2b14']]); ctx.fillRect(x + 8, y + 8, w - 16, 32);
+  ctx.fillStyle = 'rgba(255,230,180,.22)'; ctx.fillRect(x + 8, y + 8, w - 16, 12);
+  ctx.fillStyle = vgrad(y + 40, y + 43, [[0, '#ffe08a'], [1, '#a9781f']]); ctx.fillRect(x + 8, y + 40, w - 16, 2.5);
+  text(label, align === 'center' ? x + w / 2 : x + 22, y + 14, { bold: true, size: 18, color: '#fff1cc', shadow: true, align });
 }
 function text(s, x, y, o = {}) {
   const size = o.size || 16;
@@ -45143,20 +45719,28 @@ function wrap(s, maxW, size = 16) {
 }
 function button(x, y, w, h, label, fn, o = {}) {
   const hover = mouse.x >= x && mouse.x <= x + w && mouse.y >= y && mouse.y <= y + h;
-  ctx.fillStyle = o.disabled ? '#cbbd9b' : hover ? UI.sel : (o.hot ? '#f7dc93' : UI.white);
-  rr(x, y, w, h, 6); ctx.fill(); ctx.lineWidth = 3; ctx.strokeStyle = UI.border; ctx.stroke();
+  const bc = o.disabled ? '#cbbd9b' : hover ? UI.sel : (o.hot ? '#f7dc93' : UI.white);
+  ctx.fillStyle = 'rgba(0,0,0,.25)'; rr(x + 1, y + 3, w, h, 6); ctx.fill();
+  ctx.fillStyle = vgrad(y, y + h, [[0, shade(bc, 0.5)], [0.5, bc], [1, shade(bc, -0.16)]]); rr(x, y, w, h, 6); ctx.fill();
+  if (!o.disabled) { ctx.fillStyle = 'rgba(255,255,255,.35)'; rr(x + 3, y + 3, w - 6, h * 0.38, 4); ctx.fill(); }
+  ctx.lineWidth = 3; ctx.strokeStyle = vgrad(y, y + h, [[0, '#8a5630'], [1, '#3a2212']]); rr(x, y, w, h, 6); ctx.stroke();
   text(label, x + w / 2, y + h / 2 - 9, { align: 'center', bold: true, size: 15, color: o.disabled ? UI.dim : UI.text });
   buttons.push({ x, y, w, h, fn, disabled: o.disabled });
 }
 function tooltip(lines, x, y, w = 300) {
   const ls = []; for (const l of lines) ls.push(...wrap(l, w - 24, 13));
   const h = ls.length * 17 + 18; x = Math.min(x, VW - w - 6); y = Math.min(y, VH - h - 6);
-  ctx.fillStyle = 'rgba(30,20,36,.92)'; rr(x, y, w, h, 7); ctx.fill(); ctx.strokeStyle = '#c8a0ff'; ctx.lineWidth = 2; ctx.stroke();
+  glass(x, y, w, h, 7, '#c8a0ff');
   ls.forEach((l, i) => text(l, x + 12, y + 9 + i * 17, { size: 13, color: i === 0 ? '#ffe9a8' : '#fff', bold: i === 0 }));
 }
 function bar(x, y, w, h, frac, col) {
-  ctx.fillStyle = '#3a2618'; ctx.fillRect(x, y, w, h);
-  ctx.fillStyle = col; ctx.fillRect(x + 1, y + 1, Math.max(0, (w - 2) * clamp(frac, 0, 1)), h - 2);
+  const r = Math.min(4, h / 2), fw = Math.max(0, (w - 4) * clamp(frac, 0, 1));
+  ctx.fillStyle = 'rgba(255,240,200,.5)'; rr(x - 1, y, w + 2, h + 1.5, r + 1); ctx.fill();      // lit lip under the socket
+  ctx.fillStyle = vgrad(y, y + h, [[0, '#1c120c'], [1, '#4a3222']]); rr(x, y, w, h, r); ctx.fill();
+  if (fw > 0) { ctx.save(); rr(x + 2, y + 2, w - 4, h - 4, Math.max(1, r - 1)); ctx.clip();
+    ctx.fillStyle = vgrad(y + 2, y + h - 2, [[0, shade(col, 0.35)], [0.45, col], [1, shade(col, -0.35)]]); ctx.fillRect(x + 2, y + 2, fw, h - 4);
+    ctx.fillStyle = 'rgba(255,255,255,.38)'; ctx.fillRect(x + 2, y + 2, fw, Math.max(1, (h - 4) * 0.35));
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.fillRect(x + 2 + fw - 1, y + 2, 1, h - 4); ctx.restore(); }
 }
 
 // ================= OVERLAYS: dialog, menus, toasts, fade =================
@@ -45574,7 +46158,7 @@ function heldDir() {   // the direction pressed most recently wins (pressing lef
   return null;
 }
 function dollTop() { return !!DOLL && menus.length <= DOLL.depth; }
-function overlayActive() { return MOB.portrait() || menus.length || dialogs.length || fadeA > 0 || !!WMAP || !!MASTER; }
+function overlayActive() { return COMMENTING || MOB.portrait() || menus.length || dialogs.length || fadeA > 0 || !!WMAP || !!MASTER; }
 
 function updateWorld(dt) {
   updateEnemyAnims(dt);
@@ -45707,15 +46291,26 @@ function objProgress(q, i) {
   if (o.type === 'defeat') return Math.min(o.qty, ((G.qprog[q.id] || {})[i] || 0));
   if (o.type === 'visit') return G.visited[o.map] ? 1 : 0;
   if (o.type === 'escort') return G.quests[q.id] === 'done' ? 1 : 0;
+  if (o.type === 'did') return Math.min(o.qty || 1, didCount(o));
   return 0;
 }
-function objGoal(o, q) { if (o.type === 'visit' || o.type === 'escort') return 1; if (q && q.side && o.type === 'defeat' && perk('studyHalf')) return Math.ceil(o.qty / 2); return o.qty; }
+// v0.28.2 teaching quests: objectives that watch what the player has done in trade ({type:'did', what, qty, text})
+function tstat() { return G.tstat = G.tstat || { exp: {}, req: 0 }; }
+function didCount(o) { const T = tstat();
+  if (o.what === 'export') return T.exp[o.from] || 0;                          // goods from region o.from sold in a town outside it
+  if (o.what === 'request') return T.req || 0;                                 // shop requests filled completely
+  if (o.what === 'hold') return fleet().some(sh => (shipType(sh).bulk || 0) > 0) ? 1 : 0;
+  if (o.what === 'portgh') return Object.keys(G.pgh || {}).length;
+  if (o.what === 'route') return fleet().some(sh => sh.route) ? 1 : 0;
+  return 0; }
+function objGoal(o, q) { if (o.type === 'visit' || o.type === 'escort') return 1; if (o.type === 'did') return o.qty || 1; if (q && q.side && o.type === 'defeat' && perk('studyHalf')) return Math.ceil(o.qty / 2); return o.qty; }
 function objLabel(o) {
   if (o.type === 'collect') return `Bring ${o.qty} ${item(o.item).name}`;
   if (o.type === 'store') return `Have ${o.qty} ${item(o.item).name} in your storehouse`;
   if (o.type === 'defeat') return `Defeat ${o.qty} ${(D.enemies[o.enemy] || { name: o.enemy }).name}`;
   if (o.type === 'visit') return `Travel to ${(D.maps[o.map] || { name: o.map }).name}`;
   if (o.type === 'escort') return `Bring ${(D.helpers[o.who] || { name: o.who }).name} home to ${(((D.sea || {}).ports || []).find(p => p.id === o.land) || { name: o.land }).name} and meet ${(D.npcs[o.ruler] || { name: 'the ruler' }).name}`;
+  if (o.type === 'did') return o.text || '?';
   return '?';
 }
 function questDone(q) { return q.objectives.every((o, i) => objProgress(q, i) >= objGoal(o, q)); }
@@ -45776,7 +46371,7 @@ function barterRaw(kind) { const R0 = MR(), L = skillLvl('bartering'); return ki
 function barterStanding(kind) { return barterRaw(kind) * (MR().standingShare == null ? 0.5 : MR().standingShare); }
 function haggleRoom(kind) { return barterRaw(kind) - barterStanding(kind); }
 function soldToday(sid, id) { const S = G.sold; return S ? ((S.v[sid] || {})[id] || 0) : 0; }      // v0.28: not just today - the pile shrinks by a share each night (MR().satRecover)
-function markSold(sid, id, n) { if (!sid) return; if (!G.sold) G.sold = { day: G.day, v: {} }; const v = G.sold.v[sid] = G.sold.v[sid] || {}; v[id] = (v[id] || 0) + n; }
+function markSold(sid, id, n) { if (!sid) return; { const t = townOfShop(sid), fr = itemRegion(id); if (t && isTradeGood(id) && fr !== townRegion(t)) { const T = tstat(); T.exp[fr] = (T.exp[fr] || 0) + n; } } if (!G.sold) G.sold = { day: G.day, v: {} }; const v = G.sold.v[sid] = G.sold.v[sid] || {}; v[id] = (v[id] || 0) + n; }
 function soldDecay() { const S = G.sold, k = MR().satRecover == null ? 0 : MR().satRecover; if (!S) return; for (const v of Object.values(S.v)) for (const id of Object.keys(v)) { v[id] = Math.floor(v[id] * (1 - k)); if (v[id] <= 0) delete v[id]; } }
 // Trade prices move: each shop's price for each trade good swings around its list value over about a week (MR().wave, MR().wavePeriod).
 function mkWave(sid, id) { const a = MR().wave || 0; if (!a || !G) return 1; let h = 0; for (const c of sid + ':' + id) h = (h * 31 + c.charCodeAt(0)) >>> 0; const per = (MR().wavePeriod || 7) * (0.8 + (h % 5) * 0.1); return 1 + a * Math.sin(2 * Math.PI * (G.day / per + (h % 1000) / 1000)); }
@@ -45892,7 +46487,7 @@ async function shopRequests(npc, sid) {
   for (const r of reqsFor(sid)) { const have = count(r.item); if (!have) continue; const n = Math.min(have, r.qty - r.got);
     const c = await choose(`${nm}'s request: ${item(r.item).name} (${r.got}/${r.qty})`, [{ label: `Hand over ${n} ${item(r.item).name}`, right: `${n * r.unit}g`, value: 'y', desc: `${r.unit}g each: about double what they'd normally pay.` }, { label: 'Not yet', value: 'n' }], { width: 520 });
     if (c !== 'y') continue; take(r.item, n); r.got += n; G.gold += n * r.unit; addProsper(sid, n * r.unit); AU.sfx('coin'); addSkillXp('bartering', 3);
-    if (r.got >= r.qty) { G.requests.splice(G.requests.indexOf(r), 1); await say(nm, [`That's all of it! You're a lifesaver. I'll keep buying ${item(r.item).name} whenever you have it.`], sp); } else await say(nm, [`Thank you! ${r.qty - r.got} more and we're square.`], sp); }
+    if (r.got >= r.qty) { tstat().req++; G.requests.splice(G.requests.indexOf(r), 1); await say(nm, [`That's all of it! You're a lifesaver. I'll keep buying ${item(r.item).name} whenever you have it.`], sp); } else await say(nm, [`Thank you! ${r.qty - r.got} more and we're square.`], sp); }
   if (reqsFor(sid).length || (G.reqDay || {})[sid] === G.day || G.requests.length >= (R0.maxActive || 4)) return; (G.reqDay = G.reqDay || {})[sid] = G.day;
   // a lead on a monster part you've been collecting
   G.partAsked = G.partAsked || {}; let req = null, line = '';
@@ -46483,9 +47078,10 @@ async function helperActions(id) {
   if (c === 'points') await companionPointsMenu(id);
   if (c === 'dismiss') { const ok = await choose(`Really dismiss ${h.name}?`, [{ label: 'Keep them', value: 'n' }, { label: 'Dismiss', value: 'y' }], { width: 340 }); if (ok === 'y') { delete G.helpers[id]; toast(`${h.name} was dismissed.`); } }
 }
+const QGROUP = { main: 'Story', ability: 'Ability', economic: 'Trade', companion: 'Companion' };
 async function questMenu() {
   await openMenu({ title: 'Quests', width: 680, closeKey: 'j',
-    items: () => requestRows().concat(D.quests.filter(q => G.quests[q.id]).sort((a, b) => (G.quests[a.id] === 'done') - (G.quests[b.id] === 'done')).map(q => ({ label: q.name, right: G.quests[q.id] === 'done' ? 'done' : 'active', disabled: G.quests[q.id] === 'done', desc: G.quests[q.id] === 'done' ? 'Completed.' : questLines(q).join('   ') + `   (Return to ${q.companion ? (D.helpers[q.companion] || { name: '?' }).name + ' (Companions > Crew > Talk)' : (D.npcs[q.giver] || { name: '?' }).name})` }))),
+    items: () => storyWardRows().concat(requestRows()).concat(D.quests.filter(q => G.quests[q.id]).sort((a, b) => (G.quests[a.id] === 'done') - (G.quests[b.id] === 'done')).map(q => ({ label: (QGROUP[q.group] ? QGROUP[q.group] + ': ' : '') + q.name, right: G.quests[q.id] === 'done' ? 'done' : 'active', disabled: G.quests[q.id] === 'done', desc: G.quests[q.id] === 'done' ? 'Completed.' : questLines(q).join('   ') + `   (Return to ${q.companion ? (D.helpers[q.companion] || { name: '?' }).name + ' (Companions > Crew > Talk)' : (D.npcs[q.giver] || { name: '?' }).name})` }))),
     onSelect: () => false });
 }
 // ================= MASTER MENU (top-right button or any screen key) =================
@@ -46558,12 +47154,12 @@ function inMasterXf(fn) {
 }
 function renderMaster() {
   if (!MASTER) return;
-  ctx.fillStyle = 'rgba(46,30,20,.96)'; ctx.fillRect(0, 0, VW, MB); ctx.fillStyle = UI.border; ctx.fillRect(0, MB - 3, VW, 3);
+  ctx.fillStyle = vgrad(0, MB, [[0, '#7a4b26'], [0.5, '#4f2e17'], [1, '#2c180b']]); ctx.fillRect(0, 0, VW, MB); ctx.fillStyle = 'rgba(255,225,170,.18)'; ctx.fillRect(0, 0, VW, 3); ctx.fillStyle = vgrad(MB - 3, MB, [[0, '#ffe08a'], [1, '#a9781f']]); ctx.fillRect(0, MB - 3, VW, 3);
   const tw = (VW - 70) / MTABS.length; MASTER._tabs = [];
   MTABS.forEach((t, i) => {
     const r = { x: 8 + i * tw, y: 7, w: tw - 6, h: 31, i }; MASTER._tabs.push(r);
     const on = i === MASTER.tab, off = mtabOff(i), hov = mouse.x >= r.x && mouse.x <= r.x + r.w && mouse.y >= r.y && mouse.y <= r.y + r.h;
-    ctx.fillStyle = off ? '#7a6a55' : on ? UI.sel : hov ? '#f7e4b0' : UI.bg2; rr(r.x, r.y, r.w, r.h, 6); ctx.fill();
+    chip(r.x, r.y, r.w, r.h, off ? '#7a6a55' : on ? UI.sel : hov ? '#f7e4b0' : UI.bg2, 6); rr(r.x, r.y, r.w, r.h, 6);
     if (on && MASTER.focus === 'bar') { ctx.lineWidth = 3; ctx.strokeStyle = '#fff6c8'; ctx.stroke(); }
     const kl = SET.mobile ? '' : t.id ? K(t.id) : 'Esc';
     text(t.label, r.x + r.w / 2 - (kl ? 12 : 0), r.y + 7, { align: 'center', size: 14, bold: on, color: off ? '#4a3d30' : UI.text });
@@ -46571,10 +47167,10 @@ function renderMaster() {
     text(kl, r.x + r.w - kw / 2 - 5, r.y + 9, { align: 'center', size: 11, bold: true, color: UI.border }); }
   });
   const cx = VW - 54; MASTER._close = { x: cx, y: 7, w: 46, h: 31 }; const ch = mouse.x >= cx && mouse.y <= 38 && mouse.y >= 7;
-  ctx.fillStyle = ch ? UI.sel : UI.white; rr(cx, 7, 46, 31, 6); ctx.fill(); text('X', cx + 23, 13, { bold: true, align: 'center' });
+  chip(cx, 7, 46, 31, ch ? UI.sel : UI.white, 6); text('X', cx + 23, 13, { bold: true, align: 'center' });
   if (DOLL) return;   // the equipment screen shows its own key help
   const hint = SET.mobile ? (MASTER.focus === 'bar' ? 'Joystick left/right: choose a tab     Down or A: go into it     B: close' : 'Up from the top row: back to the tabs     B: close') : MASTER.focus === 'bar' ? 'Left/Right: choose a tab     Down or Enter: go into it     Esc: close' : 'Up from the top row: back to the tabs     Esc: close';
-  ctx.font = `bold 13px ${FONT}`; const hw = ctx.measureText(hint).width + 24; ctx.fillStyle = 'rgba(30,20,30,.82)'; rr((VW - hw) / 2, VH - 26, hw, 22, 6); ctx.fill();
+  ctx.font = `bold 13px ${FONT}`; const hw = ctx.measureText(hint).width + 24; glass((VW - hw) / 2, VH - 26, hw, 22, 6);
   text(hint, VW / 2, VH - 23, { size: 13, bold: true, align: 'center', color: '#fff' });
 }
 function hudButtons() {
@@ -48162,8 +48758,8 @@ function renderDialog() {
   let tx = x + 24;
   if (PT) tx = x + 236;
   else if (d.spr) { ctx.fillStyle = UI.bg2; rr(x + 18, y + 22, 104, 104, 6); ctx.fill(); drawSpr(d.spr, x + 22, y + 26, 96); tx = x + 140; }
-  if (d.speaker) text(d.speaker, tx, y + 18, { bold: true, size: 18, color: UI.border });
-  wrap(lineText(d.lines[d.i]), w - (tx - x) - 30, 17).slice(0, 5).forEach((l, i) => text(l, tx, y + (d.speaker ? 46 : 26) + i * 22, { size: 17 }));
+  if (d.speaker) { ctx.font = `bold 18px ${FONT}`; const sw = ctx.measureText(d.speaker).width; chip(tx - 10, y + 13, sw + 20, 28, '#6b4222', 6, { stroke: '#d9a441' }); text(d.speaker, tx, y + 17, { bold: true, size: 18, color: '#fff1cc', shadow: true }); }
+  wrap(lineText(d.lines[d.i]), w - (tx - x) - 30, 17).slice(0, 5).forEach((l, i) => text(l, tx, y + (d.speaker ? 50 : 26) + i * 22, { size: 17 }));
   if (Math.floor(R.t * 2) % 2) text('v', x + w - 30, y + h - 30, { bold: true, color: UI.border });
 }
 function renderMenus(from = 0, to = menus.length) {
@@ -48177,22 +48773,22 @@ function renderMenus(from = 0, to = menus.length) {
     const tabH = m.tabs ? 34 : 0; const w = m.width, h = 56 + tabH + vis * rowH + descH + footH;
     const x = (VW - w) / 2; let y = Math.max(MASTER ? MB + 8 : 10, (VH - h) / 2 - 20); if (MASTER && y + h > VH - 30) y = Math.max(MB + 4, VH - 30 - h);
     panel(x, y, w, h); m._box = { x, y, w, h }; m._rows = [];
-    text(typeof m.title === 'function' ? m.title(m) : m.title, x + 20, y + 16, { bold: true, size: 18, color: UI.border });
+    titleBand(x, y, w, typeof m.title === 'function' ? m.title(m) : m.title);
     m._tabs = null;
     if (m.tabs) { m._tabs = []; const tw = (w - 32) / m.tabs.length; m.tabs.forEach((t, i) => { const tx = x + 16 + i * tw, ty = y + 44, r = { x: tx, y: ty, w: tw - 4, h: 26, i }; m._tabs.push(r);
       const on = i === m.tab, hov = mouse.x >= r.x && mouse.x <= r.x + r.w && mouse.y >= r.y && mouse.y <= r.y + r.h;
-      ctx.fillStyle = on ? UI.sel : hov ? '#f7e4b0' : UI.bg2; rr(r.x, r.y, r.w, r.h, 5); ctx.fill(); text(t.label, r.x + r.w / 2, r.y + 5, { align: 'center', size: 13, bold: on }); }); }
+      chip(r.x, r.y, r.w, r.h, on ? UI.sel : hov ? '#f7e4b0' : UI.bg2, 5, { shadow: on }); text(t.label, r.x + r.w / 2, r.y + 5, { align: 'center', size: 13, bold: on }); }); }
     for (let r = 0; r < vis; r++) {
       const i = m.scroll + r, it = items[i]; const ry = y + 46 + tabH + r * rowH; if (!it) continue;
       const row = { x: x + 12, y: ry, w: w - 24, h: rowH - 2, i }; m._rows.push(row);
       if (mouse.moved && mouse.x >= row.x && mouse.x <= row.x + row.w && mouse.y >= row.y && mouse.y <= row.y + row.h && m === menus[menus.length - 1]) m.index = i;
-      if (i === m.index && !(MASTER && MASTER.focus === 'bar' && m === masterBase())) { ctx.fillStyle = UI.sel; rr(row.x, row.y, row.w, row.h, 5); ctx.fill(); }
+      if (i === m.index && !(MASTER && MASTER.focus === 'bar' && m === masterBase())) chip(row.x, row.y, row.w, row.h, UI.sel, 5, { stroke: '#b07a1a' });
       let lx = x + 24; if (it.icon) { drawSpr(it.icon, lx, ry + 1, 28); lx += 34; }
       text(it.label, lx, ry + 6, { color: it.disabled ? UI.dim : UI.text, bold: i === m.index });
       if (it.bar !== undefined) bar(x + w - 230, ry + 10, 120, 10, it.bar, UI.green);
       if (it.right) text(it.right, x + w - 26, ry + 6, { align: 'right', color: it.disabled ? UI.dim : UI.text });
     }
-    if (items.length > maxRows) text(`${m.scroll + 1}-${m.scroll + Math.min(vis, items.length)} of ${items.length}`, x + w - 24, y + 18, { size: 12, align: 'right', color: UI.dim });
+    if (items.length > maxRows) text(`${m.scroll + 1}-${m.scroll + Math.min(vis, items.length)} of ${items.length}`, x + w - 24, y + 18, { size: 12, align: 'right', color: '#f3dfb0' });
     const dy = y + 50 + tabH + vis * rowH; ctx.fillStyle = UI.bg2; ctx.fillRect(x + 16, dy, w - 32, 2);
     const cur = items[m.index]; if (cur && cur.desc) wrap(cur.desc, w - 44, 14).slice(0, 3).forEach((l, i) => text(l, x + 22, dy + 8 + i * 18, { size: 14 }));
     if (m.footer) text(typeof m.footer === 'function' ? m.footer(m) : m.footer, x + 22, dy + descH, { size: 13, color: UI.dim, bold: true });
@@ -48202,10 +48798,10 @@ function renderGridMenu(m) {      // pictures in a grid, no labels (e.g. choosin
   const items = menuItems(m), cols = m.grid, rows = Math.ceil(items.length / cols), cw = 120, ch = 150, gap = 14;
   const AG = m.angles ? 150 : 0, w = cols * cw + (cols - 1) * gap + 48, h = 60 + rows * ch + (rows - 1) * gap + AG + (m.footer ? 40 : 18), x = (VW - w) / 2, y = Math.max(10, (VH - h) / 2 - 10);
   panel(x, y, w, h); m._box = { x, y, w, h }; m._rows = [];
-  text(typeof m.title === 'function' ? m.title(m) : m.title, x + w / 2, y + 16, { bold: true, size: 18, color: UI.border, align: 'center' });
+  titleBand(x, y, w, typeof m.title === 'function' ? m.title(m) : m.title, 'center');
   items.forEach((it, i) => { const cx = x + 24 + (i % cols) * (cw + gap), cy = y + 50 + Math.floor(i / cols) * (ch + gap), r = { x: cx, y: cy, w: cw, h: ch, i }; m._rows.push(r);
     if (mouse.moved && mouse.x >= r.x && mouse.x <= r.x + r.w && mouse.y >= r.y && mouse.y <= r.y + r.h && m === menus[menus.length - 1]) m.index = i;
-    const on = i === m.index; ctx.fillStyle = on ? UI.sel : UI.bg2; rr(cx, cy, cw, ch, 8); ctx.fill();
+    const on = i === m.index; chip(cx, cy, cw, ch, on ? UI.sel : UI.bg2, 8, { shadow: on });
     if (on) { ctx.strokeStyle = UI.border; ctx.lineWidth = 3; rr(cx, cy, cw, ch, 8); ctx.stroke(); }
     const sz = 104, ph = on ? R.t * 6 : 0; drawActor(it.icon, cx + (cw - sz) / 2, cy + (ch - sz) / 2 - (on ? Math.abs(Math.sin(R.t * 6)) * 3 : 0), 'down', ph, on, 1, null, sz); });
   if (m.angles && items[m.index]) {     // the chosen one from every side, walking in place
@@ -48216,7 +48812,7 @@ function renderGridMenu(m) {      // pictures in a grid, no labels (e.g. choosin
 }
 function renderToasts() {
   toasts.forEach((t, i) => { const a = Math.min(1, t.ttl); ctx.globalAlpha = a; ctx.font = `bold 15px ${FONT}`; const w = ctx.measureText(t.t).width + 28;
-    const x = VW - w - 14, y = 60 + i * 38; ctx.fillStyle = 'rgba(30,20,30,.82)'; rr(x, y, w, 30, 6); ctx.fill(); text(t.t, x + 14, y + 7, { bold: true, size: 15, color: t.col === UI.red ? '#ff8a7a' : t.col === UI.green ? '#a6f08f' : t.col === UI.blue ? '#9fd0ff' : '#fff' }); ctx.globalAlpha = 1; });
+    const x = VW - w - 14, y = 60 + i * 38; glass(x, y, w, 30, 6); text(t.t, x + 14, y + 7, { bold: true, size: 15, color: t.col === UI.red ? '#ff8a7a' : t.col === UI.green ? '#a6f08f' : t.col === UI.blue ? '#9fd0ff' : '#fff' }); ctx.globalAlpha = 1; });
 }
 
 // ================= EQUIPMENT & PERKS =================
@@ -48493,6 +49089,7 @@ function questAvailable(q, giver) {
   if (q.unlockSeen && !(G.seen || {})[q.unlockSeen]) return false;
   if (q.unlockLevel && playerLvl() < q.unlockLevel) return false;
   if (q.unlockFlag && !G.flags[q.unlockFlag]) return false;
+  if (q.needWards && wardsMissing(q.needWards).length) return false;
   if (q.regionTowns && !regionTownsWarded(q.regionTowns)) return false;
   if (q.kingdom && (G.kingdomDay || {})[q.kingdom] == null) return false;
   if (q.survivor != null) { const st = G.surv; if (!st || st.id !== q.survivor || st.step !== q.step || G.day < (st.readyDay || 0)) return false; }
@@ -48901,10 +49498,16 @@ function crewSkill(sk) { let v = skillLvl(sk); for (const id of Object.keys(G.he
 
 // survivors
 function SV() { return D.survivors || { list: [], daysBetween: 7 }; }
+function wardsMissing(list) { return (list || []).filter(r => !regionWarded(r)); }
+function storyWardRows() { const rows = [], done = G.survDone || [], add = (miss, why) => { for (const r of miss) { const rg = D.regions[r] || {}; rows.push({ label: `Story: raise the great ward over ${rg.name || r}`, right: 'needed', disabled: true, desc: `${why}  Ward every town there first, then speak to ${(D.npcs[rg.hermit] || { name: 'the hermit' }).name}.` }); } };
+  if (G.quests.q5 === 'done' && !G.surv && !G.escort) { const next = (SV().list || []).find(s => !done.includes(s.id)); if (next) add(wardsMissing(next.needWards), 'No one from the lands beyond can reach Briarwick while this land lies open to the Hollow King.'); }
+  const fin = D.quests.find(q => q.id === 'q_final'); if (fin && !G.quests.q_final && done.length === (SV().list || []).length) add(wardsMissing(fin.needWards), 'Aldwin will not send you against the Hollow King while a land lies unwarded behind you.');
+  return rows; }
 function survDef(id) { return (SV().list || []).find(s => s.id === id); }
 function checkSurvivorArrival() {
   if (G.surv || G.escort) return null; const done = G.survDone || [];
   const next = (SV().list || []).find(s => !done.includes(s.id)); if (!next) return null;
+  if (wardsMissing(next.needWards).length) return null;      // v0.28.2: the next land's survivor only reaches Briarwick once the lands before it are under their great wards
   noteKingdoms(); const wait = SV().arrivalWait || 7;
   if (!done.length) { if (G.day < 1 + wait) return null; }
   else { const d0 = (G.kingdomDay || {})[done[done.length - 1]]; if (d0 == null || G.day < d0 + wait) return null; }
@@ -49327,6 +49930,69 @@ async function checkReports() {
     const tick = setInterval(() => { if (wait()) { clearInterval(tick); script(() => reportBlocked('could not reach the report address')); } }, 2000); }
 }
 setTimeout(checkReports, 60000);
+// ================= TESTER COMMENTS (v0.28.2): a button on every screen =================
+// The button (or F8) opens a note box. The note is posted to the reports channel with what the tester was looking at:
+// the screen, the dialogue line or menu row, the map, the day, the quests in hand, and a picture of the screen.
+let COMMENTING = false;
+function screenContext() {
+  const L = [], tx = v => typeof v === 'function' ? v() : v;
+  try {
+    const d = dialogs[0], m = menus[menus.length - 1];
+    let screen = R.scene === 'title' ? 'Title screen' : C ? 'Battle' : R.scene === 'sea' ? 'At sea' : 'World';
+    if (WMAP) screen = 'World map'; if (MASTER) screen = 'Main menu: ' + MTABS[MASTER.tab].label; if (DOLL) screen = 'Equipment screen';
+    if (m) screen += ' > menu "' + String(tx(m.title) || '').slice(0, 80) + '"'; if (d) screen += ' > dialogue';
+    L.push('Screen: ' + screen);
+    if (d) L.push('Dialogue: ' + (d.speaker || '(narration)') + ': "' + String(d.lines[d.i] || '').slice(0, 300) + '" (line ' + (d.i + 1) + ' of ' + d.lines.length + ')');
+    if (m) { const its = menuItems(m), it = its[m.index]; if (it) L.push('Menu row: "' + String(it.label || '').slice(0, 100) + '"' + (it.right ? ' [' + String(it.right).slice(0, 40) + ']' : '') + ' (row ' + (m.index + 1) + ' of ' + its.length + ')'); }
+    if (C) L.push('Battle: ' + C.units.filter(u => u.side === 'enemy').map(u => u.name + (u.dead ? ' (dead)' : ' ' + u.hp + 'hp')).join(', ').slice(0, 300));
+    if (G) { L.push('Where: ' + ((R.map && R.map.name) || R.mapId || '?') + ', day ' + G.day + ', gold ' + G.gold);
+      const act = D.quests.filter(q => G.quests[q.id] === 'active').map(q => q.name); if (act.length) L.push('Quests in hand: ' + act.join('; ').slice(0, 400)); }
+  } catch (e) { L.push('(context error: ' + e.message + ')'); }
+  return L;
+}
+function commentBody(kind, note, ctx) { return ['**Tester comment: ' + kind + '** - v' + D.meta.version + ' - ' + ((G && G.name) || 'no hero yet') + ' (' + SESSION.id + ')', '> ' + note.replace(/\n/g, '\n> '), '```', ...ctx, '```'].join('\n').slice(0, 1900); }
+function commentQueue() { try { return JSON.parse(localStorage.getItem('gt_comments') || '[]'); } catch (e) { return []; } }
+async function postComment(content, shot) {
+  const url = D.meta.reportWebhook; if (!url || DRAFT) return false;
+  try { let r;
+    if (shot) { const fd = new FormData(); fd.append('payload_json', JSON.stringify({ content, allowed_mentions: { parse: [] } })); fd.append('files[0]', shot, 'screen.png'); r = await fetch(url, { method: 'POST', body: fd }); }
+    else r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content, allowed_mentions: { parse: [] } }) });
+    return r.ok; } catch (e) { return false; }
+}
+async function flushComments() { const q = commentQueue(); if (!q.length) return; const left = []; for (const c of q) if (!(await postComment(c, null))) left.push(c); try { localStorage.setItem('gt_comments', JSON.stringify(left)); } catch (e) {} }
+function openComment() {
+  if (COMMENTING || document.getElementById('nm-ov')) return; COMMENTING = true; keys.clear();
+  const ctx = screenContext(); let shot = null; try { cv.toBlob(b => { shot = b; }, 'image/png'); } catch (e) {}
+  const ov = document.createElement('div'); ov.id = 'cm-ov';
+  ov.innerHTML = `<style>#cm-ov{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(20,14,30,.55);z-index:30}
+#cm-ov .b{background:#f6ebd2;border:4px solid #6b4423;border-radius:10px;padding:16px 18px;width:min(460px,90vw);font-family:"Trebuchet MS",Verdana,sans-serif;color:#3a2618;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+#cm-ov .t{font-weight:bold;font-size:19px;color:#6b4423;margin-bottom:4px}#cm-ov .s{font-size:13px;margin-bottom:8px;color:#6b5a3e}
+#cm-ov .k{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}#cm-ov .k label{font-size:14px;border:2px solid #6b4423;border-radius:6px;padding:4px 8px;background:#fffaf0;cursor:pointer}#cm-ov .k input{margin-right:4px}
+#cm-ov textarea{width:100%;height:110px;box-sizing:border-box;font:15px "Trebuchet MS",sans-serif;padding:8px;border:3px solid #6b4423;border-radius:6px;background:#fffaf0;color:#3a2618;resize:vertical}
+#cm-ov .r{display:flex;gap:8px;margin-top:10px}#cm-ov button{flex:1;font:bold 16px "Trebuchet MS",sans-serif;padding:8px;border:3px solid #6b4423;border-radius:6px;background:#f2c862;color:#3a2618;cursor:pointer}#cm-ov button.x{background:#fffaf0}</style>
+<div class="b"><div class="t">Leave a comment</div><div class="s" id="cm-ctx"></div>
+<div class="k">${['Bug', 'Confusing', 'Annoying', 'Idea', 'I like this'].map((k, i) => `<label><input type="radio" name="cm-k" value="${k}"${i === 1 ? ' checked' : ''}>${k}</label>`).join('')}</div>
+<textarea id="cm-in" maxlength="1200" placeholder="What did you notice? A picture of this screen is sent with your note."></textarea>
+<div class="r"><button id="cm-no" class="x" type="button">Cancel</button><button id="cm-ok" type="button">Send</button></div></div>`;
+  document.body.appendChild(ov); document.getElementById('cm-ctx').textContent = 'About: ' + ctx[0].replace('Screen: ', '');
+  const inp = document.getElementById('cm-in'); setTimeout(() => inp.focus(), 50);
+  const close = () => { ov.remove(); keys.clear(); hits.length = 0; COMMENTING = false; };
+  document.getElementById('cm-no').addEventListener('click', close);
+  ov.addEventListener('keydown', e => { if (e.key === 'Escape') { e.preventDefault(); close(); } });
+  document.getElementById('cm-ok').addEventListener('click', async () => {
+    const note = inp.value.replace(/[`@]/g, "'").trim(); if (!note) { inp.focus(); inp.style.borderColor = '#c0453a'; return; }
+    const kind = (document.querySelector('input[name="cm-k"]:checked') || {}).value || 'Comment', content = commentBody(kind, note, ctx); close();
+    if (await postComment(content, shot)) { toast('Comment sent - thank you!', UI.green); flushComments(); }
+    else { try { localStorage.setItem('gt_comments', JSON.stringify(commentQueue().concat([content]).slice(-30))); } catch (e) {} toast('Could not send right now. Your comment is saved and will be sent next time.', UI.red); }
+  });
+}
+(() => { if (typeof document === 'undefined' || DRAFT) return;
+  const b = document.createElement('button'); b.id = 'cm-btn'; b.type = 'button'; b.textContent = 'Comment'; b.title = 'Tell us about this screen (F8)';
+  b.style.cssText = 'position:fixed;right:8px;top:50%;z-index:15;font:bold 13px "Trebuchet MS",Verdana,sans-serif;padding:6px 10px;border:2px solid #6b4423;border-radius:8px;background:rgba(246,235,210,.9);color:#3a2618;cursor:pointer;opacity:.85';
+  b.addEventListener('click', e => { e.preventDefault(); b.blur(); openComment(); }); document.body.appendChild(b);
+  addEventListener('keydown', e => { if (e.key === 'F8') { e.preventDefault(); openComment(); } });
+  setTimeout(flushComments, 90000); })();
+
 async function reportBlocked(why) {
   SESSION.asked = true;
   const pick = await choose('Your play reports are not getting through', [
