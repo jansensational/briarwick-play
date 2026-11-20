@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.29.4</title>
+<title>Reagents of Briarwick v0.29.7</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   canvas { touch-action: none; }
@@ -29,7 +29,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.29.4",
+  "version": "0.29.7",
   "tileSize": 16,
   "scale": 4,
   "dayStart": 6,
@@ -54,7 +54,8 @@ window.GAME_DATA = {
    "base": 22,
    "exp": 1.5,
    "maxLevel": 21
-  }
+  },
+  "textTrades": 1
  },
  "start": {
   "map": "house",
@@ -21288,7 +21289,11 @@ window.GAME_DATA = {
    "sell": 26,
    "stats": {},
    "reagentSave": 0.08,
-   "desc": "Keeps reagents fresh. 8% chance each reagent is not used up. Holds any number of reagents (spells draw from it first); the contents follow you to any new pouch."
+   "desc": "Keeps reagents fresh: 8% chance each reagent is not used up. Holds 6 kinds of reagent, 20 of each. Spells use only what is in your pouch.",
+   "pouch": {
+    "slots": 6,
+    "per": 20
+   }
   },
   "fine_pouch": {
    "name": "Alchemist's Satchel",
@@ -21299,7 +21304,11 @@ window.GAME_DATA = {
    "sell": 167,
    "stats": {},
    "reagentSave": 0.18,
-   "desc": "Finely stitched and lined. 18% chance each reagent is not used up. Holds any number of reagents (spells draw from it first); the contents follow you to any new pouch."
+   "desc": "Finely stitched and lined: 18% chance each reagent is not used up. Holds 8 kinds of reagent, 30 of each. Spells use only what is in your pouch.",
+   "pouch": {
+    "slots": 8,
+    "per": 30
+   }
   },
   "helper_bed": {
    "name": "Companion Bed",
@@ -22279,7 +22288,11 @@ window.GAME_DATA = {
    "sell": 5,
    "stats": {},
    "reagentSave": 0,
-   "desc": "Your grandmother's old reagent pouch. Holds any number of reagents, but nothing comes back out; spells draw from it first. Swap pouches and the contents follow by magic."
+   "desc": "Your grandmother's old reagent pouch. Holds 4 kinds of reagent, 15 of each. Spells use only what is in your pouch.",
+   "pouch": {
+    "slots": 4,
+    "per": 15
+   }
   },
   "seed_satchel": {
    "name": "Bottomless Seed Satchel",
@@ -22287,10 +22300,12 @@ window.GAME_DATA = {
    "sprite": "i_seed_satchel",
    "price": 120,
    "sell": 40,
-   "pocketBonus": {
-    "seed": 50
-   },
-   "desc": "A satchel that is roomier inside than out. Carry 50 more seeds. (Works while it's in your bag; one of each counts.)"
+   "desc": "A satchel that is roomier inside than out: 6 extra slots for seeds, 50 to a slot. It takes no bag slot of its own.",
+   "holds": {
+    "only": "seed",
+    "slots": 6,
+    "per": 50
+   }
   },
   "potion_belt": {
    "name": "Bandolier of Holding",
@@ -22309,10 +22324,12 @@ window.GAME_DATA = {
    "sprite": "i_reagent_case",
    "price": 220,
    "sell": 73,
-   "pocketBonus": {
-    "reagent": 20
-   },
-   "desc": "Lined with folded space. Carry 20 more reagents outside your pouch. (Works while it's in your bag; one of each counts.)"
+   "desc": "Lined with folded space: 4 extra slots for reagents outside your pouch, 20 to a slot. It takes no bag slot of its own.",
+   "holds": {
+    "only": "reagent",
+    "slots": 4,
+    "per": 20
+   }
   },
   "timber": {
    "name": "Verdant Timber",
@@ -22875,6 +22892,72 @@ window.GAME_DATA = {
    "price": 2500,
    "sell": 800,
    "desc": "A scrying stone tuned to your household. It shows you what every worker did each day without your having to ask them, wherever they are."
+  },
+  "travel_sack": {
+   "name": "Travel Sack",
+   "type": "bag",
+   "bag": {
+    "slots": 8,
+    "per": 20
+   },
+   "sprite": "i_gran_pouch",
+   "price": 60,
+   "sell": 20,
+   "desc": "A plain drawstring sack. 8 slots, up to 20 of one thing in each. A character carries up to three bags."
+  },
+  "leather_satchel": {
+   "name": "Leather Satchel",
+   "type": "bag",
+   "bag": {
+    "slots": 12,
+    "per": 20
+   },
+   "sprite": "i_herb_pouch",
+   "price": 150,
+   "sell": 50,
+   "desc": "A sturdy satchel with a good strap. 12 slots, up to 20 of one thing in each. A character carries up to three bags."
+  },
+  "rucksack": {
+   "name": "Rucksack",
+   "type": "bag",
+   "bag": {
+    "slots": 18,
+    "per": 30
+   },
+   "sprite": "i_seed_satchel",
+   "price": 600,
+   "sell": 200,
+   "desc": "A framed pack for long roads. 18 slots, up to 30 of one thing in each. A character carries up to three bags."
+  },
+  "explorers_pack": {
+   "name": "Explorer's Pack",
+   "type": "bag",
+   "bag": {
+    "slots": 24,
+    "per": 40
+   },
+   "sprite": "i_fine_pouch",
+   "price": 1800,
+   "sell": 600,
+   "desc": "Waxed canvas, brass buckles and a pocket for everything. 24 slots, up to 40 of one thing in each. A character carries up to three bags."
+  },
+  "storage_chest": {
+   "name": "Storage Chest",
+   "type": "furniture",
+   "furn": "chest",
+   "sprite": "t_chest",
+   "price": 250,
+   "sell": 80,
+   "desc": "An oak chest for your cottage: 16 more storehouse slots, up to 40 of one thing in each. You can own several."
+  },
+  "jar_rack": {
+   "name": "Jar Rack",
+   "type": "furniture",
+   "furn": "jars",
+   "sprite": "t_chest",
+   "price": 320,
+   "sell": 100,
+   "desc": "A wall of glass jars for your cottage: 12 storehouse slots for reagents only, up to 60 in each."
   }
  },
  "spells": {
@@ -25064,6 +25147,11 @@ window.GAME_DATA = {
    "askLines": [
     "I keep mending the same hurts the same way, {hero}. There is more to learn, and I would rather you helped me choose.",
     "Gran used to say a healer who stops learning starts burying. So. What next?"
+   ],
+   "recruit": "recruit_brenna",
+   "joinLines": [
+    "I have my trowel, my mother's seed tin and one clean apron. That is everything I own, and it is everything I need.",
+    "Show me the greenhouse. I want to see how bad it is."
    ]
   },
   "kael": {
@@ -25110,6 +25198,11 @@ window.GAME_DATA = {
    "askLines": [
     "Caravan work taught me one way to fight. You have shown me three more. Pick one and I will drill it until it is mine.",
     "I am not too proud to ask, {hero}. Where am I weakest?"
+   ],
+   "recruit": "recruit_kael",
+   "joinLines": [
+    "I travel light. A sword, a whetstone, and a debt I am working off.",
+    "Point me at the trouble and stand a little behind me. That is all the instruction I need."
    ]
   },
   "pip": {
@@ -25157,6 +25250,11 @@ window.GAME_DATA = {
    "askLines": [
     "I have had an idea. Several ideas. Possibly too many ideas. Could you pick one before I try them all at once?",
     "{hero}! I worked out a new pattern last night, or the start of one. Which way should I take it?"
+   ],
+   "recruit": "recruit_pip",
+   "joinLines": [
+    "I have packed. It did not take long. I own a book and half an eyebrow.",
+    "Where are we going? Is it dangerous? Do not tell me. Tell me. No, do not."
    ]
   },
   "seren": {
@@ -25494,8 +25592,9 @@ window.GAME_DATA = {
    "role": "shop",
    "shop": "trader",
    "dialog": [
-    "Treasures from across the sea, for those with coin."
-   ]
+    "On the Mainland a crab shell is rubbish. Here a wolf fang is a wonder. I stand in the middle and charge both sides for the view."
+   ],
+   "voice": 2
   },
   "gideon": {
    "name": "Gideon",
@@ -25616,8 +25715,9 @@ window.GAME_DATA = {
    "sprite": "c_chief_oaka",
    "role": "leader",
    "dialog": [
-    "So you are the one who saved our Verdant Isles kin. You are welcome here."
-   ]
+    "So you are the one who carried our cousin home. Sit down, you are making the hall look untidy. Nobody stands on ceremony here; we voted on it."
+   ],
+   "voice": 2
   },
   "azure_trader": {
    "name": "Port Azure Trader",
@@ -25651,8 +25751,9 @@ window.GAME_DATA = {
    "sprite": "c_admiral_coralie",
    "role": "leader",
    "dialog": [
-    "So you are the one who saved our Azure Atoll kin. You are welcome here."
-   ]
+    "You brought one of mine home across open water with no escort. I have court-martialled captains for doing it worse. At ease. You are welcome on the Atoll."
+   ],
+   "voice": 2
   },
   "thornhaven_trader": {
    "name": "Thornhaven Trader",
@@ -25686,8 +25787,9 @@ window.GAME_DATA = {
    "sprite": "c_king_aldric",
    "role": "leader",
    "dialog": [
-    "So you are the one who saved our Thornhaven kin. You are welcome here."
-   ]
+    "You brought a Thornhaven soldier home alive. I have not had that kind of news in a long season. Come in out of the wind. We do not kneel here any more; there is no time."
+   ],
+   "voice": 2
   },
   "ember_trader": {
    "name": "Starfall Trader",
@@ -25721,8 +25823,9 @@ window.GAME_DATA = {
    "sprite": "c_archmage_ysolde",
    "role": "leader",
    "dialog": [
-    "So you are the one who saved our The Ember Isles kin. You are welcome here."
-   ]
+    "Ah. The one who returned my colleague, and in one piece. Do come in, and do not touch the brass instruments; two of them are measuring something and the third is thinking."
+   ],
+   "voice": 2
   },
   "rowan": {
    "name": "Rowan",
@@ -26095,6 +26198,7 @@ window.GAME_DATA = {
   "homecenter": {
    "name": "Gideon's Home Center",
    "sells": [
+    "travel_sack",
     "gh_restore",
     "helper_bed",
     "reading_desk",
@@ -26105,7 +26209,12 @@ window.GAME_DATA = {
     "home_alembic",
     "gh_row",
     "gh_row2",
-    "gh_full"
+    "gh_full",
+    "leather_satchel",
+    "rucksack",
+    "explorers_pack",
+    "storage_chest",
+    "jar_rack"
    ],
    "buysTypes": []
   },
@@ -31434,7 +31543,8 @@ window.GAME_DATA = {
    "name": "Copper Commission",
    "giver": "bram",
    "intro": [
-    "Copper ore! Where'd you find that? Bring me 8 and I'll forge something special."
+    "Hold on. Hold on. Is that copper on your boots? Where in the valley did you find copper?",
+    "I have been hammering bog iron into door hinges for ten years. Bring me 8 lumps of proper copper ore and I will make something I am not ashamed to hang in the window."
    ],
    "objectives": [
     {
@@ -31444,7 +31554,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Fine copper. I'll keep scale mail and bucklers in stock for you now."
+    "Look at the colour of that. Like a new penny.",
+    "Scale mail and bucklers, on my shelf from today. Tell people Bram made them. Tell them twice."
    ],
    "reward": {
     "gold": 120,
@@ -31465,7 +31576,8 @@ window.GAME_DATA = {
    "name": "Steel for Briarwick",
    "giver": "bram",
    "intro": [
-    "Iron! Proper iron. 10 ore and I'll learn the Highmoor steel trick."
+    "Iron. Real iron, out of real rock, not scraped off a swamp.",
+    "There is a trick they use up in Highmoor to turn it into steel. Hilda showed me once and I pretended to follow. Bring me 10 ore and I will ruin nine of them learning it properly."
    ],
    "objectives": [
     {
@@ -31475,7 +31587,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Steel longswords and plate, on my shelves from today."
+    "Got it on the seventh try. Do not ask about the first six.",
+    "Steel longswords and plate, from today. Briarwick has a real smithy now, and it only took a stranger to shame me into it."
    ],
    "reward": {
     "gold": 200,
@@ -31496,7 +31609,8 @@ window.GAME_DATA = {
    "name": "Silverwork",
    "giver": "hilda",
    "intro": [
-    "Silver bites the Hollow King's creatures. Bring 6 silver ore."
+    "You have met the Hollow King's creatures by now. You will have noticed steel only annoys them.",
+    "Silver bites. My grandmother forged it for the last war and I still have her moulds. Bring 6 silver ore and I will put them to work."
    ],
    "objectives": [
     {
@@ -31506,7 +31620,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Silver sabers and circlets - yours to buy."
+    "Pours like water, this. She would have liked you.",
+    "Silver sabres and circlets, yours to buy. Keep one by the bed."
    ],
    "reward": {
     "gold": 150,
@@ -31527,7 +31642,8 @@ window.GAME_DATA = {
    "name": "The Mithril Forge",
    "giver": "hilda",
    "intro": [
-    "Mithril... I've waited my whole life. 5 ore, please."
+    "I am going to ask you something, and I want you to know I do not ask lightly.",
+    "Mithril. I have read about it, I have dreamed about it, and I have never once held it. If you find 5 ore, bring them to me and nobody else. Please."
    ],
    "objectives": [
     {
@@ -31537,7 +31653,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Mithril mail and blades. My masterwork."
+    "Lighter than it looks. Colder, too. Give me a moment.",
+    "Mithril mail and blades. Forty years at the anvil for this. Whatever else I make, this is the work they will remember me for."
    ],
    "reward": {
     "gold": 300,
@@ -31558,7 +31675,8 @@ window.GAME_DATA = {
    "name": "Feed the Forge",
    "giver": "hilda",
    "intro": [
-    "The mine's been dangerous lately. Bring me 8 iron ore and I'll pay well."
+    "Mine's gone bad. Things in the lower galleries that were not there in spring. My diggers will not go past the second ladder.",
+    "A forge that goes cold cracks. I need 8 iron ore to keep mine alive, and I pay better than fair for anyone who will fetch it."
    ],
    "objectives": [
     {
@@ -31568,7 +31686,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "That'll keep the forge hot for a week."
+    "Good weight. Clean rock.",
+    "That keeps the fire in for a week. You have done more for Highmoor today than the council has all year."
    ],
    "reward": {
     "gold": 220,
@@ -31585,7 +31704,8 @@ window.GAME_DATA = {
    "name": "Quartz Focus",
    "giver": "vesper",
    "intro": [
-    "Quartz hums at the right pitch for wands. Six, please."
+    "Listen. No, closer. Hear it? Quartz hums. Most people never notice; it is pitched just under a kettle.",
+    "That hum is what a wand needs to hold a spell steady. Bring me six clear pieces and I will wake them."
    ],
    "objectives": [
     {
@@ -31595,7 +31715,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Quartz wands, awakened. They're in my stock now."
+    "Six voices, all in tune. Lovely.",
+    "Quartz wands, awake and on my shelf. Try not to point one at anything you are fond of."
    ],
    "reward": {
     "gold": 60,
@@ -31615,7 +31736,8 @@ window.GAME_DATA = {
    "name": "Amethyst Memory",
    "giver": "vesper",
    "intro": [
-    "Amethyst remembers spells. Five stones, and I'll make amulets."
+    "Amethyst remembers. Say a spell over one often enough and it starts to say it back.",
+    "Five stones, and I can make amulets that carry part of the casting for you. Your reagent pouch will thank me."
    ],
    "objectives": [
     {
@@ -31625,7 +31747,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Amethyst amulets - they save your reagents."
+    "These five have good memories. I can tell; they are already sulking about being moved.",
+    "Amethyst amulets. They spare your reagents, and they hold a grudge on your behalf."
    ],
    "reward": {
     "gold": 90,
@@ -31645,7 +31768,8 @@ window.GAME_DATA = {
    "name": "Sapphire Frost",
    "giver": "vesper",
    "intro": [
-    "Four sapphires for frost rings."
+    "Hold out your hand. Cold, isn't it? That is the sapphire in my ring, and it is only a small one.",
+    "Frost lives in them the way a note lives in a bell. Bring me four and I will set them so the cold goes where you send it."
    ],
    "objectives": [
     {
@@ -31655,7 +31779,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Sapphire rings are ready."
+    "Four winters, neatly cut.",
+    "Sapphire rings, ready when you are. Take them off before you shake hands with anyone."
    ],
    "reward": {
     "gold": 120,
@@ -31675,7 +31800,8 @@ window.GAME_DATA = {
    "name": "Ruby Flame",
    "giver": "vesper",
    "intro": [
-    "Four rubies for flame rings."
+    "Rubies are the opposite problem. A sapphire has to be coaxed. A ruby has to be talked out of it.",
+    "Four stones for flame rings. Carry them apart from each other on the way here. I mean that."
    ],
    "objectives": [
     {
@@ -31685,7 +31811,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Ruby rings are ready."
+    "You kept them apart. I can see, because you still have a pack.",
+    "Ruby rings. They want to burn something; you are only choosing what."
    ],
    "reward": {
     "gold": 150,
@@ -31705,7 +31832,8 @@ window.GAME_DATA = {
    "name": "Fallen Star",
    "giver": "vesper",
    "intro": [
-    "A starstone! Bring me three and I'll make you a staff the Hollow King will fear."
+    "Where did you get that? No. Do not tell me. Put it on the table and step back.",
+    "Starstone. It fell out of the sky already awake and it has been awake ever since. With three I could make a staff the Hollow King would feel coming from the far side of his tower."
    ],
    "objectives": [
     {
@@ -31715,7 +31843,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "The Starstone Staff. Use it well."
+    "I have not slept. Neither has the staff.",
+    "The Starstone Staff. It is the finest thing I will ever make and I am a little afraid of it. Use it well."
    ],
    "reward": {
     "gold": 300,
@@ -31735,7 +31864,8 @@ window.GAME_DATA = {
    "name": "A Bigger Crew",
    "giver": "gideon",
    "intro": [
-    "Need room for more companions? Bring me 12 iron ore and 8 copper for nails and brackets, and I'll sell you a Bunkhouse."
+    "I have seen your cottage. I have counted your beds. And I have seen the number of people following you about. Friend, the sums do not work.",
+    "What you need is a Bunkhouse. What I need is 12 iron ore and 8 copper for the nails and brackets. Bring them, and I will have it on my list by morning."
    ],
    "objectives": [
     {
@@ -31750,7 +31880,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Done! A Bunkhouse - room for 8 companions. It's on my list now."
+    "Twelve and eight. Count them yourself if you like; I did, three times.",
+    "One Bunkhouse, room for 8 companions, ready to buy. Every one of them gets a bed of their own. I insist, and so will they."
    ],
    "reward": {
     "shopUnlock": {
@@ -31769,7 +31900,8 @@ window.GAME_DATA = {
    "name": "Alembic Glass",
    "giver": "mirelle",
    "intro": [
-    "My alembic glass is cracking. Five quartz will let me grind new lenses."
+    "Look at this neck. See the hairline? One more hard boil and I am picking potion out of the ceiling.",
+    "Good alembic glass is ground from quartz. Bring me five pieces and I will have new lenses and a new neck by the end of the week."
    ],
    "objectives": [
     {
@@ -31779,7 +31911,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Lovely. Take these - brewed with the new glass."
+    "Clear right through. This will grind beautifully.",
+    "Take these. They are the first batch through the new glass, and I have never brewed cleaner."
    ],
    "reward": {
     "gold": 120,
@@ -31799,7 +31932,8 @@ window.GAME_DATA = {
    "name": "Stock the Cellar",
    "giver": "tobin",
    "intro": [
-    "The Toad's cellar is dry. Bring me 4 bottles of pirate rum - don't ask how."
+    "Come here. Closer. The cellar is dry. Not low. Dry. I have been watering the cider and the regulars are starting to give me looks.",
+    "The pirates off the coast carry good rum. Bring me 4 bottles. How you come by them is between you and the sea."
    ],
    "objectives": [
     {
@@ -31809,7 +31943,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Ha! The regulars will love this."
+    "Ha! Four, and none of them opened. You are a better person than I am.",
+    "The Toad drinks properly tonight. First cup is yours, and take this for the trouble."
    ],
    "reward": {
     "gold": 140
@@ -31823,7 +31958,9 @@ window.GAME_DATA = {
    "name": "Curiosities",
    "giver": "isla",
    "intro": [
-    "Collectors overseas pay a fortune for sapphires. Bring me three."
+    "You have the look of someone who walks into caves on purpose. Good. I need one of those.",
+    "There is a collector across the water, a duchess with more rooms than sense, who has decided her life is empty without sapphires. I have decided to agree with her.",
+    "Bring me three. Clean ones, no cracks, and do not let the miners tell you the cloudy sort is 'rustic'. I pay on the scale and I pay tonight."
    ],
    "objectives": [
     {
@@ -31833,7 +31970,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Splendid. Here's your share."
+    "Let me see them against the lamp. Oh, those will do. Those will do very nicely.",
+    "Her Grace gets her sapphires, I get her gratitude in coin, and you get your share before the ink is dry. That is how you keep a finder coming back."
    ],
    "reward": {
     "gold": 420,
@@ -31850,7 +31988,8 @@ window.GAME_DATA = {
    "name": "Reinforced Hull",
    "giver": "orrin",
    "intro": [
-    "Your skiff's planking won't survive a kraken. 10 iron ore and I'll bolt on iron bands."
+    "I have looked your skiff over. I will be kind: she floats.",
+    "The first thing with teeth that takes an interest will open her like a pie. Bring me 10 iron ore and I will bolt bands along the planking. It is not shipbuilding, but it is a start."
    ],
    "objectives": [
     {
@@ -31860,7 +31999,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Iron-banded! Your hull can take a beating now."
+    "There. Iron-banded, bow to stern.",
+    "She will take a beating now. Not a kraken. But a beating."
    ],
    "reward": {
     "hull": 30
@@ -31874,7 +32014,8 @@ window.GAME_DATA = {
    "name": "Copper Sheathing",
    "giver": "orrin",
    "intro": [
-    "Copper sheathing stops shipworm and teeth. 12 copper ore."
+    "Do you know what eats more ships than storms? Worm. Little grey things, boring holes all winter while you sleep.",
+    "Copper stops them, and it turns a tooth besides. 12 copper ore, and I will sheathe her below the waterline the way we did back home."
    ],
    "objectives": [
     {
@@ -31884,7 +32025,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Sheathed in copper, bright as a new coin."
+    "Bright as a new coin, and she will stay that way.",
+    "First proper job I have done since I landed here. Thank you for that."
    ],
    "reward": {
     "hull": 20
@@ -31898,7 +32040,8 @@ window.GAME_DATA = {
    "name": "Mithril Keel",
    "giver": "orrin",
    "intro": [
-    "A mithril keel. It's the stuff of legends. 6 ore."
+    "I am going to say a word and you are going to think I have been at Tobin's rum. Mithril.",
+    "A mithril keel. My master spoke of one, and he had only heard of it from his. 6 ore. If you can find them, I will lay a keel that sailors will be telling lies about in a hundred years."
    ],
    "objectives": [
     {
@@ -31908,7 +32051,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "She'll outlast us both."
+    "It is done. I did not think I would live to lay one.",
+    "She will outlast us both, and whoever sails her after. Look after her."
    ],
    "reward": {
     "hull": 50
@@ -31922,7 +32066,8 @@ window.GAME_DATA = {
    "name": "Lucky Teeth",
    "giver": "fen",
    "intro": [
-    "Sailors pay for shark-tooth charms. Bring me 4."
+    "Sailors are the most superstitious people alive, and I say that as one. A shark-tooth charm round the neck and they will sail into anything.",
+    "I sell them as fast as I can string them. Bring me 4 teeth. Big ones; nobody feels lucky wearing a small one."
    ],
    "objectives": [
     {
@@ -31932,7 +32077,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "These'll sell like warm bread."
+    "Now those are teeth. Somebody is going to feel very brave.",
+    "These will sell like warm bread. Here is your share, and a story for free if you have the time."
    ],
    "reward": {
     "gold": 160
@@ -31946,7 +32092,8 @@ window.GAME_DATA = {
    "name": "Gem Dust",
    "giver": "marta",
    "intro": [
-    "Powdered amethyst steadies a nervous patient. Bring me three."
+    "I had a boy in yesterday who had seen something in the Whisperwood. He could not hold a cup for shaking.",
+    "Powdered amethyst in warm milk steadies the nerves better than anything I grow. Bring me three stones, dear. I am getting more of those visits than I used to."
    ],
    "objectives": [
     {
@@ -31956,7 +32103,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Thank you, dear. Take these seeds - they're getting hard to find."
+    "Thank you, dear. These will grind down fine.",
+    "Take these seeds. They are getting hard to find, and I would rather they were in a good garden than in my drawer."
    ],
    "reward": {
     "gold": 100,
@@ -31974,7 +32122,8 @@ window.GAME_DATA = {
    "name": "Clear the Road",
    "giver": "south_guard",
    "intro": [
-    "Bandits and wolves keep raiding Southwatch at night. Thin them out: 6 bandits."
+    "I have forty beds in this fort and eleven soldiers to fill them. The rest went north when the trouble started and did not come back.",
+    "Bandits hit the road every night now, and the wolves follow them for the scraps. I cannot spare a patrol. Thin them out for me: 6 bandits."
    ],
    "objectives": [
     {
@@ -31984,7 +32133,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "The road's quieter already. Here - you've earned it."
+    "Six. The night watch heard nothing but owls.",
+    "The road is quieter already. Here. Southwatch pays its debts, even when it cannot pay its soldiers."
    ],
    "reward": {
     "gold": 300,
@@ -32000,7 +32150,8 @@ window.GAME_DATA = {
    "name": "Kraken Ink",
    "giver": "gannet_trader",
    "intro": [
-    "Kraken ink makes the best ship tar. Bring me 3."
+    "You want to know the secret of a boat that never leaks? Kraken ink in the tar. Sticks like a debt and nothing will eat through it.",
+    "Getting it is the trouble, on account of the kraken. Bring me 3 and every hull in the cove will owe you."
    ],
    "objectives": [
     {
@@ -32010,7 +32161,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Smells awful. Perfect."
+    "Oh, that is foul. That is truly foul.",
+    "Perfect. Here is your coin. Do stand downwind on your way out."
    ],
    "reward": {
     "gold": 240
@@ -32024,7 +32176,9 @@ window.GAME_DATA = {
    "giver": "chief_oaka",
    "side": true,
    "intro": [
-    "Our people need Jadeleaf for medicine. Bring me 4 from the wilds east of town."
+    "Before you ask what you can do for us, I have a list. I always have a list.",
+    "Top of it: Jadeleaf. Half our medicines start with it, and since the Treant woke, the gatherers come back with empty baskets or do not come back on time, which frightens their mothers.",
+    "It grows in the wilds east of town, low and glossy, under the big ferns. Bring me 4 leaves. Pick the dark ones; the pale ones are only pretending."
    ],
    "objectives": [
     {
@@ -32034,7 +32188,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "You learn our ways quickly."
+    "Dark ones. You listened. You would be surprised how rare that is in a hero.",
+    "The healers will have these boiled by nightfall. And since you have done right by us, hear this: what I know of the craft, I teach. Ask me for a lesson whenever you or your friends are ready for one."
    ],
    "reward": {
     "gold": 160,
@@ -32051,7 +32206,9 @@ window.GAME_DATA = {
    "giver": "chief_oaka",
    "side": true,
    "intro": [
-    "The Jungle Cats grow bold. Defeat 5 of them."
+    "The Jungle Cats used to keep to the high ground and we kept to the low, and everyone was polite about it.",
+    "Now they hunt the paths between the villages in daylight. A cat that has stopped being afraid of people is a cat that has eaten one.",
+    "Thin them. Five will do. I do not want them gone from the islands, only reminded where the line is."
    ],
    "objectives": [
     {
@@ -32061,7 +32218,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "The paths are safer. Thank you."
+    "Five. And the runners say the rest have gone back up the slopes. That is all I wanted.",
+    "Take these potions. The healers made them with your Jadeleaf, so in a way you are only being paid back."
    ],
    "reward": {
     "gold": 222,
@@ -32078,7 +32236,9 @@ window.GAME_DATA = {
    "giver": "chief_oaka",
    "side": true,
    "intro": [
-    "The Thorn Treant has corrupted our land since the Hollow King stirred. End it."
+    "I have left the worst of the list for last, as people do.",
+    "The Thorn Treant was a grandmother tree once. Children were named under it. When the Hollow King stirred, something black went up through its roots, and now it walks, and where it walks nothing we plant will take.",
+    "Our best went against it and came home on litters. I will not order anyone else to try. But you are not mine to order, so I am asking. End it, and let the old tree rest."
    ],
    "objectives": [
     {
@@ -32088,7 +32248,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "You have done what our champions could not. Take this, with the thanks of all my people."
+    "I felt it go. The whole island let out a breath.",
+    "We will plant a new tree where it stood, and name children under that one. Take this leafweave. It was made for our champion, and I think it has found one."
    ],
    "reward": {
     "gold": 420,
@@ -32204,7 +32365,9 @@ window.GAME_DATA = {
    "giver": "admiral_coralie",
    "side": true,
    "intro": [
-    "Our people need Tidecoral for medicine. Bring me 4 from the wilds east of town."
+    "I will be brief; the tide will not wait and neither will I.",
+    "The fleet surgeons need Tidecoral. It stops bleeding faster than anything we can buy, and my shelves are bare because the reef east of the harbour is no longer safe to wade.",
+    "Four pieces. Cut them below the branch so they regrow. Report back when it is done."
    ],
    "objectives": [
     {
@@ -32214,7 +32377,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "You learn our ways quickly."
+    "Four, cleanly cut. Noted in the log, with your name beside it.",
+    "You have earned more than a line in a book. I drill my officers myself, and I will drill you and your company if you ask for a lesson. I do not offer twice."
    ],
    "reward": {
     "gold": 190,
@@ -32231,7 +32395,9 @@ window.GAME_DATA = {
    "giver": "admiral_coralie",
    "side": true,
    "intro": [
-    "The Coral Golems grow bold. Defeat 5 of them."
+    "Coral Golems. The reef grows them the way a hull grows barnacles, and until this year they stood where they grew.",
+    "Now they walk up the shallows at low water and break whatever they reach. Two jetties and a lamp tower so far.",
+    "Break five. Strike at the joints; the chest only blunts your blade. Dismissed."
    ],
    "objectives": [
     {
@@ -32241,7 +32407,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "The paths are safer. Thank you."
+    "Five down, and the harbour master has stopped sending me hourly notes. A double mercy.",
+    "Draw potions from the fleet stores. You will want them for what I ask next."
    ],
    "reward": {
     "gold": 258,
@@ -32258,7 +32425,9 @@ window.GAME_DATA = {
    "giver": "admiral_coralie",
    "side": true,
    "intro": [
-    "The Tide Warden has corrupted our land since the Hollow King stirred. End it."
+    "Every admiral of this fleet has sworn an oath at the Tide Warden's feet. It kept the deep things out of the lagoon for three hundred years.",
+    "Since the Hollow King stirred it keeps nothing out. It drowned a patrol boat with all hands and stood there in the wreckage like a thing waiting for orders.",
+    "I cannot spare the ships to bring it down, and I will not waste sailors learning what you already know about killing monsters. Sink it. That is not a request I enjoy making."
    ],
    "objectives": [
     {
@@ -32268,7 +32437,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "You have done what our champions could not. Take this, with the thanks of all my people."
+    "Then the oath is ended, and by the right hand. I will see that the crews it took are named on the sea wall.",
+    "This coat was cut for the Admiral of the Fleet. I have a spare. Wear it somewhere dangerous."
    ],
    "reward": {
     "gold": 480,
@@ -32386,7 +32556,9 @@ window.GAME_DATA = {
    "giver": "king_aldric",
    "side": true,
    "intro": [
-    "Our people need Bloodmoss for medicine. Bring me 4 from the wilds east of town."
+    "I will not dress it up. We are losing more to wounds going bad than to the Warlord's axes.",
+    "Bloodmoss draws the rot out. It grows on the north faces of the rocks in the wilds east of the walls, where my foragers no longer go without a shield line.",
+    "Bring me 4 handfuls. It is a small thing to ask of someone like you, and it will matter more than a small thing should."
    ],
    "objectives": [
     {
@@ -32396,7 +32568,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "You learn our ways quickly."
+    "That is four men who keep a leg. I have learned to count that way.",
+    "You did not have to do this, and I do not forget it. I was a sword-master before I was a king. If you or your people want a lesson, ask, and I will find the hour."
    ],
    "reward": {
     "gold": 220,
@@ -32413,7 +32586,9 @@ window.GAME_DATA = {
    "giver": "king_aldric",
    "side": true,
    "intro": [
-    "The War Hounds grow bold. Defeat 5 of them."
+    "The Warlord breeds War Hounds in the hills beyond the walls and looses them ahead of his raids. They find our pickets before our pickets find anything.",
+    "Kill five. Fewer hounds means my scouts come home, and scouts who come home mean I know where the next blow falls.",
+    "Do not chase one that runs. It is leading you somewhere."
    ],
    "objectives": [
     {
@@ -32423,7 +32598,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "The paths are safer. Thank you."
+    "Five. The night watch reported nothing at all, and I had forgotten how good nothing sounds.",
+    "Take these from the garrison's stores. I would rather they were in your pack than on a shelf."
    ],
    "reward": {
     "gold": 294,
@@ -32440,7 +32616,9 @@ window.GAME_DATA = {
    "giver": "king_aldric",
    "side": true,
    "intro": [
-    "The Iron Warlord has corrupted our land since the Hollow King stirred. End it."
+    "His name was Garrak, when he had one. He rode under my banner once. Then the Hollow King stirred, and whatever answered in him put on iron and has not taken it off.",
+    "The Iron Warlord has burned four of my villages. I have met him twice in the field and both times I was the one carried off it.",
+    "I am a king asking a stranger to fight his war. I know what that is. Kill him, and Thornhaven will owe you for as long as it stands."
    ],
    "objectives": [
     {
@@ -32450,7 +32628,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "You have done what our champions could not. Take this, with the thanks of all my people."
+    "So it is done. I thought I would feel more, and all I feel is tired.",
+    "This plate was forged for me, for the day I beat him. That day was never coming. It is yours, and it has earned a better wearer."
    ],
    "reward": {
     "gold": 540,
@@ -32563,7 +32742,9 @@ window.GAME_DATA = {
    "giver": "archmage_ysolde",
    "side": true,
    "intro": [
-    "Our people need Cinderlotus for medicine. Bring me 4 from the wilds east of town."
+    "I shall be precise, because imprecision is how people here lose eyebrows.",
+    "Cinderlotus opens only on warm ash, and it is the base of every burn salve on these islands. My apprentices can no longer gather it: the slopes east of town have become, to use the technical term, hostile.",
+    "Four blooms. Take them by the stem, not the petal. The petals are hot. You will remember this for exactly as long as it takes to forget it once."
    ],
    "objectives": [
     {
@@ -32573,7 +32754,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "You learn our ways quickly."
+    "By the stem. I can tell, because you still have fingerprints.",
+    "You are evidently capable of following an instruction, which puts you ahead of most of my students. I teach the highest forms of the craft. Ask me for a lesson when you or your companions are ready to be made uncomfortable."
    ],
    "reward": {
     "gold": 250,
@@ -32590,7 +32772,9 @@ window.GAME_DATA = {
    "giver": "archmage_ysolde",
    "side": true,
    "intro": [
-    "The Magma Slimes grow bold. Defeat 5 of them."
+    "Magma Slimes. Fascinating creatures; I have written two papers on them. I should now like them to stop climbing into the lower library.",
+    "They are drawn to heat, and since the mountain grew restless they have decided the town is warm enough to live in.",
+    "Disperse five. Cold slows them and water makes them furious, so choose your spells with some thought."
    ],
    "objectives": [
     {
@@ -32600,7 +32784,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "The paths are safer. Thank you."
+    "Five dispersed, and the librarian has stopped weeping. Thank you.",
+    "Have these potions. I brewed them myself, so they work, and they taste the way honesty feels."
    ],
    "reward": {
     "gold": 330,
@@ -32617,7 +32802,9 @@ window.GAME_DATA = {
    "giver": "archmage_ysolde",
    "side": true,
    "intro": [
-    "The Ember Drake has corrupted our land since the Hollow King stirred. End it."
+    "Now the real problem, which I have been circling because I dislike saying it aloud.",
+    "The Ember Drake slept under this mountain before there was a town. When the Hollow King stirred, it woke, and it woke wrong. It does not hunt and it does not hoard. It simply burns whatever is nearest, as though it were trying to burn something out of itself.",
+    "I have calculated our chances of surviving another year beside it. I will not share the figure. Go up the mountain and end it. Consider this the only time I shall ever tell anyone to stop a thing I would rather study."
    ],
    "objectives": [
     {
@@ -32627,7 +32814,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "You have done what our champions could not. Take this, with the thanks of all my people."
+    "The mountain has gone quiet. I checked the instruments four times. The third one has stopped thinking and started, I believe, to hope.",
+    "This robe has been worn by every Archmage of the Ember Isles. I am keeping the title; you may have the robe. I suspect you will make better use of it than I have."
    ],
    "reward": {
     "gold": 600,
@@ -32747,8 +32935,8 @@ window.GAME_DATA = {
    "survivor": "rowan",
    "step": 0,
    "intro": [
-    "She's been poisoned - jungle-viper venom, I'd wager, from no snake in these lands.",
-    "I can draw it out, but slowly. I'll need reagents, a little at a time, over a few weeks."
+    "Lay her down here. Gently. Look at the lips: that grey-green. Jungle-viper venom, and from no snake that lives in this valley.",
+    "I can draw it out, but slowly, the way you draw a splinter you cannot see. Moonpetal to cool the blood and Glowcap to bind what it lets go. Bring me 4 and 3."
    ],
    "objectives": [
     {
@@ -32763,7 +32951,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Mix, grind, steep... there. Now we wait."
+    "Grind, steep, strain. There. Hold her head while she drinks.",
+    "Now we wait, which is the part of medicine nobody likes. Come back in a few days."
    ],
    "reward": {
     "xp": {
@@ -32781,7 +32970,8 @@ window.GAME_DATA = {
    "survivor": "rowan",
    "step": 1,
    "intro": [
-    "Good - they're a little stronger. Next I need:"
+    "She opened her eyes this morning and asked whose roof it was. That is a good question from a patient. It means she intends to stay.",
+    "The venom is out of the blood and into the gut, where it does less harm and feels worse. A Greater Healing Draught and 3 Emberroot, to burn it through."
    ],
    "objectives": [
     {
@@ -32796,7 +32986,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Mix, grind, steep... there. Now we wait."
+    "She will hate me for the taste and thank me for the rest.",
+    "One more draught after this. She is stronger than she looks."
    ],
    "reward": {
     "xp": {
@@ -32814,7 +33005,8 @@ window.GAME_DATA = {
    "survivor": "rowan",
    "step": 2,
    "intro": [
-    "Good - they're a little stronger. Next I need:"
+    "She has been correcting how I label my jars. I think we may call that a recovery.",
+    "One last draught to mend what the venom wore thin: 6 Moonpetal, and 2 Ironbark to put some strength back in the legs."
    ],
    "objectives": [
     {
@@ -32829,7 +33021,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "That's the last of it. Watch..."
+    "That is the last of it. Give it a moment.",
+    "There. Colour in the face. Watch, she is going to stand up before I say she can. Healers always make the worst patients."
    ],
    "reward": {
     "xp": {
@@ -32847,8 +33040,8 @@ window.GAME_DATA = {
    "survivor": "marisol",
    "step": 0,
    "intro": [
-    "Salt-fever. She drifted for days. The cure is cold and slow.",
-    "Frostmint and sea pearl, then stronger draughts. A few weeks."
+    "Salt-fever. See how she shivers in a warm room? She drifted for days with nothing to drink but what was killing her.",
+    "The cure is cold, and slow, and it does not care that I am in a hurry. Bring me 3 Frostmint and 2 Sea Pearl to start."
    ],
    "objectives": [
     {
@@ -32863,7 +33056,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Mix, grind, steep... there. Now we wait."
+    "Cold cloth, cold draught. Hold her hand; she thinks she is still in the water.",
+    "Now we wait. The sea took its time with her. So must we."
    ],
    "reward": {
     "xp": {
@@ -32881,7 +33075,8 @@ window.GAME_DATA = {
    "survivor": "marisol",
    "step": 1,
    "intro": [
-    "Good - they're a little stronger. Next I need:"
+    "She woke in the night and told me the stars were in the wrong place. She meant my ceiling. Her wits are coming back before her strength.",
+    "The fever has broken twice and returned twice. I want something stronger behind it. Bring me 2 Greater Healing Draughts."
    ],
    "objectives": [
     {
@@ -32891,7 +33086,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Mix, grind, steep... there. Now we wait."
+    "Both, a spoon at a time. Do not let her gulp.",
+    "That should hold the fever down long enough for the rest of her to catch up."
    ],
    "reward": {
     "xp": {
@@ -32909,7 +33105,8 @@ window.GAME_DATA = {
    "survivor": "marisol",
    "step": 2,
    "intro": [
-    "Good - they're a little stronger. Next I need:"
+    "She asked for the window over the harbour, and now she tells me when the tide turns before the gulls know. A navigator without the sea is a clock without hands.",
+    "One last thing to put back the salt in the right measure: 3 Sea Pearl and 1 Brinekelp."
    ],
    "objectives": [
     {
@@ -32924,7 +33121,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "That's the last of it. Watch..."
+    "That is the last of it. Now watch her breathing.",
+    "Slow and even. There. She will be reading the sky from my roof by tomorrow night, and telling me my chimney is off true."
    ],
    "reward": {
     "xp": {
@@ -32942,8 +33140,8 @@ window.GAME_DATA = {
    "survivor": "thorne",
    "step": 0,
    "intro": [
-    "A Hollow shard, festering. Cut it out and the curse spreads. We must starve it.",
-    "Iron to draw it, silver to break it. It will take weeks."
+    "Help me turn him. There, under the ribs. A shard of the Hollow, and it is growing. Cut it out and the curse runs ahead of the knife.",
+    "So we starve it. Iron draws it, the way a lodestone draws a needle. Bring me 4 Ironbark and 3 Iron Ore, and we will give it something else to hold on to."
    ],
    "objectives": [
     {
@@ -32958,7 +33156,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Mix, grind, steep... there. Now we wait."
+    "Bind it tight. Tighter. He will not thank us, but he will not feel it either.",
+    "Now we wait. He fought it alone for longer than I would have thought a man could."
    ],
    "reward": {
     "xp": {
@@ -32976,7 +33175,8 @@ window.GAME_DATA = {
    "survivor": "thorne",
    "step": 1,
    "intro": [
-    "Good - they're a little stronger. Next I need:"
+    "He woke, saw me, and reached for a sword that was not there. Then he apologised. A knight to the marrow.",
+    "The iron is holding it still. Now I need to know it better. Bring me 2 Hollow Shards, clean ones, so I can learn what this one fears."
    ],
    "objectives": [
     {
@@ -32986,7 +33186,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Mix, grind, steep... there. Now we wait."
+    "Yes. I see it now. It hates what every one of them hates.",
+    "Silver. One more step, and we break it."
    ],
    "reward": {
     "xp": {
@@ -33004,7 +33205,8 @@ window.GAME_DATA = {
    "survivor": "thorne",
    "step": 2,
    "intro": [
-    "Good - they're a little stronger. Next I need:"
+    "He has been doing sword drills with my fire-iron when he thinks I am asleep. I have decided not to notice.",
+    "Time to finish it. 3 Silver Ore to break the shard, and 2 Greater Healing Draughts for what the breaking will cost him."
    ],
    "objectives": [
     {
@@ -33019,7 +33221,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "That's the last of it. Watch..."
+    "That is the last of it. Stand back from the bed.",
+    "There. Did you hear that? Like ice letting go of a pond. He is his own man again, and I pity whoever put that shard in him."
    ],
    "reward": {
     "xp": {
@@ -33037,8 +33240,8 @@ window.GAME_DATA = {
    "survivor": "sylas",
    "step": 0,
    "intro": [
-    "A hex. The Hollow King's own work. He meant to silence this one.",
-    "Amethyst, shards of the Hollow, sapphire and starstone. Slowly. A few weeks."
+    "Do not touch him yet. Look at the frost on the blanket, in a warm room. This is a hex, and I know the hand. The Hollow King did this himself.",
+    "He did not mean to kill this one. He meant to silence him, which tells me the man knows something worth hearing. Bring me 3 Amethyst and 1 Shadebloom, and we will begin to loosen it."
    ],
    "objectives": [
     {
@@ -33053,7 +33256,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Mix, grind, steep... there. Now we wait."
+    "Amethyst at the temples, Shadebloom under the tongue. Do not breathe the smoke.",
+    "Now we wait. A hex like this was laid in a moment and will come off in weeks."
    ],
    "reward": {
     "xp": {
@@ -33071,7 +33275,8 @@ window.GAME_DATA = {
    "survivor": "sylas",
    "step": 1,
    "intro": [
-    "Good - they're a little stronger. Next I need:"
+    "His lips move. No sound comes, but they move, and I have been reading them. He is reciting star charts. A scholar, even under a curse.",
+    "The hex is knotted round his voice. To pick the knot I need what it was tied with: 4 Hollow Shards, and 2 Sapphire to keep my hands cold while I work."
    ],
    "objectives": [
     {
@@ -33086,7 +33291,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Mix, grind, steep... there. Now we wait."
+    "One strand. Two. Do not speak to me for a moment.",
+    "It is looser. I heard him whisper a word just now. The word was 'finally'."
    ],
    "reward": {
     "xp": {
@@ -33104,7 +33310,8 @@ window.GAME_DATA = {
    "survivor": "sylas",
    "step": 2,
    "intro": [
-    "Good - they're a little stronger. Next I need:"
+    "He can speak, a little, and every word costs him. He keeps trying to tell me something about the towers. I have told him it will keep.",
+    "One piece remains, and it needs something as old as the hex is strong: 1 Starstone, and 6 Moonpetal to ease him through it."
    ],
    "objectives": [
     {
@@ -33119,7 +33326,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "That's the last of it. Watch..."
+    "That is the last of it. Shield your eyes.",
+    "There. Hear that? He is laughing. He says the first thing he will do with his voice is argue with me about my method. I rather look forward to it."
    ],
    "reward": {
     "xp": {
@@ -33536,8 +33744,9 @@ window.GAME_DATA = {
    "regionTowns": "verdant",
    "choice": true,
    "intro": [
-    "Every town in the Verdant Isles is warded. Now for the hard part: a region ward.",
-    "First, the Thorn Treant must fall. While it rules the wilds, no ward will hold."
+    "Every town in the Verdant Isles sits behind its ward now. That was the easy half, and I say so having watched you sweat over it.",
+    "A region ward is one stone speaking for a whole land, and the land must be quiet enough to listen. It is not. The Thorn Treant walks the wilds, and where it walks the ground answers to something else.",
+    "It must fall first. I am sorry. I would not send you if there were a gentler way."
    ],
    "objectives": [
     {
@@ -33547,7 +33756,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Good. It will not rise again."
+    "I felt the roots let go from here. The islands are their own again.",
+    "It will not rise. Now the land can hear us, and we can begin."
    ],
    "reward": {
     "gold": 80
@@ -33590,8 +33800,9 @@ window.GAME_DATA = {
    "regionTowns": "azure",
    "choice": true,
    "intro": [
-    "Every town in Azure Atoll is warded. Now for the hard part: a region ward.",
-    "First, the Tide Warden must fall. While it rules the wilds, no ward will hold."
+    "The Atoll's towns are warded, every one. Good. Now we ask the sea itself to keep watch, and the sea is slow to agree to anything.",
+    "It will not agree at all while the Tide Warden stands in the shallows. It was the old guard of this place, and it is turned. A ward laid beside it would turn too.",
+    "Bring it down. Then come back, and bring dry clothes."
    ],
    "objectives": [
     {
@@ -33601,7 +33812,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Good. It will not rise again."
+    "The tide came in clean this morning. First time this year.",
+    "It will not rise again. The water is listening now."
    ],
    "reward": {
     "gold": 80
@@ -33644,8 +33856,9 @@ window.GAME_DATA = {
    "regionTowns": "thornhaven",
    "choice": true,
    "intro": [
-    "Every town in Thornhaven is warded. Now for the hard part: a region ward.",
-    "First, the Iron Warlord must fall. While it rules the wilds, no ward will hold."
+    "Thornhaven's towns are warded. Stone walls and ward stones both; these people do not do things by halves.",
+    "A region ward needs a land at peace for one hour, and this one has not had an hour's peace in years. The Iron Warlord sees to that.",
+    "While he holds the wilds, no ward I raise will stand a night. He has to fall. I think you knew I would say so."
    ],
    "objectives": [
     {
@@ -33655,7 +33868,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Good. It will not rise again."
+    "The drums have stopped. I had forgotten the hills were quiet under them.",
+    "He will not rise again. Now we can build something that lasts."
    ],
    "reward": {
     "gold": 80
@@ -33698,8 +33912,9 @@ window.GAME_DATA = {
    "regionTowns": "ember",
    "choice": true,
    "intro": [
-    "Every town in the Ember Isles is warded. Now for the hard part: a region ward.",
-    "First, the Ember Drake must fall. While it rules the wilds, no ward will hold."
+    "Every town in the Ember Isles is warded, and I have the burns to show for helping.",
+    "The region ward is another matter. It must be anchored in the mountain, and the mountain has a tenant. The Ember Drake burns whatever is laid near it, wards included.",
+    "It must fall before I light so much as a candle up there. Go carefully. It is very old and very angry."
    ],
    "objectives": [
     {
@@ -33709,7 +33924,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Good. It will not rise again."
+    "The smoke over the peak has gone white. I never thought I would see that.",
+    "It will not rise again. The mountain is only a mountain now, and it will hold what we give it."
    ],
    "reward": {
     "gold": 80
@@ -35026,9 +35242,10 @@ window.GAME_DATA = {
    "requires": "trade_1",
    "choice": true,
    "intro": [
-    "You sold me Mainland goods. Good. Now do it the other way.",
-    "Crab shell, wisp essence, sea pearls: common as sand here, curiosities over there.",
-    "Sell ten things from Saltmere in a Mainland shop. A trader earns on both legs of the trip."
+    "So you are the one who has been selling me Mainland fangs and petals. I wondered who had finally worked out which way the ferry goes.",
+    "Now watch your own feet. You sail here with a full bag, sell it, and go home with a bag full of air. Air sells badly. I have tried.",
+    "Crab shell, wisp essence, sea pearls: we sweep them off the step here, and over there they put them under glass. Sell ten Saltmere things in a Mainland shop.",
+    "Never sail empty. My mother said it over every cradle in this house, and she died owning three boats."
    ],
    "objectives": [
     {
@@ -35040,7 +35257,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Both legs paid. That is the whole trade, and everything after is a bigger boat."
+    "Paid going and paid coming. Feels different, does it not? Like finding the other oar.",
+    "That is the whole trade, my dear. Everything after this is only a bigger boat and a longer list."
    ],
    "reward": {
     "gold": 150,
@@ -35122,8 +35340,9 @@ window.GAME_DATA = {
    "requires": "trade_4",
    "choice": true,
    "intro": [
-    "There is a staked plot here on Saltmere. Sea pearls grow wild on this island; under glass they would grow all year.",
-    "Build a greenhouse in a port away from home. A local keeps it, and it fills while you are elsewhere."
+    "Walk with me to the window. See the staked plot past the nets? Four posts and a great deal of nothing. It has been waiting for someone with a little coin and a little nerve.",
+    "Sea pearls grow wild on this island and nowhere else, and they sulk in winter. Under glass they would not know what month it was.",
+    "Build a greenhouse in a port away from home. A local keeps it for a wage, it fills while you are off being chased by something, and you come back to a harvest instead of a hope."
    ],
    "objectives": [
     {
@@ -35134,7 +35353,8 @@ window.GAME_DATA = {
     }
    ],
    "done": [
-    "Now the island works for you while you sleep. Every far port has a plot like it."
+    "Glass on Saltmere. The old women will say it is unlucky until the first crop comes in, and then they will say it was their idea.",
+    "Now the island works for you while you sleep. Every far port has a plot like it, and most of them have nobody as clever as you standing on it yet."
    ],
    "reward": {
     "gold": 200,
@@ -35310,6 +35530,111 @@ window.GAME_DATA = {
    },
    "side": true,
    "group": "economic"
+  },
+  {
+   "id": "recruit_brenna",
+   "name": "Brenna: Sour Ground",
+   "giver": "brenna",
+   "side": true,
+   "choice": true,
+   "group": "companion",
+   "intro": [
+    "You are the one who has taken on the old cottage. With the greenhouse. I have been trying to work up the nerve to speak to you for three days, so please let me finish before I lose it.",
+    "My mother and I had herb rows out past the Whisperwood until the Moss Slimes came up through the well. They sour the ground wherever they sit. Nothing has grown there since, and I have been carrying plates for Tobin instead.",
+    "Here is the odd part. Their gel, washed and worked into soil, holds water better than anything. Mother always said the cure grows next to the trouble.",
+    "Clear 4 of them out of the wood and bring me 3 Slime Gel. I will show you what I can do with it, and if you like what you see, I would much rather tend your beds than Tobin's tables."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "slime",
+     "qty": 4
+    },
+    {
+     "type": "collect",
+     "item": "slime_gel",
+     "qty": 3
+    }
+   ],
+   "done": [
+    "You did it. Four fewer of them sitting on good earth.",
+    "Give me the gel. Look: rinse it, fold it in, and the soil stays dark all day. Your gran's beds have been thirsty for years. I can hear them from here.",
+    "I have told Tobin I am done with plates. If you have a bed for me, I will bring my trowel."
+   ],
+   "reward": {
+    "gold": 30,
+    "recruit": "brenna"
+   }
+  },
+  {
+   "id": "recruit_kael",
+   "name": "Kael: A Fair Fight",
+   "giver": "kael",
+   "side": true,
+   "choice": true,
+   "group": "companion",
+   "intro": [
+    "Sit, if you are sitting. I will not bite. I am only bad company.",
+    "I guarded caravans on the Kingsroad for nine years. Last month the Red Hoods took one I was paid to protect. Twelve of them, and four of us, and three of us ran. I was not one of the three, which is why I limp.",
+    "The caravan master still owes me nothing and I still owe her a wagon. I cannot pay that. But I can make the road cost them something.",
+    "Three of their bandits, and a badge off one so I can lay it on her counter. Do that and you will have shown me you finish what you start. I have been looking for someone who does."
+   ],
+   "objectives": [
+    {
+     "type": "defeat",
+     "enemy": "bandit",
+     "qty": 3
+    },
+    {
+     "type": "collect",
+     "item": "bandit_badge",
+     "qty": 1
+    }
+   ],
+   "done": [
+    "Three. And a badge. Let me see it.",
+    "That is their mark, right enough. I will take it to her in the morning. It is not a wagon, but it is the first thing I have brought her that was not an apology.",
+    "You did not have to do my fighting for me. Next time we do it together. I have a sword, and if you have a bed, you have a sword arm."
+   ],
+   "reward": {
+    "gold": 40,
+    "recruit": "kael"
+   }
+  },
+  {
+   "id": "recruit_pip",
+   "name": "Pip: Real Magic",
+   "giver": "pip",
+   "side": true,
+   "choice": true,
+   "group": "companion",
+   "intro": [
+    "Psst. You. You have been up to the hermit's cave, haven't you? I can smell the Emberroot on you. No offence. It is a good smell.",
+    "Right. Here it is. I have a book. I came by it honestly, mostly. It has the words for a real spell in it, an actual spell, and I have learned them forwards, backwards and in my sleep.",
+    "What I have not got is reagents, because reagents cost money, and I spent my money on the book. You see the difficulty.",
+    "Bring me 3 Emberroot and 3 Glowcap. If it works, I am a mage. If it does not, I am a boy with a singed book, and either way I will carry your bags for life."
+   ],
+   "objectives": [
+    {
+     "type": "collect",
+     "item": "emberroot",
+     "qty": 3
+    },
+    {
+     "type": "collect",
+     "item": "glowcap",
+     "qty": 3
+    }
+   ],
+   "done": [
+    "Three and three! Stand back. No, further. No, come back, I want a witness.",
+    "Ahem. ... ... ... Did you see that? DID YOU SEE THAT? That was a spark! That was nearly a whole spark!",
+    "All right, it was not much. And my eyebrows itch. But it was REAL. Take me with you. I can haggle, I can carry, and by next year I will be setting things on fire on purpose."
+   ],
+   "reward": {
+    "gold": 30,
+    "recruit": "pip"
+   }
   }
  ],
  "greenhouse": {
@@ -38155,21 +38480,9 @@ window.GAME_DATA = {
  },
  "pockets": {
   "caps": {
-   "seed": 100,
-   "reagent": 30,
-   "consumable": 10,
-   "metal": 30,
-   "gem": 20,
-   "material": 30,
    "scroll": 4
   },
   "labels": {
-   "seed": "Seeds",
-   "reagent": "Reagents",
-   "consumable": "Potions",
-   "metal": "Ore",
-   "gem": "Gems",
-   "material": "Monster parts",
    "scroll": "Scrolls"
   }
  },
@@ -38496,6 +38809,13 @@ window.GAME_DATA = {
     "Then I will trust my own hands. Thank you for trusting them too.",
     "My own judgment, is it? Very well. You will not regret it.",
     "I thought you might say that. I know what I want."
+   ]
+  },
+  "recruitTalk": {
+   "hint": "Do {name} a favour and they join you for nothing, or pay the hire fee now.",
+   "noBed": [
+    "I would come today, but where would I sleep?",
+    "Every companion needs a bed of their own at your cottage. Gideon's Home Center sells them. I will be right here when you have one."
    ]
   }
  },
@@ -47006,7 +47326,43 @@ window.GAME_DATA = {
    "Master",
    "Grandmaster"
   ],
-  "respecPerTier": 1000
+  "respecPerTier": 1000,
+  "lessons": {
+   "2": {
+    "npc": "chief_oaka",
+    "quest": "verdant_q1",
+    "place": "the Verdant Isles"
+   },
+   "3": {
+    "npc": "admiral_coralie",
+    "quest": "azure_q1",
+    "place": "Azure Atoll"
+   },
+   "4": {
+    "npc": "king_aldric",
+    "quest": "thornhaven_q1",
+    "place": "Thornhaven"
+   },
+   "5": {
+    "npc": "archmage_ysolde",
+    "quest": "ember_q1",
+    "place": "the Ember Isles"
+   }
+  },
+  "lessonTalk": {
+   "offer": [
+    "You have done right by my people. What I know of the craft, I will teach to any of your company who is ready for it.",
+    "You have earned a hearing, and more than a hearing. Bring me those of your company who are ready, and I will teach them."
+   ],
+   "ask": "Who would learn, and what?",
+   "taught": [
+    "Good. Again, until your hands know it without you.",
+    "There. It is yours now. Use it well.",
+    "You learn quickly. Do not let it make you careless."
+   ],
+   "notReady": "Not yet. {why}",
+   "again": "Is there another who would learn?"
+  }
  },
  "trees": {
   "guardian": {
@@ -47107,7 +47463,8 @@ window.GAME_DATA = {
      "need": "guardian.taunt",
      "effect": {
       "holdLine": 0.1
-     }
+     },
+     "lesson": true
     },
     {
      "id": "guardian.brace",
@@ -47132,7 +47489,8 @@ window.GAME_DATA = {
       "pct": 0.2,
       "once": true,
       "name": "Second Wind"
-     }
+     },
+     "lesson": true
     },
     {
      "id": "guardian.intercept",
@@ -47168,7 +47526,8 @@ window.GAME_DATA = {
      "desc": "Once a battle, a blow that would fell you leaves you at 1 health.",
      "effect": {
       "lastStand": 1
-     }
+     },
+     "lesson": true
     },
     {
      "id": "guardian.captain_s_presence",
@@ -47205,7 +47564,8 @@ window.GAME_DATA = {
      "not": "guardian.unbreakable",
      "effect": {
       "partyDmgTaken": 0.2
-     }
+     },
+     "lesson": true
     }
    ]
   },
@@ -47308,7 +47668,8 @@ window.GAME_DATA = {
       "mult": 0.9,
       "cd": 3,
       "name": "Whirlwind"
-     }
+     },
+     "lesson": true
     },
     {
      "id": "striker.armour_breaker",
@@ -47346,7 +47707,8 @@ window.GAME_DATA = {
       "reach": 2,
       "cd": 3,
       "name": "Lunge"
-     }
+     },
+     "lesson": true
     },
     {
      "id": "striker.swift",
@@ -47368,7 +47730,8 @@ window.GAME_DATA = {
      "desc": "Once a round, a kill with a weapon lets you act again.",
      "effect": {
       "bloodlust": 1
-     }
+     },
+     "lesson": true
     },
     {
      "id": "striker.weapon_master",
@@ -47405,7 +47768,8 @@ window.GAME_DATA = {
      "not": "striker.killing_blow",
      "effect": {
       "rampage": 2
-     }
+     },
+     "lesson": true
     }
    ]
   },
@@ -47517,7 +47881,8 @@ window.GAME_DATA = {
       "bow": true,
       "cd": 3,
       "name": "Volley"
-     }
+     },
+     "lesson": true
     },
     {
      "id": "marksman.piercing_arrows",
@@ -47551,7 +47916,8 @@ window.GAME_DATA = {
      "need": "marksman.volley",
      "effect": {
       "cripple": 0.1
-     }
+     },
+     "lesson": true
     },
     {
      "id": "marksman.deadeye",
@@ -47593,7 +47959,8 @@ window.GAME_DATA = {
       "storm": true,
       "cd": 4,
       "name": "Rain of Arrows"
-     }
+     },
+     "lesson": true
     },
     {
      "id": "marksman.headshot",
@@ -47619,7 +47986,8 @@ window.GAME_DATA = {
      "not": "marksman.headshot",
      "effect": {
       "arrowstorm": 0.5
-     }
+     },
+     "lesson": true
     }
    ]
   },
@@ -47710,7 +48078,8 @@ window.GAME_DATA = {
      "name": "Fireball",
      "desc": "Explodes, hitting the target and everything next to it.",
      "need": "destruction.frost_lance",
-     "spell": "fireball"
+     "spell": "fireball",
+     "lesson": true
     },
     {
      "id": "destruction.shatter",
@@ -47742,7 +48111,8 @@ window.GAME_DATA = {
      "name": "Tidal Wave",
      "desc": "A wall of water that strikes the target and everything beside it.",
      "need": "destruction.fireball",
-     "spell": "tidal_wave"
+     "spell": "tidal_wave",
+     "lesson": true
     },
     {
      "id": "destruction.focus",
@@ -47775,7 +48145,8 @@ window.GAME_DATA = {
      "name": "Frost Nova",
      "desc": "A burst of frost that damages and slows the target and everything next to it.",
      "need": "destruction.tidal_wave",
-     "spell": "frost_nova"
+     "spell": "frost_nova",
+     "lesson": true
     },
     {
      "id": "destruction.pyre",
@@ -47798,7 +48169,8 @@ window.GAME_DATA = {
      "name": "Meteor",
      "desc": "The heaviest damage spell there is, with a blast around the target.",
      "need": "destruction.frost_nova",
-     "spell": "meteor"
+     "spell": "meteor",
+     "lesson": true
     },
     {
      "id": "destruction.absolute_zero",
@@ -47901,7 +48273,8 @@ window.GAME_DATA = {
      "name": "Regrowth",
      "desc": "A strong heal for one ally.",
      "need": "healing.lifeward",
-     "spell": "regrowth"
+     "spell": "regrowth",
+     "lesson": true
     },
     {
      "id": "healing.calm",
@@ -47933,7 +48306,8 @@ window.GAME_DATA = {
      "name": "Renewal",
      "desc": "A wave of soft light that heals the target and every ally next to it.",
      "need": "healing.regrowth",
-     "spell": "renewal"
+     "spell": "renewal",
+     "lesson": true
     },
     {
      "id": "healing.swift_mending",
@@ -47954,7 +48328,8 @@ window.GAME_DATA = {
      "name": "Sanctuary",
      "desc": "Heals the target and its neighbours, and none of them can fall below 1 health this round.",
      "need": "healing.renewal",
-     "spell": "sanctuary"
+     "spell": "sanctuary",
+     "lesson": true
     },
     {
      "id": "healing.blessed",
@@ -47987,7 +48362,8 @@ window.GAME_DATA = {
      "name": "Revive",
      "desc": "Raises a fallen companion beside you with two fifths of their health.",
      "need": "healing.sanctuary",
-     "spell": "revive"
+     "spell": "revive",
+     "lesson": true
     },
     {
      "id": "healing.wellspring",
@@ -48090,7 +48466,8 @@ window.GAME_DATA = {
      "name": "Keen Edge",
      "desc": "Sharpens an ally's weapon (+ATK for 3 rounds).",
      "need": "enhancement.quicken",
-     "spell": "keen_edge"
+     "spell": "keen_edge",
+     "lesson": true
     },
     {
      "id": "enhancement.battlemage",
@@ -48122,7 +48499,8 @@ window.GAME_DATA = {
      "name": "Spell Shield",
      "desc": "Halves the damage an ally takes from magical foes for 3 rounds.",
      "need": "enhancement.keen_edge",
-     "spell": "spell_shield"
+     "spell": "spell_shield",
+     "lesson": true
     },
     {
      "id": "enhancement.runed_arms",
@@ -48154,7 +48532,8 @@ window.GAME_DATA = {
      "name": "Iron Will",
      "desc": "Steels an ally (+ATK and +DEF for 3 rounds).",
      "need": "enhancement.spell_shield",
-     "spell": "iron_will"
+     "spell": "iron_will",
+     "lesson": true
     },
     {
      "id": "enhancement.standing_charms",
@@ -48176,7 +48555,8 @@ window.GAME_DATA = {
      "name": "Heroism",
      "desc": "The whole party fights harder and stands firmer (+ATK and +DEF for 3 rounds).",
      "need": "enhancement.iron_will",
-     "spell": "heroism"
+     "spell": "heroism",
+     "lesson": true
     },
     {
      "id": "enhancement.mirror_charm",
@@ -48279,7 +48659,8 @@ window.GAME_DATA = {
      "name": "Enfeeble",
      "desc": "Saps a foe's strength: it deals 30% less damage for 3 rounds.",
      "need": "control.sunder",
-     "spell": "enfeeble"
+     "spell": "enfeeble",
+     "lesson": true
     },
     {
      "id": "control.brittle",
@@ -48311,7 +48692,8 @@ window.GAME_DATA = {
      "name": "Quagmire",
      "desc": "Turns the ground to sucking mud for 3 rounds: each step through it costs double movement.",
      "need": "control.enfeeble",
-     "spell": "quagmire"
+     "spell": "quagmire",
+     "lesson": true
     },
     {
      "id": "control.opening_hex",
@@ -48332,7 +48714,8 @@ window.GAME_DATA = {
      "name": "Bramble Wall",
      "desc": "Raises a three-tile wall of brambles for 3 rounds. Nothing can walk through it.",
      "need": "control.quagmire",
-     "spell": "bramble_wall"
+     "spell": "bramble_wall",
+     "lesson": true
     },
     {
      "id": "control.thornmaster",
@@ -48365,7 +48748,8 @@ window.GAME_DATA = {
      "name": "Wither",
      "desc": "Enfeebles the target and everything next to it: 30% less damage for 3 rounds.",
      "need": "control.bramble_wall",
-     "spell": "wither"
+     "spell": "wither",
+     "lesson": true
     },
     {
      "id": "control.overgrowth",
@@ -49498,7 +49882,45 @@ window.GAME_DATA = {
    "lic": "CC0",
    "url": "https://opengameart.org/content/miscellaneous-octopi"
   }
- ]
+ ],
+ "bags": {
+  "pockets": {
+   "slots": 6,
+   "per": 10
+  },
+  "bagSlots": 3,
+  "heroStart": [],
+  "helperStart": [],
+  "nostack": [
+   "gear",
+   "tool",
+   "ward",
+   "furniture",
+   "upgrade"
+  ],
+  "oldSave": {
+   "bags": [
+    "rucksack"
+   ],
+   "chests": 2
+  },
+  "home": {
+   "chest": {
+    "slots": 8,
+    "per": 20
+   },
+   "perChest": {
+    "slots": 16,
+    "per": 40
+   },
+   "jars": {
+    "only": "reagent",
+    "slots": 12,
+    "per": 60
+   },
+   "maxChests": 8
+  }
+ }
 };
 
 </script>
@@ -49743,7 +50165,7 @@ cv.addEventListener('mousedown', e => { if (e.button !== 0 || Date.now() - lastT
 cv.addEventListener('pointerdown', e => { if (e.pointerType !== 'touch') return; e.preventDefault(); lastTouch = Date.now(); const p = canvasPos(e); mouse.x = p.x; mouse.y = p.y; mouse.moved = true; touchT = { t: Date.now(), x: p.x, y: p.y }; });
 cv.addEventListener('pointermove', e => { if (e.pointerType !== 'touch' || !touchT) return; const p = canvasPos(e); mouse.x = p.x; mouse.y = p.y; mouse.moved = true; });
 cv.addEventListener('pointerup', e => { if (e.pointerType !== 'touch' || !touchT) return; lastTouch = Date.now(); const p = canvasPos(e); if (Date.now() - touchT.t < 420 && Math.hypot(p.x - touchT.x, p.y - touchT.y) < 24) clicks.push(p); touchT = null; });
-cv.addEventListener('contextmenu', e => { e.preventDefault(); if (Date.now() - lastTouch < 900) return; if (menus.length || dialogs.length || MASTER || (R.scene === 'combat' && C && C.mode && C.mode !== 'move')) hits.push('escape'); });
+cv.addEventListener('contextmenu', e => { e.preventDefault(); if (Date.now() - lastTouch < 900) return; if (BAG && !dialogs.length && menus.length <= BAG.depth) { BAG.rc = canvasPos(e); return; } if (menus.length || dialogs.length || MASTER || (R.scene === 'combat' && C && C.mode && C.mode !== 'move')) hits.push('escape'); });
 let wheelAcc = 0;
 cv.addEventListener('wheel', e => { if (!menus.length) return; e.preventDefault(); wheelAcc += e.deltaY; const m = menus[menus.length - 1]; while (Math.abs(wheelAcc) >= 90) { const n = menuItems(m).length; m.index = Math.max(0, Math.min(n - 1, m.index + (wheelAcc > 0 ? 1 : -1))); wheelAcc -= Math.sign(wheelAcc) * 90; } }, { passive: false }); // scroll without wrapping
 document.addEventListener('gesturestart', e => e.preventDefault());
@@ -50143,7 +50565,8 @@ function addHeroXp(n) {
   else if (before >= cap && cap < (HERO().maxLevel || 30) && !R.capTold) { R.capTold = true; toast(`Level ${cap} is as far as these lands can take you. Sail on to learn more.`, UI.blue); }
 }
 function noteReached(mapId) { if (!G) return; const rg = regionOf(mapId); if (!rg) return; G.reached = G.reached || {}; if (G.reached[rg]) return; const c0 = levelCap(); G.reached[rg] = true; if (levelCap() > c0) { R.capTold = false; toast(`New lands, new lessons: you can now reach level ${levelCap()}.`, UI.blue); } }
-function migrateHero() {      // saves from before v0.29: one level from the old Martial/Magery, brought down to the cap; points, perks and talents come back as talent points
+function migrateBags() { if (!G || !BG() || G.bagV) return; G.bagV = 1; const O = BG().oldSave; if (O && (G.day || 1) > 1) { G.bags = G.bags || {}; G.bags.player = (O.bags || []).slice(); home().furn.chest = Math.max(home().furn.chest || 0, O.chests || 0); } bagsOf('player'); pouchFill(); }      // a save from before bags: a pack and two chests, so nobody starts over-full
+function migrateHero() { migrateBags();      // saves from before v0.29: one level from the old Martial/Magery, brought down to the cap; points, perks and talents come back as talent points
   if (!D.trees || G.hxp != null) return;
   const old = id => Math.max(0, levelFromXp((G.skills || {})[id] || 0, (D.skills[id] || {}).curve || D.skillCurve) - 1);
   G.reached = { mainland: true }; for (const id of Object.keys(G.visited || {}).concat([G.map])) { const rg = regionOf(id); if (rg) G.reached[rg] = true; }
@@ -50214,6 +50637,33 @@ function talentFree() { return D.trees ? Math.max(0, lvlOf(TWHO) - treeSpent()) 
 function rowLevel(r) { return r * (HERO().perRegion || 5) + 1; }
 function rowNeed(r) { return r * (HERO().rowPts || 4); }
 function openCost(n) { return TWHO !== 'player' || treePts(n.tree) > 0 ? 0 : ((HERO().treeCost || [])[treesHeld().length] || 0); }
+let TEACH = null;       // the ruler giving a lesson right now; lesson talents can only be learned then
+function lessonRow(n) { const L = (HERO().lessons || {})[n.r]; return n.lesson && L ? L : null; }
+function lessonOpen(L) { return (G.quests || {})[L.quest] === 'done'; }
+function lessonWhy(n) {      // why a lesson talent cannot be learned here, or ''
+  const L = lessonRow(n); if (!L || tRank(n.id) || TEACH === L.npc || TEACH === '*') return ''; const nm = (D.npcs[L.npc] || {}).name || 'A ruler';
+  return lessonOpen(L) ? `${nm} teaches this in person. Bring ${TWHO === 'player' ? 'yourself' : D.helpers[TWHO].name} to ${L.place} and ask for a lesson.` : `Taught in person by ${nm} of ${L.place}, once you have done their first task ("${(D.quests.find(q => q.id === L.quest) || {}).name}").`;
+}
+async function lessonOffer(npc) {     // a ruler teaches one tier's signature talents to anyone in the party who is ready. true = the visit was spent on lessons
+  const row = Object.keys(HERO().lessons || {}).find(r => HERO().lessons[r].npc === npc.id); if (row == null) return false; const L = HERO().lessons[row], T = HERO().lessonTalk || {};
+  if (!lessonOpen(L)) return false;
+  const who = ['player'].concat(partyIds().filter(id => (D.helpers[id].trees || []).length)), nameOf = w => w === 'player' ? 'You' : D.helpers[w].name;
+  const list = () => { const o = TEACH; TEACH = npc.id; try { return who.flatMap(w => asWho(w, () => { if (w !== 'player') hSync(w); return (w === 'player' ? treesHeld() : treeKeys(w)).flatMap(tk => D.trees[tk].nodes.filter(n => n.lesson && n.r === +row && !tRank(n.id)).map(n => ({ w, n, why: nodeBlocked(n) }))); })); } finally { TEACH = o; } };
+  if (!list().length) return false;
+  if (!G.flags['lesson_' + npc.id]) { G.flags['lesson_' + npc.id] = true; await say(npc.def.name, [`"${pick(T.offer || ['I will teach your company what I know.'])}"`], npc.def.sprite); }
+  const first = await choose(npc.def.name, [{ label: 'Ask for a lesson', value: 'y', desc: `${npc.def.name} teaches the ${(HERO().tierNames || [])[+row] || ''} signature talents, to you and to companions travelling with you.` }, { label: 'Speak of other matters', value: 'n' }], { width: 520 });
+  if (first !== 'y') return false;
+  for (let turn = 0; turn < 20; turn++) {
+    const rows = list(); if (!rows.length) break;
+    const c = await choose(`${npc.def.name}: "${turn ? T.again || 'Another?' : T.ask || 'Who would learn?'}"`, rows.map((e, i) => ({ label: `${nameOf(e.w)}: ${e.n.name}`, right: e.why ? 'not ready' : `${D.trees[e.n.tree].name}  1 point`, desc: e.n.desc + (e.why ? `   Not ready: ${e.why}` : ''), value: i }))
+      .concat([{ label: 'That is all for today', value: -1 }]), { width: 640 });
+    if (c == null || c < 0) break; const e = rows[c];
+    if (e.why) { await say(npc.def.name, [`"${(T.notReady || 'Not yet. {why}').replace('{why}', e.why)}"`], npc.def.sprite); continue; }
+    TEACH = npc.id; try { asWho(e.w, () => treeLearn(e.n.id)); } finally { TEACH = null; }
+    await say(npc.def.name, [`"${pick(T.taught || ['It is yours now.'])}"`, `${nameOf(e.w)} learned ${e.n.name}.`], npc.def.sprite);
+  }
+  return true;
+}
 function nodeBlocked(n) {      // why a point cannot go here, or '' when it can
   if (tRank(n.id) >= n.max) return 'Fully learned.';
   const h = treesHeld(), T = D.trees;
@@ -50223,6 +50673,7 @@ function nodeBlocked(n) {      // why a point cannot go here, or '' when it can
   if (treePts(n.tree, n.r) < rowNeed(n.r)) return `Needs ${rowNeed(n.r)} points in the rows above; this tree has ${treePts(n.tree, n.r)}.`;
   if (n.need && tRank(n.need) < treeNode(n.need).max) return `Learn ${treeNode(n.need).name} fully first.`;
   if (n.not && tRank(n.not)) return `You chose ${treeNode(n.not).name} instead.`;
+  { const lw = lessonWhy(n); if (lw) return lw; }
   if (talentFree() <= 0) return TWHO === 'player' ? 'No talent points to spend. You gain one with every level.' : 'No talent points to spend. One comes with every level.';
   if (openCost(n) > G.gold) return `Opening this tree costs ${openCost(n)}g.`;
   return '';
@@ -50443,17 +50894,102 @@ const count = id => G.inv[id] || 0;
 function PK() { return D.pockets || { caps: {} }; }
 function pocketCap(type) { const base = (PK().caps || {})[type]; if (base == null) return Infinity; let b = base; for (const id of Object.keys(G.inv || {})) { const pb = (D.items[id] || {}).pocketBonus; if (pb && pb[type]) b += pb[type]; } return b; }
 function pocketUsed(type) { return Object.entries(G.inv || {}).reduce((a, [id, n]) => a + ((D.items[id] || {}).type === type ? n : 0), 0); }
-function pocketRoom(id) { const t = item(id).type; return Math.max(0, pocketCap(t) - pocketUsed(t)); }
-function toStore(id, n) { if (n <= 0) return; G.store = G.store || {}; G.store[id] = (G.store[id] || 0) + n; if (!R.storeToast || R.t - R.storeToast > 2) { R.storeToast = R.t; setTimeout(() => toast(`Pockets full: ${n} ${item(id).name} sent to your storehouse.`, UI.blue), 0); } }
+function pocketRoom(id) { return BG() ? roomAll(id, 9999) : Math.max(0, pocketCap(item(id).type) - pocketUsed(item(id).type)); }
+// ---- bags (D.bags): pockets, bags and tool cases hold stacks in slots; pack() lays everything out afresh each time, so nothing is arranged by hand
+function BG() { return D.bags || null; }
+function invOf(who) { if (who === 'player') return G.inv; G.hinv = G.hinv || {}; return G.hinv[who] || (G.hinv[who] = {}); }
+function bagsOf(who) { G.bags = G.bags || {}; if (!G.bags[who]) G.bags[who] = ((who === 'player' ? BG().heroStart : BG().helperStart) || []).slice(); return G.bags[who]; }
+function carried(id) { const it = item(id); return it.type !== 'scroll' && it.type !== 'bag' && it.type !== 'build' && !it.holds; }      // takes up a slot
+function stackOf(id, per) { return (BG().nostack || []).includes(item(id).type) ? 1 : per; }
+function containers(who) {      // in the order they fill: pockets, the hero's tool cases, then bags
+  const B = BG(), out = [Object.assign({ k: 'pockets', name: 'Pockets' }, B.pockets)];
+  if (who === 'player') for (const id of Object.keys(G.inv)) { const h = item(id).holds; if (h && G.inv[id] > 0) out.push(Object.assign({ k: 'case:' + id, name: item(id).name }, h)); }
+  bagsOf(who).forEach((b, i) => { const d = item(b).bag; if (d) out.push({ k: 'bag' + i, name: item(b).name, slots: d.slots, per: d.per }); });
+  return out;
+}
+function layOf(who) { G.lay = G.lay || {}; return G.lay[who] || (G.lay[who] = {}); }
+function accepts(c, id) { return !c.only || c.only === item(id).type; }
+function pack(who) {      // reconciles where things sit (G.lay) with what is carried; -> { cons: [{k, name, slots, per, only, cells: [{id, n} | null]}], over: [{id, n}] }
+  const inv = invOf(who), L = layOf(who), cons = containers(who).map(c => Object.assign({}, c)), keys = new Set(cons.map(c => c.k)), seen = {};
+  for (const k of Object.keys(L)) if (!keys.has(k)) delete L[k];
+  for (const c of cons) { const a = L[c.k] || (L[c.k] = []); if (a.length > c.slots) a.length = c.slots; while (a.length < c.slots) a.push(null);
+    for (let i = 0; i < a.length; i++) { const s = a[i]; if (!s) continue; const want = (inv[s.id] || 0) - (seen[s.id] || 0); if (!carried(s.id) || want <= 0 || !accepts(c, s.id)) { a[i] = null; continue; } if (s.n > want) s.n = want; seen[s.id] = (seen[s.id] || 0) + s.n; }
+    c.cells = a; }
+  const over = [];
+  for (const id of Object.keys(inv).filter(id => inv[id] > 0 && carried(id)).sort((a, b) => (item(a).type + a).localeCompare(item(b).type + b))) { let n = inv[id] - (seen[id] || 0); if (n <= 0) continue;
+    for (const c of cons) { if (!accepts(c, id)) continue; const st = stackOf(id, c.per); for (const s of c.cells) if (n > 0 && s && s.id === id && s.n < st) { const q = Math.min(n, st - s.n); s.n += q; n -= q; } }
+    for (const c of cons) { if (!accepts(c, id)) continue; const st = stackOf(id, c.per); for (let i = 0; i < c.cells.length && n > 0; i++) if (!c.cells[i]) { const q = Math.min(n, st); c.cells[i] = { id, n: q }; n -= q; } }
+    if (n > 0 && who === 'player') for (const h of partyIds()) { const q = roomFor(h, id, n); if (q > 0) { inv[id] -= q; if (!inv[id]) delete inv[id]; const iv = invOf(h); iv[id] = (iv[id] || 0) + q; n -= q; toast(`${D.helpers[h].name} takes ${q} ${item(id).name}: you had no room for ${q === 1 ? 'it' : 'them'}.`, UI.blue); } if (n <= 0) break; }
+    if (n > 0) over.push({ id, n }); }
+  return { cons, over };
+}
+function roomFor(who, id, n = 1) {      // how many of n more this character could carry
+  if (!carried(id) || n <= 0) return Math.max(0, n); let r = 0;
+  for (const c of pack(who).cons) { if (!accepts(c, id)) continue; const st = stackOf(id, c.per); for (const s of c.cells) { if (!s) r += st; else if (s.id === id && s.n < st) r += st - s.n; if (r >= n) return n; } }
+  return Math.min(n, r);
+}
+function slotsUsed(who) { const P = pack(who); return [P.cons.reduce((a, c) => a + c.cells.filter(Boolean).length, 0) + P.over.length, P.cons.reduce((a, c) => a + c.slots, 0)]; }
+// ---- home storage: the storehouse has a size (a small chest to start; Storage Chests and a Jar Rack are bought). Build materials are exempt
+function storeExempt(id) { const t = item(id).type; return t === 'build' || t === 'bag' || t === 'furniture' || t === 'upgrade'; }
+function storeCons() { const H = (BG() || {}).home, f = home().furn, out = []; if (!H) return out; if (f.jars) out.push(H.jars); out.push(H.chest); for (let i = 0; i < (f.chest || 0); i++) out.push(H.perChest); return out; }
+function storeLay(inv) { const cons = storeCons(), used = cons.map(() => 0); let over = 0; for (const k of Object.keys(inv).filter(k => inv[k] > 0 && !storeExempt(k)).sort()) { let m = inv[k]; for (let ci = 0; ci < cons.length && m > 0; ci++) { const c = cons[ci]; if (c.only && c.only !== item(k).type) continue; while (m > 0 && used[ci] < c.slots) { m -= Math.min(m, c.per); used[ci]++; } } over += m; } return { used: used.reduce((a, b) => a + b, 0), total: cons.reduce((a, c) => a + c.slots, 0), over }; }
+function storeRoom(id, n = 1) {      // how many of n more the storehouse could take
+  if (!BG() || !BG().home || storeExempt(id) || n <= 0) return Math.max(0, n); const S0 = G.store || {}, base = storeLay(S0).over, fits = k => { const t = Object.assign({}, S0); t[id] = (t[id] || 0) + k; return storeLay(t).over <= base; };
+  if (fits(n)) return n; let lo = 0, hi = n - 1; while (lo < hi) { const m = Math.ceil((lo + hi) / 2); if (fits(m)) lo = m; else hi = m - 1; } return lo;
+}
+function storeLine() { if (!BG() || !BG().home) return ''; const s = storeLay(G.store || {}); return `Storehouse: ${s.used} of ${s.total} slots` + (s.over ? `  (${s.over} over)` : ''); }
+function homeRoom(id, n) { const a = roomAll(id, n); return a >= n ? n : a + storeRoom(id, n - a); }      // what the party and the storehouse together could take
+function pouchSpec() { const p = eqOf('player').pouch; return !p ? null : item(p).pouch || { slots: 99, per: 999 }; }
+function pouchRoom(id) { const sp = pouchSpec(); if (!sp) return 0; const P = G.pouch || {}; return P[id] ? Math.max(0, sp.per - P[id]) : Object.keys(P).filter(k => P[k] > 0).length < sp.slots ? sp.per : 0; }
+function toPouch(id, n) { const q = Math.min(n, pouchRoom(id)); if (q > 0) { G.pouch = G.pouch || {}; G.pouch[id] = (G.pouch[id] || 0) + q; } return Math.max(0, q); }
+function spellUses(id) { return (G.spells || []).some(s => D.spells[s] && (D.spells[s].reagents || {})[id]); }
+function pouchFill() {      // tops the pouch up from the hero's bags with the reagents the known spells use
+  let moved = 0; for (const s of G.spells || []) for (const id of Object.keys((D.spells[s] || {}).reagents || {})) { const q = toPouch(id, count(id)); if (q) { take(id, q); moved += q; } } return moved;
+}
+function have(id) { return count(id) + pouchCount(id); }      // for crafting and hand-ins: the hero's bags and pouch together
+function spend(id, n) { const a = Math.min(n, count(id)); if (a) take(id, a); n -= a; if (n > 0 && pouchCount(id) >= n) { G.pouch[id] -= n; if (!G.pouch[id]) delete G.pouch[id]; n = 0; } return n === 0; }
+function partyHas(id) { return partyIds().reduce((a, h) => a + (invOf(h)[id] || 0), 0); }
+function roomAll(id, n = 1) {      // how many of n the party could take right now, wherever they would go
+  const it = item(id); if (!BG() || it.type === 'build' || it.type === 'bag' || it.holds) return n;
+  if (it.type === 'scroll') return Math.max(0, Math.min(n, pocketCap('scroll') - pocketUsed('scroll')));
+  let r = it.type === 'reagent' && spellUses(id) ? Math.min(n, pouchRoom(id)) : 0; if (r < n) r += roomFor('player', id, n - r);
+  for (const h of partyIds()) if (r < n) r += roomFor(h, id, n - r); return Math.min(n, r);
+}
+function noRoom(id, n) { return `No room for ${n} ${item(id).name}. Make space, or leave ${n === 1 ? 'it' : 'them'}.`; }
+function installBag(id) {      // a new bag goes on the hero, else on a companion travelling with you, else home
+  const cap = BG().bagSlots || 3, w = ['player'].concat(partyIds()).find(x => bagsOf(x).length < cap);
+  if (w) { bagsOf(w).push(id); toast(w === 'player' ? `${item(id).name}: now on your back.` : `${item(id).name}: ${D.helpers[w].name} carries it (your bag slots are full).`, UI.green); return; }
+  G.store = G.store || {}; G.store[id] = (G.store[id] || 0) + 1; toast(`Every bag slot is full: the ${item(id).name} waits in your storehouse.`, UI.blue);
+}
+function toStore(id, n) {      // -> how many went in. What does not fit is refused, with a message
+  if (n <= 0) return 0; G.store = G.store || {}; const q = BG() ? storeRoom(id, n) : n; if (q > 0) G.store[id] = (G.store[id] || 0) + q;
+  if (q > 0 && (!R.storeToast || R.t - R.storeToast > 2)) { R.storeToast = R.t; setTimeout(() => toast(BG() ? `${q} ${item(id).name} put in your storehouse.` : `Pockets full: ${q} ${item(id).name} sent to your storehouse.`, UI.blue), 0); }
+  if (q < n) setTimeout(() => toast(`No room in your storehouse for ${n - q} ${item(id).name}. Gideon's Home Center sells chests.`, UI.red), 0);
+  return q;
+}
 function pouchOn() { return !!(G && eqOf('player').pouch); }
 function pouchCount(id) { return pouchOn() ? ((G.pouch || {})[id] || 0) : 0; }
-function pocketLine() { return Object.keys(PK().caps || {}).map(t => `${(PK().labels || {})[t] || t} ${pocketUsed(t)}/${pocketCap(t)}`).join('   '); }
-function add(id, n = 1, quietDiscover) {
+function pocketLine() { if (BG()) { const [u, t] = slotsUsed('player'); return `Carrying ${u} of ${t} slots`; } return Object.keys(PK().caps || {}).map(t => `${(PK().labels || {})[t] || t} ${pocketUsed(t)}/${pocketCap(t)}`).join('   '); }
+const HOME = { spill: 'store' };      // for add(): what is grown or brought home goes to the storehouse when it cannot be carried
+function add(id, n = 1, quietDiscover, o = {}) {
   if (G) { G.seen = G.seen || {}; G.seen[id] = true; }
-  if (item(id).type === 'build') { G.store = G.store || {}; G.store[id] = (G.store[id] || 0) + n; if (id === 'cut_stone') G.flags.stoneImported = true; return; }
+  if (item(id).type === 'build') { G.store = G.store || {}; G.store[id] = (G.store[id] || 0) + n; if (id === 'cut_stone') G.flags.stoneImported = true; return n; }
+  if (BG()) { const it = item(id), want = n; let left = n;
+    if (it.type === 'bag') { for (let i = 0; i < n; i++) installBag(id); return n; }
+    if (it.holds || !carried(id)) { const q = it.type === 'scroll' ? Math.max(0, Math.min(left, pocketCap('scroll') - pocketUsed('scroll'))) : left; if (q > 0) G.inv[id] = count(id) + q; left -= q; }
+    else {
+      if (it.type === 'reagent' && !o.noPouch && spellUses(id)) left -= toPouch(id, left);
+      if (left > 0) { const q = roomFor('player', id, left); if (q > 0) { G.inv[id] = count(id) + q; left -= q; } }
+      for (const h of partyIds()) if (left > 0) { const q = roomFor(h, id, left); if (q > 0) { const iv = invOf(h); iv[id] = (iv[id] || 0) + q; left -= q; if (!o.silent) toast(`${D.helpers[h].name} carries ${q} ${it.name}.`, UI.blue); } }
+    }
+    if (left > 0 && o.spill === 'store') left -= toStore(id, left);      // toStore says so itself when the storehouse is full
+    else if (left > 0 && !o.silent) { toast(noRoom(id, left), UI.red); AU.sfx('menu'); }
+    if (it.type === 'reagent' && !G.discovered[id] && left < want) discover(id, quietDiscover);
+    return want - left; }
   { const room = pocketRoom(id); if (n > room) { toStore(id, n - room); n = room; } }
   if (n > 0) G.inv[id] = count(id) + n;
   if (item(id).type === 'reagent' && !G.discovered[id]) discover(id, quietDiscover);
+  return n;
 }
 function take(id, n = 1) { if (count(id) < n) return false; G.inv[id] -= n; if (G.inv[id] <= 0) delete G.inv[id]; return true; }
 function discover(id, quiet) {
@@ -50462,13 +50998,13 @@ function discover(id, quiet) {
   if (quiet) toast(`Discovered ${it.name}! (+2 seeds)`, UI.green);
   else script(() => say('Discovery!', [`You discovered ${it.name}!`, it.desc, `You found 2 seeds. You can now grow ${it.name} in your greenhouse, and Marta's Apothecary will sell more seeds.`], it.sprite));
 }
-function hasReagents(sp) { return Object.entries(sp.reagents || {}).every(([id, n]) => count(id) + pouchCount(id) >= n); }
-function useReagent(id) { if (pouchCount(id) > 0) { G.pouch[id]--; if (!G.pouch[id]) delete G.pouch[id]; return true; } return take(id, 1); }
-function payReagents(sp) { stat('casts');
+function hasReagents(sp) { return Object.entries(sp.reagents || {}).every(([id, n]) => (BG() ? 0 : count(id)) + pouchCount(id) >= n); }
+function useReagent(id, any) { if (pouchCount(id) > 0) { G.pouch[id]--; if (!G.pouch[id]) delete G.pouch[id]; return true; } return BG() && !any ? false : take(id, 1); }
+function payReagents(sp, any) { stat('casts');      // any: also from the bags (the Gate's Waystone Dust is not a pouch reagent)
   const saved = {};
-  for (const [id, n] of Object.entries(sp.reagents || {})) for (let i = 0; i < n; i++) { if (Math.random() < reagentSaveChance(id, sp)) saved[id] = (saved[id] || 0) + 1; else useReagent(id); }
+  for (const [id, n] of Object.entries(sp.reagents || {})) for (let i = 0; i < n; i++) { if (Math.random() < reagentSaveChance(id, sp)) saved[id] = (saved[id] || 0) + 1; else useReagent(id, any); }
   // always show what the cast cost and what's left, so nobody has to open the inventory to check
-  const parts = Object.entries(sp.reagents || {}).map(([id, n]) => { const sv = saved[id] || 0, used = n - sv; return `${item(id).name} ${used ? '-' + used : 'saved!'}${sv && used ? ` (${sv} saved)` : ''} (${count(id) + pouchCount(id)} left)`; });
+  const parts = Object.entries(sp.reagents || {}).map(([id, n]) => { const sv = saved[id] || 0, used = n - sv; return `${item(id).name} ${used ? '-' + used : 'saved!'}${sv && used ? ` (${sv} saved)` : ''} (${(BG() && !any ? 0 : count(id)) + pouchCount(id)} left)`; });
   toast(`${sp.name}: ${parts.join(',  ')}`, Object.keys(saved).length ? UI.blue : undefined);
   if (C && C.log) clog(`${sp.name} used ${parts.join(', ')}.`);
 }
@@ -50503,7 +51039,7 @@ async function chooseCalling() {
   const ids = Object.keys(CL).filter(k => D.skills[k]);
   let c = null; while (!c) c = await choose('Choose your calling', ids.map(k => ({ label: D.skills[k].name, right: CL[k].tag || '', icon: CL[k].icon, desc: CL[k].desc || '', value: k })), { width: 640, footer: 'A head start, not a class. Your fighting style comes from the talent trees (K).' });
   G.calling = c; G.skills[c] = xpForSkill(1, c);
-  const b = CL[c] || {}; for (const [id, n] of Object.entries(b.items || {})) add(id, n, true); if (b.gold) G.gold += b.gold;
+  const b = CL[c] || {}; for (const [id, n] of Object.entries(b.items || {})) add(id, n, true, HOME); if (b.gold) G.gold += b.gold;
   for (const sp of b.spells || []) if (!G.spells.includes(sp)) G.spells.push(sp);
   G.hp = maxHp(); toast('You have 1 talent point to spend (Skills, K).', UI.green);
 }
@@ -50623,7 +51159,7 @@ function gardenKeys() { if (!gardenKeys.c) { gardenKeys.c = []; for (const [id, 
 function plotKeys() { const k = gardenKeys().slice(); for (let i = 0; i < ghPlanters(); i++) k.push(i); return k; }
 function plotName(k) { if (typeof k === 'number' || /^\d+$/.test(k)) return `Greenhouse bed ${+k + 1}`; const [m, i] = String(k).split(':'); return `${(D.maps[m] || {}).gardenName || 'Garden'} bed ${+i + 1}`; }
 
-function loadMap(id, x, y) {
+function loadMap(id, x, y) { TALKER = 'player';
   const mp = mapDef(id); if (!mp) { toast('Missing map: ' + id, UI.red); return; }
   noteReached(id);
   if (typeof x === 'string') { let pos = null; mp.tiles.forEach((row, yy) => { const xx = row.indexOf(x); if (xx >= 0 && !pos) pos = [xx, yy]; }); pos = pos || [1, 1]; let tg = pos;
@@ -50652,7 +51188,7 @@ function heldDir() {   // the direction pressed most recently wins (pressing lef
   return null;
 }
 function dollTop() { return !!DOLL && menus.length <= DOLL.depth; }
-function overlayActive() { return COMMENTING || MOB.portrait() || menus.length || dialogs.length || fadeA > 0 || !!WMAP || !!MASTER; }
+function overlayActive() { return COMMENTING || MOB.portrait() || menus.length || dialogs.length || fadeA > 0 || !!WMAP || !!MASTER || !!BAG; }
 
 function updateWorld(dt) {
   updateEnemyAnims(dt);
@@ -50707,6 +51243,7 @@ function gather(i) {
   if (Math.random() < perk('forageDouble')) n *= 2;
   if (G.flags.luckDay === G.day && Math.random() < 0.35) n++;
   n *= D.greenhouse.forageMult || 1;
+  { const fit = roomAll(f.item, n); if (fit <= 0) { toast(noRoom(f.item, n), UI.red); AU.sfx('menu'); return; } n = Math.min(n, fit); }
   G.forage[forageKey(R.mapId, i)] = G.day; (R.plucked = R.plucked || {})[R.mapId + ':' + i] = R.t; dayStat('gathered');
   toast(`+${n} ${item(f.item).name}`); AU.sfx('pickup'); add(f.item, n); addSkillXp('herbalism', 2);
 }
@@ -50772,7 +51309,7 @@ async function talk(npc) {
   switch (d.role) {
     case 'hermit': return hermitTalk(npc);
     case 'wizard': return wizardTalk(npc);
-    case 'leader': { const sv = G.escort && survDef(G.escort.id); if (sv && sv.ruler === npc.id && G.helpers[sv.helper]) await finishEscort(sv, npc); return wizardQuests(npc); }
+    case 'leader': { const sv = G.escort && survDef(G.escort.id); if (sv && sv.ruler === npc.id && G.helpers[sv.helper]) await finishEscort(sv, npc); if (await lessonOffer(npc)) return; return wizardQuests(npc); }
     case 'enchanter': return enchantTalk(npc);
     case 'care': return careTalk(npc);
     case 'shop': return shopTalk(npc);
@@ -50787,7 +51324,7 @@ async function talk(npc) {
 }
 function objProgress(q, i) {
   const o = q.objectives[i];
-  if (o.type === 'collect') return Math.min(o.qty, count(o.item) + ((G.store || {})[o.item] || 0));      // v0.28.3: goods in your storehouse count
+  if (o.type === 'collect') return Math.min(o.qty, count(o.item) + (BG() ? pouchCount(o.item) + partyHas(o.item) : 0) + ((G.store || {})[o.item] || 0));      // v0.28.3: goods in your storehouse count
   if (o.type === 'store') return Math.min(o.qty, (G.store || {})[o.item] || 0);
   if (o.type === 'defeat') return isRegionBoss(o.enemy) && (G.bossDown || {})[o.enemy] != null ? o.qty : Math.min(o.qty, ((G.qprog[q.id] || {})[i] || 0));      // v0.28.3: a region boss never returns, so one already beaten counts
   if (o.type === 'visit') return G.visited[o.map] ? 1 : 0;
@@ -50819,6 +51356,7 @@ function questLines(q) { return q.objectives.map((o, i) => `${objProgress(q, i) 
 function grantReward(r) {
   if (!r) return; dayStat('quests');
   if (r.gold) { G.gold += r.gold; toast(`+${r.gold} gold`); }
+  if (r.recruit) G.flags['recruit_' + r.recruit] = true;      // the companion joins for nothing next time you speak (helperTalk)
   for (const s of r.spells || []) if (!G.spells.includes(s)) { G.spells.push(s); addDread(DL().perSpell || 0); toast(`Learned spell: ${D.spells[s] ? D.spells[s].name : s}!`, UI.blue); }
   for (const [s, n] of Object.entries(r.xp || {})) { if (s === 'fight') addHeroXp(n); else addSkillXp(s, n); }
   for (const [id, n] of Object.entries(r.items || {})) { add(id, n, true); toast(`+${n} ${item(id).name}`); }
@@ -50836,7 +51374,7 @@ function grantReward(r) {
 // ================= WHAT A GREAT WARD COSTS (v0.28.3) =================
 // A great ward empties its region for good. Before it is raised the hermit names the quests that would become impossible;
 // afterwards the journal marks them, and they are no longer offered. Goods already in pockets or the storehouse still count.
-function takeAnywhere(id, n) { const a = Math.min(n, count(id)); if (a) take(id, a); n -= a; if (n > 0 && G.store && G.store[id]) { const b = Math.min(n, G.store[id]); G.store[id] -= b; if (!G.store[id]) delete G.store[id]; } }
+function takeAnywhere(id, n) { const a = Math.min(n, count(id)); if (a) take(id, a); n -= a; if (BG()) { for (const h of partyIds()) { const iv = invOf(h), b = Math.min(n, iv[id] || 0); if (b) { iv[id] -= b; if (!iv[id]) delete iv[id]; n -= b; } } const p = Math.min(n, pouchCount(id)); if (p) { G.pouch[id] -= p; if (!G.pouch[id]) delete G.pouch[id]; n -= p; } } if (n > 0 && G.store && G.store[id]) { const b = Math.min(n, G.store[id]); G.store[id] -= b; if (!G.store[id]) delete G.store[id]; } }
 let HOMES = null, GOODS = null;
 function enemyHomes(id) {
   if (!HOMES) { HOMES = {}; const add = (e, m) => { (HOMES[e] = HOMES[e] || new Set()).add(m); };
@@ -50878,6 +51416,7 @@ async function giverQuests(npc, opts = {}) {
   const actives = D.quests.filter(q => G.quests[q.id] === 'active' && (q.giver === giver || (!q.giver && npc.def.role === 'wizard')));
   let any = false;
   for (const q of actives) if (questDone(q)) {
+    { const short = BG() ? Object.entries((q.reward || {}).items || {}).filter(([id, n]) => { const o = q.objectives.find(x => x.type === 'collect' && x.item === id); return roomAll(id, n) < n && !o; }) : []; if (short.length) { await say(nm, [`You have done it. But you have no room for ${short.map(([id, n]) => `${n} ${item(id).name}`).join(' and ')}. Make space and come back for your reward.`], sp); any = true; continue; } }
     if ((q.reward || {}).regionWard && !(await wardWarning(npc, q.reward.regionWard, q))) continue;
     q.objectives.forEach(o => { if (o.type === 'collect') takeAnywhere(o.item, o.qty); if (o.type === 'store') { G.store[o.item] -= o.qty; if (!G.store[o.item]) delete G.store[o.item]; } });
     G.quests[q.id] = 'done'; await say(nm, q.done, sp); grantReward(q.reward); any = true; noteKingdoms();
@@ -50908,7 +51447,9 @@ function isTradeGood(id) { MK()._g = MK()._g || new Set(MK().goods || []); retur
 function townOfShop(sid) { const v = mkV(sid); if (v) return v.town; return null; }
 function townLvl(town) { if (!town) return 0; const g = Object.entries(MK().vendors).filter(([, v]) => v.town === town).reduce((a, [s]) => a + ((G.prosper || {})[s] || 0), 0); const m = MR().townThresholdMult || 2; let l = 0; (PR().thresholds || [0]).forEach((t, i) => { if (g >= t * m) l = i; }); return l; }
 // Negotiating: the full effect, half of it built into the standing price, the other half only by haggling
-function barterRaw(kind) { const R0 = MR(), L = skillLvl('bartering'); return kind === 'buy' ? Math.min(R0.barterBuyCap == null ? 0.2 : R0.barterBuyCap, (R0.barterBuyPerLvl == null ? 0.02 : R0.barterBuyPerLvl) * L + ptVal('bartering', 'buy') + perk('buyDiscount'))
+let TALKER = 'player';      // who does the talking in a shop: their Negotiating sets the prices
+function talkLvl() { return TALKER !== 'player' && G.helpers[TALKER] && D.helpers[TALKER] ? crewBarter(TALKER) : skillLvl('bartering'); }
+function barterRaw(kind) { const R0 = MR(), L = talkLvl(); return kind === 'buy' ? Math.min(R0.barterBuyCap == null ? 0.2 : R0.barterBuyCap, (R0.barterBuyPerLvl == null ? 0.02 : R0.barterBuyPerLvl) * L + ptVal('bartering', 'buy') + perk('buyDiscount'))
   : Math.min(R0.barterSellCap == null ? 0.25 : R0.barterSellCap, (R0.barterSellPerLvl == null ? 0.025 : R0.barterSellPerLvl) * L + ptVal('bartering', 'sell') + perk('sellBonus') + gearVal('player', 'sellBonus')); }
 function barterStanding(kind) { return barterRaw(kind) * (MR().standingShare == null ? 0.5 : MR().standingShare); }
 function haggleRoom(kind) { return barterRaw(kind) - barterStanding(kind); }
@@ -50932,7 +51473,7 @@ function sellPrice(id, sid) { const v = mkV(sid), f = v && (v.buys || {})[id];
 function haggleTipper() { const R0 = MR(); let best = null; for (const [id, st] of Object.entries(G.helpers || {})) { if (st.role !== 'party' || !D.helpers[id]) continue; const b = (D.helpers[id].skills || {}).bartering || 0; if (b >= (R0.tipBartering || 3) && (!best || b > best.b)) best = { id, b }; } return best && D.helpers[best.id]; }
 function haggleLimit(sid, kind) { let h = 0; for (const c of `${sid}:${G.day}:${kind}`) h = (h * 31 + c.charCodeAt(0)) >>> 0; const [a, b] = MR().haggleJitter || [0.6, 1.2]; return haggleRoom(kind) * (a + (h % 1000) / 1000 * (b - a)); }
 function atHome() { return !!R.mapId && outdoorOf(R.mapId) === 'briarwick'; }
-function tradeRoomFor(id) { if (atHome()) return Infinity; const fs = flagship(), here = R.mapId && outdoorOf(R.mapId); return pocketRoom(id) + (fs && G.shipAt === here ? holdRoom(fs, holdKind(id)) : 0); }
+function tradeRoomFor(id) { if (atHome()) return BG() ? pocketRoom(id) + storeRoom(id, 9999) : Infinity; const fs = flagship(), here = R.mapId && outdoorOf(R.mapId); return pocketRoom(id) + (fs && G.shipAt === here ? holdRoom(fs, holdKind(id)) : 0); }
 function stowBought(id, n) { const pr = Math.min(n, pocketRoom(id)); if (pr > 0) add(id, pr, true); const rest = n - pr; if (rest > 0 && atHome()) { toStore(id, rest); return; } if (rest > 0) { const fs = flagship(); fs.hold[id] = (fs.hold[id] || 0) + rest; toast(`${rest} ${item(id).name} stowed in ${fs.name}'s hold.`); } }
 async function haggleMenu(npc, shop, sid) {
   const nm = npc.def.name, sp = npc.def.sprite, tip = haggleTipper();
@@ -50959,7 +51500,7 @@ async function haggleMenu(npc, shop, sid) {
   if (p / 100 > lim + 1e-9) { G.insulted = G.insulted || {}; G.insulted[sid] = G.day; AU.sfx('hit');
     await say(nm, [mode === 'buy' ? `${totAt(p)} gold for ${q}? Are you trying to insult me?` : `${totAt(p)} gold for ${q}? Do you take me for a fool?`, 'I\'m done talking to you today. Come back tomorrow.'], sp); return 'insult'; }
   const tot = totAt(p);
-  if (mode === 'buy') { if (G.gold < tot) { toast('You can\'t afford that.'); return; } G.gold -= tot; addProsper(sid, tot); useStock(sid, id, q); if (isTradeGood(id)) stowBought(id, q); else add(id, q, true); }
+  if (mode === 'buy') { if (G.gold < tot) { toast('You can\'t afford that.'); return; } if (!isTradeGood(id) && roomAll(id, q) < q) { toast(noRoom(id, q), UI.red); return; } G.gold -= tot; addProsper(sid, tot); useStock(sid, id, q); if (isTradeGood(id)) stowBought(id, q); else add(id, q, true); }
   else { take(id, q); G.gold += tot; addProsper(sid, tot); markSold(sid, id, q); }
   AU.sfx('coin'); addSkillXp('bartering', 2 + Math.floor(p / 3)); await say(nm, [p >= lim * 100 * 0.8 ? 'Hmph. You drive a hard bargain. Deal.' : 'Fair enough. Deal.'], sp);
 }
@@ -51062,6 +51603,7 @@ async function shopTalk(npc, skipIntro) {
   const shop = D.shops[npc.def.shop] || { name: 'Shop', sells: [], buysTypes: ['reagent'] };
   const sid = D.shops[npc.def.shop] ? npc.def.shop : null;
   if (!skipIntro) await say(npc.def.name, npc.def.dialog, npc.def.sprite);
+  TALKER = 'player'; if (partyIds().length && !window.__noLootPrompt) { const t = await choose("Who's going to do the talking?", [{ label: 'You', right: `Negotiating ${skillLvl('bartering')}`, value: 'player' }].concat(partyIds().map(id => ({ label: D.helpers[id].name, right: `Negotiating ${crewBarter(id)}`, value: id }))), { width: 440, footer: 'The speaker\'s Negotiating sets the prices for this visit.' }); if (t) TALKER = t; }
   if (sid && (G.insulted || {})[sid] === G.day) { await say(npc.def.name, ['You again? I\'ve nothing to say to you today.'], npc.def.sprite); return; }
   if (sid) await smithVisit(npc);
   if (sid) await shopRequests(npc, sid);
@@ -51080,13 +51622,13 @@ async function shopTalk(npc, skipIntro) {
         return ids.map(id => { const left = gd[id] && !fromS(id) ? Infinity : stockLeft(sid, id); return { label: item(id).name + ownedLabel(id) + (gd[id] && !fromS(id) ? `  (Miners' Guild: ${gd[id].n} left)` : '') + (item(id).unique ? (left ? '  (one of a kind)' : '  (sold)') : ''), icon: item(id).sprite, right: (left === Infinity || item(id).unique ? '' : left ? `x${left}  ` : 'sold out  ') + buyPrice(id, sid) + 'g', desc: `${itemDesc(id)}  (You have ${count(id)})`, value: id, disabled: G.gold < buyPrice(id, sid) || left <= 0 }; });
       },
       onSelect: it => { if (item(it.value).type === 'build') { const fs = flagship(), here = outdoorOf(R.mapId); if (!fs || G.shipAt !== here) { toast('Too bulky to carry. Sail your own ship here to load it into the hold.', UI.red); return false; } const n0 = Math.min(keys.has('shift') ? 10 : 1, holdRoom(fs, 'bulk'), Math.floor(G.gold / buyPrice(it.value, sid))); if (n0 <= 0) { toast(!(shipType(fs).bulk) ? `Your flagship (${shipType(fs).name}) has no bulk hold. A cog or a yard-built ship can carry it.` : holdRoom(fs, 'bulk') ? 'Not enough gold.' : 'Your flagship\'s bulk hold is full.', UI.red); return false; } G.gold -= n0 * buyPrice(it.value, sid); addProsper(sid, n0 * buyPrice(it.value, sid)); fs.hold[it.value] = (fs.hold[it.value] || 0) + n0; AU.sfx('coin'); toast(`${n0} ${item(it.value).name} loaded into ${fs.name}'s hold (${holdLine(fs)}).`); return false; }
-        const n = keys.has('shift') ? 5 : 1; let b = 0; const gsrc = guildFor(npc.def.shop)[it.value], fromShop = (shop.sells || []).includes(it.value) || apprenticeIds(shop).includes(it.value) || ((G.shopUnlocks || {})[npc.def.shop] || []).includes(it.value); const fromP = sid && prosperIds(sid).includes(it.value); for (let i = 0; i < n && G.gold >= buyPrice(it.value, sid); i++) { if (gsrc && !fromShop && !fromP) { if (G.guild[gsrc.cid][it.value] <= 0) break; G.guild[gsrc.cid][it.value]--; } else { if (stockLeft(sid, it.value) <= 0) { if (!b) toast('Sold out for today. Fresh stock tomorrow.', UI.red); break; } } if (['furniture', 'upgrade'].includes(item(it.value).type)) { if (!buyFurniture(it.value)) break; G.gold -= buyPrice(it.value, sid); addProsper(sid, buyPrice(it.value, sid)); b++; continue; } if (isTradeGood(it.value) && tradeRoomFor(it.value) <= 0) { if (!b) toast('No room: your pockets are full and your ship isn\'t docked here.', UI.red); break; } G.gold -= buyPrice(it.value, sid); addProsper(sid, buyPrice(it.value, sid)); if (!(gsrc && !fromShop && !fromP)) useStock(sid, it.value, 1); if (isTradeGood(it.value)) stowBought(it.value, 1); else add(it.value, 1, true); b++; } if (b) { AU.sfx('coin'); addSkillXp('bartering', 1); toast(`Bought ${b} ${item(it.value).name}`); } return false; } });
+        const n = keys.has('shift') ? 5 : 1; let b = 0; const gsrc = guildFor(npc.def.shop)[it.value], fromShop = (shop.sells || []).includes(it.value) || apprenticeIds(shop).includes(it.value) || ((G.shopUnlocks || {})[npc.def.shop] || []).includes(it.value); const fromP = sid && prosperIds(sid).includes(it.value); for (let i = 0; i < n && G.gold >= buyPrice(it.value, sid); i++) { if (gsrc && !fromShop && !fromP) { if (G.guild[gsrc.cid][it.value] <= 0) break; G.guild[gsrc.cid][it.value]--; } else { if (stockLeft(sid, it.value) <= 0) { if (!b) toast('Sold out for today. Fresh stock tomorrow.', UI.red); break; } } if (['furniture', 'upgrade'].includes(item(it.value).type)) { if (!buyFurniture(it.value)) break; G.gold -= buyPrice(it.value, sid); addProsper(sid, buyPrice(it.value, sid)); b++; continue; } if (isTradeGood(it.value) && tradeRoomFor(it.value) <= 0) { if (!b) toast('No room: your bags are full and your ship isn\'t docked here.', UI.red); break; } if (!isTradeGood(it.value) && roomAll(it.value, 1) < 1) { if (!b) toast(noRoom(it.value, 1), UI.red); break; } G.gold -= buyPrice(it.value, sid); addProsper(sid, buyPrice(it.value, sid)); if (!(gsrc && !fromShop && !fromP)) useStock(sid, it.value, 1); if (isTradeGood(it.value)) stowBought(it.value, 1); else add(it.value, 1, true); b++; } if (b) { AU.sfx('coin'); addSkillXp('bartering', 1); toast(`Bought ${b} ${item(it.value).name}`); } return false; } });
     else if (c === 'hold') await openMenu({ title: () => `Sell from the hold  -  ${holdLine(flagship())}`, width: 560, footer: () => `Gold: ${G.gold}    Enter: sell 1    Shift+Enter: sell all`,
       items: () => Object.keys(flagship().hold || {}).filter(id => flagship().hold[id] > 0 && vendorBuys(sid || npc.def.shop, id)).map(id => ({ label: item(id).name, icon: item(id).sprite, right: `${sellPrice(id, sid)}g  (x${flagship().hold[id]})`, value: id })),
       onSelect: it => { const fs = flagship(); const n = keys.has('shift') ? fs.hold[it.value] : 1; for (let i = 0; i < n; i++) { const pr = sellPrice(it.value, sid); fs.hold[it.value]--; G.gold += pr; addProsper(sid, pr); markSold(sid, it.value, 1); } if (!fs.hold[it.value]) delete fs.hold[it.value]; AU.sfx('coin'); addSkillXp('bartering', 1); return false; } });
     else if (c === 'sell') await openMenu({ title: 'Sell', width: 560, footer: () => `Gold: ${G.gold}    Enter: sell 1    Shift+Enter: sell all`,
-      items: () => Object.keys(G.inv).filter(id => count(id) > 0 && vendorBuys(sid || npc.def.shop, id)).map(id => ({ label: `${item(id).name}  x${count(id)}`, icon: item(id).sprite, right: sellPrice(id, sid) + 'g', desc: `${itemDesc(id)}${mkV(sid) && isTradeGood(id) ? `  They'll take ${demandLeft(sid, id)} more at full price today.` : ''}`, value: id })),
-      onSelect: it => { const n = keys.has('shift') ? count(it.value) : 1; let s = 0; let got = 0; for (let i = 0; i < n && take(it.value, 1); i++) { const pr = sellPrice(it.value, sid); G.gold += pr; got += pr; addProsper(sid, pr); markSold(sid, it.value, 1); s++; } if (s) { AU.sfx('coin'); addSkillXp('bartering', 1); addSkillXp('commerce', 1); toast(`Sold ${s} ${item(it.value).name} (+${got}g)`); } const m = menus[menus.length - 1]; m.index = Math.max(0, Math.min(m.index, menuItems(m).length - 1)); return false; } });
+      items: () => ['player'].concat(BG() ? partyIds() : []).flatMap(w => Object.keys(invOf(w)).filter(id => invOf(w)[id] > 0 && vendorBuys(sid || npc.def.shop, id)).map(id => ({ label: `${item(id).name}  x${invOf(w)[id]}` + (w === 'player' ? '' : `   (${D.helpers[w].name})`), icon: item(id).sprite, right: sellPrice(id, sid) + 'g', desc: (w === 'player' ? '' : `Carried by ${D.helpers[w].name}.  `) + `${itemDesc(id)}${mkV(sid) && isTradeGood(id) ? `  They'll take ${demandLeft(sid, id)} more at full price today.` : ''}`, value: w + '|' + id }))),
+      onSelect: it => { const [w, id] = String(it.value).split('|'), iv = invOf(w), n = keys.has('shift') ? iv[id] || 0 : 1; let s = 0; let got = 0; for (let i = 0; i < n && (iv[id] || 0) > 0; i++) { iv[id]--; if (!iv[id]) delete iv[id]; const pr = sellPrice(id, sid); G.gold += pr; got += pr; addProsper(sid, pr); markSold(sid, id, 1); s++; } if (s) { AU.sfx('coin'); addSkillXp('bartering', 1); addSkillXp('commerce', 1); toast(`Sold ${s} ${item(id).name} (+${got}g)`); } const m = menus[menus.length - 1]; m.index = Math.max(0, Math.min(m.index, menuItems(m).length - 1)); return false; } });
     else break;
   }
 }
@@ -51286,12 +51828,16 @@ function shipSpeed2(sh) { return shipType(sh).speed * ((sh.upg || {}).sails ? 1.
 async function helperTalk(npc) {
   const id = npc.def.helper, h = D.helpers[id]; if (!h) return;
   const sv = ((D.survivors || {}).list || []).find(x => x.helper === id); if (sv && (G.survDone || []).includes(sv.id) && !G.flags['home_' + sv.id]) { await offerHome(sv); return; }
-  await say(h.name, [(npc.def.dialog || [''])[0], h.bio], h.sprite);
-  await say(`${h.name} the ${h.title}`, [`Skills: ${skillStr(h.skills)}.  Ability: ${h.ability ? h.ability.name : 'none'}.  Hire for ${h.cost}g, then ${h.wage}g a day in wages.`], h.sprite);
+  const RT = CMP().recruitTalk || {}, rq = h.recruit && D.quests.find(q => q.id === h.recruit); let free = !!(rq && G.flags['recruit_' + id]);
+  if (!free) await say(h.name, [(npc.def.dialog || [''])[0], h.bio], h.sprite);
+  if (rq && !free) { await giverQuests(npc, { progress: true }); free = !!G.flags['recruit_' + id]; }      // offer the favour, report progress, or take the hand-in
+  if (free && hiredCount() >= helperBeds()) { await say(h.name, RT.noBed || ['I would come today, but where would I sleep?'], h.sprite); return; }
+  if (free) await say(h.name, h.joinLines || ['I am with you.'], h.sprite);
+  else await say(`${h.name} the ${h.title}`, [`Skills: ${skillStr(h.skills)}.  Ability: ${h.ability ? h.ability.name : 'none'}.  Hire for ${h.cost}g, then ${h.wage}g a day in wages.` + (rq ? '  ' + (RT.hint || '').replace('{name}', h.name) : '')], h.sprite);
   if (hiredCount() >= helperBeds()) { await say(h.name, ['I\'d love to work for you - but where would I sleep?', `Every companion needs their own bed at your cottage. Gideon's Home Center sells them. (Beds: ${helperBeds()}, helpers: ${Object.keys(G.helpers).length}.)`], h.sprite); return; }
-  const c = await choose(`Hire ${h.name} for ${h.cost}g?`, [{ label: 'Hire', value: 'y', disabled: G.gold < h.cost }, { label: 'Not now', value: 'n' }], { width: 380 });
-  if (c !== 'y') return;
-  G.gold -= h.cost; G.helpers[id] = { role: 'idle', xp: 0 };
+  if (!free) { const c = await choose(`Hire ${h.name} for ${h.cost}g?`, [{ label: 'Hire', value: 'y', disabled: G.gold < h.cost }, { label: 'Not now', value: 'n' }], { width: 380 });
+    if (c !== 'y') return; G.gold -= h.cost; if (rq && G.quests[rq.id] === 'active') { delete G.quests[rq.id]; delete G.qprog[rq.id]; } }      // hired for coin: the favour is dropped, not left dangling
+  G.helpers[id] = { role: 'idle', xp: 0 };
   R.npcs = R.npcs.filter(n => n !== npc);
   await say(h.name, ['Pleased to work with you!', '(Press H any time to change what your companions do.)'], h.sprite);
   await assignRole(id);
@@ -51381,8 +51927,9 @@ async function usePlanter(x, y) {
     R.planters.forEach(q0 => { const i = q0.key;
       const q = G.planters[i]; if (!q || q.growth < q.days) return;
       const rid = item(q.seed).grows; const n = harvestYield(q.seed, herb) + gearVal('player', 'yield') + (Math.random() < ptVal('herbalism', 'yield') ? 1 : 0);
-      total[rid] = (total[rid] || 0) + n; add(rid, n, true);
-      if (Math.random() < D.greenhouse.seedReturnBase + D.greenhouse.seedReturnPerLevel * herb + perk('seedReturn')) { add(q.seed, 1); seeds++; }
+      if (BG() && homeRoom(rid, n) < n) { if (!R.fullTold || R.t - R.fullTold > 2) { R.fullTold = R.t; toast(`No room in your bags or your storehouse for ${item(rid).name}. The crop will wait.`, UI.red); } return; }
+      total[rid] = (total[rid] || 0) + n; add(rid, n, true, HOME);
+      if (Math.random() < D.greenhouse.seedReturnBase + D.greenhouse.seedReturnPerLevel * herb + perk('seedReturn')) { add(q.seed, 1, false, HOME); seeds++; }
       G.planters[i] = null; addSkillXp('herbalism', 1);
     });
     AU.sfx('pickup'); toast('Harvested ' + Object.entries(total).map(([r, n]) => `${n} ${item(r).name}`).join(', ') + (seeds ? ` (+${seeds} seeds)` : ''), UI.green);
@@ -51453,7 +52000,7 @@ async function newDay(reason, atSea) {
     let herb = 1; const got = {}, prev = {};
     if (gardeners.length) { // 1) harvest everything ripe
       herb = Math.max(...gardeners.map(w => (w.h.skills || {}).herbalism || 1)) + perk('helperHerb');
-      for (const k of plots) { const p = G.planters[k]; if (!p || p.growth < p.days) continue; const rid = item(p.seed).grows; const n = harvestYield(p.seed, herb); got[rid] = (got[rid] || 0) + n; add(rid, n, true); prev[k] = p.seed; G.planters[k] = null; }
+      for (const k of plots) { const p = G.planters[k]; if (!p || p.growth < p.days) continue; const rid = item(p.seed).grows; const n = harvestYield(p.seed, herb); if (BG() && homeRoom(rid, n) < n) { if (!report.some(l => /storehouse is full/.test(l))) report.push(`${gardeners[0].h.name} (garden): the storehouse is full, so ripe beds were left unpicked. Buy a chest at the Home Center.`); continue; } got[rid] = (got[rid] || 0) + n; add(rid, n, true, HOME); prev[k] = p.seed; G.planters[k] = null; }
     }
     // 2) the shopkeeper sells by your rules and restocks seeds
     let restocked = false;
@@ -51464,7 +52011,7 @@ async function newDay(reason, atSea) {
         while (cap > 0 && count(id) > keep) { take(id, 1); earned += Math.max(1, Math.round(item(id).sell * (1 + 0.05 * (bart - 1) + (home().up.cases ? 0.15 : 0)))); cap--; sold[id] = (sold[id] || 0) + 1; } }
       G.gold += earned; let spent = 0; const bought = {};
       if (!restocked && G.stall.restock > 0) { restocked = true;
-        for (const r of Object.keys(G.discovered)) { const sd = item(r).seed; if (!sd || !D.items[sd]) continue; while (count(sd) < G.stall.restock && G.gold >= item(sd).price) { G.gold -= item(sd).price; spent += item(sd).price; add(sd, 1); bought[sd] = (bought[sd] || 0) + 1; } } }
+        for (const r of Object.keys(G.discovered)) { const sd = item(r).seed; if (!sd || !D.items[sd]) continue; while (count(sd) < G.stall.restock && G.gold >= item(sd).price) { G.gold -= item(sd).price; spent += item(sd).price; add(sd, 1, false, HOME); bought[sd] = (bought[sd] || 0) + 1; } } }
       const nSold = Object.values(sold).reduce((a, b) => a + b, 0);
       rec.stall = { who: w.h.name, sold, earned, bought, spent };
       report.push(`${w.h.name} (stall): ${nSold ? `sold ${listCounts(sold)} for ${earned}g` : 'had nothing to sell under your rules'}${spent ? `; bought ${listCounts(bought)} for ${spent}g` : ''}.`);
@@ -51472,7 +52019,7 @@ async function newDay(reason, atSea) {
     if (gardeners.length) { // 3) plant every empty bed by the garden plan
       const planted = {}; let empty = 0;
       for (const k of plots) { if (G.planters[k]) continue; let sd = planSeed(prev[k]);
-        if (!sd && prev[k] && Math.random() < 0.08 * herb) { sd = prev[k]; add(sd, 1); } // a lucky saved seed
+        if (!sd && prev[k] && Math.random() < 0.08 * herb) { sd = prev[k]; add(sd, 1, false, HOME); } // a lucky saved seed
         if (!sd || !take(sd, 1)) { empty++; continue; }
         G.planters[k] = { seed: sd, growth: 0, days: item(sd).days || 2 }; const gr = item(sd).grows || sd; planted[gr] = (planted[gr] || 0) + 1; }
       const names = gardeners.map(w => w.h.name).join(' & ');
@@ -51523,7 +52070,7 @@ async function lotMenu(tx, ty) {
       if (r === 'y') { G.gold -= G0.cost; payMats(gm); G.pgh = G.pgh || {}; G.pgh[R.mapId] = { reagent: lot.reagent, stock: 0 }; G.flags['gh_' + R.mapId] = true; AU.sfx('discover'); toast(`Your ${rg.name} greenhouse is built.`, UI.green); }
       return; }
     if (!st.stock) return say(`${rg.name} greenhouse`, ['Nothing ready yet. Check back in a day or two.']);
-    const n = st.stock; st.stock = 0; add(st.reagent, n, true); AU.sfx('coin'); return say(`${rg.name} greenhouse`, [`You collect ${n} ${rg.name}. (Anything your pockets can't hold goes to your storehouse.)`]);
+    const n = Math.min(st.stock, roomAll(st.reagent, st.stock)); if (n <= 0) return say(`${rg.name} greenhouse`, [noRoom(st.reagent, st.stock), 'The crop will keep until you come back.']); st.stock -= n; add(st.reagent, n, true); AU.sfx('coin'); return say(`${rg.name} greenhouse`, [`You collect ${n} ${rg.name}.` + (st.stock ? ` ${st.stock} more are waiting; you had no room for them.` : '')]);
   }
 }
 function lotTick(report) { if ((G.store || {}).cut_stone > 0) G.flags.stoneImported = true; const G0 = LOTS().greenhouse; for (const [m, st] of Object.entries(G.pgh || {})) st.stock = Math.min(G0.cap || 30, (st.stock || 0) + (G0.perDay || 2)); apprenticeTick(report); }
@@ -51534,13 +52081,13 @@ function apprenticeIds(shop) { const out = []; for (const s of shop.apprenticeOf
 async function storehouseMenu() {
   G.store = G.store || {};
   for (;;) {
-    const c = await choose('Storehouse', [{ label: 'Take out', value: 'out', right: `${Object.values(G.store).reduce((a, b) => a + b, 0)} items stored` }, { label: 'Put away', value: 'in', desc: 'Move things from your pockets into the storehouse.' }, { label: 'Leave', value: 'x' }], { width: 420, footer: pocketLine() });
+    const c = await choose('Storehouse', [{ label: 'Take out', value: 'out', right: `${Object.values(G.store).reduce((a, b) => a + b, 0)} items stored` }, { label: 'Put away', value: 'in', desc: 'Move things from your pockets into the storehouse.' }, { label: 'Leave', value: 'x' }], { width: 420, footer: storeLine() || pocketLine() });
     if (c === 'out') await openMenu({ title: 'Storehouse: take out', width: 600, minRows: 8, footer: () => pocketLine() + '      Enter: take as many as fit',
       items: () => Object.keys(G.store).filter(id => G.store[id] > 0).sort().map(id => ({ label: item(id).name, icon: item(id).sprite, right: `x${G.store[id]}`, desc: `${itemDesc(id)}  (${pocketRoom(id) === Infinity ? 'no pocket limit' : pocketRoom(id) + ' more fit in your pockets'})`, value: id })),
       onSelect: it => { const n = Math.min(G.store[it.value], pocketRoom(it.value)); if (n <= 0) { toast('No room in your pockets for that.', UI.red); return false; } G.store[it.value] -= n; if (!G.store[it.value]) delete G.store[it.value]; add(it.value, n, true); AU.sfx('pickup'); toast(`Took ${n} ${item(it.value).name}.`); return false; } });
-    else if (c === 'in') await openMenu({ title: 'Storehouse: put away', width: 600, minRows: 8, footer: () => pocketLine() + '      Enter: put all of it away',
+    else if (c === 'in') await openMenu({ title: 'Storehouse: put away', width: 600, minRows: 8, footer: () => (storeLine() || pocketLine()) + '      Enter: put away as much as fits',
       items: () => Object.keys(G.inv).filter(id => !['gear', 'upgrade', 'furniture'].includes(item(id).type) && !item(id).pocketBonus).sort().map(id => ({ label: item(id).name, icon: item(id).sprite, right: `x${count(id)}`, desc: itemDesc(id), value: id })),
-      onSelect: it => { const n = count(it.value); take(it.value, n); G.store[it.value] = (G.store[it.value] || 0) + n; AU.sfx('menu'); toast(`Stored ${n} ${item(it.value).name}.`); return false; } });
+      onSelect: it => { const n = Math.min(count(it.value), BG() ? storeRoom(it.value, count(it.value)) : count(it.value)); if (n <= 0) { toast(`No room in your storehouse for ${item(it.value).name}. Gideon's Home Center sells chests.`, UI.red); AU.sfx('menu'); return false; } take(it.value, n); G.store[it.value] = (G.store[it.value] || 0) + n; AU.sfx('menu'); toast(`Stored ${n} ${item(it.value).name}.` + (n < count(it.value) + n && count(it.value) ? ` ${count(it.value)} would not fit.` : '')); return false; } });
     else return;
   }
 }
@@ -51549,7 +52096,169 @@ async function pouchPrompt(id) {
   const n = count(id); const c = await choose(`Put ${item(id).name} in your pouch?`, [{ label: `Put all ${n} in`, value: n, desc: 'Spells use reagents in the pouch first. They can never be taken out or sold.' }, ...(n > 5 ? [{ label: 'Put 5 in', value: 5 }] : []), { label: 'Not now', value: 0 }], { width: 460, footer: 'No limit, but nothing comes back out.' });
   if (!c) return; take(id, c); G.pouch = G.pouch || {}; G.pouch[id] = (G.pouch[id] || 0) + c; AU.sfx('select'); toast(`${c} ${item(id).name} into the pouch (${G.pouch[id]} inside).`, UI.blue);
 }
-async function inventoryMenu() {
+// ---- party screen (the Items key): one party member at a time: gear, reagent pouch, pockets and bags
+let BAG = null;
+function bagWho() { return ['player'].concat(partyIds()); }
+function partyScreen(who = 'player') { return new Promise(res => { BAG = { who: bagWho().includes(who) ? who : 'player', z: who === 'player' ? 1 : 0, i: 0, res, depth: menus.length, msg: '' }; AU.sfx('select'); }); }
+function closeBag() { const b = BAG; BAG = null; AU.sfx('menu'); if (b) b.res(); }
+function bagZones(who) {      // what the cursor can stand on: the pouch (hero), pockets, cases, bags, and anything that does not fit
+  const P = pack(who), z = [];
+  if (who === 'player') { const sp = pouchSpec(), ids = Object.keys(G.pouch || {}).filter(id => G.pouch[id] > 0); z.push({ k: 'pouch', name: 'Reagent pouch', slots: sp ? Math.max(Math.min(sp.slots, 12), ids.length) : ids.length, per: sp ? sp.per : 0, cells: ids.map(id => ({ id, n: G.pouch[id] })) }); }
+  for (const c of P.cons) z.push(c);
+  if (P.over.length) z.push({ k: 'over', name: 'Does not fit', slots: P.over.length, per: 0, cells: P.over });
+  return z;
+}
+function bagCur() { const Z = bagZones(BAG.who), z = Z[BAG.z]; return z ? { z, i: BAG.i, s: z.cells[BAG.i] || null } : null; }
+function bagSay(m, bad) { BAG.msg = m || ''; if (m || bad) AU.sfx(bad ? 'menu' : 'select'); }
+function bagSplit() {
+  const c = bagCur(); if (!c || !c.s || c.z.k === 'pouch' || c.z.k === 'over') return bagSay('Nothing here to split.', 1); if (c.s.n < 2) return bagSay('Only one here: nothing to split.', 1);
+  for (const con of pack(BAG.who).cons) { if (!accepts(con, c.s.id)) continue; const j = con.cells.findIndex(x => !x); if (j >= 0) { const q = Math.min(Math.floor(c.s.n / 2), stackOf(c.s.id, con.per)); con.cells[j] = { id: c.s.id, n: q }; c.s.n -= q; return bagSay(`Split ${item(c.s.id).name}: ${c.s.n} and ${q}.`); } }
+  bagSay(`No empty slot to split ${item(c.s.id).name} into.`, 1);
+}
+function bagPut(shift) {      // Enter or a click: pick up, put down, merge or swap. With Shift: split the stack
+  const c = bagCur(); if (!c) return; const who = BAG.who, H = BAG.hold;
+  if (shift && !H) return bagSplit();
+  if (c.z.k === 'over') { BAG.hold = null; return bagAct(); }
+  if (c.z.k === 'pouch') {
+    if (H && H.pouch) { BAG.hold = null; return bagSay(''); }
+    if (H) { const SL = layOf(H.who)[H.k] || [], src = SL[H.i]; BAG.hold = null; if (!src) return; if (H.who !== 'player') return bagSay('Hand it to yourself first: only your own reagents go in your pouch.', 1); if (item(src.id).type !== 'reagent') return bagSay('Only reagents go in the pouch.', 1); if (!pouchOn()) return bagSay('Wear a reagent pouch first (Gear).', 1);
+      const q = Math.min(src.n, pouchRoom(src.id)); if (q <= 0) return bagSay(`No room in the pouch for ${item(src.id).name}.`, 1); const id = src.id, rest = src.n - q; take(id, q); src.n = rest; if (!rest) SL[H.i] = null; G.pouch = G.pouch || {}; G.pouch[id] = (G.pouch[id] || 0) + q; return bagSay(rest ? `The pouch took ${q} ${item(id).name}; ${rest} would not fit.` : `${q} ${item(id).name} into the pouch.`, rest > 0); }
+    if (c.s) { BAG.hold = { pouch: c.s.id }; return bagSay(`Holding ${item(c.s.id).name} from the pouch. Choose a slot in your bags.`); }
+    return;
+  }
+  const L = layOf(who)[c.z.k], dst = L[c.i];
+  if (!H) { if (dst) { BAG.hold = { who, k: c.z.k, i: c.i }; bagSay(`Holding ${item(dst.id).name} x${dst.n}. Choose where to put it.`); } return; }
+  BAG.hold = null;
+  if (H.pouch) { const id = H.pouch, st = stackOf(id, c.z.per); if (who !== 'player') return bagSay('Take it out into your own bags first.', 1); if (!accepts(c.z, id)) return bagSay(`${c.z.name} does not hold ${item(id).name}.`, 1); if (dst && dst.id !== id) return bagSay('That slot is taken.', 1);
+    const q = Math.min(G.pouch[id] || 0, st - (dst ? dst.n : 0)); if (q <= 0) return bagSay('That stack is full.', 1); G.pouch[id] -= q; if (!G.pouch[id]) delete G.pouch[id]; G.inv[id] = count(id) + q; if (dst) dst.n += q; else L[c.i] = { id, n: q }; return bagSay(`Took ${q} ${item(id).name} out of the pouch.`); }
+  const SL = layOf(H.who)[H.k] || [], src = SL[H.i]; if (!src) return; if (H.who === who && H.k === c.z.k && H.i === c.i) return bagSay('');
+  const move = (id, q, a, b) => { if (a === b) return; const ia = invOf(a), ib = invOf(b); ia[id] -= q; if (!ia[id]) delete ia[id]; ib[id] = (ib[id] || 0) + q; };
+  if (!accepts(c.z, src.id)) return bagSay(`${c.z.name} does not hold ${item(src.id).name}.`, 1);
+  const st = stackOf(src.id, c.z.per);
+  if (!dst) { const q = Math.min(src.n, st), id = src.id; move(id, q, H.who, who); L[c.i] = { id, n: q }; src.n -= q; if (!src.n) SL[H.i] = null; return bagSay(src.n ? `Only ${st} ${item(id).name} fit in one slot there: ${src.n} stayed behind.` : '', src.n > 0); }
+  if (dst.id === src.id) { const q = Math.min(src.n, st - dst.n); if (q <= 0) return bagSay('That stack is full.', 1); move(src.id, q, H.who, who); dst.n += q; src.n -= q; if (!src.n) SL[H.i] = null; return bagSay(src.n ? `That stack is full now: ${src.n} stayed behind.` : '', src.n > 0); }
+  const srcCon = pack(H.who).cons.find(x => x.k === H.k);
+  if (!srcCon || !accepts(srcCon, dst.id) || dst.n > stackOf(dst.id, srcCon.per) || src.n > st) return bagSay('Those two cannot change places: one of them does not fit the other slot.', 1);
+  move(src.id, src.n, H.who, who); move(dst.id, dst.n, who, H.who); L[c.i] = src; SL[H.i] = dst; bagSay('');
+}
+function bagBagMenu(i) {      // a whole bag: hand it, with what is in it, to someone else, or leave it at home
+  const who = BAG.who, mine = bagsOf(who), b = mine[i], cap = BG().bagSlots || 3; if (!b) return bagSay('An empty bag slot. Bags are sold at the Home Center.', 1);
+  const opts = bagWho().filter(w => w !== who).map(w => ({ label: `Hand the ${item(b).name} to ${w === 'player' ? 'yourself' : bagName(w)}`, right: bagsOf(w).length >= cap ? 'no free bag slot' : 'with what is in it', disabled: bagsOf(w).length >= cap, value: w }));
+  if (atHome()) opts.push({ label: 'Leave it at home (storehouse)', value: '__store', desc: 'Only an empty bag can be left behind.' }); opts.push({ label: 'Never mind', value: null });
+  choose(item(b).name, opts, { width: 500 }).then(w => { if (!w) return; pack(who); const L = layOf(who), cells = (L['bag' + i] || []).filter(Boolean);
+    if (w === '__store' && cells.length) return bagSay('Empty the bag first.', 1);
+    mine.splice(i, 1); for (let j = i; j <= mine.length; j++) { if (L['bag' + (j + 1)]) L['bag' + j] = L['bag' + (j + 1)]; else delete L['bag' + j]; } BAG.hold = null;
+    if (w === '__store') { G.store = G.store || {}; G.store[b] = (G.store[b] || 0) + 1; BAG.z = 0; BAG.i = 0; return bagSay(`${item(b).name} left at home.`); }
+    const tb = bagsOf(w), ia = invOf(who), ib = invOf(w); tb.push(b); for (const s of cells) { ia[s.id] -= s.n; if (!ia[s.id]) delete ia[s.id]; ib[s.id] = (ib[s.id] || 0) + s.n; } layOf(w)['bag' + (tb.length - 1)] = cells; BAG.z = 0; BAG.i = 0; bagSay(`${bagName(w)} now carries the ${item(b).name}.`); });
+}
+function bagName(w) { return w === 'player' ? 'You' : D.helpers[w].name; }
+function castsLeft(sp) { return Math.min(...Object.entries(sp.reagents || {}).map(([id, n]) => Math.floor(pouchCount(id) / n))); }
+function useCarried(id) {      // Enter on something the hero carries. true = the screen should close
+  const i = item(id);
+  if (i.camp) { script(campOut); return true; }
+  if (i.type === 'gear') { autoEquip('player', id); return false; }
+  if (i.type === 'ward') { placeWard(id); return true; }
+  if (i.type === 'consumable' && i.heal) { if (G.hp >= maxHp()) { toast('Already at full health.'); return false; } take(id); const hh = Math.round(i.heal * potionMult()); G.hp = Math.min(maxHp(), G.hp + hh); AU.sfx('heal'); toast(`+${hh} HP`, UI.green); return false; }
+  if (i.type === 'consumable' && i.combat) toast('Use this in battle (Item button).');
+  return false;
+}
+function bagShift(id, n, from, to) {      // moves up to n; from/to are 'pouch', 'drop' or a party member. Returns how many moved
+  const src = from === 'pouch' ? (G.pouch = G.pouch || {}) : invOf(from); let q = Math.min(n, src[id] || 0);
+  if (to === 'pouch') q = Math.min(q, pouchRoom(id)); else if (to !== 'drop') q = Math.min(q, roomFor(to, id, q));
+  if (q <= 0) return 0; src[id] -= q; if (!src[id]) delete src[id];
+  if (to === 'pouch') { G.pouch = G.pouch || {}; G.pouch[id] = (G.pouch[id] || 0) + q; } else if (to !== 'drop') { const d = invOf(to); d[id] = (d[id] || 0) + q; }
+  return q;
+}
+function bagAct(kind) {
+  const who = BAG.who, Z = bagZones(who), z = Z[BAG.z], c = z && z.cells[BAG.i]; if (!c) { AU.sfx('menu'); return; }
+  const id = c.id, it = item(id), inPouch = z.k === 'pouch', from = inPouch ? 'pouch' : who, held = inPouch ? G.pouch[id] : invOf(who)[id] || 0, others = bagWho().filter(w => w !== who);
+  const amount = (verb, fn) => { if (held <= 1) return fn(1); choose(`${verb} how many ${it.name}?`, [{ label: `All ${held}`, value: held }, ...(held > 3 ? [{ label: `Half (${Math.ceil(held / 2)})`, value: Math.ceil(held / 2) }] : []), { label: 'One', value: 1 }, { label: 'Never mind', value: 0 }], { width: 400 }).then(v => { if (v) fn(v); }); };
+  const moved = (q, n, where) => { BAG.msg = q < n ? `No room for ${n - q} ${it.name} ${where}.` : ''; AU.sfx(q ? 'select' : 'menu'); const Z2 = bagZones(BAG.who), z2 = Z2[BAG.z]; if (!z2) { BAG.z = Math.max(0, Z2.length - 1); BAG.i = 0; } else if (BAG.i >= Math.max(1, z2.cells.length)) BAG.i = Math.max(0, z2.cells.length - 1); };
+  const run = k => {
+    if (k === 'use') { if (useCarried(id)) closeBag(); }
+    else if (k === 'pouch') { if (inPouch) amount('Take out', n => moved(bagShift(id, n, 'pouch', 'player'), n, 'in your bags')); else if (who !== 'player' || it.type !== 'reagent') { BAG.msg = who !== 'player' ? 'Only your own reagents go in your pouch. Give them to yourself first.' : 'Only reagents go in the pouch.'; AU.sfx('menu'); } else if (!pouchOn()) { BAG.msg = 'Wear a reagent pouch first (Gear).'; AU.sfx('menu'); } else amount('Put in the pouch', n => moved(bagShift(id, n, 'player', 'pouch'), n, 'in the pouch')); }
+    else if (k === 'drop') choose(`Drop ${it.name}? It will be gone for good.`, [{ label: 'Keep it', value: 0 }, { label: 'Drop', value: 1 }], { width: 420 }).then(v => { if (v) amount('Drop', n => { bagShift(id, n, from, 'drop'); moved(n, n, ''); BAG.msg = `Dropped ${n} ${it.name}.`; }); });
+    else if (k === 'give') { if (!others.length) { BAG.msg = 'Nobody else is travelling with you.'; AU.sfx('menu'); return; } const to = w => amount(`Give ${bagName(w)}`, n => moved(bagShift(id, n, from, w), n, w === 'player' ? 'in your bags' : `in ${bagName(w)}'s bags`)); if (others.length === 1) to(others[0]); else choose(`Give ${it.name} to whom?`, others.map(w => ({ label: bagName(w), right: `${slotsUsed(w)[0]}/${slotsUsed(w)[1]} slots`, value: w })).concat([{ label: 'Never mind', value: null }]), { width: 420 }).then(w => { if (w) to(w); }); }
+    else if (k === 'split') bagSplit();
+    else if (String(k).startsWith('to:')) { const w = k.slice(3); amount(`Give ${bagName(w)}`, n => moved(bagShift(id, n, from, w), n, w === 'player' ? 'in your bags' : `in ${bagName(w)}'s bags`)); }
+  };
+  if (kind) return run(kind);
+  BAG.hold = null; const usable = who === 'player' && !inPouch && (it.camp || it.type === 'gear' || it.type === 'ward' || (it.type === 'consumable' && (it.heal || it.combat)));
+  const opts = []; if (usable) opts.push({ label: it.type === 'gear' ? 'Wear it' : it.type === 'ward' ? 'Place it' : 'Use', value: 'use' });
+  if (inPouch) opts.push({ label: 'Take out of the pouch', value: 'pouch' }); else if (who === 'player' && it.type === 'reagent') opts.push({ label: 'Put in the reagent pouch', value: 'pouch', desc: 'Spells use only what is in the pouch.' });
+  for (const w of others) opts.push({ label: `Send to ${bagName(w) === 'You' ? 'yourself' : bagName(w)}`, right: `${slotsUsed(w)[0]}/${slotsUsed(w)[1]} slots`, value: 'to:' + w });
+  if (!inPouch && z.k !== 'over' && c.n > 1) opts.push({ label: 'Split this stack', value: 'split' });
+  opts.push({ label: 'Drop', value: 'drop' }, { label: 'Never mind', value: null });
+  choose(`${it.name} x${held}`, opts, { width: 440 }).then(v => { if (v) run(v); });
+}
+function bagKey(k) {
+  if (['escape', 'backspace'].includes(k) && BAG.hold) { BAG.hold = null; return bagSay('Put back.'); }
+  if (['escape', 'backspace', 'i'].includes(k)) return closeBag();
+  if (['q', 'e', ',', '.'].includes(k)) { const l = bagWho(), i = l.indexOf(BAG.who); BAG.who = l[(i + (k === 'q' || k === ',' ? -1 : 1) + l.length) % l.length]; BAG.z = BAG.who === 'player' ? 1 : 0; BAG.i = 0; BAG.msg = ''; AU.sfx('menu'); return; }
+  if (k === 'enter') return bagPut(keys.has('shift')); if (k === ' ') return bagAct(); if (k === 'b') { const n = bagsOf(BAG.who).length; if (n <= 1) return bagBagMenu(0); choose('Which bag?', bagsOf(BAG.who).map((b, i) => ({ label: `${i + 1}  ${item(b).name}`, value: i + 1 })).concat([{ label: 'Never mind', value: 0 }]), { width: 380 }).then(v => { if (v) bagBagMenu(v - 1); }); return; } if (k === 'g') return bagAct('give'); if (k === 'p') return bagAct('pouch'); if (k === 'x') return bagAct('drop');
+  if (k === 'f') { const n = pouchFill(); BAG.msg = n ? `Topped up the pouch with ${n} reagent${n === 1 ? '' : 's'}.` : 'Nothing to add: the pouch is full, or your bags hold no reagents your spells use.'; AU.sfx(n ? 'select' : 'menu'); return; }
+  if (k === 'c') { const w = BAG.who; closeBag(); script(() => paperdoll(w)); return; }
+  const dir = { arrowup: [0, -1], w: [0, -1], arrowdown: [0, 1], s: [0, 1], arrowleft: [-1, 0], a: [-1, 0], arrowright: [1, 0], d: [1, 0] }[k]; if (!dir) return;
+  const cs = BAG._cells || [], cur = cs.find(c => c.z === BAG.z && c.i === BAG.i) || cs[0]; if (!cur) return; let best = null, bd = 1e9;
+  for (const c of cs) { if (c === cur) continue; const dx = c.x - cur.x, dy = c.y - cur.y, along = dx * dir[0] + dy * dir[1], across = Math.abs(dx * dir[1]) + Math.abs(dy * dir[0]); if (along <= 2) continue; const d = along + across * 2.5; if (d < bd) { bd = d; best = c; } }
+  if (best) { BAG.z = best.z; BAG.i = best.i; BAG.msg = ''; AU.sfx('menu'); }
+}
+function bagClick(c) {
+  const hit = r => c.x >= r.x && c.x <= r.x + r.w && c.y >= r.y && c.y <= r.y + r.h;
+  const b = buttons.slice(BAG._b0 || 0).reverse().find(hit); if (b) { if (!b.disabled) b.fn(); return; }
+  for (const w of BAG._who || []) if (hit(w)) { if (w.who !== BAG.who) { BAG.who = w.who; BAG.z = w.who === 'player' ? 1 : 0; BAG.i = 0; BAG.msg = ''; AU.sfx('menu'); } return; }
+  for (const q of BAG._cells || []) if (hit(q)) { BAG.z = q.z; BAG.i = q.i; bagPut(keys.has('shift')); return; }
+  for (const r of BAG._bags || []) if (hit(r)) { bagBagMenu(r.i); return; }
+  if (c.x < 20 || c.x > 940 || c.y < 8 || c.y > 592) closeBag();
+}
+function renderBag() {
+  const who = BAG.who, me = who === 'player', Z = bagZones(who); if (BAG.z >= Z.length) { BAG.z = Z.length - 1; BAG.i = 0; }
+  if (BAG.rc) { const p = BAG.rc; BAG.rc = null; const q = (BAG._cells || []).find(r => p.x >= r.x && p.x <= r.x + r.w && p.y >= r.y && p.y <= r.y + r.h); if (q && menus.length <= BAG.depth) { BAG.z = q.z; BAG.i = q.i; const z = Z[q.z]; if (z && z.cells[q.i]) bagAct(); } }
+  let curK = '';
+  ctx.fillStyle = 'rgba(20,12,6,.62)'; ctx.fillRect(0, 0, VW, VH); BAG._b0 = buttons.length; panel(20, 8, 920, 580);
+  BAG._who = []; { let x = 36; for (const w of bagWho()) { const on = w === who, tw = 150; ctx.fillStyle = on ? UI.sel : UI.bg2; rr(x, 20, tw, 40, 6); ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = UI.border; ctx.stroke();
+    text(bagName(w), x + 10, 24, { bold: true, size: 15 }); text(w === 'player' ? `Level ${heroLvl()}` : `${D.helpers[w].title} ${hLvl(w)}`, x + 10, 43, { size: 11, color: UI.dim }); BAG._who.push({ x, y: 20, w: tw, h: 40, who: w }); x += tw + 8; } }
+  text('Q / E: previous / next party member', 924, 33, { align: 'right', size: 12, color: UI.dim });
+  const box = (bx, by, bw, bh, title, sub) => { ctx.fillStyle = UI.bg2; rr(bx, by, bw, bh, 6); ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = UI.border; ctx.stroke(); if (title) text(title, bx + 10, by + 8, { bold: true, size: 14 }); if (sub) text(sub, bx + bw - 10, by + 11, { align: 'right', size: 11, color: UI.dim }); };
+  const cells = BAG._cells = [];
+  const cell = (zi, i, cx, cy, s, c, per) => { const on = BAG.z === zi && BAG.i === i, H = BAG.hold, hd = H && (H.pouch ? curK === 'pouch' && c && c.id === H.pouch : H.who === who && H.k === curK && H.i === i); ctx.fillStyle = hd ? '#cfe3f7' : on ? UI.sel : UI.white; ctx.fillRect(cx, cy, s, s); ctx.lineWidth = on || hd ? 3 : 2; ctx.strokeStyle = hd ? UI.blue : on ? '#a8650a' : UI.border; ctx.strokeRect(cx, cy, s, s);
+    if (c) { const pad = Math.max(3, Math.round(s * 0.14)); if (item(c.id).sprite) drawSpr(item(c.id).sprite, cx + pad, cy + pad - 2, s - pad * 2); if (c.n > 1 || per > 1) text(String(c.n), cx + s - 3, cy + s - 13, { align: 'right', bold: true, size: 11, color: per > 1 && c.n >= per ? UI.red : UI.text }); }
+    cells.push({ z: zi, i, x: cx, y: cy, w: s, h: s }); };
+  const grid = (zi, z, gx, gy, s, cols) => { curK = z.k; for (let i = 0; i < z.slots; i++) cell(zi, i, gx + (i % cols) * (s + 4), gy + Math.floor(i / cols) * (s + 4), s, z.cells[i], z.k === 'pouch' ? z.per : stackOf((z.cells[i] || {}).id || '', z.per)); return Math.ceil(z.slots / cols) * (s + 4); };
+  // left: gear
+  box(36, 68, 252, 508, 'Gear'); { const eq = eqOf(who); let y = 96; for (const sl of D.equipSlots || []) { const id = eq[sl.id]; ctx.fillStyle = UI.white; ctx.fillRect(48, y, 30, 30); ctx.lineWidth = 2; ctx.strokeStyle = UI.border; ctx.strokeRect(48, y, 30, 30); if (id && item(id).sprite) drawSpr(item(id).sprite, 51, y + 3, 24);
+      text(sl.name, 86, y + 1, { size: 11, color: UI.dim }); text(id ? item(id).name : 'empty', 86, y + 14, { size: 13, bold: !!id, color: id ? UI.text : UI.dim }); y += 36; }
+    const u = me ? null : helperUnit(who); y += 6; text(me ? `Health ${G.hp} / ${maxHp()}` : `Health ${u.maxHp}`, 48, y, { size: 13 }); text(`Attack ${me ? playerAtk() : u.atk}    Defence ${me ? playerDef() : u.def}`, 48, y + 18, { size: 13 }); if (me) text(`Spell power x${spellMult().toFixed(2)}`, 48, y + 36, { size: 13 });
+    const [us, tot] = slotsUsed(who); text(`Carrying: ${us} of ${tot} slots`, 48, y + 58, { size: 12, color: us > tot ? UI.red : UI.dim });
+    button(48, 534, 150, 30, 'Change gear (C)', () => bagKey('c')); }
+  // middle: the pouch, then bag slots, the thing under the cursor, and messages
+  box(298, 68, 300, 250, me ? 'Reagent pouch' : 'Carrying for the party', me ? 'spells use only what is here' : '');
+  if (me) { const zi = 0, z = Z[0], sp = pouchSpec(); let y = 96; if (!sp) text('No pouch worn. Wear one from Gear.', 310, y, { size: 13, color: UI.red }); else { y += grid(zi, z, 310, y, 40, 6); const p = eqOf('player').pouch; text(`${item(p).name}: ${sp.slots > 90 ? 'any number of kinds' : sp.slots + ' kinds'}, ${sp.per > 900 ? 'no limit' : sp.per} of each`, 310, y, { size: 11, color: UI.dim }); y += 18; }
+    text('Casts left', 310, y, { bold: true, size: 13 }); y += 18; const sps = (G.spells || []).map(s => D.spells[s]).filter(s => s && Object.keys(s.reagents || {}).length); let lack = null;
+    sps.slice(0, 10).forEach((s, i) => { const n = castsLeft(s), cx = 310 + (i % 2) * 146, cy = y + Math.floor(i / 2) * 17; text(s.name.length > 13 ? s.name.slice(0, 12) + '.' : s.name, cx, cy, { size: 12 }); text('x' + n, cx + 128, cy, { size: 12, bold: true, align: 'right', color: n >= 3 ? UI.green : UI.red }); if (!n && !lack) lack = s; });
+    y += Math.ceil(Math.min(10, sps.length) / 2) * 17 + 4; if (lack) { const miss = Object.entries(lack.reagents).find(([id, n]) => pouchCount(id) < n)[0]; text(`${lack.name}: no ${item(miss).name} in the pouch`, 310, Math.min(y, 298), { size: 12, color: UI.red }); }
+  } else { let y = 100; for (const l of wrap(`${bagName(who)} casts without reagents. What ${bagName(who)} carries counts for quests, and anything you cannot hold goes into these bags.`, 276, 13)) { text(l, 310, y, { size: 13 }); y += 18; } }
+  box(298, 326, 300, 250, 'Bag slots'); { let y = 352; const mine = bagsOf(who); BAG._bags = []; for (let i = 0; i < (BG().bagSlots || 3); i++) { const b = mine[i]; BAG._bags.push({ x: 304, y: y - 2, w: 288, h: 19, i }); text(String(i + 1), 310, y, { size: 13, color: UI.dim }); text(b ? item(b).name : 'empty: buy a bag at the Home Center', 330, y, { size: 13, color: b ? UI.text : UI.dim }); if (b) text(`${item(b).bag.slots} slots`, 586, y, { size: 12, align: 'right', color: UI.dim }); y += 20; }
+    y += 6; const z = Z[BAG.z], c = z && z.cells[BAG.i]; if (c) { text(`${item(c.id).name} x${z.k === 'pouch' ? c.n : invOf(who)[c.id] || c.n}`, 310, y, { bold: true, size: 14 }); y += 20; for (const l of wrap(itemDesc(c.id), 276, 12).slice(0, 4)) { text(l, 310, y, { size: 12, color: UI.dim }); y += 15; } } else { text('Empty slot', 310, y, { size: 13, color: UI.dim }); y += 20; }
+    if (BAG.msg) { const ls = wrap(BAG.msg, 262, 13).slice(0, 3), h = ls.length * 17 + 12, by = Math.min(Math.max(y + 6, 480), 566 - h); const bad = /No room|cannot|does not|Only |full|first|Nothing|Nobody|taken|stayed|would not|Empty the/i.test(BAG.msg); ctx.fillStyle = UI.white; ctx.fillRect(310, by, 276, h); ctx.lineWidth = 2; ctx.strokeStyle = bad ? UI.red : UI.border; ctx.strokeRect(310, by, 276, h); ls.forEach((l, i) => text(l, 318, by + 6 + i * 17, { size: 13, color: i || !bad ? UI.text : UI.red, bold: !i && bad })); }
+    else for (const [i, l] of wrap('Click a bag above (or B) to hand it to someone. Build materials (timber, stone, sailcloth) stay in ship holds and the storehouse.', 276, 11).entries()) text(l, 310, 532 + i * 13, { size: 11, color: UI.dim }); }
+  // right: pockets, cases and bags
+  { const R0 = me ? 1 : 0, zs = Z.slice(R0), cols = 6, rows = zs.reduce((a, z) => a + Math.ceil(z.slots / cols), 0), s = Math.max(22, Math.min(44, Math.floor((500 - zs.length * 24) / Math.max(1, rows)) - 4)); let y = 68;
+    box(608, 68, 316, 508, '');
+    zs.forEach((z, k) => { text(z.name, 620, y + 8, { bold: true, size: 13, color: z.k === 'over' ? UI.red : UI.text }); text(z.k === 'over' ? 'send, use or drop these' : `${z.slots} slots, ${z.per} per slot`, 912, y + 10, { align: 'right', size: 11, color: UI.dim }); y += 26; y += grid(R0 + k, z, 620 + Math.max(0, Math.floor((292 - cols * (s + 4)) / 2)), y, s, cols) - 2; }); }
+  ctx.fillStyle = '#17100a'; ctx.fillRect(0, VH - 34, VW, 34);
+  keyBar([['Enter', 'pick up / put down'], ['Shift+Enter', 'split'], ['Space', 'use / send'], ['G', 'give'], ['P', 'pouch'], ['F', 'fill'], ['X', 'drop'], ['Esc', 'close']]);
+}
+async function lootLeft(left) {      // spoils that did not fit: make space on the party screen, or leave them
+  for (let turn = 0; turn < 8; turn++) {
+    for (const id of Object.keys(left)) { left[id] -= add(id, left[id], true, { silent: true }); if (left[id] <= 0) delete left[id]; }
+    const ids = Object.keys(left); if (!ids.length) { if (turn) toast('Picked up the rest.', UI.green); return; }
+    const c = await choose(`No room for ${ids.map(id => `${left[id]} ${item(id).name}`).join(', ')}.`, [{ label: 'Make space', value: 'bags', desc: 'Open the party screen to drop, use or hand things over. What is left here is picked up when you close it.' }, { label: 'Leave them', value: 'leave' }], { width: 520 });
+    if (c !== 'bags') return; await partyScreen();
+  }
+}
+async function inventoryMenu() { if (BG()) return partyScreen(); return inventoryMenuOld(); }
+async function inventoryMenuOld() {
   const tabs = INV_TABS.map(t => ({ label: t[0], test: t[1] }));
   await openMenu({ title: 'Inventory', width: 600, closeKey: 'i', footer: () => `Gold: ${G.gold}     ${pocketLine()}`, tabs, tab: R.invTab || 0, minRows: 8, onTab: i => { R.invTab = i; },
     items: m => Object.keys(G.inv).filter(id => tabs[m.tab].test(item(id))).sort((a, b) => (item(a).type + a).localeCompare(item(b).type + b)).map(id => ({ label: `${item(id).name}`, icon: item(id).sprite, right: 'x' + count(id) + (pouchCount(id) ? `  (+${pouchCount(id)} in pouch)` : ''), desc: itemDesc(id) + (item(id).type === 'consumable' || item(id).camp ? '  [Enter to use]' : item(id).type === 'gear' ? `  Enter: equip.  ${K('gear')}: equipment screen` : item(id).type === 'reagent' ? '  Enter: put in your pouch' : ''), value: id }))
@@ -51570,7 +52279,7 @@ function fieldCast(id) {
     if (!dests.length) return say('', ['You have not visited another town to anchor a Gate.']);
     const have = r => count(r) + pouchCount(r), can = id => Object.entries(gateCost(id)).every(([r, n]) => have(r) >= n);
     const c = await choose('Open a Gate to...', dests.map(([id, m]) => ({ label: m.name, right: can(id) ? 'ready' : 'need reagents', disabled: !can(id), desc: 'Cost: ' + Object.entries(gateCost(id)).map(([r, n]) => `${n} ${item(r).name} (have ${have(r)})`).join(', ') + '.', value: id })), { width: 540, footer: 'Waystone Dust is sold by the hermits. The other reagent grows in the land you are going to.' }); if (!c) return;
-    payReagents(Object.assign({}, sp, { reagents: gateCost(c) })); addSkillXp('magery', 3);
+    payReagents(Object.assign({}, sp, { reagents: gateCost(c) }), true); addSkillXp('magery', 3);
     await fadeTo(() => { const m = D.maps[c]; loadMap(c, m.portal.x, m.portal.y); });
     toast('The Gate snaps shut behind you.', UI.blue);
   });
@@ -52203,7 +52912,7 @@ function victory() {
   gold = Math.round(gold * (1 + perk('goldBonus'))); if (Math.random() < perk('pearlFind')) loot.seapearl = (loot.seapearl || 0) + 1;
   const lvlBefore = playerLvl(); G.gold += gold;
   const sxp = Math.round(xp * (SP().battleXpMult || 1)), l0 = heroLvl(); addHeroXp(sxp); dayStat('fights'); dayStat('xp', sxp); const ups = heroLvl() > l0 ? [`+${heroLvl() - l0} talent point${heroLvl() - l0 > 1 ? 's' : ''} to spend (K)`] : [];
-  for (const [id, n] of Object.entries(loot)) add(id, n, true);
+  { const left = {}; for (const [id, n] of Object.entries(loot)) { const got = add(id, n, true, { silent: true }); if (got < n) left[id] = n - got; } if (Object.keys(left).length) C.left = left; }
   for (const u of C.units) if (u.helperId && G.helpers[u.helperId]) G.helpers[u.helperId].xp = Math.min(heroXpFor(levelCap()), (G.helpers[u.helperId].xp || 0) + Math.round(xp * (1 + perk('helperXp'))));
   C.result = { xp, gold, loot, levelUp: playerLvl() > lvlBefore, split: heroLvl() >= levelCap() && levelCap() < (HERO().maxLevel || 30) ? `Level ${heroLvl()} is the cap for the lands you have reached.` : `+${sxp} XP`, gains: ups.join('   ') };
   autoCompanionPoints();
@@ -52211,6 +52920,7 @@ function victory() {
   if (C.units.some(u => u.helperId)) addSkillXp('tactics', 2);
 }
 function endCombat(how) {
+  if (how === 'won' && C.left) { const L = C.left; C.left = null; if (window.__noLootPrompt) toast(`Left behind: ${Object.entries(L).map(([id, n]) => `${n} ${item(id).name}`).join(', ')}.`, UI.red); else setTimeout(() => script(() => lootLeft(L)), 0); }
   const player = C.units.find(u => u.isPlayer);
   const en = C.en, sea = C.sea;
   if (how === 'won') { G.hp = Math.max(1, player.hp); if (sea) { if (SEA) SEA.monsters = SEA.monsters.filter(m => m !== en); } else { (G.defeated[R.mapId] = G.defeated[R.mapId] || []).push(en.idx); R.enemies = R.enemies.filter(e => e !== en); } if (C.result.levelUp) { const lh = (D.combat || {}).levelHeal; G.hp = lh == null ? maxHp() : Math.min(maxHp(), Math.round(G.hp + maxHp() * lh)); addDread(DL().perLevel || 0); AU.sfx('levelup'); toast(`Level ${playerLvl()}! ${C.result.gains}.`, UI.green); } }
@@ -53520,7 +54230,8 @@ function reagentSaveChance(id, sp) { let c = perk('reagentSave') + schoolSave(sp
 function playerMove() { return Math.max(2, D.player.move + gearStat('player', 'move') + perk('move') + (wpnType() === 'bow' ? perk('bowMove') : 0)); }
 function slotsFor(itemId) { const it = D.items[itemId]; return (D.equipSlots || []).filter(s => it && s.accepts === it.slot); }
 function equip(who, slotId, itemId) {
-  const eq = eqOf(who); if (eq[slotId]) add(eq[slotId], 1);
+  const eq = eqOf(who); if (eq[slotId] && BG() && !(itemId && count(itemId) > 0) && roomFor('player', eq[slotId], 1) < 1) { toast(`No room in your bags for the ${item(eq[slotId]).name}.`, UI.red); AU.sfx('menu'); return; }
+  if (eq[slotId]) { if (BG()) G.inv[eq[slotId]] = count(eq[slotId]) + 1; else add(eq[slotId], 1); }
   if (itemId) { take(itemId, 1); eq[slotId] = itemId; } else delete eq[slotId];
   invalidateComp(); if (who === 'player') G.hp = Math.min(G.hp, maxHp());
 }
@@ -53713,7 +54424,7 @@ function buyFurniture(id) {
     h.up[it.up] = true; toast(`${it.name} built!`, UI.green); return true;
   }
   const cap = it.furn === 'bed' ? bedCap() : (furnSpots(it.furn).length || 1);
-  if ((h.furn[it.furn] || 0) >= cap) { toast(it.furn === 'bed' ? (h.up.extension ? 'Your cottage is full of beds!' : 'No room for another bed. Build the Cottage Loft first.') : 'You already have one.', UI.red); return false; }
+  if ((h.furn[it.furn] || 0) >= (it.furn === 'chest' ? ((BG() || {}).home || {}).maxChests || 8 : cap)) { toast(it.furn === 'bed' ? (h.up.extension ? 'Your cottage is full of beds!' : 'No room for another bed. Build the Cottage Loft first.') : 'You already have one.', UI.red); return false; }
   h.furn[it.furn] = (h.furn[it.furn] || 0) + 1; toast(`${it.name} delivered to your cottage!`, UI.green); return true;
 }
 function ownedLabel(id) { const it = item(id); if (it.type === 'upgrade') return home().up[it.up] ? ' (owned)' : ''; if (it.type === 'furniture') return ` (have ${home().furn[it.furn] || 0}${it.furn === 'bed' ? '/' + bedCap() : ''})`; return ''; }
@@ -53731,14 +54442,15 @@ function recipeState(r) {
   if (sk && !skillUnlocked(r.skill)) return { ok: false, why: `Needs ${sk.name}, unlocked at ${(D.skills[sk.requires.skill] || {}).name} ${sk.requires.level}.` };
   if (sk && skillLvl(r.skill) < (r.level || 1)) return { ok: false, why: `Needs ${sk.name} ${r.level}.` };
   if (r.research && !(G.research || {})[r.research]) return { ok: false, why: `Research the ${(D.enemies[r.research] || { name: r.research }).name} first (Old Aldwin's Bane quest).` };
-  for (const [id, q] of Object.entries(needsOf(r))) if (count(id) < q) return { ok: false, why: `Missing ${q - count(id)} ${item(id).name}.` };
+  for (const [id, q] of Object.entries(needsOf(r))) if (have(id) < q) return { ok: false, why: `Missing ${q - have(id)} ${item(id).name}.` };
+  if (BG() && !atHome() && roomAll(r.makes, r.qty || 1) < (r.qty || 1)) return { ok: false, why: `No room to carry ${item(r.makes).name}.` };
   return { ok: true };
 }
 function craft(r) {
   if (r.skill === 'alchemy' && Math.random() < perk('brewSave')) toast('A perfect brew - no reagents used!', UI.blue);
-  else for (const [id, q] of Object.entries(needsOf(r))) take(id, q);
+  else for (const [id, q] of Object.entries(needsOf(r))) spend(id, q);
   let q = r.qty || 1; if (r.skill === 'alchemy' && Math.random() < perk('brewExtra') + 0.05 * advLvl('alchemy')) q++;
-  add(r.makes, q, true); addSkillXp(r.skill, r.xp || 3); AU.sfx('heal'); toast(`Made ${q} ${item(r.makes).name}`, UI.green); G.time += 10;
+  add(r.makes, q, true, atHome() ? HOME : {}); addSkillXp(r.skill, r.xp || 3); AU.sfx('heal'); toast(`Made ${q} ${item(r.makes).name}`, UI.green); G.time += 10;
 }
 function SCR() { return D.scribing || {}; }
 function scribeMult(lvl) { const S_ = SCR(); return Math.max(S_.minMult || 1, (S_.mult || 3) - (S_.multPerLevel || 0.1) * lvl); }      // a new scribe uses three times the reagents; a master uses no more than the spell does
@@ -53746,11 +54458,11 @@ function scrollCost(sid, lvl) { const out = {}; for (const [r, n] of Object.entr
 function scrollIds() { return G ? Object.keys(G.inv).filter(id => (D.items[id] || {}).scroll && count(id) > 0) : []; }
 async function scribeMenu(o = {}) {
   if (!D.scribing) return; const bs = o.lvl != null ? { lvl: o.lvl, who: o.who } : bestScribe(); if (bs.lvl < 0) return say('Reading desk', [`Writing spell scrolls takes a practised herbalist. Come back at ${D.skills.herbalism.name} ${D.skills.scribing.requires.level}.`]);
-  const lvl = () => bs.lvl, can = sid => Object.entries(scrollCost(sid, lvl())).every(([r, n]) => count(r) >= n), room = () => pocketUsed('scroll') < pocketCap('scroll');
+  const lvl = () => bs.lvl, can = sid => Object.entries(scrollCost(sid, lvl())).every(([r, n]) => have(r) >= n), room = () => pocketUsed('scroll') < pocketCap('scroll');
   await openMenu({ title: 'Reading desk: write a spell scroll', width: 680, footer: () => `${bs.who === 'You' ? 'Scribing' : bs.who + ' writes, skill'} ${lvl()}: a scroll takes x${scribeMult(lvl()).toFixed(1)} the spell's reagents.   Scrolls carried: ${pocketUsed('scroll')}/${pocketCap('scroll')}`,
     items: () => G.spells.filter(s => D.items['scroll_' + s]).map(s => { const c = scrollCost(s, lvl()); return { label: D.items['scroll_' + s].name, icon: D.items['scroll_' + s].sprite, right: !room() ? 'no room' : can(s) ? 'ready' : '', disabled: !can(s) || !room(),
-      desc: Object.entries(c).map(([r, n]) => `${n} ${item(r).name} (have ${count(r)})`).join(', ') + `.  You carry ${count('scroll_' + s)}.` + (room() ? '' : '  Your scroll pockets are full: buy a Scroll Case.'), value: s }; }),
-    onSelect: it => { const s = it.value; if (!can(s) || !room()) return false; for (const [r, n] of Object.entries(scrollCost(s, lvl()))) take(r, n); add('scroll_' + s, 1, true); dayStat('scrolls'); if (bs.who === 'You') addSkillXp('scribing', SCR().xp || 3); AU.sfx('discover'); toast(`Wrote a ${D.items['scroll_' + s].name}.`); return false; } });
+      desc: Object.entries(c).map(([r, n]) => `${n} ${item(r).name} (have ${have(r)})`).join(', ') + `.  You carry ${count('scroll_' + s)}.` + (room() ? '' : '  Your scroll pockets are full: buy a Scroll Case.'), value: s }; }),
+    onSelect: it => { const s = it.value; if (!can(s) || !room()) return false; for (const [r, n] of Object.entries(scrollCost(s, lvl()))) spend(r, n); add('scroll_' + s, 1, true); dayStat('scrolls'); if (bs.who === 'You') addSkillXp('scribing', SCR().xp || 3); AU.sfx('discover'); toast(`Wrote a ${D.items['scroll_' + s].name}.`); return false; } });
 }
 function aimSpell(u, s, scroll) {      // pick the target of a spell (cast from memory or read from a scroll)
   const sp = D.spells[s]; if (sp.kind === 'revive') { doRevive(u, sp, scroll); return; } const rng = 99; C.action = { type: 'spell', id: s, sp, rng, scroll };
@@ -53848,7 +54560,7 @@ function gateCost(mapId) { const sp = D.spells.gate, rg = regionOf(mapId), r = r
 async function hermitDust(npc) {
   if (!D.items.waystone_dust || !G.spells.includes('gate')) return; const p = item('waystone_dust').price; let c;
   do { c = await choose(`${npc.def.name}: "Waystone Dust, for your Gates. ${p}g a pinch."   (you have ${count('waystone_dust') + pouchCount('waystone_dust')}, and ${G.gold}g)`, [{ label: `Buy 1 (${p}g)`, value: 1, disabled: G.gold < p }, { label: `Buy 3 (${p * 3}g)`, value: 3, disabled: G.gold < p * 3 }, { label: 'Not today', value: 0 }], { width: 600 });
-    if (c) { G.gold -= p * c; add('waystone_dust', c, true); AU.sfx('pickup'); toast(`+${c} Waystone Dust`); } } while (c);
+    if (c && roomAll('waystone_dust', c) < c) toast(noRoom('waystone_dust', c), UI.red); else if (c) { G.gold -= p * c; add('waystone_dust', c, true); AU.sfx('pickup'); toast(`+${c} Waystone Dust`); } } while (c);
 }
 async function hermitTalk(npc) {
   const did = await giverQuests(npc, { progress: true });
@@ -54168,7 +54880,8 @@ async function mine(tx, ty, kind) {
   const wts = pool.map(([, it]) => 1 / (1 + Math.max(0, (it.minDepth || 1) - 1) * 0.35) + Math.max(0, lv - (it.minDepth || 1)) * 0.05);
   let roll = Math.random() * wts.reduce((a, b) => a + b, 0), idx = 0; while (roll > wts[idx] && idx < wts.length - 1) { roll -= wts[idx]; idx++; }
   const id = pool[idx][0]; const n = 1 + (Math.random() < 0.3 ? 1 : 0) + (Math.random() < 0.05 * skillLvl('herbalism') ? 1 : 0);
-  add(id, n, true); AU.sfx('pickup'); toast(`+${n} ${item(id).name}`, UI.green); G.time += 15;
+  { const fit = roomAll(id, n); if (fit <= 0) { delete G.mined[key]; return say('', [noRoom(id, n)]); } add(id, Math.min(n, fit), true); }
+  AU.sfx('pickup'); toast(`+${n} ${item(id).name}`, UI.green); G.time += 15;
 }
 // ---- the fleet: G.fleet = [{ uid, type, name, hull, upg: {sails, plate, shield}, hold: {}, navigator, captain, route, orders, away }]
 function SHP() { return D.ships || { types: {}, upgrades: {} }; }
@@ -54495,8 +55208,8 @@ function resolveAdventure(ex) {
     for (const q of D.quests) if (G.quests[q.id] === 'active') q.objectives.forEach((o, i) => { if (o.type === 'defeat' && o.enemy === eid) { G.qprog[q.id] = G.qprog[q.id] || {}; G.qprog[q.id][i] = (G.qprog[q.id][i] || 0) + r.n; } }); }
   for (const id of ex.members) { if (!G.helpers[id]) continue; const st = G.helpers[id], before = hLvl(id), gain = Math.round(xp * (1 + perk('helperXp'))); st.xp = (st.xp || 0) + gain; rp.members.push({ id, xp: gain, from: before, to: hLvl(id) }); }
   deathRoll(ex, ok ? ex.dOk : ex.dFail, rp);
-  rp.gold = Math.round(rp.gold * (1 + perk('goldBonus'))); G.gold += rp.gold; for (const [k, v] of Object.entries(rp.loot)) add(k, v, true);
-  for (const [k, v] of Object.entries(ex.items || {})) if (v > 0) add(k, v, true); rp.kills = kills;
+  rp.gold = Math.round(rp.gold * (1 + perk('goldBonus'))); G.gold += rp.gold; for (const [k, v] of Object.entries(rp.loot)) add(k, v, true, HOME);
+  for (const [k, v] of Object.entries(ex.items || {})) if (v > 0) add(k, v, true, HOME); rp.kills = kills;
   rp.summary = ok ? `Cleared ${zoneName(zone)}: ${fought.length} battles, ${kills} monsters.` : `Driven back from ${zoneName(zone)} after ${fought.length} of ${enc.length} battles.`;
   return rp;
 }
@@ -54517,7 +55230,7 @@ function resolveTrade(ex) {
   const roomLeft = ex.shipRef ? { bulk: shipType(ex.shipRef).bulk || 0, dry: shipType(ex.shipRef).dry || 0 } : null;
   for (const [id, n] of Object.entries(ex.cargo)) { const k = Math.round(n * keepFrac); if (n - k) rp.lost[id] = n - k; if (!k) continue; const pr = tradeSellPrice(id, port, bart); rp.sold[id] = k; rp.earned += pr * k; }
   purse += rp.earned;
-  for (const [id, want] of Object.entries(ex.orders)) { const pr = tradeBuyPrice(id, bart, port); if (pr == null) continue; let got = 0; while (got < want && purse >= pr && (!roomLeft || roomLeft[holdKind(id)] > 0)) { purse -= pr; got++; if (roomLeft) roomLeft[holdKind(id)]--; } if (got) { rp.bought[id] = got; rp.spent += got * pr; if (ex.toStore) { G.store = G.store || {}; G.store[id] = (G.store[id] || 0) + got; } else add(id, got, true); } }
+  for (const [id, want] of Object.entries(ex.orders)) { const pr = tradeBuyPrice(id, bart, port); if (pr == null) continue; let got = 0; while (got < want && purse >= pr && (!roomLeft || roomLeft[holdKind(id)] > 0)) { purse -= pr; got++; if (roomLeft) roomLeft[holdKind(id)]--; } if (got) { rp.bought[id] = got; rp.spent += got * pr; if (ex.toStore) { G.store = G.store || {}; G.store[id] = (G.store[id] || 0) + got; } else add(id, got, true, HOME); } }
   G.gold += purse; rp.gold = purse; rp.purseOut = ex.purse;
   for (const id of ex.members) { if (!G.helpers[id]) continue; const st = G.helpers[id], before = hLvl(id), gain = 10 * (ex.days || 2) + (id === ex.members[0] ? 15 : id === ex.members[1] ? 10 : 0); st.xp = (st.xp || 0) + gain; rp.members.push({ id, xp: gain, from: before, to: hLvl(id) }); }
   addSkillXp('commerce', Math.round(rp.earned / 40)); addSkillXp('bartering', Math.round(rp.earned / 60));
@@ -54647,7 +55360,7 @@ function screenContext() {
   try {
     const d = dialogs[0], m = menus[menus.length - 1];
     let screen = R.scene === 'title' ? 'Title screen' : C ? 'Battle' : R.scene === 'sea' ? 'At sea' : 'World';
-    if (WMAP) screen = 'World map'; if (MASTER) screen = 'Main menu: ' + MTABS[MASTER.tab].label; if (DOLL) screen = 'Equipment screen'; if (TREE) screen = 'Talent trees: ' + (TREE.who === 'player' ? 'hero' : TREE.who) + ', ' + D.trees[TREE.tk].name;
+    if (WMAP) screen = 'World map'; if (MASTER) screen = 'Main menu: ' + MTABS[MASTER.tab].label; if (DOLL) screen = 'Equipment screen'; if (BAG) screen = 'Party screen: ' + bagName(BAG.who); if (TREE) screen = 'Talent trees: ' + (TREE.who === 'player' ? 'hero' : TREE.who) + ', ' + D.trees[TREE.tk].name;
     if (m) screen += ' > menu "' + String(tx(m.title) || '').slice(0, 80) + '"'; if (d) screen += ' > dialogue';
     L.push('Screen: ' + screen);
     if (d) L.push('Dialogue: ' + (d.speaker || '(narration)') + ': "' + String(d.lines[d.i] || '').slice(0, 300) + '" (line ' + (d.i + 1) + ' of ' + d.lines.length + ')');
@@ -54699,7 +55412,7 @@ function openComment() {
   b.style.cssText = 'position:fixed;right:8px;top:50%;z-index:15;font:bold 13px "Trebuchet MS",Verdana,sans-serif;padding:6px 10px;border:2px solid #6b4423;border-radius:8px;background:rgba(246,235,210,.9);color:#3a2618;cursor:pointer;opacity:.85';
   b.addEventListener('click', e => { e.preventDefault(); b.blur(); openComment(); }); document.body.appendChild(b);
   addEventListener('keydown', e => { if (e.key === 'F8') { e.preventDefault(); openComment(); } });
-  const place = () => { b.style.top = SET.mobile ? '6px' : '50%'; }; place(); setInterval(place, 1000);      // v0.28.3: on phones the button sits above the B button, clear of A
+  const place = () => { b.style.top = SET.mobile ? '6px' : '50%'; const hide = !!(menus.length || dialogs.length || MASTER || BAG || TREE || DOLL || WMAP); if ((b.style.display === 'none') !== hide) b.style.display = hide ? 'none' : ''; }; place(); setInterval(place, 150);      // v0.29.7: hidden while a menu or screen is open (F8 still opens the note box)      // v0.28.3: on phones the button sits above the B button, clear of A
   setTimeout(flushComments, 90000); })();
 
 async function reportBlocked(why) {
@@ -54749,6 +55462,7 @@ function renderUpdateBanner() {
 function handleInput() {
   const hs = hits; hits = []; const cs = clicks; clicks = [];
   for (const c of cs) {
+    if (BAG && !dialogs.length && menus.length <= BAG.depth) { bagClick(c); continue; }
     if (TREE && !dialogs.length && menus.length <= TREE.depth) { treeClick(c); continue; }
     if (MASTER && !dialogs.length && masterClick(c)) continue;
     if (dialogs.length) { advanceDialog(); continue; }
@@ -54765,6 +55479,7 @@ function handleInput() {
     if (KBCAP) { kbCapture(raw); continue; }
     const quiet = !menus.length && !dialogs.length && !MASTER;
     const k = kbTranslate(raw, quiet && R.scene === 'combat' ? 'combat' : quiet && R.scene === 'sea' ? 'sea' : 'general'); if (k == null) continue;
+    if (BAG && !dialogs.length && menus.length <= BAG.depth) { bagKey(k); continue; }
     if (TREE && !dialogs.length && menus.length <= TREE.depth) { treeKey(k); continue; }
     if (MASTER && !dialogs.length && masterKey(k)) continue;
     if (dialogs.length) { if (['enter', ' ', 'e', 'escape'].includes(k)) advanceDialog(); continue; }
@@ -54801,6 +55516,7 @@ function frame(now) {
     if (DOLL) { renderMenus(0, DOLL.depth); inMasterXf(renderDoll); }
     if (WMAP) renderWorldMap();
     if (TREE) { renderMenus(DOLL ? DOLL.depth : 0, TREE.depth); renderMaster(); renderTree(); renderMenus(TREE.depth); } else { renderMenus(DOLL ? DOLL.depth : 0); renderMaster(); }
+    if (BAG) { renderBag(); renderMenus(BAG.depth); }
     renderDialog(); renderToasts(); renderUpdateBanner();
     if (fadeA > 0) { ctx.fillStyle = `rgba(0,0,0,${fadeA})`; ctx.fillRect(0, 0, VW, VH); }
     mouse.moved = false;
