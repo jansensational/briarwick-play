@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.31.1</title>
+<title>Reagents of Briarwick v0.31.2</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   /* phone view only (Mobile Play on; the game adds the class): pin the page to the visible screen so it can never scroll or sit lower than what is shown */
@@ -31,7 +31,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.31.1",
+  "version": "0.31.2",
   "tileSize": 16,
   "scale": 4,
   "dayStart": 6,
@@ -55606,7 +55606,9 @@ const WDIO = {   // board window: W squares across; far row FY .. near row NY on
   battle: { W: 17, R: 11, FY: 168, NY: 452, FW: 600, NW: 940, back: 7.5, FIG: 1.55 },
   gentle: { W: 15, R: 11, FY: 64, NY: 600, FW: 790, NW: 1000, back: 6.5, FIG: 1.5 },
   high: { W: 14, R: 10, FY: 30, NY: 590, FW: 860, NW: 1000, back: 5.6, FIG: 1.45 },
-  top: { W: 15, R: 9.75, FY: 0, NY: 624, FW: 960, NW: 960, back: 5.2, FIG: 1.5, ortho: true } };   // straight top-down: every art pixel is exactly 2x2 on screen     // interiors and caves: a steep, nearly top-down view
+  top: { W: 15, R: 9.75, FY: 0, NY: 624, FW: 960, NW: 960, back: 5.2, FIG: 1.5, ortho: true, k: 2 },
+  wide: { W: 20, R: 13, FY: 0, NY: 624, FW: 960, NW: 960, back: 6.9, FIG: 1.5, ortho: true, k: 1.5 },      // the same view from further off: more of the map, smaller figures
+  far: { W: 30, R: 19.5, FY: 0, NY: 624, FW: 960, NW: 960, back: 10.2, FIG: 1.5, ortho: true, k: 1 } };   // straight top-down: every art pixel is exactly 2x2 on screen     // interiors and caves: a steep, nearly top-down view
 const WD_ROOF = new Set('RngihG'.split('')), WD_HOUSE = new Set('RngihHlmDG'.split('')), WD_WALL = new Set('wX#lm'.split('')), WD_FLAT = new Set('pVUuD'.split(''));
 const WD_HEAD = 0.5;              // squares of head that must stay visible behind anything
 const WD_HOUSE_H = { wall: 1.3, ridge: 2.25, kitWall: 1.5, kitRidge: 2.35 }, WD_BLOCK = { out: 0.95, low: 0.45, back: 1.8 };
@@ -55617,9 +55619,11 @@ function wdRegionMaps() {         // the Mainland's zones plus every interior re
   while (q.length) { const m = D.maps[q.pop()]; for (const w of (m && m.warps) || []) if (D.maps[w.to] && !WD_SET.has(w.to) && !other.has(w.to)) { WD_SET.add(w.to); q.push(w.to); } }
   return WD_SET;
 }
+const VIEWS = { auto: 'Auto', top: 'Close', wide: 'Wide', far: 'Far' };
+function viewMode() { const v = SET.view; return v === 'top' || v === 'wide' || v === 'far' ? v : window.__mobileOn ? 'top' : 'wide'; }      // Auto: wide on a computer, close in the phone view
 function wdMode(id = R.mapId) {
   if (SET.worldDio === 'off') return null; if (WDIO[SET.worldDio]) return SET.worldDio;
-  if (!id || R.scene === 'sea') return null; return 'top';      // every world map: straight top-down at an exact 2x (Nov 13); 'high' and 'battle' remain as SET.worldDio options
+  if (!id || R.scene === 'sea') return null; return viewMode();      // every world map: straight top-down at an exact 2x (Nov 13); 'high' and 'battle' remain as SET.worldDio options
 }
 function wdProj(P, ox, oy) {      // map square (mx, my) at height z -> screen; sq(my) = screen size of one square at that depth
   const H = homography([[0, 0], [P.W, 0], [P.W, P.R], [0, P.R]], [[VW / 2 - P.FW / 2, P.FY], [VW / 2 + P.FW / 2, P.FY], [VW / 2 + P.NW / 2, P.NY], [VW / 2 - P.NW / 2, P.NY]]);
@@ -55779,7 +55783,7 @@ function wdDrawHouse(V, b, camX) {
     wdPoly(V, [[X, fr, 0], [X, b.y0, 0], [X, b.y0, b.wall], [X, b.ridgeY, b.ridge], [X, fr, b.wall]], wdShade(b.wallCol, 0.78));
     wdPoly(V, [[X, fr + 0.08, b.wall - 0.12], [X, b.ridgeY, b.ridge - 0.12], [X, b.ridgeY, b.ridge + 0.02], [X, fr + 0.08, b.wall + 0.02]], wdShade(b.roofColC || b.roofColS, 0.7)); }
   const [ex0, ey] = V.pt(L, fr, b.wall), [ex1] = V.pt(Rr, fr, b.wall), [, ry] = V.pt(L, b.ridgeY, b.ridge);          // roof: eave -> ridge, one slice per screen row
-  if (b.flat && kit) ctx.drawImage(art, Math.round(ex0), Math.round(ey) - art.height * 2, Math.round(ex1 - ex0), art.height * 2);      // top-down: the roof image at an exact 2x
+  const kz = V.sq(fr) / 32; if (b.flat && kit) ctx.drawImage(art, Math.round(ex0), Math.round(ey - art.height * kz), Math.round(ex1 - ex0), Math.round(art.height * kz));      // top-down: the roof image at an exact 2x
   else for (let y = Math.floor(ry); y < ey; y++) { const t = (ey - y) / (ey - ry), my = fr + (b.ridgeY - fr) * t, z = b.wall + (b.ridge - b.wall) * t;
     const [lx, ly] = V.pt(L, my, z), [rx] = V.pt(Rr, my, z); ctx.drawImage(art, 0, Math.max(0, Math.min(rh - 1, rh * (1 - t))), art.width, 1, lx, ly, rx - lx, 1.6); }
   if (!b.flat) {   ctx.fillStyle = 'rgba(0,0,0,.25)'; const [r0x, r0y] = V.pt(L, b.ridgeY, b.ridge), [r1x] = V.pt(Rr, b.ridgeY, b.ridge); ctx.fillRect(r0x, r0y - 1, r1x - r0x, 2); }
@@ -55812,13 +55816,13 @@ function wdDrawBlock(V, mp, x, y, h, camX) {   // one wall/rock square standing 
 }
 function renderWorldDio(mp, ppx, ppy) {
   const P = WDIO[wdMode()] || WDIO.battle, gd = wdGround(mp); if (!gd) return false;
-  const px = ppx / TILE + 0.5, py = ppy / TILE + 0.5, snap = v => P.ortho ? Math.round(v * 64) / 64 : v, ox = snap(px - P.W / 2), oy = snap(py - P.back), V = wdProj(P, ox, oy), pt = P.ortho ? (a, b, z = 0) => { const q = V.pt(a, b, z); return [Math.round(q[0]), Math.round(q[1])]; } : V.pt, sqAt = V.sq;
+  const px = ppx / TILE + 0.5, py = ppy / TILE + 0.5, KZ = P.k || 2, snap = v => P.ortho ? Math.round(v * 32 * KZ) / (32 * KZ) : v, ox = snap(px - P.W / 2), oy = snap(py - P.back), V = wdProj(P, ox, oy), pt = P.ortho ? (a, b, z = 0) => { const q = V.pt(a, b, z); return [Math.round(q[0]), Math.round(q[1])]; } : V.pt, sqAt = V.sq;
   ctx.fillStyle = '#0b090e'; ctx.fillRect(0, 0, VW, VH);      // beyond the map there is only darkness
-  if (P.ortho) { ctx.save(); ctx.imageSmoothingEnabled = false; const sx = Math.round((ox + gd.M) * 32 * 2) / 2, sy = Math.round((oy + gd.M) * 32 * 2) / 2;      // ground: one exact 2x copy
-    const a0 = Math.max(0, sx), b0 = Math.max(0, sy), a1 = Math.min(gd.c.width, sx + VW / 2), b1 = Math.min(gd.c.height, sy + VH / 2);
-    if (a1 > a0 && b1 > b0) ctx.drawImage(gd.c, a0, b0, a1 - a0, b1 - b0, (a0 - sx) * 2, (b0 - sy) * 2, (a1 - a0) * 2, (b1 - b0) * 2);
-    if (gd.wet.length && waterTile('water', 0, 0)) for (const c of gd.wet) { const dx = ((c.x + gd.M) * 32 - sx) * 2, dy = ((c.y + gd.M) * 32 - sy) * 2; if (dx < -64 || dy < -64 || dx > VW || dy > VH) continue;
-      ctx.drawImage(waterTile(c.t, c.x, c.y), dx, dy, 64, 64); if (c.o) ctx.drawImage(gd.over, (c.x + gd.M) * 32, (c.y + gd.M) * 32, 32, 32, dx, dy, 64, 64); }
+  if (P.ortho) { ctx.save(); ctx.imageSmoothingEnabled = false; const sx = Math.round((ox + gd.M) * 32 * KZ) / KZ, sy = Math.round((oy + gd.M) * 32 * KZ) / KZ;      // ground: one copy at the view's scale (2x close, 1.5x wide, 1x far)
+    const a0 = Math.max(0, sx), b0 = Math.max(0, sy), a1 = Math.min(gd.c.width, sx + VW / KZ), b1 = Math.min(gd.c.height, sy + VH / KZ);
+    if (a1 > a0 && b1 > b0) ctx.drawImage(gd.c, a0, b0, a1 - a0, b1 - b0, Math.round((a0 - sx) * KZ), Math.round((b0 - sy) * KZ), Math.round((a1 - a0) * KZ), Math.round((b1 - b0) * KZ));
+    if (gd.wet.length && waterTile('water', 0, 0)) for (const c of gd.wet) { const dx = Math.round(((c.x + gd.M) * 32 - sx) * KZ), dy = Math.round(((c.y + gd.M) * 32 - sy) * KZ), dw = Math.round(((c.x + 1 + gd.M) * 32 - sx) * KZ) - dx, dh = Math.round(((c.y + 1 + gd.M) * 32 - sy) * KZ) - dy; if (dx < -64 || dy < -64 || dx > VW || dy > VH) continue;
+      ctx.drawImage(waterTile(c.t, c.x, c.y), dx, dy, dw, dh); if (c.o) ctx.drawImage(gd.over, (c.x + gd.M) * 32, (c.y + gd.M) * 32, 32, 32, dx, dy, dw, dh); }
     ctx.restore(); }
   else {
   ctx.save(); ctx.imageSmoothingEnabled = false;      // ground: one slice per screen row
@@ -57642,12 +57646,14 @@ async function settingsMenu() {
     if (it.value === 'keys') { if (d > 0) script(keybindMenu); return; }
     if (it.value === 'send') { if (!SET.stats) toast('Turn on Share play stats first.'); else { SESSION.sent = 0; if (sendStats('sent a report from Settings', true)) toast('Sending...'); } }
     if (it.value === 'scenery') SET.still = !SET.still;
+    if (it.value === 'view') { const ks = Object.keys(VIEWS), cur = VIEWS[SET.view] ? SET.view : 'auto'; SET.view = ks[(ks.indexOf(cur) + d + ks.length) % ks.length]; }
     if (it.value === 'portraits') { const M = ['anim', 'still', 'off']; SET.portraits = M[(M.indexOf(portraitMode()) + d + 3) % 3]; }
     saveSettings(); AU.sfx('menu');
   };
   await openMenu({ title: 'Settings  (Left/Right or click to change)', width: 500,
     items: () => [{ label: 'Music volume', right: lbl(AU.volume.music), value: 'music' }, { label: 'Sound effects', right: lbl(AU.volume.sfx), value: 'sfx' },
       { label: 'Conversation portraits', right: { anim: 'Animated', still: 'Still', off: 'Off' }[portraitMode()], value: 'portraits', desc: 'Large character portraits in conversations. Animated: they breathe and blink. Still: the painting only, changing with their mood. Off: the small sprite only.' },
+      { label: 'World view', right: VIEWS[SET.view] ? VIEWS[SET.view] + (SET.view === 'auto' ? ` (${VIEWS[viewMode()]})` : '') : `Auto (${VIEWS[viewMode()]})`, value: 'view', desc: 'How much of the world you see while exploring. Close: 15 squares across, big figures (best on a phone). Wide: 20 across. Far: 30 across, small figures. Auto picks Wide on a computer and Close in the phone view. Battles do not change.' },
       { label: 'Moving scenery', right: SET.still ? 'Off' : 'On', value: 'scenery', desc: 'Trees swaying, water rippling, lanterns swinging and fires flickering. Off holds them still.' },
       { label: 'Walking speed', right: SET.walk, value: 'walk', desc: 'How quickly you walk from tile to tile.' }, { label: 'Battle speed', right: SET.battle, value: 'battle', desc: 'How quickly enemies take their turns.' },
       { label: 'Share play stats', right: SET.stats ? 'On' : 'Off', value: 'stats', desc: 'When you close the game, a short summary (version, day, level, quests, settings, any errors) goes to the developer to help improve the game. No personal information.' },
