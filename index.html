@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.32.1</title>
+<title>Reagents of Briarwick v0.33.0</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   /* phone view only (Mobile Play on; the game adds the class): pin the page to the visible screen so it can never scroll or sit lower than what is shown */
@@ -31,7 +31,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.32.1",
+  "version": "0.33.0",
   "tileSize": 16,
   "scale": 4,
   "dayStart": 6,
@@ -57,7 +57,17 @@ window.GAME_DATA = {
    "exp": 1.5,
    "maxLevel": 21
   },
-  "textTrades": 1
+  "textTrades": 1,
+  "bigZones": [
+   "briarwick",
+   "whisperwood",
+   "kingsroad",
+   "highmoor",
+   "gannet",
+   "southwatch",
+   "mistfen",
+   "quarry"
+  ]
  },
  "start": {
   "map": "house",
@@ -26826,97 +26836,120 @@ window.GAME_DATA = {
    "outdoor": true,
    "ground": "t_grass",
    "tiles": [
-    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
-    "T.......,T.........T..rrrrrrr.T....,.,TT",
-    "T..RRRRRR..GGGGGG,.,..rrrCrrr...iiiiii.T",
-    "T..RRRRRR.,GGGGGG.....,..z......iiiiii.T",
-    "T..HHHDHH..GGGDGG........z......HHDHHH.T",
-    "TY....z.pppS..z..,.......z........z....T",
-    "T....,z.....,.z.....,.,,.z..S,....z,...z",
-    "TY..zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
-    "T.....z......,.,z..........,..z........z",
-    "TT....z........,z.......,.....z....,...T",
-    "T..gggggg...RRRRRRRR....qqqqq.znnnnnnn.T",
-    "T..gggggg...RRRRRRRR..T.qqqqq.znnnnnnn.T",
-    "T..HHHDHH...HHHHDHHH....qqqqq.zHHHDHHH.T",
-    "T..T..z.......,.z.......,....,zzzzz....T",
-    "T.TT..zzzzzzzzzzzzzzzzz.......,........T",
-    "TT.T...qqOqqqqqqqqqqqqz...,.........,..T",
-    "T......qqqqqqqqqqqqqqqz........,.......T",
-    "TKKKKKKKKKKKKKKKKKKKKKBBKKKKKKKKKKKKKKKT",
-    "~~~~~~~~~~~~~~~~~~~~~~BB~~~~~~~~~~~~~~~~",
-    "~~~~~~~~~~~~~~~~~~~~~~BB~~~~~~~~~~~~~~~~",
-    "~~~~~~~~~~~~~~~~~~~~~~BB~~~~~~~~~~~~~~~~",
-    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+    "T...........,......................................,..,TT",
+    "T...........,.T.............T...............T......,..,TT",
+    "T........................,..,.....rrrrrrr...........,,..T",
+    "T..............,................,.rrrCrrr...............T",
+    "T.....RRRRRR...,..GGGGGG........,....z..........iiiiii..T",
+    "T.....RRRRRR......GGGGGG.............z.nnnnnn...iiiiii..T",
+    "T.....HHHDHH......GGGDGG.,...........z.nnnnnn...HHDHHH..T",
+    "T.Y......z...pppS....z...,...........z.HHHDHH.....z.....T",
+    "T......,,z.......,,..z.......,..,,,..z...Sz.......z,....z",
+    "T.......,z........,..z.......,,.,,,..z....z,......z,,...z",
+    "T.Y...zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "T........z.........,..,,z..............,,...z...........z",
+    "T........z............,,z..........,........z......,....T",
+    "T.T......z............,,z..........,........z......,....T",
+    "T......................,,..........qqqqqqq..z...........T",
+    "T.....gggggg........RRRRRRRR....T..qqqqqqq..z..nnnnnnn..T",
+    "T.....gggggg........RRRRRRRR.......qqqqqqq..z..nnnnnnn..T",
+    "T.....HHHDHH........HHHHDHHH.......qqqqqqq..z..HHHDHHH..T",
+    "T....T...z..........,,..z..........,......,,zzzzzzz.....T",
+    "T...TT...z...........,..z..................,,...........T",
+    "T..TTT...zzzzzzzzzzzzzzzzzzzzzzzz..........,,...........T",
+    "T.T..T....qqqqOqqqqqqqqqqqqqqqqqz.....,.............,,..T",
+    "T.........qqqqqqqqqqqqqqqqqqqqqqz............,..........T",
+    "T.........qqqqqqqqqqqqqqqqqqqqqqz............,..........T",
+    "TKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBBBKKKKKKKKKKKKKKKKKKKKKT",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BBB~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BBB~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BBB~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BBB~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
    ],
    "warps": [
     {
-     "x": 6,
-     "y": 4,
+     "x": 9,
+     "y": 7,
      "to": "house",
      "tx": 4,
      "ty": 6
     },
     {
-     "x": 14,
-     "y": 4,
+     "x": 21,
+     "y": 7,
      "to": "greenhouse",
      "tx": 6,
      "ty": 7
     },
     {
-     "x": 25,
-     "y": 2,
+     "x": 37,
+     "y": 4,
      "to": "cave",
      "tx": 7,
      "ty": 8
     },
     {
-     "x": 6,
-     "y": 12,
+     "x": 9,
+     "y": 18,
      "to": "apothecary",
      "tx": 5,
      "ty": 6
     },
     {
-     "x": 16,
-     "y": 12,
+     "x": 24,
+     "y": 18,
      "to": "tavern",
      "tx": 6,
      "ty": 6
     },
     {
-     "x": 39,
-     "y": 6,
-     "to": "whisperwood",
-     "tx": 1,
-     "ty": 9
-    },
-    {
-     "x": 39,
+     "x": 50,
      "y": 7,
-     "to": "whisperwood",
-     "tx": 1,
-     "ty": 10
-    },
-    {
-     "x": 39,
-     "y": 8,
-     "to": "whisperwood",
-     "tx": 1,
-     "ty": 11
-    },
-    {
-     "x": 34,
-     "y": 4,
      "to": "alchemist",
      "tx": 6,
      "ty": 6
     },
     {
-     "x": 34,
-     "y": 12,
+     "x": 50,
+     "y": 18,
      "to": "homecenter",
+     "tx": 6,
+     "ty": 6
+    },
+    {
+     "x": 56,
+     "y": 9,
+     "to": "whisperwood",
+     "tx": 2,
+     "ty": 13
+    },
+    {
+     "x": 56,
+     "y": 10,
+     "to": "whisperwood",
+     "tx": 2,
+     "ty": 14
+    },
+    {
+     "x": 56,
+     "y": 11,
+     "to": "whisperwood",
+     "tx": 2,
+     "ty": 14
+    },
+    {
+     "x": 56,
+     "y": 12,
+     "to": "whisperwood",
+     "tx": 2,
+     "ty": 15
+    },
+    {
+     "x": 42,
+     "y": 8,
+     "to": "smithy",
      "tx": 6,
      "ty": 6
     }
@@ -26924,103 +26957,98 @@ window.GAME_DATA = {
    "npcs": [
     {
      "id": "hal",
-     "x": 21,
-     "y": 16
+     "x": 31,
+     "y": 23
     },
     {
      "id": "wren",
-     "x": 10,
-     "y": 8
-    },
-    {
-     "id": "bram",
-     "x": 19,
-     "y": 8
+     "x": 15,
+     "y": 12
     },
     {
      "id": "orrin_yard",
-     "x": 21,
-     "y": 15,
+     "x": 31,
+     "y": 22,
      "flag": "shipyard"
     },
     {
      "id": "appr_highmoor",
-     "x": 24,
-     "y": 15,
+     "x": 35,
+     "y": 22,
      "flag": "appr_highmoor"
     },
     {
      "id": "appr_gannet",
-     "x": 26,
-     "y": 15,
+     "x": 38,
+     "y": 22,
      "flag": "appr_gannet"
     },
     {
      "id": "appr_southwatch",
-     "x": 28,
-     "y": 15,
+     "x": 41,
+     "y": 22,
      "flag": "appr_southwatch"
     },
     {
      "id": "appr_saltmere",
-     "x": 30,
-     "y": 15,
+     "x": 44,
+     "y": 22,
      "flag": "appr_saltmere"
     },
     {
      "id": "appr_verdant",
-     "x": 32,
-     "y": 15,
+     "x": 47,
+     "y": 22,
      "flag": "appr_verdant"
     },
     {
      "id": "appr_azure",
-     "x": 34,
-     "y": 15,
+     "x": 50,
+     "y": 21,
      "flag": "appr_azure"
     },
     {
      "id": "appr_thornhaven",
-     "x": 36,
-     "y": 15,
+     "x": 53,
+     "y": 22,
      "flag": "appr_thornhaven"
     },
     {
      "id": "appr_ember",
-     "x": 38,
-     "y": 15,
+     "x": 55,
+     "y": 22,
      "flag": "appr_ember"
     }
    ],
    "signs": [
     {
-     "x": 28,
-     "y": 6,
-     "text": "East: Whisperwood. Beware wolves after dark. | North: the old hermit's cave. | Follow this road east for Mirelle's Alchemy (north side) and Gideon's Home Center (south side).",
+     "x": 41,
+     "y": 9,
+     "text": "East: Whisperwood. Beware wolves after dark. | North: the old hermit's cave. | Follow this road east for Mirelle's Alchemy (north side) and Gideon's Home Center (south side). | Bram's Outfitters: the smithy just north of this post.",
      "post": true
     },
     {
-     "x": 11,
-     "y": 5,
+     "x": 16,
+     "y": 8,
      "text": "Gran's garden beds. | Plant seeds here (E). Her greenhouse up the lane is in ruins - Gideon's Home Center can restore it."
     }
    ],
    "forage": [
     {
-     "x": 20,
-     "y": 4,
+     "x": 29,
+     "y": 6,
      "item": "glowcap",
      "respawn": 3
     }
    ],
    "enemies": [],
    "dock": {
-    "x": 22,
-    "y": 16
+    "x": 32,
+    "y": 23
    },
    "portal": {
-    "x": 16,
-    "y": 15
+    "x": 24,
+    "y": 22
    },
    "combat": {
     "ground": ".",
@@ -27034,104 +27062,103 @@ window.GAME_DATA = {
    "music": "village",
    "decor": [
     {
-     "x": 7,
-     "y": 4,
+     "x": 10,
+     "y": 7,
      "sprite": "b_home"
     },
     {
-     "x": 15,
-     "y": 4,
+     "x": 22,
+     "y": 7,
      "sprite": "b_greenhouse"
     },
     {
-     "x": 7,
-     "y": 12,
+     "x": 10,
+     "y": 18,
      "sprite": "b_apothecary"
     },
     {
-     "x": 17,
-     "y": 12,
+     "x": 25,
+     "y": 18,
      "sprite": "b_tavern"
     },
     {
-     "x": 35,
-     "y": 4,
+     "x": 51,
+     "y": 7,
      "sprite": "b_alchemist"
     },
     {
-     "x": 35,
-     "y": 12,
+     "x": 51,
+     "y": 18,
      "sprite": "b_homecenter"
     },
     {
-     "x": 18,
+     "x": 43,
      "y": 8,
-     "sprite": "b_outfitter",
-     "solid": true
+     "sprite": "b_outfitter"
     },
     {
-     "x": 24,
-     "y": 11,
+     "x": 35,
+     "y": 16,
      "sprite": "i_stall",
      "solid": true
     },
     {
-     "x": 26,
-     "y": 11,
+     "x": 38,
+     "y": 16,
      "sprite": "i_stall",
      "solid": true
     },
     {
-     "x": 28,
-     "y": 11,
+     "x": 41,
+     "y": 16,
      "sprite": "i_stall",
      "solid": true
     },
     {
-     "x": 26,
-     "y": 14,
+     "x": 38,
+     "y": 21,
      "sprite": "i_stall",
      "solid": true,
      "flag": "appr_gannet"
     },
     {
-     "x": 28,
-     "y": 14,
+     "x": 41,
+     "y": 21,
      "sprite": "i_stall",
      "solid": true,
      "flag": "appr_southwatch"
     },
     {
-     "x": 30,
-     "y": 14,
+     "x": 44,
+     "y": 21,
      "sprite": "i_stall",
      "solid": true,
      "flag": "appr_saltmere"
     },
     {
-     "x": 32,
-     "y": 14,
+     "x": 47,
+     "y": 21,
      "sprite": "i_stall",
      "solid": true,
      "flag": "appr_verdant"
     },
     {
-     "x": 34,
-     "y": 14,
+     "x": 50,
+     "y": 20,
      "sprite": "i_stall",
      "solid": true,
      "flag": "appr_azure"
     },
     {
-     "x": 36,
-     "y": 14,
+     "x": 53,
+     "y": 21,
      "sprite": "i_stall",
      "solid": true,
      "flag": "appr_thornhaven"
     },
     {
-     "x": 38,
-     "y": 14,
+     "x": 55,
+     "y": 21,
      "sprite": "i_stall",
      "solid": true,
      "flag": "appr_ember"
@@ -27159,8 +27186,8 @@ window.GAME_DATA = {
      "x": 4,
      "y": 7,
      "to": "briarwick",
-     "tx": 6,
-     "ty": 5
+     "tx": 9,
+     "ty": 8
     }
    ],
    "npcs": [],
@@ -27272,8 +27299,8 @@ window.GAME_DATA = {
      "x": 6,
      "y": 8,
      "to": "briarwick",
-     "tx": 14,
-     "ty": 5
+     "tx": 21,
+     "ty": 8
     }
    ],
    "npcs": [],
@@ -27301,8 +27328,8 @@ window.GAME_DATA = {
      "x": 5,
      "y": 7,
      "to": "briarwick",
-     "tx": 6,
-     "ty": 13
+     "tx": 9,
+     "ty": 19
     },
     {
      "x": 8,
@@ -27343,8 +27370,8 @@ window.GAME_DATA = {
      "x": 6,
      "y": 7,
      "to": "briarwick",
-     "tx": 16,
-     "ty": 13
+     "tx": 24,
+     "ty": 19
     }
    ],
    "npcs": [
@@ -27420,8 +27447,8 @@ window.GAME_DATA = {
      "x": 7,
      "y": 9,
      "to": "briarwick",
-     "tx": 25,
-     "ty": 3
+     "tx": 37,
+     "ty": 5
     }
    ],
    "npcs": [
@@ -27442,155 +27469,174 @@ window.GAME_DATA = {
    "ground": "t_grass",
    "level": 1,
    "tiles": [
-    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
-    "T..........................................T",
-    "T..........\"\".....\".......\"....\"...........T",
-    "T.\"..T..,\"......T.....T...................,T",
-    "T...T.T.,..,,....T.\"..T..........========..T",
-    "T..............,........TT.rr....====S===..T",
-    "T..............,.........T.rr....========..T",
-    "T.................r......\".,,....========..T",
-    "T.\".....................\"..TT..............T",
-    "=..===============\".\".TT..T..\"\".,...=.....\"T",
-    "===........\"\"...==....TT............=......T",
-    "=.=........\"\"...==..................=......T",
-    "T=..............==..\",..TT.....\"TT..=,..\"..T",
-    "T......TT,....r.==.....T.\"..........=.,,...T",
-    "T.....T.......r.==..............\"..,=.....\"T",
-    "T.........\".....==..\"........\"......=...\"..T",
-    "T.........\".....==..\"........\"......=...\"..T",
-    "T........TT.....==..................=....\".T",
-    "T...TT...T......==...\"..............=.\"\"...T",
-    "T...TT..........============================",
-    "T...,,,,,,,,,...,,............=..rr\"\"......T",
-    "T...,,,,,,,,,...,,............=..rr\"\"......T",
-    "T....,,,,,,,,....T.\"T.....\"...=.\"..........T",
-    "T....,,,,,,,,.T..T...T........=............T",
-    "T...C,,,,,,,,..T\"\"...........,=............T",
-    "T....,,,,,,,,........\".T......=...TT....,..T",
-    "T....,,,,,,,,........\".TT.....=....T....,..T",
-    "T....\"\"....\"\".\"...........\"..\"=\".,,.....\"\".T",
-    "T..............\"...\".........==......r....\"T",
-    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTT=TTTTTTTTTTTTTT"
+    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+    "T............................................................T",
+    "T............................................................T",
+    "T...............\"\"\".......\"..........\"\".....\"\"...............T",
+    "T..\".......,,\"..............................................,T",
+    "T..\"....T..,,\".........T........T...........................,T",
+    "T.....T..T.,,...,,,......T.\"\"...T...............===========..T",
+    "T....................,,.............T..rr.......======.====..T",
+    "T....................,,............TT..rr.......=====S.====..T",
+    "T....................,,.............T..rr.......===========..T",
+    "T.........................r.........\"..,,.......===========..T",
+    "T..\"..............................\"\".........................T",
+    "T..\"..............................\"\"...TT....................T",
+    "=....=====================\"..\".TTT....T..\"\"\"..,.....=.......\"T",
+    "=...............\"\"\"....===.....TTT..................=........T",
+    "====............\"\"\"....===.....TTT..................=........T",
+    "=..=............\"\"\"....===..........................=........T",
+    "T......................===...\",.............\"\"......=,...\"\"..T",
+    "T.=....................===...\",....TT.......\"\"T.T...=,...\"\"..T",
+    "T.........T.T,......r..===.......T..\"...............=.,,,....T",
+    "T........T..........r..===....................\"...,,=.......\"T",
+    "T.............\"\".......===...\"...........\"\"........,=....\"\"..T",
+    "T.............\"\".......===...\"...........\"\".........=....\"\"..T",
+    "T.............\"\".......===...\"...........\"\".........=....\"\"..T",
+    "T............T.........===..........................=......\".T",
+    "T............T.T.......===..........................=......\".T",
+    "T.....TTT....T.........===....\".....................=.\"\"\"....T",
+    "T.....TTT..............===....\"\"....................=..\"\"\"...T",
+    "T.....TTT..............=======================================",
+    "T.....,,,,,,,,,,,,,....,,,.................=...rrr\"\"\"........T",
+    "T.....,,,,,,,,,,,,,....,,,.................=...rrr\"\"\"........T",
+    "T......,,,,,,,,,,,,........\"\"........\"\"....=..\"..............T",
+    "T......,,,,,,,,,,,,......T.\"\"T.......\"\"....=..\"..............T",
+    "T......,,,,,,,,,,,,.T....T....T............=.................T",
+    "T......,,,,,,,,,,,,....\"\"\"...............,,=.................T",
+    "T.....C,,,,,,,,,,,,...T\"\"\"...............,,=.................T",
+    "T......,,,,,,,,,,,,...........\"..T.........=.....TT......,,..T",
+    "T......,,,,,,,,,,,,...........\"..T.........=.............,,..T",
+    "T......,,,,,,,,,,,,...........\"..T.T.......=......T......,,..T",
+    "T......\"\"\"......\"\"\".\"................\"\"..\"\"=\"\".,,,.......\"\"\".T",
+    "T....................\"\"....\"\".............==.........r......\"T",
+    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT=TTTTTTTTTTTTTTTTTTT"
    ],
    "warps": [
     {
-     "x": 0,
-     "y": 9,
-     "to": "briarwick",
-     "tx": 38,
-     "ty": 6
-    },
-    {
-     "x": 0,
-     "y": 10,
-     "to": "briarwick",
-     "tx": 38,
-     "ty": 7
-    },
-    {
-     "x": 0,
-     "y": 11,
-     "to": "briarwick",
-     "tx": 38,
-     "ty": 8
-    },
-    {
-     "x": 43,
-     "y": 19,
-     "to": "kingsroad",
-     "tx": 1,
-     "ty": 11
-    },
-    {
-     "x": 4,
-     "y": 24,
+     "x": 6,
+     "y": 35,
      "to": "cave:hollow:1",
      "tx": "E",
      "ty": "E"
     },
     {
-     "x": 29,
-     "y": 29,
+     "x": 0,
+     "y": 13,
+     "to": "briarwick",
+     "tx": 55,
+     "ty": 9
+    },
+    {
+     "x": 0,
+     "y": 14,
+     "to": "briarwick",
+     "tx": 55,
+     "ty": 10
+    },
+    {
+     "x": 0,
+     "y": 15,
+     "to": "briarwick",
+     "tx": 55,
+     "ty": 10
+    },
+    {
+     "x": 0,
+     "y": 16,
+     "to": "briarwick",
+     "tx": 55,
+     "ty": 11
+    },
+    {
+     "x": 61,
+     "y": 28,
+     "to": "kingsroad",
+     "tx": 2,
+     "ty": 16
+    },
+    {
+     "x": 42,
+     "y": 41,
      "to": "mistfen",
-     "tx": 18,
-     "ty": 1
+     "tx": 27,
+     "ty": 2
     }
    ],
    "npcs": [],
    "signs": [
     {
-     "x": 37,
-     "y": 5,
+     "x": 53,
+     "y": 8,
      "text": "KEEP OUT. By order of the Red Hood."
     }
    ],
    "forage": [
     {
-     "x": 6,
-     "y": 8,
+     "x": 9,
+     "y": 12,
      "item": "emberroot",
-     "respawn": 2
-    },
-    {
-     "x": 12,
-     "y": 13,
-     "item": "emberroot",
-     "respawn": 2
-    },
-    {
-     "x": 22,
-     "y": 16,
-     "item": "emberroot",
-     "respawn": 2
-    },
-    {
-     "x": 10,
-     "y": 5,
-     "item": "glowcap",
      "respawn": 2
     },
     {
      "x": 18,
-     "y": 11,
-     "item": "glowcap",
+     "y": 19,
+     "item": "emberroot",
      "respawn": 2
-    },
-    {
-     "x": 27,
-     "y": 21,
-     "item": "glowcap",
-     "respawn": 2
-    },
-    {
-     "x": 7,
-     "y": 23,
-     "item": "moonpetal",
-     "respawn": 3
-    },
-    {
-     "x": 10,
-     "y": 21,
-     "item": "moonpetal",
-     "respawn": 3
     },
     {
      "x": 32,
-     "y": 12,
-     "item": "ironbark",
-     "respawn": 4,
-     "tree": true
+     "y": 23,
+     "item": "emberroot",
+     "respawn": 2
     },
     {
-     "x": 43,
-     "y": 23,
-     "item": "ironbark",
-     "respawn": 4,
-     "tree": true
+     "x": 15,
+     "y": 8,
+     "item": "glowcap",
+     "respawn": 2
+    },
+    {
+     "x": 26,
+     "y": 16,
+     "item": "glowcap",
+     "respawn": 2
     },
     {
      "x": 39,
-     "y": 4,
+     "y": 30,
+     "item": "glowcap",
+     "respawn": 2
+    },
+    {
+     "x": 10,
+     "y": 33,
+     "item": "moonpetal",
+     "respawn": 3
+    },
+    {
+     "x": 15,
+     "y": 30,
+     "item": "moonpetal",
+     "respawn": 3
+    },
+    {
+     "x": 46,
+     "y": 18,
+     "item": "ironbark",
+     "respawn": 4,
+     "tree": true
+    },
+    {
+     "x": 61,
+     "y": 33,
+     "item": "ironbark",
+     "respawn": 4,
+     "tree": true
+    },
+    {
+     "x": 55,
+     "y": 7,
      "item": "shadebloom",
      "respawn": 5
     }
@@ -27598,48 +27644,48 @@ window.GAME_DATA = {
    "enemies": [
     {
      "id": "slime",
-     "x": 11,
-     "y": 9
-    },
-    {
-     "id": "slime",
-     "x": 20,
-     "y": 19
-    },
-    {
-     "id": "slime",
      "x": 16,
-     "y": 15
+     "y": 13
+    },
+    {
+     "id": "slime",
+     "x": 29,
+     "y": 28
+    },
+    {
+     "id": "slime",
+     "x": 23,
+     "y": 22
     },
     {
      "id": "wolf",
-     "x": 25,
-     "y": 19
+     "x": 36,
+     "y": 28
     },
     {
      "id": "wolf",
-     "x": 31,
-     "y": 16
+     "x": 45,
+     "y": 23
     },
     {
      "id": "wolf",
-     "x": 9,
-     "y": 24
+     "x": 13,
+     "y": 35
     },
     {
      "id": "bandit",
-     "x": 34,
-     "y": 9
+     "x": 49,
+     "y": 13
     },
     {
      "id": "bandit",
-     "x": 32,
-     "y": 5
+     "x": 46,
+     "y": 8
     },
     {
      "id": "bandit_chief",
-     "x": 38,
-     "y": 5
+     "x": 54,
+     "y": 8
     }
    ],
    "combat": {
@@ -27850,8 +27896,8 @@ window.GAME_DATA = {
      "x": 6,
      "y": 7,
      "to": "briarwick",
-     "tx": 34,
-     "ty": 13
+     "tx": 50,
+     "ty": 19
     }
    ],
    "npcs": [
@@ -27885,8 +27931,8 @@ window.GAME_DATA = {
      "x": 6,
      "y": 7,
      "to": "briarwick",
-     "tx": 34,
-     "ty": 5
+     "tx": 50,
+     "ty": 8
     }
    ],
    "npcs": [
@@ -28272,106 +28318,115 @@ window.GAME_DATA = {
    "level": 3,
    "music": "village",
    "tiles": [
-    "TTTTTTTTzTTTTTTTTTTTzTTTTTTTTTTTTTTTTTTT",
-    "T......,z.........T.zTT...............TT",
-    "TT....T.zT,T...T.,..zT..........T......T",
-    "T....T.,z,.......,..zT..TTT...r........T",
-    "T...,...z.,.........zT...T...rCr...,...T",
-    "T.T.....z........T..z..................T",
-    "T,...T,.z,...T.T,.T.z....,.,..z.,......T",
-    "T......Tz.,.........z.....T...z........T",
-    "T....T,.z....T.,.,..z.........z......T.T",
-    "T......Tz.,.....T...z,.,...T..z...T....T",
-    "TT..T...z.....T...T.zS.T......z........z",
-    "zzzzzz....z...zzzzzzzzzzzzzzzzzT.....zzz",
-    "z,..zzzzzz.zzzzzzz....zzzzzzzzzzzzzzzzzT",
-    "T.......z....zz...zzzzzz..zTz.z...Tzz,.T",
-    "T...T.........z..TTz.z.....T..........TT",
-    "T...T.........zT...............T.....T.T",
-    "T...T.T....T,.z..T......T...T..,.......T",
-    "T.,.,.........z..TT......T.....,......TT",
-    "T.TT..........z..............,TT.......T",
-    "T...T....T..T.zT...............T...T...T",
-    "T............Tz.T.....T................T",
-    "TTTTTTTTTTTTTTzTTTTTTTTTTTTTTTTTTTTTTTTT"
+    "TTTTTTTTTTTTzTTTTTTTTTTTTTTTTzTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+    "T.........,,z................zTTT......................TT",
+    "T.........,,z..............T.zTTT......................TT",
+    "T.T......T..z.T,T.....T..,...zTT...............T........T",
+    "T.........,,z,,..........,...zTT....TT..................T",
+    "T.......T.,,z,,..........,...zTT...TTTT.................T",
+    "T.....,.....z..,.............z.T.....T......r......,....T",
+    "T...........z................z.............rCr..........T",
+    "T..T........z............T...z..........................T",
+    "T,,.....T,..z,,....T..T,,..T.z......,,.,,...z.,,........T",
+    "T...........z..,.............z..............z...........T",
+    "T..........Tz..,.............z........T.....z...........T",
+    "T.......T,..z......T..,..,...z..............z.........T.T",
+    "T...........z..,.............z,,.,,.........z...........T",
+    "T..........Tz..,........T....z,,.,,.....T...z.....T.....T",
+    "T.T...T.....z........T.....T.z.S..T.........z...........z",
+    "zzzzzzzzz......z.....zzzzzzzzzzzzzzzzzzzzzzzzT........zzz",
+    "z,,...zzz............zzzzz......zzzzzzzzzzzzz.........zzT",
+    "z,,...zzzzzzzzz.zzzzzzzzzz......zzzzzzzzzzzzzzzzzzzzzzzzT",
+    "T...........z......zzz.....zzzzzzzz...z.Tz..z.....Tzzz,.T",
+    "T....................z......z..z........................T",
+    "T.....T..............z...T.Tz..z........T..............TT",
+    "T.....T..............zT......................T........T.T",
+    "T................,,..z.......................,..........T",
+    "T.....T..T......T,,..z...T.........T.....T...,..........T",
+    "T..,..,..............z...T.T.........T.......,.........TT",
+    "T....................z....................,..T..........T",
+    "T..T.T...............z....................,.TT..........T",
+    "T.....T.......T...T..zT......................T.....T....T",
+    "T..................T.z..T.......T.......................T",
+    "TTTTTTTTTTTTTTTTTTTTTzTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
    ],
    "warps": [
     {
-     "x": 0,
-     "y": 11,
-     "to": "whisperwood",
-     "tx": 42,
-     "ty": 19
-    },
-    {
-     "x": 39,
-     "y": 11,
-     "to": "highmoor",
-     "tx": 1,
-     "ty": 11
-    },
-    {
-     "x": 20,
-     "y": 0,
-     "to": "gannet",
-     "tx": 19,
-     "ty": 20
-    },
-    {
-     "x": 14,
-     "y": 21,
-     "to": "southwatch",
-     "tx": 19,
-     "ty": 1
-    },
-    {
-     "x": 30,
-     "y": 4,
+     "x": 44,
+     "y": 7,
      "to": "cave:deepdelve:1",
      "tx": "E",
      "ty": "E"
     },
     {
-     "x": 8,
+     "x": 12,
      "y": 0,
      "to": "castle_ruins",
      "tx": 18,
      "ty": 20
+    },
+    {
+     "x": 29,
+     "y": 0,
+     "to": "gannet",
+     "tx": 28,
+     "ty": 29
+    },
+    {
+     "x": 0,
+     "y": 16,
+     "to": "whisperwood",
+     "tx": 60,
+     "ty": 28
+    },
+    {
+     "x": 56,
+     "y": 16,
+     "to": "highmoor",
+     "tx": 2,
+     "ty": 16
+    },
+    {
+     "x": 21,
+     "y": 30,
+     "to": "southwatch",
+     "tx": 28,
+     "ty": 2
     }
    ],
    "npcs": [],
    "signs": [
     {
-     "x": 21,
-     "y": 10,
+     "x": 31,
+     "y": 15,
      "text": "THE KINGSROAD | North: Gannet Cove, and the old castle ruins up the west track. South: Southwatch. East: Highmoor. | Deepdelve Mine is up the hill to the north-east.",
      "post": true
     }
    ],
    "forage": [
     {
-     "x": 37,
-     "y": 15,
+     "x": 54,
+     "y": 22,
      "item": "ironbark",
      "respawn": 3,
      "tree": true
     },
     {
-     "x": 26,
-     "y": 3,
+     "x": 38,
+     "y": 5,
      "item": "ironbark",
      "respawn": 3,
      "tree": true
     },
     {
-     "x": 13,
-     "y": 16,
+     "x": 19,
+     "y": 24,
      "item": "emberroot",
      "respawn": 3
     },
     {
-     "x": 32,
-     "y": 16,
+     "x": 47,
+     "y": 24,
      "item": "emberroot",
      "respawn": 3
     }
@@ -28379,33 +28434,33 @@ window.GAME_DATA = {
    "enemies": [
     {
      "id": "wolf",
-     "x": 28,
-     "y": 9
-    },
-    {
-     "id": "wolf",
-     "x": 33,
+     "x": 41,
      "y": 14
     },
     {
-     "id": "bandit",
-     "x": 24,
-     "y": 11
+     "id": "wolf",
+     "x": 48,
+     "y": 21
     },
     {
      "id": "bandit",
      "x": 35,
-     "y": 2
+     "y": 16
     },
     {
-     "id": "goblin_miner",
-     "x": 9,
+     "id": "bandit",
+     "x": 51,
      "y": 3
     },
     {
      "id": "goblin_miner",
-     "x": 36,
-     "y": 4
+     "x": 14,
+     "y": 5
+    },
+    {
+     "id": "goblin_miner",
+     "x": 53,
+     "y": 6
     }
    ],
    "combat": {
@@ -28441,8 +28496,8 @@ window.GAME_DATA = {
      "x": 6,
      "y": 7,
      "to": "highmoor",
-     "tx": 6,
-     "ty": 9
+     "tx": 9,
+     "ty": 14
     }
    ],
    "npcs": [
@@ -28476,8 +28531,8 @@ window.GAME_DATA = {
      "x": 6,
      "y": 7,
      "to": "highmoor",
-     "tx": 6,
-     "ty": 16
+     "tx": 9,
+     "ty": 24
     }
    ],
    "npcs": [
@@ -28511,8 +28566,8 @@ window.GAME_DATA = {
      "x": 6,
      "y": 7,
      "to": "highmoor",
-     "tx": 15,
-     "ty": 9
+     "tx": 22,
+     "ty": 14
     }
    ],
    "npcs": [
@@ -28533,71 +28588,80 @@ window.GAME_DATA = {
    "ground": "t_grass",
    "music": "village",
    "tiles": [
-    "TTTTTTTTTTTTTTTTTTTTzTTTTTTTTTTTTT",
-    "T...................z............T",
-    "T...................z............T",
-    "T..................Tz............T",
-    "T..........,.....,..z............T",
-    "T...................z............T",
-    "T..RRRRRR...RRRRRR..z............T",
-    "T..RRRRRR...RRRRRR..z....T.......T",
-    "T.,HHHDHHT..HHHDHH..z...T........T",
-    "T.....z........z....z........T...T",
-    "T.....z.......qzqqqqz............T",
-    "zzzzzzzzzzzzzzqqqqqqzzzzzzzzzzzzzT",
-    "T.z...........qqqOqq.............T",
-    "T.zRRRRRR.,.........T...........,T",
-    "T.zRRRRRR......................T.T",
-    "T.zHHHDHH....T......,........T...T",
-    "T.zzzzz..........................T",
-    "T........,.....T.................T",
-    "T....................T...........T",
-    "T...................,...T.......,T",
-    "T....T....T......T....,.T.,......T",
-    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
+    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTzTTTTTTTTTTTTTTTTTT",
+    "T............................z.................T",
+    "T............................z.................T",
+    "T............................z.................T",
+    "T............................z.................T",
+    "T...........................Tz.................T",
+    "T...............,.......,,...z.................T",
+    "T............................z.................T",
+    "T............................z.................T",
+    "T............................z.................T",
+    "T............................z.................T",
+    "T.....RRRRRR.......RRRRRR....z......T..........T",
+    "T..,..RRRRRR.T.....RRRRRR....z.....T...........T",
+    "T.....HHHDHH.......HHHDHH....z.................T",
+    "T........z............z......z............T....T",
+    "T........z..........qqzqqqqqqz.................T",
+    "zzzzzzzzzzzzzzzzzzzzqqqqqqqqqzzzzzzzzzzzzzzzzzzT",
+    "T..z................qqqqqqqqq..................T",
+    "T..z................qqqqqOqqq..................T",
+    "T..z..........,,.............T................,T",
+    "T..z...........................................T",
+    "T..z..RRRRRR.................................T.T",
+    "T..z..RRRRRR.......T.........,............T....T",
+    "T..z..HHHDHH...................................T",
+    "T..zzzzzzz.....................................T",
+    "T............,........T........................T",
+    "T..............................................T",
+    "T..............................T...............T",
+    "T............................,.....T..........,T",
+    "T.......T......T.........T......,..T.,,........T",
+    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
    ],
    "warps": [
     {
-     "x": 6,
-     "y": 8,
+     "x": 9,
+     "y": 13,
      "to": "hm_smith",
      "tx": 6,
      "ty": 6
     },
     {
-     "x": 6,
-     "y": 15,
+     "x": 9,
+     "y": 23,
      "to": "hm_arcanum",
      "tx": 6,
      "ty": 6
     },
     {
-     "x": 15,
-     "y": 8,
+     "x": 22,
+     "y": 13,
      "to": "hm_inn",
      "tx": 6,
      "ty": 6
     },
     {
-     "x": 0,
-     "y": 11,
-     "to": "kingsroad",
-     "tx": 38,
-     "ty": 11
-    },
-    {
-     "x": 20,
+     "x": 29,
      "y": 0,
      "to": "quarry",
-     "tx": 18,
-     "ty": 20
+     "tx": 26,
+     "ty": 29
+    },
+    {
+     "x": 0,
+     "y": 16,
+     "to": "kingsroad",
+     "tx": 55,
+     "ty": 16
     }
    ],
    "npcs": [
     {
      "id": "hermit_highmoor",
-     "x": 16,
-     "y": 10
+     "x": 23,
+     "y": 15
     }
    ],
    "signs": [],
@@ -28605,18 +28669,18 @@ window.GAME_DATA = {
    "enemies": [],
    "decor": [
     {
-     "x": 7,
-     "y": 8,
+     "x": 10,
+     "y": 13,
      "sprite": "b_outfitter"
     },
     {
-     "x": 7,
-     "y": 15,
+     "x": 10,
+     "y": 23,
      "sprite": "b_alchemist"
     },
     {
-     "x": 16,
-     "y": 8,
+     "x": 23,
+     "y": 13,
      "sprite": "b_tavern"
     }
    ],
@@ -28656,8 +28720,8 @@ window.GAME_DATA = {
      "x": 6,
      "y": 7,
      "to": "gannet",
-     "tx": 8,
-     "ty": 9
+     "tx": 12,
+     "ty": 14
     }
    ],
    "npcs": [
@@ -28691,8 +28755,8 @@ window.GAME_DATA = {
      "x": 6,
      "y": 7,
      "to": "gannet",
-     "tx": 9,
-     "ty": 16
+     "tx": 13,
+     "ty": 24
     }
    ],
    "npcs": [
@@ -28713,57 +28777,66 @@ window.GAME_DATA = {
    "ground": "t_grass",
    "music": "village",
    "tiles": [
-    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
-    "~~~K............,....,..T..,.T",
-    "~~~K......,....T.............T",
-    "~~~K......T..................T",
-    "~~~K...........,.........T...T",
-    "~~~K....T....................T",
-    "~~~K..RRRRR.T.....,..........T",
-    "~~~K..RRRRR...,......T.......T",
-    "~~~K..HHDHH..................T",
-    "~~~K....z.................,..T",
-    "~~~K....z...qqqqqq...........T",
-    "BBBBzzzzzzzzqqqqqqzzzzzzzzzzzT",
-    "~~~K.z......qqqOqq.z.........T",
-    "~~~K.zRRRRRR.......QT........T",
-    "~~~K.zRRRRRR.......z.........T",
-    "~~~K.zHHHDHH......,z..T......T",
-    "~~~K.zzzzz.........z.........T",
-    "~~~K.....T.........z.,.......T",
-    "~~~K..........T....z.......T.T",
-    "~~~K.T............,z.........T",
-    "~~~K.....T...T.....z.........T",
-    "TTTTTTTTTTTTTTTTTTTzTTTTTTTTTT"
+    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+    "~~~~KK.................,......,........,.T",
+    "~~~~KK.................,......,....T...,.T",
+    "~~~~KK........,,......T..................T",
+    "~~~~KK...................................T",
+    "~~~~KK.........T.........................T",
+    "~~~~KK...............,,.............T....T",
+    "~~~~KK...................................T",
+    "~~~~KK......T............................T",
+    "~~~~KK............T.......,..............T",
+    "~~~~KK..............,....................T",
+    "~~~~KK....RRRRR.....,.........T..........T",
+    "~~~~KK....RRRRR..........................T",
+    "~~~~KK....HHDHH......................,,..T",
+    "~~~~KK......z........................,,..T",
+    "~~~~KK......z....qqqqqqqqq...............T",
+    "BBBBBBzzzzzzzzzzzqqqqqqqqqzzzzzzzzzzzzzzzT",
+    "~~~~KK..z........qqqqqqqqq..z............T",
+    "~~~~KK..z........qqqqqOqqq..z............T",
+    "~~~~KK..z...................QT...........T",
+    "~~~~KK..z................................T",
+    "~~~~KK..z.RRRRRR............z............T",
+    "~~~~KK..z.RRRRRR..........,,z...T........T",
+    "~~~~KK..z.HHHDHH...........,z............T",
+    "~~~~KK..zzzzzz..............z............T",
+    "~~~~KK.......T..............z.,..........T",
+    "~~~~KK......................z............T",
+    "~~~~KK..............T.......z..........T.T",
+    "~~~~KK..T.................,,z............T",
+    "~~~~KK.......T.....T........z............T",
+    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTzTTTTTTTTTTTTT"
    ],
    "warps": [
     {
-     "x": 8,
-     "y": 8,
+     "x": 12,
+     "y": 13,
      "to": "gc_fen",
      "tx": 6,
      "ty": 6
     },
     {
-     "x": 9,
-     "y": 15,
+     "x": 13,
+     "y": 23,
      "to": "gc_goods",
      "tx": 6,
      "ty": 6
     },
     {
-     "x": 19,
-     "y": 21,
+     "x": 28,
+     "y": 30,
      "to": "kingsroad",
-     "tx": 20,
-     "ty": 1
+     "tx": 29,
+     "ty": 2
     }
    ],
    "npcs": [
     {
      "id": "gannet_harbor",
-     "x": 5,
-     "y": 10
+     "x": 8,
+     "y": 15
     }
    ],
    "signs": [],
@@ -28771,13 +28844,13 @@ window.GAME_DATA = {
    "enemies": [],
    "decor": [
     {
-     "x": 9,
-     "y": 8,
+     "x": 13,
+     "y": 13,
      "sprite": "b_apothecary"
     },
     {
-     "x": 10,
-     "y": 15,
+     "x": 14,
+     "y": 23,
      "sprite": "b_homecenter"
     }
    ],
@@ -28789,17 +28862,17 @@ window.GAME_DATA = {
     }
    },
    "dock": {
-    "x": 4,
-    "y": 11
+    "x": 7,
+    "y": 16
    },
    "portal": {
-    "x": 15,
-    "y": 11
+    "x": 22,
+    "y": 17
    },
    "region": "mainland",
    "wardSpot": {
-    "x": 19,
-    "y": 13
+    "x": 28,
+    "y": 19
    }
   },
   "sw_arms": {
@@ -28822,8 +28895,8 @@ window.GAME_DATA = {
      "x": 6,
      "y": 7,
      "to": "southwatch",
-     "tx": 9,
-     "ty": 9
+     "tx": 13,
+     "ty": 14
     }
    ],
    "npcs": [
@@ -28844,55 +28917,64 @@ window.GAME_DATA = {
    "ground": "t_grass",
    "music": "village",
    "tiles": [
-    "TTTTTTTTTTTTTTTTTTTzTTTTTTTTTT",
-    "~~~K...............z...T.T...T",
-    "~~~K...............z,....,...T",
-    "~~~K...............z........,T",
-    "~~~K...............z.........T",
-    "~~~K...............z.........T",
-    "~~~K..RRRRRR.......z........TT",
-    "~~~K..RRRRRR.......z.........T",
-    "~~~K..HHHDHH.......z.........T",
-    "~~~K.....z.........zT....T...T",
-    "~~~K.....z..qqqqqq.z.........T",
-    "BBBBzzzzzzzzqqqqqqzzzzzzzzzzzT",
-    "~~~K........qqqOqq...........T",
-    "~~~K...............Q.......,.T",
-    "~~~K......,..................T",
-    "~~~K.........................T",
-    "~~~K........T.....,T.........T",
-    "~~~K......................,..T",
-    "~~~K............T.,.......,..T",
-    "~~~K........,...T.T.,........T",
-    "~~~K....T......T.............T",
-    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
+    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTzTTTTTTTTTTTTT",
+    "~~~~KK......................z............T",
+    "~~~~KK......................z....T..T....T",
+    "~~~~KK......................z,......,....T",
+    "~~~~KK......................z...........,T",
+    "~~~~KK......................z...........,T",
+    "~~~~KK......................z............T",
+    "~~~~KK......................z............T",
+    "~~~~KK......................z............T",
+    "~~~~KK......................z...........TT",
+    "~~~~KK......................z............T",
+    "~~~~KK....RRRRRR............z............T",
+    "~~~~KK....RRRRRR............z............T",
+    "~~~~KK....HHHDHH............z............T",
+    "~~~~KK.......z..............zT......T....T",
+    "~~~~KK.......z...qqqqqqqqq..z............T",
+    "BBBBBBzzzzzzzzzzzqqqqqqqqqzzzzzzzzzzzzzzzT",
+    "~~~~KK...........qqqqqqqqq...............T",
+    "~~~~KK...........qqqqqOqqq...............T",
+    "~~~~KK......................Q..........,.T",
+    "~~~~KK........,,.........................T",
+    "~~~~KK........,,.........................T",
+    "~~~~KK...................................T",
+    "~~~~KK....................,..............T",
+    "~~~~KK............T.......,.T............T",
+    "~~~~KK...............................,,..T",
+    "~~~~KK....................,..........,,..T",
+    "~~~~KK.................T..,..........,,..T",
+    "~~~~KK...........,,....T..T..,...........T",
+    "~~~~KK......T.........T..................T",
+    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
    ],
    "warps": [
     {
-     "x": 9,
-     "y": 8,
+     "x": 13,
+     "y": 13,
      "to": "sw_arms",
      "tx": 6,
      "ty": 6
     },
     {
-     "x": 19,
+     "x": 28,
      "y": 0,
      "to": "kingsroad",
-     "tx": 14,
-     "ty": 20
+     "tx": 21,
+     "ty": 29
     }
    ],
    "npcs": [
     {
      "id": "south_harbor",
-     "x": 5,
-     "y": 10
+     "x": 8,
+     "y": 15
     },
     {
      "id": "hermit_southwatch",
-     "x": 17,
-     "y": 12
+     "x": 25,
+     "y": 18
     }
    ],
    "signs": [],
@@ -28900,8 +28982,8 @@ window.GAME_DATA = {
    "enemies": [],
    "decor": [
     {
-     "x": 10,
-     "y": 8,
+     "x": 14,
+     "y": 13,
      "sprite": "b_outfitter"
     }
    ],
@@ -28913,12 +28995,12 @@ window.GAME_DATA = {
     }
    },
    "dock": {
-    "x": 4,
-    "y": 11
+    "x": 7,
+    "y": 16
    },
    "portal": {
-    "x": 15,
-    "y": 11
+    "x": 22,
+    "y": 17
    },
    "nightRaid": {
     "from": 21,
@@ -28930,8 +29012,8 @@ window.GAME_DATA = {
    },
    "region": "mainland",
    "wardSpot": {
-    "x": 19,
-    "y": 13
+    "x": 28,
+    "y": 19
    }
   },
   "verdant_hall": {
@@ -30766,8 +30848,8 @@ window.GAME_DATA = {
      "x": 18,
      "y": 21,
      "to": "kingsroad",
-     "tx": 8,
-     "ty": 1
+     "tx": 12,
+     "ty": 2
     }
    ],
    "npcs": [],
@@ -30868,74 +30950,83 @@ window.GAME_DATA = {
    "music": "forest",
    "region": "mainland",
    "tiles": [
-    "TTTTTTTTTTTTTTTTTT=TTTTTTTTTTTTTTTTT",
-    "T........T,\"..,...=S,........\"~\"s..T",
-    "T..T..\".......\"...=......s,,~~~~~..T",
-    "T.\"\".,~.,.........=.\".T,s~\"~~~~~~~\"T",
-    "T..,~~~~~\"...\".\"\"~=...,~~~~~~~.~~~,T",
-    "T.,~~~~~~~=========~..s~~~~~~~~~~~,T",
-    "T.\"~~~~~~~=..s~~~~~~~\"\"~~~~.~~~~~..T",
-    "T.s~~~~~~~=T.\"~~~~~~~s.,s~s,s\"~,,..T",
-    "T.T\"~~.~~~=\".\"~~~~~~~,...\"....,..\".T",
-    "T..\"ss~~.,=...,~~~~~\".......,......T",
-    "T,..T.,\"..=....,\"~\"..T....T\".......T",
-    "T......,..=\".....\"........T....\"...T",
-    "T.ss~,.\"..================.....\".,\"T",
-    "Ts~~~~~s.....\"\"~\"s......\"=.........T",
-    "T,~~~~~\"\".T..~~~~~~.,\"...=.........T",
-    "T,~~~~~.~..,~~.~~~~~~\".\".=.........T",
-    "T.s~~~~~~~\".~~~~~~~~~~,..=....,..\".T",
-    "T.\"~~~~~~~,s~~~~~~~~~~...=........\"T",
-    "T.\"~~~~~~~s\",~~~~~~~~~s..======....T",
-    "T..,~~~~~,..\".s~~~~~~,..........\"..T",
-    "T...ss~\".......\",.~,\".......\"..\"...T",
-    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
+    "TTTTTTTTTTTTTTTTTTTTTTTTTT=TTTTTTTTTTTTTTTTTTTTTTTT",
+    "T.............,,\"...,,....=..,............\"~~\"ss..T",
+    "T............T,,\"...,,....=.S,............\"~~\"ss..T",
+    "T....T...\"..........\"\"....=.........ss,,~~~~~~~~..T",
+    "T..\"\"\".,,~..,.............=..\"...,,s~~\"~~~~~~~~~~\"T",
+    "T..\"\"\".,,~..,.............=..\"..T,,s~~\"~~~~~~~~~~\"T",
+    "T...,,~~~~~~~\".....\"..\"\"\"~=.....,~~~~~~~~~~..~~~~,T",
+    "T..,~~~~~~~~~~\"....\"\".\"\"\"\"=~~...s~~~~~~~~~~~~~~~~,T",
+    "T..,~~~~~~~~~~\"============~~...s~~~~~~~~~~~~~~~~,T",
+    "T..\"~~~~~~~~~~.=...s~~~~~~~~~~\"\"\"~~~~~~.~~~~~~~~..T",
+    "T..s~~~~~~~~~~.=...\"~~~~~~~~~~ss.,,s~~s,ss\"~~,,,..T",
+    "T..s~~~~~~~~~~.=T..\"~~~~~~~~~~ss.,,s~~s,ss\"~~,,,..T",
+    "T..T\"\"~~~.~~~~,=\"..\"~~~~~~~~~~,,....\"\".....,,...\".T",
+    "T...\"\"sss~~~.,,=....,,~~~~~~~\"..........,,........T",
+    "T...\"\"sss~~~.,,=....,,~~~~~~~\"..........,,........T",
+    "T,,...T..,\"\"...=......,\"\"~\"....T......T\"..........T",
+    "T.........,,...=\"........\"............T......\"....T",
+    "T..sss~,,.\"\"...=\"\".......\"...................\"..,\"T",
+    "T..sss~,,.\"\"...=======================.......\"..,\"T",
+    "Tss~~~~~~~ss.......\"\"\"~\"\"s.........\"\"=............T",
+    "T,,~~~~~~~\"\"\"......~~~~~~~~..,\"\"....\"=............T",
+    "T,,~~~~~~~\"\"\"..T...~~~~~~~~..,\"\".....=............T",
+    "T,,~~~~~~~..~...,~~~..~~~~~~~~\"\".\"\"..=............T",
+    "T..s~~~~~~~~~~\"\".~~~~~~~~~~~~~~~,....=.....,,...\".T",
+    "T..s~~~~~~~~~~\"\".~~~~~~~~~~~~~~~,....=.....,,...\".T",
+    "T..\"~~~~~~~~~~,,s~~~~~~~~~~~~~~~.....=...........\"T",
+    "T..\"~~~~~~~~~~ss\",,~~~~~~~~~~~~~s....=............T",
+    "T..\"~~~~~~~~~~ss\",,~~~~~~~~~~~~~s....========.....T",
+    "T...,,~~~~~~~,...\"\".ss~~~~~~~~,,..............\"\"..T",
+    "T.....sss~\"\"..........\",,.~,,\"..........\"\"...\"....T",
+    "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
    ],
    "warps": [
     {
-     "x": 18,
+     "x": 26,
      "y": 0,
      "to": "whisperwood",
-     "tx": 29,
-     "ty": 28
+     "tx": 42,
+     "ty": 40
     }
    ],
    "npcs": [],
    "signs": [
     {
-     "x": 19,
-     "y": 1,
+     "x": 28,
+     "y": 2,
      "text": "MISTFEN | Keep to the boards. The bog keeps what it takes."
     }
    ],
    "forage": [
     {
-     "x": 6,
-     "y": 10,
+     "x": 9,
+     "y": 15,
      "item": "moonpetal",
      "respawn": 2
     },
     {
-     "x": 14,
-     "y": 13,
+     "x": 21,
+     "y": 19,
      "item": "shadebloom",
      "respawn": 3
     },
     {
-     "x": 27,
-     "y": 6,
+     "x": 39,
+     "y": 9,
      "item": "frostmint",
      "respawn": 3
     },
     {
-     "x": 31,
-     "y": 15,
+     "x": 45,
+     "y": 22,
      "item": "glowcap",
      "respawn": 2
     },
     {
-     "x": 20,
-     "y": 9,
+     "x": 29,
+     "y": 14,
      "item": "moonpetal",
      "respawn": 2
     }
@@ -30943,38 +31034,38 @@ window.GAME_DATA = {
    "enemies": [
     {
      "id": "slime",
-     "x": 12,
-     "y": 8
+     "x": 18,
+     "y": 12
     },
     {
      "id": "slime",
-     "x": 22,
-     "y": 14
+     "x": 32,
+     "y": 21
     },
     {
      "id": "slime",
-     "x": 28,
-     "y": 10
-    },
-    {
-     "id": "wisp",
-     "x": 7,
+     "x": 41,
      "y": 15
     },
     {
      "id": "wisp",
-     "x": 16,
-     "y": 3
+     "x": 11,
+     "y": 22
     },
     {
      "id": "wisp",
-     "x": 29,
-     "y": 7
+     "x": 24,
+     "y": 5
+    },
+    {
+     "id": "wisp",
+     "x": 42,
+     "y": 11
     },
     {
      "id": "wolf",
-     "x": 24,
-     "y": 19
+     "x": 35,
+     "y": 28
     }
    ],
    "combat": {
@@ -30999,62 +31090,71 @@ window.GAME_DATA = {
    "music": "forest",
    "region": "mainland",
    "tiles": [
-    "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
-    "r.aaaa..a\".aa.a.\".a...a.aa..aa...aar",
-    "ra...a..a.aaa..a.a.....aa.a..a.a.aar",
-    "raarrrrrr.rrrrj..aaarrrrrarrrrrrr\".r",
-    "raarrrrarr...r.a.a.arrrrrrrrrrrra.ar",
-    "raaaa..aj.a...a..aaaaajaaaaaa..jaaar",
-    "raa....a..aa..aaaa.a.a..aa.aaa.aa..r",
-    "ra...aa.aaaazzzzzzzzzzzzzzzzza.a.a.r",
-    "ra.aaaaaa...zaa..a.a.a....rrrrraa.ar",
-    "r.a.arrrrr..zaa.\"aaaaa.aaarrrr.aaaar",
-    "raaaarrrrrj.z.aaaaaaa..aa.rr.rr.\".ar",
-    "r....r.rrra.zzzzzzz.aa.aajrarrraa.ar",
-    "raaa.rrrra......a.z.aa\".a.rrrrraaa.r",
-    "r..a.rrrrraaaaaaaTz...aaaarrrrraa.ar",
-    "raa.arrrr.aaaaa.j.z\"a..aaarrrrr....r",
-    "ra.aarrrraa.rrrrrrz.rrrraarrrrr.aa.r",
-    "r....aa.aaaarrrrrrzrrrrr.aa.a...aTar",
-    "r.aaaaaaa..aaa.aaaz..j.aaa..aa..a.ar",
-    "raaaaa..aa.a...aaaz.a.aaaa.aaaaa.\"ar",
-    "r..a..a....\".aa.aSzaaa..a.aaa......r",
-    "ra.aaaa.aaaaaaaaa.zaaa.aa.a.....a\".r",
-    "rrrrrrrrrrrrrrrrrrzrrrrrrrrrrrrrrrrr"
+    "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+    "r..aaaaaa...a\"..aaa.aa.\"\".a.....a..aaa..aaa.....aar",
+    "r..aaaaaa...a\"..aaa.aa.\"\".a.....a..aaa..aaa.....aar",
+    "raa....aa...a.aaaaa...a..a.......aaa..a...a..a..aar",
+    "raaarrrrrrrrr...rrrrrr...aaaarrrrrrraarrrrrrrraa\".r",
+    "raaarrrrrrrrr..rrrrrrj...aaaarrrrrrraarrrrrrrrar\".r",
+    "raaarrrrrraarr.....r..a..a.aarrrrrrrrrrrrrrrrraa.ar",
+    "raaaaaa...aar.aa....aa...aaaaaaaraaaaaaaaa...raaaar",
+    "raaaaaa...aaj.aa....aa...aaaaaaajaaaaaaaaa...jaaaar",
+    "raaa......aa..aaa...aaaaaa.aa.aa...aaa.aaaa..aaa..r",
+    "raa....aaa..aaaaaa...aaaaa..a..a...aaa.aaaa..a..a.r",
+    "raa....aaa..aaaaaazzzzzzzzzzzzzzzzzzzzzzzza..a..a.r",
+    "raa.aaaaaaaaa.....zaaa...a.aa.aa......rrrrraraaa.ar",
+    "r..a..arrrrrrr....zaaa.\"\"aaaaaaa.aaaaarrrrr..aaaaar",
+    "r..a..arrrrrrr....zaaa.\"\"aaaaaaa.aaaaarrrrr..aaaaar",
+    "raaaaaarrrrrrrrj..z.aaaaaaaaaa...aaa..rr..rrr.\"\".ar",
+    "r......rr.rrrraa..zzzzzzzzz..aaa.aaarjrarrrrraaa.ar",
+    "raaaaa.rrrrrra.........aa.z..aaa\"..a..rrrrrrraaaa.r",
+    "raaaaa.rrrrrra.........aa.z..aaa\"..a..rrrrrrraaaa.r",
+    "r...aa.rrrrrrraaaaaaaaaaaTz.....aaaaaarrrrrrraaa.ar",
+    "raaa..arrrrrr.aaaaaaaa.rr.z\"\"a...aaaaarrrrrrr.....r",
+    "raaa..arrrrrr.aaaaaaaa.rj.z\"\"a...aaaaarrrrrrr.....r",
+    "raa.aaarrrrrraaa.rrrrrrrrrz..rrrrrraaarrrrrrr.aaa.r",
+    "r......aaa..aaaaarrrrrrrrrz..rrrrrr.aaa.aa....aaaar",
+    "r......aaa..aaaaarrrrrrrrrz.rrrrrrr.aaa.aa....aaTar",
+    "r..aaaaaaaaaa...aaaa..aaaaz...rj.aaaaa..aaa...aa.ar",
+    "raaaaaaaa...aa..a.....aaaaz..a..aaaaaa.aaaaaaa..\"ar",
+    "raaaaaaaa...aa..a.....aaaaz..a..aaaaaa.aaaaaaa..\"ar",
+    "r...aa...a......\"..aaa.aaSzaaaaa...a..aaaa........r",
+    "raa.aaaaaa..aaaaaaaaaaaaa.zaaaaa.aaa..a.......aa\".r",
+    "rrrrrrrrrrrrrrrrrrrrrrrrrrzrrrrrrrrrrrrrrrrrrrrrrrr"
    ],
    "warps": [
     {
-     "x": 18,
-     "y": 21,
+     "x": 26,
+     "y": 30,
      "to": "highmoor",
-     "tx": 20,
-     "ty": 1
+     "tx": 29,
+     "ty": 2
     }
    ],
    "npcs": [],
    "signs": [
     {
-     "x": 17,
-     "y": 19,
+     "x": 25,
+     "y": 28,
      "text": "THE OLD QUARRY | Closed when the goblins moved in. | Clear them out and the veins are anyone's to dig."
     }
    ],
    "forage": [
     {
-     "x": 3,
-     "y": 18,
+     "x": 5,
+     "y": 27,
      "item": "ironbark",
      "respawn": 3
     },
     {
-     "x": 33,
-     "y": 17,
+     "x": 48,
+     "y": 25,
      "item": "frostmint",
      "respawn": 3
     },
     {
-     "x": 2,
-     "y": 7,
+     "x": 3,
+     "y": 11,
      "item": "ironbark",
      "respawn": 3
     }
@@ -31062,33 +31162,33 @@ window.GAME_DATA = {
    "enemies": [
     {
      "id": "goblin_miner",
-     "x": 11,
-     "y": 7
+     "x": 16,
+     "y": 11
     },
     {
      "id": "goblin_miner",
-     "x": 24,
-     "y": 7
+     "x": 35,
+     "y": 11
     },
     {
      "id": "goblin_miner",
-     "x": 19,
-     "y": 13
+     "x": 28,
+     "y": 19
     },
     {
      "id": "crystal_spider",
-     "x": 6,
-     "y": 17
+     "x": 9,
+     "y": 25
     },
     {
      "id": "crystal_spider",
-     "x": 30,
-     "y": 17
+     "x": 44,
+     "y": 25
     },
     {
      "id": "stone_golem",
-     "x": 17,
-     "y": 9
+     "x": 25,
+     "y": 14
     }
    ],
    "combat": {
@@ -31103,6 +31203,41 @@ window.GAME_DATA = {
     "level": 5,
     "mult": 1.8
    }
+  },
+  "smithy": {
+   "name": "Bram's Outfitters",
+   "outdoor": false,
+   "ground": "t_floor",
+   "music": "village",
+   "tiles": [
+    "wwwwwwwwwwww",
+    "wkkkkkkkkkkw",
+    "wffffffffffw",
+    "wfccccccccfw",
+    "wftfffffftfw",
+    "wffffffffffw",
+    "wffffffffffw",
+    "wwwwwwDwwwww"
+   ],
+   "warps": [
+    {
+     "x": 6,
+     "y": 7,
+     "to": "briarwick",
+     "tx": 42,
+     "ty": 9
+    }
+   ],
+   "npcs": [
+    {
+     "id": "bram",
+     "x": 6,
+     "y": 2
+    }
+   ],
+   "forage": [],
+   "enemies": [],
+   "signs": []
   }
  },
  "quests": [
@@ -37612,8 +37747,8 @@ window.GAME_DATA = {
    "music": "cave",
    "exit": {
     "map": "whisperwood",
-    "x": 4,
-    "y": 25
+    "x": 6,
+    "y": 36
    },
    "enemies": [
     {
@@ -37649,8 +37784,8 @@ window.GAME_DATA = {
    "music": "cave",
    "exit": {
     "map": "kingsroad",
-    "x": 30,
-    "y": 5
+    "x": 44,
+    "y": 8
    },
    "enemies": [
     {
