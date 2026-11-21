@@ -3,14 +3,16 @@
 <head>
 <meta charset="utf-8">
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACEUlEQVR4Xr2XO0jDUBSGk1rBQUFwEQRxkKqTKO0i6OpYCx0cXHToqFAU6eDkUMQuOnawi4NDQTo6FsWhjYogWMWCiIKLKOhQEB+cyElzb+7jJNR+S+m9yfn/nMclMQ2O0ejyD7/Gs77/YWwtdDu/AK7pqFm7pvsa5g9FHEHBkdS5MTcTsQ1RcZtwDPgRdwMGbvKTVG0HNGEb8Cve8XIqFfzqm/LsWXtvRnSp17MOJky/4gAYKKfDxtlrPxM0XXj0GABxRGQiJHoU900yeHEZKCoSBwJnQIaoBCrCyl0Fm8dVz+7GdMx3OGEJWsF1dYcURmtA1g+JAXX8sdhKawzImufwiRRfizYD/41vA6pDCM8IGaK+8DWGKC6aAAQngTqOngzIutctrmpANKfLFELKAC9OaUBqJsg9oEq7COr15JOw1rBsnWxdqBcYbQaotZShu1/bAxBgLX5gx4+HLo3S9zijpVvbLs0rJ8IcjCSV74A9n/e24EkiE0gceO8ckmZI2wNwM5jgnxzg1ypXllGxd/76RScOaHuACpQiCGQDUEsVfDbK9RzJD8kA1pA3IXtqFFfVHiEZcNfSbULUF37EAeEUJPMNafqOFp+ZPRhRPjOzBfZtGSmmujxxGQMTq2xwHXfZptHhjDe4jItc02D44baoPQtk+BEVAdrOp5nuQGo1IM6cA7jQDtxazBS0wwSv8QvPBN/iKlJbaQAAAABJRU5ErkJggg==">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.29.7</title>
+<title>Reagents of Briarwick v0.29.8</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
+  /* phones: pin the page to the visible screen so it can never scroll or sit lower than what is shown (the game sets the exact height) */
+  html, body { position: fixed; top: 0; left: 0; width: 100%; }
   canvas { touch-action: none; }
   body { display: flex; align-items: center; justify-content: center; }
   canvas { image-rendering: pixelated; image-rendering: crisp-edges; display: block; box-shadow: 0 0 40px rgba(0,0,0,.6); }
@@ -29,7 +31,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.29.7",
+  "version": "0.29.8",
   "tileSize": 16,
   "scale": 4,
   "dayStart": 6,
@@ -50101,13 +50103,20 @@ function losXY(x0, y0, x1, y1) {
 const los = (a, b) => losXY(a.x, a.y, b.x, b.y);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
+function viewSize() { const vv = window.visualViewport; return vv && vv.width > 0 && vv.height > 0 ? [vv.width, vv.height] : [innerWidth, innerHeight]; }      // what is really visible (phones: without the address bar's share)
 function fitCanvas() {
-  const side = window.__mobileOn && innerWidth > innerHeight ? Math.min(120, innerWidth * 0.14) : 0;
-  const s = Math.min((innerWidth - 2 * side) / VW, innerHeight / VH);
+  const [W, H] = viewSize();
+  if (window.scrollX || window.scrollY || document.documentElement.scrollTop || document.body.scrollTop) { window.scrollTo(0, 0); document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }      // a scrolled page shows the picture in one place and takes touches in another
+  document.documentElement.style.height = document.body.style.height = Math.round(H) + 'px';
+  const side = window.__mobileOn && W > H ? Math.min(120, W * 0.14) : 0;
+  const s = Math.min((W - 2 * side) / VW, H / VH);
   cv.style.width = Math.floor(VW * s) + 'px'; cv.style.height = Math.floor(VH * s) + 'px';
   if (window.__MOB) window.__MOB.layout();
 }
-addEventListener('resize', fitCanvas); fitCanvas();
+{ const later = () => { fitCanvas(); for (const ms of [120, 400, 900]) setTimeout(fitCanvas, ms); };      // iOS reports the new size a little after the turn
+  addEventListener('resize', fitCanvas); addEventListener('orientationchange', later); addEventListener('pageshow', later);
+  if (window.visualViewport) { visualViewport.addEventListener('resize', fitCanvas); visualViewport.addEventListener('scroll', fitCanvas); }
+  later(); }
 
 // ================= SPRITES =================
 const sprCache = {};
@@ -50372,10 +50381,10 @@ const MOB = (() => {
   }
   for (const el of [L, Rr, rot]) el.addEventListener('contextmenu', e => e.preventDefault());
   tip.addEventListener('click', () => { tip.style.display = 'none'; SET.tipSeen = true; saveSettings(); });
-  const portrait = () => innerHeight > innerWidth;
+  const portrait = () => { const [W, H] = viewSize(); return H > W; };
   function layout() {
     const on = !!SET.mobile; window.__mobileOn = on;
-    const side = Math.max(0, (innerWidth - cv.getBoundingClientRect().width) / 2);
+    const side = Math.max(0, (viewSize()[0] - cv.getBoundingClientRect().width) / 2);
     for (const el of [L, Rr]) { el.style.display = on && !portrait() ? 'flex' : 'none'; el.style.width = Math.max(110, side) + 'px'; }
     rot.style.display = on && portrait() ? 'flex' : 'none';
     const ios = /iPhone|iPad|iPod/.test(navigator.userAgent), standalone = navigator.standalone || (window.matchMedia && matchMedia('(display-mode: standalone)').matches);
