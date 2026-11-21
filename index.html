@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.32.0</title>
+<title>Reagents of Briarwick v0.32.1</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   /* phone view only (Mobile Play on; the game adds the class): pin the page to the visible screen so it can never scroll or sit lower than what is shown */
@@ -31,7 +31,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.32.0",
+  "version": "0.32.1",
   "tileSize": 16,
   "scale": 4,
   "dayStart": 6,
@@ -25354,7 +25354,15 @@ window.GAME_DATA = {
    "joinLines": [
     "I have my trowel, my mother's seed tin and one clean apron. That is everything I own, and it is everything I need.",
     "Show me the greenhouse. I want to see how bad it is."
-   ]
+   ],
+   "greet": {
+    "fresh": [
+     "Mind the tray. Sorry. Sorry! One moment, please. I did want a word with you."
+    ],
+    "waiting": [
+     "Four of the slimes, and three of their gel. I will be here. I am always here."
+    ]
+   }
   },
   "kael": {
    "name": "Kael",
@@ -25405,7 +25413,15 @@ window.GAME_DATA = {
    "joinLines": [
     "I travel light. A sword, a whetstone, and a debt I am working off.",
     "Point me at the trouble and stand a little behind me. That is all the instruction I need."
-   ]
+   ],
+   "greet": {
+    "fresh": [
+     "Need a sword arm? Most people do, sooner or later."
+    ],
+    "waiting": [
+     "Three bandits and one badge. The Kingsroad has plenty of both."
+    ]
+   }
   },
   "pip": {
    "name": "Pip",
@@ -25432,7 +25448,7 @@ window.GAME_DATA = {
     "cooldown": 1,
     "spell": true
    },
-   "bio": "I talk fast and haggle faster. Someday I want to learn real magic.",
+   "bio": "I talk fast and haggle faster. I taught myself one real spell out of a book, and I mean to learn the rest.",
    "trees": [
     "destruction",
     "control"
@@ -25457,7 +25473,15 @@ window.GAME_DATA = {
    "joinLines": [
     "I have packed. It did not take long. I own a book and half an eyebrow.",
     "Where are we going? Is it dangerous? Do not tell me. Tell me. No, do not."
-   ]
+   ],
+   "greet": {
+    "fresh": [
+     "I can sell sand to a lizard. I have done it. The lizard was very pleased. But selling is not what I want to talk to you about."
+    ],
+    "waiting": [
+     "Three Emberroot and three Glowcap. I have been counting the minutes. I have run out of minutes."
+    ]
+   }
   },
   "seren": {
    "name": "Seren",
@@ -35820,8 +35844,9 @@ window.GAME_DATA = {
    "group": "companion",
    "intro": [
     "Sit, if you are sitting. I will not bite. I am only bad company.",
-    "I guarded caravans on the Kingsroad for nine years. Last month the Red Hoods took one I was paid to protect. Twelve of them, and four of us, and three of us ran. I was not one of the three, which is why I limp.",
-    "The caravan master still owes me nothing and I still owe her a wagon. I cannot pay that. But I can make the road cost them something.",
+    "I guarded caravans on the Kingsroad for ten years. Then the Red Hoods paid my captain more than the merchants did, and we were told to look the other way.",
+    "I did not look away. Three of us walked off that job. The Red Hoods were waiting on the road, and I am the one who reached Briarwick, which is why I limp.",
+    "The caravan was taken all the same, and the woman who owned it lost everything on my watch. I cannot give her back a wagon. But I can make the road cost them something.",
     "Three of their bandits, and a badge off one so I can lay it on her counter. Do that and you will have shown me you finish what you start. I have been looking for someone who does."
    ],
    "objectives": [
@@ -35854,10 +35879,10 @@ window.GAME_DATA = {
    "choice": true,
    "group": "companion",
    "intro": [
-    "Psst. You. You have been up to the hermit's cave, haven't you? I can smell the Emberroot on you. No offence. It is a good smell.",
+    "You have been up to the hermit's cave, haven't you? I can smell the Emberroot on you. No offence. It is a good smell.",
     "Right. Here it is. I have a book. I came by it honestly, mostly. It has the words for a real spell in it, an actual spell, and I have learned them forwards, backwards and in my sleep.",
     "What I have not got is reagents, because reagents cost money, and I spent my money on the book. You see the difficulty.",
-    "Bring me 3 Emberroot and 3 Glowcap. If it works, I am a mage. If it does not, I am a boy with a singed book, and either way I will carry your bags for life."
+    "Bring me 3 Emberroot and 3 Glowcap. If it works, I am a mage. If it does not, I am a girl with a singed book, and either way I will carry your bags for life."
    ],
    "objectives": [
     {
@@ -35873,8 +35898,8 @@ window.GAME_DATA = {
    ],
    "done": [
     "Three and three! Stand back. No, further. No, come back, I want a witness.",
-    "Ahem. ... ... ... Did you see that? DID YOU SEE THAT? That was a spark! That was nearly a whole spark!",
-    "All right, it was not much. And my eyebrows itch. But it was REAL. Take me with you. I can haggle, I can carry, and by next year I will be setting things on fire on purpose."
+    "Ahem. ... ... ... Did you see that? DID YOU SEE THAT? That was a bolt! A real one! It went where I pointed it! Mostly!",
+    "My eyebrows itch, but it was REAL. Take me with you. I can haggle, I can carry, and now I can set things on fire on purpose."
    ],
    "reward": {
     "gold": 30,
@@ -38948,13 +38973,13 @@ window.GAME_DATA = {
    ],
    "kael": [
     "I guarded caravans on the Kingsroad for ten years. Good pay, until the Red Hoods paid my captain more than the merchants did.",
-    "We were told to look the other way. I didn't. Three of us walked off that job, and only I made it to Briarwick.",
+    "We were told to look the other way. I didn't. Three of us walked off that job, and only I made it to Briarwick. The caravan was taken anyway.",
     "So when I say I want honest work, I mean it."
    ],
    "pip": [
     "I'm the youngest of seven. Everyone at home had a trade picked out for me: baker, cooper, fishwife.",
     "I ran off with a travelling conjurer when I was twelve. He turned out to be a fraud with very good patter.",
-    "But one night he cast a real spell by accident, and I saw it. I've wanted that ever since."
+    "But one night he cast a real spell by accident, and I saw it. I've wanted that ever since. The book I learned from was his. He owed me two years' wages, so I call it fair."
    ],
    "seren": [
     "My father ran the ferry at Saltmere, and his father before him. I was steering before I could walk straight.",
@@ -39057,7 +39082,7 @@ window.GAME_DATA = {
    ]
   },
   "recruitTalk": {
-   "hint": "Do {name} a favour and they join you for nothing, or pay the hire fee now.",
+   "hint": "Do {name}'s favour and there is no hire fee, or pay the fee now.",
    "noBed": [
     "I would come today, but where would I sleep?",
     "Every companion needs a bed of their own at your cottage. Gideon's Home Center sells them. I will be right here when you have one."
@@ -55012,17 +55037,17 @@ async function helperTalk(npc) {
   const id = npc.def.helper, h = D.helpers[id]; if (!h) return;
   const sv = ((D.survivors || {}).list || []).find(x => x.helper === id); if (sv && (G.survDone || []).includes(sv.id) && !G.flags['home_' + sv.id]) { await offerHome(sv); return; }
   const RT = CMP().recruitTalk || {}, rq = h.recruit && D.quests.find(q => q.id === h.recruit); let free = !!(rq && G.flags['recruit_' + id]);
-  if (!free) await say(h.name, [(npc.def.dialog || [''])[0], h.bio], h.sprite);
+  if (!free) { const g = rq && h.greet ? (G.quests[rq.id] === 'active' ? (questDone(rq) ? [] : h.greet.waiting) : h.greet.fresh) : null; if (!g || g.length) await say(h.name, g || [(npc.def.dialog || [''])[0], h.bio], h.sprite); }
   if (rq && !free) { await giverQuests(npc, { progress: true }); free = !!G.flags['recruit_' + id]; }      // offer the favour, report progress, or take the hand-in
   if (free && hiredCount() >= helperBeds()) { await say(h.name, RT.noBed || ['I would come today, but where would I sleep?'], h.sprite); return; }
   if (free) await say(h.name, h.joinLines || ['I am with you.'], h.sprite);
-  else await say(`${h.name} the ${h.title}`, [`Skills: ${skillStr(h.skills)}.  Ability: ${h.ability ? h.ability.name : 'none'}.  Hire for ${h.cost}g, then ${h.wage}g a day in wages.` + (rq ? '  ' + (RT.hint || '').replace('{name}', h.name) : '')], h.sprite);
+  else await say('', [`${h.name} the ${h.title}.  Skills: ${skillStr(h.skills)}.  Ability: ${h.ability ? h.ability.name : 'none'}.  Hire for ${h.cost}g, then ${h.wage}g a day in wages.` + (rq ? '  ' + (RT.hint || '').replace('{name}', h.name) : '')]);
   if (hiredCount() >= helperBeds()) { await say(h.name, ['I\'d love to work for you - but where would I sleep?', `Every companion needs their own bed at your cottage. Gideon's Home Center sells them. (Beds: ${helperBeds()}, helpers: ${Object.keys(G.helpers).length}.)`], h.sprite); return; }
   if (!free) { const c = await choose(`Hire ${h.name} for ${h.cost}g?`, [{ label: 'Hire', value: 'y', disabled: G.gold < h.cost }, { label: 'Not now', value: 'n' }], { width: 380 });
     if (c !== 'y') return; G.gold -= h.cost; if (rq && G.quests[rq.id] === 'active') { delete G.quests[rq.id]; delete G.qprog[rq.id]; } }      // hired for coin: the favour is dropped, not left dangling
   G.helpers[id] = { role: 'idle', xp: 0 };
   R.npcs = R.npcs.filter(n => n !== npc);
-  await say(h.name, ['Pleased to work with you!', '(Press H any time to change what your companions do.)'], h.sprite);
+  if (free && h.joinLines) await say('', [`${h.name} has joined you. Press H any time to change what your companions do.`]); else await say(h.name, ['Pleased to work with you!', '(Press H any time to change what your companions do.)'], h.sprite);
   await assignRole(id);
 }
 function skillStr(sk) { return Object.entries(sk || {}).filter(([, v]) => v > 0).map(([k, v]) => `${D.skills[k] ? D.skills[k].name : k} ${v}`).join(', ') || 'none'; }
@@ -55069,7 +55094,7 @@ function planLabel(p) { return p === 'same' ? 'Replant the same crop' : p === 'l
 async function assignRole(id) {
   const h = D.helpers[id]; const partyN = Object.values(G.helpers).filter(s => s.role === 'party').length;
   const isParty = G.helpers[id].role === 'party';
-  const c = await choose(`${h.name}: what should they do?`, [
+  const c = await choose(`What should ${h.name} do?`, [
     { label: 'Join my party', value: 'party', disabled: !isParty && partyN >= maxParty(), desc: `Fights beside you. Max ${maxParty()} companions in the party (Tactics raises this). Uses their Combat skill and ability.` },
     { label: 'Tend the garden', value: 'greenhouse', desc: 'Each night: harvests ripe beds (garden and greenhouse) and plants empty ones by your Garden plan, using your seeds. Herbalism speeds growth.' },
     { label: 'Run the shop stall', value: 'shop', disabled: !home().up.stall && G.helpers[id].role !== 'shop', desc: 'Each night: sells your goods by your Stall rules and can restock seeds for the garden. Negotiating = more sales and better prices. Needs a Market Stall from the Home Center.' },
