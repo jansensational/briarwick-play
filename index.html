@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.34.1</title>
+<title>Reagents of Briarwick v0.35.0</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   /* phone view only (Mobile Play on; the game adds the class): pin the page to the visible screen so it can never scroll or sit lower than what is shown */
@@ -31,7 +31,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.34.1",
+  "version": "0.35.0",
   "tileSize": 16,
   "scale": 4,
   "dayStart": 6,
@@ -38646,6 +38646,20 @@ window.GAME_DATA = {
   "fleeFailLines": [
    "They cut off my escape! I'll have to fight.",
    "No way out. Here they come!"
+  ],
+  "fleeWords": [
+   [
+    0.35,
+    "unlikely"
+   ],
+   [
+    0.65,
+    "maybe"
+   ],
+   [
+    2,
+    "likely"
+   ]
   ]
  },
  "skillPoints": {
@@ -53346,6 +53360,67 @@ window.GAME_DATA = {
    "lic": "CC0",
    "url": "https://opengameart.org/content/496-pixel-art-icons-for-medievalfantasy-rpg"
   }
+ },
+ "tutorials": {
+  "fight": {
+   "meet": [
+    "A monster has caught you. This short tutorial explains fighting. You can skip it at any time: press Esc, or use the Skip button.",
+    "Before a fight you are told how dangerous the enemy is: Easy, Fair, Hard or Deadly. Then you choose. Fight starts the battle. Flee tries to run away, and a word beside it says whether that is likely to work. The more dangerous the enemy, the harder it is to get away."
+   ],
+   "board": [
+    "This is the battlefield. Your side starts on the left and the enemy on the right. The bar above each fighter is their health. When a fighter's health runs out, they are out of the fight.",
+    "A battle goes in rounds. In a round, each of your fighters takes one turn, and then each enemy takes one. On a turn a fighter may walk, and then do one thing: attack, cast a spell, use an item, or defend.",
+    "You win when every enemy is down. You lose if your hero falls. Follow the box at the top of the screen for your first turn."
+   ],
+   "steps": [
+    {
+     "id": "move",
+     "text": "Step 1 of 3: walk. The glowing fighter is the one whose turn it is. The blue spaces are where they can walk. Click a blue space next to an enemy (or use the arrow keys)."
+    },
+    {
+     "id": "attack",
+     "text": "Step 2 of 3: attack. An enemy you can reach has a red ring. Click it to strike (or press Space to strike the nearest). With a bow or a spell you can strike from a distance."
+    },
+    {
+     "id": "turn",
+     "text": "Step 3 of 3: the enemy's turn. When all your fighters have acted, the enemies move and strike back, and then a new round begins. End turn (bottom of the screen) finishes your side early."
+    },
+    {
+     "id": "more",
+     "text": "That is a fight. The buttons along the bottom do the rest: Spell (uses reagents from your pouch), Ability, Item (drink a potion) and Defend (take less damage). Point at an enemy to see how strong it is."
+    }
+   ],
+   "won": [
+    "You won. Your fighters learn from every fight, and after enough of them they gain a level and grow stronger.",
+    "Health does not come back by itself. Drink a Healing Draught (Items), cast Mend (Spells), or sleep in a bed to be whole again. Check your health before you pick the next fight."
+   ],
+   "lost": [
+    "Your hero fell, so the fight is lost. Close to Briarwick, Old Aldwin brings you home and you are weaker for a day. Further away, a defeat costs you gold.",
+    "Before trying again: take companions with you, carry Healing Draughts, and look at the danger word before you choose to fight. There is no shame in fleeing."
+   ]
+  },
+  "trade": {
+   "shop": [
+    "This is a shop. You pay with gold; the gold you have is shown at the top left of the screen. This short tutorial explains buying and selling. You can skip it at any time: press Esc, or use the Skip button.",
+    "Buy shows what the shopkeeper sells. Sell shows which of your things they will take. Every shop wants different things: if something of yours is not in the Sell list here, another shop may want it."
+   ],
+   "talk": [
+    "Someone has to do the talking. Whoever speaks sets the prices for this visit: the higher their Negotiating, the less you pay and the more you are paid."
+   ],
+   "buy": [
+    "The Buy list. Each row is one kind of item, with how many the shop has left today (x3 means three) and the price of one in gold. Shops restock every morning. A grey row is one you cannot afford, or one that is sold out.",
+    "Pick an item and press Enter to buy one, buy several, or haggle. What you buy goes into your bags. If your bags are full, the shop will say so, and you can make room or come back."
+   ],
+   "sell": [
+    "The Sell list. Each row is something you carry that this shop will buy, with what it pays for one. Sell the same thing many times in a day and the price slowly drops, because the shop has enough.",
+    "The secret of trade: a thing is cheap where it comes from and dear far away. Shops near a thing's home pay about half. Carry it across the sea and they pay in full. So sell far from where you found it."
+   ],
+   "haggle": [
+    "Haggling. You name your own price for a whole batch. A small step is usually accepted. Ask too much and the shopkeeper is insulted, and will not deal with you again until tomorrow.",
+    "If a companion with good Negotiating is in your party, they whisper how far the shopkeeper will go. Without one, be modest."
+   ]
+  },
+  "skipped": "Tutorial skipped. Esc > Settings > Tutorials shows them again."
  }
 };
 
@@ -53731,6 +53806,24 @@ const dialogs = [], menus = [], toasts = [];
 function heroName() { return (G && G.name) || 'friend'; }
 function sub(l) { return typeof l === 'string' ? l.replace(/\{hero\}/g, heroName()) : l; }
 function say(speaker, lines, spr) { if (!Array.isArray(lines)) lines = [lines]; lines = lines.map(sub); return new Promise(res => dialogs.push({ speaker, lines, i: 0, res, spr })); }
+function tutOff(g) { return SET.tutorials === false || !G || !D.tutorials || !D.tutorials[g] || G.flags['tut_' + g] === 'skip' || !!window.__simFast; }
+function tutSkip(g) { G.flags['tut_' + g] = 'skip'; if (C && C.tut) C.tut = null; toast(D.tutorials.skipped || 'Tutorial skipped.'); }
+async function tutCard(g, key) {      // v0.35: one topic of a tutorial, once per game. false = the player skipped the tutorial
+  if (tutOff(g) || G.flags['tut_' + g + '_' + key]) return !tutOff(g); const lines = D.tutorials[g][key]; if (!lines) return true;
+  G.flags['tut_' + g + '_' + key] = true;
+  const r = await new Promise(res => dialogs.push({ speaker: 'Tutorial', lines: lines.map(sub), i: 0, res, tut: g }));
+  if (r === 'skip') { tutSkip(g); return false; } return true;
+}
+function tutDialogSkip() { const d = dialogs[0]; if (!d || !d.tut) return false; dialogs.shift(); AU.sfx('menu'); d.res('skip'); return true; }
+const TUT_SKIP = { x: 0, y: 0, w: 0, h: 0 };
+function dialogClick(c) { const d = dialogs[0]; if (d && d.tut && c.x >= TUT_SKIP.x && c.x <= TUT_SKIP.x + TUT_SKIP.w && c.y >= TUT_SKIP.y && c.y <= TUT_SKIP.y + TUT_SKIP.h) return tutDialogSkip(); advanceDialog(); }
+function tutStep() {      // the box at the top of the first battle: which step the player is on (advances by what they do)
+  const T = C && C.tut; if (!T) return null; const steps = D.tutorials.fight.steps || [], st = steps[T.i]; if (!st) { C.tut = null; G.flags.tut_fight = 'done'; return null; }
+  const party = C.units.filter(u => u.side === 'party' && !u.dead);
+  const done = st.id === 'move' ? party.some(u => (u.steps || 0) > 0 || u.moved) || T.hit : st.id === 'attack' ? T.hit || C.round > 1 : st.id === 'turn' ? C.round > T.round0 : R.t - T.t > 14 || C.round > T.round0 + 1;
+  if (done) { T.i++; T.t = R.t; T.round0 = C.round; return tutStep(); }
+  return st;
+}
 function advanceDialog() { const d = dialogs[0]; if (!d) return; AU.sfx('menu'); d.i++; if (d.i >= d.lines.length) { dialogs.shift(); d.res(); } }
 function openMenu(o) { return new Promise(res => menus.push(Object.assign({ index: 0, scroll: 0, width: 480 }, o, { res }))); }
 function closeMenu(m, val) { const i = menus.indexOf(m); if (i >= 0) menus.splice(i, 1); m.res(val === undefined ? null : val); }
@@ -54946,6 +55039,7 @@ let SHOPN = 0, SHOPOUT = false;      // how many the item menu asked for; true o
 function haggleBuyIds(shop, sid) { const gd = guildFor(sid); return [...new Set((shop.sells || []).concat(apprenticeIds(shop)).concat((G.shopUnlocks || {})[sid] || []).concat(prosperIds(sid)))].filter(id => D.items[id] && !gd[id] && !['furniture', 'upgrade', 'build'].includes(item(id).type) && stockLeft(sid, id) > 0); }
 function haggleNote(mode) { return `Name your own price for a batch.  Negotiating ${talkLvl()}: up to about ${Math.round(haggleRoom(mode) * 100)}% ${mode === 'buy' ? 'off' : 'more'}. Push too far and the shopkeeper will not deal with you again today.`; }
 async function haggleMenu(npc, shop, sid, mode0, id0) {
+  await tutCard('trade', 'haggle');
   const nm = npc.def.name, sp = npc.def.sprite, tip = haggleTipper();
   const mode = mode0 || await choose('Haggle', [{ label: 'Buy for less', value: 'buy', desc: 'Name your price for a batch. Ask too much off and the shopkeeper is insulted and won\'t deal with you again today.' }, { label: 'Sell for more', value: 'sell', desc: 'Ask a higher price for a batch. Push too far and they\'ll throw you out for the day.' }, { label: 'Never mind', value: null }], { width: 480 });
   if (!mode) return;
@@ -55073,7 +55167,8 @@ async function shopTalk(npc, skipIntro) {
   const shop = D.shops[npc.def.shop] || { name: 'Shop', sells: [], buysTypes: ['reagent'] };
   const sid = D.shops[npc.def.shop] ? npc.def.shop : null;
   if (!skipIntro) await say(npc.def.name, npc.def.dialog, npc.def.sprite);
-  TALKER = 'player'; if (partyIds().length && !window.__noLootPrompt) { const t = await choose("Who's going to do the talking?", [{ label: 'You', right: `Negotiating ${skillLvl('bartering')}`, value: 'player' }].concat(partyIds().map(id => ({ label: D.helpers[id].name, right: `Negotiating ${crewBarter(id)}`, value: id }))), { width: 440, footer: 'The speaker\'s Negotiating sets the prices for this visit.' }); if (t) TALKER = t; }
+  if (sid) await tutCard('trade', 'shop');
+  TALKER = 'player'; if (partyIds().length && !window.__noLootPrompt) { if (sid) await tutCard('trade', 'talk'); const t = await choose("Who's going to do the talking?", [{ label: 'You', right: `Negotiating ${skillLvl('bartering')}`, value: 'player' }].concat(partyIds().map(id => ({ label: D.helpers[id].name, right: `Negotiating ${crewBarter(id)}`, value: id }))), { width: 440, footer: 'The speaker\'s Negotiating sets the prices for this visit.' }); if (t) TALKER = t; }
   if (sid && (G.insulted || {})[sid] === G.day) { await say(npc.def.name, ['You again? I\'ve nothing to say to you today.'], npc.def.sprite); return; }
   if (sid) await smithVisit(npc);
   if (sid) await shopRequests(npc, sid);
@@ -55082,6 +55177,8 @@ async function shopTalk(npc, skipIntro) {
     const nx = sid ? prosperNext(sid) : null;
     const c = await choose(sid ? `${shop.name}  -  ${prosperName(sid)}` : shop.name, [{ label: 'Buy', value: 'buy', desc: sid ? `${prosperName(sid)}: stock refills every morning.${nx != null ? `  Trade ${nx} more gold here and the shop will grow.` : '  As big as a shop gets.'}` : '' }, { label: 'Sell', value: 'sell', desc: sid ? 'Choose an item to buy or sell it, or to haggle over a batch of it.' : '' }, ...(hasHold ? [{ label: `Sell from ${fsH.name}'s hold`, value: 'hold' }] : []), { label: 'Leave', value: 'leave' }], { width: 300 });
     if (SHOPOUT) { SHOPOUT = false; break; }
+    if (c === 'buy' && sid) await tutCard('trade', 'buy');
+    if (c === 'sell' && sid) await tutCard('trade', 'sell');
     if (c === 'buy') await openMenu({ title: 'Buy', width: 560, footer: () => `Gold: ${G.gold}    ${sid ? 'Enter: buy or haggle' : 'Enter: buy 1'}    Shift+Enter: buy 5${flagship() && G.shipAt === outdoorOf(R.mapId) ? '    Hold: ' + holdLine(flagship()) : ''}`,
       items: () => {
         let ids = shop.sellsDiscoveredSeeds ? Object.keys(G.discovered).map(r => item(r).seed).filter(s => s && D.items[s]) : [];
@@ -56096,12 +56193,14 @@ function foeCry(def, id) {
   return pick(BT.defaultCry || ['*a menacing growl*']);
 }
 // every fight starts with a short exchange; you choose to fight, flee, or (against much weaker foes) ignore
+function fleeWord(p) { const W = (D.battleTalk || {}).fleeWords || [[0.35, 'unlikely'], [0.65, 'maybe'], [2, 'likely']]; return (W.find(w => p < w[0]) || W[W.length - 1])[1]; }
 function fleeChance(th) { const t = (D.battleTalk || {}).fleeChance || {}; return t[th.label] != null ? t[th.label] : 0.5; }
 function encounter(en, opts = {}) {
   if (R.busy) return; R.moving = null; keys.clear();
   if (opts.sea && Math.random() < ptVal('sailing', 'slip')) { en.stun = 4; toast('You slip past them unseen.', UI.blue); return; }
   script(async () => {
     const BT = D.battleTalk || {}, def = en.def; if (!def) return startCombat(en, opts);
+    await tutCard('fight', 'meet');
     const cm = (!opts.sea && R.map && R.map.caveMult) || 1, th = threat(def, cm), g = def.group || [1, 1];
     const many = g[1] > 1 || def.escort, foe = many ? plural(def.name) : 'this ' + def.name, Foe = foe[0].toUpperCase() + foe.slice(1);
     const fill = l => sub(l).replace(/\{foe\}/g, foe).replace(/\{Foe\}/g, Foe);
@@ -56113,7 +56212,7 @@ function encounter(en, opts = {}) {
     const easy = th.r > (BT.ignoreRatio || 6);
     const c = await choose(`${def.name}${many ? ' (a group)' : ''}  -  Danger: ${th.label}`, [
       { label: 'Fight', value: 'fight', desc: th.why },
-      easy ? { label: 'Ignore', value: 'ignore', desc: 'They are no threat to you. Walk on by.' } : { label: 'Flee', right: `${Math.round(fleeChance(th) * 100)}%`, value: 'flee', desc: `Try to get away before the fight starts: ${Math.round(fleeChance(th) * 100)}% chance. If it fails, the fight begins.` }], { width: 380 });
+      easy ? { label: 'Ignore', value: 'ignore', desc: 'They are no threat to you. Walk on by.' } : { label: 'Flee', right: fleeWord(fleeChance(th)), value: 'flee', desc: `Try to get away before the fight starts. Will it work? ${fleeWord(fleeChance(th))[0].toUpperCase() + fleeWord(fleeChance(th)).slice(1)}. If it fails, the fight begins.` }], { width: 380 });
     if (c === 'fight') { await say(heroName(), [fill(pick(BT.fightLines || ['Have at you!']))], heroBase()); if (!C) startCombat(en, opts); return; }
     if (c !== 'ignore' && Math.random() >= fleeChance(th)) { await say(heroName(), [fill(pick(BT.fleeFailLines || ['No way out!']))], heroBase()); stat('fleeFails'); if (!C) startCombat(en, opts); return; }
     await say(heroName(), [fill(pick(c === 'ignore' ? (BT.ignoreLines || ['Not worth my time.']) : (BT.fleeLines || ['Discretion is the better part of valour.'])))], heroBase());
@@ -56162,6 +56261,7 @@ function startCombat(en, opts = {}) {
     grid[u.y][u.x] = zone.ground || '.';
   }
   const th = threat(def, cm); C = { caveMult: cm, sea, board, music: def.music || zone.music || 'battle', grid, units, phase: 'party', sel: null, mode: 'move', action: null, targets: [], log: [`${def.name} attacks!  (Danger: ${th.label})`].concat(wy ? [shaken() && !weary() ? 'You are Shaken from your revival: -20% attack and defense.' : 'You are Weary: -20% attack and defense.'] : []), floats: [], timer: 0, queue: [], en, round: 1, result: null, shake: 0 };
+  if (!tutOff('fight') && !G.flags.tut_fight) { C.tut = { i: 0, t: R.t, round0: 1, hit: false }; script(async () => { await tutCard('fight', 'board'); if (C && C.tut) C.tut.t = R.t; }); }
   if (sea && shipShield()) for (const u of C.units) if (u.side === 'party') u.buffs.push({ stat: 'def', amt: 3, turns: 3 });
   R.scene = 'combat'; R.moving = null; if (SEA) SEA.auto = null; stat('battles');
   selectNext();
@@ -56186,6 +56286,7 @@ function cycleUnit() { const ready = alive('party').filter(u => !u.done); if (!r
 function movesLeft(u) { return u.moved ? 0 : Math.max(0, uMove(u) - (u.steps || 0)); }
 function finishUnit(u) { u.done = true; u.moved = true; if (checkEnd()) return; C.sel = null; if (combatBusy()) { C.needSel = true; return; } selectNext(); }      // the next fighter steps up once the blow has been seen
 function hit(a, b, power, label, ignore = 0, spell = false) {      // a blow; if it is shot or thrown, everyone sees it fly before it lands
+  if (C && C.tut && a && a.side === 'party') C.tut.hit = true;
   if (IMPACT) return hit0(a, b, power, label, ignore, spell);
   const kind = shotKind(a, b); if (!kind) { a.shotBow = false; return hit0(a, b, power, label, ignore, spell); }
   const lead = windUp(a), fly = flyTime(a, b); a.shotBow = kind === 'arrow';
@@ -56433,12 +56534,12 @@ function checkEnd() {
   if (!C || C.phase === 'won' || C.phase === 'lost') return true;
   const player = C.units.find(u => u.isPlayer);
   if ((player.dead || !alive('enemy').length) && combatBusy()) { C.endPending = true; C.sel = null; return true; }      // the end is announced after the last blow has landed
-  if (player.dead) { C.phase = 'lost'; C.endT = R.t; return true; }
+  if (player.dead) { C.phase = 'lost'; C.endT = R.t; if (C.tut) { C.tut = null; G.flags.tut_fight = 'done'; } script(() => tutCard('fight', 'lost')); return true; }
   if (!alive('enemy').length) { victory(); return true; }
   return false;
 }
 function victory() {
-  C.phase = 'won'; C.endT = R.t;
+  C.phase = 'won'; C.endT = R.t; if (C.tut) { C.tut = null; G.flags.tut_fight = 'done'; } script(() => tutCard('fight', 'won'));
   const killed = C.units.filter(u => u.side === 'enemy' && u.dead);
   let xp = 0, gold = 0; const loot = {};
   for (const k of killed) {
@@ -57610,6 +57711,12 @@ function renderDiorama() {
   return hv;
 }
 
+function renderTutBox() {      // the fighting tutorial's box: one instruction at a time, and a way out
+  const st = !dialogs.length && !menus.length && C.phase !== 'won' && C.phase !== 'lost' ? tutStep() : null; if (!st) return;
+  const w = 620, x = (VW - w) / 2, lines = wrap(st.text, w - 36, 15), h = 22 + lines.length * 20 + 34, y = 54;
+  panel(x, y, w, h); lines.forEach((l, i) => text(l, x + 18, y + 14 + i * 20, { size: 15 }));
+  button(x + w - 150, y + h - 34, 134, 26, 'Skip tutorial', () => tutSkip('fight'));
+}
 function renderCombat() {
   ctx.fillStyle = '#2a2238'; ctx.fillRect(0, 0, VW, VH);
   const sh = C.shake > 0 ? rnd(-3, 3) : 0;
@@ -57832,6 +57939,8 @@ function renderDialog() {
   if (d.speaker) { ctx.font = `bold 18px ${FONT}`; const sw = ctx.measureText(d.speaker).width; chip(tx - 10, y + 13, sw + 20, 28, '#6b4222', 6, { stroke: '#d9a441' }); text(d.speaker, tx, y + 17, { bold: true, size: 18, color: '#fff1cc', shadow: true }); }
   wrap(lineText(d.lines[d.i]), w - (tx - x) - 30, 17).slice(0, 5).forEach((l, i) => text(l, tx, y + (d.speaker ? 50 : 26) + i * 22, { size: 17 }));
   if (Math.floor(R.t * 2) % 2) text('v', x + w - 30, y + h - 30, { bold: true, color: UI.border });
+  if (d.tut) { const lab = SET.mobile ? 'Skip tutorial (B)' : 'Skip tutorial (Esc)'; TUT_SKIP.w = 178; TUT_SKIP.h = 26; TUT_SKIP.x = x + w - TUT_SKIP.w - 52; TUT_SKIP.y = y + h - 36;
+    button(TUT_SKIP.x, TUT_SKIP.y, TUT_SKIP.w, TUT_SKIP.h, lab, () => {}); text(`${d.i + 1} of ${d.lines.length}`, TUT_SKIP.x - 14, TUT_SKIP.y + 5, { size: 14, align: 'right' }); }
 }
 function renderMenus(from = 0, to = menus.length) {
   for (const m of menus.slice(from, to)) {
@@ -58730,6 +58839,7 @@ async function settingsMenu() {
     if (it.value === 'keys') { if (d > 0) script(keybindMenu); return; }
     if (it.value === 'send') { if (!SET.stats) toast('Turn on Share play stats first.'); else { SESSION.sent = 0; if (sendStats('sent a report from Settings', true)) toast('Sending...'); } }
     if (it.value === 'scenery') SET.still = !SET.still;
+    if (it.value === 'tutorials') { SET.tutorials = SET.tutorials === false; if (SET.tutorials && G) for (const k of Object.keys(G.flags)) if (k.startsWith('tut_')) delete G.flags[k]; }
     if (it.value === 'view') { const ks = Object.keys(VIEWS), cur = VIEWS[SET.view] ? SET.view : 'auto'; SET.view = ks[(ks.indexOf(cur) + d + ks.length) % ks.length]; }
     if (it.value === 'portraits') { const M = ['anim', 'still', 'off']; SET.portraits = M[(M.indexOf(portraitMode()) + d + 3) % 3]; }
     saveSettings(); AU.sfx('menu');
@@ -58738,6 +58848,7 @@ async function settingsMenu() {
     items: () => [{ label: 'Music volume', right: lbl(AU.volume.music), value: 'music' }, { label: 'Sound effects', right: lbl(AU.volume.sfx), value: 'sfx' },
       { label: 'Conversation portraits', right: { anim: 'Animated', still: 'Still', off: 'Off' }[portraitMode()], value: 'portraits', desc: 'Large character portraits in conversations. Animated: they breathe and blink. Still: the painting only, changing with their mood. Off: the small sprite only.' },
       { label: 'World view', right: VIEWS[SET.view] ? VIEWS[SET.view] + (SET.view === 'auto' ? ` (${VIEWS[viewMode()]})` : '') : `Auto (${VIEWS[viewMode()]})`, value: 'view', desc: 'How much of the world you see while exploring. Close: 15 squares across, big figures (best on a phone). Wide: 20 across. Far: 30 across, small figures. Auto picks Wide on a computer and Close in the phone view. Battles do not change.' },
+      { label: 'Tutorials', right: SET.tutorials === false ? 'Off' : 'On', value: 'tutorials', desc: 'Short lessons the first time you fight and the first time you trade. Turning this on shows them again in the game you are playing.' },
       { label: 'Moving scenery', right: SET.still ? 'Off' : 'On', value: 'scenery', desc: 'Trees swaying, water rippling, lanterns swinging and fires flickering. Off holds them still.' },
       { label: 'Walking speed', right: SET.walk, value: 'walk', desc: 'How quickly you walk from tile to tile.' }, { label: 'Battle speed', right: SET.battle, value: 'battle', desc: 'How quickly enemies take their turns.' },
       { label: 'Share play stats', right: SET.stats ? 'On' : 'Off', value: 'stats', desc: 'When you close the game, a short summary (version, day, level, quests, settings, any errors) goes to the developer to help improve the game. No personal information.' },
@@ -59155,10 +59266,10 @@ function handleInput() {
     if (BAG && !dialogs.length && menus.length <= BAG.depth) { bagClick(c); continue; }
     if (TREE && !dialogs.length && menus.length <= TREE.depth) { treeClick(c); continue; }
     if (MASTER && !dialogs.length && masterClick(c)) continue;
-    if (dialogs.length) { advanceDialog(); continue; }
+    if (dialogs.length) { dialogClick(c); continue; }
     if (dollTop()) { const b = buttons.slice().reverse().find(b => c.x >= b.x && c.x <= b.x + b.w && c.y >= b.y && c.y <= b.y + b.h); if (b) { if (!b.disabled) b.fn(); } else dollClick(xfPt(c)); continue; }
     if (menus.length) { menuClick(c); continue; }
-    if (dialogs.length) { advanceDialog(); continue; }
+    if (dialogs.length) { dialogClick(c); continue; }
     if (R.scene === 'combat' && C && !menus.length && !dialogs.length && (combatHeld() || ((C.phase === 'won' || C.phase === 'lost') && paced() && R.t - (C.endT || 0) < 0.7))) continue;
     const b = buttons.slice().reverse().find(b => c.x >= b.x && c.x <= b.x + b.w && c.y >= b.y && c.y <= b.y + b.h);
     if (b) { if (!b.disabled) b.fn(); continue; }
@@ -59173,7 +59284,7 @@ function handleInput() {
     if (BAG && !dialogs.length && menus.length <= BAG.depth) { bagKey(k); continue; }
     if (TREE && !dialogs.length && menus.length <= TREE.depth) { treeKey(k); continue; }
     if (MASTER && !dialogs.length && masterKey(k)) continue;
-    if (dialogs.length) { if (['enter', ' ', 'e', 'escape'].includes(k)) advanceDialog(); continue; }
+    if (dialogs.length) { if (k === 'escape' && tutDialogSkip()) continue; if (['enter', ' ', 'e', 'escape'].includes(k)) advanceDialog(); continue; }
     if (dollTop()) { dollKey(k); continue; }
     if (menus.length) { menuKey(k); continue; }
     if (fadeA > 0) continue;
@@ -59203,7 +59314,7 @@ function frame(now) {
     if (R.scene === 'title') renderTitle();
     else if (R.scene === 'world' && G) renderWorld();
     else if (R.scene === 'sea' && SEA) renderSea();
-    else if (R.scene === 'combat' && C) renderCombat();
+    else if (R.scene === 'combat' && C) { renderCombat(); if (C.tut) renderTutBox(); }
     if (DOLL) { renderMenus(0, DOLL.depth); inMasterXf(renderDoll); }
     if (WMAP) renderWorldMap();
     if (TREE) { renderMenus(DOLL ? DOLL.depth : 0, TREE.depth); renderMaster(); renderTree(); renderMenus(TREE.depth); } else { renderMenus(DOLL ? DOLL.depth : 0); renderMaster(); }
