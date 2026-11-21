@@ -8,11 +8,11 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.31.0</title>
+<title>Reagents of Briarwick v0.31.1</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
-  /* phones: pin the page to the visible screen so it can never scroll or sit lower than what is shown (the game sets the exact height) */
-  html, body { position: fixed; top: 0; left: 0; width: 100%; }
+  /* phone view only (Mobile Play on; the game adds the class): pin the page to the visible screen so it can never scroll or sit lower than what is shown */
+  html.phone, html.phone body { position: fixed; top: 0; left: 0; width: 100%; }
   canvas { touch-action: none; }
   body { display: flex; align-items: center; justify-content: center; }
   canvas { image-rendering: pixelated; image-rendering: crisp-edges; display: block; box-shadow: 0 0 40px rgba(0,0,0,.6); }
@@ -31,7 +31,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.31.0",
+  "version": "0.31.1",
   "tileSize": 16,
   "scale": 4,
   "dayStart": 6,
@@ -52571,11 +52571,13 @@ function losXY(x0, y0, x1, y1) {
 const los = (a, b) => losXY(a.x, a.y, b.x, b.y);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-function viewSize() { const vv = window.visualViewport; return vv && vv.width > 0 && vv.height > 0 ? [vv.width, vv.height] : [innerWidth, innerHeight]; }      // what is really visible (phones: without the address bar's share)
+function viewSize() { const vv = window.visualViewport; return window.__mobileOn && vv && vv.width > 0 && vv.height > 0 ? [vv.width, vv.height] : [innerWidth, innerHeight]; }      // what is really visible (phones: without the address bar's share)
 function fitCanvas() {
-  const [W, H] = viewSize();
-  if (window.scrollX || window.scrollY || document.documentElement.scrollTop || document.body.scrollTop) { window.scrollTo(0, 0); document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }      // a scrolled page shows the picture in one place and takes touches in another
-  document.documentElement.style.height = document.body.style.height = Math.round(H) + 'px';
+  const [W, H] = viewSize(), phone = !!window.__mobileOn;      // the phone view pins the page to what is visible; on a computer the page is left as the browser lays it out
+  document.documentElement.classList.toggle('phone', phone);
+  if (phone) { if (window.scrollX || window.scrollY || document.documentElement.scrollTop || document.body.scrollTop) { window.scrollTo(0, 0); document.documentElement.scrollTop = 0; document.body.scrollTop = 0; }      // a scrolled page shows the picture in one place and takes touches in another
+    document.documentElement.style.height = document.body.style.height = Math.round(H) + 'px'; }
+  else document.documentElement.style.height = document.body.style.height = '';
   const side = window.__mobileOn && W > H ? Math.min(120, W * 0.14) : 0;
   const s = Math.min((W - 2 * side) / VW, H / VH);
   cv.style.width = Math.floor(VW * s) + 'px'; cv.style.height = Math.floor(VH * s) + 'px';
@@ -57652,7 +57654,7 @@ async function settingsMenu() {
       { label: 'Your name in reports', right: SET.name || '(not set)', value: 'name', desc: 'Optional. Lets the developer know whose play stats these are.' },
       { label: 'Send a report now', value: 'send', desc: 'Sends your play stats right away (handy after finding a bug).' },
       { label: 'Key bindings...', value: 'keys', desc: 'Change which key does what.' },
-      { label: 'Mobile Play', right: SET.mobile ? 'On' : 'Off', value: 'mobile', desc: 'Touch controls for phones and tablets: a joystick on the left, A (use / OK) and B (back) on the right. Turn your phone sideways to play.' }],
+      { label: 'Mobile Play', right: SET.mobile ? 'On' : 'Off', value: 'mobile', desc: 'The phone view: the picture is fitted to a phone screen, with a joystick on the left, A (use / OK) and B (back) on the right. Phones turn it on by themselves; leave it Off on a computer. Turn your phone sideways to play.' }],
     onKey: (k, it) => { if (!it) return; const d = (k === 'arrowright' || k === 'd') ? 1 : (k === 'arrowleft' || k === 'a') ? -1 : 0; if (d) change(it, d); },
     onSelect: it => { if ((it.value === 'music' || it.value === 'sfx') && AU.volume[it.value] >= 0.99) AU.setVolume(it.value, 0); else change(it, 1); return false; } });
 }
