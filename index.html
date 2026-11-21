@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Briarwick">
-<title>Reagents of Briarwick v0.31.2</title>
+<title>Reagents of Briarwick v0.31.3</title>
 <style>
   html, body { margin: 0; height: 100%; background: #1a1420; overflow: hidden; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
   /* phone view only (Mobile Play on; the game adds the class): pin the page to the visible screen so it can never scroll or sit lower than what is shown */
@@ -31,7 +31,7 @@
 window.GAME_DATA = {
  "meta": {
   "title": "Reagents of Briarwick",
-  "version": "0.31.2",
+  "version": "0.31.3",
   "tileSize": 16,
   "scale": 4,
   "dayStart": 6,
@@ -52580,7 +52580,9 @@ function fitCanvas() {
   else document.documentElement.style.height = document.body.style.height = '';
   const side = window.__mobileOn && W > H ? Math.min(120, W * 0.14) : 0;
   const s = Math.min((W - 2 * side) / VW, H / VH);
-  cv.style.width = Math.floor(VW * s) + 'px'; cv.style.height = Math.floor(VH * s) + 'px';
+  if (window.__mobileOn) { cv._bw = 0; cv.style.width = Math.floor(VW * s) + 'px'; cv.style.height = Math.floor(VH * s) + 'px'; }
+  else { const dpr = window.devicePixelRatio || 1, bw = Math.max(480, Math.min(3200, Math.round(Math.floor(VW * s) * dpr))), bh = Math.round(bw * VH / VW);      // computer: one canvas pixel per screen pixel
+    cv._bw = bw; cv._bh = bh; cv.style.width = bw / dpr + 'px'; cv.style.height = bh / dpr + 'px'; }
   if (window.__MOB) window.__MOB.layout();
 }
 { const later = () => { fitCanvas(); for (const ms of [120, 400, 900]) setTimeout(fitCanvas, ms); };      // iOS reports the new size a little after the turn
@@ -54683,8 +54685,10 @@ function bagKey(k) {
   if (best) { BAG.z = best.z; BAG.i = best.i; BAG.msg = ''; AU.sfx('menu'); }
 }
 function bagClick(c) {
-  const hit = r => c.x >= r.x && c.x <= r.x + r.w && c.y >= r.y && c.y <= r.y + r.h;
+  let hit = r => c.x >= r.x && c.x <= r.x + r.w && c.y >= r.y && c.y <= r.y + r.h;
+  if (MASTER && c.y < MB) { masterClick(c); return; }      // the tab strip above the party screen
   const b = buttons.slice(BAG._b0 || 0).reverse().find(hit); if (b) { if (!b.disabled) b.fn(); return; }
+  c = xfPt(c);      // the screen is drawn a little smaller under the tab strip
   for (const w of BAG._who || []) if (hit(w)) { if (w.who !== BAG.who) { BAG.who = w.who; BAG.z = w.who === 'player' ? 1 : 0; BAG.i = 0; BAG.msg = ''; AU.sfx('menu'); } return; }
   for (const q of BAG._cells || []) if (hit(q)) { BAG.z = q.z; BAG.i = q.i; bagPut(keys.has('shift')); return; }
   for (const r of BAG._bags || []) if (hit(r)) { bagBagMenu(r.i); return; }
@@ -54692,7 +54696,7 @@ function bagClick(c) {
 }
 function renderBag() {
   const who = BAG.who, me = who === 'player', Z = bagZones(who); if (BAG.z >= Z.length) { BAG.z = Z.length - 1; BAG.i = 0; }
-  if (BAG.rc) { const p = BAG.rc; BAG.rc = null; const q = (BAG._cells || []).find(r => p.x >= r.x && p.x <= r.x + r.w && p.y >= r.y && p.y <= r.y + r.h); if (q && menus.length <= BAG.depth) { BAG.z = q.z; BAG.i = q.i; const z = Z[q.z]; if (z && z.cells[q.i]) bagAct(); } }
+  if (BAG.rc) { const p = xfPt(BAG.rc); BAG.rc = null; const q = (BAG._cells || []).find(r => p.x >= r.x && p.x <= r.x + r.w && p.y >= r.y && p.y <= r.y + r.h); if (q && menus.length <= BAG.depth) { BAG.z = q.z; BAG.i = q.i; const z = Z[q.z]; if (z && z.cells[q.i]) bagAct(); } }
   let curK = '';
   ctx.fillStyle = 'rgba(20,12,6,.62)'; ctx.fillRect(0, 0, VW, VH); BAG._b0 = buttons.length; panel(20, 8, 920, 580);
   BAG._who = []; { let x = 36; for (const w of bagWho()) { const on = w === who, tw = 150; ctx.fillStyle = on ? UI.sel : UI.bg2; rr(x, 20, tw, 40, 6); ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = UI.border; ctx.stroke();
@@ -54857,7 +54861,7 @@ async function masterLoop() {
   }
 }
 function masterBase() { return MASTER ? menus[MASTER.depth] : null; }
-function masterCloseScreen() { while (MASTER && menus.length > MASTER.depth) closeMenu(menus[menus.length - 1], null); if (DOLL) closeDoll(); }
+function masterCloseScreen() { while (MASTER && menus.length > MASTER.depth) closeMenu(menus[menus.length - 1], null); if (DOLL) closeDoll(); if (BAG) { const b = BAG; BAG = null; b.res(); } }
 function closeMaster() { if (!MASTER) return; MASTER.closing = true; masterCloseScreen(); AU.sfx('menu'); }
 function switchMaster(t) {
   if (!MASTER) return; t = (t + MTABS.length) % MTABS.length; if (t === MASTER.tab) return;
@@ -54920,7 +54924,7 @@ function renderMaster() {
   });
   const cx = VW - 54; MASTER._close = { x: cx, y: 7, w: 46, h: 31 }; const ch = mouse.x >= cx && mouse.y <= 38 && mouse.y >= 7;
   chip(cx, 7, 46, 31, ch ? UI.sel : UI.white, 6); text('X', cx + 23, 13, { bold: true, align: 'center' });
-  if (DOLL) return;   // the equipment screen shows its own key help
+  if (DOLL || BAG) return;   // the equipment and party screens show their own key help
   const hint = SET.mobile ? (MASTER.focus === 'bar' ? 'Joystick left/right: choose a tab     Down or A: go into it     B: close' : 'Up from the top row: back to the tabs     B: close') : MASTER.focus === 'bar' ? 'Left/Right: choose a tab     Down or Enter: go into it     Esc: close' : 'Up from the top row: back to the tabs     Esc: close';
   ctx.font = `bold 13px ${FONT}`; const hw = ctx.measureText(hint).width + 24; glass((VW - hw) / 2, VH - 26, hw, 22, 6);
   text(hint, VW / 2, VH - 23, { size: 13, bold: true, align: 'center', color: '#fff' });
@@ -55619,6 +55623,22 @@ function wdRegionMaps() {         // the Mainland's zones plus every interior re
   while (q.length) { const m = D.maps[q.pop()]; for (const w of (m && m.warps) || []) if (D.maps[w.to] && !WD_SET.has(w.to) && !other.has(w.to)) { WD_SET.add(w.to); q.push(w.to); } }
   return WD_SET;
 }
+let CS = 1;      // real canvas pixels per layout pixel (the layout is always 960 x 624)
+function rdev(v) { return Math.round(v * CS) / CS; }      // to the nearest real pixel
+const VIEW_SQ = { top: 15, wide: 20, far: 30 }, VIEW_DEF = { top: [15, 9.75, 5.2, 2], wide: [20, 13, 6.9, 1.5], far: [30, 19.5, 10.2, 1] };
+function fitBacking() {      // the canvas's real size, and how many squares each view shows
+  // On a computer the canvas has exactly the screen's pixels under it and the world's art is drawn at a whole number of them (n), so nothing is
+  // resampled when the camera moves; each view then shows as many squares as fit (about 15, 20 or 30 across). In the phone view the canvas keeps
+  // its fixed size (4/3 of it for Wide, where the art is 1.5 layout pixels = 2 real ones).
+  const nat = !window.__mobileOn && cv._bw > 0, mode = R.scene === 'world' && G ? wdMode() : null;
+  const w = nat ? cv._bw : Math.round(VW * (mode === 'wide' ? 4 / 3 : 1)), h = nat ? cv._bh : Math.round(w * VH / VW);
+  if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
+  CS = w / VW; ctx.setTransform(CS, 0, 0, CS, 0, 0);
+  for (const k of Object.keys(VIEW_SQ)) { const P = WDIO[k], d = VIEW_DEF[k];
+    if (!nat) { P.W = d[0]; P.R = d[1]; P.back = d[2]; P.k = d[3]; continue; }
+    let n = Math.max(1, Math.round(w / (32 * VIEW_SQ[k]))); if (k === 'far' && n > 1 && n === Math.max(1, Math.round(w / (32 * VIEW_SQ.wide)))) n--;      // Far is always further than Wide when the art can get smaller
+    P.W = w / (32 * n); P.R = P.W * VH / VW; P.back = P.R * 0.533; P.k = n / CS; }
+}
 const VIEWS = { auto: 'Auto', top: 'Close', wide: 'Wide', far: 'Far' };
 function viewMode() { const v = SET.view; return v === 'top' || v === 'wide' || v === 'far' ? v : window.__mobileOn ? 'top' : 'wide'; }      // Auto: wide on a computer, close in the phone view
 function wdMode(id = R.mapId) {
@@ -55686,7 +55706,8 @@ function wdHouseArt(b, mp) {      // front wall and roof textures built from the
   const W = (b.x1 - b.x0 + 1) * 32, sec = szCan(b.logs ? 'wall_brace' : b.green ? 'wall_green' : 'wall_plaster'), roof = szCan('roof' + b.roofCol), win = szCan('window'), door = szCan('door');
   const WH = b.flat ? 51 : sec.height, cut = sec.height - WH;      // top-down: the wall's lower 51px at native scale (stone footing, plaster, the full 49px door)
   const wall = document.createElement('canvas'); wall.width = W; wall.height = WH; const g = wall.getContext('2d'); g.imageSmoothingEnabled = false;
-  for (let x = 0; x < W; x += 106) g.drawImage(sec, 0, cut, 106, WH, x, 0, 106, WH); g.drawImage(sec, 106, cut, 26, WH, W - 26, 0, 26, WH);
+  for (let x = 22; x < W - 22; x += 84) { const w = Math.min(84, W - 22 - x); g.drawImage(sec, 24, cut, w, WH, x, 0, w, WH); }      // plaster, beams and footing between the corner posts
+  g.drawImage(sec, 2, cut, 22, WH, 0, 0, 22, WH); g.drawImage(sec, 108, cut, 22, WH, W - 22, 0, 22, WH);
   const fy = b.y1, doors = []; for (let x = b.x0; x <= b.x1; x++) if (mp.tiles[fy][x] === 'D') doors.push(x);
   for (let x = b.x0; x <= b.x1; x++) { const i = x - b.x0; if (doors.includes(x)) g.drawImage(door, i * 32, WH - door.height); else if (i % 2 && x !== b.x1) g.drawImage(win, i * 32, b.flat ? 6 : 10); }
   for (const d of mp.decor || []) if (d.x >= b.x0 && d.x <= b.x1 && d.y >= b.y0 && d.y <= b.y1) { const sg = szCan('sign_' + d.sprite.replace(/^b_/, '')); if (sg) g.drawImage(sg, (d.x - b.x0) * 32, 2); }
@@ -55783,7 +55804,7 @@ function wdDrawHouse(V, b, camX) {
     wdPoly(V, [[X, fr, 0], [X, b.y0, 0], [X, b.y0, b.wall], [X, b.ridgeY, b.ridge], [X, fr, b.wall]], wdShade(b.wallCol, 0.78));
     wdPoly(V, [[X, fr + 0.08, b.wall - 0.12], [X, b.ridgeY, b.ridge - 0.12], [X, b.ridgeY, b.ridge + 0.02], [X, fr + 0.08, b.wall + 0.02]], wdShade(b.roofColC || b.roofColS, 0.7)); }
   const [ex0, ey] = V.pt(L, fr, b.wall), [ex1] = V.pt(Rr, fr, b.wall), [, ry] = V.pt(L, b.ridgeY, b.ridge);          // roof: eave -> ridge, one slice per screen row
-  const kz = V.sq(fr) / 32; if (b.flat && kit) ctx.drawImage(art, Math.round(ex0), Math.round(ey - art.height * kz), Math.round(ex1 - ex0), Math.round(art.height * kz));      // top-down: the roof image at an exact 2x
+  const kz = V.sq(fr) / 32; if (b.flat && kit) ctx.drawImage(art, rdev(ex0), rdev(ey - art.height * kz), rdev(ex1 - ex0), rdev(art.height * kz));      // top-down: the roof image at an exact 2x
   else for (let y = Math.floor(ry); y < ey; y++) { const t = (ey - y) / (ey - ry), my = fr + (b.ridgeY - fr) * t, z = b.wall + (b.ridge - b.wall) * t;
     const [lx, ly] = V.pt(L, my, z), [rx] = V.pt(Rr, my, z); ctx.drawImage(art, 0, Math.max(0, Math.min(rh - 1, rh * (1 - t))), art.width, 1, lx, ly, rx - lx, 1.6); }
   if (!b.flat) {   ctx.fillStyle = 'rgba(0,0,0,.25)'; const [r0x, r0y] = V.pt(L, b.ridgeY, b.ridge), [r1x] = V.pt(Rr, b.ridgeY, b.ridge); ctx.fillRect(r0x, r0y - 1, r1x - r0x, 2); }
@@ -55816,12 +55837,12 @@ function wdDrawBlock(V, mp, x, y, h, camX) {   // one wall/rock square standing 
 }
 function renderWorldDio(mp, ppx, ppy) {
   const P = WDIO[wdMode()] || WDIO.battle, gd = wdGround(mp); if (!gd) return false;
-  const px = ppx / TILE + 0.5, py = ppy / TILE + 0.5, KZ = P.k || 2, snap = v => P.ortho ? Math.round(v * 32 * KZ) / (32 * KZ) : v, ox = snap(px - P.W / 2), oy = snap(py - P.back), V = wdProj(P, ox, oy), pt = P.ortho ? (a, b, z = 0) => { const q = V.pt(a, b, z); return [Math.round(q[0]), Math.round(q[1])]; } : V.pt, sqAt = V.sq;
+  const px = ppx / TILE + 0.5, py = ppy / TILE + 0.5, KZ = P.k || 2, snap = v => P.ortho ? Math.round(v * 32 * KZ * CS) / (32 * KZ * CS) : v, ox = snap(px - P.W / 2), oy = snap(py - P.back), V = wdProj(P, ox, oy), pt = P.ortho ? (a, b, z = 0) => { const q = V.pt(a, b, z); return [rdev(q[0]), rdev(q[1])]; } : V.pt, sqAt = V.sq;
   ctx.fillStyle = '#0b090e'; ctx.fillRect(0, 0, VW, VH);      // beyond the map there is only darkness
-  if (P.ortho) { ctx.save(); ctx.imageSmoothingEnabled = false; const sx = Math.round((ox + gd.M) * 32 * KZ) / KZ, sy = Math.round((oy + gd.M) * 32 * KZ) / KZ;      // ground: one copy at the view's scale (2x close, 1.5x wide, 1x far)
+  if (P.ortho) { ctx.save(); ctx.imageSmoothingEnabled = false; const sx = Math.round((ox + gd.M) * 32 * KZ * CS) / (KZ * CS), sy = Math.round((oy + gd.M) * 32 * KZ * CS) / (KZ * CS);      // ground: one copy at the view's scale (2x close, 1.5x wide, 1x far)
     const a0 = Math.max(0, sx), b0 = Math.max(0, sy), a1 = Math.min(gd.c.width, sx + VW / KZ), b1 = Math.min(gd.c.height, sy + VH / KZ);
-    if (a1 > a0 && b1 > b0) ctx.drawImage(gd.c, a0, b0, a1 - a0, b1 - b0, Math.round((a0 - sx) * KZ), Math.round((b0 - sy) * KZ), Math.round((a1 - a0) * KZ), Math.round((b1 - b0) * KZ));
-    if (gd.wet.length && waterTile('water', 0, 0)) for (const c of gd.wet) { const dx = Math.round(((c.x + gd.M) * 32 - sx) * KZ), dy = Math.round(((c.y + gd.M) * 32 - sy) * KZ), dw = Math.round(((c.x + 1 + gd.M) * 32 - sx) * KZ) - dx, dh = Math.round(((c.y + 1 + gd.M) * 32 - sy) * KZ) - dy; if (dx < -64 || dy < -64 || dx > VW || dy > VH) continue;
+    if (a1 > a0 && b1 > b0) ctx.drawImage(gd.c, a0, b0, a1 - a0, b1 - b0, rdev((a0 - sx) * KZ), rdev((b0 - sy) * KZ), rdev((a1 - a0) * KZ), rdev((b1 - b0) * KZ));
+    if (gd.wet.length && waterTile('water', 0, 0)) for (const c of gd.wet) { const dx = rdev(((c.x + gd.M) * 32 - sx) * KZ), dy = rdev(((c.y + gd.M) * 32 - sy) * KZ), dw = rdev(((c.x + 1 + gd.M) * 32 - sx) * KZ) - dx, dh = rdev(((c.y + 1 + gd.M) * 32 - sy) * KZ) - dy; if (dx < -64 || dy < -64 || dx > VW || dy > VH) continue;
       ctx.drawImage(waterTile(c.t, c.x, c.y), dx, dy, dw, dh); if (c.o) ctx.drawImage(gd.over, (c.x + gd.M) * 32, (c.y + gd.M) * 32, 32, 32, dx, dy, dw, dh); }
     ctx.restore(); }
   else {
@@ -56925,9 +56946,9 @@ function renderDoll() {
   DOLL._close = { x: 852, y: 32, w: 44, h: 30 }; ctx.fillStyle = UI.white; rr(852, 32, 44, 30, 6); ctx.fill(); ctx.stroke(); text('X', 874, 38, { bold: true, align: 'center' });
   // portrait: slowly turns and walks
   ctx.fillStyle = '#cfe7a9'; rr(180, 104, 200, 316, 10); ctx.fill(); ctx.lineWidth = 3; ctx.strokeStyle = UI.bg2; ctx.stroke();
-  ctx.fillStyle = 'rgba(0,0,0,.18)'; ctx.beginPath(); ctx.ellipse(280, 384, 64, 14, 0, 0, 7); ctx.fill();
+  ctx.fillStyle = 'rgba(0,0,0,.18)'; ctx.beginPath(); ctx.ellipse(280, 320, 32, 7, 0, 0, 7); ctx.fill();
   const dirs = ['down', 'right', 'up', 'left']; const dir = dirs[Math.floor(R.t / 2) % 4];
-  if (!(walkerOf(st.sprite) && drawWalkerBox(st.sprite, 184, 196, dir, R.t * 5.4, true, 1, 192, who))) drawActor(st.sprite, 184, 196, dir, R.t * 6, true, 1, who, 192);      // v0.28.3: the world look, for the hero too
+  if (!(walkerOf(st.sprite) && drawWalkerBox(st.sprite, 232, 228, dir, R.t * 5.4, true, 1, 96, who))) drawActor(st.sprite, 232, 228, dir, R.t * 6, true, 1, who, 96);      // v0.28.3: the world look, for the hero too
   // slots
   (D.equipSlots || []).forEach((s, i) => {
     const r = slotRect(s, i), on = i === DOLL.slot, id = eq[s.id];
@@ -58113,7 +58134,7 @@ function frame(now) {
     else if (R.scene === 'combat' && C) updateCombat(dt);
     else if (R.scene === 'sea' && SEA) updateSea(dt);
     buttons = [];
-    ctx.imageSmoothingEnabled = false;
+    fitBacking(); ctx.imageSmoothingEnabled = false;
     updateMusic();
     if (R.scene === 'title') renderTitle();
     else if (R.scene === 'world' && G) renderWorld();
@@ -58122,7 +58143,7 @@ function frame(now) {
     if (DOLL) { renderMenus(0, DOLL.depth); inMasterXf(renderDoll); }
     if (WMAP) renderWorldMap();
     if (TREE) { renderMenus(DOLL ? DOLL.depth : 0, TREE.depth); renderMaster(); renderTree(); renderMenus(TREE.depth); } else { renderMenus(DOLL ? DOLL.depth : 0); renderMaster(); }
-    if (BAG) { renderBag(); renderMenus(BAG.depth); }
+    if (BAG) { inMasterXf(renderBag); if (MASTER) renderMaster(); renderMenus(BAG.depth); }
     renderDialog(); renderToasts(); renderUpdateBanner();
     if (fadeA > 0) { ctx.fillStyle = `rgba(0,0,0,${fadeA})`; ctx.fillRect(0, 0, VW, VH); }
     mouse.moved = false;
